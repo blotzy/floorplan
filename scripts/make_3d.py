@@ -172,6 +172,14 @@ def build(doc) -> Scene:
                     sc.polys["planter"].append([pts, 0.0, 24.0])
                 else:
                     sc.polys["lawn"].append([pts, 0.0, 1.0])
+            elif layer == "Bed":                         # owner step 25 beds
+                if min(w, h) >= 50:
+                    sc.boxes["bed"].append([bx0, by0, bx1, by1, 0, 24.0])
+                elif min(w, h) <= 4:
+                    sc.boxes["furniture"].append([bx0, by0, bx1, by1, 0, 44.0])   # headboard
+                else:
+                    sc.boxes["furniture"].append([bx0, by0, bx1, by1, 0, 24.0])   # nightstand
+                sc.bed_sizes.append((round(w, 1), round(h, 1))) if min(w, h) >= 50 else None
             elif layer in ("Bath - Kit.Fixture", "Furniture"):
                 tall = 84.0 if (w <= 17 or h <= 17) and max(w, h) > 40 else 36.0   # pantry shelves
                 sc.boxes["fixture"].append([bx0, by0, bx1, by1, 0, tall])
