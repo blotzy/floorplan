@@ -1,1 +1,35 @@
-# floorplan
+# Accosting rebuild: floor plan and design wishlist
+
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 13, 2026 · @Richard
+
+![Current owner-edits plan (step 17)](renders/step17-west-fence.png)
+
+*Current plan: the designer's 12 OCT 26 sheet with owner edits 1–17 applied. Street (north) at the bottom, carport (east) on the left.*
+
+## Design wishlist by trade
+
+1. [Project basics](docs/01-project-basics.md): orientation, key decisions, code basis
+2. [Architect: floor plan, roof, finishes](docs/02-floor-plan.md): rooms, entry, pantry/laundry/mech block, bedroom wing, attic, wildfire
+3. [Site, carport, and landscape](docs/03-site-and-landscape.md): siting, courtyard, bins, fences, outdoor unit, front yard
+4. [Plumbing](docs/04-plumbing.md)
+5. [HVAC and ventilation](docs/05-hvac.md)
+6. [Electrical](docs/06-electrical.md)
+7. [Low-voltage and network](docs/07-low-voltage.md)
+8. [Kitchen: cabinets and appliances](docs/08-kitchen.md)
+9. [Open questions](docs/09-open-questions.md)
+10. [Plan change log](docs/10-plan-changes.md): each edit step with its render
+
+## Files
+
+| File | What it is |
+| --- | --- |
+| `Accosting 13-OCTOBER-2026.dwg` / `.dxf` | Designer's drawing (Illusoire Art). Never modified. |
+| `Accosting 13-OCTOBER-2026 - owner edits.dxf` | Generated: designer's drawing + owner edits 1–17 |
+| `Accosting 13-OCTOBER-2026 - EXPERIMENT *.dxf` | Generated: alternative layouts for the pantry/laundry/mech/powder block |
+| `scripts/owner_edits.py` | Applies the owner edits and renders PNGs (`uv run scripts/owner_edits.py --render all`) |
+| `scripts/experiment_*.py` | Experiments built on top of the owner edits |
+| `renders/` | PNG renders per step; `renders/experiments/` for the experiments |
+
+Viewing and measuring: open the DXFs in QCAD (View → Auto Zoom; Snap → Endpoint; Info → Distance). Units are inches. Don't save edits into the generated DXFs; they're rebuilt from the designer's original on every run.
+
+The plans are © Illusoire Art; these edits are for owner review and to brief the designer/architect.
