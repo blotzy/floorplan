@@ -263,7 +263,7 @@ def build() -> Sheet:
         sh.text(name, cx, cy + h * 0.7, h, "A-AREA-IDEN")
         sh.text(f"{fmt(x1 - x0)} x {fmt(y1 - y0)}", cx, cy - h * 0.5, h * 0.65, "A-AREA-IDEN")
 
-    hall_n, hall_s = face("bedroom hall wall", +1), face("south hall wall", -1)
+    hall_n, hall_s = face("bedroom hall wall", -1), face("south hall wall", -1)   # bedroom / lobby faces
     srow = face("south hall wall", +1)
     pen_out, pen_in = 546.9, 598.0
     room("FOYER", E_IN, PORCH_Y + EXT, face("foyer wall", -1), 385.2, cx=418.0, cy=372.0, h=6.0)
@@ -284,7 +284,7 @@ def build() -> Sheet:
          cy=555.0, h=6.0)
     room("WIC", face("utility|bath", +1), srow, face("suite|primary", -1), face("bath|wic", -1), h=6.0)
     room("PRIMARY", face("suite|primary", +1), srow, W_IN, S_IN, cx=1082.0)
-    sh.text("LOBBY", 960.0, (hall_n + hall_s) / 2, 7.0, "A-AREA-IDEN")
+    sh.text("LOBBY", 960.0, (face("bedroom hall wall", +1) + hall_s) / 2, 7.0, "A-AREA-IDEN")
     sh.text("PORCH", (E + PORCH_X) / 2, (N + PORCH_Y) / 2, 7.0, "A-AREA-IDEN")
 
     # ---- fixtures & furniture (simple symbols) --------------------------------
@@ -438,8 +438,14 @@ def render(doc, png: Path, x0, y0, x1, y1, width_in=20, dpi=110):
     ax.set_aspect("equal", adjustable="box")
     ax.set_xlim(x0, x1); ax.set_ylim(y0, y1); ax.axis("off")
     png.parent.mkdir(exist_ok=True)
-    fig.savefig(png, dpi=dpi)
+    try:
+        fig.savefig(png, dpi=dpi)
+    except OSError:                    # locked by a Windows image viewer
+        import time
+        png = png.with_name(f"{png.stem}-{time.strftime('%H%M%S')}{png.suffix}")
+        fig.savefig(png, dpi=dpi)
     plt.close(fig)
+    print("  ", png.relative_to(ROOT))
 
 
 def main():
