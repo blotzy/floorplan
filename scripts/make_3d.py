@@ -242,6 +242,7 @@ HTML = r"""<!doctype html>
   <label><input type="checkbox" id="ceil"> Ceiling</label>
   <label><input type="checkbox" id="furn" checked> Furniture / fixtures</label>
   <label><input type="checkbox" id="labels" checked> Room labels</label>
+  <label><input type="checkbox" id="roofsh" checked> Roof shadows (24" eaves)</label>
   <label>Sun: <select id="day">
     <option value="172">Jun 21</option><option value="80">Mar 20 / Sep 22</option>
     <option value="355">Dec 21</option></select></label>
@@ -320,6 +321,15 @@ for (const [text,x,y] of D.labels) {
   s.scale.set(8, 2, 1); s.position.set(x*IN, 9, -y*IN); groups.labels.add(s);
 }
 groups.ceil.visible = false;
+// Invisible roof that still casts shadows (hidden objects don't cast in
+// three.js, so the ceiling never did): house outline incl. the corner porch,
+// 24" eaves, just above the ceiling. Sun only reaches inside through glass.
+const roofCaster = (() => {
+  const shape = new THREE.Shape(D.roof.map(([x,y])=>new THREE.Vector2(x*IN, -y*IN)));
+  const g = new THREE.ExtrudeGeometry(shape, {depth:0.5, bevelEnabled:false}); g.rotateX(Math.PI/2);
+  const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({colorWrite:false, depthWrite:false}));
+  m.position.y = (D.roof_z)*IN; m.castShadow = true; scene.add(m); return m;
+})();
 const ctr = new THREE.Vector3(D.center[0]*IN, 0, -D.center[1]*IN);
 // Sun position for Altadena (34.19 N), solar time.
 // World axes follow the PLAN: x = plan west, y = up, z = plan north.
@@ -371,7 +381,7 @@ document.getElementById('walk').onclick = () => {
 };
 walk.addEventListener('unlock', ()=>{ orbit.enabled = true; camera.position.set(ctr.x-30,70,ctr.z+75); orbit.target.copy(ctr); orbit.update(); });
 const bind = (id, g) => document.getElementById(id).onchange = e => g.visible = e.target.checked;
-bind('ceil', groups.ceil); bind('furn', groups.furn); bind('labels', groups.labels);
+bind('ceil', groups.ceil); bind('furn', groups.furn); bind('labels', groups.labels); bind('roofsh', roofCaster);
 const clock = new THREE.Clock();
 renderer.setAnimationLoop(()=>{
   const dt = clock.getDelta();
@@ -396,7 +406,10 @@ def main():
     data = {"quads": sc.quads, "boxes": sc.boxes, "cyls": sc.cyls, "polys": sc.polys,
             "labels": sc.labels,
             "center": [(HOUSE_E + HOUSE_W) / 2, (N + S) / 2],
-            "entry": [HOUSE_E + 40.0, N + 70.0]}
+            "entry": [HOUSE_E + 40.0, N + 70.0],
+            "roof": [[HOUSE_E - 24, N - 24], [HOUSE_W + 24, N - 24], [HOUSE_W + 24, S + 24],
+                     [HOUSE_E - 24, S + 24]],
+            "roof_z": CEIL + 14.0}
     (OUT_DIR / "house.html").write_text(HTML.replace("__DATA__", json.dumps(data)))
     write_obj(sc, OUT_DIR / "house.obj")
     print("walls", len(sc.quads["wall"]), "windows", len(sc.quads["glass"]),
