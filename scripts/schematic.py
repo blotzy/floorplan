@@ -249,14 +249,15 @@ def vanity(sh, x0, y0, x1, y1, label, rot=0):
 
 
 def common_bath(sh):
-    """72" x 32" alcove tub with a shower head across the window end; WC and vanity on the east wall."""
-    c0, c1 = face("bed2|c.bath", +1), face("c.bath|bed3", -1)          # 73.5" clear: fur one end ~1.5"
+    """72" x 32" alcove tub with a shower head across the window end. Tub drain, valve and
+    head, the WC and the vanity all on the east (plumbing) wall shared with bedroom 2."""
+    c0, c1 = face("bed2|c.bath", +1), face("c.bath|bed3", -1)          # 73.5" clear: fur the west end ~1.5"
     hall = face("bedroom hall wall", -1)
     ty = N_IN + 32.0
-    tub(sh, c1 - 72.0, N_IN, c1, ty, "TUB 72x32")
-    sh.circle((c1 - 4, N_IN + 16), 2.0, "A-EQPM")                     # shower head + valve, west end
-    sh.heads.append((c1, N_IN + 16, -1.0, 0.0))
-    sh.line((c1 - 72.0, ty + 1), (c1, ty + 1), "A-EQPM")              # curtain rod
+    tub(sh, c0, N_IN, c0 + 72.0, ty, "TUB 72x32")
+    sh.circle((c0 + 4, N_IN + 16), 2.0, "A-EQPM")                     # shower head + valve, plumbing wall
+    sh.heads.append((c0, N_IN + 16, 1.0, 0.0))
+    sh.line((c0, ty + 1), (c0 + 72.0, ty + 1), "A-EQPM")              # curtain rod
     wc(sh, c0, ty + 2, c0 + 28, ty + 32)                               # 17" to the tub
     vanity(sh, c0, ty + 41, c0 + 21, ty + 89, "VANITY 48", rot=90)     # 24" from the WC centreline
     sh.rect(c0, hall - 24, c0 + 30, hall, "A-FURN")                          # linen closet in the
@@ -496,6 +497,7 @@ def build() -> Sheet:
     sh.line((cx0, 0), (cx0, cy0), "L-SITE"); sh.line((cx1, 0), (cx1, cy0), "L-SITE")
     sh.text("DRIVEWAY", (cx0 + cx1) / 2, 120.0, 9.0, "A-AREA-IDEN")
     sh.rect(E + 4, N - 24, PORCH_X - 4, N, "L-SITE")                          # porch step
+    sh.rect(E, N, E + 6, N + 6, "A-WALL")                                     # porch corner post (carport beam lands here)
     # courtyard
     fy = cy1 + 3
     sh.rect(6, fy + 1, E, fy + 61, "L-SITE"); sh.text("PAVERS", 106, fy + 31, 6.0)

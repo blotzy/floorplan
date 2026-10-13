@@ -79,6 +79,7 @@ def build_schematic() -> Scene:
     sc.polys["concrete"].append([[[cx0, 0], [cx1, 0], [cx1, cy0], [cx0, cy0]], 0.0, 1.0])
     sc.polys["concrete"].append([[[E_, N_ - 24], [px, N_ - 24], [px, py], [E_, py]], 0.0, 3.0])
     sc.boxes["roof"].append([cx0 - 6, cy0 - 6, cx1, cy1 + 6, 108, 112])
+    sc.boxes["post"].append([E_, N_, E_ + 6, N_ + 6, 0, CEIL])        # porch corner post
 
     # ---- walls: a face along every edge of the wall outline ----------------------
     geom = S.wall_geometry()
@@ -189,8 +190,9 @@ def build_schematic() -> Scene:
         elif c.dxf.layer == "A-FURN":
             sc.cyls["furniture"].append([x, y, r, 0, 30.0 if r >= 7.5 else 18.0])
     for txt, lay, x, y in texts:
-        if lay == "A-AREA-IDEN" and inside_house(x, y, x, y) and "'" not in txt and '"' not in txt:
-            sc.labels.append([txt, x, y])
+        in_carport = cx0 <= x <= cx1 and cy0 <= y <= cy1
+        if lay == "A-AREA-IDEN" and (inside_house(x, y, x, y) or in_carport) and "'" not in txt and '"' not in txt:
+            sc.labels.append([txt, x, y, 11.0] if in_carport else [txt, x, y])   # above the carport roof
 
     # Shower heads: an arm out of the wall at 82" and a round head just below it.
     for wx, wy, dx, dy in sh.heads:
@@ -355,12 +357,12 @@ for (const [k, items] of Object.entries(D.polys)) for (const [pts,z0,z1] of item
   const m = new THREE.Mesh(g, mat(k)); m.position.y = z1*IN; m.receiveShadow = true;
   (k==='ceiling' ? groups.ceil : scene).add(m);
 }
-for (const [text,x,y] of D.labels) {
+for (const [text,x,y,z] of D.labels) {
   const c = document.createElement('canvas'); c.width = 512; c.height = 128;
   const ctx = c.getContext('2d'); ctx.font = 'bold 56px system-ui'; ctx.fillStyle = '#223';
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 256, 64);
   const s = new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c), depthTest:false}));
-  s.scale.set(8, 2, 1); s.position.set(x*IN, 9, -y*IN); groups.labels.add(s);
+  s.scale.set(8, 2, 1); s.position.set(x*IN, z || 9, -y*IN); s.renderOrder = 10; groups.labels.add(s);
 }
 groups.ceil.visible = false;
 // Invisible roof that still casts shadows (hidden objects don't cast in
