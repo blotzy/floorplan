@@ -42,7 +42,7 @@ Open [`renders/3d/house.html`](renders/3d/house.html) in a browser (orbit, zoom,
 | `Accosting 13-OCTOBER-2026 - EXPERIMENT *.dxf` | Generated: alternative layouts for the pantry/laundry/mech/powder block |
 | `Accosting - owner schematic.dxf` | Generated: owner-drawn schematic with real wall thicknesses (`scripts/schematic.py`) |
 | `scripts/owner_edits.py` | Applies the owner edits and renders PNGs (`uv run scripts/owner_edits.py --render all`) |
-| `scripts/experiment_*.py` | Experiments built on top of the owner edits |
+| `scripts/experiment_*.py` | Experiments built on the owner edits (`experiment_wetrooms.py` builds on the schematic) |
 | `scripts/make_3d.py` | Builds the 3D massing model from the owner-edits DXF |
 | `renders/` | PNG renders per step; `renders/experiments/` for the experiments; `renders/3d/` for the 3D model |
 

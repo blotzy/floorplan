@@ -190,6 +190,34 @@ class Sheet:
         d.render()
 
 
+def room_label(sh, name, x0, y0, x1, y1, cx=None, cy=None, h=8.0):
+    """Room name plus its clear size (x extent by y extent)."""
+    cx = (x0 + x1) / 2 if cx is None else cx
+    cy = (y0 + y1) / 2 if cy is None else cy
+    sh.text(name, cx, cy + h * 0.7, h, "A-AREA-IDEN")
+    sh.text(f"{fmt(x1 - x0)} x {fmt(y1 - y0)}", cx, cy - h * 0.5, h * 0.65, "A-AREA-IDEN")
+
+
+# Bath fit-outs are separate so experiments can swap them (scripts/experiment_wetrooms.py).
+def common_bath(sh):
+    eq = "A-EQPM"
+    cb0, cb1 = face("bed2|c.bath", +1), face("c.bath|bed3", -1)
+    hall_n = face("bedroom hall wall", -1)
+    room_label(sh, "C. BATH", cb0, N_IN, cb1, hall_n, cy=280.0, h=6.0)
+    sh.rect(cb0, hall_n - 36, cb0 + 36, hall_n, eq); sh.text("SHWR", cb0 + 18, hall_n - 18, 3.5)
+    sh.rect(cb0, 300.0, cb0 + 21, 336.0, eq); sh.text("VAN", cb0 + 10.5, 318.0, 3.0, rot=90)
+    sh.rect(cb0, 342.0, cb0 + 28, 360.0, eq); sh.text("WC", cb0 + 14, 351.0, 3.0)
+
+
+def primary_bath(sh):
+    eq = "A-EQPM"
+    mb0, mb1 = face("utility|bath", +1), face("suite|primary", -1)
+    room_label(sh, "PRIMARY BATH", mb0, face("bath|wic", +1), mb1, S_IN, cy=555.0, h=6.0)
+    sh.rect(mb1 - 60, S_IN - 22, mb1, S_IN, eq); sh.text("DOUBLE VANITY", mb1 - 30, S_IN - 11, 3.0)
+    sh.rect(mb0, face("bath|wic", +1), mb0 + 60, S_IN, eq); sh.text("SHOWER", mb0 + 30, 575.0, 4.0)
+    sh.rect(944.0, S_IN - 28, 962.0, S_IN, eq); sh.text("WC", 953.0, S_IN - 14, 3.0)
+
+
 def build() -> Sheet:
     sh = Sheet()
 
@@ -257,11 +285,8 @@ def build() -> Sheet:
         # cased openings: just the gap
 
     # ---- rooms: labels with clear sizes ---------------------------------------
-    def room(name, x0, y0, x1, y1, cx=None, cy=None, h=8.0):
-        cx = (x0 + x1) / 2 if cx is None else cx
-        cy = (y0 + y1) / 2 if cy is None else cy
-        sh.text(name, cx, cy + h * 0.7, h, "A-AREA-IDEN")
-        sh.text(f"{fmt(x1 - x0)} x {fmt(y1 - y0)}", cx, cy - h * 0.5, h * 0.65, "A-AREA-IDEN")
+    def room(*a, **k):
+        room_label(sh, *a, **k)
 
     hall_n, hall_s = face("bedroom hall wall", -1), face("south hall wall", -1)   # bedroom / lobby faces
     srow = face("south hall wall", +1)
@@ -271,7 +296,6 @@ def build() -> Sheet:
     room("DINING", E_IN, srow, pen_out, S_IN, cy=592.0)
     room("KITCHEN", pen_out, srow, face("kitchen|pantry", -1), S_IN, cx=622.0, cy=545.0, h=7.0)
     room("BEDROOM 2", face("lounge|bed2", +1), N_IN, face("bed2|c.bath", -1), hall_n, cy=272.0)
-    room("C. BATH", face("bed2|c.bath", +1), N_IN, face("c.bath|bed3", -1), hall_n, cy=280.0, h=6.0)
     room("BEDROOM 3", face("c.bath|bed3", +1), N_IN, face("bed3|bed4", -1), hall_n, cy=272.0)
     room("BEDROOM 4", face("bed3|bed4", +1), N_IN, W_IN, hall_n, cy=272.0)
     room("PANTRY", face("kitchen|pantry", +1), srow, face("pantry|laundry", -1), face("pantry|mech", -1), h=5.5)
@@ -280,10 +304,8 @@ def build() -> Sheet:
     room("LAUNDRY", face("pantry|laundry", +1), srow, face("laundry|powder", -1), S_IN, cy=505.0, h=5.5)
     room("PWD", face("laundry|powder", +1), srow, face("utility|bath", -1), face("powder|alcove", -1),
          cx=842.0, cy=496.0, h=4.0)
-    room("PRIMARY BATH", face("utility|bath", +1), face("bath|wic", +1), face("suite|primary", -1), S_IN,
-         cy=555.0, h=6.0)
     room("WIC", face("utility|bath", +1), srow, face("suite|primary", -1), face("bath|wic", -1), h=6.0)
-    room("PRIMARY", face("suite|primary", +1), srow, W_IN, S_IN, cx=1082.0)
+    room("PRIMARY", face("suite|primary", +1), srow, W_IN, S_IN, cx=(face("suite|primary", +1) + W_IN - 80) / 2)
     sh.text("LOBBY", 960.0, (face("bedroom hall wall", +1) + hall_s) / 2, 7.0, "A-AREA-IDEN")
     sh.text("PORCH", (E + PORCH_X) / 2, (N + PORCH_Y) / 2, 7.0, "A-AREA-IDEN")
 
@@ -334,10 +356,7 @@ def build() -> Sheet:
     closet(1030.1, face("bed3|bed4", -1))
     closet(1130.0, W_IN)
 
-    cb0, cb1 = face("bed2|c.bath", +1), face("c.bath|bed3", -1)              # common bath
-    sh.rect(cb0, hall_n - 36, cb0 + 36, hall_n, eq); sh.text("SHWR", cb0 + 18, hall_n - 18, 3.5)
-    sh.rect(cb0, 300.0, cb0 + 21, 336.0, eq); sh.text("VAN", cb0 + 10.5, 318.0, 3.0, rot=90)
-    sh.rect(cb0, 342.0, cb0 + 28, 360.0, eq); sh.text("WC", cb0 + 14, 351.0, 3.0)
+    common_bath(sh)
 
     pw0, pw1 = face("laundry|powder", +1), face("utility|bath", -1)          # powder
     pws = face("powder|alcove", -1)
@@ -363,10 +382,7 @@ def build() -> Sheet:
     sh.rect(p0, face("pantry|mech", +1), p0 + 22, face("pantry|mech", +1) + 22, eq)
     sh.text("RACK", p0 + 11, face("pantry|mech", +1) + 11, 3.0)
 
-    mb0, mb1 = face("utility|bath", +1), face("suite|primary", -1)           # primary bath
-    sh.rect(mb1 - 60, S_IN - 22, mb1, S_IN, eq); sh.text("DOUBLE VANITY", mb1 - 30, S_IN - 11, 3.0)
-    sh.rect(mb0, face("bath|wic", +1), mb0 + 60, S_IN, eq); sh.text("SHOWER", mb0 + 30, 575.0, 4.0)
-    sh.rect(944.0, S_IN - 28, 962.0, S_IN, eq); sh.text("WC", 953.0, S_IN - 14, 3.0)
+    primary_bath(sh)
 
     # ---- site ----------------------------------------------------------------------
     sh.rect(0, 0, LOT_W, LOT_D, "C-PROP")
