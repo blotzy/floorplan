@@ -21,7 +21,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 **Bathrooms**
 
 - Use epoxy or pre-mixed urethane grout for shower tile work.
-- Powder room toilet sits on the wall shared with the primary bath (same wet wall).
+- Powder room toilet sits on the wall shared with the laundry alcove (washer/sink on the other side).
 
 **Kitchen**
 
@@ -37,7 +37,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 - Tankless reverse-osmosis filter under the kitchen sink, feeding the sink tap and a line to the fridge. A bypass plug replaces the fridge's internal filter.
 - Leak pans under the washer and fridge.
 - Bidet seats at the three full baths. Plan toilet locations so each bidet outlet has enough separation from tubs and showers.
-- Laundry sink beside the washer on the laundry's south wall.
+- Laundry sink beside the washer in the laundry alcove.
 
 **Optional**
 

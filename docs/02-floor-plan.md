@@ -24,25 +24,22 @@ See [kitchen](08-kitchen.md). The plan reserves a 4'-0" work aisle and a peninsu
 
 ## Pantry, laundry, mechanical, powder (the block behind the kitchen)
 
-Current main plan (the side hall is kept; see the experiments below for alternatives):
+The designer's side hall is gone (step 19, adopted from the "three strips v2" experiment). The block is three strips, each with its own door off the main lobby:
 
-- **Pantry** 8'-9" x 5' (3' wider than the designer's). Door off the main lobby at the corner by the fridge, hinged so it opens flat against the kitchen wall. Outlets inside.
-- **Laundry** 8'-9" x 7'-2" (3' wider), door off the side hall. Dryer, washer (side by side, not stacked) and laundry sink on the south wall; 20"-deep folding counter on the pantry wall with 36" clear in front of the appliances. Leak pan under the washer.
-- **Mechanical / network closet** (the designer's hallway closet), about 3'-6" x 8'-6", off the side hall, behind louvered bifolds. Holds the heat pump water heater, softener and brine tank, sediment pre-filter, water distribution manifold, and the network rack. Keep the rack at the lobby end, partitioned from the water equipment, with no water lines in its walls or ceiling. Floor drain or drain pan.
-- **Powder room** 6'-11" x 3'-8" at the end of the side hall. Toilet turned to sit on the primary-bath wet wall, facing down the room's length (24"+ clear in front per CPC 402.5).
-- **Side hall** (3'-5") stays a clear 36" walkway.
-- **Indoor electrical subpanel** flush in the laundry-side wall of the side hall, across from the mechanical closet. The hall provides the 30" x 36" working space; keep the washer's plumbing out of that section of wall.
-- **Robot vacuum dock** niche at the end of the side hall or in the laundry's toe-kick, near the washer drain, open to the floor.
+- **Pantry** 5'-10" x 7'-6", door at the corner by the fridge, hinged so it opens flat against the kitchen wall. 16"-deep shelves on three sides with a 38" aisle (east shelves start past the door leaf). Outlets inside.
+- **Mechanical / network closet** 5'-10" x 4'-8", behind the pantry at the south end of the strip, opening into the laundry through a **louvered** 30" bifold (the heat pump water heater needs the laundry's air volume; the closet alone is ~270 cu ft). Holds the heat pump water heater, softener and brine tank, sediment pre-filter, water distribution manifold, and the network rack (kept clear of water lines). Floor drain or drain pan. No conditioned supply into the closet.
+- **Laundry** 5'-6" x 12'-6" plus a 4' x 6'-8" alcove behind the powder room, own 30" door off the lobby. Dryer, washer (side by side, not stacked) and laundry sink in the alcove, facing into the room; 24"-deep folding counter on the pantry-side wall; leak pan under the washer. Solid-core door and insulated walls to keep machine noise out of the bedroom hall.
+- **Indoor electrical subpanel** flush in the laundry's pantry-side wall just past the door swing, with its 30" x 36" working space kept clear (the folding counter starts beyond it).
+- **Powder room** 4' x 5'-6", own 28" door off the lobby. Toilet on the south wall (shared with the laundry alcove) facing the door with ~34" clear in front; small wall-hung sink by the door. Solid-core door.
+- **Robot vacuum dock** niche in the laundry (toe-kick of the folding counter), near the washer drain, open to the floor.
 
-**Experiments under consideration** (separate DXFs, main plan untouched):
+**Alternatives explored** (separate DXFs, branched from step 18):
 
 | Experiment | Idea | Render |
 | --- | --- | --- |
 | Powder at lobby | Powder room off the main lobby; pantry, laundry, and mech merged into one utility room | [powder-at-lobby](../renders/experiments/powder-at-lobby-zoom.png) |
-| Three strips | No side hall: pantry, laundry, and powder each open off the lobby; mech behind the powder room | [three-strips](../renders/experiments/three-strips-zoom.png) |
-| **Three strips v2** (preferred so far) | As above, but a 5'-10" x 7'-6" pantry, a 5'-10" x 4'-8" mech closet at the pantry strip's south end (off the laundry), and a washer/dryer/sink alcove behind the powder room | [three-strips-v2](../renders/experiments/three-strips-v2-zoom.png) |
-
-All three experiments are rebuilt on top of step 18, so the block is 12" wider than before (the pantry strip in the strip layouts is 5'-10"). If v2 is adopted, the subpanel needs a new home (laundry wall or mech closet).
+| Three strips | No side hall: pantry, laundry, and powder each off the lobby; mech behind the powder room | [three-strips](../renders/experiments/three-strips-zoom.png) |
+| Three strips v2 (**adopted as step 19**) | Shorter pantry, mech at the pantry strip's south end, W/D alcove behind the powder room | [three-strips-v2](../renders/experiments/three-strips-v2-zoom.png) |
 
 ## Bedroom wing
 

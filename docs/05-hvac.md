@@ -26,4 +26,4 @@ A three-zone heat pump system on one multi-zone outdoor unit, plus an ERV for co
 - ERV (energy recovery ventilator) with MERV 13 filtration for wildfire smoke. Exhaust pickups in the baths, powder room, and laundry; fresh-air supply to the bedrooms and great room. ERV boost control in the gym.
 - ERV fresh-air intake ≥10' from the dryer vent, other exhausts, and the heat pump outdoor unit.
 - Range hood ducted outside through the roof, 400 CFM or less to avoid a makeup-air requirement.
-- Network rack and water heater share the mechanical closet in the current plan: louvered bifolds so the water heater can use the rack's waste heat; no conditioned supply into the closet.
+- Network rack and water heater share the mechanical closet, which opens into the laundry through a louvered bifold so the water heater can draw on the laundry's air (and the rack's waste heat); no conditioned supply into the closet.

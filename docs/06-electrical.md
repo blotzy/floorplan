@@ -8,7 +8,7 @@
 
 - Exterior meter-main with a 225A busbar and 200A main (SCE-approved, "solar-ready"), which also serves as the code-required emergency disconnect. Location follows SCE's service point (utilities are at the west end).
 - Underground conduit from the service point sized for 400A (roughly 3"), so a future upgrade means new wire and gear, not new trenching.
-- Indoor subpanel flush in the laundry-side wall of the side hall, across from the mechanical closet, with 30" x 36" of clear working space and 6'-6" of headroom. (Moves to the laundry or mech closet if the "three strips v2" experiment is adopted.)
+- Indoor subpanel flush in the laundry's pantry-side wall, just past the laundry door swing, with 30" x 36" of clear working space and 6'-6" of headroom.
 - Whole-house surge protector.
 
 **Dedicated circuits**
@@ -23,8 +23,8 @@
 | Drink fridge | 15–20A | Peninsula, south end (fourth-stool spot) |
 | Heat pump outdoor unit | Per manufacturer | Rear yard, middle of the south wall |
 | Heat pump water heater | Per model (240V, or a 120V plug-in model) | Mechanical closet |
-| Heat pump dryer | Per model | Laundry, south wall |
-| Washer | 20A | Laundry, south wall |
+| Heat pump dryer | Per model | Laundry alcove |
+| Washer | 20A | Laundry alcove |
 | Chest freezer | 15–20A | Laundry |
 | Network rack | One 20A | Mechanical / network closet |
 | Gym | One 20A | Bedroom 2 (bike/treadmill wall) |
