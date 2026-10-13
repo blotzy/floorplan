@@ -1,59 +1,131 @@
-<!-- Tap/click any image to open it full screen: pinch or scroll to zoom, drag to pan,
-     double-tap to zoom in/out, ✕ / Esc / tap outside to close. -->
+<!-- Tap/click any image to open it full screen: pinch or scroll to zoom (around your fingers /
+     the cursor), drag to pan, double-tap to zoom in/out, ✕ / Esc / tap outside to close. -->
 <style>
   .markdown-body img { cursor: zoom-in; }
   #zoombox { position: fixed; inset: 0; z-index: 1000; display: none; overflow: hidden;
-             background: rgba(18, 22, 26, .95); touch-action: none; }
-  #zoombox.open { display: flex; align-items: center; justify-content: center; }
-  #zoombox img { max-width: 100vw; max-height: 100vh; cursor: grab; user-select: none; -webkit-user-drag: none; }
+             background: rgba(18, 22, 26, .96); touch-action: none; }
+  #zoombox.open { display: block; }
+  #zoombox img { position: absolute; left: 0; top: 0; transform-origin: 0 0; max-width: none;
+                 cursor: grab; user-select: none; -webkit-user-drag: none; }
   #zoombox button { position: absolute; top: 12px; right: 12px; z-index: 2; width: 44px; height: 44px;
                     border: 0; border-radius: 22px; background: #fffe; font-size: 22px; line-height: 44px; cursor: pointer; }
   #zoombox .hint { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 2;
                    padding: 6px 12px; border-radius: 8px; background: #fffd; font: 13px system-ui, sans-serif;
                    white-space: nowrap; pointer-events: none; }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom@4.5.1/dist/panzoom.min.js" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const box = document.createElement('div');
   box.id = 'zoombox';
   box.innerHTML = '<button aria-label="Close">✕</button><img alt=""><div class="hint"></div>';
   document.body.appendChild(box);
-  const big = box.querySelector('img'), hint = box.querySelector('.hint');
+  const img = box.querySelector('img'), hint = box.querySelector('.hint');
   const touch = matchMedia('(pointer: coarse)').matches;
   hint.textContent = touch ? 'Pinch to zoom · drag to move · double-tap to zoom · ✕ to close'
                            : 'Scroll to zoom · drag to move · double-click to zoom · Esc to close';
-  let pz = null, moved = false;
+
+  // View state: the fitted image is drawn at (tx, ty) scaled by s (transform-origin 0 0).
+  let s = 1, tx = 0, ty = 0, moved = false, lastTap = 0;
+  const MAX = 10;
+  const apply = () => { img.style.transform = `translate(${tx}px, ${ty}px) scale(${s})`; };
+  function fit() {
+    const vw = box.clientWidth, vh = box.clientHeight;
+    const k = Math.min(vw / img.naturalWidth, vh / img.naturalHeight);
+    img.style.width = img.naturalWidth * k + 'px';
+    img.style.height = img.naturalHeight * k + 'px';
+    s = 1; tx = (vw - img.naturalWidth * k) / 2; ty = (vh - img.naturalHeight * k) / 2;
+    apply();
+  }
+  // Zoom by factor f keeping the screen point (px, py) fixed on the same spot of the image.
+  function zoomAt(f, px, py) {
+    const ns = Math.min(MAX, Math.max(1, s * f));
+    if (ns === 1) { fit(); return; }
+    tx = px - (px - tx) * (ns / s);
+    ty = py - (py - ty) * (ns / s);
+    s = ns; apply();
+  }
 
   function open(src, alt) {
-    big.src = src; big.alt = alt || '';
     box.classList.add('open');
     document.documentElement.style.overflow = 'hidden';
-    if (!pz) {
-      pz = Panzoom(big, { maxScale: 10, minScale: 1, step: 0.4, cursor: 'grab' });
-      box.addEventListener('wheel', e => { e.preventDefault(); pz.zoomWithWheel(e); }, { passive: false });
-      big.addEventListener('panzoomchange', () => { moved = true; });
-      big.addEventListener('dblclick', e => {
-        if (pz.getScale() > 1.5) pz.reset(); else pz.zoomToPoint(3, e);
-      });
-    }
-    pz.reset({ animate: false });
+    img.alt = alt || '';
+    img.onload = fit;
+    img.src = src;
+    if (img.complete && img.naturalWidth) fit();
   }
   function close() {
     box.classList.remove('open');
     document.documentElement.style.overflow = '';
   }
 
-  document.querySelectorAll('.markdown-body img').forEach(img => {
-    img.addEventListener('click', e => {
-      e.preventDefault();
-      open(img.currentSrc || img.src, img.alt);
-    });
+  // Pointers: one = pan, two = pinch (zoom about the midpoint, pan with it).
+  const pts = new Map();
+  let pinch = null;
+  const mid = () => { const [a, b] = [...pts.values()]; return [(a.x + b.x) / 2, (a.y + b.y) / 2, Math.hypot(a.x - b.x, a.y - b.y)]; };
+  box.addEventListener('pointerdown', e => {
+    if (e.target.tagName === 'BUTTON') return;
+    box.setPointerCapture(e.pointerId);
+    pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    moved = false;
+    if (pts.size === 2) pinch = mid();
+  });
+  box.addEventListener('pointermove', e => {
+    const p = pts.get(e.pointerId);
+    if (!p) return;
+    if (pts.size === 1) {
+      const dx = e.clientX - p.x, dy = e.clientY - p.y;
+      if (Math.abs(dx) + Math.abs(dy) > 2) moved = true;
+      if (s > 1) { tx += dx; ty += dy; apply(); }
+      p.x = e.clientX; p.y = e.clientY;
+    } else if (pts.size === 2) {
+      p.x = e.clientX; p.y = e.clientY;
+      const [mx, my, d] = mid();
+      moved = true;
+      if (pinch && pinch[2] > 0) {
+        tx += mx - pinch[0]; ty += my - pinch[1]; apply();      // follow the fingers
+        zoomAt(d / pinch[2], mx, my);                          // and zoom about them
+      }
+      pinch = [mx, my, d];
+    }
+  });
+  const up = e => {
+    pts.delete(e.pointerId);
+    if (pts.size < 2) pinch = null;
+  };
+  box.addEventListener('pointerup', e => {
+    up(e);
+    if (moved || e.target.tagName === 'BUTTON') return;
+    const now = Date.now();
+    if (now - lastTap < 300) {                                 // double-tap / double-click
+      if (s > 1.5) fit(); else zoomAt(3, e.clientX, e.clientY);
+      lastTap = 0;
+    } else {
+      lastTap = now;
+      if (e.target === box) setTimeout(() => { if (lastTap === now) close(); }, 300);   // tap outside
+    }
+  });
+  box.addEventListener('pointercancel', up);
+  box.addEventListener('wheel', e => {
+    e.preventDefault();
+    zoomAt(Math.exp(-e.deltaY * (e.deltaMode ? 0.05 : 0.0015)), e.clientX, e.clientY);
+  }, { passive: false });
+  addEventListener('resize', () => { if (box.classList.contains('open')) fit(); });
+
+  document.querySelectorAll('.markdown-body img').forEach(el => {
+    el.addEventListener('click', e => { e.preventDefault(); open(el.currentSrc || el.src, el.alt); });
   });
   box.querySelector('button').addEventListener('click', close);
-  box.addEventListener('pointerdown', () => { moved = false; });
-  box.addEventListener('click', e => { if (e.target === box && !moved) close(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-  if (location.hash === '#zoomtest') open(document.querySelector('.markdown-body img').src);   // test hook
+
+  // Test hook: #zoomtest opens the first image; #zoomtest-check also verifies the focal point.
+  if (location.hash.startsWith('#zoomtest')) {
+    open(document.querySelector('.markdown-body img').src);
+    if (location.hash === '#zoomtest-check') setTimeout(() => {
+      const px = 610, py = 260, before = [(px - tx) / s, (py - ty) / s];
+      box.dispatchEvent(new WheelEvent('wheel', { deltaY: -600, clientX: px, clientY: py, cancelable: true }));
+      const after = [(px - tx) / s, (py - ty) / s];
+      document.title = `scale ${s.toFixed(2)} before ${before.map(v => v.toFixed(2))} after ${after.map(v => v.toFixed(2))}`;
+    }, 500);
+  }
 });
 </script>
