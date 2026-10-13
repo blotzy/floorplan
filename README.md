@@ -2,9 +2,13 @@
 
 220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 13, 2026 · @Richard
 
-![Floor plan](renders/schematic-zoom.png)
+![Site plan](renders/schematic.png)
 
-*Owner schematic, not for construction. Street (plan north) at the bottom, carport (plan east) on the left. [Full site sheet](renders/schematic.png), with the lot, carport, courtyard and a true-north arrow (21° off plan north).*
+*Owner schematic, not for construction: the full lot with the house, carport, courtyard, fences and a true-north arrow (21° off plan north). Street (plan north) at the bottom, carport (plan east) on the left.*
+
+![Floor plan, house only](renders/schematic-zoom.png)
+
+*The house at a larger scale.*
 
 Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigid insulation + stucco), interior 4½", plumbing walls 6½". Room sizes on the drawing are clear dimensions, finish face to finish face. Sizes and fine details are the architect's call; the drawing shows one way the [wishlist](#design-wishlist-by-trade) fits.
 
