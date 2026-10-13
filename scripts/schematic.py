@@ -397,10 +397,10 @@ def build() -> Sheet:
     for y in (476.7, 512.9, 544.5):                                           # 3 stools
         sh.circle((pen_out - 8, y), 7.5, fu)
     dcx = (E_IN + pen_out) / 2                                                # dining table
-    sh.rect(dcx - 20, 523 - 36, dcx + 20, 523 + 36, fu)
-    for dy in (-24, 0, 24):                                                   # 8 chairs: 3 a side + ends
+    sh.rect(dcx - 20, 523 - 42, dcx + 20, 523 + 42, fu)                      # 84" x 40" table
+    for dy in (-28, 0, 28):                                                   # 8 chairs: 3 a side + ends
         sh.circle((dcx - 28, 523 + dy), 7, fu); sh.circle((dcx + 28, 523 + dy), 7, fu)
-    for y in (523 - 45, 523 + 45):
+    for y in (523 - 51, 523 + 51):
         sh.circle((dcx, y), 7, fu)
     tv = face("foyer wall", +1)
     sh.rect(tv, 300.0, tv + 3, 360.0, fu); sh.text("TV", tv + 8, 330.0, 4.0, rot=90)
