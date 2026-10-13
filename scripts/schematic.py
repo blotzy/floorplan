@@ -287,19 +287,22 @@ def wic(sh):
                face("bath|wic", -1), h=6.0)
 
 
+def wall_geometry():
+    """All walls as one shapely (Multi)Polygon with the openings cut out."""
+    solids = [ext_rect(ax, f, d, a, b) for ax, f, d, a, b in EXT_WALLS.values()]
+    solids += [wall_rect(ax, c, a, b, t) for _, ax, c, a, b, t in WALLS]
+    cuts = []
+    for o in OPENINGS:
+        axis, c, t = wall_info(o[0])
+        cuts.append(wall_rect(axis, c, o[1], o[2], t + 0.2))
+    return unary_union(solids).difference(unary_union(cuts))
+
+
 def build() -> Sheet:
     sh = Sheet()
 
     # ---- walls: union of exterior + interior rectangles, minus openings -----
-    solids = [ext_rect(ax, f, d, a, b) for ax, f, d, a, b in EXT_WALLS.values()]
-    solids += [wall_rect(ax, c, a, b, t) for _, ax, c, a, b, t in WALLS]
-    walls = unary_union(solids)
-    cuts = []
-    for o in OPENINGS:
-        name, a, b = o[0], o[1], o[2]
-        axis, c, t = wall_info(name)
-        cuts.append(wall_rect(axis, c, a, b, t + 0.2))
-    walls = walls.difference(unary_union(cuts))
+    walls = wall_geometry()
     for poly in getattr(walls, "geoms", [walls]):
         h = sh.msp.add_hatch(color=8, dxfattribs={"layer": "A-WALL-PATT"})
         h.paths.add_polyline_path(list(poly.exterior.coords), is_closed=True)

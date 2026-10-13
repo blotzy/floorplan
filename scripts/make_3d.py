@@ -2,16 +2,16 @@
 # requires-python = ">=3.10"
 # dependencies = ["ezdxf>=1.4"]
 # ///
-"""Rough 3D massing model of the owner-edits plan.
+"""Rough 3D massing model.
 
-Reads the generated owner-edits DXF and writes:
-  renders/3d/house.html  - browser viewer (orbit + walk mode), open directly
-  renders/3d/house.obj   - same geometry for Windows 3D Viewer / Blender
+Default source is the owner schematic (scripts/schematic.py, no designer
+content), written to renders/3d/:
+  house.html  - browser viewer (orbit + walk mode, touch controls), open directly
+  house.obj   - same geometry for Windows 3D Viewer / Blender
 
-Walls are the plan's wall lines extruded to the 10' ceiling (the designer
-drew each wall as two loose face lines, so walls read as paired surfaces).
-Openings between collinear wall pieces get an 8' header; openings with a
-window get a 30" sill, glass, and the header. Fixtures/furniture are boxes.
+Walls rise to the 10' ceiling; doors and windows get 8' headers, windows a
+30" sill and glass. Fixtures and furniture are boxes whose heights come from
+their labels.
 
     uv run scripts/make_3d.py
 """
@@ -21,21 +21,9 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
-from ezdxf import bbox, recover
 
-import owner_edits as oe
-from owner_edits import OX, OY
-
-OUT_DIR = oe.RENDERS / "3d"
 CEIL, HEAD, SILL, FENCE = 120.0, 96.0, 30.0, 72.0   # inches
-
-HOUSE_E = oe.HOUSE_E                       # 356.1
-HOUSE_W = oe.HOUSE_E + oe.HOUSE_W          # 1220
-N, S = 241.2, 621.2                        # house north / south outer faces
-
-
-def lot(pt):
-    return (pt[0] - OX, pt[1] - OY)
+ROOT = Path(__file__).resolve().parent.parent
 
 
 class Scene:
@@ -51,232 +39,160 @@ class Scene:
         self.quads[mat].append([a[0], a[1], b[0], b[1], z0, z1])
 
 
-def in_site(b):
-    x0, y0 = lot((b.extmin.x, b.extmin.y))
-    x1, y1 = lot((b.extmax.x, b.extmax.y))
-    return x0 > -30 and x1 < 1390 and y0 > -30 and y1 < 800, (x0, y0, x1, y1)
+
+# =============================================================================
+# Schematic source (public): owner-drawn, no designer content
+# =============================================================================
+LABEL_H = [            # label inside a shape -> (z0, z1); first match wins
+    ("FRIDGE", (0, 70)), ("RANGE", (0, 36)), ("DOUBLE VANITY", (0, 34)), ("VANITY", (0, 34)),
+    ("VAN", (0, 34)), ("WC", (0, 16)), ("TUB ACCESS", None), ("TUB", (0, 20)), ("DRYER", (0, 38)),
+    ("WASHER", (0, 38)), ("FOLDING", (0, 36)), ("PANEL", (36, 66)), ("RACK", (0, 72)),
+    ("CLOSET", (0, 96)), ("CL", (0, 96)), ("BENCH", (0, 18)), ("TV", (40, 70)), ("CONSOLE", (0, 30)),
+    ("SINK", (0, 36)), ("HP", (0, 36)),
+]
 
 
-def in_exterior_wall(a, c, notch_x, notch_y):
-    """True when a line lies within an exterior wall's 9" band (real windows do;
-    the bedroom 3 / common bath partition, drawn on the Window layer, doesn't)."""
-    bands = (lambda x, y: N - 1 <= y <= N + 10, lambda x, y: S - 10 <= y <= S + 1,
-             lambda x, y: HOUSE_E - 1 <= x <= HOUSE_E + 10, lambda x, y: HOUSE_W - 10 <= x <= HOUSE_W + 1,
-             lambda x, y: notch_y - 1 <= y <= notch_y + 10 and x <= notch_x + 10,
-             lambda x, y: notch_x - 1 <= x <= notch_x + 10 and y <= notch_y + 10)
-    return any(f(*a) and f(*c) for f in bands)
+def _texts(msp):
+    out = []
+    for t in msp.query("TEXT"):
+        pt = t.dxf.align_point if t.dxf.hasattr("align_point") else t.dxf.insert
+        out.append((t.dxf.text.strip(), t.dxf.layer, pt.x, pt.y))
+    return out
 
 
-def add_bed(sc: Scene, ins):
-    """Bed symbol -> mattress box + nightstand boxes (the symbol's outline also
-    takes in the nightstands and a rug at the foot, which isn't furniture)."""
-    lines = []
-    def walk(ent):
-        for v in ent.virtual_entities():
-            if v.dxftype() == "INSERT":
-                walk(v)
-            elif v.dxftype() == "LINE":
-                a, c = lot(v.dxf.start), lot(v.dxf.end)
-                lines.append((min(a[0], c[0]), min(a[1], c[1]), max(a[0], c[0]), max(a[1], c[1])))
-    walk(ins)
-    long_ = [l for l in lines if max(l[2] - l[0], l[3] - l[1]) > 40]       # mattress edges
-    mx0, my0 = min(l[0] for l in long_), min(l[1] for l in long_)
-    mx1, my1 = max(l[2] for l in long_), max(l[3] for l in long_)
-    sc.boxes["bed"].append([mx0, my0, mx1, my1, 0, 24.0])
-    sides = {}                                                             # nightstands beside it
-    for l in lines:
-        outside_y = l[3] <= my0 + 0.5 or l[1] >= my1 - 0.5
-        outside_x = l[2] <= mx0 + 0.5 or l[0] >= mx1 - 0.5
-        if outside_y or outside_x:
-            key = ("y0" if l[3] <= my0 + 0.5 else "y1") if outside_y else ("x0" if l[2] <= mx0 + 0.5 else "x1")
-            b = sides.setdefault(key, [l[0], l[1], l[2], l[3]])
-            b[:] = [min(b[0], l[0]), min(b[1], l[1]), max(b[2], l[2]), max(b[3], l[3])]
-    for x0, y0, x1, y1 in sides.values():
-        if 8 < x1 - x0 < 30 and 8 < y1 - y0 < 30:
-            sc.boxes["furniture"].append([x0, y0, x1, y1, 0, 24.0])
-    sc.bed_sizes.append((round(mx1 - mx0, 1), round(my1 - my0, 1)))
-
-
-def build(doc) -> Scene:
+def build_schematic() -> Scene:
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import schematic as S
+    sh = S.build()
+    msp = sh.msp
     sc = Scene()
-    msp = doc.modelspace()
+    E_, W_, N_, S_ = S.E, S.W, S.N, S.S
+    px, py = S.PORCH_X, S.PORCH_Y
+    footprint = [[E_, py], [px, py], [px, N_], [W_, N_], [W_, S_], [E_, S_]]
 
-    # ---- ground, slabs, hardscape ------------------------------------------
-    sc.polys["ground"].append([[[0, 0], [1356, 0], [1356, 777.2], [0, 777.2]], -1.0, 0.0])
-    notch_x, notch_y = HOUSE_E + 88.0, N + 48.0      # corner porch notch
-    sc.polys["slab"].append([[[HOUSE_E, notch_y], [notch_x, notch_y], [notch_x, N], [HOUSE_W, N],
-                              [HOUSE_W, S], [HOUSE_E, S]], 0.0, 4.0])
-    cp_e = oe.CARPORT_E
-    sc.polys["concrete"].append([[[cp_e, N], [HOUSE_E, N], [HOUSE_E, 481.3], [cp_e, 481.3]], 0.0, 2.0])
-    sc.polys["concrete"].append([[[cp_e, 0], [HOUSE_E, 0], [HOUSE_E, N], [cp_e, N]], 0.0, 1.0])
-    sc.polys["concrete"].append([[[HOUSE_E, N - 24], [notch_x, N - 24], [notch_x, notch_y],
-                                  [HOUSE_E, notch_y]], 0.0, 3.0])          # porch + step
-    # Carport: corner posts + roof.
-    for px, py in ((cp_e, N), (cp_e, 481.3 - 6)):
-        sc.boxes["post"].append([px, py, px + 6, py + 6, 0, 108])
-    sc.boxes["roof"].append([cp_e - 6, N - 6, HOUSE_E, 481.3 + 6, 108, 112])
+    # ---- ground, slab, carport, porch ------------------------------------------
+    sc.polys["ground"].append([[[0, 0], [S.LOT_W, 0], [S.LOT_W, S.LOT_D], [0, S.LOT_D]], -1.0, 0.0])
+    sc.polys["slab"].append([footprint, 0.0, 4.0])
+    cx0, cy0, cx1, cy1 = S.CARPORT
+    sc.polys["concrete"].append([[[cx0, cy0], [cx1, cy0], [cx1, cy1], [cx0, cy1]], 0.0, 2.0])
+    sc.polys["concrete"].append([[[cx0, 0], [cx1, 0], [cx1, cy0], [cx0, cy0]], 0.0, 1.0])
+    sc.polys["concrete"].append([[[E_, N_ - 24], [px, N_ - 24], [px, py], [E_, py]], 0.0, 3.0])
+    sc.boxes["roof"].append([cx0 - 6, cy0 - 6, cx1, cy1 + 6, 108, 112])
 
-    # ---- walk the DXF ---------------------------------------------------------
-    wall_lines = []                  # (x0,y0,x1,y1)
-    windows = []                     # (x0,y0,x1,y1) window-layer lines
-    round_tables = {}                # (cx, cy) -> outer radius
-    for e in msp:
-        t, layer = e.dxftype(), e.dxf.layer
-        b = bbox.extents([e], fast=True)
-        if not b.has_data:
+    # ---- walls: a face along every edge of the wall outline ----------------------
+    geom = S.wall_geometry()
+    for poly in getattr(geom, "geoms", [geom]):
+        for ring in [poly.exterior, *poly.interiors]:
+            pts = list(ring.coords)
+            for a, b in zip(pts, pts[1:]):
+                if abs(a[0] - b[0]) + abs(a[1] - b[1]) > 0.05:
+                    sc.quad("wall", a, b, 0, CEIL)
+    # Openings: headers; windows also get a sill and glass; the slider is glass.
+    for o in S.OPENINGS:
+        name, a, b, kind = o[0], o[1], o[2], o[3]
+        axis, c, t = S.wall_info(name)
+        def seg(v):
+            return ((a, c + v), (b, c + v)) if axis == "x" else ((c + v, a), (c + v, b))
+        for v in (-t / 2, t / 2):
+            sc.quad("wall", *seg(v), HEAD, CEIL)
+        if kind == "window":
+            sill = 0.0 if name == "porch front" else SILL      # sidelight beside the front door
+            if sill:
+                for v in (-t / 2, t / 2):
+                    sc.quad("wall", *seg(v), 0, sill)
+            sc.quad("glass", *seg(0), sill, HEAD)
+        elif kind == "slider":
+            sc.quad("glass", *seg(0), 0, HEAD)
+
+    # ---- fixtures, furniture, site --------------------------------------------------
+    texts = _texts(msp)
+    inside_house = lambda x0, y0, x1, y1: E_ <= x0 and x1 <= W_ and N_ <= y0 and y1 <= S_
+    pantry = (S.face("kitchen|pantry", +1), S.face("south hall wall", +1),
+              S.face("pantry|laundry", -1), S.face("pantry|mech", -1))
+    lounge = (S.face("foyer wall", +1), S.N_IN, S.face("lounge|bed2", -1), S.face("south hall wall", -1))
+    def label_in(x0, y0, x1, y1, layers=("A-ANNO-TEXT",)):
+        for txt, lay, x, y in texts:
+            if lay in layers and x0 <= x <= x1 and y0 <= y <= y1:
+                return txt.upper()
+        return ""
+    def within(b, r):
+        return r[0] - 1 <= b[0] and b[2] <= r[2] + 1 and r[1] - 1 <= b[1] and b[3] <= r[3] + 1
+
+    for e in msp.query("LWPOLYLINE"):
+        if not e.closed:
             continue
-        ok, (bx0, by0, bx1, by1) = in_site(b)
-        if not ok:
-            continue
-        if t == "LINE":
-            a, c = lot(e.dxf.start), lot(e.dxf.end)
-            length = ((a[0] - c[0]) ** 2 + (a[1] - c[1]) ** 2) ** 0.5
-            if length < 0.5:
+        pts = [(p[0], p[1]) for p in e.get_points("xy")]
+        xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+        b = (min(xs), min(ys), max(xs), max(ys))
+        w, h = b[2] - b[0], b[3] - b[1]
+        lay = e.dxf.layer
+        if lay in ("A-EQPM", "A-FURN"):
+            if len(pts) > 4:                                    # L sectional
+                sc.polys["furniture"].append([[list(p) for p in pts], 0.0, 30.0])
                 continue
-            if layer in ("Wall", "Seal"):
-                if e.dxf.get("linetype", "BYLAYER").upper().startswith("HIDDEN"):
-                    continue                              # carport beam (dashed)
-                if max(a[1], c[1]) <= N + 0.5 and min(a[1], c[1]) < N - 0.5:
-                    continue                              # driveway edges / lines in the front yard
-                if min(a[0], c[0]) < HOUSE_E - 0.5 or max(a[0], c[0]) > HOUSE_W + 0.5:
-                    continue                              # lot lines, carport, side yards
-                if min(a[1], c[1]) < N - 0.5 or max(a[1], c[1]) > S + 0.5:
-                    continue                              # front / rear yards
-                wall_lines.append((*a, *c))
-            elif layer == "Window":
-                if in_exterior_wall(a, c, notch_x, notch_y):
-                    windows.append((*a, *c))
+            lab = label_in(*b)
+            z = None
+            for key, zz in LABEL_H:
+                if key in lab.split() or (key in lab and len(key) > 3):
+                    z = zz
+                    break
+            else:
+                if within(b, pantry) and min(w, h) <= 17:
+                    sc.boxes["closet"].append([*b, 0, 60.0])     # pantry shelving
+                    continue
+                if lay == "A-FURN" and within(b, lounge) and abs(w - h) < 2 and w > 30:
+                    z = (0, 18)                                  # coffee table
+                elif lay == "A-FURN":
+                    z = (0, 24) if w * h >= 60 * 70 else (0, 30)  # beds vs. tables
                 else:
-                    wall_lines.append((*a, *c))           # interior wall the designer put on Window
-            elif layer == "Low - High Wall":
-                sc.quad("fence", a, c, 0, FENCE)
-            elif layer == "H" and HOUSE_E < bx0 and bx1 < HOUSE_W and N < by0 and by1 < S:
-                # Closets: the designer marks each with a corner-to-corner diagonal.
-                # Reach-in closets (doors) go to door height; walk-in hanging and
-                # the linen cabinet are open shelving to 7'.
-                walk_in = by0 > 459.0
-                linen = (bx1 - bx0) < 36 and (by1 - by0) < 36
-                sc.boxes["closet"].append([bx0, by0, bx1, by1, 0, 84.0 if walk_in or linen else HEAD])
-        elif t == "LWPOLYLINE":
-            pts = [lot(p) for p in e.get_points("xy")]
-            if layer == "Window" and len(pts) == 2:
-                windows.append((*pts[0], *pts[1]))
+                    z = (0, 36)                                  # counters
+            if z is None:
                 continue
-            if not e.closed or len(pts) < 3:
-                continue
-            w, h = bx1 - bx0, by1 - by0
-            if layer == "Floor Pattern":
-                if w * h >= 8 * 144:                      # skip the subpanel working-space outline
-                    sc.polys["pavers"].append([pts, 0.0, 2.0])
-            elif layer == "Plants":
-                if min(w, h) <= 40:
-                    sc.polys["planter"].append([pts, 0.0, 24.0])
-                else:
-                    sc.polys["lawn"].append([pts, 0.0, 1.0])
-            elif layer == "Table":                       # coffee table (owner step 33)
-                sc.boxes["furniture"].append([bx0, by0, bx1, by1, 0, 18.0])
-            elif layer == "Bed":                         # owner step 25 beds
-                if min(w, h) >= 50:
-                    sc.boxes["bed"].append([bx0, by0, bx1, by1, 0, 24.0])
-                elif min(w, h) <= 4:
-                    sc.boxes["furniture"].append([bx0, by0, bx1, by1, 0, 44.0])   # headboard
-                else:
-                    sc.boxes["furniture"].append([bx0, by0, bx1, by1, 0, 24.0])   # nightstand
-                sc.bed_sizes.append((round(w, 1), round(h, 1))) if min(w, h) >= 50 else None
-            elif layer == "Fridge":
-                sc.boxes["fixture"].append([bx0, by0, bx1, by1, 0, 70.0])
-            elif layer in ("Bath - Kit.Fixture", "Furniture"):
-                in_pantry = oe.BLK_E - 1 <= bx0 and bx1 <= oe.BLK_E + 71 and by1 <= 560.0
-                if in_pantry and (w <= 17 or h <= 17):
-                    sc.boxes["closet"].append([bx0, by0, bx1, by1, 0, 60.0])     # pantry shelving
-                elif layer == "Furniture" and (w <= 17 or h <= 17) and max(w, h) > 40:
-                    sc.boxes["furniture"].append([bx0, by0, bx1, by1, 0, 30.0])  # console
-                else:
-                    sc.boxes["fixture"].append([bx0, by0, bx1, by1, 0, 36.0])
-        elif t == "CIRCLE" and layer == "Furniture":                # round tables (concentric rims)
-            c = lot(e.dxf.center)
-            key = (round(c[0]), round(c[1]))
-            if HOUSE_E < c[0] < HOUSE_W and N < c[1] < S:
-                round_tables[key] = max(round_tables.get(key, 0.0), e.dxf.radius)
-        elif t == "CIRCLE" and layer == "Bath - Kit.Fixture":
-            c = lot(e.dxf.center)
-            r = e.dxf.radius
-            sc.cyls["fixture"].append([c[0], c[1], r, 0, 60.0 if r >= 11 else 36.0])
-        elif t == "INSERT" and layer in ("Furniture", "Bath - Kit.Fixture", "Wall"):
-            if bx1 - bx0 > 150 or by1 - by0 > 150:
-                continue
-            name = e.dxf.name.upper()
-            if "BED" in name:
-                add_bed(sc, e)
-                continue
-            h = 30.0
-            if "BED" in name:
-                h = 24.0
-            elif name == "A$C33A7765F":                   # fridge
-                h = 70.0
-            elif name in ("A$C1E1364CB",):                # range
-                h = 36.0
-            elif name in ("CT-03",):
-                h = 22.0
-            mat = "fixture" if layer != "Furniture" else "furniture"
-            sc.boxes[mat].append([bx0, by0, bx1, by1, 0, h])
-        elif t == "TEXT" and layer == "Area Titles":
-            x, y = lot(e.dxf.insert)
-            if HOUSE_E < x < HOUSE_W and N < y < S:
-                sc.labels.append([e.dxf.text.strip(), (bx0 + bx1) / 2, (by0 + by1) / 2])
+            if lab.startswith("CL") or lab == "CLOSET":
+                sc.boxes["closet"].append([*b, *z])
+            else:
+                sc.boxes["furniture" if lay == "A-FURN" else "fixture"].append([*b, *z])
+        elif lay == "A-GLAZ" and inside_house(*b) and min(w, h) <= 1.5 and \
+                not any(abs(v - f) < 10 for v in (b[1], b[3]) for f in (N_, S_)) and \
+                not any(abs(v - f) < 10 for v in (b[0], b[2]) for f in (E_, W_)):
+            sc.boxes["glass"].append([*b, 0, 80.0])              # fixed shower glass
+        elif lay == "L-SITE":
+            if e.dxf.get("linetype", "BYLAYER").upper().startswith("DASH"):
+                continue                                         # carport roof outline
+            lab = label_in(*b)
+            if "PAVERS" in lab or "PATIO" in lab:
+                sc.polys["pavers"].append([[list(p) for p in pts], 0.0, 2.0])
+            elif "BINS" in lab:
+                sc.polys["concrete"].append([[list(p) for p in pts], 0.0, 3.0])
+        elif lay == "L-PLNT":
+            lab = label_in(*b)
+            sc.polys["planter" if "PLANTER" in lab else "lawn"].append(
+                [[list(p) for p in pts], 0.0, 24.0 if "PLANTER" in lab else 1.0])
+        elif lay == "A-WALL" and w <= 8 and h <= 8 and not inside_house(*b):
+            sc.boxes["post"].append([*b, 0, 108])               # carport posts
+        elif lay == "A-FENC":
+            for a, c in zip(pts, pts[1:] + pts[:1]):
+                sc.quad("fence", a, c, 0, 30)                   # low dog guard
+    for ln in msp.query("LINE[layer=='A-FENC']"):
+        sc.quad("fence", (ln.dxf.start.x, ln.dxf.start.y), (ln.dxf.end.x, ln.dxf.end.y), 0, FENCE)
+    for c in msp.query("CIRCLE"):
+        x, y, r = c.dxf.center.x, c.dxf.center.y, c.dxf.radius
+        if r < 3:
+            continue                                             # shower heads, drains
+        if c.dxf.layer == "A-EQPM":
+            sc.cyls["fixture"].append([x, y, r, 0, 62.0 if r >= 11 else (40.0 if r >= 8 else 48.0)])
+        elif c.dxf.layer == "A-FURN":
+            sc.cyls["furniture"].append([x, y, r, 0, 30.0 if r >= 7.5 else 18.0])
+    for txt, lay, x, y in texts:
+        if lay == "A-AREA-IDEN" and inside_house(x, y, x, y) and "'" not in txt and '"' not in txt:
+            sc.labels.append([txt, x, y])
 
-    for (cx, cy), r in round_tables.items():
-        sc.cyls["furniture"].append([cx, cy, r, 0, 18.0])
-
-    # ---- kitchen counters & peninsula (drawn as loose lines in the DXF) -------
-    e_ = doc.entitydb
-    pen_out = lot(e_["416AC4"].dxf.start)[0]
-    pen_in = lot(e_["4168CE"].dxf.start)[0]
-    run = lot(e_["4168C9"].dxf.start)[0]
-    run_y0 = min(lot(e_["4168C9"].dxf.start)[1], lot(e_["4168C9"].dxf.end)[1])
-    wall = lot(e_["41689D"].dxf.start)[0]
-    sc.boxes["counter"].append([min(pen_out, pen_in), 455.2, max(pen_out, pen_in), 613.2, 0, 36])
-    sc.boxes["counter"].append([pen_in, 589.2, run, 613.2, 0, 36])           # sink run
-    sc.boxes["counter"].append([run, run_y0, wall, 589.2, 0, 36])            # range run
-
-    # ---- walls, with headers / sills / glass in openings ---------------------
-    for x0, y0, x1, y1 in wall_lines:
-        sc.quad("wall", (x0, y0), (x1, y1), 0, CEIL)
-
-    def in_gap(axis_val, lo, hi, horizontal):
-        for wx0, wy0, wx1, wy1 in windows:
-            mx, my = (wx0 + wx1) / 2, (wy0 + wy1) / 2
-            if horizontal and abs(wy0 - wy1) < 0.5 and abs(my - axis_val) < 6 and lo - 1 < mx < hi + 1:
-                return True
-            if not horizontal and abs(wx0 - wx1) < 0.5 and abs(mx - axis_val) < 6 and lo - 1 < my < hi + 1:
-                return True
-        return False
-
-    for horizontal in (True, False):
-        groups = defaultdict(list)
-        for x0, y0, x1, y1 in wall_lines:
-            if horizontal and abs(y0 - y1) < 0.05:
-                groups[round(y0, 1)].append(tuple(sorted((x0, x1))))
-            elif not horizontal and abs(x0 - x1) < 0.05:
-                groups[round(x0, 1)].append(tuple(sorted((y0, y1))))
-        for k, segs in groups.items():
-            segs.sort()
-            reach = segs[0][1]
-            for lo, hi in segs[1:]:
-                gap = lo - reach
-                if 10 < gap < 130:
-                    a = (reach, k) if horizontal else (k, reach)
-                    c = (lo, k) if horizontal else (k, lo)
-                    sc.quad("wall", a, c, HEAD, CEIL)
-                    if in_gap(k, reach, lo, horizontal):
-                        sc.quad("wall", a, c, 0, SILL)
-                        sc.quad("glass", a, c, SILL, HEAD)
-                reach = max(reach, hi)
-
-    # Ceiling (toggleable in the viewer).
-    sc.polys["ceiling"].append([[[HOUSE_E, notch_y], [notch_x, notch_y], [notch_x, N], [HOUSE_W, N],
-                                 [HOUSE_W, S], [HOUSE_E, S]], CEIL, CEIL + 1])
+    sc.polys["ceiling"].append([footprint, CEIL, CEIL + 1])
+    sc.meta = {"center": [(E_ + W_) / 2, (N_ + S_) / 2], "entry": [E_ + 40.0, N_ + 70.0],
+               "roof": [[E_ - 24, N_ - 24], [W_ + 24, N_ - 24], [W_ + 24, S_ + 24], [E_ - 24, S_ + 24]]}
     return sc
+
 
 
 def write_obj(sc: Scene, path: Path):
@@ -567,23 +483,20 @@ addEventListener('resize', ()=>{ camera.aspect = innerWidth/innerHeight; camera.
 """
 
 
-def main():
-    doc, _ = recover.readfile(oe.OUT)
-    sc = build(doc)
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+def write_model(sc: Scene, out_dir: Path, meta: dict):
+    out_dir.mkdir(parents=True, exist_ok=True)
     data = {"quads": sc.quads, "boxes": sc.boxes, "cyls": sc.cyls, "polys": sc.polys,
-            "labels": sc.labels,
-            "center": [(HOUSE_E + HOUSE_W) / 2, (N + S) / 2],
-            "entry": [HOUSE_E + 40.0, N + 70.0],
-            "roof": [[HOUSE_E - 24, N - 24], [HOUSE_W + 24, N - 24], [HOUSE_W + 24, S + 24],
-                     [HOUSE_E - 24, S + 24]],
-            "roof_z": CEIL + 14.0}
-    (OUT_DIR / "house.html").write_text(HTML.replace("__DATA__", json.dumps(data)))
-    write_obj(sc, OUT_DIR / "house.obj")
-    print("beds (L x W in plan axes)", sc.bed_sizes, "closets", len(sc.boxes["closet"]))
+            "labels": sc.labels, **meta, "roof_z": CEIL + 14.0}
+    (out_dir / "house.html").write_text(HTML.replace("__DATA__", json.dumps(data)))
+    write_obj(sc, out_dir / "house.obj")
     print("walls", len(sc.quads["wall"]), "windows", len(sc.quads["glass"]),
           "boxes", sum(len(v) for v in sc.boxes.values()), "labels", len(sc.labels))
-    print("wrote", OUT_DIR / "house.html")
+    print("wrote", out_dir / "house.html")
+
+
+def main():
+    sc = build_schematic()
+    write_model(sc, ROOT / "renders" / "3d", sc.meta)
 
 
 if __name__ == "__main__":

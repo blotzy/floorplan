@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 *.swp
+# designer's drawing and everything derived from it: never commit
+private/
