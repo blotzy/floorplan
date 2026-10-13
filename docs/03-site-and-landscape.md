@@ -31,7 +31,7 @@
 
 ## Heat pump outdoor unit
 
-- Rear yard, against the house's south wall **behind the primary bath / walk-in closet** (shifted west to clear the new laundry door and landing; away from bedroom windows), on a raised concrete pad.
+- Rear yard, against the house's south wall **behind the primary bath / walk-in closet** (away from bedroom windows and the laundry window), on a raised concrete pad.
 - Low metal guard around it (dog yard). Keep it ≥10' from the ERV's fresh-air intake. Line set up the wall in a painted metal cover into the attic.
 - Pick a quiet model; the unit is only ~9–10' from the rear lot line.
 

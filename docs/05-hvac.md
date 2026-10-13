@@ -12,7 +12,7 @@ A three-zone heat pump system on one multi-zone outdoor unit, plus an ERV for co
 
 **Heat pump details**
 
-- Outdoor unit (about 3 tons) on a noncombustible pad in the rear yard against the south wall behind the primary bath / walk-in closet (clear of the laundry door), away from bedroom windows, with a dog guard. See [site](03-site-and-landscape.md).
+- Outdoor unit (about 3 tons) on a noncombustible pad in the rear yard against the south wall behind the primary bath / walk-in closet, away from bedroom windows, with a dog guard. See [site](03-site-and-landscape.md).
 - Primary bedroom unit aimed along the room, not at the bed.
 - Keep the ceiling cassette out of the kitchen to avoid grease on the coil.
 - Zone 3: ceiling supply registers 2–3' in from each bedroom's closet, throwing toward the window; return grille in the hall; transfer grilles or jumper ducts to each bedroom; balancing dampers on each bedroom branch.

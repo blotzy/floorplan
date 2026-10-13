@@ -2,7 +2,7 @@
 
 220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 13, 2026 · @Richard
 
-![Current owner-edits plan (step 21)](renders/step21-laundry-rear-door.png)
+![Current owner-edits plan (step 21)](renders/step21-laundry-window.png)
 
 *Current plan: the designer's 12 OCT 26 sheet with owner edits 1–21 applied. Street (plan north) at the bottom, carport (plan east) on the left; the arrow in the front yard shows true north (21° off plan north).*
 
