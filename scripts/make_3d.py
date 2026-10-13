@@ -259,7 +259,7 @@ renderer.setSize(innerWidth, innerHeight); renderer.shadowMap.enabled = true;
 document.body.appendChild(renderer.domElement);
 scene.add(new THREE.HemisphereLight(0xffffff, 0x8a7f70, 0.9));
 const sun = new THREE.DirectionalLight(0xffffff, 1.2);
-sun.position.set(-40, 80, 60); sun.castShadow = true;
+sun.position.set(-30, 80, -60);   // southeast sky (z = north) sun.castShadow = true;
 Object.assign(sun.shadow.camera, {left:-80,right:80,top:80,bottom:-80,far:300});
 sun.shadow.mapSize.set(2048,2048); sun.shadow.bias = -0.0008; sun.shadow.normalBias = 0.05; scene.add(sun);
 
@@ -274,8 +274,9 @@ const M = {
   post:{color:0x5a5f66}, roof:{color:0x4a4f55, transparent:true, opacity:0.85},
 };
 const mat = k => new THREE.MeshStandardMaterial(Object.assign({roughness:0.9}, M[k]||{color:0xcccccc}));
-// plan (x west, y south, z up) in inches -> three (x, y up, z = y south)
-const V = (x,y,z) => new THREE.Vector3(x*IN, z*IN, y*IN);
+// plan (x west, y south, z up) in inches -> three (x = west, y = up, z = north).
+// three.js is right-handed, so north must be +z or the model comes out mirrored.
+const V = (x,y,z) => new THREE.Vector3(x*IN, z*IN, -y*IN);
 const groups = {furn:new THREE.Group(), ceil:new THREE.Group(), labels:new THREE.Group()};
 Object.values(groups).forEach(g=>scene.add(g));
 
@@ -291,15 +292,15 @@ for (const [k, items] of Object.entries(D.quads)) {
 }
 for (const [k, items] of Object.entries(D.boxes)) for (const [x0,y0,x1,y1,z0,z1] of items) {
   const m = new THREE.Mesh(new THREE.BoxGeometry((x1-x0)*IN,(z1-z0)*IN,(y1-y0)*IN), mat(k));
-  m.position.set((x0+x1)/2*IN, (z0+z1)/2*IN, (y0+y1)/2*IN); m.castShadow = m.receiveShadow = true;
+  m.position.set((x0+x1)/2*IN, (z0+z1)/2*IN, -(y0+y1)/2*IN); m.castShadow = m.receiveShadow = true;
   (k==='fixture'||k==='furniture'||k==='counter' ? groups.furn : scene).add(m);
 }
 for (const [k, items] of Object.entries(D.cyls)) for (const [cx,cy,r,z0,z1] of items) {
   const m = new THREE.Mesh(new THREE.CylinderGeometry(r*IN, r*IN, (z1-z0)*IN, 24), mat(k));
-  m.position.set(cx*IN, (z0+z1)/2*IN, cy*IN); m.castShadow = true; groups.furn.add(m);
+  m.position.set(cx*IN, (z0+z1)/2*IN, -cy*IN); m.castShadow = true; groups.furn.add(m);
 }
 for (const [k, items] of Object.entries(D.polys)) for (const [pts,z0,z1] of items) {
-  const shape = new THREE.Shape(pts.map(([x,y])=>new THREE.Vector2(x*IN, y*IN)));
+  const shape = new THREE.Shape(pts.map(([x,y])=>new THREE.Vector2(x*IN, -y*IN)));
   const g = new THREE.ExtrudeGeometry(shape, {depth:(z1-z0)*IN, bevelEnabled:false});
   g.rotateX(Math.PI/2);                       // shape xy -> world xz, extrude downward
   const m = new THREE.Mesh(g, mat(k)); m.position.y = z1*IN; m.receiveShadow = true;
@@ -310,18 +311,18 @@ for (const [text,x,y] of D.labels) {
   const ctx = c.getContext('2d'); ctx.font = 'bold 56px system-ui'; ctx.fillStyle = '#223';
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 256, 64);
   const s = new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c), depthTest:false}));
-  s.scale.set(8, 2, 1); s.position.set(x*IN, 9, y*IN); groups.labels.add(s);
+  s.scale.set(8, 2, 1); s.position.set(x*IN, 9, -y*IN); groups.labels.add(s);
 }
 groups.ceil.visible = false;
-const ctr = new THREE.Vector3(D.center[0]*IN, 0, D.center[1]*IN);
+const ctr = new THREE.Vector3(D.center[0]*IN, 0, -D.center[1]*IN);
 camera.position.set(ctr.x - 30, 70, ctr.z + 75);
 const orbit = new OrbitControls(camera, renderer.domElement); orbit.target.copy(ctr); orbit.update();
 const walk = new PointerLockControls(camera, document.body);
 const keys = {};
 addEventListener('keydown', e=>keys[e.code]=true); addEventListener('keyup', e=>keys[e.code]=false);
 document.getElementById('walk').onclick = () => {
-  camera.position.set(D.entry[0]*IN, 64*IN, D.entry[1]*IN);   // inside the foyer, 5'-4" eye height
-  camera.lookAt(D.entry[0]*IN + 10, 64*IN, D.entry[1]*IN + 10);
+  camera.position.set(D.entry[0]*IN, 64*IN, -D.entry[1]*IN);  // inside the foyer, 5'-4" eye height
+  camera.lookAt(D.entry[0]*IN, 64*IN, -D.entry[1]*IN - 10);    // facing south, into the house
   orbit.enabled = false; walk.lock();
 };
 walk.addEventListener('unlock', ()=>{ orbit.enabled = true; camera.position.set(ctr.x-30,70,ctr.z+75); orbit.target.copy(ctr); orbit.update(); });
