@@ -2,9 +2,9 @@
 
 220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 13, 2026 · @Richard
 
-![Current owner-edits plan (step 29)](renders/step29-drop-ne-chair.png)
+![Current owner-edits plan (step 30)](renders/step30-drop-se-chair.png)
 
-*Current plan: the designer's 12 OCT 26 sheet with owner edits 1–29 applied. Street (plan north) at the bottom, carport (plan east) on the left; the arrow in the front yard shows true north (21° off plan north).*
+*Current plan: the designer's 12 OCT 26 sheet with owner edits 1–30 applied. Street (plan north) at the bottom, carport (plan east) on the left; the arrow in the front yard shows true north (21° off plan north).*
 
 ## Owner schematic (accurate walls)
 
@@ -38,7 +38,7 @@
 | File | What it is |
 | --- | --- |
 | `Accosting 13-OCTOBER-2026.dwg` / `.dxf` | Designer's drawing (Illusoire Art). Never modified. |
-| `Accosting 13-OCTOBER-2026 - owner edits.dxf` | Generated: designer's drawing + owner edits 1–29 |
+| `Accosting 13-OCTOBER-2026 - owner edits.dxf` | Generated: designer's drawing + owner edits 1–30 |
 | `Accosting 13-OCTOBER-2026 - EXPERIMENT *.dxf` | Generated: alternative layouts for the pantry/laundry/mech/powder block |
 | `Accosting - owner schematic.dxf` | Generated: owner-drawn schematic with real wall thicknesses (`scripts/schematic.py`) |
 | `scripts/owner_edits.py` | Applies the owner edits and renders PNGs (`uv run scripts/owner_edits.py --render all`) |
