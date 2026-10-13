@@ -192,6 +192,14 @@ def build_schematic() -> Scene:
         if lay == "A-AREA-IDEN" and inside_house(x, y, x, y) and "'" not in txt and '"' not in txt:
             sc.labels.append([txt, x, y])
 
+    # Shower heads: an arm out of the wall at 82" and a round head just below it.
+    for wx, wy, dx, dy in sh.heads:
+        hx, hy = wx + dx * 9, wy + dy * 9
+        x0, x1 = sorted((wx, hx)); y0, y1 = sorted((wy, hy))
+        sc.boxes["chrome"].append([x0 - (0.6 if dx == 0 else 0), y0 - (0.6 if dy == 0 else 0),
+                                   x1 + (0.6 if dx == 0 else 0), y1 + (0.6 if dy == 0 else 0), 81.5, 82.7])
+        sc.cyls["chrome"].append([hx, hy, 4.0, 80.0, 81.5])
+
     sc.polys["ceiling"].append([footprint, CEIL, CEIL + 1])
     sc.meta = {"center": [(E_ + W_) / 2, (N_ + S_) / 2], "entry": [E_ + 40.0, N_ + 70.0],
                "roof": [[E_ - 24, N_ - 24], [W_ + 24, N_ - 24], [W_ + 24, S_ + 24], [E_ - 24, S_ + 24]]}
@@ -297,7 +305,7 @@ const M = {
   ceiling:{color:0xffffff, side:THREE.DoubleSide, transparent:true, opacity:0.92},
   fixture:{color:0xd9d4cc}, furniture:{color:0x8fa3b8}, counter:{color:0x9a8f84},
   closet:{color:0xb59a7a}, bed:{color:0xe8e1d4},
-  post:{color:0x5a5f66}, roof:{color:0x4a4f55, transparent:true, opacity:0.85},
+  chrome:{color:0xdfe3e8, roughness:0.4, metalness:0.15}, post:{color:0x5a5f66}, roof:{color:0x4a4f55, transparent:true, opacity:0.85},
 };
 const mat = k => new THREE.MeshStandardMaterial(Object.assign(
   {roughness:0.9, polygonOffset:true, polygonOffsetFactor:1, polygonOffsetUnits:1}, M[k]||{color:0xcccccc}));
@@ -334,7 +342,7 @@ for (const [k, items] of Object.entries(D.boxes)) for (const [x0,y0,x1,y1,z0,z1]
   const m = new THREE.Mesh(new THREE.BoxGeometry((x1-x0)*IN,(z1-z0)*IN,(y1-y0)*IN), mat(k));
   m.position.set((x0+x1)/2*IN, (z0+z1)/2*IN, -(y0+y1)/2*IN); m.castShadow = m.receiveShadow = true;
   m.add(new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry), EDGE));
-  (k==='fixture'||k==='furniture'||k==='counter'||k==='bed' ? groups.furn : scene).add(m);
+  (k==='fixture'||k==='furniture'||k==='counter'||k==='bed'||k==='chrome' ? groups.furn : scene).add(m);
 }
 for (const [k, items] of Object.entries(D.cyls)) for (const [cx,cy,r,z0,z1] of items) {
   const m = new THREE.Mesh(new THREE.CylinderGeometry(r*IN, r*IN, (z1-z0)*IN, 24), mat(k));

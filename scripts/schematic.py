@@ -160,6 +160,7 @@ class Sheet:
         self.doc = ezdxf.new("R2018", setup=True)
         self.doc.units = ezdxf.units.IN
         self.msp = self.doc.modelspace()
+        self.heads = []                     # shower heads for the 3D model: (wall x, wall y, dir x, dir y)
         for name, color in [("A-WALL", 7), ("A-WALL-PATT", 8), ("A-DOOR", 3), ("A-GLAZ", 4),
                             ("A-FURN", 9), ("A-EQPM", 6), ("A-AREA-IDEN", 7), ("A-ANNO-DIMS", 1),
                             ("A-ANNO-TEXT", 7), ("C-PROP", 5), ("L-SITE", 94), ("L-PLNT", 3),
@@ -233,6 +234,7 @@ def drain(sh, a, b):
 
 def shower_head(sh, x, y, d):
     """Wall-mounted shower head at (x, y) on a wall face, spraying in y-direction d (+1/-1)."""
+    sh.heads.append((x, y, 0.0, float(d)))
     sh.circle((x, y + d * 2.5), 2.5, "A-EQPM")
     for dx in (-5.0, 0.0, 5.0):
         sh.line((x + dx * 0.4, y + d * 5.5), (x + dx, y + d * 11.0), "A-EQPM")
@@ -253,6 +255,7 @@ def common_bath(sh):
     ty = N_IN + 32.0
     tub(sh, c1 - 72.0, N_IN, c1, ty, "TUB 72x32")
     sh.circle((c1 - 4, N_IN + 16), 2.0, "A-EQPM")                     # shower head + valve, west end
+    sh.heads.append((c1, N_IN + 16, -1.0, 0.0))
     sh.line((c1 - 72.0, ty + 1), (c1, ty + 1), "A-EQPM")              # curtain rod
     wc(sh, c0, ty + 2, c0 + 28, ty + 32)                               # 17" to the tub
     vanity(sh, c0, ty + 41, c0 + 21, ty + 89, "VANITY 48", rot=90)     # 24" from the WC centreline
