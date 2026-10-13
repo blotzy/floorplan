@@ -6,6 +6,14 @@
 
 *Current plan: the designer's 12 OCT 26 sheet with owner edits 1–21 applied. Street (plan north) at the bottom, carport (plan east) on the left; the arrow in the front yard shows true north (21° off plan north).*
 
+## Owner schematic (accurate walls)
+
+`Accosting - owner schematic.dxf` is a clean drawing of the same plan, drawn from scratch with no designer content. Exterior walls are 9" (2x6 + sheathing + 1" rigid insulation + stucco), interior walls 4½", plumbing walls 6½". Room sizes are clear dimensions, finish face to finish face. All dimensions and openings are numbers at the top of `scripts/schematic.py`; change one and run `uv run scripts/schematic.py`. Not for construction.
+
+![Owner schematic](renders/schematic-zoom.png)
+
+[Full site sheet](renders/schematic.png)
+
 ## 3D massing model
 
 Open [`renders/3d/house.html`](renders/3d/house.html) in a browser (orbit, zoom, toggle ceiling/furniture, and a **Walk** button for eye-level WASD navigation). The same geometry is in `renders/3d/house.obj` for Windows 3D Viewer or Blender. Regenerate with `uv run scripts/make_3d.py` after the plan changes.
@@ -32,6 +40,7 @@ Open [`renders/3d/house.html`](renders/3d/house.html) in a browser (orbit, zoom,
 | `Accosting 13-OCTOBER-2026.dwg` / `.dxf` | Designer's drawing (Illusoire Art). Never modified. |
 | `Accosting 13-OCTOBER-2026 - owner edits.dxf` | Generated: designer's drawing + owner edits 1–21 |
 | `Accosting 13-OCTOBER-2026 - EXPERIMENT *.dxf` | Generated: alternative layouts for the pantry/laundry/mech/powder block |
+| `Accosting - owner schematic.dxf` | Generated: owner-drawn schematic with real wall thicknesses (`scripts/schematic.py`) |
 | `scripts/owner_edits.py` | Applies the owner edits and renders PNGs (`uv run scripts/owner_edits.py --render all`) |
 | `scripts/experiment_*.py` | Experiments built on top of the owner edits |
 | `scripts/make_3d.py` | Builds the 3D massing model from the owner-edits DXF |
