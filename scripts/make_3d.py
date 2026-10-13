@@ -183,9 +183,16 @@ def build(doc) -> Scene:
                 else:
                     sc.boxes["furniture"].append([bx0, by0, bx1, by1, 0, 24.0])   # nightstand
                 sc.bed_sizes.append((round(w, 1), round(h, 1))) if min(w, h) >= 50 else None
+            elif layer == "Fridge":
+                sc.boxes["fixture"].append([bx0, by0, bx1, by1, 0, 70.0])
             elif layer in ("Bath - Kit.Fixture", "Furniture"):
-                tall = 84.0 if (w <= 17 or h <= 17) and max(w, h) > 40 else 36.0   # pantry shelves
-                sc.boxes["fixture"].append([bx0, by0, bx1, by1, 0, tall])
+                in_pantry = oe.BLK_E - 1 <= bx0 and bx1 <= oe.BLK_E + 71 and by1 <= 560.0
+                if in_pantry and (w <= 17 or h <= 17):
+                    sc.boxes["closet"].append([bx0, by0, bx1, by1, 0, 60.0])     # pantry shelving
+                elif layer == "Furniture" and (w <= 17 or h <= 17) and max(w, h) > 40:
+                    sc.boxes["furniture"].append([bx0, by0, bx1, by1, 0, 30.0])  # console
+                else:
+                    sc.boxes["fixture"].append([bx0, by0, bx1, by1, 0, 36.0])
         elif t == "CIRCLE" and layer == "Furniture":                # round tables (concentric rims)
             c = lot(e.dxf.center)
             key = (round(c[0]), round(c[1]))
@@ -226,10 +233,11 @@ def build(doc) -> Scene:
     pen_out = lot(e_["416AC4"].dxf.start)[0]
     pen_in = lot(e_["4168CE"].dxf.start)[0]
     run = lot(e_["4168C9"].dxf.start)[0]
+    run_y0 = min(lot(e_["4168C9"].dxf.start)[1], lot(e_["4168C9"].dxf.end)[1])
     wall = lot(e_["41689D"].dxf.start)[0]
     sc.boxes["counter"].append([min(pen_out, pen_in), 455.2, max(pen_out, pen_in), 613.2, 0, 36])
     sc.boxes["counter"].append([pen_in, 589.2, run, 613.2, 0, 36])           # sink run
-    sc.boxes["counter"].append([run, 490.2, wall, 589.2, 0, 36])             # range run
+    sc.boxes["counter"].append([run, run_y0, wall, 589.2, 0, 36])            # range run
 
     # ---- walls, with headers / sills / glass in openings ---------------------
     for x0, y0, x1, y1 in wall_lines:
