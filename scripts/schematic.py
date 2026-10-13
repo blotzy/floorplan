@@ -401,6 +401,7 @@ def build() -> Sheet:
     sh.msp.add_lwpolyline([(505.0, 267.0), (635.0, 267.0), (635.0, 396.0), (597.0, 396.0), (597.0, 305.0),
                            (505.0, 305.0)], close=True, dxfattribs={"layer": fu})   # L sectional, 38" deep
     sh.text("L SECTIONAL", 551.0, 287.0, 4.0)
+    sh.rect(636.5, 305.0, 651.5, 396.0, fu); sh.text("CONSOLE", 644.0, 350.5, 3.5, rot=90)
     sh.circle((553.0, 349.0), 24.0, fu)                                       # 48" round table
     sh.rect(E_IN, 300.0, E_IN + 18, 333.0, fu); sh.text("CLOSET", E_IN + 9, 316.5, 3.0, rot=90)
     sh.rect(E_IN, 333.0, E_IN + 18, 366.0, fu); sh.text("BENCH", E_IN + 9, 349.5, 3.0, rot=90)
