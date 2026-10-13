@@ -10,7 +10,7 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 - **Front door** on the street-facing side of the notch: 36" door plus a 14" sidelight.
 - **Reeded-glass window** (about 24") in the porch's side wall, so you can see who's at the door from the lounge. Narrow reeds or satin-reeded, dual-pane, low-E, tempered, NFRC-rated, from the same window line as the rest of the house.
 - **Foyer** 6'-8" x 7'-4" with a closet and bench on the east wall. The **foyer wall** (about 12' long, stopping short of the lobby) separates foyer and lounge; its lounge side is the **TV wall**.
-- **Lounge** 21'-2" x 17'-2": 10' north window centred on the wall; loveseat floated 18" off the window, sofa facing the TV wall, 30" round coffee table, two small chairs on the south side, all kept north of the walkway from the foyer to the bedroom hall.
+- **Lounge** 21'-2" x 17'-2": 10' north window centred on the wall; loveseat floated 18" off the window, sofa facing the TV wall, 48" round coffee table 16" off the sofa and loveseat, one chair in the corner by the TV angled toward the table (nothing between the sofa and the TV), all kept north of the walkway from the foyer to the bedroom hall.
 
 ## Dining
 

@@ -119,6 +119,7 @@ def build(doc) -> Scene:
     # ---- walk the DXF ---------------------------------------------------------
     wall_lines = []                  # (x0,y0,x1,y1)
     windows = []                     # (x0,y0,x1,y1) window-layer lines
+    round_tables = {}                # (cx, cy) -> outer radius
     for e in msp:
         t, layer = e.dxftype(), e.dxf.layer
         b = bbox.extents([e], fast=True)
@@ -183,6 +184,11 @@ def build(doc) -> Scene:
             elif layer in ("Bath - Kit.Fixture", "Furniture"):
                 tall = 84.0 if (w <= 17 or h <= 17) and max(w, h) > 40 else 36.0   # pantry shelves
                 sc.boxes["fixture"].append([bx0, by0, bx1, by1, 0, tall])
+        elif t == "CIRCLE" and layer == "Furniture":                # round tables (concentric rims)
+            c = lot(e.dxf.center)
+            key = (round(c[0]), round(c[1]))
+            if HOUSE_E < c[0] < HOUSE_W and N < c[1] < S:
+                round_tables[key] = max(round_tables.get(key, 0.0), e.dxf.radius)
         elif t == "CIRCLE" and layer == "Bath - Kit.Fixture":
             c = lot(e.dxf.center)
             r = e.dxf.radius
@@ -209,6 +215,9 @@ def build(doc) -> Scene:
             x, y = lot(e.dxf.insert)
             if HOUSE_E < x < HOUSE_W and N < y < S:
                 sc.labels.append([e.dxf.text.strip(), (bx0 + bx1) / 2, (by0 + by1) / 2])
+
+    for (cx, cy), r in round_tables.items():
+        sc.cyls["furniture"].append([cx, cy, r, 0, 18.0])
 
     # ---- kitchen counters & peninsula (drawn as loose lines in the DXF) -------
     e_ = doc.entitydb

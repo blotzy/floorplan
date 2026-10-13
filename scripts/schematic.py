@@ -398,9 +398,8 @@ def build() -> Sheet:
     sh.rect(tv, 300.0, tv + 3, 360.0, fu); sh.text("TV", tv + 8, 330.0, 4.0, rot=90)
     sh.rect(507.5, 267.0, 589.5, 309.0, fu); sh.text("LOVESEAT", 548.5, 288.0, 4.0)
     sh.rect(593.5, 314.0, 629.5, 396.0, fu); sh.text("SOFA", 611.5, 355.0, 4.0, rot=90)
-    sh.circle((544.0, 338.0), 15.0, fu)
-    for x in (522.0, 566.0):
-        sh.circle((x, 380.0), 12.0, fu)
+    sh.circle((553.0, 349.0), 24.0, fu)                                       # 48" round table
+    sh.circle((481.0, 281.0), 13.0, fu)                                       # chair by the TV, angled in
     sh.rect(E_IN, 300.0, E_IN + 18, 333.0, fu); sh.text("CLOSET", E_IN + 9, 316.5, 3.0, rot=90)
     sh.rect(E_IN, 333.0, E_IN + 18, 366.0, fu); sh.text("BENCH", E_IN + 9, 349.5, 3.0, rot=90)
 
