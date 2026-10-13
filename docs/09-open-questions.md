@@ -15,7 +15,6 @@
 - [ ] Bedroom 3: keep the designer's two 4' closets flanking a centred door, or one ~9' closet with the door in the corner by bedroom 4?
 - [ ] Common bath: add the 72" two-person tub? If yes, pick the model before framing and size the water heater to 80 gal.
 - [ ] Kitchen tall storage: hutch between range and fridge, tall pantry column, and/or a dining-wall built-in.
-- [ ] Pick the speed oven model (sets the circuit and the cabinet cut-out).
 - [ ] Pick the fridge model (sets the exact opening and door clearance).
 
 **Trades**

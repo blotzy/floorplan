@@ -20,7 +20,6 @@
 | Refrigerator | 15–20A | Kitchen west wall, fridge space |
 | Dishwasher | 15–20A, GFCI | Next to the sink |
 | Countertop outlets | 3–4 × 20A (code minimum is 2) | Spread across the U, peninsula, and appliance garage |
-| Speed oven | 20–30A (check model) | Under counter, peninsula |
 | Drink fridge | 15–20A | Peninsula, south end (fourth-stool spot) |
 | Heat pump outdoor unit | Per manufacturer | Rear yard, middle of the south wall |
 | Heat pump water heater | Per model (240V, or a 120V plug-in model) | Mechanical closet |

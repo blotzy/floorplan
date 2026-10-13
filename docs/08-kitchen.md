@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-An upside-down U, 10'-0" x 13'-2": the sink on the south wall under the window, the range and fridge on the **west** wall (backing onto the laundry), and a peninsula on the east side with **three stools** facing the dining area. The aisle inside the U is **4'-0"** (48", the two-cook minimum; avoid opening the range oven and the peninsula speed oven at the same time). The kitchen was slid 2' east into the oversized dining area, then the range wall moved another 12" when the aisle went from 5' to 4'; all 3' went to the laundry and pantry behind the range wall.
+An upside-down U, 10'-0" x 13'-2": the sink on the south wall under the window, the range and fridge on the **west** wall (backing onto the laundry), and a peninsula on the east side with **three stools** facing the dining area. The aisle inside the U is **4'-0"** (48", the two-cook minimum). The kitchen was slid 2' east into the oversized dining area, then the range wall moved another 12" when the aisle went from 5' to 4'; all 3' went to the laundry and pantry behind the range wall.
 
 **West wall, from the sink corner:** 15" counter → 30" induction range → 18–20" counter → 36" fridge (counter-depth or all-refrigerator column) at the north end, next to the pantry door.
 
@@ -11,7 +11,6 @@ An upside-down U, 10'-0" x 13'-2": the sink on the south wall under the window, 
 | Range | 30" slide-in induction |
 | Range hood | Ducted outside through the roof, 400 CFM or less |
 | Fridge | Space for 36", counter-depth; RO water line and a leak pan |
-| Speed oven | Under the counter in the peninsula, facing the range (confirm the model is rated for under-counter install) |
 | Dishwasher | Next to the sink, not across from the range |
 | Sink | RO filter tap; tankless RO unit below with an outlet; integrated drain board on the dishwasher side |
 | Peninsula | Three stools; drink fridge in the fourth (south) spot with the coffee station on the counter above |
