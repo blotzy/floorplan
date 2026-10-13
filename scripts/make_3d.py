@@ -262,8 +262,14 @@ const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 2000
 const renderer = new THREE.WebGLRenderer({antialias:true});
 renderer.setSize(innerWidth, innerHeight); renderer.shadowMap.enabled = true;
 document.body.appendChild(renderer.domElement);
-const hemi = new THREE.HemisphereLight(0xffffff, 0x8a7f70, 0.7);
+// Fill light stands in for sky + ground bounce (no global illumination):
+// sky from above, warm bounce from below, and a soft ambient so walls facing
+// away from the sun read as shaded rather than black.
+const hemi = new THREE.HemisphereLight(0xdfeaff, 0xb8a588, 1.1);
 scene.add(hemi);
+scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
 const sun = new THREE.DirectionalLight(0xfff4e0, 2.2);
 sun.castShadow = true;
 Object.assign(sun.shadow.camera, {left:-75,right:75,top:75,bottom:-75,near:1,far:400});
