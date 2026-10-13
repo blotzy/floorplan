@@ -208,11 +208,11 @@ def wet_zone(sh, x0, y0, x1, y1):
     h.transparency = 0.75
 
 
-def tub(sh, x0, y0, x1, y1):
+def tub(sh, x0, y0, x1, y1, label="72x48 JET TUB"):
     sh.rect(x0, y0, x1, y1, "A-EQPM")
     sh.rect(x0 + 4, y0 + 4, x1 - 4, y1 - 4, "A-EQPM")
     rot = 90 if (y1 - y0) > (x1 - x0) else 0
-    sh.text("72x48 JET TUB", (x0 + x1) / 2, (y0 + y1) / 2, 4.0, rot=rot)
+    sh.text(label, (x0 + x1) / 2, (y0 + y1) / 2, 4.0, rot=rot)
 
 
 def glass(sh, a, b):
@@ -239,17 +239,16 @@ def vanity(sh, x0, y0, x1, y1, label, rot=0):
 
 
 def common_bath(sh):
-    """Full-width curbless walk-in shower at the window end; WC and vanity on the east wall."""
-    c0, c1 = face("bed2|c.bath", +1), face("c.bath|bed3", -1)          # 73.5" clear
+    """72" x 32" alcove tub with a shower head across the window end; WC and vanity on the east wall."""
+    c0, c1 = face("bed2|c.bath", +1), face("c.bath|bed3", -1)          # 73.5" clear: fur one end ~1.5"
     hall = face("bedroom hall wall", -1)
-    gy = N_IN + 42.0                                                   # 42"-deep shower
-    wet_zone(sh, c0, N_IN, c1, gy)
-    sh.text("CURBLESS SHOWER", (c0 + c1) / 2, N_IN + 21, 3.5)
-    glass(sh, (c0, gy), (c1 - 24, gy))                                 # 24" walk-in gap, west side
-    drain(sh, (c0 + 3, gy - 3), (c1 - 3, gy - 3))
-    wc(sh, c0, gy + 4, c0 + 28, gy + 34)                               # 19" to glass
-    vanity(sh, c0, gy + 43, c0 + 21, gy + 91, "VANITY 48", rot=90)     # 24" from the WC centreline
-    room_label(sh, "C. BATH", c0, N_IN, c1, hall, cx=(c0 + 21 + c1) / 2 + 2, cy=gy + 60, h=4.5)
+    ty = N_IN + 32.0
+    tub(sh, c1 - 72.0, N_IN, c1, ty, "TUB 72x32")
+    sh.circle((c1 - 4, N_IN + 16), 2.0, "A-EQPM")                     # shower head + valve, west end
+    sh.line((c1 - 72.0, ty + 1), (c1, ty + 1), "A-EQPM")              # curtain rod
+    wc(sh, c0, ty + 2, c0 + 28, ty + 32)                               # 17" to the tub
+    vanity(sh, c0, ty + 41, c0 + 21, ty + 89, "VANITY 48", rot=90)     # 24" from the WC centreline
+    room_label(sh, "C. BATH", c0, N_IN, c1, hall, cx=(c0 + 21 + c1) / 2 + 2, cy=ty + 55, h=4.5)
 
 
 def primary_bath(sh):

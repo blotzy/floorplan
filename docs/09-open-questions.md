@@ -12,7 +12,7 @@
 **Design decisions (owner)**
 
 - [ ] Bedroom 3: keep the designer's two 4' closets flanking a centred door, or one ~9' closet with the door in the corner by bedroom 4?
-- [x] Two-person tub: decided. A 72" x 48" jetted tub goes in the primary bath wet room; the common bath gets a walk-in shower. Pick the tub model before framing; 80-gal water heater.
+- [x] Two-person tub: decided. A 72" x 48" jetted tub goes in the primary bath wet room; the common bath gets a standard 72" tub with a shower head. Pick the tub model before framing; 80-gal water heater.
 - [ ] Kitchen tall storage: hutch between range and fridge, tall pantry column, and/or a dining-wall built-in.
 - [ ] Pick the fridge model (sets the exact opening and door clearance).
 
