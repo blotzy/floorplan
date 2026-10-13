@@ -56,6 +56,16 @@ def in_site(b):
     return x0 > -30 and x1 < 1390 and y0 > -30 and y1 < 800, (x0, y0, x1, y1)
 
 
+def in_exterior_wall(a, c, notch_x, notch_y):
+    """True when a line lies within an exterior wall's 9" band (real windows do;
+    the bedroom 3 / common bath partition, drawn on the Window layer, doesn't)."""
+    bands = (lambda x, y: N - 1 <= y <= N + 10, lambda x, y: S - 10 <= y <= S + 1,
+             lambda x, y: HOUSE_E - 1 <= x <= HOUSE_E + 10, lambda x, y: HOUSE_W - 10 <= x <= HOUSE_W + 1,
+             lambda x, y: notch_y - 1 <= y <= notch_y + 10 and x <= notch_x + 10,
+             lambda x, y: notch_x - 1 <= x <= notch_x + 10 and y <= notch_y + 10)
+    return any(f(*a) and f(*c) for f in bands)
+
+
 def build(doc) -> Scene:
     sc = Scene()
     msp = doc.modelspace()
@@ -102,7 +112,10 @@ def build(doc) -> Scene:
                     continue                              # front / rear yards
                 wall_lines.append((*a, *c))
             elif layer == "Window":
-                windows.append((*a, *c))
+                if in_exterior_wall(a, c, notch_x, notch_y):
+                    windows.append((*a, *c))
+                else:
+                    wall_lines.append((*a, *c))           # interior wall the designer put on Window
             elif layer == "Low - High Wall":
                 sc.quad("fence", a, c, 0, FENCE)
         elif t == "LWPOLYLINE":
