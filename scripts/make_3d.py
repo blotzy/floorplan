@@ -355,7 +355,7 @@ for (const [k, items] of Object.entries(D.polys)) for (const [pts,z0,z1] of item
   const g = new THREE.ExtrudeGeometry(shape, {depth:(z1-z0)*IN, bevelEnabled:false});
   g.rotateX(Math.PI/2);                       // shape xy -> world xz, extrude downward
   const m = new THREE.Mesh(g, mat(k)); m.position.y = z1*IN; m.receiveShadow = true;
-  (k==='ceiling' ? groups.ceil : scene).add(m);
+  (k==='ceiling' ? groups.ceil : k==='furniture' ? groups.furn : scene).add(m);
 }
 for (const [text,x,y,z] of D.labels) {
   const c = document.createElement('canvas'); c.width = 512; c.height = 128;
