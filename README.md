@@ -6,6 +6,12 @@
 
 *Current plan: the designer's 12 OCT 26 sheet with owner edits 1–19 applied. Street (north) at the bottom, carport (east) on the left.*
 
+## 3D massing model
+
+Open [`renders/3d/house.html`](renders/3d/house.html) in a browser (orbit, zoom, toggle ceiling/furniture, and a **Walk** button for eye-level WASD navigation). The same geometry is in `renders/3d/house.obj` for Windows 3D Viewer or Blender. Regenerate with `uv run scripts/make_3d.py` after the plan changes.
+
+![3D massing preview](renders/3d/preview.png)
+
 ## Design wishlist by trade
 
 1. [Project basics](docs/01-project-basics.md): orientation, key decisions, code basis
@@ -28,7 +34,8 @@
 | `Accosting 13-OCTOBER-2026 - EXPERIMENT *.dxf` | Generated: alternative layouts for the pantry/laundry/mech/powder block |
 | `scripts/owner_edits.py` | Applies the owner edits and renders PNGs (`uv run scripts/owner_edits.py --render all`) |
 | `scripts/experiment_*.py` | Experiments built on top of the owner edits |
-| `renders/` | PNG renders per step; `renders/experiments/` for the experiments |
+| `scripts/make_3d.py` | Builds the 3D massing model from the owner-edits DXF |
+| `renders/` | PNG renders per step; `renders/experiments/` for the experiments; `renders/3d/` for the 3D model |
 
 Viewing and measuring: open the DXFs in QCAD (View → Auto Zoom; Snap → Endpoint; Info → Distance). Units are inches. Don't save edits into the generated DXFs; they're rebuilt from the designer's original on every run.
 
