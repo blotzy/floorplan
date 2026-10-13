@@ -31,9 +31,10 @@
 
 ## Heat pump outdoor unit
 
-- Rear yard, against the house's south wall **behind the primary bath / walk-in closet** (away from bedroom windows and the laundry window), on a raised concrete pad.
+- Rear yard, against the house's south wall **behind the mechanical closet**, on a raised concrete pad. That stretch of wall has no windows; the nearest are the kitchen sink window (~3½' east) and the laundry window (~4' west), with no bedrooms nearby. The line set runs straight up into the attic beside the mechanical closet.
 - Low metal guard around it (dog yard). Keep it ≥10' from the ERV's fresh-air intake. Line set up the wall in a painted metal cover into the attic.
-- Pick a quiet model; the unit is only ~9–10' from the rear lot line.
+- Pick a quiet model; the unit is only ~9–10' from the rear lot line. Unit plus wall clearance takes ~3' of the 13' rear yard, leaving ~10' to pass.
+- Dryer vent at the west end of the laundry wall, away from the unit.
 
 ## Front yard (no lawn)
 

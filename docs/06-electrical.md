@@ -21,7 +21,7 @@
 | Dishwasher | 15–20A, GFCI | Next to the sink |
 | Countertop outlets | 3–4 × 20A (code minimum is 2) | Spread across the U, peninsula, and appliance garage |
 | Drink fridge | 15–20A | Peninsula, south end (fourth-stool spot) |
-| Heat pump outdoor unit | Per manufacturer | Rear yard, middle of the south wall |
+| Heat pump outdoor unit | Per manufacturer | Rear yard, south wall behind the mechanical closet (disconnect within sight) |
 | Heat pump water heater | Per model (240V, or a 120V plug-in model) | Mechanical closet |
 | Heat pump dryer | Per model | Laundry alcove |
 | Washer | 20A | Laundry alcove |

@@ -455,6 +455,10 @@ def build() -> Sheet:
     sh.line((0, fy), (160, fy), "A-FENC"); sh.line((208, fy), (E, fy), "A-FENC")
     sh.text("6' FENCE / GATE", 184, fy - 10, 4.0)
     sh.rect(6, 262, 54, 382, "L-SITE"); sh.text("BINS", 30, 322, 5.0, rot=90)        # bin pad
+    hx = (face("kitchen|pantry", +1) + face("pantry|laundry", -1)) / 2                 # heat pump outdoor
+    sh.rect(hx - 21, S + 10, hx + 21, S + 30, "A-EQPM")                                 # unit behind mech
+    sh.rect(hx - 27, S + 4, hx + 27, S + 36, "A-FENC")                                  # dog guard
+    sh.text("HP", hx, S + 20, 5.0)
     sh.line((0, 386), (60, 386), "A-FENC"); sh.line((60, 386), (60, 258), "A-FENC")
     sh.line((W, N), (W + 20, N), "A-FENC"); sh.line((W + 68, N), (LOT_W, N), "A-FENC")  # west fence
     sh.text("6' FENCE + GATE", (W + LOT_W) / 2, N - 10, 4.0)
