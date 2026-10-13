@@ -266,9 +266,11 @@ def primary_bath(sh):
     gx = m0 + TUB_W + 42.0                                             # tub + 42" shower zone
     wet_zone(sh, m0, top, gx, S_IN)
     tub(sh, m0, S_IN - TUB_L, m0 + TUB_W, S_IN)                       # wall to wall, no end gap
-    ax = face("bath|wic", -1)                                          # pump access from the WIC
-    sh.rect(m0 + 26, ax - 2, m0 + 46, ax, "A-EQPM")
-    sh.text("TUB ACCESS", m0 + 36, ax - 6, 2.5)
+    # Rear (wall-side) pump access from the laundry, inside the sink base cabinet
+    # (order the tub with its pump at the north end).
+    ax = face("utility|bath", -1)
+    sh.rect(ax - 2, S_IN - TUB_L + 2, ax, S_IN - TUB_L + 18, "A-EQPM")
+    sh.text("TUB ACCESS", ax - 34, S_IN - TUB_L + 10, 2.5, rot=90)
     sh.text("CURBLESS", m0 + TUB_W + 21, 575.0, 3.5, rot=90)
     sx = m0 + TUB_W + 21                                               # two heads, facing each other
     shower_head(sh, sx, top, +1)
