@@ -395,8 +395,10 @@ def build() -> Sheet:
         sh.circle((pen_out - 8, y), 7.5, fu)
     dcx = (E_IN + pen_out) / 2                                                # dining table
     sh.rect(dcx - 20, 523 - 36, dcx + 20, 523 + 36, fu)
-    for dy in (-24, 0, 24):
+    for dy in (-24, 0, 24):                                                   # 8 chairs: 3 a side + ends
         sh.circle((dcx - 28, 523 + dy), 7, fu); sh.circle((dcx + 28, 523 + dy), 7, fu)
+    for y in (523 - 45, 523 + 45):
+        sh.circle((dcx, y), 7, fu)
     tv = face("foyer wall", +1)
     sh.rect(tv, 300.0, tv + 3, 360.0, fu); sh.text("TV", tv + 8, 330.0, 4.0, rot=90)
     sh.msp.add_lwpolyline([(505.0, 267.0), (635.0, 267.0), (635.0, 396.0), (597.0, 396.0), (597.0, 305.0),
@@ -407,15 +409,23 @@ def build() -> Sheet:
     sh.rect(E_IN, 300.0, E_IN + 18, 333.0, fu); sh.text("CLOSET", E_IN + 9, 316.5, 3.0, rot=90)
     sh.rect(E_IN, 333.0, E_IN + 18, 366.0, fu); sh.text("BENCH", E_IN + 9, 349.5, 3.0, rot=90)
 
-    def bed(x0, y0, w, l, head_east):       # queen/king, headboard on an east/west wall
-        sh.rect(x0, y0, x0 + l, y0 + w, fu)
-        px = x0 + 4 if head_east else x0 + l - 18
-        sh.rect(px, y0 + 4, px + 14, y0 + w / 2 - 2, fu); sh.rect(px, y0 + w / 2 + 2, px + 14, y0 + w - 4, fu)
+    def bed(head_x, cy, w, d):              # 80" mattress + 3" headboard on the wall at head_x,
+        hb = head_x + d * 3                 # running in x-direction d; 18" x 16" nightstands
+        ft = hb + d * 80
+        y0, y1 = cy - w / 2, cy + w / 2
+        sh.rect(min(head_x, hb), y0, max(head_x, hb), y1, fu)                 # headboard
+        sh.rect(min(hb, ft), y0, max(hb, ft), y1, fu)                         # mattress
+        p0, p1 = sorted((hb + d * 2, hb + d * 16))
+        sh.rect(p0, y0 + 3, p1, cy - 2, fu); sh.rect(p0, cy + 2, p1, y1 - 3, fu)   # pillows
+        n0, n1 = sorted((head_x, head_x + d * 16))
+        for ny in (y0 - 18, y1):
+            sh.rect(n0, ny, n1, ny + 18, fu)                                  # nightstands
 
-    bed(face("lounge|bed2", +1), 300.0, 60, 80, True)
-    bed(face("c.bath|bed3", +1), 300.0, 60, 80, True)
-    bed(W_IN - 80, 300.0, 60, 80, False)
-    bed(W_IN - 80, 485.0, 76, 80, False)
+    open_mid = (N_IN + hall_n - 24) / 2     # bedrooms 2-4: head wall from the window side to the closets
+    bed(face("lounge|bed2", +1), open_mid, 60, +1)
+    bed(face("c.bath|bed3", +1), open_mid, 60, +1)
+    bed(W_IN, open_mid, 60, -1)
+    bed(W_IN, (srow + S_IN) / 2, 76, -1)   # primary: the whole west wall is open
 
     def closet(x0, x1, label="CL"):          # 24" reach-in closets on the hall wall
         y1 = hall_n

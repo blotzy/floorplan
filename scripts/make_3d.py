@@ -143,6 +143,10 @@ def build_schematic() -> Scene:
                     continue
                 if lay == "A-FURN" and within(b, lounge) and abs(w - h) < 2 and w > 30:
                     z = (0, 18)                                  # coffee table
+                elif lay == "A-FURN" and min(w, h) <= 4:
+                    z = (0, 44)                                  # headboard
+                elif lay == "A-FURN" and max(w, h) <= 20:
+                    z = (0, 24)                                  # nightstand
                 elif lay == "A-FURN":
                     z = (0, 24) if w * h >= 60 * 70 else (0, 30)  # beds vs. tables
                 else:
