@@ -286,8 +286,20 @@ def primary_bath(sh):
 
 
 def wic(sh):
-    room_label(sh, "WIC", face("utility|bath", +1), face("south hall wall", +1), face("suite|primary", -1),
-               face("bath|wic", -1), h=6.0)
+    x0, x1 = face("utility|bath", +1), face("suite|primary", -1)
+    y0, y1 = face("south hall wall", +1), face("bath|wic", -1)
+    fu = "A-FURN"
+
+    def hang(a, b, y, d):                   # 24"-deep hanging section with its rod
+        sh.rect(a, min(y, y + d * 24), b, max(y, y + d * 24), fu)
+        sh.line((a, y + d * 12), (b, y + d * 12), fu)
+        sh.text("HANG", (a + b) / 2, y + d * 18, 3.0)
+
+    hang(x0, 1031.0, y0, +1)                # hall wall, short of the entry from the bedroom
+    hang(x0, 989.0, y1, -1)                 # bath wall, short of the bath door
+    sh.rect(x0, y0 + 24, x0 + 14, y1 - 24, fu)   # shoe / folded shelves on the end wall
+    sh.text("SHELVES", x0 + 7, (y0 + y1) / 2, 2.2, rot=90)
+    room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=5.0)
 
 
 def wall_geometry():

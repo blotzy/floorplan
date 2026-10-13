@@ -47,7 +47,7 @@ LABEL_H = [            # label inside a shape -> (z0, z1); first match wins
     ("FRIDGE", (0, 70)), ("RANGE", (0, 36)), ("DOUBLE VANITY", (0, 34)), ("VANITY", (0, 34)),
     ("VAN", (0, 34)), ("WC", (0, 16)), ("TUB ACCESS", None), ("TUB", (0, 20)), ("DRYER", (0, 38)),
     ("WASHER", (0, 38)), ("FOLDING", (0, 36)), ("PANEL", (36, 66)), ("RACK", (0, 72)),
-    ("CLOSET", (0, 96)), ("LINEN", (0, 84)), ("CL", (0, 96)), ("BENCH", (0, 18)), ("TV", (40, 70)), ("CONSOLE", (0, 30)),
+    ("CLOSET", (0, 96)), ("LINEN", (0, 84)), ("HANG", (0, 84)), ("SHELVES", (0, 84)), ("CL", (0, 96)), ("BENCH", (0, 18)), ("TV", (40, 70)), ("CONSOLE", (0, 30)),
     ("SINK", (0, 36)), ("HP", (0, 36)),
 ]
 
@@ -153,7 +153,7 @@ def build_schematic() -> Scene:
                     z = (0, 36)                                  # counters
             if z is None:
                 continue
-            if lab.startswith("CL") or lab in ("CLOSET", "LINEN"):
+            if lab.startswith("CL") or lab in ("CLOSET", "LINEN", "HANG", "SHELVES"):
                 sc.boxes["closet"].append([*b, *z])
             else:
                 sc.boxes["furniture" if lay == "A-FURN" else "fixture"].append([*b, *z])
