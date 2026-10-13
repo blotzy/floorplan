@@ -48,7 +48,8 @@ The designer's side hall is gone (step 19, adopted from the "three strips v2" ex
 - **Gym ring mounts:** two ceiling points about 20" apart near the room's centre, swinging along the 12'-6" direction. The truss designer must carry a concentrated load of about 500 lb at each point; doubled 2x or LVL blocking across 2–3 trusses with framing connectors; through-bolted forged eye bolts with plate washers. Keep lights, fans, HVAC/ERV registers, and the smoke alarm out of the 4–6' swing zone. Photograph the blocking before drywall.
 - **Bedroom 3 (12'-8" x 12'-6"): guest room.** Queen bed, blackout shades. The designer drew two 4' closets flanking a centred door; see [open questions](09-open-questions.md).
 - **Bedroom 4 (10'-6" x 12'-6"): office.** Solid-core door and insulated walls for calls; wall blocking for monitor arms and shelves; dimmable ceiling light.
-- **Common bath (6'-0" x 12'-6").** Optional 72" two-person alcove tub; the 6' width works if the alcove is framed to the tub's spec (pick the model before framing). See [plumbing](04-plumbing.md).
+- **Common bath (6'-1½" x 12'-7").** Curbless walk-in shower across the full width at the window end: 42" deep behind a fixed glass panel, 24" walk-in gap, linear drain. Then the WC and a 48" vanity on the east wall. The gym next door uses it daily. (A tub + shower wet room was tried here and dropped as too cramped.)
+- **Primary bath wet room (15'-2" x 6'-7").** A 72" x 48" two-person jetted tub on the plumbing wall plus a 42" curbless shower beside it, behind one fixed glass panel with a linear drain, walk in at the closet end. Then the WC and a 60" double vanity. To fit it, the bath/bedroom wall moved 30" into the primary bedroom (now 12'-3" x 12'-7"; the walk-in closet is 15'-2" long). See [plumbing](04-plumbing.md).
 - **Primary suite:** optional reading nook with a built-in bench (window seat) in the primary bedroom.
 
 ## Ceilings and roof

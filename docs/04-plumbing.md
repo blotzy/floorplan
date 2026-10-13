@@ -33,7 +33,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 **Equipment and fixtures**
 
 - Whole-house water softener with sediment pre-filter, in the mechanical closet. The softener needs a drain with an air gap.
-- Heat pump water heater in the mechanical closet, with a condensate drain and a drain pan with a leak sensor. Size it for the house; go to **80 gal** if the two-person tub happens (see below).
+- Heat pump water heater in the mechanical closet, with a condensate drain and a drain pan with a leak sensor. Size it for the house; go to **80 gal** for the two-person jetted tub (see below).
 - Tankless reverse-osmosis filter under the kitchen sink, feeding the sink tap and a line to the fridge. A bypass plug replaces the fridge's internal filter.
 - Leak pans under the washer and fridge.
 - Bidet seats at the three full baths. Plan toilet locations so each bidet outlet has enough separation from tubs and showers.
@@ -42,5 +42,5 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 **Optional**
 
 - Reading nook with built-in bench in the primary bedroom.
-- **72" two-person tub in the common bath.** Fits the 6'-0" width as an alcove tub if the alcove is framed to the tub's spec (typically 72"–72½" stud to stud); pick the model before framing. Fill is 80–110+ gal and the filler is limited to 120°F (CPC 409.4), so it needs an 80-gal heat pump water heater or a 140°F tank with a mixing valve. A slab floor handles the ~1,400 lb filled load. Jetted/air tubs add a dedicated GFCI circuit and an access panel.
+- **72" x 48" two-person jetted tub in the primary bath wet room**, shown in [floor plan](02-floor-plan.md). Pick the model before framing; the drawn space is 48" x 78¾" against the plumbing wall. Fill is 80–110+ gal and the filler is limited to 120°F (CPC 409.4), so it needs an 80-gal heat pump water heater or a 140°F tank with a mixing valve. A slab floor handles the ~1,400 lb filled load. The jet pump needs an access panel outside the wet zone: from the laundry alcove behind the plumbing wall, or per the model. Wet room: one waterproofed zone (membrane floor and walls), curbless with a linear drain and the slab recessed for the slope.
 - On-demand hot water recirculation to the primary bath, the run farthest from the water heater.

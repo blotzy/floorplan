@@ -65,8 +65,8 @@ WALLS = [
     ("laundry|powder",    "y", 820.0,  457.0, 534.45, WET),
     ("powder|alcove",     "x", 531.2,  820.0, 874.0, WET),
     ("utility|bath",      "y", 874.0,  457.0, S_IN, WET),
-    ("bath|wic",          "x", 531.2,  874.0, 1032.0, INT),
-    ("suite|primary",     "y", 1032.0, 457.0, S_IN, INT),
+    ("bath|wic",          "x", 531.2,  874.0, 1062.0, INT),
+    ("suite|primary",     "y", 1062.0, 457.0, S_IN, INT),   # 30" taken from the bedroom for the wet room
 ]
 
 # Openings: (wall name, from, to, kind, hinge, swing)
@@ -87,7 +87,7 @@ OPENINGS = [
     ("south",       592.0, 652.0, "window"),             # kitchen sink
     ("south",       778.0, 814.0, "window"),             # laundry
     ("south",       923.0, 953.0, "window"),             # primary bath
-    ("south",       1064.0, 1172.0, "window"),           # primary bedroom
+    ("south",       1083.6, 1191.6, "window"),           # primary bedroom (centred)
     ("east",        510.8, 594.8, "slider"),             # dining 7' slider
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
     # interior
@@ -98,7 +98,7 @@ OPENINGS = [
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 838.0, 866.0, "door", "b", +1),     # powder
-    ("south hall wall", 1040.5, 1076.5, "door", "a", +1),   # primary bedroom
+    ("south hall wall", 1070.0, 1106.0, "door", "a", +1),   # primary bedroom
     ("pantry|laundry", 579.2, 609.2, "bifold", "a", +1),    # mech closet (louvered)
     ("bath|wic", 993.5, 1023.5, "door", "b", +1),           # primary bath
     ("suite|primary", 463.0, 491.7, "cased"),               # walk-in closet entry
@@ -199,23 +199,72 @@ def room_label(sh, name, x0, y0, x1, y1, cx=None, cy=None, h=8.0):
 
 
 # Bath fit-outs are separate so experiments can swap them (scripts/experiment_wetrooms.py).
+TUB_L, TUB_W = 72.0, 48.0          # two-person jetted tub (primary bath)
+
+
+def wet_zone(sh, x0, y0, x1, y1):
+    h = sh.msp.add_hatch(color=151, dxfattribs={"layer": "A-EQPM"})
+    h.paths.add_polyline_path([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], is_closed=True)
+    h.transparency = 0.75
+
+
+def tub(sh, x0, y0, x1, y1):
+    sh.rect(x0, y0, x1, y1, "A-EQPM")
+    sh.rect(x0 + 4, y0 + 4, x1 - 4, y1 - 4, "A-EQPM")
+    rot = 90 if (y1 - y0) > (x1 - x0) else 0
+    sh.text("72x48 JET TUB", (x0 + x1) / 2, (y0 + y1) / 2, 4.0, rot=rot)
+
+
+def glass(sh, a, b):
+    """Fixed glass panel from point a to point b (axis-aligned), drawn 1" thick."""
+    (ax, ay), (bx, by) = a, b
+    if ax == bx:
+        sh.rect(ax - 0.5, min(ay, by), ax + 0.5, max(ay, by), "A-GLAZ")
+    else:
+        sh.rect(min(ax, bx), ay - 0.5, max(ax, bx), ay + 0.5, "A-GLAZ")
+
+
+def drain(sh, a, b):
+    """Linear drain."""
+    sh.line(a, b, "A-EQPM")
+    sh.circle(((a[0] + b[0]) / 2, (a[1] + b[1]) / 2), 1.0, "A-EQPM")
+
+
+def wc(sh, x0, y0, x1, y1):
+    sh.rect(x0, y0, x1, y1, "A-EQPM"); sh.text("WC", (x0 + x1) / 2, (y0 + y1) / 2, 3.0)
+
+
+def vanity(sh, x0, y0, x1, y1, label, rot=0):
+    sh.rect(x0, y0, x1, y1, "A-EQPM"); sh.text(label, (x0 + x1) / 2, (y0 + y1) / 2, 3.0, rot=rot)
+
+
 def common_bath(sh):
-    eq = "A-EQPM"
-    cb0, cb1 = face("bed2|c.bath", +1), face("c.bath|bed3", -1)
-    hall_n = face("bedroom hall wall", -1)
-    room_label(sh, "C. BATH", cb0, N_IN, cb1, hall_n, cy=280.0, h=6.0)
-    sh.rect(cb0, hall_n - 36, cb0 + 36, hall_n, eq); sh.text("SHWR", cb0 + 18, hall_n - 18, 3.5)
-    sh.rect(cb0, 300.0, cb0 + 21, 336.0, eq); sh.text("VAN", cb0 + 10.5, 318.0, 3.0, rot=90)
-    sh.rect(cb0, 342.0, cb0 + 28, 360.0, eq); sh.text("WC", cb0 + 14, 351.0, 3.0)
+    """Full-width curbless walk-in shower at the window end; WC and vanity on the east wall."""
+    c0, c1 = face("bed2|c.bath", +1), face("c.bath|bed3", -1)          # 73.5" clear
+    hall = face("bedroom hall wall", -1)
+    gy = N_IN + 42.0                                                   # 42"-deep shower
+    wet_zone(sh, c0, N_IN, c1, gy)
+    sh.text("CURBLESS SHOWER", (c0 + c1) / 2, N_IN + 21, 3.5)
+    glass(sh, (c0, gy), (c1 - 24, gy))                                 # 24" walk-in gap, west side
+    drain(sh, (c0 + 3, gy - 3), (c1 - 3, gy - 3))
+    wc(sh, c0, gy + 4, c0 + 28, gy + 34)                               # 19" to glass
+    vanity(sh, c0, gy + 43, c0 + 21, gy + 91, "VANITY 48", rot=90)     # 24" from the WC centreline
+    room_label(sh, "C. BATH", c0, N_IN, c1, hall, cx=(c0 + 21 + c1) / 2 + 2, cy=gy + 60, h=4.5)
 
 
 def primary_bath(sh):
-    eq = "A-EQPM"
-    mb0, mb1 = face("utility|bath", +1), face("suite|primary", -1)
-    room_label(sh, "PRIMARY BATH", mb0, face("bath|wic", +1), mb1, S_IN, cy=555.0, h=6.0)
-    sh.rect(mb1 - 60, S_IN - 22, mb1, S_IN, eq); sh.text("DOUBLE VANITY", mb1 - 30, S_IN - 11, 3.0)
-    sh.rect(mb0, face("bath|wic", +1), mb0 + 60, S_IN, eq); sh.text("SHOWER", mb0 + 30, 575.0, 4.0)
-    sh.rect(944.0, S_IN - 28, 962.0, S_IN, eq); sh.text("WC", 953.0, S_IN - 14, 3.0)
+    """Wet room: jetted tub on the plumbing wall + curbless shower behind glass; WC; double vanity."""
+    m0, m1 = face("utility|bath", +1), face("suite|primary", -1)
+    top = face("bath|wic", +1)
+    gx = m0 + TUB_W + 42.0                                             # tub + 42" shower zone
+    wet_zone(sh, m0, top, gx, S_IN)
+    tub(sh, m0, S_IN - TUB_L, m0 + TUB_W, S_IN)
+    sh.text("CURBLESS", m0 + TUB_W + 21, 575.0, 3.5, rot=90)
+    glass(sh, (gx, top + 30), (gx, S_IN))                              # walk in at the north end
+    drain(sh, (gx - 3, top + 3), (gx - 3, S_IN - 3))
+    wc(sh, gx + 2.25, S_IN - 28, gx + 32.25, S_IN)                     # 17.25" to glass, 15.25" to vanity
+    vanity(sh, m1 - 60, S_IN - 22, m1, S_IN, "DOUBLE VANITY 60")
+    room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2, cy=576.0, h=4.5)
 
 
 def build() -> Sheet:

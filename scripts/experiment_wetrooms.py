@@ -14,6 +14,9 @@ same in every variant; the primary bath has three versions:
 
     uv run scripts/experiment_wetrooms.py
 
+Outcome: variant C was adopted into schematic.py for the primary bath; the
+common-bath wet room was dropped (it gets a curbless walk-in shower instead).
+
 Writes "Accosting - owner schematic - EXPERIMENT wetroom X.dxf" and
 renders/experiments/wetroom-X.png.
 """
@@ -26,46 +29,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import schematic as S  # noqa: E402
 
-TUB_L, TUB_W = 72.0, 48.0
+TUB_L, TUB_W = S.TUB_L, S.TUB_W
 BASE_WALLS, BASE_OPENINGS = copy.deepcopy(S.WALLS), copy.deepcopy(S.OPENINGS)
 EQ = "A-EQPM"
-
-
-# ---- symbols ----------------------------------------------------------------------
-def wet_zone(sh, x0, y0, x1, y1):
-    h = sh.msp.add_hatch(color=151, dxfattribs={"layer": "A-EQPM"})
-    h.paths.add_polyline_path([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], is_closed=True)
-    h.transparency = 0.75
-
-
-def tub(sh, x0, y0, x1, y1):
-    sh.rect(x0, y0, x1, y1, EQ)
-    sh.rect(x0 + 4, y0 + 4, x1 - 4, y1 - 4, EQ)
-    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-    rot = 90 if (y1 - y0) > (x1 - x0) else 0
-    sh.text("72x48 JET TUB", cx, cy, 4.0, rot=rot)
-
-
-def glass(sh, a, b):
-    """Fixed glass panel from point a to point b (axis-aligned), drawn 1" thick."""
-    (ax, ay), (bx, by) = a, b
-    if ax == bx:
-        sh.rect(ax - 0.5, min(ay, by), ax + 0.5, max(ay, by), "A-GLAZ")
-    else:
-        sh.rect(min(ax, bx), ay - 0.5, max(ax, bx), ay + 0.5, "A-GLAZ")
-
-
-def drain(sh, a, b):
-    sh.line(a, b, EQ)
-    sh.circle(((a[0] + b[0]) / 2, (a[1] + b[1]) / 2), 1.0, EQ)
-
-
-def wc(sh, x0, y0, x1, y1):
-    sh.rect(x0, y0, x1, y1, EQ); sh.text("WC", (x0 + x1) / 2, (y0 + y1) / 2, 3.0)
-
-
-def vanity(sh, x0, y0, x1, y1, label, rot=0):
-    sh.rect(x0, y0, x1, y1, EQ); sh.text(label, (x0 + x1) / 2, (y0 + y1) / 2, 3.0, rot=rot)
+wet_zone, tub, glass, drain, wc, vanity = S.wet_zone, S.tub, S.glass, S.drain, S.wc, S.vanity
 
 
 # ---- common bath (all variants) --------------------------------------------------
@@ -153,21 +120,27 @@ def set_opening(openings, wall, old_from, new_from, new_to, *rest):
     raise KeyError((wall, old_from))
 
 
+def pre_wetroom(walls, openings):
+    """Undo the adopted variant C in the schematic, back to the layout these were drawn from."""
+    set_wall(walls, "suite|primary", c=1032.0)
+    set_wall(walls, "bath|wic", b=1032.0)
+    set_opening(openings, "south", 1083.6, 1064.0, 1172.0)
+    set_opening(openings, "south hall wall", 1070.0, 1040.5, 1076.5)
+
+
 def variant_a(walls, openings):
+    pre_wetroom(walls, openings)
     return "A - in place, no walls move; single 47\" vanity", primary_a
 
 
 def variant_b(walls, openings):
+    pre_wetroom(walls, openings)
     set_wall(walls, "bath|wic", c=531.2 - 18)
     set_opening(openings, "bath|wic", 993.5, 966.0, 996.0, "door", "b", +1)
     return "B - bath/WIC wall 18\" north (WIC 4'-2\" deep); double vanity", primary_b
 
 
-def variant_c(walls, openings):
-    set_wall(walls, "suite|primary", c=1032.0 + 30)
-    set_wall(walls, "bath|wic", b=1062.0)
-    set_opening(openings, "south", 1064.0, 1083.6, 1191.6)            # bedroom window recentred
-    set_opening(openings, "south hall wall", 1040.5, 1070.0, 1106.0)  # bedroom door
+def variant_c(walls, openings):          # adopted into schematic.py (base data already has it)
     return "C - bath/primary wall 30\" west (bedroom 12'-3\" wide); double vanity", primary_c
 
 
