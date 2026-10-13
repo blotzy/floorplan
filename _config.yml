@@ -1,0 +1,4 @@
+# GitHub Pages (Settings -> Pages -> Deploy from a branch -> main, / (root)).
+# README.md becomes the home page; docs/*.md render as pages; renders/3d/house.html runs as-is.
+title: Laurel Dr rebuild
+description: Owner floor-plan edits, schematic, and 3D model for the Altadena fire rebuild.

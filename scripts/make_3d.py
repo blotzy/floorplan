@@ -286,7 +286,11 @@ const M = {
   fixture:{color:0xd9d4cc}, furniture:{color:0x8fa3b8}, counter:{color:0x9a8f84},
   post:{color:0x5a5f66}, roof:{color:0x4a4f55, transparent:true, opacity:0.85},
 };
-const mat = k => new THREE.MeshStandardMaterial(Object.assign({roughness:0.9}, M[k]||{color:0xcccccc}));
+const mat = k => new THREE.MeshStandardMaterial(Object.assign(
+  {roughness:0.9, polygonOffset:true, polygonOffsetFactor:1, polygonOffsetUnits:1}, M[k]||{color:0xcccccc}));
+// Dark outlines on walls, fences and boxes so corners and wall ends read clearly.
+const EDGE = new THREE.LineBasicMaterial({color:0x3a3d42});
+const EDGED = new Set(['wall', 'fence']);
 // plan (x west, y south, z up) in inches -> three (x = west, y = up, z = north).
 // three.js is right-handed, so north must be +z or the model comes out mirrored.
 const V = (x,y,z) => new THREE.Vector3(x*IN, z*IN, -y*IN);
@@ -302,10 +306,21 @@ for (const [k, items] of Object.entries(D.quads)) {
   const g = new THREE.BufferGeometry();
   g.setAttribute('position', new THREE.Float32BufferAttribute(pos,3)); g.computeVertexNormals();
   const m = new THREE.Mesh(g, mat(k)); m.castShadow = m.receiveShadow = k!=='glass'; scene.add(m);
+  if (EDGED.has(k)) {                         // all four edges of every wall/fence face
+    const lp = [];
+    for (const [x0,y0,x1,y1,z0,z1] of items) {
+      const a=V(x0,y0,z0), b=V(x1,y1,z0), c=V(x1,y1,z1), d=V(x0,y0,z1);
+      for (const [p,q] of [[a,b],[b,c],[c,d],[d,a]]) lp.push(...p.toArray(), ...q.toArray());
+    }
+    const lg = new THREE.BufferGeometry();
+    lg.setAttribute('position', new THREE.Float32BufferAttribute(lp,3));
+    scene.add(new THREE.LineSegments(lg, EDGE));
+  }
 }
 for (const [k, items] of Object.entries(D.boxes)) for (const [x0,y0,x1,y1,z0,z1] of items) {
   const m = new THREE.Mesh(new THREE.BoxGeometry((x1-x0)*IN,(z1-z0)*IN,(y1-y0)*IN), mat(k));
   m.position.set((x0+x1)/2*IN, (z0+z1)/2*IN, -(y0+y1)/2*IN); m.castShadow = m.receiveShadow = true;
+  m.add(new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry), EDGE));
   (k==='fixture'||k==='furniture'||k==='counter' ? groups.furn : scene).add(m);
 }
 for (const [k, items] of Object.entries(D.cyls)) for (const [cx,cy,r,z0,z1] of items) {
