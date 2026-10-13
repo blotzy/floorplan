@@ -4,7 +4,7 @@
 
 ![Current owner-edits plan (step 24)](renders/step24-heat-pump-outdoor.png)
 
-*Current plan: the designer's 12 OCT 26 sheet with owner edits 1–21 applied. Street (plan north) at the bottom, carport (plan east) on the left; the arrow in the front yard shows true north (21° off plan north).*
+*Current plan: the designer's 12 OCT 26 sheet with owner edits 1–24 applied. Street (plan north) at the bottom, carport (plan east) on the left; the arrow in the front yard shows true north (21° off plan north).*
 
 ## Owner schematic (accurate walls)
 
