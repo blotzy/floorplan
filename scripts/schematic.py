@@ -256,7 +256,9 @@ def common_bath(sh):
     sh.line((c1 - 72.0, ty + 1), (c1, ty + 1), "A-EQPM")              # curtain rod
     wc(sh, c0, ty + 2, c0 + 28, ty + 32)                               # 17" to the tub
     vanity(sh, c0, ty + 41, c0 + 21, ty + 89, "VANITY 48", rot=90)     # 24" from the WC centreline
-    room_label(sh, "C. BATH", c0, N_IN, c1, hall, cx=(c0 + 21 + c1) / 2 + 2, cy=ty + 55, h=4.5)
+    sh.rect(c1 - 18, 330.0, c1, 364.0, "A-FURN"); sh.line((c1 - 18, 330.0), (c1, 364.0), "A-FURN")  # linen
+    sh.text("LINEN", c1 - 9, 347.0, 2.5, rot=90)
+    room_label(sh, "C. BATH", c0, N_IN, c1, hall, cx=(c0 + 21 + c1 - 18) / 2, cy=ty + 55, h=4.0)
 
 
 def primary_bath(sh):
@@ -400,6 +402,7 @@ def build() -> Sheet:
     sh.rect(593.5, 314.0, 629.5, 396.0, fu); sh.text("SOFA", 611.5, 355.0, 4.0, rot=90)
     sh.circle((553.0, 349.0), 24.0, fu)                                       # 48" round table
     sh.circle((481.0, 281.0), 13.0, fu)                                       # chair by the TV, angled in
+    sh.circle((500.0, 384.0), 13.0, fu)                                       # second chair, SE corner
     sh.rect(E_IN, 300.0, E_IN + 18, 333.0, fu); sh.text("CLOSET", E_IN + 9, 316.5, 3.0, rot=90)
     sh.rect(E_IN, 333.0, E_IN + 18, 366.0, fu); sh.text("BENCH", E_IN + 9, 349.5, 3.0, rot=90)
 
