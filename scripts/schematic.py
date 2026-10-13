@@ -256,6 +256,9 @@ def common_bath(sh):
     sh.line((c1 - 72.0, ty + 1), (c1, ty + 1), "A-EQPM")              # curtain rod
     wc(sh, c0, ty + 2, c0 + 28, ty + 32)                               # 17" to the tub
     vanity(sh, c0, ty + 41, c0 + 21, ty + 89, "VANITY 48", rot=90)     # 24" from the WC centreline
+    sh.rect(c0, hall - 24, c0 + 30, hall, "A-FURN")                          # linen closet in the
+    sh.line((c0, hall - 24), (c0 + 30, hall), "A-FURN")                       # corner by the door
+    sh.text("LINEN", c0 + 15, hall - 16, 3.0)
     room_label(sh, "C. BATH", c0, N_IN, c1, hall, cx=(c0 + 21 + c1) / 2 + 2, cy=ty + 55, h=4.5)
 
 
