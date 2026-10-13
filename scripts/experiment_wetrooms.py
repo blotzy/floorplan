@@ -120,8 +120,10 @@ def set_opening(openings, wall, old_from, new_from, new_to, *rest):
     raise KeyError((wall, old_from))
 
 
-def old_bath_windows(openings):
-    """Primary-bath window as it was when these were drawn (one window, no WC window)."""
+def old_bath_windows(walls, openings):
+    """Primary bath as it was when these were drawn: one window, no WC window,
+    bath/WIC wall at its original line."""
+    set_wall(walls, "bath|wic", c=531.2)
     set_opening(openings, "south", 886.25, 923.0, 953.0)
     openings[:] = [o for o in openings if not (o[0] == "south" and o[1] == 972.5)]
 
@@ -132,7 +134,7 @@ def pre_wetroom(walls, openings):
     set_wall(walls, "bath|wic", b=1032.0)
     set_opening(openings, "south", 1083.6, 1064.0, 1172.0)
     set_opening(openings, "south hall wall", 1070.0, 1040.5, 1076.5)
-    old_bath_windows(openings)
+    old_bath_windows(walls, openings)
 
 
 def variant_a(walls, openings):
@@ -148,7 +150,7 @@ def variant_b(walls, openings):
 
 
 def variant_c(walls, openings):          # adopted into schematic.py (base data already has it)
-    old_bath_windows(openings)
+    old_bath_windows(walls, openings)
     return "C - bath/primary wall 30\" west (bedroom 12'-3\" wide); double vanity", primary_c
 
 

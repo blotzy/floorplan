@@ -65,7 +65,7 @@ WALLS = [
     ("laundry|powder",    "y", 820.0,  457.0, 534.45, WET),
     ("powder|alcove",     "x", 531.2,  820.0, 874.0, WET),
     ("utility|bath",      "y", 874.0,  457.0, S_IN, WET),
-    ("bath|wic",          "x", 531.2,  874.0, 1062.0, INT),
+    ("bath|wic",          "x", S_IN - 72.0 - INT / 2, 874.0, 1062.0, INT),   # bath exactly tub-deep
     ("suite|primary",     "y", 1062.0, 457.0, S_IN, INT),   # 30" taken from the bedroom for the wet room
 ]
 
@@ -265,7 +265,10 @@ def primary_bath(sh):
     top = face("bath|wic", +1)
     gx = m0 + TUB_W + 42.0                                             # tub + 42" shower zone
     wet_zone(sh, m0, top, gx, S_IN)
-    tub(sh, m0, S_IN - TUB_L, m0 + TUB_W, S_IN)
+    tub(sh, m0, S_IN - TUB_L, m0 + TUB_W, S_IN)                       # wall to wall, no end gap
+    ax = face("bath|wic", -1)                                          # pump access from the WIC
+    sh.rect(m0 + 26, ax - 2, m0 + 46, ax, "A-EQPM")
+    sh.text("TUB ACCESS", m0 + 36, ax - 6, 2.5)
     sh.text("CURBLESS", m0 + TUB_W + 21, 575.0, 3.5, rot=90)
     sx = m0 + TUB_W + 21                                               # two heads, facing each other
     shower_head(sh, sx, top, +1)
@@ -274,7 +277,7 @@ def primary_bath(sh):
     drain(sh, (gx - 3, top + 3), (gx - 3, S_IN - 3))
     wc(sh, gx + 2.25, S_IN - 28, gx + 32.25, S_IN)                     # 17.25" to glass, 15.25" to vanity
     vanity(sh, m1 - 60, S_IN - 22, m1, S_IN, "DOUBLE VANITY 60")
-    room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2, cy=576.0, h=4.5)
+    room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2, cy=577.0, h=4.0)
 
 
 def build() -> Sheet:
