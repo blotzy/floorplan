@@ -4,7 +4,9 @@
 
 All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild) with no gas service, 10' ceilings, a sealed attic, and an attached 18'-wide two-car carport. The architect owns the floor plan, roof, and finishes. Plumbing, HVAC, and electrical are designed by separate trades, so the architect only needs to reserve the spaces, chases, and openings those sections call for.
 
-**Orientation used in these docs:** the street is to the **north**. The carport and the great room are at the **east** end; the bedroom wing and the primary suite are at the **west** end. (The designer's sheet draws north at the bottom, so east is on the left.)
+**Orientation used in these docs:** "north", "east", etc. mean **plan** directions: the street is plan north, the carport and great room are at the plan east end, and the bedroom wing and primary suite at the plan west end. (The designer's sheet draws plan north at the bottom, so east is on the left.)
+
+**True orientation:** plan north is **21° east of true north**. From the LA County parcel GIS (APN 5832-003-027; parcel 27 on assessor map 5832-003), the street lot line runs at a bearing of 111° and the side lines at ~21°. So the street side faces NNE, the "south" (rear) side faces SSW (azimuth ~201°), the carport end faces ESE, and the primary-suite end faces WNW. The parcel GIS shows the lot as ~112' x 64'-9" (the designer's sheet says 113'). The 3D model's sun uses the true orientation.
 
 | Item | Decision |
 | --- | --- |

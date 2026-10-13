@@ -321,9 +321,13 @@ for (const [text,x,y] of D.labels) {
 }
 groups.ceil.visible = false;
 const ctr = new THREE.Vector3(D.center[0]*IN, 0, -D.center[1]*IN);
-// Sun position for Altadena (34.19 N), solar time; plan north taken as true north.
-// World axes: x = west, y = up, z = north.
+// Sun position for Altadena (34.19 N), solar time.
+// World axes follow the PLAN: x = plan west, y = up, z = plan north.
+// Plan north is NOT true north: per LA County parcel GIS (APN 5832-003-027,
+// CA State Plane V), the street (plan north) lot line runs at 111.1 deg and
+// the side lines at ~21 deg, so plan north points 21 deg east of true north.
 const LAT = 34.19 * Math.PI/180;
+const PLAN_N = 21.0 * Math.PI/180;      // true azimuth of plan north
 function placeSun() {
   const day = +document.getElementById('day').value, hr = +document.getElementById('hour').value;
   const dec = 23.44*Math.PI/180 * Math.sin(2*Math.PI*(284+day)/365);
@@ -331,12 +335,26 @@ function placeSun() {
   const alt = Math.asin(Math.sin(LAT)*Math.sin(dec) + Math.cos(LAT)*Math.cos(dec)*Math.cos(H));
   const azS = Math.atan2(Math.sin(H), Math.cos(H)*Math.sin(LAT) - Math.tan(dec)*Math.cos(LAT)); // from south, + west
   const east = -Math.cos(alt)*Math.sin(azS), north = -Math.cos(alt)*Math.cos(azS), up = Math.sin(alt);
+  // true (east, north) -> plan (east, north)
+  const pe = east*Math.cos(PLAN_N) - north*Math.sin(PLAN_N);
+  const pn = north*Math.cos(PLAN_N) + east*Math.sin(PLAN_N);
   sun.target.position.copy(ctr);
-  sun.position.set(ctr.x - east*150, up*150, ctr.z + north*150);
+  sun.position.set(ctr.x - pe*150, up*150, ctr.z + pn*150);
   sun.intensity = alt > 0 ? 2.2 : 0;
   const h = Math.floor(hr), m = Math.round((hr-h)*60);
   document.getElementById('hourTxt').textContent =
     `${((h+11)%12)+1}:${String(m).padStart(2,'0')} ${h<12?'am':'pm'} · sun ${Math.max(0,alt*180/Math.PI).toFixed(0)}° up`;
+}
+// True-north arrow in the front yard (west of the driveway).
+{
+  const dir = new THREE.Vector3(Math.sin(PLAN_N), 0, Math.cos(PLAN_N));   // true north in plan world
+  const base = new THREE.Vector3(D.center[0]*IN + 25, 0.5, -10*IN);
+  scene.add(new THREE.ArrowHelper(dir, base, 14, 0xc0392b, 4, 2.5));
+  const c = document.createElement('canvas'); c.width = 128; c.height = 128;
+  const g = c.getContext('2d'); g.font = 'bold 96px system-ui'; g.fillStyle = '#c0392b';
+  g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('N', 64, 64);
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c)}));
+  s.scale.set(4, 4, 1); s.position.copy(base).addScaledVector(dir, 18).setY(2); scene.add(s);
 }
 document.getElementById('day').onchange = placeSun;
 document.getElementById('hour').oninput = placeSun;

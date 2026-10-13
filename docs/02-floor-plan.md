@@ -16,7 +16,7 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 
 - **Dining** 14'-3" x 13'-2"; table and the south window centred on the dining room's south wall.
 - **7' sliding door** on the east wall, centred between the carport fence and the house's southeast corner, opening onto the dining patio. (The designer's console in front of the old east window is gone.)
-- **South window:** large (drawn 10'). Final size is the architect's call; it faces south, so plan an overhang or exterior shade and check it against the Title 24 glazing budget.
+- **South window:** large (drawn 10'). Final size is the architect's call; it actually faces SSW (azimuth ~201°), so it takes strong afternoon sun: plan an overhang or exterior shade and check it against the Title 24 glazing budget.
 
 ## Kitchen
 
@@ -55,7 +55,7 @@ The designer's side hall is gone (step 19, adopted from the "three strips v2" ex
 - 10' ceilings throughout. The ducted heat pump unit, its ducts, and the ERV go in the sealed attic, so no hallway drop ceiling is needed.
 - Ceiling box or low-voltage bracket at the two Wi-Fi access point locations, installed at rough-in with the Cat6A ending inside.
 - Ceiling fans need 12–18" downrods at 10'.
-- Keep the south-facing roof free of vents and skylights for future solar; no tall trees south of the house.
+- Keep the plan-south roof (true azimuth ~201°, SSW, which is fine for solar) free of vents and skylights for future solar; no tall trees south of the house.
 - Solar mounts and conduit on the roof, plus a conduit run to a future battery location.
 - **Class A asphalt shingle roof** over the sealed attic (unvented deck allowed by CRC R806.5). Get the roofer to confirm in writing that the shingle warranty covers an unvented deck; a light-coloured cool-roof shingle is preferred.
 
