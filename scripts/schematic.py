@@ -398,8 +398,9 @@ def build() -> Sheet:
         sh.circle((dcx - 28, 523 + dy), 7, fu); sh.circle((dcx + 28, 523 + dy), 7, fu)
     tv = face("foyer wall", +1)
     sh.rect(tv, 300.0, tv + 3, 360.0, fu); sh.text("TV", tv + 8, 330.0, 4.0, rot=90)
-    sh.rect(507.5, 267.0, 589.5, 309.0, fu); sh.text("LOVESEAT", 548.5, 288.0, 4.0)
-    sh.rect(593.5, 314.0, 629.5, 396.0, fu); sh.text("SOFA", 611.5, 355.0, 4.0, rot=90)
+    sh.msp.add_lwpolyline([(505.0, 267.0), (635.0, 267.0), (635.0, 396.0), (597.0, 396.0), (597.0, 305.0),
+                           (505.0, 305.0)], close=True, dxfattribs={"layer": fu})   # L sectional, 38" deep
+    sh.text("L SECTIONAL", 551.0, 287.0, 4.0)
     sh.circle((553.0, 349.0), 24.0, fu)                                       # 48" round table
     sh.rect(E_IN, 300.0, E_IN + 18, 333.0, fu); sh.text("CLOSET", E_IN + 9, 316.5, 3.0, rot=90)
     sh.rect(E_IN, 333.0, E_IN + 18, 366.0, fu); sh.text("BENCH", E_IN + 9, 349.5, 3.0, rot=90)
