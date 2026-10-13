@@ -25,6 +25,6 @@ An upside-down U, 10'-0" x 13'-2": the sink on the south wall under the window, 
 - Under-cabinet lighting.
 - 42" or stacked upper cabinets to suit the 10' ceilings.
 - 3" fillers at each corner so drawers and doors clear each other.
-- Peninsula seating overhang of 15" (drawn; the designer had 12").
+- Peninsula seating overhang of 15".
 
 **Tall storage (wanted, not yet placed).** The kitchen is short on counter-to-ceiling cabinets because the sink window takes the south wall and the range/hood takes the west wall. Candidates: a counter-to-ceiling hutch over the prep counter between the range and fridge, a tall pantry column beside the fridge, and/or a built-in on the dining room's south wall. Keep the peninsula (an island wouldn't add wall space). See [open questions](09-open-questions.md).

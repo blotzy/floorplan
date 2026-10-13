@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-These are the rooms, spaces, and openings the plan must provide so the trades can do their work. The owner-edits drawing and the owner schematic show one way to fit them; sizes and fine details are the architect's call. See the [plan change log](10-plan-changes.md) for how each one got there.
+These are the rooms, spaces, and openings the plan must provide so the trades can do their work. The plan drawing and the schematic show one way to fit them; sizes and fine details are the architect's call.
 
 ## Entry, foyer, and lounge
 
@@ -15,7 +15,7 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 ## Dining
 
 - **Dining:** table and the south window centred on the dining room's south wall.
-- **Sliding door** on the east wall, centred between the carport fence and the house's southeast corner, opening onto the dining patio. (The designer's console in front of the old east window is gone.)
+- **Sliding door** on the east wall, centred between the carport fence and the house's southeast corner, opening onto the dining patio.
 - **South window:** large. It actually faces SSW (azimuth ~201°), so it takes strong afternoon sun: plan an overhang or exterior shade and check it against the Title 24 glazing budget.
 
 ## Kitchen
@@ -24,32 +24,24 @@ See [kitchen](08-kitchen.md). A comfortable work aisle, a 36" fridge, and a peni
 
 ## Pantry, laundry, mechanical, powder (the block behind the kitchen)
 
-The designer's side hall is gone (step 19, adopted from the "three strips v2" experiment). The block is three strips, each with its own door off the main lobby:
+The block is three strips, each with its own door off the main lobby (no side hall):
 
 - **Pantry:** door at the corner by the fridge, hinged so it opens flat against the kitchen wall. Shelves on three sides (the shelves by the door start past the door leaf). Outlets inside.
 - **Mechanical / network closet:** behind the pantry at the south end of the strip, opening into the laundry through a **louvered** bifold (the heat pump water heater needs the laundry's air volume). Holds the heat pump water heater, softener and brine tank, sediment pre-filter, water distribution manifold, and the network rack (kept clear of water lines). Floor drain or drain pan. No conditioned supply into the closet.
 - **Laundry:** own door off the lobby, plus an alcove behind the powder room. Dryer, washer (side by side, not stacked) and laundry sink in the alcove, facing into the room; folding counter on the pantry-side wall; leak pan under the washer. Solid-core door and insulated walls to keep machine noise out of the bedroom hall.
-- **Laundry window** in the laundry's south (rear) wall, centred on the open wall between the mech/pantry partition and the dryer, for daylight. (A rear door with a pet door and steps down to the yard was considered and dropped.)
+- **Laundry window** in the laundry's south (rear) wall, centred on the open wall between the mech/pantry partition and the dryer, for daylight.
 - **Indoor electrical subpanel** flush in the laundry's pantry-side wall just past the door swing, with its code working space kept clear (the folding counter starts beyond it).
 - **Powder room:** own door off the lobby. Toilet on the south wall (shared with the laundry alcove) facing the door; small wall-hung sink by the door. Solid-core door.
 - **Robot vacuum dock** niche in the laundry (toe-kick of the folding counter), near the washer drain, open to the floor.
-
-**Alternatives explored** (separate DXFs, branched from step 18):
-
-| Experiment | Idea | Render |
-| --- | --- | --- |
-| Powder at lobby | Powder room off the main lobby; pantry, laundry, and mech merged into one utility room | [powder-at-lobby](../renders/experiments/powder-at-lobby-zoom.png) |
-| Three strips | No side hall: pantry, laundry, and powder each off the lobby; mech behind the powder room | [three-strips](../renders/experiments/three-strips-zoom.png) |
-| Three strips v2 (**adopted as step 19**) | Shorter pantry, mech at the pantry strip's south end, W/D alcove behind the powder room | [three-strips-v2](../renders/experiments/three-strips-v2-zoom.png) |
 
 ## Bedroom wing
 
 - **Bedroom 2: gym.** North window added (it had none); matches bedroom 4's. LVP with loose-laid rubber mats. Mineral wool in the walls shared with the lounge end. ERV boost control. Outlet for a stationary bike.
 - **Gym ring mounts:** two ceiling points near the room's centre, swinging along the room's long direction. The truss designer must carry a concentrated load of about 500 lb at each point (blocking across several trusses with framing connectors; through-bolted forged eye bolts with plate washers). Keep lights, fans, HVAC/ERV registers, and the smoke alarm out of the swing zone. Photograph the blocking before drywall.
-- **Bedroom 3: guest room.** Queen bed, blackout shades. The designer drew two closets flanking a centred door; see [open questions](09-open-questions.md).
+- **Bedroom 3: guest room.** Queen bed, blackout shades. Two closets flanking a centred door are drawn; see [open questions](09-open-questions.md).
 - **Bedroom 4: office.** Solid-core door and insulated walls for calls; wall blocking for monitor arms and shelves; dimmable ceiling light.
 - **Beds:** queens in bedrooms 2–4 and a king in the primary, drawn at true size.
-- **Common bath:** a standard alcove tub with a shower head and curtain across the window end. Pick the tub model before framing so the alcove is framed to its spec. Then the WC and vanity on the east wall, and a linen closet in the corner by the door. (A tub + shower wet room was tried here and dropped as too cramped.)
+- **Common bath:** a standard alcove tub with a shower head and curtain across the window end. Pick the tub model before framing so the alcove is framed to its spec. Then the WC and vanity on the east wall, and a linen closet in the corner by the door.
 - **Primary bath wet room:** a two-person jetted tub on the plumbing wall, fitting wall to wall with no end gap (pick the model first; rear pump access from the laundry, inside the sink base cabinet), plus a curbless shower beside it with two shower heads facing each other (closet wall and rear wall), behind one fixed glass panel with a linear drain, walk in at the closet end. Then the WC and a double vanity. Two rear windows: one centred over the tub (tempered, in the wet zone) and a small one over the WC (obscure glass). To fit it, the bath/bedroom wall moved into the primary bedroom; the walk-in closet is deep enough to hang clothes on both sides. See [plumbing](04-plumbing.md).
 - **Primary suite:** optional reading nook with a built-in bench (window seat) in the primary bedroom.
 
