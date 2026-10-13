@@ -231,6 +231,13 @@ def drain(sh, a, b):
     sh.circle(((a[0] + b[0]) / 2, (a[1] + b[1]) / 2), 1.0, "A-EQPM")
 
 
+def shower_head(sh, x, y, d):
+    """Wall-mounted shower head at (x, y) on a wall face, spraying in y-direction d (+1/-1)."""
+    sh.circle((x, y + d * 2.5), 2.5, "A-EQPM")
+    for dx in (-5.0, 0.0, 5.0):
+        sh.line((x + dx * 0.4, y + d * 5.5), (x + dx, y + d * 11.0), "A-EQPM")
+
+
 def wc(sh, x0, y0, x1, y1):
     sh.rect(x0, y0, x1, y1, "A-EQPM"); sh.text("WC", (x0 + x1) / 2, (y0 + y1) / 2, 3.0)
 
@@ -260,6 +267,9 @@ def primary_bath(sh):
     wet_zone(sh, m0, top, gx, S_IN)
     tub(sh, m0, S_IN - TUB_L, m0 + TUB_W, S_IN)
     sh.text("CURBLESS", m0 + TUB_W + 21, 575.0, 3.5, rot=90)
+    sx = m0 + TUB_W + 21                                               # two heads, facing each other
+    shower_head(sh, sx, top, +1)
+    shower_head(sh, sx, S_IN, -1)
     glass(sh, (gx, top + 30), (gx, S_IN))                              # walk in at the north end
     drain(sh, (gx - 3, top + 3), (gx - 3, S_IN - 3))
     wc(sh, gx + 2.25, S_IN - 28, gx + 32.25, S_IN)                     # 17.25" to glass, 15.25" to vanity
