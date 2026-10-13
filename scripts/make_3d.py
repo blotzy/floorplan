@@ -173,6 +173,8 @@ def build(doc) -> Scene:
                     sc.polys["planter"].append([pts, 0.0, 24.0])
                 else:
                     sc.polys["lawn"].append([pts, 0.0, 1.0])
+            elif layer == "Table":                       # coffee table (owner step 33)
+                sc.boxes["furniture"].append([bx0, by0, bx1, by1, 0, 18.0])
             elif layer == "Bed":                         # owner step 25 beds
                 if min(w, h) >= 50:
                     sc.boxes["bed"].append([bx0, by0, bx1, by1, 0, 24.0])
