@@ -282,6 +282,11 @@ def primary_bath(sh):
     room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2, cy=577.0, h=4.0)
 
 
+def wic(sh):
+    room_label(sh, "WIC", face("utility|bath", +1), face("south hall wall", +1), face("suite|primary", -1),
+               face("bath|wic", -1), h=6.0)
+
+
 def build() -> Sheet:
     sh = Sheet()
 
@@ -368,7 +373,7 @@ def build() -> Sheet:
     room("LAUNDRY", face("pantry|laundry", +1), srow, face("laundry|powder", -1), S_IN, cy=505.0, h=5.5)
     room("PWD", face("laundry|powder", +1), srow, face("utility|bath", -1), face("powder|alcove", -1),
          cx=842.0, cy=496.0, h=4.0)
-    room("WIC", face("utility|bath", +1), srow, face("suite|primary", -1), face("bath|wic", -1), h=6.0)
+    wic(sh)
     room("PRIMARY", face("suite|primary", +1), srow, W_IN, S_IN, cx=(face("suite|primary", +1) + W_IN - 80) / 2)
     sh.text("LOBBY", 960.0, (face("bedroom hall wall", +1) + hall_s) / 2, 7.0, "A-AREA-IDEN")
     sh.text("PORCH", (E + PORCH_X) / 2, (N + PORCH_Y) / 2, 7.0, "A-AREA-IDEN")
