@@ -314,6 +314,15 @@ HTML = r"""<!doctype html>
   #ui label{display:block;margin:2px 0}
   #ui button{margin-top:6px}
   #help{position:absolute;bottom:10px;left:10px;background:#fffd;padding:6px 10px;border-radius:8px}
+  /* touch walk mode */
+  #stick{position:absolute;left:24px;bottom:24px;width:120px;height:120px;border-radius:50%;
+         background:#fff6;border:2px solid #fffc;box-shadow:0 1px 6px #0004;display:none;touch-action:none}
+  #knob{position:absolute;left:35px;top:35px;width:50px;height:50px;border-radius:50%;background:#fffe;
+        box-shadow:0 1px 4px #0005;pointer-events:none}
+  #exitwalk{position:absolute;top:12px;left:12px;display:none;padding:10px 14px;font:inherit;font-size:15px;
+            border:0;border-radius:8px;background:#fffe;box-shadow:0 1px 4px #0003}
+  canvas{touch-action:none}
+  @media (max-width:600px){ #ui{font-size:13px;padding:6px 8px} #help{font-size:12px;right:10px} }
 </style>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js",
 "three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
@@ -331,6 +340,8 @@ HTML = r"""<!doctype html>
   <button id="walk">Walk (eye level)</button>
 </div>
 <div id="help">Orbit: drag · zoom: scroll · pan: right-drag. Walk: click the button, WASD/arrows to move, mouse to look, Esc to exit.</div>
+<div id="stick"><div id="knob"></div></div>
+<button id="exitwalk">Exit walk</button>
 <script type="module">
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
@@ -477,12 +488,61 @@ const orbit = new OrbitControls(camera, renderer.domElement); orbit.target.copy(
 const walk = new PointerLockControls(camera, document.body);
 const keys = {};
 addEventListener('keydown', e=>keys[e.code]=true); addEventListener('keyup', e=>keys[e.code]=false);
-document.getElementById('walk').onclick = () => {
+const isTouch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+if (isTouch) document.getElementById('help').textContent =
+  'Orbit: drag · pinch to zoom · two fingers to pan. Walk: tap the button, move with the stick, drag to look.';
+function toEntry() {
   camera.position.set(D.entry[0]*IN, 64*IN, -D.entry[1]*IN);  // inside the foyer, 5'-4" eye height
   camera.lookAt(D.entry[0]*IN, 64*IN, -D.entry[1]*IN - 10);    // facing south, into the house
-  orbit.enabled = false; walk.lock();
+}
+function toOrbit() { orbit.enabled = true; camera.position.set(ctr.x-30,70,ctr.z+75); orbit.target.copy(ctr); orbit.update(); }
+walk.addEventListener('unlock', toOrbit);
+
+// ---- touch walk: left stick moves, dragging anywhere else turns the view ------
+const stick = document.getElementById('stick'), knob = document.getElementById('knob');
+const exitBtn = document.getElementById('exitwalk');
+const tw = {on:false, jx:0, jy:0, stickId:null, lookId:null, lx:0, ly:0, yaw:0, pitch:0};
+function startTouchWalk() {
+  toEntry(); orbit.enabled = false;
+  const e = new THREE.Euler().setFromQuaternion(camera.quaternion, 'YXZ');
+  tw.yaw = e.y; tw.pitch = e.x; tw.on = true;
+  stick.style.display = exitBtn.style.display = 'block';
+  document.getElementById('ui').style.display = document.getElementById('help').style.display = 'none';
+}
+function stopTouchWalk() {
+  tw.on = false; tw.jx = tw.jy = 0; tw.stickId = tw.lookId = null; knob.style.transform = '';
+  stick.style.display = exitBtn.style.display = 'none';
+  document.getElementById('ui').style.display = document.getElementById('help').style.display = '';
+  toOrbit();
+}
+exitBtn.onclick = stopTouchWalk;
+function setStick(ev) {
+  const r = stick.getBoundingClientRect(), R = r.width / 2;
+  let dx = ev.clientX - (r.left + R), dy = ev.clientY - (r.top + R);
+  const m = Math.hypot(dx, dy), lim = R - 10;
+  if (m > lim) { dx *= lim / m; dy *= lim / m; }
+  tw.jx = dx / lim; tw.jy = dy / lim;
+  knob.style.transform = `translate(${dx}px,${dy}px)`;
+}
+stick.addEventListener('pointerdown', ev => { tw.stickId = ev.pointerId; stick.setPointerCapture(ev.pointerId); setStick(ev); });
+stick.addEventListener('pointermove', ev => { if (ev.pointerId === tw.stickId) setStick(ev); });
+const releaseStick = ev => { if (ev.pointerId === tw.stickId) { tw.stickId = null; tw.jx = tw.jy = 0; knob.style.transform = ''; } };
+stick.addEventListener('pointerup', releaseStick); stick.addEventListener('pointercancel', releaseStick);
+const cv = renderer.domElement;
+cv.addEventListener('pointerdown', ev => { if (tw.on && tw.lookId === null) { tw.lookId = ev.pointerId; tw.lx = ev.clientX; tw.ly = ev.clientY; } });
+cv.addEventListener('pointermove', ev => {
+  if (!tw.on || ev.pointerId !== tw.lookId) return;
+  tw.yaw -= (ev.clientX - tw.lx) * 0.005; tw.pitch -= (ev.clientY - tw.ly) * 0.005;
+  tw.pitch = Math.max(-1.4, Math.min(1.4, tw.pitch)); tw.lx = ev.clientX; tw.ly = ev.clientY;
+});
+const releaseLook = ev => { if (ev.pointerId === tw.lookId) tw.lookId = null; };
+cv.addEventListener('pointerup', releaseLook); cv.addEventListener('pointercancel', releaseLook);
+
+document.getElementById('walk').onclick = () => {
+  if (isTouch) { startTouchWalk(); return; }
+  toEntry(); orbit.enabled = false; walk.lock();
 };
-walk.addEventListener('unlock', ()=>{ orbit.enabled = true; camera.position.set(ctr.x-30,70,ctr.z+75); orbit.target.copy(ctr); orbit.update(); });
+if (location.hash === '#touchwalk') startTouchWalk();         // test hook
 const bind = (id, g) => document.getElementById(id).onchange = e => g.visible = e.target.checked;
 bind('ceil', groups.ceil); bind('furn', groups.furn); bind('labels', groups.labels); bind('roofsh', roofCaster);
 const clock = new THREE.Clock();
@@ -494,6 +554,11 @@ renderer.setAnimationLoop(()=>{
     if (keys.KeyS||keys.ArrowDown) walk.moveForward(-v);
     if (keys.KeyA||keys.ArrowLeft) walk.moveRight(-v);
     if (keys.KeyD||keys.ArrowRight) walk.moveRight(v);
+  }
+  if (tw.on) {
+    camera.rotation.set(tw.pitch, tw.yaw, 0, 'YXZ');
+    const v = 6*dt;   // ft/s at full stick
+    walk.moveForward(-tw.jy * v); walk.moveRight(tw.jx * v);
   }
   renderer.render(scene, camera);
 });

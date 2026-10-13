@@ -16,7 +16,7 @@
 
 ## 3D massing model
 
-**[Open the 3D model](https://blotzy.github.io/floorplan/renders/3d/house.html)** (GitHub Pages; GitHub's file view only shows the source). From a local clone, open `renders/3d/house.html` in a browser instead. It has orbit, zoom, toggle ceiling/furniture, and a **Walk** button for eye-level WASD navigation; walls are outlined so corners and wall ends read clearly. The same geometry is in `renders/3d/house.obj` for Windows 3D Viewer or Blender. Regenerate with `uv run scripts/make_3d.py` after the plan changes.
+**[Open the 3D model](https://blotzy.github.io/floorplan/renders/3d/house.html)** (GitHub Pages; GitHub's file view only shows the source). From a local clone, open `renders/3d/house.html` in a browser instead. It has orbit, zoom, toggle ceiling/furniture, and a **Walk** button for eye-level navigation (WASD + mouse on a computer; on a phone or tablet, a joystick to move and drag to look); walls are outlined so corners and wall ends read clearly. The same geometry is in `renders/3d/house.obj` for Windows 3D Viewer or Blender. Regenerate with `uv run scripts/make_3d.py` after the plan changes.
 
 ![3D massing preview](renders/3d/preview.png)
 
