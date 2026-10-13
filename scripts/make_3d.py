@@ -45,6 +45,7 @@ class Scene:
         self.cyls = defaultdict(list)      # material -> [[cx,cy,r,z0,z1], ...]
         self.polys = defaultdict(list)     # material -> [[[x,y],...], z0, z1]
         self.labels = []                   # [text, x, y]
+        self.bed_sizes = []
 
     def quad(self, mat, a, b, z0, z1):
         self.quads[mat].append([a[0], a[1], b[0], b[1], z0, z1])
@@ -64,6 +65,36 @@ def in_exterior_wall(a, c, notch_x, notch_y):
              lambda x, y: notch_y - 1 <= y <= notch_y + 10 and x <= notch_x + 10,
              lambda x, y: notch_x - 1 <= x <= notch_x + 10 and y <= notch_y + 10)
     return any(f(*a) and f(*c) for f in bands)
+
+
+def add_bed(sc: Scene, ins):
+    """Bed symbol -> mattress box + nightstand boxes (the symbol's outline also
+    takes in the nightstands and a rug at the foot, which isn't furniture)."""
+    lines = []
+    def walk(ent):
+        for v in ent.virtual_entities():
+            if v.dxftype() == "INSERT":
+                walk(v)
+            elif v.dxftype() == "LINE":
+                a, c = lot(v.dxf.start), lot(v.dxf.end)
+                lines.append((min(a[0], c[0]), min(a[1], c[1]), max(a[0], c[0]), max(a[1], c[1])))
+    walk(ins)
+    long_ = [l for l in lines if max(l[2] - l[0], l[3] - l[1]) > 40]       # mattress edges
+    mx0, my0 = min(l[0] for l in long_), min(l[1] for l in long_)
+    mx1, my1 = max(l[2] for l in long_), max(l[3] for l in long_)
+    sc.boxes["bed"].append([mx0, my0, mx1, my1, 0, 24.0])
+    sides = {}                                                             # nightstands beside it
+    for l in lines:
+        outside_y = l[3] <= my0 + 0.5 or l[1] >= my1 - 0.5
+        outside_x = l[2] <= mx0 + 0.5 or l[0] >= mx1 - 0.5
+        if outside_y or outside_x:
+            key = ("y0" if l[3] <= my0 + 0.5 else "y1") if outside_y else ("x0" if l[2] <= mx0 + 0.5 else "x1")
+            b = sides.setdefault(key, [l[0], l[1], l[2], l[3]])
+            b[:] = [min(b[0], l[0]), min(b[1], l[1]), max(b[2], l[2]), max(b[3], l[3])]
+    for x0, y0, x1, y1 in sides.values():
+        if 8 < x1 - x0 < 30 and 8 < y1 - y0 < 30:
+            sc.boxes["furniture"].append([x0, y0, x1, y1, 0, 24.0])
+    sc.bed_sizes.append((round(mx1 - mx0, 1), round(my1 - my0, 1)))
 
 
 def build(doc) -> Scene:
@@ -118,6 +149,13 @@ def build(doc) -> Scene:
                     wall_lines.append((*a, *c))           # interior wall the designer put on Window
             elif layer == "Low - High Wall":
                 sc.quad("fence", a, c, 0, FENCE)
+            elif layer == "H" and HOUSE_E < bx0 and bx1 < HOUSE_W and N < by0 and by1 < S:
+                # Closets: the designer marks each with a corner-to-corner diagonal.
+                # Reach-in closets (doors) go to door height; walk-in hanging and
+                # the linen cabinet are open shelving to 7'.
+                walk_in = by0 > 459.0
+                linen = (bx1 - bx0) < 36 and (by1 - by0) < 36
+                sc.boxes["closet"].append([bx0, by0, bx1, by1, 0, 84.0 if walk_in or linen else HEAD])
         elif t == "LWPOLYLINE":
             pts = [lot(p) for p in e.get_points("xy")]
             if layer == "Window" and len(pts) == 2:
@@ -145,6 +183,9 @@ def build(doc) -> Scene:
             if bx1 - bx0 > 150 or by1 - by0 > 150:
                 continue
             name = e.dxf.name.upper()
+            if "BED" in name:
+                add_bed(sc, e)
+                continue
             h = 30.0
             if "BED" in name:
                 h = 24.0
@@ -297,6 +338,7 @@ const M = {
   pavers:{color:0xa89f94}, lawn:{color:0x6fa04a}, planter:{color:0x7d6a55},
   ceiling:{color:0xffffff, side:THREE.DoubleSide, transparent:true, opacity:0.92},
   fixture:{color:0xd9d4cc}, furniture:{color:0x8fa3b8}, counter:{color:0x9a8f84},
+  closet:{color:0xb59a7a}, bed:{color:0xe8e1d4},
   post:{color:0x5a5f66}, roof:{color:0x4a4f55, transparent:true, opacity:0.85},
 };
 const mat = k => new THREE.MeshStandardMaterial(Object.assign(
@@ -334,7 +376,7 @@ for (const [k, items] of Object.entries(D.boxes)) for (const [x0,y0,x1,y1,z0,z1]
   const m = new THREE.Mesh(new THREE.BoxGeometry((x1-x0)*IN,(z1-z0)*IN,(y1-y0)*IN), mat(k));
   m.position.set((x0+x1)/2*IN, (z0+z1)/2*IN, -(y0+y1)/2*IN); m.castShadow = m.receiveShadow = true;
   m.add(new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry), EDGE));
-  (k==='fixture'||k==='furniture'||k==='counter' ? groups.furn : scene).add(m);
+  (k==='fixture'||k==='furniture'||k==='counter'||k==='bed' ? groups.furn : scene).add(m);
 }
 for (const [k, items] of Object.entries(D.cyls)) for (const [cx,cy,r,z0,z1] of items) {
   const m = new THREE.Mesh(new THREE.CylinderGeometry(r*IN, r*IN, (z1-z0)*IN, 24), mat(k));
@@ -446,6 +488,7 @@ def main():
             "roof_z": CEIL + 14.0}
     (OUT_DIR / "house.html").write_text(HTML.replace("__DATA__", json.dumps(data)))
     write_obj(sc, OUT_DIR / "house.obj")
+    print("beds (L x W in plan axes)", sc.bed_sizes, "closets", len(sc.boxes["closet"]))
     print("walls", len(sc.quads["wall"]), "windows", len(sc.quads["glass"]),
           "boxes", sum(len(v) for v in sc.boxes.values()), "labels", len(sc.labels))
     print("wrote", OUT_DIR / "house.html")
