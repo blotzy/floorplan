@@ -242,6 +242,10 @@ HTML = r"""<!doctype html>
   <label><input type="checkbox" id="ceil"> Ceiling</label>
   <label><input type="checkbox" id="furn" checked> Furniture / fixtures</label>
   <label><input type="checkbox" id="labels" checked> Room labels</label>
+  <label>Sun: <select id="day">
+    <option value="172">Jun 21</option><option value="80">Mar 20 / Sep 22</option>
+    <option value="355">Dec 21</option></select></label>
+  <label><input type="range" id="hour" min="6" max="19" step="0.25" value="10" style="width:150px"> <span id="hourTxt"></span></label>
   <button id="walk">Walk (eye level)</button>
 </div>
 <div id="help">Orbit: drag · zoom: scroll · pan: right-drag. Walk: click the button, WASD/arrows to move, mouse to look, Esc to exit.</div>
@@ -257,11 +261,13 @@ const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 2000
 const renderer = new THREE.WebGLRenderer({antialias:true});
 renderer.setSize(innerWidth, innerHeight); renderer.shadowMap.enabled = true;
 document.body.appendChild(renderer.domElement);
-scene.add(new THREE.HemisphereLight(0xffffff, 0x8a7f70, 0.9));
-const sun = new THREE.DirectionalLight(0xffffff, 1.2);
-sun.position.set(-30, 80, -60);   // southeast sky (z = north) sun.castShadow = true;
-Object.assign(sun.shadow.camera, {left:-80,right:80,top:80,bottom:-80,far:300});
-sun.shadow.mapSize.set(2048,2048); sun.shadow.bias = -0.0008; sun.shadow.normalBias = 0.05; scene.add(sun);
+const hemi = new THREE.HemisphereLight(0xffffff, 0x8a7f70, 0.7);
+scene.add(hemi);
+const sun = new THREE.DirectionalLight(0xfff4e0, 2.2);
+sun.castShadow = true;
+Object.assign(sun.shadow.camera, {left:-75,right:75,top:75,bottom:-75,near:1,far:400});
+sun.shadow.mapSize.set(4096,4096); sun.shadow.bias = -0.0005; sun.shadow.normalBias = 0.04;
+scene.add(sun); scene.add(sun.target);
 
 const M = {
   wall:{color:0xf4f1ea, side:THREE.DoubleSide},
@@ -315,6 +321,26 @@ for (const [text,x,y] of D.labels) {
 }
 groups.ceil.visible = false;
 const ctr = new THREE.Vector3(D.center[0]*IN, 0, -D.center[1]*IN);
+// Sun position for Altadena (34.19 N), solar time; plan north taken as true north.
+// World axes: x = west, y = up, z = north.
+const LAT = 34.19 * Math.PI/180;
+function placeSun() {
+  const day = +document.getElementById('day').value, hr = +document.getElementById('hour').value;
+  const dec = 23.44*Math.PI/180 * Math.sin(2*Math.PI*(284+day)/365);
+  const H = (hr-12)*15*Math.PI/180;
+  const alt = Math.asin(Math.sin(LAT)*Math.sin(dec) + Math.cos(LAT)*Math.cos(dec)*Math.cos(H));
+  const azS = Math.atan2(Math.sin(H), Math.cos(H)*Math.sin(LAT) - Math.tan(dec)*Math.cos(LAT)); // from south, + west
+  const east = -Math.cos(alt)*Math.sin(azS), north = -Math.cos(alt)*Math.cos(azS), up = Math.sin(alt);
+  sun.target.position.copy(ctr);
+  sun.position.set(ctr.x - east*150, up*150, ctr.z + north*150);
+  sun.intensity = alt > 0 ? 2.2 : 0;
+  const h = Math.floor(hr), m = Math.round((hr-h)*60);
+  document.getElementById('hourTxt').textContent =
+    `${((h+11)%12)+1}:${String(m).padStart(2,'0')} ${h<12?'am':'pm'} · sun ${Math.max(0,alt*180/Math.PI).toFixed(0)}° up`;
+}
+document.getElementById('day').onchange = placeSun;
+document.getElementById('hour').oninput = placeSun;
+placeSun();
 camera.position.set(ctr.x - 30, 70, ctr.z + 75);
 const orbit = new OrbitControls(camera, renderer.domElement); orbit.target.copy(ctr); orbit.update();
 const walk = new PointerLockControls(camera, document.body);
