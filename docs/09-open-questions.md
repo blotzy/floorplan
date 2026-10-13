@@ -11,7 +11,7 @@
 
 **Design decisions (owner)**
 
-- [ ] Adopt the "three strips v2" layout (no side hall) or keep the current pantry/laundry/powder block? If v2: new subpanel location, and move the network rack to a laundry wall cabinet.
+- [ ] Adopt the "three strips v2" layout (no side hall) or keep the current pantry/laundry/powder block? If v2: new subpanel location (the wider mech closet now fits the rack with the water equipment).
 - [ ] Bedroom 3: keep the designer's two 4' closets flanking a centred door, or one ~9' closet with the door in the corner by bedroom 4?
 - [ ] Common bath: add the 72" two-person tub? If yes, pick the model before framing and size the water heater to 80 gal.
 - [ ] Kitchen tall storage: hutch between range and fridge, tall pantry column, and/or a dining-wall built-in.

@@ -14,20 +14,20 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 
 ## Dining
 
-- **Dining** 14'-6" x 13'-2"; table and the south window centred on the dining room's south wall.
+- **Dining** 14'-3" x 13'-2"; table and the south window centred on the dining room's south wall.
 - **7' sliding door** on the east wall, centred between the carport fence and the house's southeast corner, opening onto the dining patio. (The designer's console in front of the old east window is gone.)
 - **South window:** large (drawn 10'). Final size is the architect's call; it faces south, so plan an overhang or exterior shade and check it against the Title 24 glazing budget.
 
 ## Kitchen
 
-See [kitchen](08-kitchen.md). The plan reserves a 5'-0" work aisle and a peninsula with three stools facing the dining area.
+See [kitchen](08-kitchen.md). The plan reserves a 4'-0" work aisle and a peninsula with three stools (15" overhang) facing the dining area.
 
 ## Pantry, laundry, mechanical, powder (the block behind the kitchen)
 
 Current main plan (the side hall is kept; see the experiments below for alternatives):
 
-- **Pantry** 7'-9" x 5' (2' wider than the designer's). Door off the main lobby at the corner by the fridge, hinged so it opens flat against the kitchen wall. Outlets inside.
-- **Laundry** 7'-9" x 7'-2" (2' wider), door off the side hall. Dryer, washer (side by side, not stacked) and laundry sink on the south wall; 20"-deep folding counter on the pantry wall with 36" clear in front of the appliances. Leak pan under the washer.
+- **Pantry** 8'-9" x 5' (3' wider than the designer's). Door off the main lobby at the corner by the fridge, hinged so it opens flat against the kitchen wall. Outlets inside.
+- **Laundry** 8'-9" x 7'-2" (3' wider), door off the side hall. Dryer, washer (side by side, not stacked) and laundry sink on the south wall; 20"-deep folding counter on the pantry wall with 36" clear in front of the appliances. Leak pan under the washer.
 - **Mechanical / network closet** (the designer's hallway closet), about 3'-6" x 8'-6", off the side hall, behind louvered bifolds. Holds the heat pump water heater, softener and brine tank, sediment pre-filter, water distribution manifold, and the network rack. Keep the rack at the lobby end, partitioned from the water equipment, with no water lines in its walls or ceiling. Floor drain or drain pan.
 - **Powder room** 6'-11" x 3'-8" at the end of the side hall. Toilet turned to sit on the primary-bath wet wall, facing down the room's length (24"+ clear in front per CPC 402.5).
 - **Side hall** (3'-5") stays a clear 36" walkway.
@@ -40,9 +40,9 @@ Current main plan (the side hall is kept; see the experiments below for alternat
 | --- | --- | --- |
 | Powder at lobby | Powder room off the main lobby; pantry, laundry, and mech merged into one utility room | [powder-at-lobby](../renders/experiments/powder-at-lobby-zoom.png) |
 | Three strips | No side hall: pantry, laundry, and powder each open off the lobby; mech behind the powder room | [three-strips](../renders/experiments/three-strips-zoom.png) |
-| **Three strips v2** (preferred so far) | As above, but a 7'-6" pantry, mech closet at the pantry strip's south end (off the laundry), and a washer/dryer/sink alcove behind the powder room | [three-strips-v2](../renders/experiments/three-strips-v2-zoom.png) |
+| **Three strips v2** (preferred so far) | As above, but a 5'-10" x 7'-6" pantry, a 5'-10" x 4'-8" mech closet at the pantry strip's south end (off the laundry), and a washer/dryer/sink alcove behind the powder room | [three-strips-v2](../renders/experiments/three-strips-v2-zoom.png) |
 
-If v2 is adopted, the subpanel needs a new home (laundry wall or mech closet), and the network rack is better in a laundry wall cabinet than in v2's small mech closet.
+All three experiments are rebuilt on top of step 18, so the block is 12" wider than before (the pantry strip in the strip layouts is 5'-10"). If v2 is adopted, the subpanel needs a new home (laundry wall or mech closet).
 
 ## Bedroom wing
 
