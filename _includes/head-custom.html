@@ -14,7 +14,22 @@
                    white-space: nowrap; pointer-events: none; }
 </style>
 <script>
+// Cache-busting: GitHub Pages caches files for 10 minutes. Stamp this build's time onto every
+// image and onto links into renders/ (the 3D model), so a new build always loads new files.
+const BUILD = '{{ site.time | date: "%s" }}';
+const bust = url => {
+  try {
+    const u = new URL(url, location.href);
+    if (u.origin !== location.origin || u.searchParams.has('v')) return url;
+    u.searchParams.set('v', BUILD);
+    return u.href;
+  } catch (e) { return url; }
+};
 document.addEventListener('DOMContentLoaded', () => {
+  if (/^\d+$/.test(BUILD)) {                                // only on the built site
+    document.querySelectorAll('.markdown-body img').forEach(el => { el.src = bust(el.getAttribute('src')); });
+    document.querySelectorAll('.markdown-body a[href*="renders/"]').forEach(el => { el.href = bust(el.getAttribute('href')); });
+  }
   const box = document.createElement('div');
   box.id = 'zoombox';
   box.innerHTML = '<button aria-label="Close">✕</button><img alt=""><div class="hint"></div>';
