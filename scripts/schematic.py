@@ -86,7 +86,8 @@ OPENINGS = [
     ("south",       397.0, 517.0, "window"),             # dining 10'
     ("south",       592.0, 652.0, "window"),             # kitchen sink
     ("south",       778.0, 814.0, "window"),             # laundry
-    ("south",       923.0, 953.0, "window"),             # primary bath
+    ("south",       886.25, 916.25, "window"),           # primary bath, centred over the jetted tub
+    ("south",       972.5, 996.5, "window"),             # primary bath, small, over the WC (obscure glass)
     ("south",       1083.6, 1191.6, "window"),           # primary bedroom (centred)
     ("east",        510.8, 594.8, "slider"),             # dining 7' slider
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
