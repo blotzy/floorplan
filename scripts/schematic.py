@@ -283,11 +283,6 @@ def primary_bath(sh):
     gx = m0 + TUB_W + 42.0                                             # tub + 42" shower zone
     wet_zone(sh, m0, top, gx, S_IN)
     tub(sh, m0, S_IN - TUB_L, m0 + TUB_W, S_IN)                       # wall to wall, no end gap
-    # Rear (wall-side) pump access from the laundry, inside the sink base cabinet
-    # (order the tub with its pump at the north end).
-    ax = face("utility|bath", -1)
-    sh.rect(ax - 2, S_IN - TUB_L + 2, ax, S_IN - TUB_L + 18, "A-EQPM")
-    sh.text("TUB ACCESS", ax - 34, S_IN - TUB_L + 10, 2.5, rot=90)
     sh.text("CURBLESS", m0 + TUB_W + 21, 575.0, 3.5, rot=90)
     sx = m0 + TUB_W + 21                                               # two heads, facing each other
     shower_head(sh, sx, top, +1)
@@ -297,6 +292,26 @@ def primary_bath(sh):
     wc(sh, gx + 2.25, S_IN - 28, gx + 32.25, S_IN)                     # 17.25" to glass, 15.25" to vanity
     vanity(sh, m1 - 60, S_IN - 22, m1, S_IN, "DOUBLE VANITY 60")
     room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2, cy=577.0, h=4.0)
+
+
+def utility_block(sh):
+    """Powder room and laundry (labels + fixtures); experiments can swap this."""
+    eq, srow = "A-EQPM", face("south hall wall", +1)
+    room_label(sh, "LAUNDRY", face("pantry|laundry", +1), srow, face("laundry|powder", -1), S_IN, cy=505.0, h=5.5)
+    room_label(sh, "PWD", face("laundry|powder", +1), srow, face("utility|bath", -1), face("powder|alcove", -1),
+               cx=842.0, cy=496.0, h=4.0)
+    pw0, pw1 = face("laundry|powder", +1), face("utility|bath", -1)          # powder
+    pws = face("powder|alcove", -1)
+    tx = (pw0 + pw1) / 2 + 2
+    sh.rect(tx - 9, pws - 28, tx + 9, pws, eq); sh.text("WC", tx, pws - 14, 3.0)
+    sh.rect(pw0, 468.0, pw0 + 12, 486.0, eq)
+    lw0, lw1 = face("pantry|laundry", +1), face("utility|bath", -1)          # laundry
+    y = S_IN
+    for d, lbl in ((27, "DRYER"), (27, "WASHER"), (25, "SINK")):
+        sh.rect(lw1 - 30, y - d, lw1, y, eq); sh.text(lbl, lw1 - 15, y - d / 2, 3.0, rot=90)
+        y -= d
+    sh.rect(lw0, 522.0, lw0 + 24, 575.0, eq); sh.text("FOLDING", lw0 + 12, 548.5, 3.0, rot=90)
+    sh.rect(lw0, 495.0, lw0 + 4, 515.0, eq); sh.text("PANEL", lw0 + 12, 505.0, 2.5, rot=90)
 
 
 def wic(sh):
@@ -414,9 +429,7 @@ def build() -> Sheet:
     room("PANTRY", face("kitchen|pantry", +1), srow, face("pantry|laundry", -1), face("pantry|mech", -1), h=5.5)
     room("MECH", face("kitchen|pantry", +1), face("pantry|mech", +1), face("pantry|laundry", -1), S_IN,
          cy=575.0, h=5.0)
-    room("LAUNDRY", face("pantry|laundry", +1), srow, face("laundry|powder", -1), S_IN, cy=505.0, h=5.5)
-    room("PWD", face("laundry|powder", +1), srow, face("utility|bath", -1), face("powder|alcove", -1),
-         cx=842.0, cy=496.0, h=4.0)
+    utility_block(sh)
     wic(sh)
     room("PRIMARY", face("suite|primary", +1), srow, W_IN, S_IN, cx=(face("suite|primary", +1) + W_IN - 80) / 2)
     sh.text("LOBBY", 960.0, (face("bedroom hall wall", +1) + hall_s) / 2, 7.0, "A-AREA-IDEN")
@@ -487,19 +500,6 @@ def build() -> Sheet:
 
     common_bath(sh)
 
-    pw0, pw1 = face("laundry|powder", +1), face("utility|bath", -1)          # powder
-    pws = face("powder|alcove", -1)
-    tx = (pw0 + pw1) / 2 + 2
-    sh.rect(tx - 9, pws - 28, tx + 9, pws, eq); sh.text("WC", tx, pws - 14, 3.0)
-    sh.rect(pw0, 468.0, pw0 + 12, 486.0, eq)
-
-    lw0, lw1 = face("pantry|laundry", +1), face("utility|bath", -1)          # laundry
-    y = S_IN
-    for d, lbl in ((27, "DRYER"), (27, "WASHER"), (25, "SINK")):
-        sh.rect(lw1 - 30, y - d, lw1, y, eq); sh.text(lbl, lw1 - 15, y - d / 2, 3.0, rot=90)
-        y -= d
-    sh.rect(lw0, 522.0, lw0 + 24, 575.0, eq); sh.text("FOLDING", lw0 + 12, 548.5, 3.0, rot=90)
-    sh.rect(lw0, 495.0, lw0 + 4, 515.0, eq); sh.text("PANEL", lw0 + 12, 505.0, 2.5, rot=90)
 
     p0, p1 = face("kitchen|pantry", +1), face("pantry|laundry", -1)          # pantry shelves
     pm = face("pantry|mech", -1)
