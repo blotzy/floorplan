@@ -6,10 +6,11 @@
 front of the laundry. The walk-in closet and the primary bath are untouched.
 
   bath     the powder room widens east into the front of the laundry: about 5'-10" x 5'-6".
-           36" x 36" shower in the back corner on the primary-bath side (head on the back
-           wall), toilet in the other back corner, a small wall-hung sink on the hall wall
-           opposite it. The door stays where the powder-room door is and swings clear of all
-           three.
+           Door at the east end, swinging against the east wall. 36" x 36" shower in the back
+           corner by the door (head on the back wall), toilet in the far back corner, reached
+           straight across a 30" strip along the hall wall, and a small corner sink in the far
+           front corner, beyond the toilet's clear floor (its supply and drain in the wet wall
+           shared with the primary bath).
   laundry  keeps its own door off the hall: a 3'-6" passage (electrical panel on its wall)
            leads to the machine area behind the bath, laid out as in the plan (sink, washer,
            dryer, folding counter on the back wall; open shelves on the bath's back wall).
@@ -29,7 +30,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import make_3d as M  # noqa: E402
 import schematic as S  # noqa: E402
 
-BASE = (copy.deepcopy(S.WALLS), S.utility_block)
+BASE = (copy.deepcopy(S.WALLS), copy.deepcopy(S.OPENINGS), S.utility_block)
 EQ, FU = "A-EQPM", "A-FURN"
 PASSAGE = 42.0                                   # clear width of the laundry passage
 
@@ -47,23 +48,31 @@ def walls(ws):
             ws[i] = (name, axis, c, sx - S.WET / 2, b, t)
 
 
+def openings(ops):
+    for i, o in enumerate(ops):
+        if o[0] == "south hall wall" and o[1] == 838.0:                     # bath door to the east end,
+            ops[i] = ("south hall wall", 803.0, 831.0, "door", "a", +1)     # swinging against the east wall
+
+
 def utility(sh):
     srow = S.face("south hall wall", +1)
     # ---- bath
     b0, b1 = S.face("laundry|powder", +1), S.face("utility|bath", -1)
     back = S.face("powder|alcove", -1)
-    sx0, sy0 = b1 - 36, back - 36                         # shower, back corner on the primary-bath side
-    S.wet_zone(sh, sx0, sy0, b1, back)
-    sh.rect(sx0, sy0, b1, back, EQ)
-    S.glass(sh, (sx0, sy0), (sx0, back))                  # fixed glass beside the toilet
-    S.glass(sh, (sx0, sy0), (sx0 + 12, sy0))              # front: 12" fixed + 24" door
-    sh.text("SHOWER", (sx0 + b1) / 2, back - 20, 3.2)
-    S.shower_head(sh, (sx0 + b1) / 2, back, -1)
-    tx = b0 + 16                                          # toilet in the other back corner
-    S.wc(sh, tx - 15, back - 28, tx + 15, back)           # (its 24" clear floor stays open)
-    S.vanity(sh, tx - 9, srow, tx + 9, srow + 14, "SINK")  # small wall-hung sink on the hall wall,
-                                                          # facing the toilet, clear of the door swing
-    S.room_label(sh, "BATH", b0, srow, b1, back, cx=(sx0 + b1) / 2, cy=srow + 20, h=3.2)
+    sx1, sy0 = b0 + 36, back - 36                         # shower in the back corner by the door
+    S.wet_zone(sh, b0, sy0, sx1, back)
+    sh.rect(b0, sy0, sx1, back, EQ)
+    S.glass(sh, (sx1, sy0), (sx1, back))                  # fixed glass beside the toilet
+    S.glass(sh, (b0, sy0), (b0 + 12, sy0))                # front: 12" fixed + 24" opening
+    sh.text("SHOWER", (b0 + sx1) / 2, back - 20, 3.2)
+    S.shower_head(sh, (b0 + sx1) / 2, back, -1)
+    tx = b1 - 16                                          # toilet in the far back corner, reached
+    S.wc(sh, tx - 15, back - 28, tx + 15, back)           # straight across the 30" front strip
+    c = 18.0                                              # corner sink in the far front corner,
+    sh.msp.add_lwpolyline([(b1, srow), (b1 - c, srow), (b1, srow + c)], close=True,
+                          dxfattribs={"layer": EQ})       # beyond the toilet's clear floor
+    sh.text("SINK", b1 - 5, srow + 5, 2.2)
+    S.room_label(sh, "BATH", b0, srow, b1, back, cx=(b0 + b1) / 2 + 4, cy=srow + 16, h=3.2)
     # ---- laundry (as in the plan, minus the tall storage)
     l0, l1 = S.face("pantry|laundry", +1), b1
     lp, bk = S.face("laundry|powder", -1), S.S_IN
@@ -82,8 +91,9 @@ def utility(sh):
 
 def main():
     out = S.RENDERS / "experiments"
-    S.WALLS = copy.deepcopy(BASE[0])
+    S.WALLS, S.OPENINGS = copy.deepcopy(BASE[0]), copy.deepcopy(BASE[1])
     walls(S.WALLS)
+    openings(S.OPENINGS)
     S.utility_block = utility
     sh = S.build()
     sh.text("EXPERIMENT: POWDER ROOM -> 3/4 BATH (FRONT OF THE LAUNDRY)", S.LOT_W / 2, S.LOT_D + 115, 10.0)
@@ -93,7 +103,7 @@ def main():
     M.write_model(sc, out / "powder-bath", sc.meta)
     b = (S.face("laundry|powder", +1), S.face("utility|bath", -1), S.face("south hall wall", +1), S.face("powder|alcove", -1))
     print(f"bath {b[1] - b[0]:.1f} x {b[3] - b[2]:.1f} in; passage {S.face('laundry|powder', -1) - S.face('pantry|laundry', +1):.1f} in")
-    S.WALLS, S.utility_block = BASE
+    S.WALLS, S.OPENINGS, S.utility_block = BASE
 
 
 if __name__ == "__main__":
