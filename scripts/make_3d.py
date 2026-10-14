@@ -18,6 +18,7 @@ their labels.
 from __future__ import annotations
 
 import json
+import math
 from collections import defaultdict
 from pathlib import Path
 
@@ -223,9 +224,31 @@ def build_schematic() -> Scene:
 
     sc.polys["ceiling"].append([footprint, CEIL, CEIL + 1])
     sc.meta = {"center": [(E_ + W_) / 2, (N_ + S_) / 2], "entry": [E_ + 40.0, N_ + 70.0],
+               "grid": floor_grid(footprint, (S.E_IN, S.N_IN)),
                "roof": [[E_ - 24, N_ - 24], [W_ + 24, N_ - 24], [W_ + 24, S_ + 24], [E_ - 24, S_ + 24]]}
     return sc
 
+
+
+def floor_grid(footprint, origin, step=12.0, major=5):
+    """1' grid on the floor inside the footprint, lined up with origin (x, y): the inside
+    faces of the street-side east corner. Returns {"minor": [...], "major": [...]} of [x0, y0, x1, y1]."""
+    from shapely.geometry import LineString, Polygon
+    poly = Polygon(footprint)
+    x0, y0, x1, y1 = poly.bounds
+    out = {"minor": [], "major": []}
+    for axis, o, lo, hi, a, b in (("x", origin[0], x0, x1, y0, y1), ("y", origin[1], y0, y1, x0, x1)):
+        k = math.ceil((lo - o) / step)
+        while o + k * step < hi:
+            c = o + k * step
+            line = LineString([(c, a), (c, b)] if axis == "x" else [(a, c), (b, c)])
+            seg = line.intersection(poly)
+            for part in getattr(seg, "geoms", [seg]):
+                if part.length > 0:
+                    (px0, py0), (px1, py1) = part.coords[0], part.coords[-1]
+                    out["major" if k % major == 0 else "minor"].append([round(v, 2) for v in (px0, py0, px1, py1)])
+            k += 1
+    return out
 
 
 def write_obj(sc: Scene, path: Path):
@@ -284,6 +307,7 @@ HTML = r"""<!doctype html>
   <label><input type="checkbox" id="ceil"> Ceiling</label>
   <label><input type="checkbox" id="furn" checked> Furniture / fixtures</label>
   <label><input type="checkbox" id="labels" checked> Room labels</label>
+  <label><input type="checkbox" id="grid" checked> 1' floor grid</label>
   <label id="roofrow"><input type="checkbox" id="roofvis" checked> Roof</label>
   <label><input type="checkbox" id="roofsh" checked> Roof shadows (24" eaves)</label>
   <label>Sun: <select id="day">
@@ -344,6 +368,16 @@ for (const [k, v] of Object.entries(D.mat || {})) M[k] = Object.assign({}, M[k] 
 const V = (x,y,z) => new THREE.Vector3(x*IN, z*IN, -y*IN);
 const groups = {furn:new THREE.Group(), ceil:new THREE.Group(), labels:new THREE.Group(), roof:new THREE.Group()};
 Object.values(groups).forEach(g=>scene.add(g));
+const gridGroup = new THREE.Group(); scene.add(gridGroup);   // 1' floor grid, darker every 5'
+for (const [key, color, opacity] of [['minor', 0x4a4e55, 0.55], ['major', 0x202226, 0.9]]) {
+  const p = [];
+  for (const [x0, y0, x1, y1] of (D.grid || {})[key] || []) {
+    const a = V(x0, y0, 4.6), b = V(x1, y1, 4.6);   // just above the slab top (4")
+    p.push(a.x, a.y, a.z, b.x, b.y, b.z);
+  }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(p, 3));
+  gridGroup.add(new THREE.LineSegments(g, new THREE.LineBasicMaterial({color, transparent:true, opacity})));
+}
 
 for (const [k, items] of Object.entries(D.quads)) {
   const pos = [];
@@ -511,7 +545,7 @@ document.getElementById('walk').onclick = () => {
 if (location.hash === '#touchwalk') startTouchWalk();         // test hook
 const bind = (id, g) => document.getElementById(id).onchange = e => g.visible = e.target.checked;
 bind('ceil', groups.ceil); bind('furn', groups.furn); bind('labels', groups.labels); bind('roofsh', roofCaster);
-bind('roofvis', groups.roof);
+bind('roofvis', groups.roof); bind('grid', gridGroup);
 if (!Object.keys(D.tris || {}).length) document.getElementById('roofrow').style.display = 'none';
 const clock = new THREE.Clock();
 renderer.setAnimationLoop(()=>{
