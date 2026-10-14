@@ -113,7 +113,7 @@ OPENINGS = [
     ("south hall wall", 1070.0, 1106.0, "door", "a", +1),   # primary bedroom
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
-    ("bath|wic", 1026.0, 1056.0, "door", "b", +1),          # primary bath, at the west end of the closet
+    ("suite|primary", 576.0, 606.0, "door", "b", -1),       # primary bath, from the bedroom; opens flat by the rear wall
     ("suite|primary", 463.0, 499.0, "cased"),               # walk-in closet entry, 36"
 ]
 
@@ -280,7 +280,8 @@ def common_bath(sh):
 
 
 def primary_bath(sh):
-    """Wet room: jetted tub on the plumbing wall + curbless shower behind glass; WC; double vanity."""
+    """Wet room: jetted tub on the plumbing wall + curbless shower behind glass; WC and double vanity on
+    the closet (north) wall; door from the bedroom at the rear-wall end."""
     m0, m1 = face("utility|bath", +1), face("suite|primary", -1)
     top = face("bath|wic", +1)
     gx = m0 + TUB_W + 42.0                                             # tub + 42" shower zone
@@ -292,11 +293,11 @@ def primary_bath(sh):
     sh.text("LEDGE", sx, top + LEDGE_D / 2, 2.0)                       # plumbing for the head in its thickness
     shower_head(sh, sx, top + LEDGE_D, +1)                             # above the ledge, arm clears it
     shower_head(sh, sx, S_IN, -1)
-    glass(sh, (gx, top + LEDGE_D + 30), (gx, S_IN))                    # walk in at the north end, 30" clear past the ledge
+    glass(sh, (gx, top), (gx, S_IN - 30))                              # walk in at the rear-wall end, 30" clear
     drain(sh, (gx - 3, top + LEDGE_D + 3), (gx - 3, S_IN - 3))
-    wc(sh, gx + 2.25, S_IN - 28, gx + 32.25, S_IN)                     # 17.25" to glass, 15.25" to vanity
-    vanity(sh, m1 - 60, S_IN - 22, m1, S_IN, "DOUBLE VANITY 60")
-    room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2, cy=577.0, h=4.0)
+    wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                       # north wall: 17.25" to glass, 15.25" to vanity
+    vanity(sh, m1 - 60, top, m1, top + 22, "DOUBLE VANITY 60")
+    room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2 - 10, cy=588.0, h=4.0)
 
 
 def utility_block(sh):
@@ -355,8 +356,8 @@ def wic(sh):
         sh.line((a, y + d * 12), (b, y + d * 12), fu)
         sh.text("HANG", (a + b) / 2, y + d * 18, 3.0)
 
-    hang(x0 + 24, 1023.0, y0, +1)           # both rods stop 3' short of the bedroom wall (a straight path
-    hang(x0 + 24, 1023.0, y1, -1)           # to the bath door) and 2' short of the end wall
+    hang(x0 + 24, 1023.0, y0, +1)           # entry side: stops 3' short of the bedroom wall (landing inside
+    hang(x0 + 24, x1, y1, -1)               # the cased entry); far side runs to the bedroom wall
     for ya, yb in ((y0, y0 + 24), (y1 - 24, y1)):  # end wall wrapped in one built-in: corner shelves
         sh.rect(x0, ya, x0 + 24, yb, fu)    # (shoes, folded, bags) either side of a drawer stack
         sh.text("SHELVES", x0 + 12, (ya + yb) / 2, 2.2)
