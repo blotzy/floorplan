@@ -13,6 +13,12 @@ the counter (sill 42").
   ribbon   one band of four 5' units at a 42" sill, dining through to the sink
   tall     rhythm, but the dining pair runs floor to head (French-door look, fixed glass)
 
+Bigger kitchen windows (the kitchen's south wall runs from the peninsula end to the corner):
+  kitchen6     main plan with a 6' kitchen window centred on the sink
+  kitchen8     dining 10' pair + an 8' kitchen window from over the peninsula end to the corner
+  backsplash   kitchen8 with the kitchen glass down to the counter (glass backsplash)
+  ribbon-wide  one 42"-sill band from the dining room's east end to the kitchen corner
+
 Writes renders/experiments/south-windows-compare.png (the south wall seen from inside, one
 row per option, with each option's glass total), and a 3D model per option.
 
@@ -43,6 +49,15 @@ VARIANTS = {   # key -> (title, [(from, to, sill), ...] on the south wall, dinin
                 [(412.0, 652.0, 42.0)]),
     "tall":    ("Three equal 5' windows, 4' apart; dining pair floor to head",
                 [(376.0, 436.0, 0.0), (484.0, 544.0, 0.0), KITCHEN]),
+    # bigger kitchen windows
+    "kitchen6":  ("Main plan with the kitchen window 6' (centred on the sink)",
+                  [(376.0, 436.0, 18.0), (484.0, 544.0, 18.0), (586.0, 658.0, 42.0)]),
+    "kitchen8":  ("Dining 10' at 18\" + kitchen 8' at 42\", from over the peninsula end to the corner",
+                  [(397.0, 517.0, 18.0), (568.0, 664.0, 42.0)]),
+    "backsplash": ("Dining 10' at 18\" + kitchen 8' down to the counter (glass backsplash)",
+                   [(397.0, 517.0, 18.0), (568.0, 664.0, 37.0)]),
+    "ribbon-wide": ("Ribbon to the corner: four 6' units at 42\", dining through the kitchen",
+                    [(376.0, 664.0, 42.0, 4)]),
 }
 
 
@@ -50,7 +65,7 @@ def openings(spec):
     """Main-plan openings with the dining/kitchen south windows replaced by `spec`."""
     x0, x1 = S.E_IN, S.face("kitchen|pantry", -1)
     ops = [o for o in copy.deepcopy(BASE) if not (o[0] == "south" and x0 < o[1] < x1)]
-    return ops + [("south", a, b, "window", sill, 96.0) for a, b, sill in spec]
+    return ops + [("south", w[0], w[1], "window", w[2], 96.0) for w in spec]
 
 
 def glass_total(ops):
@@ -74,10 +89,11 @@ def sheet(path):
     for ax, (key, (title, spec)) in zip(axs, VARIANTS.items()):
         ax.add_patch(Rectangle((x0, 0), x1 - x0, 120, fc="#f2efe9", ec="k"))
         ax.add_patch(Rectangle((PEN_OUT, 0), x1 - PEN_OUT, 36, fc="#ccc", ec="k"))   # peninsula + sink run
-        for a, b, sill in spec:
+        for a, b, sill, *units in spec:
             ax.add_patch(Rectangle((a, sill), b - a, 96 - sill, fc="#bfe3f2", ec="k"))
-            for m in range(1, round((b - a) / 60)):                                   # mulled 5' units
-                ax.plot([a + 60 * m] * 2, [sill, 96], "k", lw=0.8)
+            n = units[0] if units else (round((b - a) / 60) if b - a > 100 else 1)   # mulled units
+            for m in range(1, n):
+                ax.plot([a + (b - a) * m / n] * 2, [sill, 96], "k", lw=0.8)
         ax.plot([x0, x1], [96, 96], ls=":", c="#999", lw=0.8)
         ax.text((x0 + PEN_OUT) / 2, -11, "DINING", ha="center", fontsize=9)
         ax.text((PEN_OUT + x1) / 2, -11, "KITCHEN", ha="center", fontsize=9)
