@@ -7,9 +7,10 @@ primary-bath wall) so the powder room becomes a full bath with a shower and a wi
 rear wall. The pantry, mech closet, walk-in closet and primary bath are untouched.
 
   long  bath and laundry side by side, both full depth, both off the hall.
-        bath    ~4'-4" wide: sink by the door, toilet, then a curbless shower across the
-                back under a new rear window; all fixtures on the wall shared with the
-                primary bath.
+        bath    ~4'-4" x 8'-9": sink, toilet, then a curbless shower across the end; all
+                fixtures on the wall shared with the primary bath. No window (exhaust fan).
+        storage ~4'-4" x 3'-6" behind the bath, open to the back of the laundry: chest
+                freezer and shelves.
         laundry ~5' galley: sink, washer, dryer on the wall shared with the bath; the panel
                 near the door (its clear space opposite open floor). The mech closet has no
                 door: a wide open (cased) opening onto the galley, so the water heater
@@ -79,6 +80,7 @@ def machines_x(sh, x0, y_wall, d):
 # ---- long: bath and laundry side by side ------------------------------------------------
 LONG_BATH_W = 52.0
 LONG_SPLIT = B1 - LONG_BATH_W - S.WET / 2
+LONG_BATH_END = 566.0            # bath stops here; storage room behind it, open to the laundry
 
 
 def long_plan(ws, ops):
@@ -86,9 +88,10 @@ def long_plan(ws, ops):
     for i, w in enumerate(ws):
         if w[0] == "laundry|powder":
             ws[i] = ("laundry|bath", "y", LONG_SPLIT, 457.0, S.S_IN, S.WET)
+    ws.append(("bath|storage", "x", LONG_BATH_END + S.INT / 2, LONG_SPLIT, 874.0, S.INT))
     set_hall_doors(ops, [("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
-                         ("south hall wall", 826.0, 854.0, "door", "a", +1)])    # bath
-    ops.append(("south", 828.0, 862.0, "window"))                                # over the shower
+                         ("south hall wall", 820.0, 848.0, "door", "a", +1)])    # bath, against its east wall
+    ops.append(("laundry|bath", 574.0, 606.0, "cased"))                          # storage, open to the laundry
     m0 = S.face("pantry|mech", +1)                                               # mech closet: no door,
     ops[:] = [o for o in ops if o[:2] != ("pantry|laundry", 579.2)]              # a wide open (cased)
     ops.append(("pantry|laundry", m0 + 3, S.S_IN - 3, "cased"))                  # opening to the laundry
@@ -97,17 +100,22 @@ def long_plan(ws, ops):
 def long_fit(sh):
     lw = LONG_SPLIT - S.WET / 2                              # laundry side of the split
     b0 = LONG_SPLIT + S.WET / 2
-    # bath: everything on the primary-bath wall, shower across the back
-    S.vanity(sh, B1 - 20, 494.0, B1, 518.0, "SINK", rot=90)
-    S.wc(sh, B1 - 28, 527.0, B1, 557.0)
-    gy = S.S_IN - 40                                         # shower: full width x 40" deep
-    S.wet_zone(sh, b0, gy, B1, S.S_IN)
-    sh.rect(b0, gy, B1, S.S_IN, EQ)
+    # bath: everything on the primary-bath wall, shower across the end
+    S.vanity(sh, B1 - 20, 466.0, B1, 490.0, "SINK", rot=90)
+    S.wc(sh, B1 - 28, 497.0, B1, 527.0)
+    gy, ge = 530.0, LONG_BATH_END                            # shower: full width x 36" deep
+    S.wet_zone(sh, b0, gy, B1, ge)
+    sh.rect(b0, gy, B1, ge, EQ)
     S.glass(sh, (b0 + 24, gy), (B1, gy))                     # 24" open entry on the door side
-    sh.text("SHOWER", (b0 + B1) / 2, gy + 16, 3.2)
-    head_x(sh, B1, gy + 22, -1)
-    S.drain(sh, (b0 + 3, S.S_IN - 3), (B1 - 3, S.S_IN - 3))
-    S.room_label(sh, "BATH", b0, HALL, B1, S.S_IN, cx=b0 + 14, cy=540.0, h=3.6)
+    sh.text("SHOWER", (b0 + B1) / 2, gy + 14, 3.2)
+    head_x(sh, B1, gy + 20, -1)
+    S.drain(sh, (b0 + 3, ge - 3), (B1 - 3, ge - 3))
+    S.room_label(sh, "BATH", b0, HALL, B1, ge, cx=b0 + 14, cy=505.0, h=3.6)
+    # storage room behind the bath, open to the laundry
+    s0 = LONG_BATH_END + S.INT
+    sh.rect(b0 + 6, S.S_IN - 30, b0 + 46, S.S_IN, EQ); sh.text("CHEST FREEZER", b0 + 26, S.S_IN - 15, 2.4)
+    sh.rect(B1 - 12, s0, B1, S.S_IN - 30, FU); sh.text("SHELVES", B1 - 6, (s0 + S.S_IN - 30) / 2, 2.2, rot=90)
+    S.room_label(sh, "STORAGE", b0, s0, B1, S.S_IN, cx=(b0 + B1) / 2 - 4, cy=s0 + 6, h=3.0)
     # laundry galley: machines on the bath wall, panel near the door across open floor
     machines_y(sh, lw, 500.0, -1)
     sh.rect(lw - 30, 515.0, lw, 570.0, FU)                    # folding counter over the washer/dryer
