@@ -115,7 +115,7 @@ OPENINGS = [
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
     ("suite|primary", 574.0, 606.0, "door", "b", -1),       # primary bath, from the bedroom; opens flat by the rear wall
-    ("suite|primary", 463.0, 495.0, "cased"),               # walk-in closet entry, 32"
+    ("suite|primary", 463.0, 495.0, "door", "a", -1),       # walk-in closet, 32": swings in, opens flat by the hall wall
 ]
 
 # =============================================================================
