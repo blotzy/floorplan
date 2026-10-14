@@ -333,10 +333,13 @@ def wic(sh):
         sh.line((a, y + d * 12), (b, y + d * 12), fu)
         sh.text("HANG", (a + b) / 2, y + d * 18, 3.0)
 
-    hang(x0, 1023.0, y0, +1)                # both walls stop 3' short of the bedroom wall:
-    hang(x0, 1023.0, y1, -1)                # a straight path from the entry to the bath door
-    sh.rect(x0, y0 + 24, x0 + 14, y1 - 24, fu)   # shoe / folded shelves on the end wall
-    sh.text("SHELVES", x0 + 7, (y0 + y1) / 2, 2.2, rot=90)
+    hang(x0 + 24, 1023.0, y0, +1)           # both rods stop 3' short of the bedroom wall (a straight path
+    hang(x0 + 24, 1023.0, y1, -1)           # to the bath door) and 2' short of the end wall
+    for ya, yb in ((y0, y0 + 24), (y1 - 24, y1)):  # end wall wrapped in one built-in: corner shelves
+        sh.rect(x0, ya, x0 + 24, yb, fu)    # (shoes, folded, bags) either side of a drawer stack
+        sh.text("SHELVES", x0 + 12, (ya + yb) / 2, 2.2)
+    sh.rect(x0, y0 + 24, x0 + 20, y1 - 24, fu)
+    sh.text("DRAWERS", x0 + 10, (y0 + y1) / 2, 2.2, rot=90)
     room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=5.0)
 
 
