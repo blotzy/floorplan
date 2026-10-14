@@ -155,6 +155,11 @@ def build_schematic() -> Scene:
                 sc.polys["furniture"].append([[list(p) for p in pts], 0.0, 30.0])
                 continue
             lab = label_in(*b)
+            if not lab and min(w, h) <= 4:                      # thin wall-mounted pieces (TV, panel):
+                pad = 10.0                                      # label sits just beside them
+                lab = label_in(b[0] - pad, b[1] - pad, b[2] + pad, b[3] + pad) if w <= 4 else ""
+                if lab and lab.split()[0] not in ("TV", "PANEL"):
+                    lab = ""
             z = None
             for key, zz in LABEL_H:
                 if key in lab.split() or (key in lab and len(key) > 3):
