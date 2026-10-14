@@ -67,8 +67,8 @@ PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines 
 WALLS = [
     ("foyer wall",        "y", PORCH_X + EXT - INT / 2, PORCH_Y, FOYER_WALL_END, INT),
     ("lounge|gym",       "y", 692.0,  N_IN, 405.45, INT),
-    ("gym|c.bath",       "y", 826.0,  N_IN, 405.45, WET),
-    ("c.bath|guest",     "y", 905.0,  N_IN, 405.45, INT),
+    ("gym|ensuite",       "y", 826.0,  N_IN, 405.45, WET),
+    ("ensuite|guest",     "y", 905.0,  N_IN, 405.45, INT),
     ("guest|office",     "y", 1064.0, N_IN, 405.45, INT),
     ("bedroom hall wall", "x", 403.2,  689.75, W_IN, INT),
     ("south hall wall",   "x", 459.2,  671.75, W_IN, INT),
@@ -90,7 +90,7 @@ OPENINGS = [
     # exterior
     ("north",       511.1, 631.1, "window"),             # lounge 10'
     ("north",       710.1, 806.1, "window"),             # gym
-    ("north",       851.0, 881.0, "window"),             # common bath
+    ("north",       851.0, 881.0, "window"),             # shared ensuite
     ("north",       934.1, 1034.1, "window"),            # guest
     ("north",       1090.6, 1186.6, "window"),           # office
     ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall
@@ -104,13 +104,13 @@ OPENINGS = [
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
-    ("bedroom hall wall", 867.5, 897.5, "door", "b", -1),   # common bath
-    ("c.bath|guest", 335.0, 365.0, "door", "a", +1),       # guest en-suite: swings into the guest room (the bath is narrow)
+    ("bedroom hall wall", 867.5, 897.5, "door", "b", -1),   # shared ensuite
+    ("ensuite|guest", 335.0, 365.0, "door", "a", +1),       # guest en-suite: swings into the guest room (the bath is narrow)
     ("bedroom hall wall", 912.0, 948.0, "door", "a", -1),  # guest
     ("bedroom hall wall", 1090.0, 1126.0, "door", "a", -1), # office
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
-    ("south hall wall", 820.0, 848.0, "door", "a", +1),     # hall bath, against its east wall
+    ("south hall wall", 820.0, 848.0, "door", "a", +1),     # common bath, against its east wall
     ("south hall wall", 1070.0, 1106.0, "door", "a", +1),   # primary bedroom
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
@@ -265,7 +265,7 @@ def vanity(sh, x0, y0, x1, y1, label, rot=0):
 def common_bath(sh):
     """72" x 32" alcove tub with a shower head across the window end. Tub drain, valve and
     head, the WC and the vanity all on the east (plumbing) wall shared with the gym."""
-    c0, c1 = face("gym|c.bath", +1), face("c.bath|guest", -1)          # 73.5" clear: fur the west end ~1.5"
+    c0, c1 = face("gym|ensuite", +1), face("ensuite|guest", -1)          # 73.5" clear: fur the west end ~1.5"
     hall = face("bedroom hall wall", -1)
     ty = N_IN + 32.0
     tub(sh, c0, N_IN, c0 + 72.0, ty, "TUB 72x32")
@@ -277,7 +277,7 @@ def common_bath(sh):
     sh.rect(c0, hall - 24, c0 + 30, hall, "A-FURN")                          # linen closet in the
     sh.line((c0, hall - 24), (c0 + 30, hall), "A-FURN")                       # corner by the door
     sh.text("LINEN", c0 + 15, hall - 16, 3.0)
-    room_label(sh, "C. BATH", c0, N_IN, c1, hall, cx=(c0 + 21 + c1) / 2 + 2, cy=ty + 55, h=4.5)
+    room_label(sh, "SHARED ENSUITE", c0, N_IN, c1, hall, cx=(c0 + 21 + c1) / 2 + 1, cy=ty + 55, h=3.4)
 
 
 def primary_bath(sh):
@@ -306,7 +306,7 @@ def primary_bath(sh):
 
 
 def utility_block(sh):
-    """Hall bath and laundry side by side (labels + fixtures); experiments can swap this."""
+    """Common bath and laundry side by side (labels + fixtures); experiments can swap this."""
     eq, fu = "A-EQPM", "A-FURN"
     hall = face("south hall wall", +1)
     l0, lw = face("pantry|laundry", +1), face("laundry|bath", -1)            # laundry galley
@@ -325,7 +325,7 @@ def utility_block(sh):
     for dy in (-5.0, 0.0, 5.0):
         sh.line((b1 - 5.5, gy + 20 + dy * 0.4), (b1 - 11.0, gy + 20 + dy), eq)
     drain(sh, (b0 + 3, be - 3), (b1 - 3, be - 3))
-    room_label(sh, "BATH", b0, hall, b1, be, cx=b0 + 14, cy=505.0, h=3.6)
+    room_label(sh, "COMMON BATH", b0, hall, b1, be, cx=b0 + 12, cy=505.0, h=2.4)
     # storage room behind the bath, open to the laundry
     s0 = face("bath|storage", +1)
     sh.rect(b1 - 12, s0, b1, S_IN, fu); sh.text("SHELVES", b1 - 6, (s0 + S_IN) / 2, 2.2, rot=90)
@@ -468,8 +468,8 @@ def build() -> Sheet:
     room("LOUNGE", face("foyer wall", +1), N_IN, face("lounge|gym", -1), hall_s, cx=600.0, cy=428.0)
     room("DINING", E_IN, srow, pen_out, S_IN, cy=592.0)
     room("KITCHEN", pen_out, srow, face("kitchen|pantry", -1), S_IN, cx=622.0, cy=545.0, h=7.0)
-    room("GYM", face("lounge|gym", +1), N_IN, face("gym|c.bath", -1), hall_n, cy=272.0)
-    room("GUEST", face("c.bath|guest", +1), N_IN, face("guest|office", -1), hall_n, cy=272.0)
+    room("GYM", face("lounge|gym", +1), N_IN, face("gym|ensuite", -1), hall_n, cy=272.0)
+    room("GUEST", face("ensuite|guest", +1), N_IN, face("guest|office", -1), hall_n, cy=272.0)
     room("OFFICE", face("guest|office", +1), N_IN, W_IN, hall_n, cy=272.0)
     room("PANTRY", face("kitchen|pantry", +1), srow, face("pantry|laundry", -1), face("pantry|mech", -1), h=5.5)
     room("MECH", face("kitchen|pantry", +1), face("pantry|mech", +1), face("pantry|laundry", -1), S_IN,

@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
-"""Experiment: the main plan's hall bath + laundry block with the mech closet and the storage
+"""Experiment: the main plan's common bath + laundry block with the mech closet and the storage
 room behind the bath swapped.
 
   swap  water heater, softener and filters behind the bath (open to the laundry); the washer and
@@ -68,7 +68,7 @@ def swap_fit(sh):
     sh.text("SHOWER", (b0 + B1) / 2, gy + 14, 3.2)
     head_x(sh, B1, gy + 20, -1)
     S.drain(sh, (b0 + 3, ge - 3), (B1 - 3, ge - 3))
-    S.room_label(sh, "BATH", b0, HALL, B1, ge, cx=b0 + 14, cy=505.0, h=3.6)
+    S.room_label(sh, "COMMON BATH", b0, HALL, B1, ge, cx=b0 + 12, cy=505.0, h=2.4)
     # mech behind the bath, open to the laundry: water heater, softener + brine, wall-hung filters
     s0 = BATH_END + S.INT
     sh.circle((B1 - 13, S.S_IN - 13), 12.0, EQ); sh.text("HPWH", B1 - 13, S.S_IN - 13, 3.0)

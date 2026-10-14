@@ -7,7 +7,7 @@ One fully ducted, variable-speed heat pump split into zones with motorized (elec
 | Zone | Serves | Thermostat |
 | --- | --- | --- |
 | 1 | Great room: kitchen, dining, lounge, foyer | Great room, on an interior wall away from the dining glass and the range |
-| 2 | Gym, guest, office, common bath, bedroom hall | Bedroom hall |
+| 2 | Gym, guest, office, shared ensuite, bedroom hall | Bedroom hall |
 | 3 | Primary suite: bedroom, bath, walk-in closet | Primary bedroom |
 
 Three zones are preferred. If the Manual J or the equipment's minimum airflow makes the primary suite too small to run as its own zone, merge zones 2 and 3 into one sleeping zone (two zones total), with balancing dampers on each bedroom branch.
