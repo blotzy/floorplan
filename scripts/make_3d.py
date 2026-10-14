@@ -495,6 +495,26 @@ camera.position.set(ctr.x - 30, 70, ctr.z + 75);
 const orbit = new OrbitControls(camera, renderer.domElement); orbit.target.copy(ctr); orbit.update();
 orbit.panSpeed = 1.75;                   // right-drag pans faster...
 orbit.screenSpacePanning = false;        // ...and slides along the ground instead of up into the sky
+// Two-finger touch drags pan; the pinch zoom only kicks in once the fingers clearly spread or
+// close, so a plain drag doesn't bob the camera up and down. zoomSpeed 0 (not enableZoom
+// false) keeps OrbitControls tracking the finger distance, so zoom resumes without a jump.
+{
+  const tp = new Map(); let pinch0 = 0;
+  const spread = () => { const [a, b] = [...tp.values()]; return Math.hypot(a[0] - b[0], a[1] - b[1]); };
+  const el = renderer.domElement;
+  el.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'touch') return;
+    tp.set(e.pointerId, [e.clientX, e.clientY]);
+    if (tp.size === 2) { pinch0 = spread(); orbit.zoomSpeed = 0; }
+  }, true);
+  el.addEventListener('pointermove', e => {
+    if (!tp.has(e.pointerId)) return;
+    tp.set(e.pointerId, [e.clientX, e.clientY]);
+    if (tp.size === 2 && orbit.zoomSpeed === 0 && pinch0 && Math.abs(spread() / pinch0 - 1) > 0.12) orbit.zoomSpeed = 1;
+  }, true);
+  const lift = e => { tp.delete(e.pointerId); if (tp.size < 2) { orbit.zoomSpeed = 1; pinch0 = 0; } };
+  el.addEventListener('pointerup', lift, true); el.addEventListener('pointercancel', lift, true);
+}
 const walk = new PointerLockControls(camera, document.body);
 const keys = {};
 addEventListener('keydown', e=>keys[e.code]=true); addEventListener('keyup', e=>keys[e.code]=false);
