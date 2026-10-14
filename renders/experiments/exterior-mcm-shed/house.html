@@ -204,6 +204,8 @@ document.getElementById('hour').oninput = placeSun;
 placeSun();
 camera.position.set(ctr.x - 30, 70, ctr.z + 75);
 const orbit = new OrbitControls(camera, renderer.domElement); orbit.target.copy(ctr); orbit.update();
+orbit.panSpeed = 2.5;                    // right-drag pans faster...
+orbit.screenSpacePanning = false;        // ...and slides along the ground instead of up into the sky
 const walk = new PointerLockControls(camera, document.body);
 const keys = {};
 addEventListener('keydown', e=>keys[e.code]=true); addEventListener('keyup', e=>keys[e.code]=false);
