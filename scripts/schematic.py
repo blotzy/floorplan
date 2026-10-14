@@ -85,6 +85,7 @@ WALLS = [
 # Openings: (wall name, from, to, kind, hinge, swing)
 #   kind: door | slider | bifold | window | cased | pocket (hinge = pocket side)
 #   windows may add (sill, head) heights in inches; the default is a 30" sill and 8' head.
+#   transom: (sill, head) glass above a door on the same span.
 #   hinge: "a" = at `from`, "b" = at `to`;  swing: +1 / -1 along the wall normal
 #   (normal = +y for "x" walls, +x for "y" walls).
 OPENINGS = [
@@ -103,6 +104,7 @@ OPENINGS = [
     ("south",       1098.6, 1176.6, "window"),           # primary bedroom 6'-6" (centred; faces SSW, so kept modest)
     ("east",        509.8, 593.8, "slider"),             # dining 7' slider
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
+    ("west",        414.7, 450.7, "transom", 98.0, 114.0),  # fixed transom over it: daylight down the hall
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
     ("bedroom hall wall", 867.5, 897.5, "door", "b", -1),   # shared ensuite
@@ -457,6 +459,9 @@ def build() -> Sheet:
             p0, p1 = (a - w, a) if o[4] == "a" else (b, b + w)
             sh.line(P(p0, 0.0), P(p1, 0.0), "A-DOOR")
             sh.msp.add_line(P(a, 0.0), P(b, 0.0), dxfattribs={"layer": "A-DOOR", "linetype": "DASHED"})
+        elif kind == "transom":            # glass above a door: note it in plan
+            mx, my = P((a + b) / 2, 0.0)
+            sh.text("TRANSOM ABOVE", mx + (8 if axis == "y" else 0), my, 2.0, rot=90 if axis == "y" else 0)
         # cased openings: just the gap
 
     # ---- rooms: labels with clear sizes ---------------------------------------

@@ -7,7 +7,7 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 ## Entry, foyer, and lounge
 
 - **Corner porch** at the lounge/carport (northeast) corner, set into the house, with a post at the outside corner where the carport beam lands. Front step in front.
-- **Front door** on the street-facing side of the porch, hinged on the east side so it opens flat against the foyer's east wall. No sidelight.
+- **Front door** on the street-facing side of the porch, hinged on the east side so it opens flat against the foyer's east wall. No sidelight, so the door itself has glass (tempered, dual-pane, meeting the wildfire rules for exterior doors) to light the foyer.
 - **Reeded-glass window** in the porch's side wall, so you can see who's at the door from the lounge. Narrow reeds or satin-reeded, dual-pane, low-E, tempered, NFRC-rated, from the same window line as the rest of the house.
 - **Foyer:** the **foyer wall** (stopping short of the lobby) separates foyer and lounge; its lounge side is the **TV wall**, and its foyer side holds a closet and bench, across from the front door's swing.
 - **Lounge:** large north window centred on the wall. One L sectional, its window leg floated off the window and its other leg facing the TV wall, with a console behind that leg running the length of its seats. Square coffee table. All furniture stays clear of the walkway from the foyer to the bedroom hall.
@@ -45,7 +45,7 @@ Three strips side by side, each with its own door off the main lobby (no side ha
 - **Walk-in closet:** between the primary bedroom and the laundry block, behind the bath, entered from the bedroom through a hinged door that swings into the closet and opens flat against the hall-side wall. Hanging rods on both long sides: the one on the bath side runs to the bedroom wall; the one on the entry side stops short of it to leave room for the door and a landing inside it. No door to the bath. The far end wall is one built-in: corner shelves (shoes, folded clothes, bags) either side of a drawer stack.
 - **Primary suite:** a modest south window, since it faces SSW into a sleeping room; shade it with the overhang. Optional reading nook with a built-in bench (window seat) in the primary bedroom.
 
-- **Lobby:** exterior door at the west end of the bedroom hall, out to the west side yard. A glass door (tempered, dual-pane, meeting the wildfire rules for exterior doors) so the long hall gets daylight from that end.
+- **Lobby:** exterior door at the west end of the bedroom hall, out to the west side yard. A fixed glass transom over it, between the door head and the ceiling, throws daylight down the long hall.
 
 ## Ceilings and roof
 

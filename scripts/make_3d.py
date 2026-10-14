@@ -119,9 +119,17 @@ def build_schematic() -> Scene:
         axis, c, t = S.wall_info(name)
         def seg(v):
             return ((a, c + v), (b, c + v)) if axis == "x" else ((c + v, a), (c + v, b))
-        sill, head = (o[4], o[5]) if kind == "window" and len(o) > 4 else (SILL, HEAD)   # high windows
-        for v in (-t / 2, t / 2):
-            sc.quad(face_mat(*seg(v)), *seg(v), head, CEIL)
+        sill, head = (o[4], o[5]) if kind in ("window", "transom") and len(o) > 4 else (SILL, HEAD)
+        if kind == "transom":                                     # glass above the door on this span
+            for v in (-t / 2, t / 2):
+                sc.quad(face_mat(*seg(v)), *seg(v), HEAD, sill)
+                sc.quad(face_mat(*seg(v)), *seg(v), head, CEIL)
+            sc.quad("glass", *seg(0), sill, head)
+            continue
+        topped = any(p[0] == name and p[1:3] == (a, b) and p[3] == "transom" for p in S.OPENINGS)
+        if not topped:                                           # header (the transom draws its own)
+            for v in (-t / 2, t / 2):
+                sc.quad(face_mat(*seg(v)), *seg(v), head, CEIL)
         if kind == "window":
             if sill:
                 for v in (-t / 2, t / 2):
