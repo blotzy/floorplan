@@ -2,23 +2,29 @@
 
 [← Back to README](../README.md)
 
-A three-zone heat pump system on one multi-zone outdoor unit, plus an ERV for code-required fresh air. Capacities below are rough; the HVAC contractor's Manual J sets the final sizes. No electric backup heat strips are needed in this climate.
+One fully ducted, variable-speed heat pump split into zones with motorized (electric) dampers, plus an ERV for code-required fresh air. No wall units or ceiling cassettes: every room gets ceiling registers. Capacities are rough; the HVAC contractor's Manual J sets the final sizes. No electric backup heat strips are needed in this climate.
 
-| Zone | Indoor unit | Approx. size | Serves |
-| --- | --- | --- | --- |
-| 1 | Wall-mounted unit on the primary bedroom's south exterior wall, mounted at about 8' (10' ceilings) | \~9,000 BTU | Primary bedroom |
-| 2 | 4-way ceiling cassette, centred between lounge and dining | \~18,000–24,000 BTU | Great room (kitchen, dining, lounge) |
-| 3 | Slim ducted unit in the sealed attic | \~9,000–12,000 BTU | Bedrooms 2–4 (gym, guest, office), common bath, hall, small laundry supply |
+| Zone | Serves | Thermostat |
+| --- | --- | --- |
+| 1 | Great room: kitchen, dining, lounge, foyer | Great room, on an interior wall away from the dining glass and the range |
+| 2 | Bedrooms 2–4 (gym, guest, office), common bath, bedroom hall | Bedroom hall |
+| 3 | Primary suite: bedroom, bath, walk-in closet | Primary bedroom |
 
-**Heat pump details**
+Three zones are preferred. If the Manual J or the equipment's minimum airflow makes the primary suite too small to run as its own zone, merge zones 2 and 3 into one sleeping zone (two zones total), with balancing dampers on each bedroom branch.
 
-- Outdoor unit (about 3 tons) on a noncombustible pad in the rear yard against the south wall behind the mechanical closet (no windows on that stretch; short line set into the attic), with a dog guard. See [site](03-site-and-landscape.md).
-- Primary bedroom unit aimed along the room, not at the bed.
-- Keep the ceiling cassette out of the kitchen to avoid grease on the coil.
-- Zone 3: ceiling supply registers 2–3' in from each bedroom's closet, throwing toward the window; return grille in the hall; transfer grilles or jumper ducts to each bedroom; balancing dampers on each bedroom branch.
+**Heat pump and zoning**
+
+- Outdoor unit (about 3 tons, variable-speed/inverter) on a noncombustible pad in the rear yard against the south wall behind the mechanical closet (no windows on that stretch; short line set into the attic), with a dog guard. See [site](03-site-and-landscape.md).
+- Matching variable-speed air handler in the sealed attic, near the attic hatch, on a service platform with a light and outlet. Secondary drain pan with a float switch under it; condensate drain route planned before drywall.
+- Zoning from the equipment maker's own communicating zone panel (or one it approves), so the heat pump slows down to suit however many zones are calling. No bypass duct.
+- Size each zone's ducts so the smallest zone alone can take the unit's minimum airflow without noise or short-cycling; the contractor confirms this with a Manual D duct design.
+- Motorized dampers at the trunk takeoffs, reachable from the attic walkway. Manual balancing dampers on each branch.
+- Central MERV 13 filter on the return at the air handler (media cabinet), for wildfire smoke; easy to reach for changes.
+- Returns: a central return in the bedroom hall and one in the great room; transfer grilles or jumper ducts from each closed-door room (bedrooms, office, primary).
+- Supplies: ceiling registers sized for the 10' ceilings, near the windows and throwing across the room. The dining room's large south glass gets its own supply.
 - Gym: keep registers out of the ring swing zone.
-- No return grille in the laundry (lint).
-- Condensate drain routes for every indoor unit, planned before drywall.
+- Primary bedroom register aimed along the room, not at the bed.
+- No return in the kitchen (grease) or the laundry (lint).
 - Ducts stay in the sealed attic; no ducts, returns, or ERV openings into the carport.
 
 **Ventilation**

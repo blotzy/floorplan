@@ -35,6 +35,6 @@
 - [ ] Truss designer: 500 lb concentrated loads at the gym ring points; 20 psf attic storage strip.
 - [ ] Plumber and sprinkler designer: does the sprinkler system require a 1" water service / meter upsize?
 - [ ] Plumber: confirm the robot vacuum dock drain connection and trap.
-- [ ] HVAC: Manual J load calculation to confirm zone sizes and the outdoor unit.
+- [ ] HVAC: Manual J load calculation and Manual D duct design to size the ducted heat pump and confirm three zones (or two, if the primary suite is too small to run alone).
 - [ ] Electrician: load calculation with the full appliance list, confirming 200A.
 - [ ] Electrician: SCE service point and meter location (west end?) and the EV charger run to the carport.
