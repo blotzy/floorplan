@@ -3,18 +3,20 @@
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
 """Experiment: exterior styles on the schematic's 3D model (roof form, eaves, colours).
+All roofs are asphalt shingle (Class A), so slopes stay at 3:12 or steeper (shingles need
+double underlayment below 4:12; butterfly roofs and anything under ~2:12 are out).
 
-  mcm-shed       Midcentury modern: single low slope, high at the street with clerestory
-                 glass, falling to the rear (the big rear plane faces SSW: ideal for solar).
-  mcm-butterfly  Midcentury modern: two planes sloping to a central valley, clerestories
-                 on both long walls.
-  mcm-gable      Midcentury modern (Eichler-like): shallow 2:12 gable, deep eaves, glazed
-                 gable ends, dark siding with warm wood-look soffits.
-  ranch-hip      California ranch: 4:12 hip roof, 24" eaves, light walls.
-  ranch-gable    Ranch: 4:12 gable, board-and-batten colours.
+  mcm-shed        Midcentury modern: single 3:12 slope, high at the street with clerestory
+                  glass, falling to the rear (the big rear plane faces SSW: ideal for solar).
+  mcm-shed-vault  The same shed with only the lounge vaulted (clerestory over the lounge);
+                  flat 10' ceilings and a sealed attic elsewhere. Writes a cross-section.
+  mcm-gable       Midcentury modern (Eichler-like): 3:12 gable, deep eaves, glazed gable
+                  ends, dark siding with warm wood-look soffits.
+  ranch-hip       California ranch: 4:12 hip roof, 24" eaves, light walls.
+  ranch-gable     Ranch: 4:12 gable, board-and-batten colours.
 
 Colours stand in for fire-zone materials (stucco, fiber cement, metal; wood looks are
-wood-look products). Low slopes (MCM) need standing-seam metal or membrane, not shingles.
+wood-look products).
 
 Writes renders/experiments/exterior-<style>/house.html (walkable, Roof toggle) and
 renders/experiments/exterior-<style>-{street,aerial}.png when a Chrome is found.
@@ -120,11 +122,6 @@ def slab_roof(sc, ov, under, splits=(), ends="exterior", north="exterior", south
 YM = (N + Sth) / 2
 
 
-def butterfly(sc, pitch, ov):
-    """Valley down the middle (underside at the plate), rising to both long eaves."""
-    slab_roof(sc, ov, lambda y: PLATE + abs(y - YM) * pitch, splits=(YM,), north="glass", south="glass")
-
-
 def shed(sc, pitch, ov):
     """Low at the rear wall, rising to the street with a clerestory along the front."""
     slab_roof(sc, ov, lambda y: PLATE + (Sth - y) * pitch, north="glass")
@@ -196,14 +193,12 @@ def low_gable(sc, pitch, ov):
 
 WOOD, BLACK, WHITE = 0xB07A4F, 0x2B2D30, 0xF1EDE4
 STYLES = {
-    "mcm-shed": (lambda sc: shed(sc, 1.5 / 12, 36),
-                 {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x4A4E54, "door": 0xD9792B}),
-    "mcm-butterfly": (lambda sc: butterfly(sc, 2 / 12, 30),
-                      {"exterior": 0xE9E4DA, "soffit": WOOD, "fascia": WHITE, "roofing": 0xB9BDC2, "door": 0x2B8C8C}),
-    "mcm-gable": (lambda sc: low_gable(sc, 2 / 12, 36),
-                  {"exterior": 0x4F5358, "soffit": WOOD, "fascia": BLACK, "roofing": 0x55595F, "door": 0xE8B33C}),
-    "mcm-shed-vault": (lambda sc: shed_vault(sc, 2 / 12, 36),
-                       {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x4A4E54, "door": 0xD9792B}),
+    "mcm-shed": (lambda sc: shed(sc, 3 / 12, 36),
+                 {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3C3F44, "door": 0xD9792B}),
+    "mcm-gable": (lambda sc: low_gable(sc, 3 / 12, 36),
+                  {"exterior": 0x4F5358, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3C3F44, "door": 0xE8B33C}),
+    "mcm-shed-vault": (lambda sc: shed_vault(sc, 3 / 12, 36),
+                       {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3C3F44, "door": 0xD9792B}),
     "ranch-hip": (lambda sc: hip(sc, 4 / 12, 24),
                   {"exterior": WHITE, "soffit": WHITE, "fascia": WHITE, "roofing": 0x6B6E72, "door": 0x2D3E5C}),
     "ranch-gable": (lambda sc: gable(sc, 4 / 12, 24, 12),
@@ -235,11 +230,10 @@ def screenshot(html: Path, png: Path, cam, target):
     tmp.unlink()
 
 
-LABELS = {"mcm-shed": "MCM shed (clerestory to the street, solar plane to the rear)",
-          "mcm-butterfly": "MCM butterfly (clerestories both sides)",
-          "mcm-gable": "MCM low gable (Eichler-like, glazed gable ends)",
-          "mcm-shed-vault": "MCM shed, 2:12: only the lounge vaulted (clerestory over the lounge), attic elsewhere",
-          "ranch-hip": "Ranch, 4:12 hip", "ranch-gable": "Ranch, 4:12 gable, board-and-batten colours"}
+LABELS = {"mcm-shed": "MCM shed, 3:12 shingles (clerestory to the street, solar plane to the rear)",
+          "mcm-gable": "MCM gable, 3:12 shingles (Eichler-like, glazed gable ends)",
+          "mcm-shed-vault": "MCM shed, 3:12 shingles: only the lounge vaulted, attic elsewhere",
+          "ranch-hip": "Ranch, 4:12 hip, shingles", "ranch-gable": "Ranch, 4:12 gable, shingles, board-and-batten colours"}
 
 
 def contact_sheet(view: str):
@@ -273,7 +267,7 @@ def main():
         print("styled", key)
     for view in VIEWS:
         contact_sheet(view)
-    section(2 / 12, OUT / "exterior-mcm-shed-vault-section.png")
+    section(3 / 12, OUT / "exterior-mcm-shed-vault-section.png")
 
 
 if __name__ == "__main__":
