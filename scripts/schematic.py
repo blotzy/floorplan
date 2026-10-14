@@ -112,7 +112,7 @@ OPENINGS = [
     ("south hall wall", 1070.0, 1106.0, "door", "a", +1),   # primary bedroom
     ("pantry|laundry", 579.2, 609.2, "bifold", "a", +1),    # mech closet (louvered)
     ("bath|wic", 993.5, 1023.5, "door", "b", +1),           # primary bath
-    ("suite|primary", 463.0, 491.7, "cased"),               # walk-in closet entry
+    ("suite|primary", 463.0, 499.0, "cased"),               # walk-in closet entry, 36"
 ]
 
 # =============================================================================
@@ -330,7 +330,7 @@ def wic(sh):
         sh.line((a, y + d * 12), (b, y + d * 12), fu)
         sh.text("HANG", (a + b) / 2, y + d * 18, 3.0)
 
-    hang(x0, 1031.0, y0, +1)                # hall wall, short of the entry from the bedroom
+    hang(x0, 1023.0, y0, +1)                # hall wall, ends in line with the bath door: 3' path from the entry
     hang(x0, 989.0, y1, -1)                 # bath wall, short of the bath door
     sh.rect(x0, y0 + 24, x0 + 14, y1 - 24, fu)   # shoe / folded shelves on the end wall
     sh.text("SHELVES", x0 + 7, (y0 + y1) / 2, 2.2, rot=90)
