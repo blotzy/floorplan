@@ -46,10 +46,10 @@ def walls(walls, wall_x):
 
 
 def openings(ops):
-    """Bath door hinged on the laundry side, so it opens clear of the shower entrance."""
+    """Bath door hinged on the strip side: its swing clears the sink and the shower glass."""
     for i, o in enumerate(ops):
         if o[0] == "south hall wall" and o[1] == 838.0:
-            ops[i] = ("south hall wall", 838.0, 866.0, "door", "a", +1)
+            ops[i] = ("south hall wall", 838.0, 866.0, "door", "b", +1)
 
 
 def utility(sh, wall_x, linen):
@@ -61,27 +61,28 @@ def utility(sh, wall_x, linen):
     for d, lbl in ((27, "DRYER"), (27, "WASHER"), (25, "SINK")):
         sh.rect(l1 - 30, y - d, l1, y, eq); sh.text(lbl, l1 - 15, y - d / 2, 3.0, rot=90); y -= d
     sh.rect(l0, 495.0, l0 + 4, 515.0, eq); sh.text("PANEL", l0 + 12, 505.0, 2.5, rot=90)
-    # the bath: the powder room as it is (toilet on the back wall, small sink by the door) ...
     b0, b1 = S.face("laundry|powder", +1), wall_x - S.INT / 2
-    back = S.face("powder|alcove", -1)
-    sx = S.face("utility|bath", -1)                       # old powder room's west face: shower starts here
-    tx = (b0 + sx) / 2 + 2
-    S.wc(sh, tx - 9, back - 28, tx + 9, back)
+    back = S.face("powder|alcove", -1)                    # plumbing wall shared with the laundry alcove
+    sx = S.face("utility|bath", -1)                       # old powder room's west face / start of the strip
+    nook = S.face("bath|wic", -1)
+    # wall-hung sink on the laundry-side wall (outside the door swing)
     sh.rect(b0, 468.0, b0 + 12, 486.0, eq); sh.text("LAV", b0 + 6, 477.0, 2.5, rot=90)
-    # ... plus a 36" shower strip taken from the closet
-    sy0 = srow + 18 if linen else srow
-    if linen:                                             # linen cabinet at the hall end of the strip
-        sh.rect(sx, srow, b1, sy0, "A-FURN"); sh.line((sx, srow), (b1, sy0), "A-FURN")
-        sh.text("LINEN", (sx + b1) / 2, srow + 9, 2.5)
-    nook = S.face("bath|wic", -1)                          # the strip runs 8" past the back wall:
-    sh.rect(sx, sy0, b1, back, eq)                        # a recessed niche in the shower
-    sh.rect(S.face("utility|bath", +1), back, b1, nook, eq); sh.text("NICHE", (sx + b1) / 2 + 3, back + 4, 2.0)
-    S.glass(sh, (sx, sy0 + 24), (sx, back))               # glass panel, 24" opening at the hall end
-    sh.text("SHOWER", (sx + b1) / 2, (sy0 + back) / 2, 3.2, rot=90)
-    hx = (sx + b1) / 2
+    # shower where the powder room's toilet was: 47" x 36" on the back wall, door on its front
+    sy = back - 36
+    sh.rect(b0, sy, sx, back, eq)
+    S.glass(sh, (b0, sy), (sx - 26, sy))                  # fixed glass + 24" door at the strip end
+    sh.text("SHOWER", (b0 + sx) / 2, back - 18, 3.2)
+    hx = (b0 + sx) / 2
     sh.circle((hx, back - 3), 2.0, eq)
-    sh.heads.append((hx, back, 0.0, -1.0))                # head on the back (plumbing) wall
-    S.room_label(sh, "BATH", b0, srow, b1, back, cx=tx - 2, cy=497.0, h=3.6)
+    sh.heads.append((hx, back, 0.0, -1.0))
+    # toilet in the strip taken from the closet, on the back wall; niche shelf above the tank
+    tx = (sx + b1) / 2
+    S.wc(sh, tx - 15, back - 28, tx + 15, back)
+    sh.rect(S.face("utility|bath", +1), back, b1, nook, eq); sh.text("NICHE", tx + 2, back + 4, 2.0)
+    if linen:                                             # shallow linen cabinet at the hall end
+        sh.rect(sx + 2, srow, b1, srow + 13, "A-FURN"); sh.line((sx + 2, srow), (b1, srow + 13), "A-FURN")
+        sh.text("LINEN", tx, srow + 6.5, 2.5)
+    S.room_label(sh, "BATH", b0, srow, b1, back, cx=b0 + 28, cy=srow + 20, h=3.6)
 
 
 def closet(sh, wall_x):
@@ -103,7 +104,7 @@ def closet(sh, wall_x):
     S.room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=5.0)
 
 
-VARIANTS = {"shower-strip": (910.0, False), "shower-linen": (910.0, True)}
+VARIANTS = {"full-bath": (910.0, True)}
 
 
 def main():
