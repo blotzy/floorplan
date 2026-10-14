@@ -51,7 +51,7 @@ The block is three strips, each with its own door off the main lobby (no side ha
 - Ceiling fans need downrods sized for the 10' ceilings.
 - Keep the plan-south roof (true azimuth ~201°, SSW, which is fine for solar) free of vents and skylights for future solar; no tall trees south of the house.
 - Solar mounts and conduit on the roof, plus a conduit run to a future battery location.
-- **Class A asphalt shingle roof** over the sealed attic (unvented deck allowed by CRC R806.5). Get the roofer to confirm in writing that the shingle warranty covers an unvented deck; a light-coloured cool-roof shingle is preferred. Any roof style must stay at a slope shingles allow: no butterfly or near-flat roofs, and double underlayment on the shallower slopes. A midcentury shed or gable works at a low-but-shingle-friendly slope (see the exterior experiments).
+- **Class A asphalt shingle roof** over the sealed attic (unvented deck allowed by CRC R806.5). Get the roofer to confirm in writing that the shingle warranty covers an unvented deck; a dark shingle is preferred; pick a cool-rated (reflective-granule) dark shingle and confirm it meets the Title 24 roofing requirements. Any roof style must stay at a slope shingles allow: no butterfly or near-flat roofs, and double underlayment on the shallower slopes. A midcentury shed or gable works at a low-but-shingle-friendly slope (see the exterior experiments).
 
 ## Sealed attic and storage
 
