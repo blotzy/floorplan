@@ -47,6 +47,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | `source_files/survey/` | Topographic survey (DWG, DXF, PDF) |
 | `scripts/experiment_exterior.py` | Exterior style alternatives (roof form, eaves, colours) on the 3D model (`renders/experiments/`) |
 | `scripts/experiment_utility_layouts.py` | Common bath and laundry block with the mech closet moved behind the bath and the washer/dryer in the mech closet's spot (`utility-swap.png`) |
+| `scripts/experiment_south_windows.py` | Dining and kitchen windows on the south wall: three equal windows (main plan), the earlier 10' pair, matched sills, a ribbon, and floor-to-head dining windows (`south-windows-compare.png`, plus a 3D model each) |
 | `renders/` | Plan renders and the 3D model |
 
 Viewing and measuring: open the DXFs in QCAD (View → Auto Zoom; Snap → Endpoint; Info → Distance). Units are inches.
