@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-An upside-down U: the sink on the south wall under the window, the range and fridge on the **west** wall (backing onto the laundry), and a peninsula on the east side with **three stools** facing the dining area. The aisle inside the U is about **4'** (48" is the two-cook minimum).
+An upside-down U: the sink on the south wall under the window (its sill just above the backsplash, its head in line with the other windows), the range and fridge on the **west** wall (backing onto the laundry), and a peninsula on the east side with **three stools** facing the dining area. The aisle inside the U is about **4'** (48" is the two-cook minimum).
 
 **West wall, from the sink corner:** corner counter → about 17" floor-to-ceiling cabinet → 15" counter → 30" induction range → 12" counter → 15" floor-to-ceiling cabinet → 36" fridge (counter-depth or all-refrigerator column) at the north end, next to the pantry door. The two tall cabinets frame the range and its hood; the landing counters on either side meet the usual 12"/15" minimums. The sink-wall counter runs into the corner.
 
