@@ -209,7 +209,7 @@ STYLES = {
     "mcm-shed": (lambda sc: shed(sc, 3 / 12, 36),
                  {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3C3F44, "door": 0xD9792B}),
     "mcm-gable": (lambda sc: low_gable(sc, 3 / 12, 36),
-                  {"exterior": 0x4F5358, "soffit": WOOD, "fascia": BLACK, "roofing": LIGHT_SHINGLE, "door": 0xE8B33C}),
+                  {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": LIGHT_SHINGLE, "door": 0xD9792B}),
     "mcm-shed-vault": (lambda sc: shed_vault(sc, 3 / 12, 36),
                        {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3C3F44, "door": 0xD9792B}),
     "ranch-hip": (lambda sc: hip(sc, 4 / 12, 24),
