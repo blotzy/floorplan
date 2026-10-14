@@ -32,6 +32,8 @@ class Scene:
         self.boxes = defaultdict(list)     # material -> [[x0,y0,x1,y1,z0,z1], ...]
         self.cyls = defaultdict(list)      # material -> [[cx,cy,r,z0,z1], ...]
         self.polys = defaultdict(list)     # material -> [[[x,y],...], z0, z1]
+        self.tris = defaultdict(list)      # material -> [[[x,y,z] x3], ...] (roofs, gable ends)
+        self.mat = {}                      # material overrides, e.g. {"exterior": {"color": 0xffffff}}
         self.labels = []                   # [text, x, y]
         self.bed_sizes = []
 
@@ -89,13 +91,23 @@ def build_schematic() -> Scene:
     sc.boxes["post"].append([w0[2] - 30, w0[1] - 0.5, w0[2] - 12, w0[1], 10, 16])   # lit house numbers
 
     # ---- walls: a face along every edge of the wall outline ----------------------
+    # Faces on the house's outer perimeter are "exterior" (siding colour), the rest "wall".
+    outer = [("y", N_, px, W_), ("y", S_, E_, W_), ("x", E_, py, S_), ("x", W_, N_, S_),
+             ("y", py, E_, px), ("x", px, N_, py)]
+    def face_mat(a, b):
+        for axis, v, lo, hi in outer:
+            k = 1 if axis == "y" else 0
+            if abs(a[k] - v) < 0.1 and abs(b[k] - v) < 0.1 and \
+                    lo - 0.1 <= min(a[1 - k], b[1 - k]) and max(a[1 - k], b[1 - k]) <= hi + 0.1:
+                return "exterior"
+        return "wall"
     geom = S.wall_geometry()
     for poly in getattr(geom, "geoms", [geom]):
         for ring in [poly.exterior, *poly.interiors]:
             pts = list(ring.coords)
             for a, b in zip(pts, pts[1:]):
                 if abs(a[0] - b[0]) + abs(a[1] - b[1]) > 0.05:
-                    sc.quad("wall", a, b, 0, CEIL)
+                    sc.quad(face_mat(a, b), a, b, 0, CEIL)
     # Openings: headers; windows also get a sill and glass; the slider is glass.
     for o in S.OPENINGS:
         name, a, b, kind = o[0], o[1], o[2], o[3]
@@ -103,12 +115,12 @@ def build_schematic() -> Scene:
         def seg(v):
             return ((a, c + v), (b, c + v)) if axis == "x" else ((c + v, a), (c + v, b))
         for v in (-t / 2, t / 2):
-            sc.quad("wall", *seg(v), HEAD, CEIL)
+            sc.quad(face_mat(*seg(v)), *seg(v), HEAD, CEIL)
         if kind == "window":
             sill = 0.0 if name == "porch front" else SILL      # sidelight beside the front door
             if sill:
                 for v in (-t / 2, t / 2):
-                    sc.quad("wall", *seg(v), 0, sill)
+                    sc.quad(face_mat(*seg(v)), *seg(v), 0, sill)
             sc.quad("glass", *seg(0), sill, HEAD)
         elif kind == "slider":
             sc.quad("glass", *seg(0), 0, HEAD)
@@ -230,6 +242,9 @@ def write_obj(sc: Scene, path: Path):
     for mat, items in sc.quads.items():
         for x0, y0, x1, y1, z0, z1 in items:
             face(P(x0, y0, z0), P(x1, y1, z0), P(x1, y1, z1), P(x0, y0, z1))
+    for mat, items in sc.tris.items():
+        for tri in items:
+            face(*[P(x, y, z) for x, y, z in tri])
     for mat, items in sc.boxes.items():
         for x0, y0, x1, y1, z0, z1 in items:
             c = [P(x, y, z) for z in (z0, z1) for x, y in ((x0, y0), (x1, y0), (x1, y1), (x0, y1))]
@@ -269,6 +284,7 @@ HTML = r"""<!doctype html>
   <label><input type="checkbox" id="ceil"> Ceiling</label>
   <label><input type="checkbox" id="furn" checked> Furniture / fixtures</label>
   <label><input type="checkbox" id="labels" checked> Room labels</label>
+  <label id="roofrow"><input type="checkbox" id="roofvis" checked> Roof</label>
   <label><input type="checkbox" id="roofsh" checked> Roof shadows (24" eaves)</label>
   <label>Sun: <select id="day">
     <option value="172">Jun 21</option><option value="80">Mar 20 / Sep 22</option>
@@ -306,7 +322,8 @@ sun.shadow.mapSize.set(4096,4096); sun.shadow.bias = -0.0005; sun.shadow.normalB
 scene.add(sun); scene.add(sun.target);
 
 const M = {
-  wall:{color:0xf4f1ea, side:THREE.DoubleSide},
+  wall:{color:0xf4f1ea, side:THREE.DoubleSide}, exterior:{color:0xf4f1ea, side:THREE.DoubleSide},
+  soffit:{color:0xeeeae4}, fascia:{color:0x3b3f44}, door:{color:0x5a4634},
   glass:{color:0x9cc8e8, transparent:true, opacity:0.35, side:THREE.DoubleSide},
   fence:{color:0x6b6f73, side:THREE.DoubleSide},
   ground:{color:0xc9c2a8}, slab:{color:0xb9a98f}, concrete:{color:0xbdbdbd},
@@ -320,11 +337,12 @@ const mat = k => new THREE.MeshStandardMaterial(Object.assign(
   {roughness:0.9, polygonOffset:true, polygonOffsetFactor:1, polygonOffsetUnits:1}, M[k]||{color:0xcccccc}));
 // Dark outlines on walls, fences and boxes so corners and wall ends read clearly.
 const EDGE = new THREE.LineBasicMaterial({color:0x3a3d42});
-const EDGED = new Set(['wall', 'fence']);
+const EDGED = new Set(['wall', 'exterior', 'fence']);
+for (const [k, v] of Object.entries(D.mat || {})) M[k] = Object.assign({}, M[k] || {}, v);   // per-model colours
 // plan (x west, y south, z up) in inches -> three (x = west, y = up, z = north).
 // three.js is right-handed, so north must be +z or the model comes out mirrored.
 const V = (x,y,z) => new THREE.Vector3(x*IN, z*IN, -y*IN);
-const groups = {furn:new THREE.Group(), ceil:new THREE.Group(), labels:new THREE.Group()};
+const groups = {furn:new THREE.Group(), ceil:new THREE.Group(), labels:new THREE.Group(), roof:new THREE.Group()};
 Object.values(groups).forEach(g=>scene.add(g));
 
 for (const [k, items] of Object.entries(D.quads)) {
@@ -370,6 +388,17 @@ for (const [text,x,y,z] of D.labels) {
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 256, 64);
   const s = new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c), depthTest:false}));
   s.scale.set(8, 2, 1); s.position.set(x*IN, z || 9, -y*IN); s.renderOrder = 10; groups.labels.add(s);
+}
+// Roofs, gable ends and clerestories as triangles (experiments; the base model has none).
+for (const [k, tris] of Object.entries(D.tris || {})) {
+  const pos = [];
+  for (const t of tris) for (const [x,y,z] of t) pos.push(...V(x,y,z).toArray());
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals();
+  const material = mat(k); material.side = THREE.DoubleSide;
+  const m = new THREE.Mesh(g, material); m.castShadow = m.receiveShadow = k !== 'glass';
+  groups.roof.add(m);
+  if (k !== 'glass') groups.roof.add(new THREE.LineSegments(new THREE.EdgesGeometry(g, 20), EDGE));
 }
 groups.ceil.visible = false;
 // Invisible roof that still casts shadows (hidden objects don't cast in
@@ -482,6 +511,8 @@ document.getElementById('walk').onclick = () => {
 if (location.hash === '#touchwalk') startTouchWalk();         // test hook
 const bind = (id, g) => document.getElementById(id).onchange = e => g.visible = e.target.checked;
 bind('ceil', groups.ceil); bind('furn', groups.furn); bind('labels', groups.labels); bind('roofsh', roofCaster);
+bind('roofvis', groups.roof);
+if (!Object.keys(D.tris || {}).length) document.getElementById('roofrow').style.display = 'none';
 const clock = new THREE.Clock();
 renderer.setAnimationLoop(()=>{
   const dt = clock.getDelta();
@@ -507,7 +538,7 @@ addEventListener('resize', ()=>{ camera.aspect = innerWidth/innerHeight; camera.
 def write_model(sc: Scene, out_dir: Path, meta: dict):
     out_dir.mkdir(parents=True, exist_ok=True)
     data = {"quads": sc.quads, "boxes": sc.boxes, "cyls": sc.cyls, "polys": sc.polys,
-            "labels": sc.labels, **meta, "roof_z": CEIL + 14.0}
+            "tris": sc.tris, "mat": sc.mat, "labels": sc.labels, **meta, "roof_z": CEIL + 14.0}
     (out_dir / "house.html").write_text(HTML.replace("__DATA__", json.dumps(data)))
     write_obj(sc, out_dir / "house.obj")
     print("walls", len(sc.quads["wall"]), "windows", len(sc.quads["glass"]),
