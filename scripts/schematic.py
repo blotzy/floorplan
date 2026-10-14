@@ -83,7 +83,7 @@ WALLS = [
 ]
 
 # Openings: (wall name, from, to, kind, hinge, swing)
-#   kind: door | slider | bifold | window | cased
+#   kind: door | slider | bifold | window | cased | pocket (hinge = pocket side)
 #   hinge: "a" = at `from`, "b" = at `to`;  swing: +1 / -1 along the wall normal
 #   (normal = +y for "x" walls, +x for "y" walls).
 OPENINGS = [
@@ -105,6 +105,7 @@ OPENINGS = [
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
     ("bedroom hall wall", 867.5, 897.5, "door", "b", -1),   # common bath
+    ("c.bath|guest", 342.0, 372.0, "pocket", "a", 0),      # guest en-suite: pocket door into the common bath
     ("bedroom hall wall", 966.0, 1002.0, "door", "a", -1),  # guest
     ("bedroom hall wall", 1090.0, 1126.0, "door", "a", -1), # office
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
@@ -445,6 +446,11 @@ def build() -> Sheet:
                    P(a + 3 * q, v0 + swing * 10), P(b, v0)]
             for p0, p1 in zip(pts, pts[1:]):
                 sh.line(p0, p1, "A-DOOR")
+        elif kind == "pocket":             # leaf slid into the wall on the `hinge` side
+            w = b - a
+            p0, p1 = (a - w, a) if o[4] == "a" else (b, b + w)
+            sh.line(P(p0, 0.0), P(p1, 0.0), "A-DOOR")
+            sh.msp.add_line(P(a, 0.0), P(b, 0.0), dxfattribs={"layer": "A-DOOR", "linetype": "DASHED"})
         # cased openings: just the gap
 
     # ---- rooms: labels with clear sizes ---------------------------------------
@@ -529,7 +535,7 @@ def build() -> Sheet:
 
     open_mid = (N_IN + hall_n - 24) / 2     # gym, guest, office: head wall from the window side to the closets
     bed(face("lounge|gym", +1), open_mid, 60, +1)
-    bed(face("c.bath|guest", +1), open_mid, 60, +1)
+    bed(face("guest|office", -1), open_mid, 60, -1)   # guest: head on the office wall, clear of the bath door
     bed(W_IN, open_mid, 60, -1)
     bed(W_IN, (srow + S_IN) / 2, 76, -1)   # primary: the whole west wall is open
 
