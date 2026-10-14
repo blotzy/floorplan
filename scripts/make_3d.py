@@ -504,6 +504,11 @@ camera.position.set(ctr.x - 30, 70, ctr.z + 75);
 const orbit = new OrbitControls(camera, renderer.domElement); orbit.target.copy(ctr); orbit.update();
 orbit.panSpeed = 1.75;                   // right-drag pans faster...
 orbit.screenSpacePanning = false;        // ...and slides along the ground instead of up into the sky
+// Trackpad pinches arrive as ctrl+wheel events with tiny deltas, so they zoom far slower than a
+// mouse wheel; boost the zoom speed for those events only.
+const PINCH_ZOOM = 6;
+renderer.domElement.addEventListener('wheel', e => { orbit.zoomSpeed = e.ctrlKey ? PINCH_ZOOM : 1; },
+                                     {capture: true, passive: true});
 // Two-finger touch drags pan; the pinch zoom only kicks in once the fingers clearly spread or
 // close, so a plain drag doesn't bob the camera up and down. zoomSpeed 0 (not enableZoom
 // false) keeps OrbitControls tracking the finger distance, so zoom resumes without a jump.
