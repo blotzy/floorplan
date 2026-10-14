@@ -2,20 +2,21 @@
 # requires-python = ">=3.10"
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
-"""Experiment: turn the powder room into a full bath with a shower stall.
+"""Experiment: turn the powder room into a full bath with a shower stall, taking a little of
+the walk-in closet. The laundry keeps its side-by-side washer/dryer/sink alcove (only the
+folding counter goes).
 
-The powder room takes over the laundry's washer/dryer alcove behind it, so the bath runs the
-full depth of the block, and the laundry/powder wall moves ~4.5" into the laundry so a toilet
-fits on the plumbing wall with 24" clear in front (bath 52" wide, laundry 60"). The bath door
-swings toward the laundry wall. From the hall: lavatory, toilet, then a 52" x 36" shower across
-the back with a small high window. No folding counter in the laundry.
+The powder room widens west into the east end of the walk-in closet (a new partition replaces
+the old plumbing wall between them). From the door: lavatory on the laundry-side wall past the
+door swing, toilet on the back wall (the plumbing wall shared with the laundry alcove), and the
+The powder room stays as it is (toilet on the back wall, small sink by the door) and gains a
+36"-wide shower strip taken from the east end of the walk-in closet (~3'; closet ~12'-4"
+long). Glass panel with an opening at the hall end; head on the back (plumbing) wall. The
+jetted tub's pump access panel is on the closet side, just past the new bath, with the
+closet's hanging stopping short of it.
 
-  side-by-side  washer + dryer side by side on the laundry's plumbing wall, sink beside them
-                (about a 30" aisle in front of the machines: tight).
-  stacked       stacked washer/dryer in the back corner, sink beside it, laundry window moved
-                over the open floor; the panel wall and floor stay free for storage.
-
-Both keep the mechanical closet's bifold and the subpanel's working space clear.
+  shower-strip  36" x 5'-6" walk-in shower filling the strip
+  shower-linen  36" x 48" shower at the back, linen cabinet at the hall end
 
 Writes renders/experiments/powder-bath-<variant>.png (+ DXF) and a 3D model per variant.
 
@@ -31,81 +32,96 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import make_3d as M  # noqa: E402
 import schematic as S  # noqa: E402
 
-BASE_WALLS, BASE_OPENINGS, BASE_BLOCK = copy.deepcopy(S.WALLS), copy.deepcopy(S.OPENINGS), S.utility_block
-WALL_C = 815.5                     # laundry | bath wall centreline (was 820): bath 52", laundry 60"
+BASE = (copy.deepcopy(S.WALLS), copy.deepcopy(S.OPENINGS), S.utility_block, S.wic)
 EQ = "A-EQPM"
 
 
-def walls_and_openings(walls, openings, laundry_window):
-    walls[:] = [w for w in walls if w[0] != "powder|alcove"]
+def walls(walls, wall_x):
+    """Partition between the new bath and the closet at x = wall_x; the old plumbing wall
+    now only runs from the powder/alcove wall to the rear (laundry alcove | primary bath)."""
     for i, w in enumerate(walls):
-        if w[0] == "laundry|powder":
-            walls[i] = (w[0], w[1], WALL_C, w[3], S.S_IN, w[5])     # full depth now
-    for i, o in enumerate(openings):
-        if o[0] == "south" and o[1] == 778.0:
-            openings[i] = ("south", *laundry_window, "window")       # laundry window moves
+        if w[0] == "utility|bath":
+            walls[i] = (w[0], w[1], w[2], S.face("powder|alcove", -1), w[4], w[5])
+    walls.append(("bath|closet", "y", wall_x, 457.0, S.wall_info("bath|wic")[1], S.INT))
+
+
+def openings(ops):
+    """Bath door hinged on the laundry side, so it opens clear of the shower entrance."""
+    for i, o in enumerate(ops):
         if o[0] == "south hall wall" and o[1] == 838.0:
-            openings[i] = ("south hall wall", 838.0, 866.0, "door", "a", +1)   # swings to the laundry wall
-    openings.append(("south", 834.0, 858.0, "window"))               # small high window over the shower
+            ops[i] = ("south hall wall", 838.0, 866.0, "door", "a", +1)
 
 
-def bath(sh):
-    b0, b1 = S.face("laundry|powder", +1), S.face("utility|bath", -1)
-    srow = S.face("south hall wall", +1)
-    S.room_label(sh, "BATH", b0, srow, b1, S.S_IN, cx=b0 + 17, cy=530.0, h=4.0)
-    S.vanity(sh, b1 - 20, srow + 31, b1, srow + 51, "LAV", rot=90)                # just past the door swing
-    S.wc(sh, b1 - 28, 528.0, b1, 558.0)                                            # 24" clear in front
-    sy = S.S_IN - 36                                                               # 52" x 36" shower
-    sh.rect(b0, sy, b1, S.S_IN, EQ)
-    sh.line((b0, sy + 1), (b1, sy + 1), EQ)                                        # door / curtain line
-    sh.text("SHOWER", (b0 + b1) / 2, S.S_IN - 18, 3.5)
-    sh.circle((b1 - 3, S.S_IN - 18), 2.0, EQ)
-    sh.heads.append((b1, S.S_IN - 18, -1.0, 0.0))                                  # head on the plumbing wall
+def utility(sh, wall_x, linen):
+    eq, srow = EQ, S.face("south hall wall", +1)
+    # laundry: alcove unchanged, folding counter gone
+    l0, l1 = S.face("pantry|laundry", +1), S.face("utility|bath", -1)
+    S.room_label(sh, "LAUNDRY", l0, srow, S.face("laundry|powder", -1), S.S_IN, cy=520.0, h=5.0)
+    y = S.S_IN
+    for d, lbl in ((27, "DRYER"), (27, "WASHER"), (25, "SINK")):
+        sh.rect(l1 - 30, y - d, l1, y, eq); sh.text(lbl, l1 - 15, y - d / 2, 3.0, rot=90); y -= d
+    sh.rect(l0, 495.0, l0 + 4, 515.0, eq); sh.text("PANEL", l0 + 12, 505.0, 2.5, rot=90)
+    # the bath: the powder room as it is (toilet on the back wall, small sink by the door) ...
+    b0, b1 = S.face("laundry|powder", +1), wall_x - S.INT / 2
+    back = S.face("powder|alcove", -1)
+    sx = S.face("utility|bath", -1)                       # old powder room's west face: shower starts here
+    tx = (b0 + sx) / 2 + 2
+    S.wc(sh, tx - 9, back - 28, tx + 9, back)
+    sh.rect(b0, 468.0, b0 + 12, 486.0, eq); sh.text("LAV", b0 + 6, 477.0, 2.5, rot=90)
+    # ... plus a 36" shower strip taken from the closet
+    sy0 = srow + 18 if linen else srow
+    if linen:                                             # linen cabinet at the hall end of the strip
+        sh.rect(sx, srow, b1, sy0, "A-FURN"); sh.line((sx, srow), (b1, sy0), "A-FURN")
+        sh.text("LINEN", (sx + b1) / 2, srow + 9, 2.5)
+    nook = S.face("bath|wic", -1)                          # the strip runs 8" past the back wall:
+    sh.rect(sx, sy0, b1, back, eq)                        # a recessed niche in the shower
+    sh.rect(S.face("utility|bath", +1), back, b1, nook, eq); sh.text("NICHE", (sx + b1) / 2 + 3, back + 4, 2.0)
+    S.glass(sh, (sx, sy0 + 24), (sx, back))               # glass panel, 24" opening at the hall end
+    sh.text("SHOWER", (sx + b1) / 2, (sy0 + back) / 2, 3.2, rot=90)
+    hx = (sx + b1) / 2
+    sh.circle((hx, back - 3), 2.0, eq)
+    sh.heads.append((hx, back, 0.0, -1.0))                # head on the back (plumbing) wall
+    S.room_label(sh, "BATH", b0, srow, b1, back, cx=tx - 2, cy=497.0, h=3.6)
 
 
-def laundry_side_by_side(sh):
-    l0, l1 = S.face("pantry|laundry", +1), S.face("laundry|powder", -1)
-    srow = S.face("south hall wall", +1)
-    S.room_label(sh, "LAUNDRY", l0, srow, l1, S.S_IN, cx=l0 + 15, cy=545.0, h=4.5)
-    y = 520.0
-    for lbl in ("WASHER", "DRYER"):                                                # on the plumbing wall
-        sh.rect(l1 - 30, y, l1, y + 27, EQ); sh.text(lbl, l1 - 15, y + 13.5, 3.0, rot=90); y += 27
-    S.vanity(sh, l1 - 22, 577.0, l1, 602.0, "SINK", rot=90)
-    sh.rect(l0, 495.0, l0 + 4, 515.0, EQ); sh.text("PANEL", l0 + 12, 505.0, 2.5, rot=90)
+def closet(sh, wall_x):
+    x0, x1 = wall_x + S.INT / 2, S.face("suite|primary", -1)
+    y0, y1 = S.face("south hall wall", +1), S.face("bath|wic", -1)
+    fu = "A-FURN"
+
+    def hang(a, b, y, d):
+        sh.rect(a, min(y, y + d * 24), b, max(y, y + d * 24), fu)
+        sh.line((a, y + d * 12), (b, y + d * 12), fu)
+        sh.text("HANG", (a + b) / 2, y + d * 18, 3.0)
+
+    hang(x0, 1031.0, y0, +1)
+    hang(x0 + 16, 989.0, y1, -1)                          # stops short: tub access panel below
+    sh.rect(x0, y0 + 24, x0 + 14, y1 - 24, fu)
+    sh.text("SHELVES", x0 + 7, (y0 + y1) / 2, 2.2, rot=90)
+    sh.rect(x0 + 1, y1 - 2, x0 + 13, y1, "A-EQPM")       # jetted-tub pump access (tub's north end)
+    sh.text("TUB ACCESS", x0 + 7, y1 - 8, 2.2)
+    S.room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=5.0)
 
 
-def laundry_stacked(sh):
-    l0, l1 = S.face("pantry|laundry", +1), S.face("laundry|powder", -1)
-    srow = S.face("south hall wall", +1)
-    S.room_label(sh, "LAUNDRY", l0, srow, l1, S.S_IN, cy=520.0, h=4.5)
-    sh.rect(l1 - 27, S.S_IN - 30, l1, S.S_IN, EQ)                                 # stacked W/D, back corner
-    sh.text("W/D", l1 - 13.5, S.S_IN - 19, 3.0); sh.text("STACKED", l1 - 13.5, S.S_IN - 12, 2.2)
-    S.vanity(sh, l1 - 22, S.S_IN - 57, l1, S.S_IN - 32, "SINK", rot=90)
-    sh.rect(l0, 495.0, l0 + 4, 515.0, EQ); sh.text("PANEL", l0 + 12, 505.0, 2.5, rot=90)
-    sh.rect(l1 - 16, srow + 34, l1, srow + 70, "A-FURN")                          # broom/storage cabinet
-    sh.text("STORAGE", l1 - 8, srow + 52, 2.2, rot=90)
-
-
-VARIANTS = {
-    "side-by-side": (laundry_side_by_side, (763.0, 799.0)),
-    "stacked": (laundry_stacked, (756.0, 780.0)),
-}
+VARIANTS = {"shower-strip": (910.0, False), "shower-linen": (910.0, True)}
 
 
 def main():
     out = S.RENDERS / "experiments"
-    for key, (laundry, window) in VARIANTS.items():
-        S.WALLS, S.OPENINGS = copy.deepcopy(BASE_WALLS), copy.deepcopy(BASE_OPENINGS)
-        walls_and_openings(S.WALLS, S.OPENINGS, window)
-        S.utility_block = lambda sh, laundry=laundry: (bath(sh), laundry(sh))
+    for key, (wall_x, linen) in VARIANTS.items():
+        S.WALLS, S.OPENINGS = copy.deepcopy(BASE[0]), copy.deepcopy(BASE[1])
+        walls(S.WALLS, wall_x)
+        openings(S.OPENINGS)
+        S.utility_block = lambda sh, wx=wall_x, ln=linen: utility(sh, wx, ln)
+        S.wic = lambda sh, wx=wall_x: closet(sh, wx)
         sh = S.build()
-        sh.text(f"EXPERIMENT: POWDER ROOM -> FULL BATH ({key.upper()} LAUNDRY)", S.LOT_W / 2, S.LOT_D + 115, 10.0)
+        sh.text(f"EXPERIMENT: POWDER ROOM -> FULL BATH ({key.upper()})", S.LOT_W / 2, S.LOT_D + 115, 10.0)
         sh.doc.saveas(S.ROOT / f"Accosting - owner schematic - EXPERIMENT powder bath {key}.dxf")
-        S.render(sh.doc, out / f"powder-bath-{key}.png", 640, 440, 900, 640, width_in=10, dpi=140)
+        S.render(sh.doc, out / f"powder-bath-{key}.png", 660, 440, 1080, 640, width_in=12, dpi=130)
         sc = M.build_schematic()
         M.write_model(sc, out / f"powder-bath-{key}", sc.meta)
         print("built", key)
-    S.WALLS, S.OPENINGS, S.utility_block = BASE_WALLS, BASE_OPENINGS, BASE_BLOCK
+    S.WALLS, S.OPENINGS, S.utility_block, S.wic = BASE
 
 
 if __name__ == "__main__":
