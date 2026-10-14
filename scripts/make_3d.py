@@ -72,11 +72,12 @@ def build_schematic() -> Scene:
     footprint = [[E_, py], [px, py], [px, N_], [W_, N_], [W_, S_], [E_, S_]]
 
     # ---- ground, slab, carport, porch ------------------------------------------
-    sc.polys["ground"].append([[[0, 0], [S.LOT_W, 0], [S.LOT_W, S.LOT_D], [0, S.LOT_D]], -1.0, 0.0])
+    ep = S.EDGE_OF_PAVEMENT                                     # lot plus the parkway out to the street
+    sc.polys["ground"].append([[[0, ep], [S.LOT_W, ep], [S.LOT_W, S.LOT_D], [0, S.LOT_D]], -1.0, 0.0])
     sc.polys["slab"].append([footprint, 0.0, 4.0])
     cx0, cy0, cx1, cy1 = S.CARPORT
     sc.polys["concrete"].append([[[cx0, cy0], [cx1, cy0], [cx1, cy1], [cx0, cy1]], 0.0, 2.0])
-    sc.polys["concrete"].append([[[cx0, 0], [cx1, 0], [cx1, cy0], [cx0, cy0]], 0.0, 1.0])
+    sc.polys["concrete"].append([[list(p) for p in S.driveway_outline()], 0.0, 1.0])
     sc.polys["concrete"].append([[[E_, N_ - 24], [px, N_ - 24], [px, py], [E_, py]], 0.0, 3.0])
     sc.boxes["roof"].append([cx0 - 6, cy0 - 6, cx1, cy1 + 6, 108, 112])
     sc.boxes["post"].append([E_, N_, E_ + 6, N_ + 6, 0, CEIL])        # porch corner post

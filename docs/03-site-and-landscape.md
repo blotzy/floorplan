@@ -5,7 +5,7 @@
 ## Siting and carport
 
 - House pushed west to the side setback: **11'-4"** west side yard (10% of the 113' lot width, rounded up; confirm with the planner).
-- **Carport 18' x 20'** on the east end, two cars side by side, **11'-8"** from the east property line. Clear-span beam with posts only at the corners (no middle post). The driveway is new; the old one is further west, in front of the planned porch and lounge, and goes away. (No curbs or sidewalks on Laurel Drive, so there's no curb cut to deal with.)
+- **Carport 18' x 20'** on the east end, two cars side by side, **11'-8"** from the east property line. Clear-span beam with posts only at the corners (no middle post). The driveway is new: a single-car-width entrance between the parkway street tree and the tree just inside the lot, curving west to open onto the full carport width. The old driveway, further west in front of the planned porch and lounge, goes away. (No curbs or sidewalks on Laurel Drive, so there's no curb cut to deal with.) The street is a little higher than the carport, so the drive runs downhill toward the house: a trench drain or grading at the carport keeps runoff away from the house.
 - Carport: noncombustible framing and finishes; wall space for the EV charger. The exterior meter-main goes where SCE's service point is (the utilities are at the west end), so expect a long run from the panel to the carport charger, or a meter location on the east side if SCE allows.
 
 ## Existing conditions (survey)
@@ -15,7 +15,7 @@ From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.
 - **Slope:** the lot falls about 8 ft from the east line to the west line, and about 4 ft across the house footprint (high at the carport end, low at the primary-suite end and along the rear). A single flat slab would sit well above grade at the west end. The architect and civil engineer choose the foundation (stepped or raised) and grading approach; drainage must carry water around the house toward the street.
 - **Old retaining wall and chimney:** remnants of the previous house. A 2–3 ft retaining wall crosses the house's southeast corner (under the dining area) with a lower terrace behind it, and the old chimney still stands in the planned dining patio. Both come out with demolition, but the grade change they hold remains.
 - **East property-line wall:** a wall runs along the east line from the street back about 43 ft, sitting above our grade (likely retaining the neighbour's side). Confirm ownership and condition; the bin pad and side strip sit beside it.
-- **Driveway and street tree:** the existing driveway is further west than the planned carport driveway (no curbs on the street, so moving it is simple). A parkway street tree sits right in front of the planned driveway; removing or protecting it likely needs County approval.
+- **Driveway and trees:** the existing driveway is further west than the planned carport driveway (no curbs on the street, so moving it is simple). The new drive threads between a parkway street tree and a tree just inside the east side of the lot; keep both protected during construction (root zones, no grade change at the trunks).
 - **Utilities:** water meter and power pole are at the west end of the frontage (in the parkway); the sewer cleanout is at the front, roughly in line with the porch and lounge.
 - **Street:** Laurel Drive right-of-way is 50 ft (25 ft half-width); edge of pavement is about 13 ft in front of the property line.
 

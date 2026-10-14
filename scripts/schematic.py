@@ -47,6 +47,11 @@ E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 # Corner porch notch (outer faces) at the north-east corner.
 PORCH_X, PORCH_Y = 444.1, 289.2      # notch is E..PORCH_X by N..PORCH_Y
 CARPORT = (140.1, N, E, 481.3)       # x0, y0, x1, y1 (18' x 20')
+# Driveway: a 12' entrance between the parkway street tree (~26'-6" from the east line) and the
+# tree inside the lot (~8'-6"), flaring west to the carport's full width. Runs out across the
+# parkway to the edge of pavement (no curb on Laurel Drive).
+DRIVE_IN = (150.0, 290.0)            # entrance edges (x) at the property line
+EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
 PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines N22°23'00"E
 
 # Interior walls: (name, axis, centreline, from, to, thickness).
@@ -306,6 +311,18 @@ def wic(sh):
     room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=5.0)
 
 
+def driveway_outline():
+    """Closed outline of the driveway, parkway apron included (lot inches)."""
+    x0, x1 = DRIVE_IN
+    cx0, cy0, cx1, _ = CARPORT
+    curve = []                                   # west edge: straight out of the entrance, then
+    for i in range(13):                          # bending west into the carport (quadratic)
+        t = i / 12
+        curve.append(((1 - t) ** 2 * x1 + 2 * (1 - t) * t * x1 + t * t * cx1,
+                      (1 - t) ** 2 * 0 + 2 * (1 - t) * t * 170 + t * t * cy0))
+    return [(x0, EDGE_OF_PAVEMENT), (x1, EDGE_OF_PAVEMENT), *curve, (cx0, cy0), (x0, 0.0)]
+
+
 def wall_geometry():
     """All walls as one shapely (Multi)Polygon with the openings cut out."""
     solids = [ext_rect(ax, f, d, a, b) for ax, f, d, a, b in EXT_WALLS.values()]
@@ -494,8 +511,8 @@ def build() -> Sheet:
                           dxfattribs={"layer": "L-SITE", "linetype": "DASHED"})
     sh.text("CARPORT", (cx0 + cx1) / 2, (cy0 + cy1) / 2, 10.0, "A-AREA-IDEN")
     sh.text("18' x 20'", (cx0 + cx1) / 2, (cy0 + cy1) / 2 - 12, 6.5, "A-AREA-IDEN")
-    sh.line((cx0, 0), (cx0, cy0), "L-SITE"); sh.line((cx1, 0), (cx1, cy0), "L-SITE")
-    sh.text("DRIVEWAY", (cx0 + cx1) / 2, 120.0, 9.0, "A-AREA-IDEN")
+    sh.msp.add_lwpolyline(driveway_outline(), close=True, dxfattribs={"layer": "L-SITE"})
+    sh.text("DRIVEWAY", (DRIVE_IN[0] + DRIVE_IN[1]) / 2 + 10, 120.0, 9.0, "A-AREA-IDEN")
     sh.rect(E + 4, N - 24, PORCH_X - 4, N, "L-SITE")                          # porch step
     sh.rect(E, N, E + 6, N + 6, "A-WALL")                                     # porch corner post (carport beam lands here)
     # courtyard
