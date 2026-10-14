@@ -11,8 +11,9 @@ rear wall. The pantry, mech closet, walk-in closet and primary bath are untouche
                 back under a new rear window; all fixtures on the wall shared with the
                 primary bath.
         laundry ~5' galley: sink, washer, dryer on the wall shared with the bath; the panel
-                near the door (its clear space opposite open floor); the mech closet's
-                bifold still opens into it.
+                near the door (its clear space opposite open floor). The mech closet has no
+                door: a wide open (cased) opening onto the galley, so the water heater
+                breathes the laundry's air and nothing swings into the aisle.
   back  laundry in front, bath behind, a 3'-6" passage from the hall down the pantry side.
         passage panel, mech closet bifold and attic hatch; bath door at its end.
         laundry ~6' x 5'-4" off the hall: sink, washer, dryer on the wall shared with the bath.
@@ -88,6 +89,9 @@ def long_plan(ws, ops):
     set_hall_doors(ops, [("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
                          ("south hall wall", 826.0, 854.0, "door", "a", +1)])    # bath
     ops.append(("south", 828.0, 862.0, "window"))                                # over the shower
+    m0 = S.face("pantry|mech", +1)                                               # mech closet: no door,
+    ops[:] = [o for o in ops if o[:2] != ("pantry|laundry", 579.2)]              # a wide open (cased)
+    ops.append(("pantry|laundry", m0 + 3, S.S_IN - 3, "cased"))                  # opening to the laundry
 
 
 def long_fit(sh):
