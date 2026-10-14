@@ -130,7 +130,7 @@ def main():
         sh = S.build()
         sh.text(f"EXPERIMENT: {title}", S.LOT_W / 2, S.LOT_D + 115, 10.0)
         sh.doc.saveas(S.ROOT / f"Accosting - owner schematic - EXPERIMENT utility {key}.dxf")
-        S.render(sh.doc, out / f"utility-{key}.png", 660, 440, 1080, 640, width_in=12, dpi=130)
+        S.render(sh.doc, out / f"utility-{key}.png", 660, 440, 1080, 640, width_in=12, dpi=260)
         sc = M.build_schematic()
         M.write_model(sc, out / f"utility-{key}", sc.meta)
     S.WALLS, S.OPENINGS, S.utility_block = BASE

@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461328.5965625
+2461328.5997337964
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461328.596574074
+2461328.5997337964
   9
 $TDUUPDATE
  40
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{22E7C980-D792-4D2B-AEE2-FEABB79619F3}
+{4C23B96B-3E98-4F12-B495-AAC8802AE4D3}
   9
 $VERSIONGUID
   2
-{4EEB6E3D-AA83-4A02-A0F8-6A88A7684FDB}
+{334890A5-5128-45A0-8D26-8637F8F6BC66}
   9
 $EXTNAMES
 290
@@ -1327,9 +1327,9 @@ ISM
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -1343,9 +1343,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -2635,30 +2635,6 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-PAVE
- 70
-0
- 62
-8
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
-27E
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
 V-SURV-MISC
  70
 0
@@ -2675,31 +2651,7 @@ Continuous
   0
 LAYER
   5
-27F
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-V-SURV-WALL
- 70
-0
- 62
-1
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
-280
+27E
 330
 1
 100
@@ -2723,7 +2675,7 @@ Continuous
   0
 LAYER
   5
-281
+27F
 330
 1
 100
@@ -2736,6 +2688,54 @@ V-SURV-LOT
 0
  62
 5
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+280
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-PAVE
+ 70
+0
+ 62
+8
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+281
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-WALL
+ 70
+0
+ 62
+1
   6
 Continuous
 370
@@ -34305,7 +34305,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-14T21:19:03.934562+00:00
+1.4.4 @ 2026-10-14T21:23:37.669165+00:00
   0
 VISUALSTYLE
   5
@@ -40867,7 +40867,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-14T21:19:04.139277+00:00
+1.4.4 @ 2026-10-14T21:23:37.904137+00:00
   0
 ENDSEC
   0

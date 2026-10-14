@@ -652,8 +652,8 @@ def main():
     sh = build()
     sh.doc.saveas(OUT)
     print("wrote", OUT.name)
-    render(sh.doc, RENDERS / "schematic.png", -40, -110, LOT_W + 140, LOT_D + 130)
-    render(sh.doc, RENDERS / "schematic-zoom.png", E - 20, N - 40, W + 20, S + 30, width_in=24, dpi=110)
+    render(sh.doc, RENDERS / "schematic.png", -40, -110, LOT_W + 140, LOT_D + 130, dpi=220)
+    render(sh.doc, RENDERS / "schematic-zoom.png", E - 20, N - 40, W + 20, S + 30, width_in=24, dpi=250)
     print("rendered")
 
 

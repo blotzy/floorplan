@@ -154,7 +154,7 @@ def main():
             S.LOT_W / 2, S.LOT_D + 115, 10.0)
     sh.doc.saveas(OUT)
     print("wrote", OUT.name)
-    S.render(sh.doc, PNG, -100, -330, S.LOT_W + 160, S.LOT_D + 135, width_in=22, dpi=120)
+    S.render(sh.doc, PNG, -100, -330, S.LOT_W + 160, S.LOT_D + 135, width_in=22, dpi=220)
 
 
 if __name__ == "__main__":
