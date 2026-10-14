@@ -2,17 +2,19 @@
 # requires-python = ">=3.10"
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
-"""Experiment: laundry with everything on the back (window) wall.
+"""Experiment: laundry with the machines on the back wall and the sink on the primary-bath wall.
 
-  back wall  small utility sink under the window, then a front-load washer and dryer side by side, one
-             continuous counter over all of it for folding; upper cabinets either side of
-             the window. Starts clear of the mechanical closet's bifold.
+  back wall  front-load washer and dryer side by side and a base cabinet, one continuous
+             counter over all of it for folding, upper cabinets above. Starts clear of the
+             mechanical closet's bifold. No window: the back wall is solid.
+  sink       a small, shallow utility sink on the wall shared with the primary bath (its
+             supply and drain share that wet wall).
   side wall  the powder-room wall becomes full-height storage (brooms, vacuum, ironing
              board, supplies), kept shallow so the walk to the machines and the panel stays
              open.
   shelves    open wall shelves on the pantry wall (past the panel's clear zone) and on the
              alcove wall behind the powder room.
-  same       walls, doors, window, powder room and electrical panel are unchanged; the
+  same       walls, doors, powder room and electrical panel are unchanged; the
              folding counter on the pantry wall goes away.
 
 Writes renders/experiments/laundry-back-wall.png (+ DXF) and a 3D model.
@@ -21,6 +23,7 @@ Writes renders/experiments/laundry-back-wall.png (+ DXF) and a 3D model.
 """
 from __future__ import annotations
 
+import copy
 import sys
 from pathlib import Path
 
@@ -28,7 +31,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import make_3d as M  # noqa: E402
 import schematic as S  # noqa: E402
 
-BASE = S.utility_block
+BASE = (S.utility_block, copy.deepcopy(S.OPENINGS))
+LAUNDRY_WINDOW = ("south", 778.0, 814.0, "window")
 EQ, FU = "A-EQPM", "A-FURN"
 TALL_D = 18.0            # depth of the tall storage on the powder-room wall
 SINK_W = 14.0            # small utility sink, about half a washer's width...
@@ -56,12 +60,13 @@ def utility(sh):
     lp = S.face("laundry|powder", -1)
     back = S.S_IN
     x = l0 + 18                                           # clear of the mech closet's bifold
-    S.vanity(sh, x, back - SINK_D, x + SINK_W, back, "SINK"); x += SINK_W
     for lbl in ("WASHER", "DRYER"):
         sh.rect(x, back - 30, x + 27, back, EQ); sh.text(lbl, x + 13.5, back - 15, 3.0); x += 27
     sh.rect(x, back - 24, l1, back, FU); sh.text("CAB", (x + l1) / 2, back - 12, 2.5)
-    sh.rect(l0 + 18 + SINK_W, back - 30, l1, back, FU)    # folding counter over the machines and cabinet
-    sh.text("FOLDING COUNTER OVER  /  UPPERS EACH SIDE OF WINDOW", (l0 + 18 + l1) / 2, back - 36, 2.4)
+    sh.rect(l0 + 18, back - 30, l1, back, FU)             # folding counter over the machines and cabinet
+    sh.text("FOLDING COUNTER OVER  /  UPPERS ABOVE", (l0 + 18 + l1) / 2, back - 36, 2.4)
+    sy = back - 30 - 8 - SINK_W                           # sink on the primary-bath wall, just off the counter
+    S.vanity(sh, l1 - SINK_D, sy, l1, sy + SINK_W, "SINK", rot=90)
     t0, t1 = S.face("south hall wall", +1) + 4, S.face("powder|alcove", -1)
     sh.rect(lp - TALL_D, t0, lp, t1, FU)
     sh.text("TALL STORAGE", lp - TALL_D / 2, (t0 + t1) / 2, 2.8, rot=90)
@@ -74,6 +79,7 @@ def utility(sh):
 def main():
     out = S.RENDERS / "experiments"
     S.utility_block = utility
+    S.OPENINGS = [o for o in BASE[1] if o != LAUNDRY_WINDOW]
     sh = S.build()
     sh.text("EXPERIMENT: LAUNDRY ON THE BACK WALL", S.LOT_W / 2, S.LOT_D + 115, 10.0)
     sh.doc.saveas(S.ROOT / "Accosting - owner schematic - EXPERIMENT laundry back wall.dxf")
@@ -81,7 +87,7 @@ def main():
     sc = M.build_schematic()
     M.write_model(sc, out / "laundry-back-wall", sc.meta)
     print("built")
-    S.utility_block = BASE
+    S.utility_block, S.OPENINGS = BASE
 
 
 if __name__ == "__main__":
