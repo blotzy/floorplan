@@ -31,7 +31,8 @@ import schematic as S  # noqa: E402
 BASE = S.utility_block
 EQ, FU = "A-EQPM", "A-FURN"
 TALL_D = 18.0            # depth of the tall storage on the powder-room wall
-SINK_W = 14.0            # small utility sink, about half a washer's width
+SINK_W = 14.0            # small utility sink, about half a washer's width...
+SINK_D = 15.0            # ...and half its depth, so the mech closet's bifold opens clear
 SHELF_D = 12.0
 
 
@@ -55,11 +56,11 @@ def utility(sh):
     lp = S.face("laundry|powder", -1)
     back = S.S_IN
     x = l0 + 18                                           # clear of the mech closet's bifold
-    S.vanity(sh, x, back - 22, x + SINK_W, back, "SINK", rot=90); x += SINK_W
+    S.vanity(sh, x, back - SINK_D, x + SINK_W, back, "SINK"); x += SINK_W
     for lbl in ("WASHER", "DRYER"):
         sh.rect(x, back - 30, x + 27, back, EQ); sh.text(lbl, x + 13.5, back - 15, 3.0); x += 27
     sh.rect(x, back - 24, l1, back, FU); sh.text("CAB", (x + l1) / 2, back - 12, 2.5)
-    sh.rect(l0 + 18, back - 30, l1, back, FU)             # continuous folding counter over all of it
+    sh.rect(l0 + 18 + SINK_W, back - 30, l1, back, FU)    # folding counter over the machines and cabinet
     sh.text("FOLDING COUNTER OVER  /  UPPERS EACH SIDE OF WINDOW", (l0 + 18 + l1) / 2, back - 36, 2.4)
     t0, t1 = S.face("south hall wall", +1) + 4, S.face("powder|alcove", -1)
     sh.rect(lp - TALL_D, t0, lp, t1, FU)
