@@ -90,7 +90,7 @@ def gable(sc, pitch, ov, rake, glazed_ends=False):
 THK = 10.0                                # MCM roof slab: roofing on top, sloped soffit underneath
 
 
-def slab_roof(sc, ov, under, splits=(), ends="exterior", north="exterior", south="exterior"):
+def slab_roof(sc, ov, under, splits=(), ends="exterior", north="exterior", south="exterior", seams=False):
     """Midcentury roof as a thin slab whose underside height is under(y) (linear between the
     split lines), with sloped soffits, fascia all round, and the walls rising to meet it
     (clerestory glass where the side is "glass")."""
@@ -100,6 +100,12 @@ def slab_roof(sc, ov, under, splits=(), ends="exterior", north="exterior", south
         for dz, mat in ((THK, "roofing"), (0.0, "soffit")):
             quad(sc, mat, [X0, ya, under(ya) + dz], [X1, ya, under(ya) + dz], [X1, yb, under(yb) + dz],
                  [X0, yb, under(yb) + dz])
+        if seams:                                               # standing seams every 18", down the slope
+            za, zb = under(ya) + THK + 0.6, under(yb) + THK + 0.6
+            x = X0 + 9
+            while x < X1:
+                quad(sc, "seam", [x, ya, za], [x + 1.2, ya, za], [x + 1.2, yb, zb], [x, yb, zb])
+                x += 18
         for x in (X0, X1):                                      # rake fascia on the ends
             quad(sc, "fascia", [x, ya, under(ya)], [x, yb, under(yb)], [x, yb, under(yb) + THK], [x, ya, under(ya) + THK])
     for y in (Y0, Y1):                                          # eave fascia on the long sides
@@ -122,9 +128,14 @@ def slab_roof(sc, ov, under, splits=(), ends="exterior", north="exterior", south
 YM = (N + Sth) / 2
 
 
-def shed(sc, pitch, ov):
+def shed(sc, pitch, ov, seams=False):
     """Low at the rear wall, rising to the street with a clerestory along the front."""
-    slab_roof(sc, ov, lambda y: PLATE + (Sth - y) * pitch, north="glass")
+    slab_roof(sc, ov, lambda y: PLATE + (Sth - y) * pitch, north="glass", seams=seams)
+
+
+def butterfly(sc, pitch, ov, seams=False):
+    """Valley down the middle (underside at the plate), rising to both long eaves."""
+    slab_roof(sc, ov, lambda y: PLATE + abs(y - YM) * pitch, splits=(YM,), north="glass", south="glass", seams=seams)
 
 
 LOUNGE_X = (S.face("foyer wall", +1), S.face("lounge|bed2", -1))
@@ -136,12 +147,13 @@ def shed_vault_under(pitch):
     return lambda y: PLATE + (Sth - y) * pitch
 
 
-def shed_vault(sc, pitch, ov):
+def shed_vault(sc, pitch, ov, seams=False):
     """Shed roof; only the lounge is vaulted (clerestory along its stretch of the street wall);
     flat 10' ceilings and a sealed attic everywhere else."""
     under = shed_vault_under(pitch)
     x0, x1 = LOUNGE_X
-    slab_roof(sc, ov, under, north=[(S.PORCH_X, x0, "exterior"), (x0, x1, "glass"), (x1, W, "exterior")])
+    slab_roof(sc, ov, under, north=[(S.PORCH_X, x0, "exterior"), (x0, x1, "glass"), (x1, W, "exterior")],
+              seams=seams)
     y0, y1 = LOUNGE_Y
     quad(sc, "wall", [x0, y0, under(y0)], [x1, y0, under(y0)], [x1, y1, under(y1)], [x0, y1, under(y1)])   # vault
     quad(sc, "wall", [x0, y1, M.CEIL], [x1, y1, M.CEIL], [x1, y1, under(y1)], [x0, y1, under(y1)])      # step down
@@ -149,7 +161,7 @@ def shed_vault(sc, pitch, ov):
         quad(sc, "wall", [x, y0, M.CEIL], [x, y1, M.CEIL], [x, y1, under(y1)], [x, y0, under(y0)])
 
 
-def section(pitch, path):
+def section(pitch, path, roofing="shingles"):
     """Cross-sections (street on the left): through the lounge, and through the bedroom wing."""
     import matplotlib
     matplotlib.use("Agg")
@@ -181,14 +193,14 @@ def section(pitch, path):
                 ax.annotate(f"{h / 12:.1f}' clear", (y, M.CEIL + JOISTS + h / 2), ha="center", fontsize=9)
         ax.set_title(title); ax.set_aspect("equal"); ax.set_xlim(N - 60, Sth + 60); ax.set_ylim(-10, under(N - ov) + 30)
         ax.set_xlabel("street  ←      (inches)      →  rear yard"); ax.legend(loc="upper right", fontsize=8)
-    fig.suptitle(f"MCM shed, {pitch * 12:g}:12, lounge-only vault", fontsize=13)
+    fig.suptitle(f"MCM shed, {pitch * 12:g}:12 {roofing}, lounge-only vault", fontsize=13)
     fig.tight_layout(); fig.savefig(path, dpi=100); plt.close(fig)
 
 
-def low_gable(sc, pitch, ov):
+def low_gable(sc, pitch, ov, seams=False):
     """Shallow gable, ridge along the house, glazed gable ends."""
     half = (Sth - N) / 2
-    slab_roof(sc, ov, lambda y: PLATE + (half - abs(y - YM)) * pitch, splits=(YM,), ends="glass")
+    slab_roof(sc, ov, lambda y: PLATE + (half - abs(y - YM)) * pitch, splits=(YM,), ends="glass", seams=seams)
 
 
 WOOD, BLACK, WHITE = 0xB07A4F, 0x2B2D30, 0xF1EDE4
@@ -204,6 +216,24 @@ STYLES = {
     "ranch-gable": (lambda sc: gable(sc, 4 / 12, 24, 12),
                     {"exterior": 0xB9C2B0, "soffit": 0xF4F2EC, "fascia": 0xF4F2EC, "roofing": 0x45484C, "door": 0x222222}),
 }
+METAL = {   # the original, lower midcentury slopes, with roofing that suits them
+    "metal-mcm-shed": (lambda sc: shed(sc, 1.5 / 12, 36, seams=True),
+                       {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,
+                        "seam": 0x2A2D31, "door": 0xD9792B}),
+    "metal-mcm-shed-vault": (lambda sc: shed_vault(sc, 2 / 12, 36, seams=True),
+                             {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,
+                              "seam": 0x2A2D31, "door": 0xD9792B}),
+    "metal-mcm-butterfly": (lambda sc: butterfly(sc, 2 / 12, 30),
+                            {"exterior": 0xE9E4DA, "soffit": WOOD, "fascia": WHITE, "roofing": 0xD5D8DA,
+                             "door": 0x2B8C8C}),
+    "metal-mcm-gable": (lambda sc: low_gable(sc, 2 / 12, 36, seams=True),
+                        {"exterior": 0x4F5358, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,
+                         "seam": 0x2A2D31, "door": 0xE8B33C}),
+}
+METAL_LABELS = {"metal-mcm-shed": "MCM shed, 1.5:12 standing-seam metal (clerestory to the street)",
+                "metal-mcm-shed-vault": "MCM shed, 2:12 standing-seam metal: only the lounge vaulted, attic elsewhere",
+                "metal-mcm-butterfly": "MCM butterfly, 2:12 single-ply membrane (clerestories both sides)",
+                "metal-mcm-gable": "MCM gable, 2:12 standing-seam metal (Eichler-like, glazed gable ends)"}
 VIEWS = {   # camera position and target in plan inches (x west, y south, z up)
     "street": ((230, -330, 64), (760, 330, 80)),
     "aerial": ((120, -380, 430), (780, 420, 40)),
@@ -236,38 +266,52 @@ LABELS = {"mcm-shed": "MCM shed, 3:12 shingles (clerestory to the street, solar 
           "ranch-hip": "Ranch, 4:12 hip, shingles", "ranch-gable": "Ranch, 4:12 gable, shingles, board-and-batten colours"}
 
 
-def contact_sheet(view: str):
+def contact_sheet(view: str, styles: dict, labels: dict, name: str):
     """All styles' renders for one view, stacked with labels."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    pngs = [(k, OUT / f"exterior-{k}-{view}.png") for k in STYLES]
+    pngs = [(k, OUT / f"exterior-{k}-{view}.png") for k in styles]
     pngs = [(k, p) for k, p in pngs if p.exists()]
     if not pngs:
         return
     fig, axes = plt.subplots(len(pngs), 1, figsize=(10, 5.9 * len(pngs)))
     for ax, (k, p) in zip(axes, pngs):
-        ax.imshow(plt.imread(p)); ax.set_title(LABELS[k], fontsize=13); ax.axis("off")
+        ax.imshow(plt.imread(p)); ax.set_title(labels[k], fontsize=13); ax.axis("off")
     fig.tight_layout()
-    fig.savefig(OUT / f"exterior-compare-{view}.png", dpi=80)
+    fig.savefig(OUT / f"{name}-{view}.png", dpi=80)
     plt.close(fig)
 
 
+SETS = {   # name -> (styles, labels, comparison sheet, lounge-vault section)
+    "shingles": (STYLES, LABELS, "exterior-compare", (3 / 12, "exterior-mcm-shed-vault-section.png", "shingles")),
+    "metal": (METAL, METAL_LABELS, "exterior-metal-compare",
+              (2 / 12, "exterior-metal-mcm-shed-vault-section.png", "standing-seam metal")),
+}
+
+
 def main():
-    for key, (roof, colours) in STYLES.items():
-        sc = M.build_schematic()
-        band(sc, "exterior", WALL_TOP, PLATE)
-        roof(sc)
-        front_door(sc)
-        sc.mat = {k: {"color": v} for k, v in colours.items()}
-        out_dir = OUT / f"exterior-{key}"
-        M.write_model(sc, out_dir, sc.meta)
-        for view, (cam, target) in VIEWS.items():
-            screenshot(out_dir / "house.html", OUT / f"exterior-{key}-{view}.png", cam, target)
-        print("styled", key)
-    for view in VIEWS:
-        contact_sheet(view)
-    section(3 / 12, OUT / "exterior-mcm-shed-vault-section.png")
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--only", choices=list(SETS), help="build just one set")
+    args = ap.parse_args()
+    for set_name, (styles, labels, sheet, (pitch, sec_png, roofing)) in SETS.items():
+        if args.only and set_name != args.only:
+            continue
+        for key, (roof, colours) in styles.items():
+            sc = M.build_schematic()
+            band(sc, "exterior", WALL_TOP, PLATE)
+            roof(sc)
+            front_door(sc)
+            sc.mat = {k: {"color": v} for k, v in colours.items()}
+            out_dir = OUT / f"exterior-{key}"
+            M.write_model(sc, out_dir, sc.meta)
+            for view, (cam, target) in VIEWS.items():
+                screenshot(out_dir / "house.html", OUT / f"exterior-{key}-{view}.png", cam, target)
+            print("styled", key)
+        for view in VIEWS:
+            contact_sheet(view, styles, labels, sheet)
+        section(pitch, OUT / sec_png, roofing)
 
 
 if __name__ == "__main__":
