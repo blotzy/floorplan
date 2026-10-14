@@ -68,7 +68,8 @@ The block is three strips, each with its own door off the main lobby (no side ha
 
 ## Wildfire hardening
 
-- Ember-resistant vents and enclosed eaves.
+- Enclosed eaves with noncombustible or ignition-resistant soffits (wood-look is fine if it's fire-retardant-treated or metal/fiber cement).
+- Ember-resistant screens or self-closing dampers on every remaining opening: ERV intake and exhaust, exhaust-fan terminations, the range-hood cap, and foundation vents if the floor is raised.
 - Noncombustible siding and tempered dual-pane windows.
 - A noncombustible zone around the house (pavers/gravel, no mulch or turf), at least as wide as code requires.
 - Sealed (unvented) attic with no attic vents, so embers have no entry point.
