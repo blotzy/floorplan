@@ -46,6 +46,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | `scripts/survey_overlay.py` | Overlays the survey on the schematic (`renders/survey-overlay.png`, `Accosting - owner schematic + survey.dxf`). `uv run scripts/survey_overlay.py` |
 | `source_files/survey/` | Topographic survey (DWG, DXF, PDF) |
 | `scripts/experiment_exterior.py` | Exterior style alternatives (roof form, eaves, colours) on the 3D model (`renders/experiments/`) |
+| `scripts/experiment_powder_bath.py` | Powder room as a three-quarter bath, taken from the front of the laundry (`renders/experiments/powder-bath.png`) |
 | `renders/` | Plan renders and the 3D model |
 
 Viewing and measuring: open the DXFs in QCAD (View → Auto Zoom; Snap → Endpoint; Info → Distance). Units are inches.
