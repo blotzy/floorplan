@@ -423,6 +423,8 @@ def build() -> Sheet:
     sh.rect(pen_out, srow, pen_in, S_IN, eq)                                  # peninsula
     sh.rect(pen_in - 24, S_IN - 48, pen_in, S_IN - 24, eq)                     # dishwasher: peninsula, kitchen
     sh.text("DW", pen_in - 12, S_IN - 36, 3.5)                                 # side, around the corner from the sink
+    sh.rect(pen_out, S_IN - 15, pen_out + 24, S_IN, eq)                        # 15" drink fridge under the counter,
+    sh.text("BEV", pen_out + 12, S_IN - 7.5, 3.0)                              # stool side, corner by the south wall
     sh.line((pen_out + 15, srow), (pen_out + 15, S_IN), eq)                   # 15" overhang
     sh.rect(pen_in, S_IN - 24, kw - 24, S_IN, eq)                             # sink run
     sh.rect(kw - 24, srow + 36, kw, S_IN - 24, eq)                                # range run

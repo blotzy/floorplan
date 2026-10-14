@@ -11,9 +11,9 @@ An upside-down U, 10'-0" x 13'-2": the sink on the south wall under the window, 
 | Range | 30" slide-in induction |
 | Range hood | Ducted outside through the roof, 400 CFM or less |
 | Fridge | Space for 36", counter-depth; RO water line and a leak pan |
-| Dishwasher | In the peninsula on the kitchen side, at its south end, just around the corner from the sink; not across from the range. The drink fridge sits back-to-back with it on the dining side |
+| Dishwasher | In the peninsula on the kitchen side, at its south end, just around the corner from the sink; not across from the range. A small under-counter drink fridge sits at the peninsula's stool-side corner by the south wall, opening toward the dining room |
 | Sink | RO filter tap; tankless RO unit below with an outlet; integrated drain board on the dishwasher side |
-| Peninsula | Three stools; drink fridge in the fourth (south) spot with the coffee station on the counter above |
+| Peninsula | Three stools; a small under-counter drink fridge in the fourth (south) spot, at the stool-side corner by the south wall, with the coffee station on the counter above |
 | Corner storage | Corner drawers at the range-side corner |
 | Pantry | Off the lobby at the corner by the fridge; outlets inside |
 
