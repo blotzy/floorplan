@@ -24,8 +24,8 @@
 | Heat pump outdoor unit | Per manufacturer | Rear yard, south wall behind the mechanical closet (disconnect within sight) |
 | Heat pump air handler + zone panel | Per manufacturer | Sealed attic, near the hatch (disconnect at the unit) |
 | Heat pump water heater | Per model (240V, or a 120V plug-in model) | Mechanical closet |
-| Heat pump dryer | Per model | Laundry, back wall |
-| Washer | 20A | Laundry, back wall |
+| Heat pump dryer | Per model | Laundry, bath wall |
+| Washer | 20A | Laundry, bath wall |
 | Network rack | One 20A | Mechanical / network closet |
 | Gym | One 20A | Gym (bike/treadmill wall) |
 | Jetted tub pump (+ heater if the model has one) | Per model, GFCI | Primary bath; pump access outside the wet zone |
