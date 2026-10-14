@@ -210,7 +210,7 @@ def room_label(sh, name, x0, y0, x1, y1, cx=None, cy=None, h=8.0):
     sh.text(f"{fmt(x1 - x0)} x {fmt(y1 - y0)}", cx, cy - h * 0.5, h * 0.65, "A-AREA-IDEN")
 
 
-# Bath fit-outs are separate so experiments can swap them (scripts/experiment_wetrooms.py).
+# Bath fit-outs are separate functions so experiments can swap them.
 TUB_L, TUB_W = 72.0, 48.0          # two-person jetted tub (primary bath)
 
 

@@ -45,7 +45,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | `scripts/make_3d.py` | Builds the 3D model from the schematic. `uv run scripts/make_3d.py` |
 | `scripts/survey_overlay.py` | Overlays the survey on the schematic (`renders/survey-overlay.png`, `Accosting - owner schematic + survey.dxf`). `uv run scripts/survey_overlay.py` |
 | `source_files/survey/` | Topographic survey (DWG, DXF, PDF) |
-| `scripts/experiment_wetrooms.py`, `experiment_suite.py` | Bath / walk-in closet alternatives drawn on the schematic (`Accosting - owner schematic - EXPERIMENT *.dxf`, `renders/experiments/`) |
+| `scripts/experiment_exterior.py` | Exterior style alternatives (roof form, eaves, colours) on the 3D model (`renders/experiments/`) |
 | `renders/` | Plan renders and the 3D model |
 
 Viewing and measuring: open the DXFs in QCAD (View → Auto Zoom; Snap → Endpoint; Info → Distance). Units are inches.
