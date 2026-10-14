@@ -35,7 +35,7 @@
   <label><input type="range" id="hour" min="6" max="19" step="0.25" value="10" style="width:150px"> <span id="hourTxt"></span></label>
   <button id="walk">Walk (eye level)</button>
 </div>
-<div id="help">Orbit: drag (around the point under the mouse) · zoom: scroll (toward the mouse) · pan: right-drag. Walk: click the button, WASD/arrows to move, mouse to look, Esc to exit.</div>
+<div id="help">Orbit: drag · zoom: scroll · pan: right-drag. Walk: click the button, WASD/arrows to move, mouse to look, Esc to exit.</div>
 <div id="stick"><div id="knob"></div></div>
 <button id="exitwalk">Exit walk</button>
 <script type="module">
@@ -206,46 +206,6 @@ camera.position.set(ctr.x - 30, 70, ctr.z + 75);
 const orbit = new OrbitControls(camera, renderer.domElement); orbit.target.copy(ctr); orbit.update();
 orbit.panSpeed = 1.75;                   // right-drag pans faster...
 orbit.screenSpacePanning = false;        // ...and slides along the ground instead of up into the sky
-orbit.zoomToCursor = true;               // the wheel zooms toward whatever is under the mouse
-// Mouse left-drag orbits around the point under the cursor (not a fixed centre): the camera and
-// the orbit target swing together around that point, so the view never jumps. Right-drag pans.
-orbit.mouseButtons = {LEFT: null, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN};
-{
-  const el = renderer.domElement, ray = new THREE.Raycaster(), up = new THREE.Vector3(0, 1, 0);
-  const shown = o => { for (; o; o = o.parent) if (!o.visible) return false; return true; };
-  let drag = null;
-  function pivotAt(ev) {
-    const r = el.getBoundingClientRect();
-    ray.setFromCamera(new THREE.Vector2((ev.clientX - r.left) / r.width * 2 - 1,
-                                        -(ev.clientY - r.top) / r.height * 2 + 1), camera);
-    const hit = ray.intersectObjects(scene.children, true).find(h => h.object.isMesh && shown(h.object));
-    if (hit) return hit.point.clone();
-    const g = new THREE.Vector3();                                 // nothing hit: the ground plane
-    return ray.ray.intersectPlane(new THREE.Plane(up, 0), g) ? g : orbit.target.clone();
-  }
-  function swing(q, p) {                                           // rotate camera + target about p
-    camera.position.sub(p).applyQuaternion(q).add(p);
-    orbit.target.sub(p).applyQuaternion(q).add(p);
-  }
-  el.addEventListener('pointerdown', ev => {
-    if (ev.pointerType !== 'mouse' || ev.button !== 0 || !orbit.enabled) return;
-    drag = {p: pivotAt(ev), x: ev.clientX, y: ev.clientY, id: ev.pointerId};
-    el.setPointerCapture(ev.pointerId);
-  });
-  el.addEventListener('pointermove', ev => {
-    if (!drag || ev.pointerId !== drag.id) return;
-    const k = 2 * Math.PI / el.clientHeight, dx = (ev.clientX - drag.x) * k, dy = (ev.clientY - drag.y) * k;
-    drag.x = ev.clientX; drag.y = ev.clientY;
-    swing(new THREE.Quaternion().setFromAxisAngle(up, -dx), drag.p);               // turn around the vertical
-    const fwd = orbit.target.clone().sub(camera.position).normalize();
-    const right = fwd.clone().cross(up).normalize();
-    const tilt = Math.acos(THREE.MathUtils.clamp(fwd.dot(up), -1, 1)) + dy;        // keep it off the poles
-    if (tilt > 0.05 && tilt < Math.PI - 0.05) swing(new THREE.Quaternion().setFromAxisAngle(right, -dy), drag.p);
-    orbit.update();
-  });
-  const end = ev => { if (drag && ev.pointerId === drag.id) drag = null; };
-  el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
-}
 // Two-finger touch drags pan; the pinch zoom only kicks in once the fingers clearly spread or
 // close, so a plain drag doesn't bob the camera up and down. zoomSpeed 0 (not enableZoom
 // false) keeps OrbitControls tracking the finger distance, so zoom resumes without a jump.
