@@ -103,7 +103,7 @@ OPENINGS = [
     ("south",       880.0, 928.0, "window", 72.0, 96.0),   # primary bath: 4'-0" x 2'-0" high window over the tub
     ("south",       975.0, 1023.0, "window", 72.0, 96.0),  # primary bath: matching 4'-0" x 2'-0" over the walkway
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
-    ("east",        509.8, 593.8, "slider"),             # dining 7' slider
+    ("east",        503.75, 599.75, "slider"),           # dining 8' slider (centred between the carport fence and the corner)
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
     ("west",        414.7, 450.7, "transom", 98.0, 110.0),  # fixed 3'-0" x 1'-0" transom over it: daylight down the hall
     # interior
