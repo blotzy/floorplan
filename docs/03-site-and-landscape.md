@@ -48,7 +48,7 @@ From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.
 
 ## Heat pump outdoor unit
 
-- Rear yard, against the house's south wall **behind the mechanical closet**, on a raised concrete pad. That stretch of wall has no windows; the nearest is the kitchen sink window (~3½' east), with no bedrooms nearby. The line set runs straight up into the attic beside the mechanical closet.
+- Rear yard, against the house's south wall **behind the laundry**, on a raised concrete pad. That stretch of wall has no windows; the nearest are the primary bath's tub window (~7' west) and the kitchen sink window (~9' east), with no bedrooms nearby. The line set runs straight up into the attic, toward the air handler near the hall.
 - Low metal guard around it (dog yard). Keep it ≥10' from the ERV's fresh-air intake. Line set up the wall in a painted metal cover into the attic.
 - Pick a quiet model; the unit is only ~9–10' from the rear lot line. Unit plus wall clearance takes ~3' of the 13' rear yard, leaving ~10' to pass.
 

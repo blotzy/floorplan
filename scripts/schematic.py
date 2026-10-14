@@ -603,8 +603,8 @@ def build() -> Sheet:
     sh.line((LOT_X0, fy), (160, fy), "A-FENC"); sh.line((208, fy), (E, fy), "A-FENC")
     sh.text("6' FENCE / GATE", 184, fy - 10, 4.0)
     sh.rect(LOT_X0 + 6, 262, LOT_X0 + 54, 382, "L-SITE"); sh.text("BINS", LOT_X0 + 30, 322, 5.0, rot=90)        # bin pad
-    hx = (face("kitchen|pantry", +1) + face("pantry|laundry", -1)) / 2                 # heat pump outdoor
-    sh.rect(hx - 21, S + 10, hx + 21, S + 30, "A-EQPM")                                 # unit behind mech
+    hx = (face("pantry|laundry", +1) + face("laundry|bath", -1)) / 2                   # heat pump outdoor
+    sh.rect(hx - 21, S + 10, hx + 21, S + 30, "A-EQPM")                                 # unit behind the laundry
     sh.rect(hx - 27, S + 4, hx + 27, S + 36, "A-FENC")                                  # dog guard
     sh.text("HP", hx, S + 20, 5.0)
     sh.line((LOT_X0, 386), (LOT_X0 + 60, 386), "A-FENC"); sh.line((LOT_X0 + 60, 386), (LOT_X0 + 60, 258), "A-FENC")
