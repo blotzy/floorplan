@@ -9,14 +9,13 @@ folding counter goes).
 The powder room widens west into the east end of the walk-in closet (a new partition replaces
 the old plumbing wall between them). From the door: lavatory on the laundry-side wall past the
 door swing, toilet on the back wall (the plumbing wall shared with the laundry alcove), and the
-The powder room stays as it is (toilet on the back wall, small sink by the door) and gains a
-36"-wide shower strip taken from the east end of the walk-in closet (~3'; closet ~12'-4"
-long). Glass panel with an opening at the hall end; head on the back (plumbing) wall. The
-jetted tub's pump access panel is on the closet side, just past the new bath, with the
-closet's hanging stopping short of it.
-
-  shower-strip  36" x 5'-6" walk-in shower filling the strip
-  shower-linen  36" x 48" shower at the back, linen cabinet at the hall end
+The powder room gains a 36"-wide strip from the east end of the walk-in closet (~3'; closet
+~12'-4" long). The toilet stays on the powder room's back wall, easy to reach from the door;
+the small wall-hung sink stays on the laundry-side wall, and the door is hinged on the strip
+side so its swing clears the sink. The shower takes the back corner of the strip, against the
+closet and the primary bath, with the 8" pocket as a recessed niche and its door at the
+front. The jetted tub's pump access panel is on the closet side, with the hanging stopping
+short of it.
 
 Writes renders/experiments/powder-bath-<variant>.png (+ DXF) and a 3D model per variant.
 
@@ -67,22 +66,21 @@ def utility(sh, wall_x, linen):
     nook = S.face("bath|wic", -1)
     # wall-hung sink on the laundry-side wall (outside the door swing)
     sh.rect(b0, 468.0, b0 + 12, 486.0, eq); sh.text("LAV", b0 + 6, 477.0, 2.5, rot=90)
-    # shower where the powder room's toilet was: 47" x 36" on the back wall, door on its front
-    sy = back - 36
-    sh.rect(b0, sy, sx, back, eq)
-    S.glass(sh, (b0, sy), (sx - 26, sy))                  # fixed glass + 24" door at the strip end
-    sh.text("SHOWER", (b0 + sx) / 2, back - 18, 3.2)
-    hx = (b0 + sx) / 2
-    sh.circle((hx, back - 3), 2.0, eq)
-    sh.heads.append((hx, back, 0.0, -1.0))
-    # toilet in the strip taken from the closet, on the back wall; niche shelf above the tank
-    tx = (sx + b1) / 2
+    # toilet on the back wall of the old powder room, easy to reach from the door
+    tx = (b0 + sx) / 2 + 2
     S.wc(sh, tx - 15, back - 28, tx + 15, back)
-    sh.rect(S.face("utility|bath", +1), back, b1, nook, eq); sh.text("NICHE", tx + 2, back + 4, 2.0)
-    if linen:                                             # shallow linen cabinet at the hall end
-        sh.rect(sx + 2, srow, b1, srow + 13, "A-FURN"); sh.line((sx + 2, srow), (b1, srow + 13), "A-FURN")
-        sh.text("LINEN", tx, srow + 6.5, 2.5)
-    S.room_label(sh, "BATH", b0, srow, b1, back, cx=b0 + 28, cy=srow + 20, h=3.6)
+    # shower in the back corner of the strip (against the closet and the primary bath),
+    # the 8" pocket becoming a recessed niche; glass on its open sides, door on the front
+    sy = back - 36
+    sh.rect(sx, sy, b1, back, eq)
+    sh.rect(S.face("utility|bath", +1), back, b1, nook, eq); sh.text("NICHE", (sx + b1) / 2 + 3, back + 4, 2.0)
+    S.glass(sh, (sx, sy), (sx, back))                     # fixed glass beside the toilet
+    S.glass(sh, (sx, sy), (sx + 12, sy))                  # front: fixed 12" + 24" door
+    sh.text("SHOWER", (sx + b1) / 2, back - 18, 3.2)
+    hx = (sx + b1) / 2 + 3
+    sh.circle((hx, nook - 3), 2.0, eq)
+    sh.heads.append((hx, nook, 0.0, -1.0))
+    S.room_label(sh, "BATH", b0, srow, b1, back, cx=(sx + b1) / 2, cy=srow + 14, h=3.6)
 
 
 def closet(sh, wall_x):
@@ -104,7 +102,7 @@ def closet(sh, wall_x):
     S.room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=5.0)
 
 
-VARIANTS = {"full-bath": (910.0, True)}
+VARIANTS = {"full-bath": (910.0, False)}
 
 
 def main():
