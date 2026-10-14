@@ -107,7 +107,7 @@ OPENINGS = [
     ("bedroom hall wall", 867.5, 897.5, "door", "b", -1),   # shared ensuite
     ("ensuite|guest", 335.0, 365.0, "door", "a", +1),       # guest en-suite: swings into the guest room (the bath is narrow)
     ("bedroom hall wall", 912.0, 948.0, "door", "a", -1),  # guest
-    ("bedroom hall wall", 1090.0, 1126.0, "door", "a", -1), # office
+    ("bedroom hall wall", 1069.0, 1105.0, "door", "a", -1), # office: at the guest-wall end, opposite the primary door
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 820.0, 848.0, "door", "a", +1),     # common bath, against its east wall
@@ -551,7 +551,7 @@ def build() -> Sheet:
 
     closet(face("lounge|gym", +1), 776.0)
     closet(958.0, face("guest|office", -1))   # guest: one long closet past the door
-    closet(1130.0, W_IN)
+    closet(1111.0, W_IN)                     # office: one long closet past the door
 
     common_bath(sh)
 
