@@ -96,7 +96,6 @@ OPENINGS = [
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
     ("south",       397.0, 517.0, "window"),             # dining 10'
     ("south",       592.0, 652.0, "window"),             # kitchen sink
-    ("south",       778.0, 814.0, "window"),             # laundry
     ("south",       886.25, 916.25, "window"),           # primary bath, centred over the jetted tub
     ("south",       972.5, 996.5, "window"),             # primary bath, small, over the WC (obscure glass)
     ("south",       1083.6, 1191.6, "window"),           # primary bedroom (centred)
@@ -297,22 +296,28 @@ def primary_bath(sh):
 
 def utility_block(sh):
     """Powder room and laundry (labels + fixtures); experiments can swap this."""
-    eq, srow = "A-EQPM", face("south hall wall", +1)
-    room_label(sh, "LAUNDRY", face("pantry|laundry", +1), srow, face("laundry|powder", -1), S_IN, cy=505.0, h=5.5)
-    room_label(sh, "PWD", face("laundry|powder", +1), srow, face("utility|bath", -1), face("powder|alcove", -1),
-               cx=842.0, cy=496.0, h=4.0)
+    eq, fu, srow = "A-EQPM", "A-FURN", face("south hall wall", +1)
     pw0, pw1 = face("laundry|powder", +1), face("utility|bath", -1)          # powder
     pws = face("powder|alcove", -1)
     tx = (pw0 + pw1) / 2 + 2
     sh.rect(tx - 9, pws - 28, tx + 9, pws, eq); sh.text("WC", tx, pws - 14, 3.0)
     sh.rect(pw0, 468.0, pw0 + 12, 486.0, eq)
-    lw0, lw1 = face("pantry|laundry", +1), face("utility|bath", -1)          # laundry
-    y = S_IN
-    for d, lbl in ((27, "DRYER"), (27, "WASHER"), (25, "SINK")):
-        sh.rect(lw1 - 30, y - d, lw1, y, eq); sh.text(lbl, lw1 - 15, y - d / 2, 3.0, rot=90)
-        y -= d
-    sh.rect(lw0, 522.0, lw0 + 24, 575.0, eq); sh.text("FOLDING", lw0 + 12, 548.5, 3.0, rot=90)
-    sh.rect(lw0, 495.0, lw0 + 4, 515.0, eq); sh.text("PANEL", lw0 + 12, 505.0, 2.5, rot=90)
+    room_label(sh, "PWD", pw0, srow, pw1, pws, cx=842.0, cy=496.0, h=4.0)
+    l0, l1 = face("pantry|laundry", +1), face("utility|bath", -1)            # laundry
+    lp, back = face("laundry|powder", -1), S_IN
+    x = l0 + 36                             # 3' of open floor in front of the mech closet's bifold
+    vanity(sh, x, back - 15, x + 14, back, "SINK", rot=90)                  # small, shallow utility sink
+    x = w0 = x + 16
+    for lbl in ("WASHER", "DRYER"):
+        sh.rect(x, back - 30, x + 27, back, eq); sh.text(lbl, x + 13.5, back - 15, 3.0); x += 27
+    sh.rect(w0, back - 30, x, back, fu)     # folding counter over the machines
+    sh.text("FOLDING COUNTER OVER  /  UPPERS ABOVE", (w0 + x) / 2, back - 36, 2.4)
+    a0 = face("powder|alcove", +1)          # open shelves behind the powder room
+    sh.rect(lp + 2, a0, l1, a0 + 12, fu); sh.text("SHELVES", (lp + 2 + l1) / 2, a0 + 6, 2.4)
+    t0 = srow + 4                           # shallow full-height storage on the powder-room wall
+    sh.rect(lp - 18, t0, lp, pws, fu); sh.text("TALL STORAGE", lp - 9, (t0 + pws) / 2, 2.8, rot=90)
+    sh.rect(l0, 495.0, l0 + 4, 515.0, eq); sh.text("PANEL", l0 + 12, 505.0, 2.5, rot=90)
+    room_label(sh, "LAUNDRY", l0, srow, lp, back, cx=805.0, cy=563.0, h=4.5)
 
 
 def wic(sh):

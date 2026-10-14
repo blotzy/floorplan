@@ -23,8 +23,8 @@
 | Drink fridge | 15–20A | Peninsula, south end (fourth-stool spot) |
 | Heat pump outdoor unit | Per manufacturer | Rear yard, south wall behind the mechanical closet (disconnect within sight) |
 | Heat pump water heater | Per model (240V, or a 120V plug-in model) | Mechanical closet |
-| Heat pump dryer | Per model | Laundry alcove |
-| Washer | 20A | Laundry alcove |
+| Heat pump dryer | Per model | Laundry, back wall |
+| Washer | 20A | Laundry, back wall |
 | Chest freezer | 15–20A | Laundry |
 | Network rack | One 20A | Mechanical / network closet |
 | Gym | One 20A | Bedroom 2 (bike/treadmill wall) |
