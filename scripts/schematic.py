@@ -98,7 +98,7 @@ OPENINGS = [
     ("north",       1090.6, 1186.6, "window"),           # office
     ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
-    ("south",       397.0, 517.0, "window"),             # dining 10'
+    ("south",       397.0, 517.0, "window", 18.0, 96.0),  # dining 10' (two 5' units), low 18" sill
     ("south",       592.0, 652.0, "window", 42.0, 96.0),  # kitchen sink: sill just above the backsplash
     ("south",       880.0, 928.0, "window", 72.0, 96.0),   # primary bath: 4'-0" x 2'-0" high window over the tub
     ("south",       975.0, 1023.0, "window", 72.0, 96.0),  # primary bath: matching 4'-0" x 2'-0" over the walkway

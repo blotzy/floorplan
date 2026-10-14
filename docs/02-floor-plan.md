@@ -16,7 +16,7 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 
 - **Dining:** table and the south window centred on the dining room's south wall.
 - **Sliding door** on the east wall, centred between the carport fence and the house's southeast corner, opening onto the dining patio.
-- **South window:** large. It actually faces SSW (azimuth ~201°), so it takes strong afternoon sun: plan an overhang or exterior shade and check it against the Title 24 glazing budget.
+- **South window:** large, with a low sill (seated-height view of the garden) and its head in line with the other windows. It faces SSW (azimuth ~201°), so it takes strong low afternoon sun that the eaves won't block: plan an exterior shade or awning and low-SHGC glass, and check it against the Title 24 glazing budget.
 
 ## Kitchen
 
