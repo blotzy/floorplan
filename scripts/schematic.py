@@ -212,6 +212,7 @@ def room_label(sh, name, x0, y0, x1, y1, cx=None, cy=None, h=8.0):
 
 # Bath fit-outs are separate functions so experiments can swap them.
 TUB_L, TUB_W = 72.0, 48.0          # two-person jetted tub (primary bath)
+LEDGE_D = 6.0                      # primary shower: closet wall built out below chest height
 
 
 def wet_zone(sh, x0, y0, x1, y1):
@@ -285,10 +286,12 @@ def primary_bath(sh):
     tub(sh, m0, S_IN - TUB_L, m0 + TUB_W, S_IN)                       # wall to wall, no end gap
     sh.text("CURBLESS", m0 + TUB_W + 21, 575.0, 3.5, rot=90)
     sx = m0 + TUB_W + 21                                               # two heads, facing each other
-    shower_head(sh, sx, top, +1)
+    sh.rect(m0 + TUB_W, top, gx, top + LEDGE_D, "A-EQPM")             # ledge wall: tiled shelf for bottles,
+    sh.text("LEDGE", sx, top + LEDGE_D / 2, 2.0)                       # plumbing for the head in its thickness
+    shower_head(sh, sx, top + LEDGE_D, +1)                             # above the ledge, arm clears it
     shower_head(sh, sx, S_IN, -1)
-    glass(sh, (gx, top + 30), (gx, S_IN))                              # walk in at the north end
-    drain(sh, (gx - 3, top + 3), (gx - 3, S_IN - 3))
+    glass(sh, (gx, top + LEDGE_D + 30), (gx, S_IN))                    # walk in at the north end, 30" clear past the ledge
+    drain(sh, (gx - 3, top + LEDGE_D + 3), (gx - 3, S_IN - 3))
     wc(sh, gx + 2.25, S_IN - 28, gx + 32.25, S_IN)                     # 17.25" to glass, 15.25" to vanity
     vanity(sh, m1 - 60, S_IN - 22, m1, S_IN, "DOUBLE VANITY 60")
     room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2, cy=577.0, h=4.0)
