@@ -92,10 +92,10 @@ WALLS = [
 OPENINGS = [
     # exterior
     ("north",       511.1, 631.1, "window"),             # lounge 10'
-    ("north",       710.1, 806.1, "window"),             # gym
+    ("north",       722.1, 794.1, "window"),             # gym 6'
     ("north",       851.0, 881.0, "window"),             # shared ensuite
-    ("north",       936.1, 1032.1, "window"),            # guest 8'
-    ("north",       1090.6, 1186.6, "window"),           # office
+    ("north",       948.1, 1020.1, "window"),            # guest 6'
+    ("north",       1102.6, 1174.6, "window"),           # office 6'
     ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
     ("south",       397.0, 517.0, "window", 18.0, 96.0),  # dining 10' (two 5' units), low 18" sill
