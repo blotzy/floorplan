@@ -12,7 +12,7 @@
 
 **Design decisions (owner)**
 
-- [ ] Bedroom 3: two closets flanking a centred door (as drawn), or one long closet with the door in the corner by bedroom 4?
+- [x] Bedroom 3: decided. Two closets flanking a centred door.
 - [x] Two-person tub: decided. A 72" x 48" jetted tub goes in the primary bath wet room; the common bath gets a standard 72" tub with a shower head. Pick the tub model before framing; 80-gal water heater.
 - [ ] Primary bath jetted tub: pick a two-person jetted tub that fits the wet room **and** has an accessible pump/access panel. Either a freestanding tub (service panels on its open sides) or a tub whose access panel opens from the walk-in closet side. Avoid models whose only access is the front apron facing the shower, or a rear panel that would open into the laundry. Pick it before framing; the wet room and the closet built-ins get laid out around it.
 - [ ] Kitchen tall storage: hutch between range and fridge, tall pantry column, and/or a dining-wall built-in.
