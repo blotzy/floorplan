@@ -27,7 +27,14 @@ rear wall. The pantry, mech closet, walk-in closet and primary bath are untouche
           closet and on through its open side into the laundry. Panel on the laundry side of
           the bath wall; sink, washer, dryer on the rear wall.
 
-Writes renders/experiments/utility-{long,back,pantry}.png (+ DXF) and a 3D model per variant.
+  swap    the long layout with the mech closet and the room behind the bath swapped: water
+          heater, softener and filters behind the bath (open to the laundry); the washer and
+          dryer side by side in the old mech space against the kitchen-side wall, facing the
+          laundry; the galley becomes a laundry room with counter, sink, panel, network rack
+          and attic hatch. (The heat pump's outdoor unit would move off that rear wall if the
+          dryer vents there.)
+
+Writes renders/experiments/utility-{long,back,pantry,swap}.png (+ DXF) and a 3D model per variant.
 
     uv run scripts/experiment_utility_layouts.py
 """
@@ -223,10 +230,71 @@ def pantry_build_fix(sh):
             sh.msp.delete_entity(e)
 
 
+# ---- swap: long layout, mech moves behind the bath, washer/dryer into the old mech space ---
+def swap_fit(sh):
+    lw = LONG_SPLIT - S.WET / 2
+    b0 = LONG_SPLIT + S.WET / 2
+    # bath: as in the long layout
+    S.vanity(sh, B1 - 20, 466.0, B1, 490.0, "SINK", rot=90)
+    S.wc(sh, B1 - 28, 497.0, B1, 527.0)
+    gy, ge = 530.0, LONG_BATH_END
+    S.wet_zone(sh, b0, gy, B1, ge)
+    sh.rect(b0, gy, B1, ge, EQ)
+    S.glass(sh, (b0 + 24, gy), (B1, gy))
+    sh.text("SHOWER", (b0 + B1) / 2, gy + 14, 3.2)
+    head_x(sh, B1, gy + 20, -1)
+    S.drain(sh, (b0 + 3, ge - 3), (B1 - 3, ge - 3))
+    S.room_label(sh, "BATH", b0, HALL, B1, ge, cx=b0 + 14, cy=505.0, h=3.6)
+    # mech behind the bath, open to the laundry: water heater, softener + brine, wall-hung filters
+    s0 = LONG_BATH_END + S.INT
+    sh.circle((B1 - 13, S.S_IN - 13), 12.0, EQ); sh.text("HPWH", B1 - 13, S.S_IN - 13, 3.0)
+    sh.circle((b0 + 18, S.S_IN - 9), 8.0, EQ); sh.text("SOFT", b0 + 18, S.S_IN - 9, 2.2)
+    sh.circle((b0 + 9, s0 + 9), 7.0, EQ); sh.text("BRINE", b0 + 9, s0 + 9, 2.0)
+    sh.rect(b0 + 20, s0, B1 - 2, s0 + 6, EQ)                 # filters, RO, manifold on the wall
+    sh.text("FILTERS / RO ON WALL", (b0 + 20 + B1) / 2, s0 + 10, 1.8)
+    S.room_label(sh, "MECH", b0, s0, B1, S.S_IN, cx=b0 + 26, cy=s0 + 23, h=3.0)
+    # laundry room: counter + sink along the bath wall, panel and network rack on the pantry wall
+    sh.rect(lw - 24, 495.0, lw, 568.0, FU)
+    S.vanity(sh, lw - 22, 520.0, lw, 545.0, "SINK", rot=90)
+    sh.text("COUNTER + UPPERS", lw - 12, 506.0, 1.8, rot=90)
+    sh.rect(L0, 466.0, L0 + 4, 486.0, EQ); sh.text("PANEL", L0 + 10, 476.0, 2.5, rot=90)
+    sh.rect(L0, 495.0, L0 + 12, 517.0, EQ); sh.text("RACK", L0 + 6, 506.0, 2.2, rot=90)
+    hx = L0 + 10
+    sh.rect(hx, 522.0, hx + 22.5, 576.0, FU); sh.text("ATTIC HATCH", hx + 11.25, 549.0, 2.0, rot=90)
+    S.room_label(sh, "LAUNDRY", L0, HALL, lw, S.S_IN, cx=(L0 + lw) / 2 + 2, cy=595.0, h=3.6)
+
+
+def swap_build_fix(sh):
+    """Clear the old mech closet's equipment and label; put the washer and dryer there, side by
+    side against the kitchen-side wall, facing the laundry."""
+    x0, x1 = S.face("kitchen|pantry", +1), S.face("pantry|laundry", -1)
+    y0, y1 = S.face("pantry|mech", +1), S.S_IN
+    keep = {"A-WALL", "A-DOOR", "A-GLAZ"}
+    for e in list(sh.msp):
+        if e.dxf.layer in keep or e.dxftype() not in ("LWPOLYLINE", "CIRCLE", "TEXT", "LINE"):
+            continue
+        if e.dxftype() == "CIRCLE":
+            pts = [(e.dxf.center.x, e.dxf.center.y)]
+        elif e.dxftype() == "TEXT":
+            pt = e.dxf.align_point if e.dxf.hasattr("align_point") else e.dxf.insert
+            pts = [(pt.x, pt.y)]
+        elif e.dxftype() == "LINE":
+            pts = [(e.dxf.start.x, e.dxf.start.y), (e.dxf.end.x, e.dxf.end.y)]
+        else:
+            pts = [(q[0], q[1]) for q in e.get_points("xy")]
+        if all(x0 - 0.5 <= x <= x1 + 0.5 and y0 - 0.5 <= y <= y1 + 0.5 for x, y in pts):
+            sh.msp.delete_entity(e)
+    y = y0 + 0.5
+    for lbl in ("WASHER", "DRYER"):
+        sh.rect(x0, y, x0 + 30, y + 27, EQ); sh.text(lbl, x0 + 15, y + 13.5, 3.0); y += 27
+    sh.text("W/D ALCOVE", (x0 + 30 + x1) / 2, (y0 + y1) / 2, 3.2, "A-AREA-IDEN")
+
+
 VARIANTS = {"long": (long_plan, long_fit, "BATH AND LAUNDRY SIDE BY SIDE, FULL DEPTH"),
             "back": (back_plan, back_fit, "LAUNDRY IN FRONT, BATH BEHIND, PASSAGE"),
-            "pantry": (pantry_plan, pantry_fit, "BATH ALONG THE HALL, LAUNDRY BEHIND VIA PANTRY AND MECH")}
-FIXES = {"pantry": pantry_build_fix}
+            "pantry": (pantry_plan, pantry_fit, "BATH ALONG THE HALL, LAUNDRY BEHIND VIA PANTRY AND MECH"),
+            "swap": (long_plan, swap_fit, "LONG LAYOUT: MECH BEHIND THE BATH, WASHER/DRYER IN THE OLD MECH SPACE")}
+FIXES = {"pantry": pantry_build_fix, "swap": swap_build_fix}
 
 
 def main():
