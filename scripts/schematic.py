@@ -40,14 +40,14 @@ EXT = 9.0      # exterior: 1/2" gyp + 2x6 + 1/2" sheathing + 1" rigid insul. + 7
 INT = 4.5      # interior: 2x4 + 1/2" gyp each side
 WET = 6.5      # plumbing walls: 2x6 + 1/2" gyp each side
 
-LOT_W, LOT_D = 1356.0, 777.25        # 113' x 64'-9 1/4" (designer); GIS says ~112' - verify by survey
+LOT_W, LOT_D = 1356.0, 777.25        # 113.00' x 64.77' per the topographic survey (source_files/survey)
 E, W, N, S = 356.1, 1220.0, 241.2, 621.2   # house outer faces (72' x 31'-8")
 E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 
 # Corner porch notch (outer faces) at the north-east corner.
 PORCH_X, PORCH_Y = 444.1, 289.2      # notch is E..PORCH_X by N..PORCH_Y
 CARPORT = (140.1, N, E, 481.3)       # x0, y0, x1, y1 (18' x 20')
-PLAN_NORTH_AZ = 21.0                 # true azimuth of plan north (LA County parcel GIS)
+PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines N22°23'00"E
 
 # Interior walls: (name, axis, centreline, from, to, thickness).
 # axis "x" = wall runs along x at y = centreline; "y" = runs along y at x = centreline.

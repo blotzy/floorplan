@@ -141,11 +141,11 @@ const roofCaster = (() => {
 const ctr = new THREE.Vector3(D.center[0]*IN, 0, -D.center[1]*IN);
 // Sun position for Altadena (34.19 N), solar time.
 // World axes follow the PLAN: x = plan west, y = up, z = plan north.
-// Plan north is NOT true north: per LA County parcel GIS (APN 5832-003-027,
-// CA State Plane V), the street (plan north) lot line runs at 111.1 deg and
-// the side lines at ~21 deg, so plan north points 21 deg east of true north.
+// Plan north is NOT true north: per the topographic survey (CA State Plane V),
+// the street (plan north) lot line runs S67°36'30"E (112.4 deg) and the side
+// lines N22°23'00"E, so plan north points 22.4 deg east of true north.
 const LAT = 34.19 * Math.PI/180;
-const PLAN_N = 21.0 * Math.PI/180;      // true azimuth of plan north
+const PLAN_N = 22.4 * Math.PI/180;      // true azimuth of plan north
 function placeSun() {
   const day = +document.getElementById('day').value, hr = +document.getElementById('hour').value;
   const dec = 23.44*Math.PI/180 * Math.sin(2*Math.PI*(284+day)/365);

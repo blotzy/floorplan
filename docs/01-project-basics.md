@@ -6,7 +6,9 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild
 
 **Orientation used in these docs:** "north", "east", etc. mean **plan** directions: the street is plan north, the carport and great room are at the plan east end, and the bedroom wing and primary suite at the plan west end. (The plan drawings put plan north at the bottom, so east is on the left.)
 
-**True orientation:** plan north is **21° east of true north**. From the LA County parcel GIS (APN 5832-003-027; parcel 27 on assessor map 5832-003), the street lot line runs at a bearing of 111° and the side lines at ~21°. So the street side faces NNE, the "south" (rear) side faces SSW (azimuth ~201°), the carport end faces ESE, and the primary-suite end faces WNW. The parcel GIS shows the lot as ~112' x 64'-9" (the plan drawing says 113'). The 3D model's sun uses the true orientation.
+**True orientation:** plan north is about **22° east of true north**. Per the topographic survey (APN 5832-003-027, portion of Lot 11, Johnston and Hay Tract, M.B. 9-50), the street lot line runs S67°36'30"E and the side lines N22°23'00"E. So the street side faces NNE, the "south" (rear) side faces SSW (azimuth ~202°), the carport end faces ESE, and the primary-suite end faces WNW. The lot is 113.00' x 64.77' (7,319 sq ft). The 3D model's sun uses the true orientation.
+
+**The site slopes.** It falls roughly east to west and front to back. Under the house the grade drops about 4 ft from the carport end to the primary-suite end, so foundation and grading are a real design question; see [site](03-site-and-landscape.md#existing-conditions-survey).
 
 | Item | Decision |
 | --- | --- |

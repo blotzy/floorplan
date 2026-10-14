@@ -7,6 +7,7 @@
 - [ ] Planner: confirm the side setback is 10% of lot width (11'-3.6"; the plan uses 11'-4" on the west and 11'-8" to the carport on the east).
 - [ ] Planner: does the 100'-frontage street-facing garage rule (§22.140.520) apply to a carport? If so, request a modification under Procedure A.
 - [ ] Planner: can uncovered parking in the driveway inside the front setback count as a required space?
+- [ ] LA County: the parkway street tree sits in front of the new carport driveway; remove (with a permit) or route around and protect it.
 - [ ] Architect: final square footage after the porch and carport changes, checked against the rebuild permit's size limit (the sheet still says 2,235 sq ft).
 
 **Design decisions (owner)**
@@ -18,6 +19,11 @@
 - [ ] Pick the fridge model (sets the exact opening and door clearance).
 
 **Trades**
+
+- [ ] Architect and civil engineer: foundation and grading for the slope (about 4 ft of fall across the house footprint, more across the lot): stepped vs. raised slab, how the west-end exterior door and the dining slider meet grade, and drainage around the house.
+- [ ] Civil / demolition: remove the old retaining wall under the southeast corner and the standing chimney in the courtyard; deal with the lower rear terrace they leave.
+- [ ] Owner / neighbour: ownership and condition of the wall along the east property line (it sits above our grade at the front half of the lot).
+- [ ] Plumber: confirm the building sewer can reach the existing front cleanout with code slope from the west-end baths, given the lot falls to the west.
 
 - [ ] Architect and insulation contractor: spray foam under the roof deck or rigid board above it, and the matching thermal barrier for storage use.
 - [ ] Roofer: written confirmation that the shingle warranty covers an unvented (spray-foam) deck.
