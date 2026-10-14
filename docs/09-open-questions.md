@@ -8,7 +8,7 @@
 - [ ] Planner: does the 100'-frontage street-facing garage rule (§22.140.520) apply to a carport? If so, request a modification under Procedure A.
 - [ ] Planner: can uncovered parking in the driveway inside the front setback count as a required space?
 - [ ] Driveway: the drawn entrance threads between the parkway street tree and the lot tree; confirm the root-zone clearance with an arborist (and any County requirement for work near a street tree), and drain the drive away from the house at the carport.
-- [ ] Architect: final square footage after the porch and carport changes, checked against the rebuild permit's size limit (the sheet still says 2,235 sq ft).
+- [ ] Architect: final square footage, checked against the rebuild permit's size limit.
 
 **Design decisions (owner)**
 
@@ -16,7 +16,7 @@
 - [x] Two-person tub: decided. A 72" x 48" jetted tub goes in the primary bath wet room; the common bath gets a standard 72" tub with a shower head. Pick the tub model before framing; 80-gal water heater.
 - [ ] Primary bath jetted tub: pick a two-person jetted tub that fits the wet room **and** has an accessible pump/access panel. Either a freestanding tub (service panels on its open sides) or a tub whose access panel opens from the walk-in closet side. Avoid models whose only access is the front apron facing the shower, or a rear panel that would open into the laundry. Pick it before framing; the wet room and the closet built-ins get laid out around it.
 - [ ] Kitchen tall storage: hutch between range and fridge, tall pantry column, and/or a dining-wall built-in.
-- [ ] Pick the fridge model (sets the exact opening and door clearance).
+- [ ] Pick the fridge model (sets the exact opening and door clearance). When shopping, check that its depth and open doors leave the walkway past it clear.
 
 **Trades**
 

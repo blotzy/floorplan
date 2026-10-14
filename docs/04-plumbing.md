@@ -23,14 +23,11 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 **Bathrooms**
 
 - Use epoxy or pre-mixed urethane grout for shower tile work.
-- Powder room toilet sits on the wall shared with the laundry alcove (open shelves on the other side).
 
 **Kitchen**
 
 - Integrated drain board on the dishwasher side of the sink (countertop with a slight slope and grooves).
-- Counter-depth fridge to avoid pinching the walkway.
-- Drink fridge in place of the fourth peninsula stool (the plan now has three stools).
-- Coffee station on the counter over the drink fridge.
+- Coffee station on the peninsula counter over the drink fridge.
 
 **Equipment and fixtures**
 
@@ -44,5 +41,5 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 **Optional**
 
 - Reading nook with built-in bench in the primary bedroom.
-- **72" x 48" two-person jetted tub in the primary bath wet room**, shown in [floor plan](02-floor-plan.md). Pick the model before framing; the drawn space is 48" x 78¾" against the plumbing wall. Fill is 80–110+ gal and the filler is limited to 120°F (CPC 409.4), so it needs an 80-gal heat pump water heater or a 140°F tank with a mixing valve. A slab floor handles the ~1,400 lb filled load. The pump needs an accessible service panel: choose either a freestanding tub (panels on its open sides) or one whose access panel opens from the walk-in closet side; see [open questions](09-open-questions.md). Wet room: one waterproofed zone (membrane floor and walls), curbless with a linear drain and the slab recessed for the slope.
+- **72" x 48" two-person jetted tub in the primary bath wet room**, shown in [floor plan](02-floor-plan.md). Pick the model before framing; the bath is exactly one tub-length deep, so the tub fits wall to wall against the plumbing wall. Fill is 80–110+ gal and the filler is limited to 120°F (CPC 409.4), so it needs an 80-gal heat pump water heater or a 140°F tank with a mixing valve. A slab floor handles the ~1,400 lb filled load. The pump needs an accessible service panel: choose either a freestanding tub (panels on its open sides) or one whose access panel opens from the walk-in closet side; see [open questions](09-open-questions.md). Wet room: one waterproofed zone (membrane floor and walls), curbless with a linear drain and the slab recessed for the slope.
 - On-demand hot water recirculation to the primary bath, the run farthest from the water heater.

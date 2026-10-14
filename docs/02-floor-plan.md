@@ -10,7 +10,7 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 - **Front door** on the street-facing side of the porch, with a sidelight.
 - **Reeded-glass window** in the porch's side wall, so you can see who's at the door from the lounge. Narrow reeds or satin-reeded, dual-pane, low-E, tempered, NFRC-rated, from the same window line as the rest of the house.
 - **Foyer** with a closet and bench on the east wall. The **foyer wall** (stopping short of the lobby) separates foyer and lounge; its lounge side is the **TV wall**.
-- **Lounge:** large north window centred on the wall. One L sectional, its window leg floated off the window and its other leg facing the TV wall, with a console behind that leg running the length of its seats. Square coffee table. No extra chairs (they blocked the TV sightline or the walkway). All furniture stays clear of the walkway from the foyer to the bedroom hall.
+- **Lounge:** large north window centred on the wall. One L sectional, its window leg floated off the window and its other leg facing the TV wall, with a console behind that leg running the length of its seats. Square coffee table. All furniture stays clear of the walkway from the foyer to the bedroom hall.
 
 ## Dining
 

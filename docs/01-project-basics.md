@@ -23,4 +23,4 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild
 | Baths | Primary bath, common bath, powder room |
 | Code basis | 2022 California codes allowed for fire rebuilds (EO N-29-25); fire sprinklers required (NFPA 13D); Class A roof and Chapter 7A wildfire construction (VHFHSZ) |
 
-The area label on the plan drawing (2,235 sq ft) is out of date. See [open questions](09-open-questions.md).
+Final square footage is still to be confirmed. See [open questions](09-open-questions.md).

@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-One fully ducted, variable-speed heat pump split into zones with motorized (electric) dampers, plus an ERV for code-required fresh air. No wall units or ceiling cassettes: every room gets ceiling registers. Capacities are rough; the HVAC contractor's Manual J sets the final sizes. No electric backup heat strips are needed in this climate.
+One fully ducted, variable-speed heat pump split into zones with motorized (electric) dampers, plus an ERV for code-required fresh air. Every room gets ceiling registers. Capacities are rough; the HVAC contractor's Manual J sets the final sizes. No electric backup heat strips are needed in this climate.
 
 | Zone | Serves | Thermostat |
 | --- | --- | --- |
