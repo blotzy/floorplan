@@ -32,7 +32,7 @@
 
 **Outlet locations** (standard outlets, no dedicated circuit needed)
 
-- Under the kitchen sink, for the tankless RO filter.
+- In the mechanical closet, for the tankless RO filter.
 - Robot vacuum dock niche.
 - GFCI outlet beside each toilet in the three full baths, for bidet seats.
 - Inside the pantry.

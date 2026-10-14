@@ -8,7 +8,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 
 **Existing connections (survey):** the water meter is in the parkway at the west end of the frontage; the sewer cleanout is at the front of the lot, roughly in line with the porch and lounge, so the building sewer runs out under the front of the house to it. The lot falls toward the west and rear, so check the sewer slope from the far (west) baths to that cleanout early.
 
-**Water service order:** meter → main shutoff and pressure regulator → smart leak-detection shutoff valve → unsoftened branches → main line to the mechanical closet → sediment pre-filter → softener → water heater and manifold.
+**Water service order:** meter → main shutoff and pressure regulator → smart leak-detection shutoff valve → unsoftened branches → main line to the mechanical closet → sediment pre-filter → softener → water heater, manifold, and the RO filter (drinking water to the kitchen sink tap and the fridge).
 
 | Line | Water | Notes |
 | --- | --- | --- |
@@ -36,7 +36,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 
 - Whole-house water softener with sediment pre-filter, in the mechanical closet. The softener needs a drain with an air gap.
 - Heat pump water heater in the mechanical closet, with a condensate drain and a drain pan with a leak sensor. Size it for the house; go to **80 gal** for the two-person jetted tub (see below).
-- Tankless reverse-osmosis filter under the kitchen sink, feeding the sink tap and a line to the fridge. A bypass plug replaces the fridge's internal filter.
+- Tankless reverse-osmosis filter in the mechanical closet, fed from the softened line (softening first extends the membrane's life). Food-grade lines run to the RO tap at the kitchen sink and to the fridge, with accessible shutoffs at both ends. Its waste line drains through an air gap or standpipe; it needs an outlet, and shares the closet's leak pan/sensor. A bypass plug replaces the fridge's internal filter. The sink cabinet stays free for the trash pull-out.
 - Leak pans under the washer and fridge.
 - Bidet seats at the three full baths. Plan toilet locations so each bidet outlet has enough separation from tubs and showers.
 - Laundry sink beside the washer in the laundry alcove.
