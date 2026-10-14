@@ -55,7 +55,7 @@ def lot_transform(msp):
 
     def to_lot(x, y):
         dx, dy = x - e0[0], y - e0[1]
-        return (12 * (dx * ux[0] + dy * ux[1]), 12 * (dx * uy[0] + dy * uy[1]))
+        return (S.LOT_X0 + 12 * (dx * ux[0] + dy * ux[1]), 12 * (dx * uy[0] + dy * uy[1]))
     az = math.degrees(math.atan2(-uy[0], -uy[1])) % 360  # azimuth of plan north (toward the street)
     return to_lot, L, az
 
@@ -106,7 +106,7 @@ def main():
             x, y = to_lot(t.dxf.insert.x, t.dxf.insert.y)
             msp.add_circle((x, y), 4, dxfattribs={"layer": "V-SURV-UTIL"})
             sh.text(names[t.dxf.text.strip()], x, y - 12, 7, "V-SURV-UTIL")
-    for wall_label, (x, y) in (("EXIST. RETAINING WALL", (430, 560)), ("EXIST. WALL ON PROPERTY LINE", (40, 300))):
+    for wall_label, (x, y) in (("EXIST. RETAINING WALL", (430, 560)), ("EXIST. WALL ON PROPERTY LINE", (S.LOT_X0 + 40, 300))):
         sh.text(wall_label, x, y, 7, "V-SURV-TEXT", rot=90 if x < 100 else 0)
 
     # ---- spot elevations and 1' contours ---------------------------------------------------

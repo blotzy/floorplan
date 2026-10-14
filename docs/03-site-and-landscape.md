@@ -4,8 +4,8 @@
 
 ## Siting and carport
 
-- House pushed west to the side setback: **11'-4"** west side yard (10% of the 113' lot width, rounded up; confirm with the planner).
-- **Carport 18' x 20'** on the east end, two cars side by side, **11'-8"** from the east property line. Clear-span beam with posts only at the corners (no middle post). The driveway is new: a single-car-width entrance between the parkway street tree and the tree just inside the lot, curving west to open onto the full carport width. The old driveway, further west in front of the planned porch and lounge, goes away. (No curbs or sidewalks on Laurel Drive, so there's no curb cut to deal with.) The street is a little higher than the carport, so the drive runs downhill toward the house: a trench drain or grading at the carport keeps runoff away from the house.
+- House near the west side setback: **11'-6"** west side yard (11'-3⅝" required, 10% of the 113' lot width; confirm with the planner).
+- **Carport 18' x 20'** on the east end, two cars side by side, **11'-6"** from the east property line. Clear-span beam with posts only at the corners (no middle post). The driveway is new: a single-car-width entrance between the parkway street tree and the tree just inside the lot, curving west to open onto the full carport width. The old driveway, further west in front of the planned porch and lounge, goes away. (No curbs or sidewalks on Laurel Drive, so there's no curb cut to deal with.) The street is a little higher than the carport, so the drive runs downhill toward the house: a trench drain or grading at the carport keeps runoff away from the house.
 - Carport: noncombustible framing and finishes; wall space for the EV charger. The exterior meter-main goes where SCE's service point is (the utilities are at the west end), so expect a long run from the panel to the carport charger, or a meter location on the east side if SCE allows.
 
 ## Existing conditions (survey)

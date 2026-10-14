@@ -12,9 +12,10 @@ thicknesses and writes a clean DXF + PNG:
 
     uv run scripts/schematic.py
 
-Coordinates are inches on the lot, origin at the street-side east corner:
-+x runs west, +y runs south (so plan north is at the bottom of the sheet,
-matching the designer's sheet). Everything is defined in the DATA section;
+Coordinates are inches, +x west and +y south; the street lot line is y = 0 and the
+east property line is x = LOT_X0 (the house's numbers stay fixed, so LOT_X0 slides the
+house east or west on the lot). Plan north is at the bottom of the sheet, matching the
+designer's sheet. Everything is defined in the DATA section;
 change a number and re-run.
 
 Not for construction. Schematic for owner review / architect briefing.
@@ -41,6 +42,7 @@ INT = 4.5      # interior: 2x4 + 1/2" gyp each side
 WET = 6.5      # plumbing walls: 2x6 + 1/2" gyp each side
 
 LOT_W, LOT_D = 1356.0, 777.25        # 113.00' x 64.77' per the topographic survey (source_files/survey)
+LOT_X0 = 2.0                         # x of the east property line (side setbacks: 10% of LOT_W each)
 E, W, N, S = 356.1, 1220.0, 241.2, 619.2   # house outer faces (72' x 31'-6")
 E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 
@@ -51,7 +53,7 @@ CARPORT = (140.1, N, E, 481.3)       # x0, y0, x1, y1 (18' x 20')
 # Driveway: a 12' entrance between the parkway street tree (~26'-6" from the east line) and the
 # tree inside the lot (~8'-6"), flaring west to the carport's full width. Runs out across the
 # parkway to the edge of pavement (no curb on Laurel Drive).
-DRIVE_IN = (150.0, 290.0)            # entrance edges (x) at the property line
+DRIVE_IN = (LOT_X0 + 150.0, LOT_X0 + 290.0)   # entrance edges (x) at the property line
 EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
 # Entry court in front of the porch, edged on the street side by a 24" seat wall (8" block) that
 # returns to the house just short of the lounge window; you walk in from the driveway side.
@@ -527,7 +529,7 @@ def build() -> Sheet:
     primary_bath(sh)
 
     # ---- site ----------------------------------------------------------------------
-    sh.rect(0, 0, LOT_W, LOT_D, "C-PROP")
+    sh.rect(LOT_X0, 0, LOT_X0 + LOT_W, LOT_D, "C-PROP")
     cx0, cy0, cx1, cy1 = CARPORT
     for x0, y0 in ((cx0, cy0), (cx0, cy1 - 6)):
         sh.rect(x0, y0, x0 + 6, y0 + 6, "A-WALL")
@@ -546,27 +548,27 @@ def build() -> Sheet:
     sh.text('24" SEAT WALL', (ENTRY_WALLS[0][0] + ENTRY_WALLS[0][2]) / 2, 146.0, 5.0)
     # courtyard
     fy = cy1 + 3
-    sh.rect(6, fy + 1, E, fy + 61, "L-SITE"); sh.text("PAVERS", 106, fy + 31, 6.0)
+    sh.rect(LOT_X0 + 6, fy + 1, E, fy + 61, "L-SITE"); sh.text("PAVERS", LOT_X0 + 106, fy + 31, 6.0)
     sh.rect(E - 144, fy + 1, E, LOT_D - 42, "L-SITE"); sh.text("DINING PATIO 12' x 21'", E - 72, 600.0, 5.0)
     sh.rect(E - 72 - 20, 650 - 36, E - 72 + 20, 650 + 36, fu)
-    sh.rect(18, fy + 73, E - 156, LOT_D - 54, "L-PLNT"); sh.text("LAWN", (18 + E - 156) / 2, 640.0, 7.0)
-    sh.rect(6, LOT_D - 42, E, LOT_D - 6, "L-PLNT"); sh.text("RAISED PLANTERS", E / 2, LOT_D - 24, 5.0)
-    sh.line((0, fy), (160, fy), "A-FENC"); sh.line((208, fy), (E, fy), "A-FENC")
+    sh.rect(LOT_X0 + 18, fy + 73, E - 156, LOT_D - 54, "L-PLNT"); sh.text("LAWN", (LOT_X0 + 18 + E - 156) / 2, 640.0, 7.0)
+    sh.rect(LOT_X0 + 6, LOT_D - 42, E, LOT_D - 6, "L-PLNT"); sh.text("RAISED PLANTERS", (LOT_X0 + E) / 2, LOT_D - 24, 5.0)
+    sh.line((LOT_X0, fy), (160, fy), "A-FENC"); sh.line((208, fy), (E, fy), "A-FENC")
     sh.text("6' FENCE / GATE", 184, fy - 10, 4.0)
-    sh.rect(6, 262, 54, 382, "L-SITE"); sh.text("BINS", 30, 322, 5.0, rot=90)        # bin pad
+    sh.rect(LOT_X0 + 6, 262, LOT_X0 + 54, 382, "L-SITE"); sh.text("BINS", LOT_X0 + 30, 322, 5.0, rot=90)        # bin pad
     hx = (face("kitchen|pantry", +1) + face("pantry|laundry", -1)) / 2                 # heat pump outdoor
     sh.rect(hx - 21, S + 10, hx + 21, S + 30, "A-EQPM")                                 # unit behind mech
     sh.rect(hx - 27, S + 4, hx + 27, S + 36, "A-FENC")                                  # dog guard
     sh.text("HP", hx, S + 20, 5.0)
-    sh.line((0, 386), (60, 386), "A-FENC"); sh.line((60, 386), (60, 258), "A-FENC")
-    sh.line((W, N), (W + 20, N), "A-FENC"); sh.line((W + 68, N), (LOT_W, N), "A-FENC")  # west fence
-    sh.text("6' FENCE + GATE", (W + LOT_W) / 2, N - 10, 4.0)
+    sh.line((LOT_X0, 386), (LOT_X0 + 60, 386), "A-FENC"); sh.line((LOT_X0 + 60, 386), (LOT_X0 + 60, 258), "A-FENC")
+    sh.line((W, N), (W + 20, N), "A-FENC"); sh.line((W + 68, N), (LOT_X0 + LOT_W, N), "A-FENC")  # west fence
+    sh.text("6' FENCE + GATE", (W + LOT_X0 + LOT_W) / 2, N - 10, 4.0)
 
     # ---- dimensions ----------------------------------------------------------------
     yb = LOT_D + 28
-    for x0, x1, lab in ((0, cx0, None), (cx0, E, None), (E, W, None), (W, LOT_W, None)):
+    for x0, x1, lab in ((LOT_X0, cx0, None), (cx0, E, None), (E, W, None), (W, LOT_X0 + LOT_W, None)):
         sh.dim((x0, LOT_D), (x1, LOT_D), (0, yb), lab or fmt(x1 - x0))
-    sh.dim((0, 0), (LOT_W, 0), (0, -30), fmt(LOT_W))
+    sh.dim((LOT_X0, 0), (LOT_X0 + LOT_W, 0), (0, -30), fmt(LOT_W))
     xv = W + 40
     for y0, y1 in ((0, N), (N, S), (S, LOT_D)):
         sh.dim((W, y0), (W, y1), (xv, 0), fmt(y1 - y0), angle=90)

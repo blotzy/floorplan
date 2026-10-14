@@ -4,7 +4,7 @@
 
 **Planner / permits**
 
-- [ ] Planner: confirm the side setback is 10% of lot width (11'-3.6"; the plan uses 11'-4" on the west and 11'-8" to the carport on the east).
+- [ ] Planner: confirm the side setback is 10% of lot width (11'-3⅝"; the plan uses 11'-6" on the west and 11'-6" to the carport on the east).
 - [ ] Planner: does the 100'-frontage street-facing garage rule (§22.140.520) apply to a carport? If so, request a modification under Procedure A.
 - [ ] Planner: can uncovered parking in the driveway inside the front setback count as a required space?
 - [ ] Driveway: the drawn entrance threads between the parkway street tree and the lot tree; confirm the root-zone clearance with an arborist (and any County requirement for work near a street tree), and drain the drive away from the house at the carport.
