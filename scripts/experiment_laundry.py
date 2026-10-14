@@ -12,8 +12,7 @@
   side wall  the powder-room wall becomes full-height storage (brooms, vacuum, ironing
              board, supplies), kept shallow so the walk to the machines and the panel stays
              open.
-  shelves    open wall shelves on the pantry wall (past the panel's clear zone) and on the
-             alcove wall behind the powder room.
+  shelves    open wall shelves on the alcove wall behind the powder room.
   same       walls, doors, powder room and electrical panel are unchanged; the
              folding counter on the pantry wall goes away.
 
@@ -69,7 +68,6 @@ def utility(sh):
     t0, t1 = S.face("south hall wall", +1) + 4, S.face("powder|alcove", -1)
     sh.rect(lp - TALL_D, t0, lp, t1, FU)
     sh.text("TALL STORAGE", lp - TALL_D / 2, (t0 + t1) / 2, 2.8, rot=90)
-    shelves(sh, l0, 530.0, l0 + SHELF_D, back - 36)                      # pantry wall, past the panel's clear zone
     shelves(sh, lp + 2, S.face("powder|alcove", +1), l1, S.face("powder|alcove", +1) + SHELF_D)   # alcove, behind the powder room
     sh.rect(l0, 495.0, l0 + 4, 515.0, EQ); sh.text("PANEL", l0 + 12, 505.0, 2.5, rot=90)
     S.room_label(sh, "LAUNDRY", l0, srow, lp, back, cx=805.0, cy=563.0, h=4.5)
