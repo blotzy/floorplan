@@ -9,8 +9,7 @@ rear wall. The pantry, mech closet, walk-in closet and primary bath are untouche
   long  bath and laundry side by side, both full depth, both off the hall.
         bath    ~4'-4" x 8'-9": sink, toilet, then a curbless shower across the end; all
                 fixtures on the wall shared with the primary bath. No window (exhaust fan).
-        storage ~4'-4" x 3'-6" behind the bath, open to the back of the laundry: chest
-                freezer and shelves.
+        storage ~4'-4" x 3'-6" behind the bath, open to the back of the laundry.
         laundry ~5' galley: sink, washer, dryer on the wall shared with the bath; the panel
                 near the door (its clear space opposite open floor). The mech closet has no
                 door: a wide open (cased) opening onto the galley, so the water heater
@@ -113,9 +112,8 @@ def long_fit(sh):
     S.room_label(sh, "BATH", b0, HALL, B1, ge, cx=b0 + 14, cy=505.0, h=3.6)
     # storage room behind the bath, open to the laundry
     s0 = LONG_BATH_END + S.INT
-    sh.rect(b0 + 6, S.S_IN - 30, b0 + 46, S.S_IN, EQ); sh.text("CHEST FREEZER", b0 + 26, S.S_IN - 15, 2.4)
-    sh.rect(B1 - 12, s0, B1, S.S_IN - 30, FU); sh.text("SHELVES", B1 - 6, (s0 + S.S_IN - 30) / 2, 2.2, rot=90)
-    S.room_label(sh, "STORAGE", b0, s0, B1, S.S_IN, cx=(b0 + B1) / 2 - 4, cy=s0 + 6, h=3.0)
+    sh.rect(B1 - 12, s0, B1, S.S_IN, FU); sh.text("SHELVES", B1 - 6, (s0 + S.S_IN) / 2, 2.2, rot=90)
+    S.room_label(sh, "STORAGE", b0, s0, B1, S.S_IN, cx=(b0 + B1 - 12) / 2, h=3.4)
     # laundry galley: machines on the bath wall, panel near the door across open floor
     machines_y(sh, lw, 500.0, -1)
     sh.rect(lw - 30, 515.0, lw, 570.0, FU)                    # folding counter over the washer/dryer
