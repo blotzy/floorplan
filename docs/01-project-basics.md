@@ -19,6 +19,8 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild
 | Footprint | House 72' x 31'-6"; carport 18' x 20' on the east end |
 | Siting | House near the west side setback: 11'-6" on the west, 11'-6" from the carport to the east line, 20'-1¼" front, 13'-2" rear (20% of the 64.77' lot depth is 12'-11½") |
 | Setback buffer | Room to spare, measured to the outside face of the exterior walls (eaves not included): front 1¼" (20' required), rear 2½" (12'-11½" required, 20% of lot depth), west 2⅜" (11'-3⅝" required, 10% of the 113' lot width), east 2½" to the carport (same 11'-3⅝"). Confirm with the planner. |
+| Lot coverage | About 2,628 sq ft (house ~2,238 + porch ~29 + carport ~360), 36% of the lot. Altadena CSD limit: ¼ of net lot area + 1,000 sq ft, about 2,830 sq ft, so ~200 sq ft to spare. Any future covered patio, shed or pergola counts. Confirm the formula and net lot area with the planner. |
+| Floor area | About 2,238 sq ft enclosed (carport excluded). Altadena CSD limit uses the same formula, about 2,830 sq ft. Separate from the fire-rebuild permit's size limit (see [open questions](09-open-questions.md)). |
 | Bedrooms | Primary + 3 secondary: gym, guest, office |
 | Baths | Primary bath, common bath, powder room |
 | Code basis | 2022 California codes allowed for fire rebuilds (EO N-29-25); fire sprinklers required (NFPA 13D); Class A roof and Chapter 7A wildfire construction (VHFHSZ) |
