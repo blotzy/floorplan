@@ -334,7 +334,9 @@ def utility_block(sh):
     sh.rect(l0, 466.0, l0 + 4, 486.0, eq); sh.text("PANEL", l0 + 10, 476.0, 2.5, rot=90)
     sh.rect(lw - 12, hall, lw, 499.0, fu)                                    # open shelves beside the sink,
     sh.text("SHELVES", lw - 6, (hall + 499.0) / 2, 2.2, rot=90)              # across from the panel
-    room_label(sh, "LAUNDRY", l0, hall, lw, S_IN, cx=(l0 + lw) / 2 - 8, cy=595.0, h=4.0)
+    sh.rect(l0 + 12, S_IN - 12, lw - 12, S_IN, fu)                           # rear wall: full-height shelves
+    sh.text("SHELVES", (l0 + lw) / 2, S_IN - 6, 2.2)                         # between the mech and storage openings
+    room_label(sh, "LAUNDRY", l0, hall, lw, S_IN, cx=(l0 + lw) / 2 - 8, cy=582.0, h=4.0)
 
 
 def wic(sh):
