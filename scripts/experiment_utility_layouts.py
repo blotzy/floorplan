@@ -31,7 +31,8 @@ rear wall. The pantry, mech closet, walk-in closet and primary bath are untouche
           heater, softener and filters behind the bath (open to the laundry); the washer and
           dryer side by side in the old mech space against the kitchen-side wall, facing the
           laundry; the galley becomes a laundry room with counter, sink, panel, attic hatch and
-          a network cabinet in the front corner across from the panel. (The heat pump's
+          a network cabinet in the front corner across from the panel, and a shallow
+          full-height cabinet on the rear wall between the two side openings. (The heat pump's
           outdoor unit would move off that rear wall if the dryer vents there.)
 
 Writes renders/experiments/utility-{long,back,pantry,swap}.png (+ DXF) and a 3D model per variant.
@@ -260,8 +261,11 @@ def swap_fit(sh):
     sh.rect(L0, 466.0, L0 + 4, 486.0, EQ); sh.text("PANEL", L0 + 10, 476.0, 2.5, rot=90)
     sh.rect(lw - 20, HALL, lw, HALL + 30, EQ)                 # network cabinet in the front corner across
     sh.text("NETWORK RACK", lw - 10, HALL + 15, 2.0, rot=90)  # from the panel, past the door swing
-    hx = L0 + 10
-    sh.rect(hx, 522.0, hx + 22.5, 576.0, FU); sh.text("ATTIC HATCH", hx + 11.25, 549.0, 2.0, rot=90)
+    hx = L0 + 10                                              # attic hatch, hinge toward the hall: the
+    sh.rect(hx, 496.0, hx + 22.5, 550.0, FU)                  # ladder lands short of the rear cabinet
+    sh.text("ATTIC HATCH", hx + 11.25, 523.0, 2.0, rot=90)
+    sh.rect(L0 + 12, S.S_IN - 12, lw - 12, S.S_IN, FU)       # rear wall: 12"-deep floor-to-ceiling cabinet
+    sh.text("TALL CABINET", (L0 + lw) / 2, S.S_IN - 6, 2.2)          # brooms, vacuum, ironing, supplies
     S.room_label(sh, "LAUNDRY", L0, HALL, lw, S.S_IN, cx=(L0 + lw) / 2 + 2, cy=595.0, h=3.6)
 
 
