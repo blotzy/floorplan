@@ -119,14 +119,14 @@ def build_schematic() -> Scene:
         axis, c, t = S.wall_info(name)
         def seg(v):
             return ((a, c + v), (b, c + v)) if axis == "x" else ((c + v, a), (c + v, b))
+        sill, head = (o[4], o[5]) if kind == "window" and len(o) > 4 else (SILL, HEAD)   # high windows
         for v in (-t / 2, t / 2):
-            sc.quad(face_mat(*seg(v)), *seg(v), HEAD, CEIL)
+            sc.quad(face_mat(*seg(v)), *seg(v), head, CEIL)
         if kind == "window":
-            sill = 0.0 if name == "porch front" else SILL      # full-height glass on the porch front
             if sill:
                 for v in (-t / 2, t / 2):
                     sc.quad(face_mat(*seg(v)), *seg(v), 0, sill)
-            sc.quad("glass", *seg(0), sill, HEAD)
+            sc.quad("glass", *seg(0), sill, head)
         elif kind == "slider":
             sc.quad("glass", *seg(0), 0, HEAD)
 

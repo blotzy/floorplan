@@ -84,6 +84,7 @@ WALLS = [
 
 # Openings: (wall name, from, to, kind, hinge, swing)
 #   kind: door | slider | bifold | window | cased | pocket (hinge = pocket side)
+#   windows may add (sill, head) heights in inches; the default is a 30" sill and 8' head.
 #   hinge: "a" = at `from`, "b" = at `to`;  swing: +1 / -1 along the wall normal
 #   (normal = +y for "x" walls, +x for "y" walls).
 OPENINGS = [
@@ -98,8 +99,8 @@ OPENINGS = [
     ("south",       397.0, 517.0, "window"),             # dining 10'
     ("south",       592.0, 652.0, "window"),             # kitchen sink
     ("south",       886.25, 916.25, "window"),           # primary bath, centred over the jetted tub
-    ("south",       972.5, 996.5, "window"),             # primary bath, small, over the WC (obscure glass)
-    ("south",       1083.6, 1191.6, "window"),           # primary bedroom (centred)
+    ("south",       975.0, 1023.0, "window", 78.0, 96.0),  # primary bath: high horizontal window over the walkway
+    ("south",       1098.6, 1176.6, "window"),           # primary bedroom 6'-6" (centred; faces SSW, so kept modest)
     ("east",        509.8, 593.8, "slider"),             # dining 7' slider
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
     # interior
@@ -302,6 +303,7 @@ def primary_bath(sh):
     drain(sh, (gx - 3, top + 3), (gx - 3, ly - 3))
     wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                       # north wall: 17.25" to glass, 15.25" to vanity
     vanity(sh, m1 - 60, top, m1, top + 22, "DOUBLE VANITY 60")
+    sh.text("HIGH WINDOW", 999.0, S_IN - 4, 2.0)                       # sill at about 6'-6"
     room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2 - 2, cy=570.0, h=3.2)
 
 
