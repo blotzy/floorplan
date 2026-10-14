@@ -5,8 +5,9 @@
 """Experiment: laundry with the machines on the back wall and the sink on the primary-bath wall.
 
   back wall  front-load washer and dryer side by side and a base cabinet, one continuous
-             counter over all of it for folding, upper cabinets above. Starts clear of the
-             mechanical closet's bifold. No window: the back wall is solid.
+             counter over all of it for folding, upper cabinets above. Starts 3' off the pantry
+             wall so the mechanical closet's bifold has open floor in front of it. No window:
+             the back wall is solid.
   sink       a small, shallow utility sink on the wall shared with the primary bath (its
              supply and drain share that wet wall).
   side wall  the powder-room wall becomes full-height storage (brooms, vacuum, ironing
@@ -38,6 +39,7 @@ TALL_D = 18.0            # depth of the tall storage on the powder-room wall
 SINK_W = 14.0            # small utility sink, about half a washer's width...
 SINK_D = 15.0            # ...and half its depth, so the mech closet's bifold opens clear
 SHELF_D = 12.0
+MECH_CLEAR = 36.0        # open floor along the pantry wall in front of the mech closet's bifold
 
 
 def shelves(sh, x0, y0, x1, y1):
@@ -59,12 +61,12 @@ def utility(sh):
     l0, l1 = S.face("pantry|laundry", +1), S.face("utility|bath", -1)
     lp = S.face("laundry|powder", -1)
     back = S.S_IN
-    x = l0 + 18                                           # clear of the mech closet's bifold
+    x = l0 + MECH_CLEAR                                   # stand-in space in front of the mech closet's bifold
     for lbl in ("WASHER", "DRYER"):
         sh.rect(x, back - 30, x + 27, back, EQ); sh.text(lbl, x + 13.5, back - 15, 3.0); x += 27
     sh.rect(x, back - 24, l1, back, FU); sh.text("CAB", (x + l1) / 2, back - 12, 2.5)
-    sh.rect(l0 + 18, back - 30, l1, back, FU)             # folding counter over the machines and cabinet
-    sh.text("FOLDING COUNTER OVER  /  UPPERS ABOVE", (l0 + 18 + l1) / 2, back - 36, 2.4)
+    sh.rect(l0 + MECH_CLEAR, back - 30, l1, back, FU)     # folding counter over the machines and cabinet
+    sh.text("FOLDING COUNTER OVER  /  UPPERS ABOVE", (l0 + MECH_CLEAR + l1) / 2, back - 36, 2.4)
     sy = back - 30 - 8 - SINK_W                           # sink on the primary-bath wall, just off the counter
     S.vanity(sh, l1 - SINK_D, sy, l1, sy + SINK_W, "SINK", rot=90)
     t0, t1 = S.face("south hall wall", +1) + 4, S.face("powder|alcove", -1)
