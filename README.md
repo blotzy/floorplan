@@ -47,6 +47,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | `source_files/survey/` | Topographic survey (DWG, DXF, PDF) |
 | `scripts/experiment_exterior.py` | Exterior style alternatives (roof form, eaves, colours) on the 3D model (`renders/experiments/`) |
 | `scripts/experiment_powder_bath.py` | Powder room as a three-quarter bath, taken from the front of the laundry (`renders/experiments/powder-bath.png`) |
+| `scripts/experiment_utility_layouts.py` | Laundry/powder block rearranged for a full bath with a rear window: side by side (`utility-long.png`) or laundry in front, bath behind (`utility-back.png`) |
 | `renders/` | Plan renders and the 3D model |
 
 Viewing and measuring: open the DXFs in QCAD (View → Auto Zoom; Snap → Endpoint; Info → Distance). Units are inches.
