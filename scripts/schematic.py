@@ -93,8 +93,7 @@ OPENINGS = [
     ("north",       869.0, 899.0, "window"),             # common bath
     ("north",       952.1, 1052.1, "window"),            # guest
     ("north",       1100.1, 1196.1, "window"),           # office
-    ("porch front", 380.0, 418.0, "door", "b", +1),      # front door 36"
-    ("porch front", 424.0, 438.0, "window"),             # sidelight
+    ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
     ("south",       397.0, 517.0, "window"),             # dining 10'
     ("south",       592.0, 652.0, "window"),             # kitchen sink
@@ -454,7 +453,7 @@ def build() -> Sheet:
     hall_n, hall_s = face("bedroom hall wall", -1), face("south hall wall", -1)   # bedroom / lobby faces
     srow = face("south hall wall", +1)
     pen_out, pen_in = 546.9, 598.0
-    room("FOYER", E_IN, PORCH_Y + EXT, face("foyer wall", -1), FOYER_WALL_END, cx=418.0, cy=372.0, h=6.0)
+    room("FOYER", E_IN, PORCH_Y + EXT, face("foyer wall", -1), FOYER_WALL_END, cx=410.0, cy=385.0, h=6.0)
     room("LOUNGE", face("foyer wall", +1), N_IN, face("lounge|gym", -1), hall_s, cx=668.0, cy=300.0)
     room("DINING", E_IN, srow, pen_out, S_IN, cy=592.0)
     room("KITCHEN", pen_out, srow, face("kitchen|pantry", -1), S_IN, cx=622.0, cy=545.0, h=7.0)
@@ -511,8 +510,9 @@ def build() -> Sheet:
     sh.text("L SECTIONAL", 551.0, 287.0, 4.0)
     sh.rect(636.5, 305.0, 651.5, 396.0, fu); sh.text("CONSOLE", 644.0, 350.5, 3.5, rot=90)
     sh.rect(533.0, seat_cy - 23, 579.0, seat_cy + 23, fu)                     # 46" square table
-    sh.rect(E_IN, 300.0, E_IN + 18, 333.0, fu); sh.text("CLOSET", E_IN + 9, 316.5, 3.0, rot=90)
-    sh.rect(E_IN, 333.0, E_IN + 18, 366.0, fu); sh.text("BENCH", E_IN + 9, 349.5, 3.0, rot=90)
+    fw = face("foyer wall", -1)             # closet + bench on the foyer side of the TV wall
+    sh.rect(fw - 18, 300.0, fw, 333.0, fu); sh.text("CLOSET", fw - 9, 316.5, 3.0, rot=90)
+    sh.rect(fw - 18, 333.0, fw, 366.0, fu); sh.text("BENCH", fw - 9, 349.5, 3.0, rot=90)
 
     def bed(head_x, cy, w, d):              # 80" mattress + 3" headboard on the wall at head_x,
         hb = head_x + d * 3                 # running in x-direction d; 18" x 16" nightstands

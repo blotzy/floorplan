@@ -122,7 +122,7 @@ def build_schematic() -> Scene:
         for v in (-t / 2, t / 2):
             sc.quad(face_mat(*seg(v)), *seg(v), HEAD, CEIL)
         if kind == "window":
-            sill = 0.0 if name == "porch front" else SILL      # sidelight beside the front door
+            sill = 0.0 if name == "porch front" else SILL      # full-height glass on the porch front
             if sill:
                 for v in (-t / 2, t / 2):
                     sc.quad(face_mat(*seg(v)), *seg(v), 0, sill)

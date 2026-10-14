@@ -63,7 +63,7 @@ def eaves(sc, ov_x, ov_y):
 
 
 def front_door(sc):
-    sc.boxes["door"].append([380.0, S.PORCH_Y + 2, 418.0, S.PORCH_Y + 5, 0, 96])
+    sc.boxes["door"].append([385.0, S.PORCH_Y + 2, 423.0, S.PORCH_Y + 5, 0, 96])
 
 
 # ---- roof forms -----------------------------------------------------------------------
