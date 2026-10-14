@@ -295,11 +295,14 @@ def primary_bath(sh):
     sh.text("LEDGE", sx, ly + LEDGE_D / 2, 2.0)                        # tiled shelf, that head's plumbing inside
     shower_head(sh, sx, ly, -1)                                        # above the ledge, arm clears it
     shower_head(sh, sx, top, +1)
-    glass(sh, (gx, top), (gx, ly - 30))                                # walk in at the rear-wall end, 30" clear past the ledge
+    glass(sh, (gx, top), (gx, ly - 30))                                # glass wall to wall: fixed panel from the closet wall,
+    glass(sh, (gx, ly - 30), (gx, ly))                                 # then a 30" glass door hung off the ledge wall's end
+    sh.line((gx, ly), (gx + 30, ly), "A-DOOR")                         # (no gap or inside corner to clean); swings out
+    sh.msp.add_arc((gx, ly), 30, 270, 360, dxfattribs={"layer": "A-DOOR"})
     drain(sh, (gx - 3, top + 3), (gx - 3, ly - 3))
     wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                       # north wall: 17.25" to glass, 15.25" to vanity
     vanity(sh, m1 - 60, top, m1, top + 22, "DOUBLE VANITY 60")
-    room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2 - 10, cy=588.0, h=4.0)
+    room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2 - 2, cy=570.0, h=3.2)
 
 
 def utility_block(sh):
