@@ -128,10 +128,12 @@ def slab_roof(sc, ov, under, splits=(), ends="exterior", north="exterior", south
 YM = (N + Sth) / 2
 
 
-def shed(sc, pitch, ov, seams=False, clerestory=True):
+def shed(sc, pitch, ov, seams=False, clerestory=True, heel=0.0):
     """Low at the rear wall, rising to the street, with a clerestory along the front (or a
-    solid street wall: flat 10' ceilings and a sealed attic throughout)."""
-    slab_roof(sc, ov, lambda y: PLATE + (Sth - y) * pitch, north="glass" if clerestory else "exterior", seams=seams)
+    solid street wall: flat 10' ceilings and a sealed attic throughout). heel raises the
+    whole roof (walls rise to meet it all round) so the low side of the attic has headroom."""
+    slab_roof(sc, ov, lambda y: PLATE + heel + (Sth - y) * pitch, north="glass" if clerestory else "exterior",
+              seams=seams)
 
 
 def butterfly(sc, pitch, ov, seams=False):
@@ -224,6 +226,9 @@ METAL = {   # the original, lower midcentury slopes, with roofing that suits the
     "metal-mcm-shed-solid": (lambda sc: shed(sc, 1.5 / 12, 36, seams=True, clerestory=False),
                              {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,
                               "seam": 0x2A2D31, "door": 0xD9792B}),
+    "metal-mcm-shed-heel": (lambda sc: shed(sc, 1.5 / 12, 36, seams=True, clerestory=False, heel=24.0),
+                            {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,
+                             "seam": 0x2A2D31, "door": 0xD9792B}),
     "metal-mcm-shed-vault": (lambda sc: shed_vault(sc, 2 / 12, 36, seams=True),
                              {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,
                               "seam": 0x2A2D31, "door": 0xD9792B}),
@@ -236,6 +241,7 @@ METAL = {   # the original, lower midcentury slopes, with roofing that suits the
 }
 METAL_LABELS = {"metal-mcm-shed": "MCM shed, 1.5:12 standing-seam metal (clerestory to the street)",
                 "metal-mcm-shed-solid": "MCM shed, 1.5:12 standing-seam metal, no clerestory (attic throughout)",
+                "metal-mcm-shed-heel": "MCM shed, 1.5:12 standing-seam metal, no clerestory, raised 2' (raised heel: attic headroom at the rear too)",
                 "metal-mcm-shed-vault": "MCM shed, 2:12 standing-seam metal: only the lounge vaulted, attic elsewhere",
                 "metal-mcm-butterfly": "MCM butterfly, 2:12 single-ply membrane (clerestories both sides)",
                 "metal-mcm-gable": "MCM gable, 2:12 standing-seam metal (Eichler-like, glazed gable ends)"}
