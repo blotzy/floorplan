@@ -332,6 +332,8 @@ def utility_block(sh):
     sh.rect(lw - 30, 515.0, lw, 570.0, fu)                                   # folding counter over
     sh.text("COUNTER OVER", lw - 34, 542.0, 2.2, rot=90)
     sh.rect(l0, 466.0, l0 + 4, 486.0, eq); sh.text("PANEL", l0 + 10, 476.0, 2.5, rot=90)
+    sh.rect(lw - 12, hall, lw, 499.0, fu)                                    # open shelves beside the sink,
+    sh.text("SHELVES", lw - 6, (hall + 499.0) / 2, 2.2, rot=90)              # across from the panel
     room_label(sh, "LAUNDRY", l0, hall, lw, S_IN, cx=(l0 + lw) / 2 - 8, cy=595.0, h=4.0)
 
 
