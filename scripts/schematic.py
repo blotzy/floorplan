@@ -326,13 +326,14 @@ def utility_block(sh):
     sh.rect(b1 - 12, s0, b1, S_IN, fu); sh.text("SHELVES", b1 - 6, (s0 + S_IN) / 2, 2.2, rot=90)
     room_label(sh, "STORAGE", b0, s0, b1, S_IN, cx=(b0 + b1 - 12) / 2, h=3.4)
     # laundry galley, all on the bath wall: folding counter (shelves above) and sink by the door,
-    # then the washer and dryer on pedestals; panel near the door across open floor
+    # then the dryer and washer on pedestals; panel near the door across open floor
     sh.rect(lw - 22, hall, lw, 514.0, fu)                    # 22" deep: clears the door swing
     sh.text("FOLDING COUNTER", lw - 11, (hall + 499.0) / 2, 2.2, rot=90)
     sh.text("SHELVES ABOVE", lw - 5, (hall + 499.0) / 2, 1.6, rot=90)
     vanity(sh, lw - 18, 500.0, lw, 514.0, "SINK", rot=90)    # set into the counter
     y = 515.0
-    for lbl in ("WASHER", "DRYER"):
+    for lbl in ("DRYER", "WASHER"):                          # facing the wall, washer on the left: the
+                                                             # doors open apart (left-hinged washer)
         sh.rect(lw - 30, y, lw, y + 27, eq); sh.text(lbl, lw - 17, y + 13.5, 2.6, rot=90)
         sh.text("ON PEDESTAL", lw - 9, y + 13.5, 1.6, rot=90); y += 28
     sh.rect(l0, 466.0, l0 + 4, 486.0, eq); sh.text("PANEL", l0 + 10, 476.0, 2.5, rot=90)
