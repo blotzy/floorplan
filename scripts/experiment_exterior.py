@@ -141,7 +141,7 @@ def butterfly(sc, pitch, ov, seams=False):
     slab_roof(sc, ov, lambda y: PLATE + abs(y - YM) * pitch, splits=(YM,), north="glass", south="glass", seams=seams)
 
 
-LOUNGE_X = (S.face("foyer wall", +1), S.face("lounge|bed2", -1))
+LOUNGE_X = (S.face("foyer wall", +1), S.face("lounge|gym", -1))
 LOUNGE_Y = (S.N_IN, S.face("south hall wall", -1))          # street wall to the lobby edge
 JOISTS = 10.0                                               # ceiling framing above the 10' ceiling
 

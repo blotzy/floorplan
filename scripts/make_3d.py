@@ -135,7 +135,7 @@ def build_schematic() -> Scene:
     inside_house = lambda x0, y0, x1, y1: E_ <= x0 and x1 <= W_ and N_ <= y0 and y1 <= S_
     pantry = (S.face("kitchen|pantry", +1), S.face("south hall wall", +1),
               S.face("pantry|laundry", -1), S.face("pantry|mech", -1))
-    lounge = (S.face("foyer wall", +1), S.N_IN, S.face("lounge|bed2", -1), S.face("south hall wall", -1))
+    lounge = (S.face("foyer wall", +1), S.N_IN, S.face("lounge|gym", -1), S.face("south hall wall", -1))
     def label_in(x0, y0, x1, y1, layers=("A-ANNO-TEXT",)):
         for txt, lay, x, y in texts:
             if lay in layers and x0 <= x <= x1 and y0 <= y <= y1:

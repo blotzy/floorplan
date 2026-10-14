@@ -64,10 +64,10 @@ PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines 
 # axis "x" = wall runs along x at y = centreline; "y" = runs along y at x = centreline.
 WALLS = [
     ("foyer wall",        "y", PORCH_X + EXT - INT / 2, PORCH_Y, FOYER_WALL_END, INT),
-    ("lounge|bed2",       "y", 710.0,  N_IN, 405.45, INT),
-    ("bed2|c.bath",       "y", 844.0,  N_IN, 405.45, WET),
-    ("c.bath|bed3",       "y", 923.0,  N_IN, 405.45, INT),
-    ("bed3|bed4",         "y", 1082.0, N_IN, 405.45, INT),
+    ("lounge|gym",       "y", 710.0,  N_IN, 405.45, INT),
+    ("gym|c.bath",       "y", 844.0,  N_IN, 405.45, WET),
+    ("c.bath|guest",       "y", 923.0,  N_IN, 405.45, INT),
+    ("guest|office",         "y", 1082.0, N_IN, 405.45, INT),
     ("bedroom hall wall", "x", 403.2,  707.75, W_IN, INT),
     ("south hall wall",   "x", 459.2,  671.75, W_IN, INT),
     ("kitchen|pantry",    "y", 674.0,  457.0, S_IN, INT),
@@ -87,10 +87,10 @@ WALLS = [
 OPENINGS = [
     # exterior
     ("north",       519.1, 639.1, "window"),             # lounge 10'
-    ("north",       728.1, 824.1, "window"),             # bedroom 2
+    ("north",       728.1, 824.1, "window"),             # gym
     ("north",       869.0, 899.0, "window"),             # common bath
-    ("north",       952.1, 1052.1, "window"),            # bedroom 3
-    ("north",       1100.1, 1196.1, "window"),           # bedroom 4
+    ("north",       952.1, 1052.1, "window"),            # guest
+    ("north",       1100.1, 1196.1, "window"),           # office
     ("porch front", 380.0, 418.0, "door", "b", +1),      # front door 36"
     ("porch front", 424.0, 438.0, "window"),             # sidelight
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
@@ -102,10 +102,10 @@ OPENINGS = [
     ("east",        509.8, 593.8, "slider"),             # dining 7' slider
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
     # interior
-    ("bedroom hall wall", 799.5, 835.5, "door", "b", -1),   # bedroom 2
+    ("bedroom hall wall", 799.5, 835.5, "door", "b", -1),   # gym
     ("bedroom hall wall", 885.5, 915.5, "door", "b", -1),   # common bath
-    ("bedroom hall wall", 984.0, 1020.0, "door", "a", -1),  # bedroom 3
-    ("bedroom hall wall", 1090.0, 1126.0, "door", "a", -1), # bedroom 4
+    ("bedroom hall wall", 984.0, 1020.0, "door", "a", -1),  # guest
+    ("bedroom hall wall", 1090.0, 1126.0, "door", "a", -1), # office
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 838.0, 866.0, "door", "b", +1),     # powder
@@ -261,8 +261,8 @@ def vanity(sh, x0, y0, x1, y1, label, rot=0):
 
 def common_bath(sh):
     """72" x 32" alcove tub with a shower head across the window end. Tub drain, valve and
-    head, the WC and the vanity all on the east (plumbing) wall shared with bedroom 2."""
-    c0, c1 = face("bed2|c.bath", +1), face("c.bath|bed3", -1)          # 73.5" clear: fur the west end ~1.5"
+    head, the WC and the vanity all on the east (plumbing) wall shared with the gym."""
+    c0, c1 = face("gym|c.bath", +1), face("c.bath|guest", -1)          # 73.5" clear: fur the west end ~1.5"
     hall = face("bedroom hall wall", -1)
     ty = N_IN + 32.0
     tub(sh, c0, N_IN, c0 + 72.0, ty, "TUB 72x32")
@@ -432,12 +432,12 @@ def build() -> Sheet:
     srow = face("south hall wall", +1)
     pen_out, pen_in = 546.9, 598.0
     room("FOYER", E_IN, PORCH_Y + EXT, face("foyer wall", -1), FOYER_WALL_END, cx=418.0, cy=372.0, h=6.0)
-    room("LOUNGE", face("foyer wall", +1), N_IN, face("lounge|bed2", -1), hall_s, cx=668.0, cy=300.0)
+    room("LOUNGE", face("foyer wall", +1), N_IN, face("lounge|gym", -1), hall_s, cx=668.0, cy=300.0)
     room("DINING", E_IN, srow, pen_out, S_IN, cy=592.0)
     room("KITCHEN", pen_out, srow, face("kitchen|pantry", -1), S_IN, cx=622.0, cy=545.0, h=7.0)
-    room("BEDROOM 2", face("lounge|bed2", +1), N_IN, face("bed2|c.bath", -1), hall_n, cy=272.0)
-    room("BEDROOM 3", face("c.bath|bed3", +1), N_IN, face("bed3|bed4", -1), hall_n, cy=272.0)
-    room("BEDROOM 4", face("bed3|bed4", +1), N_IN, W_IN, hall_n, cy=272.0)
+    room("GYM", face("lounge|gym", +1), N_IN, face("gym|c.bath", -1), hall_n, cy=272.0)
+    room("GUEST", face("c.bath|guest", +1), N_IN, face("guest|office", -1), hall_n, cy=272.0)
+    room("OFFICE", face("guest|office", +1), N_IN, W_IN, hall_n, cy=272.0)
     room("PANTRY", face("kitchen|pantry", +1), srow, face("pantry|laundry", -1), face("pantry|mech", -1), h=5.5)
     room("MECH", face("kitchen|pantry", +1), face("pantry|mech", +1), face("pantry|laundry", -1), S_IN,
          cy=575.0, h=5.0)
@@ -494,9 +494,9 @@ def build() -> Sheet:
         for ny in (y0 - 18, y1):
             sh.rect(n0, ny, n1, ny + 18, fu)                                  # nightstands
 
-    open_mid = (N_IN + hall_n - 24) / 2     # bedrooms 2-4: head wall from the window side to the closets
-    bed(face("lounge|bed2", +1), open_mid, 60, +1)
-    bed(face("c.bath|bed3", +1), open_mid, 60, +1)
+    open_mid = (N_IN + hall_n - 24) / 2     # gym, guest, office: head wall from the window side to the closets
+    bed(face("lounge|gym", +1), open_mid, 60, +1)
+    bed(face("c.bath|guest", +1), open_mid, 60, +1)
     bed(W_IN, open_mid, 60, -1)
     bed(W_IN, (srow + S_IN) / 2, 76, -1)   # primary: the whole west wall is open
 
@@ -506,9 +506,9 @@ def build() -> Sheet:
         sh.line((x0, y1 - 12), (x1, y1 - 12), fu)
         sh.text(label, (x0 + x1) / 2, y1 - 18, 4.0)
 
-    closet(face("lounge|bed2", +1), 794.0)
-    closet(face("c.bath|bed3", +1), 974.0)
-    closet(1030.1, face("bed3|bed4", -1))
+    closet(face("lounge|gym", +1), 794.0)
+    closet(face("c.bath|guest", +1), 974.0)
+    closet(1030.1, face("guest|office", -1))
     closet(1130.0, W_IN)
 
     common_bath(sh)
