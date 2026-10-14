@@ -41,7 +41,7 @@ INT = 4.5      # interior: 2x4 + 1/2" gyp each side
 WET = 6.5      # plumbing walls: 2x6 + 1/2" gyp each side
 
 LOT_W, LOT_D = 1356.0, 777.25        # 113.00' x 64.77' per the topographic survey (source_files/survey)
-E, W, N, S = 356.1, 1220.0, 241.2, 621.2   # house outer faces (72' x 31'-8")
+E, W, N, S = 356.1, 1220.0, 241.2, 619.2   # house outer faces (72' x 31'-6")
 E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 
 # Corner porch notch (outer faces) at the north-east corner.
@@ -99,7 +99,7 @@ OPENINGS = [
     ("south",       886.25, 916.25, "window"),           # primary bath, centred over the jetted tub
     ("south",       972.5, 996.5, "window"),             # primary bath, small, over the WC (obscure glass)
     ("south",       1083.6, 1191.6, "window"),           # primary bedroom (centred)
-    ("east",        510.8, 594.8, "slider"),             # dining 7' slider
+    ("east",        509.8, 593.8, "slider"),             # dining 7' slider
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
     # interior
     ("bedroom hall wall", 799.5, 835.5, "door", "b", -1),   # bedroom 2
@@ -110,7 +110,7 @@ OPENINGS = [
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 838.0, 866.0, "door", "b", +1),     # powder
     ("south hall wall", 1070.0, 1106.0, "door", "a", +1),   # primary bedroom
-    ("pantry|laundry", 579.2, 609.2, "bifold", "a", +1),    # mech closet (louvered)
+    ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("bath|wic", 1026.0, 1056.0, "door", "b", +1),          # primary bath, at the west end of the closet
     ("suite|primary", 463.0, 499.0, "cased"),               # walk-in closet entry, 36"
 ]
