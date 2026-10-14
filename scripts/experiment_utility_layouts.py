@@ -30,9 +30,9 @@ rear wall. The pantry, mech closet, walk-in closet and primary bath are untouche
   swap    the long layout with the mech closet and the room behind the bath swapped: water
           heater, softener and filters behind the bath (open to the laundry); the washer and
           dryer side by side in the old mech space against the kitchen-side wall, facing the
-          laundry; the galley becomes a laundry room with counter, sink, panel, network rack
-          and attic hatch. (The heat pump's outdoor unit would move off that rear wall if the
-          dryer vents there.)
+          laundry; the galley becomes a laundry room with counter, sink, panel, attic hatch and
+          a network cabinet in the front corner across from the panel. (The heat pump's
+          outdoor unit would move off that rear wall if the dryer vents there.)
 
 Writes renders/experiments/utility-{long,back,pantry,swap}.png (+ DXF) and a 3D model per variant.
 
@@ -258,7 +258,8 @@ def swap_fit(sh):
     S.vanity(sh, lw - 22, 520.0, lw, 545.0, "SINK", rot=90)
     sh.text("COUNTER + UPPERS", lw - 12, 506.0, 1.8, rot=90)
     sh.rect(L0, 466.0, L0 + 4, 486.0, EQ); sh.text("PANEL", L0 + 10, 476.0, 2.5, rot=90)
-    sh.rect(L0, 495.0, L0 + 12, 517.0, EQ); sh.text("RACK", L0 + 6, 506.0, 2.2, rot=90)
+    sh.rect(lw - 20, HALL, lw, HALL + 30, EQ)                 # network cabinet in the front corner across
+    sh.text("NETWORK RACK", lw - 10, HALL + 15, 2.0, rot=90)  # from the panel, past the door swing
     hx = L0 + 10
     sh.rect(hx, 522.0, hx + 22.5, 576.0, FU); sh.text("ATTIC HATCH", hx + 11.25, 549.0, 2.0, rot=90)
     S.room_label(sh, "LAUNDRY", L0, HALL, lw, S.S_IN, cx=(L0 + lw) / 2 + 2, cy=595.0, h=3.6)
