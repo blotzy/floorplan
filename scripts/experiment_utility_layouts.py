@@ -20,7 +20,14 @@ rear wall. The pantry, mech closet, walk-in closet and primary bath are untouche
         bath    ~6' x 6'-8": shower in the back corner under a new rear window, toilet beside
                 it, vanity on the primary-bath wall.
 
-Writes renders/experiments/utility-{long,back}.png (+ DXF) and a 3D model per variant.
+  pantry  bath across the whole hall frontage (~9'-10" x 6'-3"): shower running east-west
+          along the hall wall at the primary-bath end, toilet on the primary-bath wall, vanity
+          on the back wall, door at the pantry end. The laundry sits behind it and has no hall
+          door: you go through the pantry (a door replaces its back shelf) into the mech
+          closet and on through its open side into the laundry. Panel on the laundry side of
+          the bath wall; sink, washer, dryer on the rear wall.
+
+Writes renders/experiments/utility-{long,back,pantry}.png (+ DXF) and a 3D model per variant.
 
     uv run scripts/experiment_utility_layouts.py
 """
@@ -35,6 +42,7 @@ import make_3d as M  # noqa: E402
 import schematic as S  # noqa: E402
 
 BASE = (copy.deepcopy(S.WALLS), copy.deepcopy(S.OPENINGS), S.utility_block)
+BUILD = S.build
 EQ, FU = "A-EQPM", "A-FURN"
 L0 = 752.25                      # laundry side of the pantry/mech wall
 B1 = 870.75                      # bath side of the primary-bath wall
@@ -165,8 +173,60 @@ def back_fit(sh):
     sh.text("PASSAGE", (L0 + PASS_X) / 2, 590.0, 3.0, rot=90)
 
 
+# ---- pantry: bath across the hall frontage, laundry behind it, reached through pantry + mech --
+PB_D = 75.0                                  # bath depth from the hall wall
+PB_Y = HALL + PB_D + S.WET / 2               # bath | laundry wall
+PANTRY_DOOR = (700.0, 728.0)                 # pantry back wall -> mech closet
+
+
+def pantry_plan(ws, ops):
+    drop(ws, "powder|alcove", "laundry|powder")
+    ws.append(("bath|laundry", "x", PB_Y, 750.0, 874.0, S.WET))
+    set_hall_doors(ops, [("south hall wall", 760.0, 790.0, "door", "a", +1)])    # bath (the only hall door)
+    ops.append(("pantry|mech", *PANTRY_DOOR, "door", "a", +1))                    # pantry -> mech
+    m0 = S.face("pantry|mech", +1)                                               # mech open to the laundry
+    ops[:] = [o for o in ops if o[:2] != ("pantry|laundry", 579.2)]
+    ops.append(("pantry|laundry", m0 + 3, S.S_IN - 3, "cased"))
+
+
+def pantry_fit(sh):
+    b0 = L0
+    back = PB_Y - S.WET / 2
+    # bath: shower along the hall wall (east-west) at the primary-bath end
+    sx0, sy1 = B1 - 60, HALL + 36
+    S.wet_zone(sh, sx0, HALL, B1, sy1)
+    sh.rect(sx0, HALL, B1, sy1, EQ)
+    S.glass(sh, (sx0 + 24, sy1), (B1, sy1))                  # 24" open entry at the door end
+    S.glass(sh, (sx0, HALL), (sx0, HALL + 6))                # short return at the open end
+    sh.text("SHOWER", (sx0 + B1) / 2, HALL + 18, 3.2)
+    head_x(sh, B1, HALL + 18, -1)
+    S.drain(sh, (sx0 + 3, sy1 - 3), (B1 - 3, sy1 - 3))
+    S.wc(sh, B1 - 28, sy1 + 6, B1, sy1 + 36)                 # toilet on the primary-bath wall
+    S.vanity(sh, 776.0, back - 21, 812.0, back, "VANITY 36")
+    S.room_label(sh, "BATH", b0, HALL, B1, back, cx=(b0 + sx0) / 2 + 2, cy=HALL + 14, h=3.6)
+    # laundry behind the bath: machines on the back wall, panel on the bath wall
+    l0y = PB_Y + S.WET / 2
+    x = machines_x(sh, 800.0, S.S_IN, -1)
+    sh.rect(815.0, S.S_IN - 30, x, S.S_IN, FU)
+    sh.text("COUNTER OVER", (815.0 + x) / 2, S.S_IN - 34, 2.2)
+    sh.rect(760.0, l0y, 780.0, l0y + 4, EQ); sh.text("PANEL", 770.0, l0y + 9, 2.5)
+    S.room_label(sh, "LAUNDRY", L0, l0y, B1, S.S_IN, cx=790.0, cy=l0y + 22, h=3.6)
+
+
+def pantry_build_fix(sh):
+    """The pantry's back shelf gives way to the door into the mech closet."""
+    p0, p1, pm = S.face("kitchen|pantry", +1), S.face("pantry|laundry", -1), S.face("pantry|mech", -1)
+    target = (p0 + 16, pm - 16, p1 - 16, pm)
+    for e in list(sh.msp.query("LWPOLYLINE")):
+        xs, ys = zip(*[(q[0], q[1]) for q in e.get_points("xy")])
+        if all(abs(a - b) < 0.01 for a, b in zip((min(xs), min(ys), max(xs), max(ys)), target)):
+            sh.msp.delete_entity(e)
+
+
 VARIANTS = {"long": (long_plan, long_fit, "BATH AND LAUNDRY SIDE BY SIDE, FULL DEPTH"),
-            "back": (back_plan, back_fit, "LAUNDRY IN FRONT, BATH BEHIND, PASSAGE")}
+            "back": (back_plan, back_fit, "LAUNDRY IN FRONT, BATH BEHIND, PASSAGE"),
+            "pantry": (pantry_plan, pantry_fit, "BATH ALONG THE HALL, LAUNDRY BEHIND VIA PANTRY AND MECH")}
+FIXES = {"pantry": pantry_build_fix}
 
 
 def main():
@@ -175,6 +235,8 @@ def main():
         S.WALLS, S.OPENINGS = copy.deepcopy(BASE[0]), copy.deepcopy(BASE[1])
         plan(S.WALLS, S.OPENINGS)
         S.utility_block = fit
+        fix = FIXES.get(key)
+        S.build = (lambda f=fix: (lambda sh: (f(sh), sh)[1])(BUILD())) if fix else BUILD
         sh = S.build()
         sh.text(f"EXPERIMENT: {title}", S.LOT_W / 2, S.LOT_D + 115, 10.0)
         sh.doc.saveas(S.ROOT / f"Accosting - owner schematic - EXPERIMENT utility {key}.dxf")
@@ -182,6 +244,7 @@ def main():
         sc = M.build_schematic()
         M.write_model(sc, out / f"utility-{key}", sc.meta)
     S.WALLS, S.OPENINGS, S.utility_block = BASE
+    S.build = BUILD
 
 
 if __name__ == "__main__":
