@@ -4,11 +4,10 @@
 # ///
 """Experiment: laundry with the machines on the back wall and the sink on the primary-bath wall.
 
-  back wall  front-load washer and dryer side by side with a folding counter over them and
-             upper cabinets above. Starts 3' off the pantry wall so the mechanical closet's
-             bifold has open floor in front of it. No window: the back wall is solid.
-  sink       a small, shallow utility sink in the back corner on the wall shared with the
-             primary bath (its supply and drain share that wet wall).
+  back wall  a small, shallow utility sink just past 3' of open floor in front of the
+             mechanical closet's bifold, then a front-load washer and dryer side by side with a
+             folding counter over them and upper cabinets above. No window: the back wall is
+             solid.
   side wall  the powder-room wall becomes full-height storage (brooms, vacuum, ironing
              board, supplies), kept shallow so the walk to the machines and the panel stays
              open.
@@ -60,11 +59,12 @@ def utility(sh):
     lp = S.face("laundry|powder", -1)
     back = S.S_IN
     x = l0 + MECH_CLEAR                                   # stand-in space in front of the mech closet's bifold
+    S.vanity(sh, x, back - SINK_D, x + SINK_W, back, "SINK", rot=90)    # just past the mech closet's clear floor
+    x = w0 = x + SINK_W + 2
     for lbl in ("WASHER", "DRYER"):
         sh.rect(x, back - 30, x + 27, back, EQ); sh.text(lbl, x + 13.5, back - 15, 3.0); x += 27
-    sh.rect(l0 + MECH_CLEAR, back - 30, x, back, FU)      # folding counter over the machines
-    sh.text("FOLDING COUNTER OVER  /  UPPERS ABOVE", (l0 + MECH_CLEAR + x) / 2, back - 36, 2.4)
-    S.vanity(sh, l1 - SINK_D, back - SINK_W, l1, back, "SINK", rot=90)   # back corner, on the primary-bath wall
+    sh.rect(w0, back - 30, x, back, FU)                   # folding counter over the machines
+    sh.text("FOLDING COUNTER OVER  /  UPPERS ABOVE", (w0 + x) / 2, back - 36, 2.4)
     t0, t1 = S.face("south hall wall", +1) + 4, S.face("powder|alcove", -1)
     sh.rect(lp - TALL_D, t0, lp, t1, FU)
     sh.text("TALL STORAGE", lp - TALL_D / 2, (t0 + t1) / 2, 2.8, rot=90)
