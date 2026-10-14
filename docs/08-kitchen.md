@@ -20,7 +20,7 @@ An upside-down U, 10'-0" x 13'-2": the sink on the south wall under the window, 
 **Also add**
 
 - Doors on the dining-room side of the peninsula's corner end, turning the blind corner into a buffet cabinet.
-- 24" triple pull-out (trash, recycling, and a small lidded food-scraps bin for LA County's green organics cart) in the peninsula on the kitchen side, right beside the dishwasher: sink → scrape → bin → dishwasher. Make recycling the larger bin. If recycling outgrows it, a second recycling pull-out can go at the peninsula's north end later.
+- 24" triple pull-out (trash, recycling, and a small lidded food-scraps bin for LA County's green organics cart) in the peninsula on the kitchen side, right beside the dishwasher: sink → scrape → bin → dishwasher. Make recycling the larger bin.
 - Appliance garage with an outlet in the countertop corner.
 - Under-cabinet lighting.
 - 42" or stacked upper cabinets to suit the 10' ceilings.
