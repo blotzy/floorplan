@@ -23,10 +23,11 @@
 - [ ] Architect and civil engineer: foundation and grading for the slope (about 4 ft of fall across the house footprint, more across the lot): stepped vs. raised slab, how the west-end exterior door and the dining slider meet grade, and drainage around the house.
 - [ ] Civil / demolition: remove the old retaining wall under the southeast corner and the standing chimney in the courtyard; deal with the lower rear terrace they leave.
 - [ ] East property-line wall (front half of the lot, sits above our grade):
-  - [ ] Surveyor: exact position relative to the line, and the grade on the neighbour's side (is it retaining their soil, or freestanding?).
+  - It retains the neighbour's soil (their side is higher), so our side is the toe of the wall.
+  - [ ] Surveyor: exact position relative to the line (it appears to straddle it).
   - [ ] Condition check after the fire (cracks, lean, bulging, weep holes, heat damage); structural/geotechnical engineer if anything looks off. Repairs to walls over 4 ft (footing to top) or ones holding up a slope or driveway need a permit.
-  - [ ] Neighbour: agree on ownership and who maintains, repairs or replaces it (boundary walls are generally shared under Civil Code §841; a retaining wall usually falls to whoever's soil it holds). If both lots are rebuilding, consider sharing a repair or a new noncombustible wall. Put it in writing.
-  - [ ] Before demolition: photograph it. Architect / civil: no excavation or regrading near its base, and drainage away from it.
+  - [ ] Neighbour: since it holds their soil, maintenance and repair usually fall mainly on them; agree on ownership and responsibilities in writing. If both lots are rebuilding, consider a shared repair or a new noncombustible wall (with a privacy fence on top, if wanted).
+  - [ ] Before demolition: photograph it. Architect / civil: no excavation or lowering of grade along its base on our side; a swale or gravel drain along the wall carries its seepage to the site drainage, away from the house and carport.
 - [ ] Plumber: confirm the building sewer can reach the existing front cleanout with code slope from the west-end baths, given the lot falls to the west.
 
 - [ ] Architect and insulation contractor: spray foam under the roof deck or rigid board above it, and the matching thermal barrier for storage use.
