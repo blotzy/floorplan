@@ -105,8 +105,8 @@ OPENINGS = [
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
     ("bedroom hall wall", 867.5, 897.5, "door", "b", -1),   # common bath
-    ("c.bath|guest", 342.0, 372.0, "pocket", "a", 0),      # guest en-suite: pocket door into the common bath
-    ("bedroom hall wall", 966.0, 1002.0, "door", "a", -1),  # guest
+    ("c.bath|guest", 335.0, 365.0, "door", "a", +1),       # guest en-suite: swings into the guest room (the bath is narrow)
+    ("bedroom hall wall", 912.0, 948.0, "door", "a", -1),  # guest
     ("bedroom hall wall", 1090.0, 1126.0, "door", "a", -1), # office
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
@@ -473,12 +473,12 @@ def build() -> Sheet:
     utility_block(sh)
     wic(sh)
     room("PRIMARY", face("suite|primary", +1), srow, W_IN, S_IN, cx=(face("suite|primary", +1) + W_IN - 80) / 2)
-    hx0, hy = 906.0, (face("bedroom hall wall", +1) + hall_s) / 2      # attic pull-down in the hall,
+    hx0, hy = 990.0, (face("bedroom hall wall", +1) + hall_s) / 2      # attic pull-down in the hall,
     sh.msp.add_lwpolyline([(hx0, hy - 12.75), (hx0 + 54, hy - 12.75), (hx0 + 54, hy + 12.75),
                            (hx0, hy + 12.75)], close=True,             # across from the closet wall
                           dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})
     sh.text("ATTIC HATCH", hx0 + 27, hy, 2.6, "A-CLNG")
-    sh.text("LOBBY", 1050.0, (face("bedroom hall wall", +1) + hall_s) / 2, 7.0, "A-AREA-IDEN")
+    sh.text("LOBBY", 950.0, (face("bedroom hall wall", +1) + hall_s) / 2, 7.0, "A-AREA-IDEN")
     sh.text("PORCH", (E + PORCH_X) / 2, (N + PORCH_Y) / 2, 7.0, "A-AREA-IDEN")
 
     # ---- fixtures & furniture (simple symbols) --------------------------------
@@ -546,8 +546,7 @@ def build() -> Sheet:
         sh.text(label, (x0 + x1) / 2, y1 - 18, 4.0)
 
     closet(face("lounge|gym", +1), 776.0)
-    closet(face("c.bath|guest", +1), 956.0)
-    closet(1012.1, face("guest|office", -1))
+    closet(958.0, face("guest|office", -1))   # guest: one long closet past the door
     closet(1130.0, W_IN)
 
     common_bath(sh)
