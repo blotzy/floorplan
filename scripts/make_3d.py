@@ -48,8 +48,8 @@ class Scene:
 # =============================================================================
 LABEL_H = [            # label inside a shape -> (z0, z1); first match wins
     ("FRIDGE", (0, 70)), ("RANGE", (0, 36)), ("DOUBLE VANITY", (0, 34)), ("VANITY", (0, 34)),
-    ("VAN", (0, 34)), ("WC", (0, 16)), ("TUB ACCESS", None), ("TUB", (0, 20)), ("DRYER", (0, 38)),
-    ("WASHER", (0, 38)), ("FOLDING", (0, 36)), ("PANEL", (36, 66)), ("RACK", (0, 72)),
+    ("VAN", (0, 34)), ("WC", (0, 16)), ("TUB ACCESS", None), ("TUB", (0, 20)), ("DRYER", (0, 53)),
+    ("WASHER", (0, 53)), ("FOLDING", (0, 36)), ("PANEL", (36, 66)), ("RACK", (0, 72)),
     ("TALL STORAGE", (0, 96)), ("CLOSET", (0, 96)), ("LINEN", (0, 84)), ("HANG", (0, 84)), ("SHELVES", (0, 84)), ("CL", (0, 96)), ("BENCH", (0, 18)),
     ("DRAWERS", (0, 36)),  # WIC end-wall drawer stack (shelves/mirror above in reality)
     ("LEDGE", (0, 42)),    # shower ledge wall, tiled shelf on top

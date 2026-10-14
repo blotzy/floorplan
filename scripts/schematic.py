@@ -325,15 +325,21 @@ def utility_block(sh):
     s0 = face("bath|storage", +1)
     sh.rect(b1 - 12, s0, b1, S_IN, fu); sh.text("SHELVES", b1 - 6, (s0 + S_IN) / 2, 2.2, rot=90)
     room_label(sh, "STORAGE", b0, s0, b1, S_IN, cx=(b0 + b1 - 12) / 2, h=3.4)
-    # laundry galley: sink, washer, dryer on the bath wall; panel near the door across open floor
-    y = 500.0
-    for w, lbl, deep in ((14, "SINK", 15), (27, "WASHER", 30), (27, "DRYER", 30)):
-        sh.rect(lw - deep, y, lw, y + w, eq); sh.text(lbl, lw - deep / 2, y + w / 2, 2.6, rot=90); y += w + 1
-    sh.rect(lw - 30, 515.0, lw, 570.0, fu)                                   # folding counter over
-    sh.text("COUNTER OVER", lw - 34, 542.0, 2.2, rot=90)
+    # laundry galley, all on the bath wall: folding counter (shelves above) and sink by the door,
+    # then the washer and dryer on pedestals; panel near the door across open floor
+    sh.rect(lw - 22, hall, lw, 514.0, fu)                    # 22" deep: clears the door swing
+    sh.text("FOLDING COUNTER", lw - 11, (hall + 499.0) / 2, 2.2, rot=90)
+    sh.text("SHELVES ABOVE", lw - 5, (hall + 499.0) / 2, 1.6, rot=90)
+    vanity(sh, lw - 18, 500.0, lw, 514.0, "SINK", rot=90)    # set into the counter
+    y = 515.0
+    for lbl in ("WASHER", "DRYER"):
+        sh.rect(lw - 30, y, lw, y + 27, eq); sh.text(lbl, lw - 17, y + 13.5, 2.6, rot=90)
+        sh.text("ON PEDESTAL", lw - 9, y + 13.5, 1.6, rot=90); y += 28
     sh.rect(l0, 466.0, l0 + 4, 486.0, eq); sh.text("PANEL", l0 + 10, 476.0, 2.5, rot=90)
-    sh.rect(lw - 12, hall, lw, 499.0, fu)                                    # open shelves beside the sink,
-    sh.text("SHELVES", lw - 6, (hall + 499.0) / 2, 2.2, rot=90)              # across from the panel
+    ax0, ax1 = l0 + 4, l0 + 26                               # pulley ceiling airer over the aisle
+    sh.msp.add_lwpolyline([(ax0, 515.0), (ax1, 515.0), (ax1, 575.0), (ax0, 575.0)], close=True,
+                          dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})
+    sh.text("CEILING AIRER", (ax0 + ax1) / 2, 545.0, 2.2, "A-CLNG", rot=90)
     sh.rect(l0 + 12, S_IN - 12, lw - 12, S_IN, fu)                           # rear wall: full-height shelves
     sh.text("SHELVES", (l0 + lw) / 2, S_IN - 6, 2.2)                         # between the mech and storage openings
     room_label(sh, "LAUNDRY", l0, hall, lw, S_IN, cx=(l0 + lw) / 2 - 8, cy=582.0, h=4.0)
