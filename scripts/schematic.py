@@ -66,11 +66,11 @@ PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines 
 # axis "x" = wall runs along x at y = centreline; "y" = runs along y at x = centreline.
 WALLS = [
     ("foyer wall",        "y", PORCH_X + EXT - INT / 2, PORCH_Y, FOYER_WALL_END, INT),
-    ("lounge|gym",       "y", 710.0,  N_IN, 405.45, INT),
-    ("gym|c.bath",       "y", 844.0,  N_IN, 405.45, WET),
-    ("c.bath|guest",       "y", 923.0,  N_IN, 405.45, INT),
-    ("guest|office",         "y", 1082.0, N_IN, 405.45, INT),
-    ("bedroom hall wall", "x", 403.2,  707.75, W_IN, INT),
+    ("lounge|gym",       "y", 692.0,  N_IN, 405.45, INT),
+    ("gym|c.bath",       "y", 826.0,  N_IN, 405.45, WET),
+    ("c.bath|guest",     "y", 905.0,  N_IN, 405.45, INT),
+    ("guest|office",     "y", 1064.0, N_IN, 405.45, INT),
+    ("bedroom hall wall", "x", 403.2,  689.75, W_IN, INT),
     ("south hall wall",   "x", 459.2,  671.75, W_IN, INT),
     ("kitchen|pantry",    "y", 674.0,  457.0, S_IN, INT),
     ("pantry|laundry",    "y", 750.0,  457.0, S_IN, INT),
@@ -88,11 +88,11 @@ WALLS = [
 #   (normal = +y for "x" walls, +x for "y" walls).
 OPENINGS = [
     # exterior
-    ("north",       519.1, 639.1, "window"),             # lounge 10'
-    ("north",       728.1, 824.1, "window"),             # gym
-    ("north",       869.0, 899.0, "window"),             # common bath
-    ("north",       952.1, 1052.1, "window"),            # guest
-    ("north",       1100.1, 1196.1, "window"),           # office
+    ("north",       511.1, 631.1, "window"),             # lounge 10'
+    ("north",       710.1, 806.1, "window"),             # gym
+    ("north",       851.0, 881.0, "window"),             # common bath
+    ("north",       934.1, 1034.1, "window"),            # guest
+    ("north",       1090.6, 1186.6, "window"),           # office
     ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
     ("south",       397.0, 517.0, "window"),             # dining 10'
@@ -103,9 +103,9 @@ OPENINGS = [
     ("east",        509.8, 593.8, "slider"),             # dining 7' slider
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
     # interior
-    ("bedroom hall wall", 799.5, 835.5, "door", "b", -1),   # gym
-    ("bedroom hall wall", 885.5, 915.5, "door", "b", -1),   # common bath
-    ("bedroom hall wall", 984.0, 1020.0, "door", "a", -1),  # guest
+    ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
+    ("bedroom hall wall", 867.5, 897.5, "door", "b", -1),   # common bath
+    ("bedroom hall wall", 966.0, 1002.0, "door", "a", -1),  # guest
     ("bedroom hall wall", 1090.0, 1126.0, "door", "a", -1), # office
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
@@ -455,7 +455,7 @@ def build() -> Sheet:
     srow = face("south hall wall", +1)
     pen_out, pen_in = 546.9, 598.0
     room("FOYER", E_IN, PORCH_Y + EXT, face("foyer wall", -1), FOYER_WALL_END, cx=410.0, cy=385.0, h=6.0)
-    room("LOUNGE", face("foyer wall", +1), N_IN, face("lounge|gym", -1), hall_s, cx=668.0, cy=300.0)
+    room("LOUNGE", face("foyer wall", +1), N_IN, face("lounge|gym", -1), hall_s, cx=600.0, cy=428.0)
     room("DINING", E_IN, srow, pen_out, S_IN, cy=592.0)
     room("KITCHEN", pen_out, srow, face("kitchen|pantry", -1), S_IN, cx=622.0, cy=545.0, h=7.0)
     room("GYM", face("lounge|gym", +1), N_IN, face("gym|c.bath", -1), hall_n, cy=272.0)
@@ -467,7 +467,7 @@ def build() -> Sheet:
     utility_block(sh)
     wic(sh)
     room("PRIMARY", face("suite|primary", +1), srow, W_IN, S_IN, cx=(face("suite|primary", +1) + W_IN - 80) / 2)
-    hx0, hy = 924.0, (face("bedroom hall wall", +1) + hall_s) / 2      # attic pull-down in the hall,
+    hx0, hy = 906.0, (face("bedroom hall wall", +1) + hall_s) / 2      # attic pull-down in the hall,
     sh.msp.add_lwpolyline([(hx0, hy - 12.75), (hx0 + 54, hy - 12.75), (hx0 + 54, hy + 12.75),
                            (hx0, hy + 12.75)], close=True,             # across from the closet wall
                           dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})
@@ -539,9 +539,9 @@ def build() -> Sheet:
         sh.line((x0, y1 - 12), (x1, y1 - 12), fu)
         sh.text(label, (x0 + x1) / 2, y1 - 18, 4.0)
 
-    closet(face("lounge|gym", +1), 794.0)
-    closet(face("c.bath|guest", +1), 974.0)
-    closet(1030.1, face("guest|office", -1))
+    closet(face("lounge|gym", +1), 776.0)
+    closet(face("c.bath|guest", +1), 956.0)
+    closet(1012.1, face("guest|office", -1))
     closet(1130.0, W_IN)
 
     common_bath(sh)
