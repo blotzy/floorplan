@@ -81,6 +81,12 @@ def build_schematic() -> Scene:
     sc.polys["concrete"].append([[[E_, N_ - 24], [px, N_ - 24], [px, py], [E_, py]], 0.0, 3.0])
     sc.boxes["roof"].append([cx0 - 6, cy0 - 6, cx1, cy1 + 6, 108, 112])
     sc.boxes["post"].append([E_, N_, E_ + 6, N_ + 6, 0, CEIL])        # porch corner post
+    ex0, ey0, ex1, ey1 = S.ENTRY_COURT                                  # entry court + seat wall
+    sc.polys["pavers"].append([[[ex0, ey0], [ex1, ey0], [ex1, ey1], [ex0, ey1]], 0.0, 2.0])
+    for x0, y0, x1, y1 in S.ENTRY_WALLS:
+        sc.boxes["concrete"].append([x0, y0, x1, y1, 0, S.ENTRY_WALL_H])
+    w0 = S.ENTRY_WALLS[0]
+    sc.boxes["post"].append([w0[2] - 30, w0[1] - 0.5, w0[2] - 12, w0[1], 10, 16])   # lit house numbers
 
     # ---- walls: a face along every edge of the wall outline ----------------------
     geom = S.wall_geometry()

@@ -50,6 +50,6 @@ From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.
 ## Front yard (no lawn)
 
 - Native/Mediterranean low-water planting: dry creek bed / rain garden taking the downspouts, boulders, low shrubs screening the bedroom windows.
-- Low (18–36") wall at the entry court; lit house numbers; low-voltage path lights.
+- **Entry court** in front of the porch, paved, edged on the street side by a seat-height masonry wall (noncombustible) that returns to the house just short of the lounge window. You walk in from the driveway side, and the wall stays low there so you can see when backing out. Lit house numbers on the wall; low-voltage path lights.
 - 5' gravel or paver strip along the house; no bark mulch within 30' of the house.
 - Driveway: permeable pavers or concrete with gravel strips.

@@ -52,6 +52,11 @@ CARPORT = (140.1, N, E, 481.3)       # x0, y0, x1, y1 (18' x 20')
 # parkway to the edge of pavement (no curb on Laurel Drive).
 DRIVE_IN = (150.0, 290.0)            # entrance edges (x) at the property line
 EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
+# Entry court in front of the porch, edged on the street side by a 24" seat wall (8" block) that
+# returns to the house just short of the lounge window; you walk in from the driveway side.
+ENTRY_COURT = (E, 156.0, 504.0, N)   # x0, y0, x1, y1
+ENTRY_WALLS = [(E + 36.0, 156.0, 504.0, 164.0), (496.0, 164.0, 504.0, N)]
+ENTRY_WALL_H = 24.0
 PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines N22°23'00"E
 
 # Interior walls: (name, axis, centreline, from, to, thickness).
@@ -521,6 +526,11 @@ def build() -> Sheet:
     sh.text("DRIVEWAY", (DRIVE_IN[0] + DRIVE_IN[1]) / 2 + 10, 120.0, 9.0, "A-AREA-IDEN")
     sh.rect(E + 4, N - 24, PORCH_X - 4, N, "L-SITE")                          # porch step
     sh.rect(E, N, E + 6, N + 6, "A-WALL")                                     # porch corner post (carport beam lands here)
+    sh.rect(*ENTRY_COURT, "L-SITE")                                           # entry court + seat wall
+    sh.text("ENTRY COURT", (ENTRY_COURT[0] + ENTRY_COURT[2]) / 2, 205.0, 6.0, "A-AREA-IDEN")
+    for b in ENTRY_WALLS:
+        sh.rect(*b, "A-WALL")
+    sh.text('24" SEAT WALL', (ENTRY_WALLS[0][0] + ENTRY_WALLS[0][2]) / 2, 146.0, 5.0)
     # courtyard
     fy = cy1 + 3
     sh.rect(6, fy + 1, E, fy + 61, "L-SITE"); sh.text("PAVERS", 106, fy + 31, 6.0)
