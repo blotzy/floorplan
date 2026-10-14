@@ -46,6 +46,7 @@ E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 
 # Corner porch notch (outer faces) at the north-east corner.
 PORCH_X, PORCH_Y = 444.1, 289.2      # notch is E..PORCH_X by N..PORCH_Y
+FOYER_WALL_END = 418.5               # foyer/TV wall: ends ~46" short of the nearest dining chair
 CARPORT = (140.1, N, E, 481.3)       # x0, y0, x1, y1 (18' x 20')
 # Driveway: a 12' entrance between the parkway street tree (~26'-6" from the east line) and the
 # tree inside the lot (~8'-6"), flaring west to the carport's full width. Runs out across the
@@ -62,7 +63,7 @@ PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines 
 # Interior walls: (name, axis, centreline, from, to, thickness).
 # axis "x" = wall runs along x at y = centreline; "y" = runs along y at x = centreline.
 WALLS = [
-    ("foyer wall",        "y", PORCH_X + EXT - INT / 2, PORCH_Y, 385.2, INT),
+    ("foyer wall",        "y", PORCH_X + EXT - INT / 2, PORCH_Y, FOYER_WALL_END, INT),
     ("lounge|bed2",       "y", 710.0,  N_IN, 405.45, INT),
     ("bed2|c.bath",       "y", 844.0,  N_IN, 405.45, WET),
     ("c.bath|bed3",       "y", 923.0,  N_IN, 405.45, INT),
@@ -419,7 +420,7 @@ def build() -> Sheet:
     hall_n, hall_s = face("bedroom hall wall", -1), face("south hall wall", -1)   # bedroom / lobby faces
     srow = face("south hall wall", +1)
     pen_out, pen_in = 546.9, 598.0
-    room("FOYER", E_IN, PORCH_Y + EXT, face("foyer wall", -1), 385.2, cx=418.0, cy=372.0, h=6.0)
+    room("FOYER", E_IN, PORCH_Y + EXT, face("foyer wall", -1), FOYER_WALL_END, cx=418.0, cy=372.0, h=6.0)
     room("LOUNGE", face("foyer wall", +1), N_IN, face("lounge|bed2", -1), hall_s, cx=668.0, cy=300.0)
     room("DINING", E_IN, srow, pen_out, S_IN, cy=592.0)
     room("KITCHEN", pen_out, srow, face("kitchen|pantry", -1), S_IN, cx=622.0, cy=545.0, h=7.0)
