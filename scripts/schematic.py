@@ -290,12 +290,13 @@ def primary_bath(sh):
     tub(sh, m0, S_IN - TUB_L, m0 + TUB_W, S_IN)                       # wall to wall, no end gap
     sh.text("CURBLESS", m0 + TUB_W + 21, 575.0, 3.5, rot=90)
     sx = m0 + TUB_W + 21                                               # two heads, facing each other
-    sh.rect(m0 + TUB_W, top, gx, top + LEDGE_D, "A-EQPM")             # ledge wall: tiled shelf for bottles,
-    sh.text("LEDGE", sx, top + LEDGE_D / 2, 2.0)                       # plumbing for the head in its thickness
-    shower_head(sh, sx, top + LEDGE_D, +1)                             # above the ledge, arm clears it
-    shower_head(sh, sx, S_IN, -1)
-    glass(sh, (gx, top), (gx, S_IN - 30))                              # walk in at the rear-wall end, 30" clear
-    drain(sh, (gx - 3, top + LEDGE_D + 3), (gx - 3, S_IN - 3))
+    ly = S_IN - LEDGE_D                                                # ledge wall on the rear wall, under
+    sh.rect(m0 + TUB_W, ly, gx, S_IN, "A-EQPM")                       # the everyday head by the entry:
+    sh.text("LEDGE", sx, ly + LEDGE_D / 2, 2.0)                        # tiled shelf, that head's plumbing inside
+    shower_head(sh, sx, ly, -1)                                        # above the ledge, arm clears it
+    shower_head(sh, sx, top, +1)
+    glass(sh, (gx, top), (gx, ly - 30))                                # walk in at the rear-wall end, 30" clear past the ledge
+    drain(sh, (gx - 3, top + 3), (gx - 3, ly - 3))
     wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                       # north wall: 17.25" to glass, 15.25" to vanity
     vanity(sh, m1 - 60, top, m1, top + 22, "DOUBLE VANITY 60")
     room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2 - 10, cy=588.0, h=4.0)

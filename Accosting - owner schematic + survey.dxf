@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461328.652604167
+2461328.6575
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461328.652604167
+2461328.6575
   9
 $TDUUPDATE
  40
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{117F89AB-2F32-44F5-9F18-6CADD858B253}
+{99291432-B040-4451-B53B-EDCC84FE51A5}
   9
 $VERSIONGUID
   2
-{13AA9C6C-0DD6-42F6-9CF7-CE8A28BCD930}
+{0A86A2A3-D533-4601-B2F4-835D5FCCF62D}
   9
 $EXTNAMES
 290
@@ -1327,9 +1327,9 @@ ISM
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -1343,9 +1343,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -2635,11 +2635,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-MISC
+V-SURV-WALL
  70
 0
  62
-4
+1
   6
 Continuous
 370
@@ -2659,11 +2659,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-FENC
+V-SURV-MISC
  70
 0
  62
-3
+4
   6
 Continuous
 370
@@ -2676,6 +2676,30 @@ Continuous
 LAYER
   5
 27C
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-LOT
+ 70
+0
+ 62
+5
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+27D
 330
 1
 100
@@ -2699,30 +2723,6 @@ Continuous
   0
 LAYER
   5
-27D
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-V-SURV-WALL
- 70
-0
- 62
-1
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
 27E
 330
 1
@@ -2731,11 +2731,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-LOT
+V-SURV-FENC
  70
 0
  62
-5
+3
   6
 Continuous
 370
@@ -18629,19 +18629,19 @@ AcDbPolyline
  10
 925.25
  20
-538.2
+604.2
  10
 967.25
  20
-538.2
+604.2
  10
 967.25
  20
-544.2
+610.2
  10
 925.25
  20
-544.2
+610.2
   0
 TEXT
   5
@@ -18657,7 +18657,7 @@ AcDbText
  10
 946.25
  20
-541.2
+607.2
  30
 0.0
  40
@@ -18669,7 +18669,7 @@ LEDGE
  11
 946.25
  21
-541.2
+607.2
  31
 0.0
 100
@@ -18691,7 +18691,7 @@ AcDbCircle
  10
 946.25
  20
-546.7
+601.7
  30
 0.0
  40
@@ -18711,13 +18711,13 @@ AcDbLine
  10
 944.25
  20
-549.7
+598.7
  30
 0.0
  11
 941.25
  21
-555.2
+593.2
  31
 0.0
   0
@@ -18735,13 +18735,13 @@ AcDbLine
  10
 946.25
  20
-549.7
+598.7
  30
 0.0
  11
 946.25
  21
-555.2
+593.2
  31
 0.0
   0
@@ -18759,13 +18759,13 @@ AcDbLine
  10
 948.25
  20
-549.7
+598.7
  30
 0.0
  11
 951.25
  21
-555.2
+593.2
  31
 0.0
   0
@@ -18783,7 +18783,7 @@ AcDbCircle
  10
 946.25
  20
-607.7
+540.7
  30
 0.0
  40
@@ -18803,13 +18803,13 @@ AcDbLine
  10
 944.25
  20
-604.7
+543.7
  30
 0.0
  11
 941.25
  21
-599.2
+549.2
  31
 0.0
   0
@@ -18827,13 +18827,13 @@ AcDbLine
  10
 946.25
  20
-604.7
+543.7
  30
 0.0
  11
 946.25
  21
-599.2
+549.2
  31
 0.0
   0
@@ -18851,13 +18851,13 @@ AcDbLine
  10
 948.25
  20
-604.7
+543.7
  30
 0.0
  11
 951.25
  21
-599.2
+549.2
  31
 0.0
   0
@@ -18887,11 +18887,11 @@ AcDbPolyline
  10
 967.75
  20
-580.2
+574.2
  10
 966.75
  20
-580.2
+574.2
   0
 LINE
   5
@@ -18907,13 +18907,13 @@ AcDbLine
  10
 964.25
  20
-547.2
+541.2
  30
 0.0
  11
 964.25
  21
-607.2
+601.2
  31
 0.0
   0
@@ -18931,7 +18931,7 @@ AcDbCircle
  10
 964.25
  20
-577.2
+571.2
  30
 0.0
  40
@@ -34219,7 +34219,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-14T22:39:45.091384+00:00
+1.4.4 @ 2026-10-14T22:46:48.355117+00:00
   0
 VISUALSTYLE
   5
@@ -40781,7 +40781,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-14T22:39:45.334234+00:00
+1.4.4 @ 2026-10-14T22:46:48.565463+00:00
   0
 ENDSEC
   0
