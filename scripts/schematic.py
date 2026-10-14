@@ -46,7 +46,7 @@ E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 
 # Corner porch notch (outer faces) at the north-east corner.
 PORCH_X, PORCH_Y = 444.1, 289.2      # notch is E..PORCH_X by N..PORCH_Y
-FOYER_WALL_END = 418.5               # foyer/TV wall: ends ~46" short of the nearest dining chair
+FOYER_WALL_END = PORCH_Y + EXT + 108.0   # foyer/TV wall: 9' of foyer inside the front wall
 CARPORT = (140.1, N, E, 481.3)       # x0, y0, x1, y1 (18' x 20')
 # Driveway: a 12' entrance between the parkway street tree (~26'-6" from the east line) and the
 # tree inside the lot (~8'-6"), flaring west to the carport's full width. Runs out across the
