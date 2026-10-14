@@ -14,6 +14,7 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild
 | --- | --- |
 | Fuel | All-electric, no gas line to the lot |
 | Ceiling height | 10' throughout (no step-down over the bedrooms), with a sealed (unvented) attic above |
+| Windows | Standard manufacturer sizes (6" steps in width and height); openings wider than 8' are two mulled units. Heads in line at 8' |
 | Doors | 8' tall doors throughout; front door at least 36" wide (3'-0" slab) |
 | Flooring | LVP throughout, flush transitions with no raised thresholds |
 | Footprint | House 72' x 31'-6"; carport 18' x 20' on the east end |

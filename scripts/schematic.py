@@ -85,6 +85,7 @@ WALLS = [
 # Openings: (wall name, from, to, kind, hinge, swing)
 #   kind: door | slider | bifold | window | cased | pocket (hinge = pocket side)
 #   windows may add (sill, head) heights in inches; the default is a 30" sill and 8' head.
+#   Window widths and heights are standard 6" steps; anything wider than 8' is two mulled units.
 #   transom: (sill, head) glass above a door on the same span.
 #   hinge: "a" = at `from`, "b" = at `to`;  swing: +1 / -1 along the wall normal
 #   (normal = +y for "x" walls, +x for "y" walls).
@@ -93,7 +94,7 @@ OPENINGS = [
     ("north",       511.1, 631.1, "window"),             # lounge 10'
     ("north",       710.1, 806.1, "window"),             # gym
     ("north",       851.0, 881.0, "window"),             # shared ensuite
-    ("north",       934.1, 1034.1, "window"),            # guest
+    ("north",       936.1, 1032.1, "window"),            # guest 8'
     ("north",       1090.6, 1186.6, "window"),           # office
     ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
@@ -101,10 +102,10 @@ OPENINGS = [
     ("south",       592.0, 652.0, "window", 42.0, 96.0),  # kitchen sink: sill just above the backsplash
     ("south",       880.0, 928.0, "window", 72.0, 96.0),   # primary bath: 4'-0" x 2'-0" high window over the tub
     ("south",       975.0, 1023.0, "window", 72.0, 96.0),  # primary bath: matching 4'-0" x 2'-0" over the walkway
-    ("south",       1098.6, 1176.6, "window"),           # primary bedroom 6'-6" (centred; faces SSW, so kept modest)
+    ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("east",        509.8, 593.8, "slider"),             # dining 7' slider
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
-    ("west",        414.7, 450.7, "transom", 98.0, 114.0),  # fixed transom over it: daylight down the hall
+    ("west",        414.7, 450.7, "transom", 98.0, 110.0),  # fixed 3'-0" x 1'-0" transom over it: daylight down the hall
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
     ("bedroom hall wall", 867.5, 897.5, "door", "b", -1),   # shared ensuite
