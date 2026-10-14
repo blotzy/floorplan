@@ -6,7 +6,7 @@ The water service enters at the northwest corner (the utilities are at the west 
 
 Interior supply piping is copper. No PEX except for the fire sprinklers (a standalone NFPA 13D system; sprinklers are required for all new single-family homes, including fire rebuilds).
 
-**Existing connections (survey):** the water meter is in the parkway at the west end of the frontage; the sewer cleanout is at the front of the lot, roughly in line with the porch and lounge, so the building sewer runs out under the front of the house to it. The lot falls toward the west and rear, so check the sewer slope from the far (west) baths to that cleanout early.
+**Existing connections (survey):** the water meter is in the parkway at the west end of the frontage; the sewer cleanout is at the front of the lot, roughly in line with the porch and lounge, so the building sewer runs out under the front of the house to it. The lot falls toward the west and rear, so check the sewer slope from the far (west) baths to that cleanout early. Use solid, root-resistant pipe and joints for the building sewer, with root barriers wherever it passes within ~10 ft of a tree (the street-side privacy tree and the existing trees near the front); see [site drainage](03-site-and-landscape.md#drainage-and-root-protection).
 
 **Water service order:** meter → main shutoff and pressure regulator → smart leak-detection shutoff valve → unsoftened branches → main line to the mechanical closet → sediment pre-filter → softener → water heater, manifold, and the RO filter (drinking water to the kitchen sink tap and the fridge).
 

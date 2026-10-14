@@ -19,6 +19,12 @@ From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.
 - **Utilities:** water meter and power pole are at the west end of the frontage (in the parkway); the sewer cleanout is at the front, roughly in line with the porch and lounge.
 - **Street:** Laurel Drive right-of-way is 50 ft (25 ft half-width); edge of pavement is about 13 ft in front of the property line.
 
+## Drainage and root protection
+
+- Site drains (area drains, the swale/gravel drain along the east wall, downspout lines) and the building sewer use smooth-wall, solid pipe with glued or gasketed root-resistant joints; no perforated pipe within root range of trees. Perforated drains, where needed, go in a filter-fabric wrapped gravel trench.
+- Install vertical root barrier panels (about 2 ft deep, between trees and pipe runs) next to the street tree, the lot tree beside the driveway, and any tree planted near a drain or the sewer line. Plant trees at least 10 ft from drain and sewer lines.
+- Cleanouts at each change of direction and at the ends of drain runs, so roots or debris can be cleared without digging; a backwater/cleanout at the sewer connection.
+
 ## Southeast courtyard (behind the carport, east of the house)
 
 - **Dining patio** 12' x 21' along the house wall, from the carport back to the planters, outside the 7' dining slider. 6-seat table oriented north-south.
@@ -53,3 +59,7 @@ From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.
 - **Entry court** in front of the porch, paved, edged on the street side by a seat-height masonry wall (noncombustible) that returns to the house just short of the lounge window. You walk in from the driveway side, and the wall stays low there so you can see when backing out. Lit house numbers on the wall; low-voltage path lights.
 - 5' gravel or paver strip along the house; no bark mulch within 30' of the house.
 - Driveway: permeable pavers or concrete with gravel strips.
+- **Privacy tree by the street, across from the lounge window:** an evergreen California native that grows fast, screens the big north window from the street, and has non-invasive roots. **Catalina cherry** (*Prunus ilicifolia* ssp. *lyonii*) is the first choice: evergreen, fast, dense, drought-tolerant, and its roots don't chase pipes. **Toyon** (*Heteromeles arbutifolia*) is a smaller, tough alternative; **Pacific wax myrtle** (*Morella californica*) works if it gets a little summer water. Avoid oaks and sycamores (big root zones), and resinous or oily plants such as pines, eucalyptus and juniper (fire risk).
+  - Plant it inside the lot near the front line, not in the parkway, and slightly west of the window's centre: that keeps it at least 10 ft from the sewer line (it runs out to the cleanout near the porch) and from the driveway.
+  - Fire-zone rules: nothing in the 5 ft noncombustible zone around the house; keep it limbed up, irrigated, and with its canopy clear of the roof and the eaves.
+  - Put a root barrier between the tree and the sewer line (see drainage below).
