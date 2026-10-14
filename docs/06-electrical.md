@@ -26,7 +26,6 @@
 | Heat pump water heater | Per model (240V, or a 120V plug-in model) | Mechanical closet |
 | Heat pump dryer | Per model | Laundry, back wall |
 | Washer | 20A | Laundry, back wall |
-| Chest freezer | 15–20A | Laundry |
 | Network rack | One 20A | Mechanical / network closet |
 | Gym | One 20A | Gym (bike/treadmill wall) |
 | Jetted tub pump (+ heater if the model has one) | Per model, GFCI | Primary bath; pump access outside the wet zone |
@@ -35,7 +34,7 @@
 
 - In the mechanical closet, for the tankless RO filter.
 - Robot vacuum dock niche.
-- GFCI outlet beside each toilet in the three full baths, for bidet seats.
+- GFCI outlet beside each toilet in all three baths, for bidet seats.
 - Inside the pantry.
 - On the peninsula, under the countertop or on the end panel (code-required).
 - Countertop corner, for the appliance garage.

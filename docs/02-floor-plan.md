@@ -22,16 +22,17 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 
 See [kitchen](08-kitchen.md). A comfortable work aisle, a 36" fridge, and a peninsula with three stools (with knee overhang) facing the dining area.
 
-## Pantry, laundry, mechanical, powder (the block behind the kitchen)
+## Pantry, laundry, mechanical, hall bath (the block behind the kitchen)
 
-The block is three strips, each with its own door off the main lobby (no side hall):
+Three strips side by side, each with its own door off the main lobby (no side hall):
 
 - **Pantry:** door at the corner by the fridge, hinged so it opens flat against the kitchen wall. Shelves on three sides (the shelves by the door start past the door leaf). Outlets inside.
 - **Mechanical / network closet:** behind the pantry at the south end of the strip, opening into the laundry through a **louvered** bifold (the heat pump water heater needs the laundry's air volume). Holds the heat pump water heater, softener and brine tank, sediment pre-filter, tankless RO filter, water distribution manifold, and the network rack (kept clear of water lines). Floor drain or drain pan. No conditioned supply into the closet.
-- **Laundry:** own door off the lobby, plus an alcove behind the powder room. Everything works off the south (rear) wall, which is solid (no window): open floor in front of the mech closet's bifold, then a small, shallow utility sink, then the washer and dryer side by side (not stacked) toward the primary-bath wall, with a folding counter over the machines and upper cabinets above. Leak pan under the washer. Open shelves on the alcove side of the powder-room wall; shallow full-height storage (brooms, vacuum, ironing board, supplies) on the laundry side of it. Good overhead lighting and an exhaust fan, since there is no window. Solid-core door and insulated walls to keep machine noise out of the bedroom hall.
-- **Indoor electrical subpanel** flush in the laundry's pantry-side wall just past the door swing, with its code working space kept clear; nothing else on that wall.
-- **Powder room:** own door off the lobby. Toilet on the south wall (shared with the laundry alcove) facing the door; small wall-hung sink by the door. Solid-core door.
-- **Robot vacuum dock** niche in the laundry at the bottom of the tall storage, open to the floor; it needs water and a trapped drain (see plumbing).
+- **Laundry:** a galley running the full depth of the block, with its own door off the lobby. The utility sink, then the washer and dryer side by side (not stacked), all on the wall shared with the hall bath (the plumbing wall), with a folding counter over the machines and upper cabinets above. The opposite (pantry-side) wall stays open floor, apart from the panel near the door. The mech closet's bifold and the storage room open off the back of the galley. Leak pan under the washer. Exhaust fan (no window). Solid-core door and insulated walls to keep machine noise out of the bedroom hall.
+- **Indoor electrical subpanel** flush in the laundry's pantry-side wall near the door, with its code working space kept clear across the open floor; nothing else on that wall.
+- **Hall bath:** own door off the lobby, beside the laundry door. A narrow three-quarter bath with every fixture on the wall shared with the primary bath: sink by the door, then the toilet, then a curbless shower across the far end with a linear drain and a fixed glass panel, entered from the door side. No window (exhaust fan). Solid-core door.
+- **Storage room** behind the hall bath, open to the back of the laundry through a cased opening (no door). Shelves on the primary-bath side.
+- **Robot vacuum dock** niche at the bottom of the storage room's shelves, open to the floor; it needs water and a trapped drain (see plumbing).
 
 ## Bedroom wing
 
@@ -59,7 +60,7 @@ The block is three strips, each with its own door off the main lobby (no side ha
 
 - Insulation at the roofline: spray foam under the roof deck or rigid board above it. No attic vents.
 - Attic storage loading (about 20 psf) on a central strip, specified to the truss designer, with plywood decking over it.
-- Insulated pull-down ladder sized for 10' ceilings, in the hallway or laundry. Light switch at the hatch and an outlet in the attic.
+- Insulated, gasketed pull-down ladder sized for 10' ceilings, in the bedroom hall across from the walk-in closet wall, where no doors are in the ladder's way. Keep the hall's Wi-Fi access point, return grille and smoke alarm clear of it. Light switch at the hatch and an outlet in the attic.
 - Equipment access per mechanical code (opening, walkway, and service platform with a light and outlet) at the ducted unit and ERV. Place that equipment near the hatch.
 - Thermal barrier over the spray foam (drywall or an approved coating), since the attic will be used for storage.
 - Smurf tube or a cable tray across the attic from the network rack for future runs.

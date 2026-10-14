@@ -35,7 +35,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 - Heat pump water heater in the mechanical closet, with a condensate drain and a drain pan with a leak sensor. Size it for the house; go to **80 gal** for the two-person jetted tub (see below).
 - Tankless reverse-osmosis filter in the mechanical closet, fed from the softened line (softening first extends the membrane's life). Food-grade lines run to the RO tap at the kitchen sink and to the fridge, with accessible shutoffs at both ends. Its waste line drains through an air gap or standpipe; it needs an outlet, and shares the closet's leak pan/sensor. A bypass plug replaces the fridge's internal filter. The sink cabinet stays free for the trash pull-out.
 - Leak pans under the washer and fridge.
-- Bidet seats at the three full baths. Plan toilet locations so each bidet outlet has enough separation from tubs and showers.
+- Bidet seats at all three baths. Plan toilet locations so each bidet outlet has enough separation from tubs and showers.
 - Small utility sink beside the washer on the laundry's back wall.
 
 **Optional**

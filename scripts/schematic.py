@@ -75,8 +75,8 @@ WALLS = [
     ("kitchen|pantry",    "y", 674.0,  457.0, S_IN, INT),
     ("pantry|laundry",    "y", 750.0,  457.0, S_IN, INT),
     ("pantry|mech",       "x", 555.2,  674.0, 750.0, INT),
-    ("laundry|powder",    "y", 820.0,  457.0, 534.45, WET),
-    ("powder|alcove",     "x", 531.2,  820.0, 874.0, WET),
+    ("laundry|bath",      "y", 874.0 - WET - 52.0, 457.0, S_IN, WET),   # 52" clear bath, full depth
+    ("bath|storage",      "x", 566.0 + INT / 2, 874.0 - WET - 52.0, 874.0, INT),  # storage behind the bath
     ("utility|bath",      "y", 874.0,  457.0, S_IN, WET),
     ("bath|wic",          "x", S_IN - 72.0 - INT / 2, 874.0, 1062.0, INT),   # bath exactly tub-deep
     ("suite|primary",     "y", 1062.0, 457.0, S_IN, INT),   # 30" taken from the bedroom for the wet room
@@ -110,9 +110,10 @@ OPENINGS = [
     ("bedroom hall wall", 1090.0, 1126.0, "door", "a", -1), # office
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
-    ("south hall wall", 838.0, 866.0, "door", "b", +1),     # powder
+    ("south hall wall", 820.0, 848.0, "door", "a", +1),     # hall bath, against its east wall
     ("south hall wall", 1070.0, 1106.0, "door", "a", +1),   # primary bedroom
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
+    ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
     ("bath|wic", 1026.0, 1056.0, "door", "b", +1),          # primary bath, at the west end of the closet
     ("suite|primary", 463.0, 499.0, "cased"),               # walk-in closet entry, 36"
 ]
@@ -176,7 +177,7 @@ class Sheet:
         for name, color in [("A-WALL", 7), ("A-WALL-PATT", 8), ("A-DOOR", 3), ("A-GLAZ", 4),
                             ("A-FURN", 9), ("A-EQPM", 6), ("A-AREA-IDEN", 7), ("A-ANNO-DIMS", 1),
                             ("A-ANNO-TEXT", 7), ("C-PROP", 5), ("L-SITE", 94), ("L-PLNT", 3),
-                            ("A-FENC", 8)]:
+                            ("A-FENC", 8), ("A-CLNG", 8)]:
             self.doc.layers.add(name, color=color)
         st = self.doc.dimstyles.new("OWNER")
         st.dxf.dimtxt, st.dxf.dimasz, st.dxf.dimexo, st.dxf.dimexe = 8.0, 6.0, 3.0, 3.0
@@ -300,29 +301,38 @@ def primary_bath(sh):
 
 
 def utility_block(sh):
-    """Powder room and laundry (labels + fixtures); experiments can swap this."""
-    eq, fu, srow = "A-EQPM", "A-FURN", face("south hall wall", +1)
-    pw0, pw1 = face("laundry|powder", +1), face("utility|bath", -1)          # powder
-    pws = face("powder|alcove", -1)
-    tx = (pw0 + pw1) / 2 + 2
-    sh.rect(tx - 9, pws - 28, tx + 9, pws, eq); sh.text("WC", tx, pws - 14, 3.0)
-    sh.rect(pw0, 468.0, pw0 + 12, 486.0, eq)
-    room_label(sh, "PWD", pw0, srow, pw1, pws, cx=842.0, cy=496.0, h=4.0)
-    l0, l1 = face("pantry|laundry", +1), face("utility|bath", -1)            # laundry
-    lp, back = face("laundry|powder", -1), S_IN
-    x = l0 + 36                             # 3' of open floor in front of the mech closet's bifold
-    vanity(sh, x, back - 15, x + 14, back, "SINK", rot=90)                  # small, shallow utility sink
-    x = w0 = x + 16
-    for lbl in ("WASHER", "DRYER"):
-        sh.rect(x, back - 30, x + 27, back, eq); sh.text(lbl, x + 13.5, back - 15, 3.0); x += 27
-    sh.rect(w0, back - 30, x, back, fu)     # folding counter over the machines
-    sh.text("FOLDING COUNTER OVER  /  UPPERS ABOVE", (w0 + x) / 2, back - 36, 2.4)
-    a0 = face("powder|alcove", +1)          # open shelves behind the powder room
-    sh.rect(lp + 2, a0, l1, a0 + 12, fu); sh.text("SHELVES", (lp + 2 + l1) / 2, a0 + 6, 2.4)
-    t0 = srow + 4                           # shallow full-height storage on the powder-room wall
-    sh.rect(lp - 18, t0, lp, pws, fu); sh.text("TALL STORAGE", lp - 9, (t0 + pws) / 2, 2.8, rot=90)
-    sh.rect(l0, 495.0, l0 + 4, 515.0, eq); sh.text("PANEL", l0 + 12, 505.0, 2.5, rot=90)
-    room_label(sh, "LAUNDRY", l0, srow, lp, back, cx=805.0, cy=563.0, h=4.5)
+    """Hall bath and laundry side by side (labels + fixtures); experiments can swap this."""
+    eq, fu = "A-EQPM", "A-FURN"
+    hall = face("south hall wall", +1)
+    l0, lw = face("pantry|laundry", +1), face("laundry|bath", -1)            # laundry galley
+    b0, b1 = face("laundry|bath", +1), face("utility|bath", -1)              # bath
+    be = face("bath|storage", -1)
+    # bath: sink, toilet, then a curbless shower across the end, all on the primary-bath wall
+    vanity(sh, b1 - 20, 466.0, b1, 490.0, "SINK", rot=90)
+    wc(sh, b1 - 28, 497.0, b1, 527.0)
+    gy = 530.0                                                               # shower: full width x 36"
+    wet_zone(sh, b0, gy, b1, be)
+    sh.rect(b0, gy, b1, be, eq)
+    glass(sh, (b0 + 24, gy), (b1, gy))                                       # 24" open entry, door side
+    sh.text("SHOWER", (b0 + b1) / 2, gy + 14, 3.2)
+    sh.heads.append((b1, gy + 20, -1.0, 0.0))
+    sh.circle((b1 - 2.5, gy + 20), 2.5, eq)
+    for dy in (-5.0, 0.0, 5.0):
+        sh.line((b1 - 5.5, gy + 20 + dy * 0.4), (b1 - 11.0, gy + 20 + dy), eq)
+    drain(sh, (b0 + 3, be - 3), (b1 - 3, be - 3))
+    room_label(sh, "BATH", b0, hall, b1, be, cx=b0 + 14, cy=505.0, h=3.6)
+    # storage room behind the bath, open to the laundry
+    s0 = face("bath|storage", +1)
+    sh.rect(b1 - 12, s0, b1, S_IN, fu); sh.text("SHELVES", b1 - 6, (s0 + S_IN) / 2, 2.2, rot=90)
+    room_label(sh, "STORAGE", b0, s0, b1, S_IN, cx=(b0 + b1 - 12) / 2, h=3.4)
+    # laundry galley: sink, washer, dryer on the bath wall; panel near the door across open floor
+    y = 500.0
+    for w, lbl, deep in ((14, "SINK", 15), (27, "WASHER", 30), (27, "DRYER", 30)):
+        sh.rect(lw - deep, y, lw, y + w, eq); sh.text(lbl, lw - deep / 2, y + w / 2, 2.6, rot=90); y += w + 1
+    sh.rect(lw - 30, 515.0, lw, 570.0, fu)                                   # folding counter over
+    sh.text("COUNTER OVER", lw - 34, 542.0, 2.2, rot=90)
+    sh.rect(l0, 466.0, l0 + 4, 486.0, eq); sh.text("PANEL", l0 + 10, 476.0, 2.5, rot=90)
+    room_label(sh, "LAUNDRY", l0, hall, lw, S_IN, cx=(l0 + lw) / 2 - 8, cy=595.0, h=4.0)
 
 
 def wic(sh):
@@ -446,7 +456,12 @@ def build() -> Sheet:
     utility_block(sh)
     wic(sh)
     room("PRIMARY", face("suite|primary", +1), srow, W_IN, S_IN, cx=(face("suite|primary", +1) + W_IN - 80) / 2)
-    sh.text("LOBBY", 960.0, (face("bedroom hall wall", +1) + hall_s) / 2, 7.0, "A-AREA-IDEN")
+    hx0, hy = 924.0, (face("bedroom hall wall", +1) + hall_s) / 2      # attic pull-down in the hall,
+    sh.msp.add_lwpolyline([(hx0, hy - 12.75), (hx0 + 54, hy - 12.75), (hx0 + 54, hy + 12.75),
+                           (hx0, hy + 12.75)], close=True,             # across from the closet wall
+                          dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})
+    sh.text("ATTIC HATCH", hx0 + 27, hy, 2.6, "A-CLNG")
+    sh.text("LOBBY", 1050.0, (face("bedroom hall wall", +1) + hall_s) / 2, 7.0, "A-AREA-IDEN")
     sh.text("PORCH", (E + PORCH_X) / 2, (N + PORCH_Y) / 2, 7.0, "A-AREA-IDEN")
 
     # ---- fixtures & furniture (simple symbols) --------------------------------
