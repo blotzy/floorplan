@@ -477,9 +477,13 @@ def build() -> Sheet:
     sh.rect(pen_out, S_IN - 15, pen_out + 24, S_IN, eq)                        # 15" drink fridge under the counter,
     sh.text("BEV", pen_out + 12, S_IN - 7.5, 3.0)                              # stool side, corner by the south wall
     sh.line((pen_out + 15, srow), (pen_out + 15, S_IN), eq)                   # 15" overhang
-    sh.rect(pen_in, S_IN - 24, kw - 24, S_IN, eq)                             # sink run
-    sh.rect(kw - 24, srow + 36, kw, S_IN - 24, eq)                                # range run
-    sh.rect(kw - 24, 520.0, kw, 550.0, eq); sh.text("RANGE", kw - 12, 535.0, 3.5, rot=90)
+    sh.rect(pen_in, S_IN - 24, kw, S_IN, eq)                                  # sink run, into the corner
+    ta, r0 = srow + 36 + 15, srow + 36 + 15 + 12                              # range wall: tall cabinet,
+    tb = r0 + 30 + 15                                                         # 12" landing, range, 15"
+    sh.rect(kw - 24, ta, kw, tb, eq)                                          # landing, tall cabinet
+    for y0, y1 in ((srow + 36, ta), (tb, S_IN - 24)):
+        sh.rect(kw - 24, y0, kw, y1, eq); sh.text("TALL STORAGE", kw - 12, (y0 + y1) / 2, 1.6, rot=90)
+    sh.rect(kw - 24, r0, kw, r0 + 30, eq); sh.text("RANGE", kw - 12, r0 + 15, 3.5, rot=90)
     sh.rect(kw - 30, srow, kw, srow + 36, eq); sh.text("FRIDGE", kw - 15, srow + 18, 3.5, rot=90)
     sh.rect(607.0, S_IN - 20, 637.0, S_IN - 4, eq); sh.text("SINK", 622.0, S_IN - 12, 3.0)
     for y in (476.7, 512.9, 544.5):                                           # 3 stools

@@ -4,7 +4,7 @@
 
 An upside-down U: the sink on the south wall under the window, the range and fridge on the **west** wall (backing onto the laundry), and a peninsula on the east side with **three stools** facing the dining area. The aisle inside the U is about **4'** (48" is the two-cook minimum).
 
-**West wall, from the sink corner:** 15" counter → 30" induction range → 18–20" counter → 36" fridge (counter-depth or all-refrigerator column) at the north end, next to the pantry door.
+**West wall, from the sink corner:** corner counter → about 17" floor-to-ceiling cabinet → 15" counter → 30" induction range → 12" counter → 15" floor-to-ceiling cabinet → 36" fridge (counter-depth or all-refrigerator column) at the north end, next to the pantry door. The two tall cabinets frame the range and its hood; the landing counters on either side meet the usual 12"/15" minimums. The sink-wall counter runs into the corner.
 
 | Item | Spec |
 | --- | --- |
@@ -27,4 +27,4 @@ An upside-down U: the sink on the south wall under the window, the range and fri
 - 3" fillers at each corner so drawers and doors clear each other.
 - Peninsula seating overhang of 15".
 
-**Tall storage (wanted, not yet placed).** The kitchen is short on counter-to-ceiling cabinets because the sink window takes the south wall and the range/hood takes the west wall. Candidates: a counter-to-ceiling hutch over the prep counter between the range and fridge, a tall pantry column beside the fridge, and/or a built-in on the dining room's south wall. Keep the peninsula (an island wouldn't add wall space). See [open questions](09-open-questions.md).
+**Tall storage:** the two floor-to-ceiling cabinets flanking the range, plus the walk-in pantry. A built-in on the dining room's south wall could add more.
