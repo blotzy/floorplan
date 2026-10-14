@@ -37,7 +37,7 @@ The block is three strips, each with its own door off the main lobby (no side ha
 
 - **Bedroom 2: gym.** North window added (it had none); matches bedroom 4's. LVP with loose-laid rubber mats. Mineral wool in the walls shared with the lounge end. ERV boost control. Outlet for a stationary bike.
 - **Gym ring mounts:** two ceiling points near the room's centre, swinging along the room's long direction. The truss designer must carry a concentrated load of about 500 lb at each point (blocking across several trusses with framing connectors; through-bolted forged eye bolts with plate washers). Keep lights, fans, HVAC/ERV registers, and the smoke alarm out of the swing zone. Photograph the blocking before drywall.
-- **Bedroom 3: guest room.** Queen bed, blackout shades. Two closets flanking a centred door are drawn; see [open questions](09-open-questions.md).
+- **Bedroom 3: guest room.** Queen bed, blackout shades. One long reach-in closet along the hall wall, with the door in the corner by bedroom 4.
 - **Bedroom 4: office.** Solid-core door and insulated walls for calls; wall blocking for monitor arms and shelves; dimmable ceiling light.
 - **Beds:** queens in bedrooms 2–4 and a king in the primary, drawn at true size.
 - **Common bath:** a standard alcove tub with a shower head and curtain across the window end. Pick the tub model before framing so the alcove is framed to its spec. The tub's drain, valve and shower head, the WC and the vanity all share the east wall (the plumbing wall with bedroom 2). Linen closet in the corner by the door.

@@ -104,7 +104,7 @@ OPENINGS = [
     # interior
     ("bedroom hall wall", 799.5, 835.5, "door", "b", -1),   # bedroom 2
     ("bedroom hall wall", 885.5, 915.5, "door", "b", -1),   # common bath
-    ("bedroom hall wall", 984.0, 1020.0, "door", "a", -1),  # bedroom 3
+    ("bedroom hall wall", 1040.0, 1076.0, "door", "b", -1), # bedroom 3, at the west end (one long closet)
     ("bedroom hall wall", 1090.0, 1126.0, "door", "a", -1), # bedroom 4
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
@@ -500,8 +500,7 @@ def build() -> Sheet:
         sh.text(label, (x0 + x1) / 2, y1 - 18, 4.0)
 
     closet(face("lounge|bed2", +1), 794.0)
-    closet(face("c.bath|bed3", +1), 974.0)
-    closet(1030.1, face("bed3|bed4", -1))
+    closet(face("c.bath|bed3", +1), 1036.0)
     closet(1130.0, W_IN)
 
     common_bath(sh)
