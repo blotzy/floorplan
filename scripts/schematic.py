@@ -99,8 +99,8 @@ OPENINGS = [
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
     ("south",       397.0, 517.0, "window"),             # dining 10'
     ("south",       592.0, 652.0, "window", 42.0, 96.0),  # kitchen sink: sill just above the backsplash
-    ("south",       880.0, 922.0, "window", 78.0, 96.0),   # primary bath: high horizontal over the tub, matching the walkway one
-    ("south",       975.0, 1023.0, "window", 78.0, 96.0),  # primary bath: high horizontal window over the walkway
+    ("south",       880.0, 928.0, "window", 72.0, 96.0),   # primary bath: 4'-0" x 2'-0" high window over the tub
+    ("south",       975.0, 1023.0, "window", 72.0, 96.0),  # primary bath: matching 4'-0" x 2'-0" over the walkway
     ("south",       1098.6, 1176.6, "window"),           # primary bedroom 6'-6" (centred; faces SSW, so kept modest)
     ("east",        509.8, 593.8, "slider"),             # dining 7' slider
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
@@ -305,7 +305,7 @@ def primary_bath(sh):
     drain(sh, (gx - 3, top + 3), (gx - 3, ly - 3))
     wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                       # north wall: 17.25" to glass, 15.25" to vanity
     vanity(sh, m1 - 60, top, m1, top + 22, "DOUBLE VANITY 60")
-    for hx in (901.0, 999.0):                                          # both rear windows: sill at about 6'-6"
+    for hx in (904.0, 999.0):                                          # both rear windows: sill at 6'
         sh.text("HIGH WINDOW", hx, S_IN - 4, 2.0)
     room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2 - 2, cy=570.0, h=3.2)
 
