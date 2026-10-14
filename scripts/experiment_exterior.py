@@ -106,7 +106,9 @@ def slab_roof(sc, ov, under, splits=(), ends="exterior", north="exterior", south
         z = under(y)
         if z > PLATE + 0.5:
             x0 = S.PORCH_X if y == N else E                     # over the porch it's a beam, not glass
-            quad(sc, mat, [x0, y, PLATE], [W, y, PLATE], [W, y, z], [x0, y, z])
+            segs = mat if isinstance(mat, list) else [(x0, W, mat)]   # [(x from, x to, material)]
+            for a, b, m in segs:
+                quad(sc, m, [a, y, PLATE], [b, y, PLATE], [b, y, z], [a, y, z])
             if y == N:
                 quad(sc, "exterior", [E, y, PLATE], [x0, y, PLATE], [x0, y, z], [E, y, z])
     wall_ys = [N, *splits, Sth]
@@ -128,6 +130,64 @@ def shed(sc, pitch, ov):
     slab_roof(sc, ov, lambda y: PLATE + (Sth - y) * pitch, north="glass")
 
 
+LOUNGE_X = (S.face("foyer wall", +1), S.face("lounge|bed2", -1))
+LOUNGE_Y = (S.N_IN, S.face("south hall wall", -1))          # street wall to the lobby edge
+JOISTS = 10.0                                               # ceiling framing above the 10' ceiling
+
+
+def shed_vault_under(pitch):
+    return lambda y: PLATE + (Sth - y) * pitch
+
+
+def shed_vault(sc, pitch, ov):
+    """Shed roof; only the lounge is vaulted (clerestory along its stretch of the street wall);
+    flat 10' ceilings and a sealed attic everywhere else."""
+    under = shed_vault_under(pitch)
+    x0, x1 = LOUNGE_X
+    slab_roof(sc, ov, under, north=[(S.PORCH_X, x0, "exterior"), (x0, x1, "glass"), (x1, W, "exterior")])
+    y0, y1 = LOUNGE_Y
+    quad(sc, "wall", [x0, y0, under(y0)], [x1, y0, under(y0)], [x1, y1, under(y1)], [x0, y1, under(y1)])   # vault
+    quad(sc, "wall", [x0, y1, M.CEIL], [x1, y1, M.CEIL], [x1, y1, under(y1)], [x0, y1, under(y1)])      # step down
+    for x in (x0, x1):                                      # side walls of the vault
+        quad(sc, "wall", [x, y0, M.CEIL], [x, y1, M.CEIL], [x, y1, under(y1)], [x, y0, under(y0)])
+
+
+def section(pitch, path):
+    """Cross-sections (street on the left): through the lounge, and through the bedroom wing."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    under = shed_vault_under(pitch)
+    ov = 36
+    fig, axes = plt.subplots(2, 1, figsize=(12, 8.5))
+    for ax, (title, vault) in zip(axes, (("Through the lounge (vaulted)", True),
+                                          ("Through the bedroom wing (flat 10' ceiling, attic above)", False))):
+        ys = [N - ov, Sth + ov]
+        ax.fill_between(ys, [under(y) for y in ys], [under(y) + THK for y in ys], color="#4a4e54")   # roof slab
+        for y0 in (N, Sth - 9):
+            ax.add_patch(plt.Rectangle((y0, 0), 9, under(y0 + (9 if y0 == N else 0)), color="#bbb"))  # walls
+        ax.plot([N, Sth], [0, 0], color="k", lw=2)
+        ceil_lo = LOUNGE_Y[1] if vault else N + 9
+        if vault:
+            ys_v = [N + 9, LOUNGE_Y[1]]
+            ax.plot(ys_v, [under(y) for y in ys_v], color="#c0392b", lw=2.5, label="vaulted lounge ceiling")
+            ax.plot([LOUNGE_Y[1]] * 2, [M.CEIL, under(LOUNGE_Y[1])], color="#c0392b", lw=2.5)
+            ax.fill_between([N + 0.5, N + 8.5], [PLATE + 4] * 2, [under(N) - 4] * 2, color="#9cc8e8", label="clerestory")
+            ax.annotate(f"{under(N + 9) / 12:.0f}' high at the street wall", (N + 12, under(N + 9) - 18), fontsize=9)
+        ax.plot([ceil_lo, Sth - 9], [M.CEIL] * 2, color="#555", lw=2.5, label="flat 10' ceiling")
+        att = [y for y in range(int(ceil_lo), int(Sth - 9) + 1, 2)]
+        ax.fill_between(att, [M.CEIL + JOISTS] * len(att), [under(y) for y in att], color="#f3d9a6", alpha=.8,
+                        label="sealed attic")
+        for y in (ceil_lo + 20, (ceil_lo + Sth) / 2, Sth - 40):
+            h = under(y) - M.CEIL - JOISTS
+            if h > 6:
+                ax.annotate(f"{h / 12:.1f}' clear", (y, M.CEIL + JOISTS + h / 2), ha="center", fontsize=9)
+        ax.set_title(title); ax.set_aspect("equal"); ax.set_xlim(N - 60, Sth + 60); ax.set_ylim(-10, under(N - ov) + 30)
+        ax.set_xlabel("street  ←      (inches)      →  rear yard"); ax.legend(loc="upper right", fontsize=8)
+    fig.suptitle(f"MCM shed, {pitch * 12:g}:12, lounge-only vault", fontsize=13)
+    fig.tight_layout(); fig.savefig(path, dpi=100); plt.close(fig)
+
+
 def low_gable(sc, pitch, ov):
     """Shallow gable, ridge along the house, glazed gable ends."""
     half = (Sth - N) / 2
@@ -142,6 +202,8 @@ STYLES = {
                       {"exterior": 0xE9E4DA, "soffit": WOOD, "fascia": WHITE, "roofing": 0xB9BDC2, "door": 0x2B8C8C}),
     "mcm-gable": (lambda sc: low_gable(sc, 2 / 12, 36),
                   {"exterior": 0x4F5358, "soffit": WOOD, "fascia": BLACK, "roofing": 0x55595F, "door": 0xE8B33C}),
+    "mcm-shed-vault": (lambda sc: shed_vault(sc, 2 / 12, 36),
+                       {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x4A4E54, "door": 0xD9792B}),
     "ranch-hip": (lambda sc: hip(sc, 4 / 12, 24),
                   {"exterior": WHITE, "soffit": WHITE, "fascia": WHITE, "roofing": 0x6B6E72, "door": 0x2D3E5C}),
     "ranch-gable": (lambda sc: gable(sc, 4 / 12, 24, 12),
@@ -176,6 +238,7 @@ def screenshot(html: Path, png: Path, cam, target):
 LABELS = {"mcm-shed": "MCM shed (clerestory to the street, solar plane to the rear)",
           "mcm-butterfly": "MCM butterfly (clerestories both sides)",
           "mcm-gable": "MCM low gable (Eichler-like, glazed gable ends)",
+          "mcm-shed-vault": "MCM shed, 2:12: only the lounge vaulted (clerestory over the lounge), attic elsewhere",
           "ranch-hip": "Ranch, 4:12 hip", "ranch-gable": "Ranch, 4:12 gable, board-and-batten colours"}
 
 
@@ -210,6 +273,7 @@ def main():
         print("styled", key)
     for view in VIEWS:
         contact_sheet(view)
+    section(2 / 12, OUT / "exterior-mcm-shed-vault-section.png")
 
 
 if __name__ == "__main__":
