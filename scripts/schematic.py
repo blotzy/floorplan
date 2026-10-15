@@ -115,7 +115,7 @@ OPENINGS = [
     ("bedroom hall wall", 1069.0, 1105.0, "door", "a", -1), # office: at the guest-wall end, opposite the primary door
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
-    ("south hall wall", 820.0, 848.0, "door", "a", +1),     # common bath, against its east wall
+    ("south hall wall", 820.0, 850.0, "door", "a", +1),     # common bath, 30", against its east wall
     ("south hall wall", 1070.0, 1106.0, "door", "a", +1),   # primary bedroom
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
