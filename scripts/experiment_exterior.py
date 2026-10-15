@@ -290,6 +290,12 @@ def roof_options():
         band(sc, "exterior", WALL_TOP, PLATE)
         shed_vault_great(sc, 2 / 12, 36, seams=seams, band=glass_h)
         out[label] = dict(sc.tris)
+    for label, seams in (("MCM shingle shed 2:12, no clerestory, flat 10' ceilings", False),
+                         ("MCM metal shed 2:12, no clerestory, flat 10' ceilings", True)):
+        sc = M.Scene()
+        band(sc, "exterior", WALL_TOP, PLATE)
+        shed(sc, 2 / 12, 36, seams=seams, clerestory=False)
+        out[label] = dict(sc.tris)
     return out
 
 

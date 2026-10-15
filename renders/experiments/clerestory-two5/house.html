@@ -311,9 +311,9 @@ if (D.roof_hidden && !location.hash.includes('roof')) {     // main model opens 
 } else if (location.hash.includes('roof')) {                // exterior view: room labels would float over the roof
   groups.labels.visible = false; document.getElementById('labels').checked = false;
 }
-{ const full = location.hash.includes('full') ? 1 : 0;
-  const pick = location.hash.includes('metal') ? 3 + full : /shed|shingle|great|band/.test(location.hash) ? 1 + full : 0;
-  if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-shed, #roof-metal (3' band); add -full for full height
+{ const h = location.hash, full = h.includes('full') ? 1 : 0, metal = h.includes('metal');
+  const pick = h.includes('plain') ? (metal ? 6 : 5) : metal ? 3 + full : /shed|shingle|great|band/.test(h) ? 1 + full : 0;
+  if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-shed, #roof-metal (3' band); -full: full height; -plain: no clerestory, flat ceilings
 if (!Object.keys(D.tris || {}).length) document.getElementById('roofrow').style.display = 'none';
 const clock = new THREE.Clock();
 renderer.setAnimationLoop(()=>{
