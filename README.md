@@ -42,11 +42,14 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 8. [Kitchen: cabinets and appliances](docs/08-kitchen.md)
 9. [Open questions](docs/09-open-questions.md)
 
+**Preliminary zoning check:** [zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) and [how to submit it](docs/11-zoning-check.md) (eCheck or a planner consultation).
+
 ## Files
 
 | File | What it is |
 | --- | --- |
 | [`Accosting - owner schematic.dxf`](Accosting%20-%20owner%20schematic.dxf) | The plan as a DXF (inches) |
+| [Zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) | Site plan with setbacks and project data, floor plan, roof plan, elevations ([how to submit](docs/11-zoning-check.md)) |
 | [`Accosting - owner schematic + survey.dxf`](Accosting%20-%20owner%20schematic%20%2B%20survey.dxf) | The plan over the topographic survey as a DXF (inches) |
 | Topographic survey: [PDF](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.pdf) · [DWG](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dwg) · [DXF](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dxf) | The surveyor's topo of the lot ([folder](https://github.com/blotzy/floorplan/tree/main/source_files/survey)) |
 | Plan renders: [site plan](renders/schematic.png) · [house](renders/schematic-zoom.png) · [survey overlay](renders/survey-overlay.png) | The images at the top of this page, full size ([folder](https://github.com/blotzy/floorplan/tree/main/renders)) |
