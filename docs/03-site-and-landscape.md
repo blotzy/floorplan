@@ -56,7 +56,7 @@ From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.
 ## Front yard (no lawn)
 
 - Native/Mediterranean low-water planting: dry creek bed / rain garden taking the downspouts, boulders, low shrubs screening the bedroom windows.
-- **Entry court** in front of the porch, paved, edged on the street side by a seat-height masonry wall (noncombustible) that returns to the house just short of the lounge window. You walk in from the driveway side. A breeze-block screen (concrete screen blocks, about 4' tall) along the full length of the street-side wall gives the porch privacy from the street. Lit house numbers on the wall; low-voltage path lights.
+- **Entry court** in front of the porch, paved, edged on the street side by a seat-height masonry wall (noncombustible) that returns to the house just short of the lounge window. You walk in from the driveway side. Lit house numbers on the wall; low-voltage path lights.
 - 5' gravel or paver strip along the house; no bark mulch within 30' of the house.
 - Driveway: permeable pavers or concrete with gravel strips.
 - **Privacy tree by the street, across from the lounge window:** an evergreen California native that grows fast, screens the big north window from the street, and has non-invasive roots. **Catalina cherry** (*Prunus ilicifolia* ssp. *lyonii*) is the first choice: evergreen, fast, dense, drought-tolerant, and its roots don't chase pipes. **Toyon** (*Heteromeles arbutifolia*) is a smaller, tough alternative; **Pacific wax myrtle** (*Morella californica*) works if it gets a little summer water. Avoid oaks and sycamores (big root zones), and resinous or oily plants such as pines, eucalyptus and juniper (fire risk).

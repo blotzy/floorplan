@@ -5,11 +5,11 @@
 """Experiment: dressing up the corner porch (all noncombustible, it's inside the 5' zone).
 
   plain    no porch details
-  feature  wood-look feature wall (fiber-cement or porcelain wood-grain) on the porch's back
-           walls, wrapping onto the porch ceiling
-  breeze   a breeze-block screen on top of the entry court's street-side seat wall
-  plan     feature + breeze: the main plan
+  plan     wood-look feature wall (fiber-cement or porcelain wood-grain) on the porch's back
+           walls, wrapping onto the porch ceiling: the main plan
   post     the main plan plus a slim black steel corner post
+  breeze   the main plan plus a breeze-block screen on the seat wall (about 6' total: over the
+           County's 42" limit for walls in the front yard)
 
 Each on the main plan's exterior (MCM gable, stucco). Writes renders/experiments/porch-<option>/
 (3D model), porch-<option>-{court,street}.png and the sheets porch-compare-{court,street}.png.
@@ -37,10 +37,10 @@ def post(sc):
 
 VARIANTS = {
     "plain": ("No porch details", []),
-    "feature": ("Wood-look feature wall and porch ceiling", [X.porch_feature]),
-    "breeze": ("Breeze-block screen on the street-side seat wall", [X.porch_breeze]),
-    "plan": ("Feature wall + breeze block (main plan)", [X.porch_feature, X.porch_breeze]),
-    "post": ("Main plan + a slim black steel corner post", [X.porch_feature, X.porch_breeze, post]),
+    "plan": ("Wood-look feature wall and porch ceiling (main plan)", [X.porch_feature]),
+    "post": ("Main plan + a slim black steel corner post", [X.porch_feature, post]),
+    "breeze": ("Main plan + breeze-block screen on the seat wall (over the 42\" front-yard limit)",
+               [X.porch_feature, X.porch_breeze]),
 }
 
 
@@ -62,8 +62,7 @@ def main():
             X.screenshot(out_dir / "house.html", png, *cam)
         shots.append((key, f"{key}: {title}"))
     for view, where in (("court", "from the entry court"), ("street", "from the street")):
-        fig, axs = plt.subplots(3, 2, figsize=(14, 13))
-        axs.flat[-1].axis("off")
+        fig, axs = plt.subplots(2, 2, figsize=(14, 9))
         for ax, (key, title) in zip(axs.flat, shots):
             png = OUT / f"porch-{key}-{view}.png"
             if png.exists():

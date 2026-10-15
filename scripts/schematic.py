@@ -595,7 +595,7 @@ def build() -> Sheet:
     sh.text("ENTRY COURT", (ENTRY_COURT[0] + ENTRY_COURT[2]) / 2, 205.0, 6.0, "A-AREA-IDEN")
     for b in ENTRY_WALLS:
         sh.rect(*b, "A-WALL")
-    sh.text('24" SEAT WALL + BREEZE-BLOCK SCREEN', (ENTRY_WALLS[0][0] + ENTRY_WALLS[0][2]) / 2, 146.0, 4.0)
+    sh.text('24" SEAT WALL', (ENTRY_WALLS[0][0] + ENTRY_WALLS[0][2]) / 2, 146.0, 5.0)
     sh.text("WOOD-LOOK FEATURE WALL", (E + PORCH_X) / 2, PORCH_Y - 6, 2.4)        # porch back walls
     # courtyard
     fy = cy1 + 3

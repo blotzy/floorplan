@@ -304,8 +304,8 @@ def porch_breeze(sc):
 
 def chosen_exterior(sc, porch=True):
     """The main plan's exterior: MCM low gable (2:12, deep eaves, stucco gable ends), stucco walls,
-    dark shingles and fascia, accent front door; porch with a wood-look feature wall and a
-    breeze-block screen on the seat wall. make_3d.py adds this to the main model."""
+    dark shingles and fascia, accent front door; porch with a wood-look feature wall. make_3d.py
+    adds this to the main model."""
     band(sc, "exterior", WALL_TOP, PLATE)
     low_gable(sc, 2 / 12, 36, glazed_ends=False)
     front_door(sc)
@@ -313,7 +313,6 @@ def chosen_exterior(sc, porch=True):
     sc.mat["seam"] = {"color": 0x2A2D31}
     if porch:
         porch_feature(sc)
-        porch_breeze(sc)
 
 
 def roof_options():
