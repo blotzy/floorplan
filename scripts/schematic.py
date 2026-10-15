@@ -69,7 +69,7 @@ WALLS = [
     ("lounge|gym",       "y", 674.0,  N_IN, 405.45, INT),   # in line with the kitchen|pantry wall
     ("gym|ensuite",       "y", 826.0,  N_IN, 405.45, WET),
     ("ensuite|guest",     "y", 905.0,  N_IN, 405.45, INT),
-    ("guest|office",     "y", 1064.0, N_IN, 405.45, INT),
+    ("guest|office",     "y", 1062.0, N_IN, 405.45, INT),
     ("bedroom hall wall", "x", 403.2,  671.75, W_IN, INT),
     ("south hall wall",   "x", 459.2,  671.75, W_IN, INT),
     ("kitchen|pantry",    "y", 674.0,  457.0, S_IN, INT),
@@ -94,8 +94,8 @@ OPENINGS = [
     ("north",       502.4, 622.4, "window"),             # lounge 10' (centred)
     ("north",       714.0, 786.0, "window"),             # gym 6' (centred)
     ("north",       851.0, 881.0, "window", 78.0, 96.0),  # shared ensuite: high window above the shower spray
-    ("north",       948.1, 1020.1, "window"),            # guest 6'
-    ("north",       1102.6, 1174.6, "window"),           # office 6'
+    ("north",       947.5, 1019.5, "window"),            # guest 6'
+    ("north",       1101.6, 1173.6, "window"),           # office 6'
     ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
     ("south",       384.0, 528.0, "window", 18.0, 96.0),  # dining: one 12' window (two 6' units), low sill,
@@ -112,7 +112,7 @@ OPENINGS = [
     ("bedroom hall wall", 867.5, 897.5, "door", "b", -1),   # shared ensuite
     ("ensuite|guest", 335.0, 365.0, "door", "a", +1),       # guest en-suite: swings into the guest room (the bath is narrow)
     ("bedroom hall wall", 912.0, 948.0, "door", "a", -1),  # guest
-    ("bedroom hall wall", 1069.0, 1105.0, "door", "a", -1), # office: at the guest-wall end, opposite the primary door
+    ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, opposite the primary door
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 820.0, 850.0, "door", "a", +1),     # common bath, 30", against its east wall
@@ -560,7 +560,7 @@ def build() -> Sheet:
 
     closet(face("lounge|gym", +1), 776.0)
     closet(958.0, face("guest|office", -1))   # guest: one long closet past the door
-    closet(1111.0, W_IN)                     # office: one long closet past the door
+    closet(1109.0, W_IN)                     # office: one long closet past the door
 
     common_bath(sh)
 
