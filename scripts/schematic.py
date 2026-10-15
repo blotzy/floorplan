@@ -68,7 +68,7 @@ WALLS = [
     ("foyer wall",        "y", PORCH_X + EXT - INT / 2, PORCH_Y, FOYER_WALL_END, INT),
     ("lounge|gym",       "y", 674.0,  N_IN, 405.45, INT),   # in line with the kitchen|pantry wall
     ("gym|ensuite",       "y", 826.0,  N_IN, 405.45, WET),
-    ("ensuite|guest",     "y", 905.0,  N_IN, 405.45, INT),
+    ("ensuite|guest",    "y", 897.5,  N_IN, 405.45, INT),
     ("guest|office",     "y", 1062.0, N_IN, 405.45, INT),
     ("bedroom hall wall", "x", 403.2,  671.75, W_IN, INT),
     ("south hall wall",   "x", 459.2,  671.75, W_IN, INT),
@@ -93,8 +93,8 @@ OPENINGS = [
     # exterior
     ("north",       502.4, 622.4, "window"),             # lounge 10' (centred)
     ("north",       714.0, 786.0, "window"),             # gym 6' (centred)
-    ("north",       851.0, 881.0, "window", 78.0, 96.0),  # shared ensuite: high window above the shower spray
-    ("north",       947.5, 1019.5, "window"),            # guest 6'
+    ("north",       847.25, 877.25, "window", 78.0, 96.0),  # shared ensuite: high window above the shower spray
+    ("north",       943.75, 1015.75, "window"),          # guest 6'
     ("north",       1101.6, 1173.6, "window"),           # office 6'
     ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
@@ -109,9 +109,9 @@ OPENINGS = [
     ("west",        414.7, 450.7, "transom", 86.0, 104.0),  # 7' door + fixed 3'-0" x 1'-6" transom: daylight down the hall
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
-    ("bedroom hall wall", 867.5, 897.5, "door", "b", -1),   # shared ensuite
+    ("bedroom hall wall", 862.0, 892.0, "door", "b", -1),   # shared ensuite
     ("ensuite|guest", 335.0, 365.0, "door", "a", +1),       # guest en-suite: swings into the guest room (the bath is narrow)
-    ("bedroom hall wall", 912.0, 948.0, "door", "a", -1),  # guest
+    ("bedroom hall wall", 904.5, 940.5, "door", "a", -1),  # guest
     ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, opposite the primary door
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
@@ -268,15 +268,15 @@ def vanity(sh, x0, y0, x1, y1, label, rot=0):
 
 
 def common_bath(sh):
-    """72" x 32" alcove tub with a shower head across the window end. Tub drain, valve and
+    """66" x 32" alcove tub with a shower head across the window end. Tub drain, valve and
     head, the WC and the vanity all on the east (plumbing) wall shared with the gym."""
-    c0, c1 = face("gym|ensuite", +1), face("ensuite|guest", -1)          # 73.5" clear: fur the west end ~1.5"
+    c0, c1 = face("gym|ensuite", +1), face("ensuite|guest", -1)          # 66" clear: tub wall to wall
     hall = face("bedroom hall wall", -1)
     ty = N_IN + 32.0
-    tub(sh, c0, N_IN, c0 + 72.0, ty, "TUB 72x32")
+    tub(sh, c0, N_IN, c0 + 66.0, ty, "TUB 66x32")
     sh.circle((c0 + 4, N_IN + 16), 2.0, "A-EQPM")                     # shower head + valve, plumbing wall
     sh.heads.append((c0, N_IN + 16, 1.0, 0.0))
-    sh.line((c0, ty + 1), (c0 + 72.0, ty + 1), "A-EQPM")              # curtain rod
+    sh.line((c0, ty + 1), (c0 + 66.0, ty + 1), "A-EQPM")              # curtain rod
     wc(sh, c0, ty + 2, c0 + 28, ty + 32)                               # 17" to the tub
     vanity(sh, c0, ty + 41, c0 + 21, ty + 89, "VANITY 48", rot=90)     # 24" from the WC centreline
     sh.rect(c0, hall - 24, c0 + 30, hall, "A-FURN")                          # linen closet in the
@@ -559,7 +559,7 @@ def build() -> Sheet:
         sh.text(label, (x0 + x1) / 2, y1 - 18, 4.0)
 
     closet(face("lounge|gym", +1), 776.0)
-    closet(958.0, face("guest|office", -1))   # guest: one long closet past the door
+    closet(950.5, face("guest|office", -1))   # guest: one long closet past the door
     closet(1109.0, W_IN)                     # office: one long closet past the door
 
     common_bath(sh)
