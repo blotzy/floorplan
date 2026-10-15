@@ -227,6 +227,15 @@ def chosen_exterior(sc):
     low_gable(sc, 3 / 12, 36, glazed_ends=False)
     front_door(sc)
     sc.mat = {k: {"color": v} for k, v in STYLES["mcm-gable"][1].items()}
+    sc.mat["seam"] = {"color": 0x2A2D31}
+
+
+def roof_options():
+    """Alternative roofs for the main model's Roof selector: {label: tris}."""
+    sc = M.Scene()
+    band(sc, "exterior", WALL_TOP, PLATE)
+    shed_vault(sc, 2 / 12, 36, seams=True)
+    return {"MCM metal shed 2:12, lounge clerestory": dict(sc.tris)}
 
 
 METAL = {   # the original, lower midcentury slopes, with roofing that suits them

@@ -325,7 +325,8 @@ HTML = r"""<!doctype html>
   <label><input type="checkbox" id="furn" checked> Furniture / fixtures</label>
   <label><input type="checkbox" id="labels" checked> Room labels</label>
   <label><input type="checkbox" id="grid" checked> 1' floor grid</label>
-  <label id="roofrow"><input type="checkbox" id="roofvis" checked> Roof</label>
+  <label id="roofrow"><input type="checkbox" id="roofvis" checked> Roof
+    <select id="roofopt" style="display:none"><option value="0">MCM gable 3:12 (plan)</option></select></label>
   <label><input type="checkbox" id="roofsh" checked> Roof shadows (24" eaves)</label>
   <label>Sun: <select id="day">
     <option value="172">Jun 21</option><option value="80">Mar 20 / Sep 22</option>
@@ -440,17 +441,30 @@ for (const [text,x,y,z] of D.labels) {
   const s = new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c), depthTest:false}));
   s.scale.set(8, 2, 1); s.position.set(x*IN, z || 9, -y*IN); s.renderOrder = 10; groups.labels.add(s);
 }
-// Roofs, gable ends and clerestories as triangles (experiments; the base model has none).
-for (const [k, tris] of Object.entries(D.tris || {})) {
-  const pos = [];
-  for (const t of tris) for (const [x,y,z] of t) pos.push(...V(x,y,z).toArray());
-  const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals();
-  const material = mat(k); material.side = THREE.DoubleSide;
-  const m = new THREE.Mesh(g, material); m.castShadow = m.receiveShadow = k !== 'glass';
-  groups.roof.add(m);
-  if (k !== 'glass') groups.roof.add(new THREE.LineSegments(new THREE.EdgesGeometry(g, 20), EDGE));
+// Roofs, gable ends and clerestories as triangles. The main model also carries alternative roofs
+// (D.roof_options), one shown at a time through the Roof selector.
+function addTris(all, group) {
+  for (const [k, tris] of Object.entries(all || {})) {
+    const pos = [];
+    for (const t of tris) for (const [x,y,z] of t) pos.push(...V(x,y,z).toArray());
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals();
+    const material = mat(k); material.side = THREE.DoubleSide;
+    const m = new THREE.Mesh(g, material); m.castShadow = m.receiveShadow = k !== 'glass';
+    group.add(m);
+    if (k !== 'glass') group.add(new THREE.LineSegments(new THREE.EdgesGeometry(g, 20), EDGE));
+  }
+  groups.roof.add(group);
+  return group;
 }
+const roofChoices = [addTris(D.tris, new THREE.Group())];
+const roofSel = document.getElementById('roofopt');
+for (const [label, tris] of Object.entries(D.roof_options || {})) {
+  const g = addTris(tris, new THREE.Group()); g.visible = false; roofChoices.push(g);
+  roofSel.add(new Option(label, roofChoices.length - 1));
+}
+if (roofChoices.length > 1) roofSel.style.display = '';
+roofSel.onchange = () => roofChoices.forEach((g, i) => g.visible = i === +roofSel.value);
 groups.ceil.visible = false;
 // Invisible roof that still casts shadows (hidden objects don't cast in
 // three.js, so the ceiling never did): house outline incl. the corner porch,
@@ -595,6 +609,7 @@ if (D.roof_hidden && !location.hash.includes('roof')) {     // main model opens 
 } else if (location.hash.includes('roof')) {                // exterior view: room labels would float over the roof
   groups.labels.visible = false; document.getElementById('labels').checked = false;
 }
+if (location.hash.includes('shed') && roofChoices.length > 1) { roofSel.value = '1'; roofSel.onchange(); }   // #roof-shed
 if (!Object.keys(D.tris || {}).length) document.getElementById('roofrow').style.display = 'none';
 const clock = new THREE.Clock();
 renderer.setAnimationLoop(()=>{
@@ -633,7 +648,7 @@ def main():
     import experiment_exterior as X        # the chosen exterior: MCM gable, stucco
     sc = build_schematic()
     X.chosen_exterior(sc)
-    write_model(sc, ROOT / "renders" / "3d", {**sc.meta, "roof_hidden": True})
+    write_model(sc, ROOT / "renders" / "3d", {**sc.meta, "roof_hidden": True, "roof_options": X.roof_options()})
 
 
 if __name__ == "__main__":

@@ -28,7 +28,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 
 ![3D exterior: MCM gable, stucco](renders/3d/preview-exterior.png)
 
-*The chosen exterior: midcentury-modern low gable with dark shingles, stucco walls, and the nearly flat carport roof. The model opens with the roof off; tick **Roof** to show it, or open [house.html#roof](https://blotzy.github.io/floorplan/renders/3d/house.html#roof).*
+*The chosen exterior: midcentury-modern low gable with dark shingles, stucco walls, and the nearly flat carport roof. The model opens with the roof off; tick **Roof** to show it, or open [house.html#roof](https://blotzy.github.io/floorplan/renders/3d/house.html#roof). The Roof menu also offers the MCM metal shed with a clerestory over the lounge ([house.html#roof-shed](https://blotzy.github.io/floorplan/renders/3d/house.html#roof-shed)).*
 
 ## Design wishlist by trade
 
