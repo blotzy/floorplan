@@ -38,4 +38,5 @@
 - [ ] HVAC: Manual J load calculation and Manual D duct design to size the ducted heat pump and confirm three zones (or two, if the primary suite is too small to run alone).
 - [ ] Electrician: load calculation with the full appliance list, confirming 200A.
 - [ ] Electrician: SCE service point and meter location (west end?) and the EV charger run to the carport.
+- [ ] Engineer: shed roof framing over the vaulted great room: the bearing/beam line where the vault meets the flat ceilings (the lounge/gym and kitchen/pantry walls are 18" apart; lining them up simplifies it, see the alignment experiment), the tall street wall with the clerestory band, and lateral bracing along it.
 - [ ] Engineer: does the wide dining window (with the dining slider around the southeast corner) need steel framing or a steel hold-down at that corner? If so, reconsider the window size; a narrower window with more wall at each end is the fallback.

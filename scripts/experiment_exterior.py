@@ -308,11 +308,12 @@ def porch_breeze(sc):
 
 
 def chosen_exterior(sc, porch=True):
-    """The main plan's exterior: MCM low gable (2:12, deep eaves, stucco gable ends), stucco walls,
+    """The main plan's exterior: MCM shingle shed (2:12, deep eaves) with a 3' clerestory band over the
+    lounge and the foyer, lounge, dining and kitchen under one sloped ceiling; stucco walls,
     dark shingles and fascia, accent front door; porch with a wood-look feature wall. make_3d.py
     adds this to the main model."""
     band(sc, "exterior", WALL_TOP, PLATE)
-    low_gable(sc, 2 / 12, 36, glazed_ends=False)
+    shed_vault_great(sc, 2 / 12, 36, band=36.0)
     front_door(sc)
     sc.mat = {k: {"color": v} for k, v in STYLES["mcm-gable"][1].items()}
     sc.mat["seam"] = {"color": 0x2A2D31}
@@ -321,11 +322,14 @@ def chosen_exterior(sc, porch=True):
 
 
 def roof_options():
-    """Alternative roofs for the main model's Roof selector: {label: tris}. Each vaults the whole
-    great room under the shed slope, with a clerestory over the lounge (3' band or full height)."""
+    """Alternative roofs for the main model's Roof selector: {label: tris} (the main plan's shingle
+    shed with a 3' clerestory band is the model's own roof)."""
     out = {}
+    sc = M.Scene()
+    band(sc, "exterior", WALL_TOP, PLATE)
+    low_gable(sc, 2 / 12, 36, glazed_ends=False)
+    out["MCM gable 2:12, flat 10' ceilings"] = dict(sc.tris)
     for label, seams, glass_h in (
-            ("MCM shingle shed 2:12, 3' clerestory band, great room vaulted", False, 36.0),
             ("MCM shingle shed 2:12, full-height clerestory, great room vaulted", False, None),
             ("MCM metal shed 2:12, 3' clerestory band, great room vaulted", True, 36.0),
             ("MCM metal shed 2:12, full-height clerestory, great room vaulted", True, None)):

@@ -327,7 +327,7 @@ HTML = r"""<!doctype html>
   <label><input type="checkbox" id="grid" checked> 1' floor grid</label>
   <label><input type="checkbox" id="edges" checked> Edge lines</label>
   <label id="roofrow"><input type="checkbox" id="roofvis" checked> Roof
-    <select id="roofopt" style="display:none"><option value="0">MCM gable 2:12 (plan)</option></select></label>
+    <select id="roofopt" style="display:none"><option value="0">MCM shingle shed 2:12, 3&#39; clerestory band (plan)</option></select></label>
   <label><input type="checkbox" id="roofsh" checked> Roof shadows (24" eaves)</label>
   <label>Sun: <select id="day">
     <option value="172">Jun 21</option><option value="80">Mar 20 / Sep 22</option>
@@ -614,9 +614,9 @@ if (D.roof_hidden && !location.hash.includes('roof')) {     // main model opens 
 } else if (location.hash.includes('roof')) {                // exterior view: room labels would float over the roof
   groups.labels.visible = false; document.getElementById('labels').checked = false;
 }
-{ const h = location.hash, full = h.includes('full') ? 1 : 0, metal = h.includes('metal');
-  const pick = h.includes('plain') ? (metal ? 6 : 5) : metal ? 3 + full : /shed|shingle|great|band/.test(h) ? 1 + full : 0;
-  if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-shed, #roof-metal (3' band); -full: full height; -plain: no clerestory, flat ceilings
+{ const h = location.hash, metal = h.includes('metal'), full = h.includes('full');
+  const pick = h.includes('gable') ? 1 : h.includes('plain') ? (metal ? 6 : 5) : metal ? (full ? 4 : 3) : full ? 2 : 0;
+  if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-gable; #roof-full, #roof-metal(-full); #roof-plain, #roof-metal-plain
 if (!Object.keys(D.tris || {}).length) document.getElementById('roofrow').style.display = 'none';
 const clock = new THREE.Clock();
 renderer.setAnimationLoop(()=>{

@@ -13,11 +13,11 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild
 | Item | Decision |
 | --- | --- |
 | Style | Midcentury modern (MCM) |
-| Roof | MCM low-pitch gable at 2:12, the minimum for shingles (CRC R905.2.2): low-slope double underlayment, preferably a full peel-and-stick membrane, and a shingle line the maker warranties to 2:12 in writing, ridge running the length of the house (east–west) with the gable ends at the carport and primary-suite ends; deep eaves; Class A dark asphalt shingles. If budget allows, the preferred alternative is an MCM shed roof with a street-facing clerestory |
+| Roof | MCM shed roof at 2:12, the minimum for shingles (CRC R905.2.2): one slope rising from the rear to the street, deep eaves, Class A dark asphalt shingles over low-slope double underlayment (preferably a full peel-and-stick membrane), and a shingle line the maker warranties to 2:12 in writing. A 3'-tall clerestory band runs along the street wall over the lounge. Fallback if the budget needs it: an MCM gable at 2:12 with flat ceilings |
 | Carport roof | Nearly flat (about ¼" per foot), sloping east, away from the house, to a gutter on its east edge; Class A low-slope roofing (single-ply TPO/PVC or a mineral-surfaced modified-bitumen cap sheet) |
 | Exterior | Stucco walls (noncombustible); thin dark fascia |
 | Fuel | All-electric, no gas line to the lot |
-| Ceiling height | 10' throughout (no step-down over the bedrooms), with a sealed (unvented) attic above |
+| Ceiling height | The great room (foyer, lounge, dining, kitchen) is vaulted under the roof slope, about 16' at the clerestory down to about 11' at the rear wall. Everywhere else: flat 10' ceilings under a sealed (unvented) attic |
 | Windows | Standard manufacturer sizes (6" steps in width and height); openings wider than 8' are two mulled units. Heads in line at 8' |
 | Doors | 8' tall doors throughout; front door at least 36" wide (3'-0" slab) |
 | Flooring | LVP throughout, flush transitions with no raised thresholds |

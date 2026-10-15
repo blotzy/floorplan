@@ -45,6 +45,7 @@
 **Boxes and wiring**
 
 - Ceiling-fan-rated boxes in the bedrooms and great room (not in the gym's ring swing zone).
+- Vaulted great room (no attic above it): wall outlets and switches are fed from the walls that border the attic and run sideways through the studs, or through slab conduit (the peninsula needs that anyway). Vault lights, fans, smoke alarms and any clerestory shade motors are wired in the rafter bays before the spray foam, with a few spare conduits and pull strings to likely future spots.
 - Neutral wires in all switch boxes, for smart switches.
 - Door contact sensor and smart lock at the front door.
 
