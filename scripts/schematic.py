@@ -610,7 +610,7 @@ def build() -> Sheet:
     hx = (face("pantry|laundry", +1) + face("laundry|bath", -1)) / 2                   # heat pump outdoor
     sh.rect(hx - 21, S + 10, hx + 21, S + 30, "A-EQPM")                                 # unit behind the laundry
     sh.rect(hx - 27, S + 4, hx + 27, S + 36, "A-FENC")                                  # dog guard
-    sh.text("HP", hx, S + 20, 5.0)
+    sh.text("CONDENSER", hx, S + 20, 3.5)
     sh.line((LOT_X0, 386), (LOT_X0 + 60, 386), "A-FENC"); sh.line((LOT_X0 + 60, 386), (LOT_X0 + 60, 258), "A-FENC")
     sh.line((W, N), (W + 20, N), "A-FENC"); sh.line((W + 68, N), (LOT_X0 + LOT_W, N), "A-FENC")  # west fence
     sh.text("6' FENCE + GATE", (W + LOT_X0 + LOT_W) / 2, N - 10, 4.0)

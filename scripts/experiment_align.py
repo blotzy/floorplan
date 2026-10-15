@@ -106,7 +106,11 @@ def main():
         M.write_model(sc, out / f"align-{key}", {**sc.meta, "roof_hidden": True, "roof_options": X.roof_options()})
         facade(ax, f"{key}: street elevation, stucco between windows (street on this side; carport end at left)")
     fig.tight_layout()
-    fig.savefig(out / "align-facade.png", dpi=130)
+    try:
+        fig.savefig(out / "align-facade.png", dpi=130)
+    except OSError:                    # locked by a Windows image viewer
+        import time
+        fig.savefig(out / f"align-facade-{time.strftime('%H%M%S')}.png", dpi=130)
     plt.close(fig)
     S.WALLS, S.OPENINGS = BASE
     S.build = BUILD

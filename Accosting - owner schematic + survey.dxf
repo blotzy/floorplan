@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461329.4450462963
+2461329.4838773147
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461329.4450462963
+2461329.4838773147
   9
 $TDUUPDATE
  40
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{23E2812F-6F64-4CE8-AA85-8E58C084E7D2}
+{BA1D5B85-0A9E-4D88-8DA7-47394752EEFA}
   9
 $VERSIONGUID
   2
-{71FDAD48-3581-4A44-852F-BEBC7D4850A1}
+{845EE239-023A-4EE2-83AA-93B29E34F288}
   9
 $EXTNAMES
 290
@@ -1327,9 +1327,9 @@ ISM
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -1343,9 +1343,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -2635,11 +2635,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-PAVE
+V-SURV-FENC
  70
 0
  62
-8
+3
   6
 Continuous
 370
@@ -2659,11 +2659,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-MISC
+V-SURV-PAVE
  70
 0
  62
-4
+8
   6
 Continuous
 370
@@ -2676,6 +2676,30 @@ Continuous
 LAYER
   5
 283
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-LOT
+ 70
+0
+ 62
+5
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+284
 330
 1
 100
@@ -2699,30 +2723,6 @@ Continuous
   0
 LAYER
   5
-284
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-V-SURV-FENC
- 70
-0
- 62
-3
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
 285
 330
 1
@@ -2731,11 +2731,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-LOT
+V-SURV-MISC
  70
 0
  62
-5
+4
   6
 Continuous
 370
@@ -20429,9 +20429,9 @@ AcDbText
  30
 0.0
  40
-5.0
+3.5
   1
-HP
+CONDENSER
  72
 1
  11
@@ -34439,7 +34439,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-15T17:40:52.573174+00:00
+1.4.4 @ 2026-10-15T18:36:47.113429+00:00
   0
 VISUALSTYLE
   5
@@ -41001,7 +41001,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-15T17:40:52.841501+00:00
+1.4.4 @ 2026-10-15T18:36:47.376368+00:00
   0
 ENDSEC
   0

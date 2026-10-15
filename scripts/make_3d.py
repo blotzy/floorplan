@@ -55,7 +55,7 @@ LABEL_H = [            # label inside a shape -> (z0, z1); first match wins
     ("LEDGE", (0, 42)),    # shower ledge wall, tiled shelf on top
     ("TV", (24, 68)),      # 90" TV: ~44" tall, centre ~42" above the floor for seated viewing
     ("CONSOLE", (0, 30)),
-    ("SINK", (0, 36)), ("HP", (0, 36)),
+    ("SINK", (0, 36)), ("HP", (0, 36)), ("CONDENSER", (0, 36)),
 ]
 
 
