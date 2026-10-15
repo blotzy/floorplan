@@ -11,7 +11,8 @@
             hall wall, and the lounge and gym windows re-centre. The sectional, console and
             coffee table slide 12" toward the TV so there's still a walkway behind the console.
 
-Writes renders/experiments/align-{plan,aligned}.png (plan close-ups) and a 3D model of each with
+Writes renders/experiments/align-{plan,aligned}.png (plan close-ups), align-facade.png (street
+elevations with the stucco gaps between windows) and a 3D model of each with
 the Roof menu (the shed options show the vault's edge on one straight line when aligned).
 
     uv run scripts/experiment_align.py
@@ -67,9 +68,32 @@ def shift_lounge_furniture(sh):
 VARIANTS = {"plan": (None, None), "aligned": (aligned_plan, shift_lounge_furniture)}
 
 
+def facade(ax, title):
+    """Street (north) elevation: windows on the north wall at their sill/head, gaps labelled."""
+    from matplotlib.patches import Rectangle
+    x0, x1 = S.E, S.W
+    ax.add_patch(Rectangle((x0, 0), x1 - x0, 132, fc="#efe9df", ec="k"))
+    ax.add_patch(Rectangle((x0, 0), S.PORCH_X - x0, 132, fc="#d8d2c8", ec="k"))        # porch notch
+    wins = sorted((o[1], o[2]) for o in S.OPENINGS if o[0] == "north" and o[3] == "window")
+    for a, b in wins:
+        ax.add_patch(Rectangle((a, 30), b - a, 66, fc="#bfe3f2", ec="k"))
+    edges = [S.PORCH_X, *[v for w in wins for v in w], x1]
+    for a, b in zip(edges[::2], edges[1::2]):                                           # stucco gaps
+        ax.annotate("", (a, 112), (b, 112), arrowprops=dict(arrowstyle="<->", lw=0.6))
+        ft, inch = divmod(round(b - a), 12)
+        ax.text((a + b) / 2, 116, f"{ft}'-{inch}\"", ha="center", fontsize=7)
+    ax.text((x0 + S.PORCH_X) / 2, 60, "PORCH", ha="center", fontsize=7)
+    ax.set_title(title, fontsize=10)
+    ax.set_xlim(x0 - 20, x1 + 20); ax.set_ylim(-10, 140); ax.set_aspect("equal"); ax.axis("off")
+
+
 def main():
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    fig, axs = plt.subplots(len(VARIANTS), 1, figsize=(16, 2.6 * len(VARIANTS)))
     out = S.RENDERS / "experiments"
-    for key, (plan, fix) in VARIANTS.items():
+    for ax, (key, (plan, fix)) in zip(axs, VARIANTS.items()):
         S.WALLS, S.OPENINGS = copy.deepcopy(BASE[0]), copy.deepcopy(BASE[1])
         if plan:
             plan()
@@ -80,6 +104,10 @@ def main():
         sc = M.build_schematic()
         X.chosen_exterior(sc)
         M.write_model(sc, out / f"align-{key}", {**sc.meta, "roof_hidden": True, "roof_options": X.roof_options()})
+        facade(ax, f"{key}: street elevation, stucco between windows (street on this side; carport end at left)")
+    fig.tight_layout()
+    fig.savefig(out / "align-facade.png", dpi=130)
+    plt.close(fig)
     S.WALLS, S.OPENINGS = BASE
     S.build = BUILD
     X.LOUNGE_X = (S.face("foyer wall", +1), S.face("lounge|gym", -1))
