@@ -32,7 +32,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 **Equipment and fixtures**
 
 - Whole-house water softener with sediment pre-filter, in the mechanical closet. The softener needs a drain with an air gap.
-- Heat pump water heater in the mechanical closet, with a condensate drain and a drain pan with a leak sensor. Size it for the house; go to **80 gal** for the two-person jetted tub (see below).
+- Heat pump water heater in the mechanical closet, with a condensate drain and a drain pan with a leak sensor. Size it for the house; 65 gal covers the soaking tub, 80 gal gives margin (see below).
 - Tankless reverse-osmosis filter in the mechanical closet, fed from the softened line (softening first extends the membrane's life). Food-grade lines run to the RO tap at the kitchen sink and to the fridge, with accessible shutoffs at both ends. Its waste line drains through an air gap or standpipe; it needs an outlet, and shares the closet's leak pan/sensor. A bypass plug replaces the fridge's internal filter. The sink cabinet stays free for the trash pull-out.
 - Leak pans under the washer and fridge.
 - Bidet seats at all three baths. Plan toilet locations so each bidet outlet has enough separation from tubs and showers.
@@ -41,5 +41,5 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 **Optional**
 
 - Reading nook with built-in bench in the primary bedroom.
-- **72" x 48" two-person jetted tub in the primary bath wet room**, shown in [floor plan](02-floor-plan.md). Pick the model before framing; the bath is exactly one tub-length deep, so the tub fits wall to wall against the plumbing wall. Fill is 80–110+ gal and the filler is limited to 120°F (CPC 409.4), so it needs an 80-gal heat pump water heater or a 140°F tank with a mixing valve. A slab floor handles the ~1,400 lb filled load. The pump needs an accessible service panel: choose either a freestanding tub (panels on its open sides) or one whose access panel opens from the walk-in closet side; see [open questions](09-open-questions.md). Wet room: one waterproofed zone (membrane floor and walls), curbless with a linear drain and the slab recessed for the slope.
+- **Back-to-wall freestanding soaking tub (about 5'-7" x 32") in the primary bath wet room**, shown in [floor plan](02-floor-plan.md). Pick the model before framing: its exact length, drain position and filler (wall-mounted on the plumbing wall behind it). Fill is about 55–70 gal and the filler is limited to 120°F (CPC 409.4), so a 65-gal heat pump water heater covers it (80 gal for margin), or a 140°F tank with a mixing valve. No pump, so no access panel. Wet room: one waterproofed zone (membrane floor and walls), curbless with a linear drain and the slab recessed for the slope.
 - On-demand hot water recirculation to the primary bath, the run farthest from the water heater.

@@ -220,7 +220,7 @@ def room_label(sh, name, x0, y0, x1, y1, cx=None, cy=None, h=8.0):
 
 
 # Bath fit-outs are separate functions so experiments can swap them.
-TUB_L, TUB_W = 72.0, 48.0          # two-person jetted tub (primary bath)
+TUB_L, TUB_W = 67.0, 32.0          # back-to-wall freestanding soaking tub (primary bath)
 LEDGE_D = 6.0                      # primary shower: closet wall built out below chest height
 
 
@@ -287,15 +287,17 @@ def common_bath(sh):
 
 
 def primary_bath(sh):
-    """Wet room: jetted tub on the plumbing wall + curbless shower behind glass; WC and double vanity on
+    """Wet room: back-to-wall freestanding tub against the plumbing wall + a wide curbless shower behind
+    glass; WC and double vanity on
     the closet (north) wall; door from the bedroom at the rear-wall end."""
     m0, m1 = face("utility|bath", +1), face("suite|primary", -1)
     top = face("bath|wic", +1)
-    gx = m0 + TUB_W + 42.0                                             # tub + 42" shower zone
+    gx = m0 + 90.0                                                     # tub + shower: the wet room's width
+    tz = (top + S_IN - TUB_L) / 2                                       # tub centred end to end (~2.5" gaps)
     wet_zone(sh, m0, top, gx, S_IN)
-    tub(sh, m0, S_IN - TUB_L, m0 + TUB_W, S_IN)                       # wall to wall, no end gap
-    sh.text("CURBLESS", m0 + TUB_W + 21, 575.0, 3.5, rot=90)
-    sx = m0 + TUB_W + 21                                               # two heads, facing each other
+    tub(sh, m0, tz, m0 + TUB_W, tz + TUB_L, "67x32 TUB")              # back-to-wall: flat back on the plumbing wall
+    sx = (m0 + TUB_W + gx) / 2                                         # two heads, facing each other
+    sh.text("CURBLESS", sx, 575.0, 3.5, rot=90)
     ly = S_IN - LEDGE_D                                                # ledge wall on the rear wall, under
     sh.rect(m0 + TUB_W, ly, gx, S_IN, "A-EQPM")                       # the everyday head by the entry:
     sh.text("LEDGE", sx, ly + LEDGE_D / 2, 2.0)                        # tiled shelf, that head's plumbing inside

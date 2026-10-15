@@ -28,7 +28,6 @@
 | Washer | 20A | Laundry, bath wall |
 | Network rack | One 20A | Mechanical / network closet |
 | Gym | One 20A | Gym (bike/treadmill wall) |
-| Jetted tub pump (+ heater if the model has one) | Per model, GFCI | Primary bath; pump access outside the wet zone |
 
 **Outlet locations** (standard outlets, no dedicated circuit needed)
 
