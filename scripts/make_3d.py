@@ -23,7 +23,7 @@ from collections import defaultdict
 from pathlib import Path
 
 
-CEIL, HEAD, SILL, FENCE = 120.0, 96.0, 30.0, 72.0   # inches
+CEIL, HEAD, SILL, FENCE = 108.0, 96.0, 30.0, 72.0   # inches (9' flat ceilings; the great room is vaulted)
 ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -122,7 +122,7 @@ def build_schematic() -> Scene:
         sill, head = (o[4], o[5]) if kind in ("window", "transom") and len(o) > 4 else (SILL, HEAD)
         if kind == "transom":                                     # glass above the door on this span
             for v in (-t / 2, t / 2):
-                sc.quad(face_mat(*seg(v)), *seg(v), HEAD, sill)
+                sc.quad(face_mat(*seg(v)), *seg(v), sill - 2, sill)          # frame between door and glass
                 sc.quad(face_mat(*seg(v)), *seg(v), head, CEIL)
             sc.quad("glass", *seg(0), sill, head)
             continue

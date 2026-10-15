@@ -106,7 +106,7 @@ OPENINGS = [
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("east",        503.75, 599.75, "slider"),           # dining 8' slider (centred between the carport fence and the corner)
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
-    ("west",        414.7, 450.7, "transom", 98.0, 110.0),  # fixed 3'-0" x 1'-0" transom over it: daylight down the hall
+    ("west",        414.7, 450.7, "transom", 86.0, 104.0),  # 7' door + fixed 3'-0" x 1'-6" transom: daylight down the hall
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
     ("bedroom hall wall", 867.5, 897.5, "door", "b", -1),   # shared ensuite

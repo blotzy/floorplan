@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild) with no gas service, 10' ceilings, a sealed attic, and an attached 18'-wide two-car carport. The architect owns the floor plan, roof, and finishes. Plumbing, HVAC, and electrical are designed by separate trades, so the architect only needs to reserve the spaces, chases, and openings those sections call for.
+All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild) with no gas service, a vaulted great room and 9' ceilings elsewhere, a sealed attic, and an attached 18'-wide two-car carport. The architect owns the floor plan, roof, and finishes. Plumbing, HVAC, and electrical are designed by separate trades, so the architect only needs to reserve the spaces, chases, and openings those sections call for.
 
 **Orientation used in these docs:** "north", "east", etc. mean **plan** directions: the street is plan north, the carport and great room are at the plan east end, and the bedroom wing and primary suite at the plan west end. (The plan drawings put plan north at the bottom, so east is on the left.)
 
@@ -17,9 +17,9 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild
 | Carport roof | Nearly flat (about ¼" per foot), sloping east, away from the house, to a gutter on its east edge; Class A low-slope roofing (single-ply TPO/PVC or a mineral-surfaced modified-bitumen cap sheet) |
 | Exterior | Stucco walls (noncombustible); thin dark fascia |
 | Fuel | All-electric, no gas line to the lot |
-| Ceiling height | The great room (foyer, lounge, dining, kitchen) is vaulted under the roof slope, about 16' at the clerestory down to about 11' at the rear wall. Everywhere else: flat 10' ceilings under a sealed (unvented) attic |
+| Ceiling height | The great room (foyer, lounge, dining, kitchen) is vaulted under the roof slope, about 16' at the clerestory down to about 11' at the rear wall. Everywhere else: flat 9' ceilings under a sealed (unvented) attic, which leaves about 3'-9" of attic headroom over the middle of the hall |
 | Windows | Standard manufacturer sizes (6" steps in width and height); openings wider than 8' are two mulled units. Heads in line at 8' |
-| Doors | 8' tall doors throughout; front door at least 36" wide (3'-0" slab) |
+| Doors | 8' tall doors throughout (the west hall door is 7' with a glass transom above); front door at least 36" wide (3'-0" slab) |
 | Flooring | LVP throughout, flush transitions with no raised thresholds |
 | Footprint | House 72' x 31'-6"; carport 18' x 20' on the east end |
 | Siting | House near the west side setback: 11'-6" on the west, 11'-6" from the carport to the east line, 20'-1¼" front, 13'-2" rear (20% of the 64.77' lot depth is 12'-11½") |

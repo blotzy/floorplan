@@ -291,7 +291,7 @@ def porch_feature(sc):
     w0, w1 = PORCH_WIN
     for a, b, z0, z1 in ((N, w0, 0, 120), (w1, py, 0, 120), (w0, w1, 0, 30), (w0, w1, 96, 120)):
         sc.quad("feature", (x, a), (x, b), z0, z1)
-    sc.boxes["feature"].append([E + 6, N, px, py, 118.5, 119.5])      # porch ceiling
+    sc.boxes["feature"].append([E + 6, N, px, py, M.CEIL - 1.5, M.CEIL - 0.5])   # porch ceiling
     sc.mat["feature"] = {"color": 0xA8754B}
 
 
