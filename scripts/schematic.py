@@ -98,9 +98,10 @@ OPENINGS = [
     ("north",       1102.6, 1174.6, "window"),           # office 6'
     ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
-    ("south",       376.0, 436.0, "window", 18.0, 96.0),  # dining pair + kitchen sink window: three equal 5'
-    ("south",       484.0, 544.0, "window", 18.0, 96.0),  # windows, 4' apart, heads in line; dining sills low
-    ("south",       592.0, 652.0, "window", 42.0, 96.0),  # kitchen sink: sill just above the backsplash
+    ("south",       372.0, 432.0, "window", 18.0, 96.0),  # dining pair (centred on the dining wall and table)
+    ("south",       480.0, 540.0, "window", 18.0, 96.0),  # + kitchen window (centred on the sink): three equal 5'
+                                                          # windows, 4' apart, heads in line; dining sills low
+    ("south",       588.0, 648.0, "window", 42.0, 96.0),  # kitchen sink: sill just above the backsplash
     ("south",       880.0, 928.0, "window", 72.0, 96.0),   # primary bath: 4'-0" x 2'-0" high window over the tub
     ("south",       975.0, 1023.0, "window", 72.0, 96.0),  # primary bath: matching 4'-0" x 2'-0" over the walkway
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
@@ -514,7 +515,7 @@ def build() -> Sheet:
         sh.rect(kw - 24, y0, kw, y1, eq); sh.text("TALL STORAGE", kw - 12, (y0 + y1) / 2, 1.6, rot=90)
     sh.rect(kw - 24, r0, kw, r0 + 30, eq); sh.text("RANGE", kw - 12, r0 + 15, 3.5, rot=90)
     sh.rect(kw - 30, srow, kw, srow + 36, eq); sh.text("FRIDGE", kw - 15, srow + 18, 3.5, rot=90)
-    sh.rect(607.0, S_IN - 20, 637.0, S_IN - 4, eq); sh.text("SINK", 622.0, S_IN - 12, 3.0)
+    sh.rect(603.0, S_IN - 20, 633.0, S_IN - 4, eq); sh.text("SINK", 618.0, S_IN - 12, 3.0)   # centred under its window
     for y in (476.7, 512.9, 544.5):                                           # 3 stools
         sh.circle((pen_out - 8, y), 7.5, fu)
     dcx = (E_IN + pen_out) / 2                                                # dining table

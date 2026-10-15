@@ -42,26 +42,26 @@ import schematic as S  # noqa: E402
 
 BASE = copy.deepcopy(S.OPENINGS)
 PEN_OUT = 546.9                      # peninsula's dining-side face, where it meets the wall
-KITCHEN = (592.0, 652.0, 42.0)       # 5' over the sink, sill above the backsplash
+KITCHEN = (588.0, 648.0, 42.0)       # 5' over the sink, sill above the backsplash
 
 VARIANTS = {   # key -> (title, [(from, to, sill), ...] on the south wall, dining + kitchen)
     "rhythm":  ("Three equal 5' windows, 4' apart; dining sills at 18\" (main plan)",
-                [(376.0, 436.0, 18.0), (484.0, 544.0, 18.0), KITCHEN]),
+                [(372.0, 432.0, 18.0), (480.0, 540.0, 18.0), KITCHEN]),
     "pair":    ("Dining 10' (two 5' units) at 18\" + kitchen 5' (earlier version)",
-                [(397.0, 517.0, 18.0), KITCHEN]),
+                [(396.0, 516.0, 18.0), KITCHEN]),
     "matched": ("Dining 10' + kitchen 5', both sills at 42\"",
-                [(397.0, 517.0, 42.0), KITCHEN]),
+                [(396.0, 516.0, 42.0), KITCHEN]),
     "ribbon":  ("Ribbon: four 5' units at a 42\" sill, dining through to the sink",
                 [(412.0, 652.0, 42.0)]),
     "tall":    ("Three equal 5' windows, 4' apart; dining pair floor to head",
-                [(376.0, 436.0, 0.0), (484.0, 544.0, 0.0), KITCHEN]),
+                [(372.0, 432.0, 0.0), (480.0, 540.0, 0.0), KITCHEN]),
     # bigger kitchen windows
     "kitchen6":  ("Main plan with the kitchen window 6' (centred on the sink)",
-                  [(376.0, 436.0, 18.0), (484.0, 544.0, 18.0), (586.0, 658.0, 42.0)]),
+                  [(372.0, 432.0, 18.0), (480.0, 540.0, 18.0), (582.0, 654.0, 42.0)]),
     "kitchen8":  ("Dining 10' at 18\" + kitchen 8' at 42\", from over the peninsula end to the corner",
-                  [(397.0, 517.0, 18.0), (568.0, 664.0, 42.0)]),
+                  [(396.0, 516.0, 18.0), (568.0, 664.0, 42.0)]),
     "backsplash": ("Dining 10' at 18\" + kitchen 8' down to the counter (glass backsplash)",
-                   [(397.0, 517.0, 18.0), (568.0, 664.0, 37.0)]),
+                   [(396.0, 516.0, 18.0), (568.0, 664.0, 37.0)]),
     "ribbon-wide": ("Ribbon to the corner: four 6' units at 42\", dining through the kitchen",
                     [(376.0, 664.0, 42.0, 4)]),
     # the ribbon broken into a dining part and a kitchen part
