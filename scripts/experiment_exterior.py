@@ -172,19 +172,32 @@ def shed_vault(sc, pitch, ov, seams=False, band=None):
         quad(sc, "wall", [x, y0, M.CEIL], [x, y1, M.CEIL], [x, y1, under(y1)], [x, y0, under(y0)])
 
 
-def shed_vault_great(sc, pitch, ov, seams=False, band=None):
+def clerestory(sc, x0, x1, top, pieces):
+    """Street wall over the lounge (x0..x1, from the plate up to `top`), glazed where `pieces`
+    [(from, to, height), ...] say: each piece centred vertically in the wall, stucco elsewhere."""
+    xs = sorted({x0, x1, *[p for a, b, _ in pieces for p in (a, b)]})
+    for a, b in zip(xs, xs[1:]):
+        hit = next((h for pa, pb, h in pieces if pa <= a and b <= pb), None)
+        if hit is None:
+            quad(sc, "exterior", [a, N, PLATE], [b, N, PLATE], [b, N, top], [a, N, top])
+            continue
+        g0 = PLATE + (top - PLATE - hit) / 2
+        for z0, z1, m in ((PLATE, g0, "exterior"), (g0, g0 + hit, "glass"), (g0 + hit, top, "exterior")):
+            quad(sc, m, [a, N, z0], [b, N, z0], [b, N, z1], [a, N, z1])
+
+
+def shed_vault_great(sc, pitch, ov, seams=False, band=None, pieces=None):
     """shed_vault, but the whole great room (lounge, dining, kitchen) is vaulted under one continuous
     sloped ceiling, from the clerestory down to the rear wall: no step where the lounge meets the
     dining. The foyer and everything west of the kitchen keep flat 10' ceilings under the attic."""
     under = shed_vault_under(pitch)
     lx0, lx1 = LOUNGE_X
-    slab_roof(sc, ov, under, north=[(S.PORCH_X, lx0, "exterior"), (lx0, lx1, None if band else "glass"),
+    if band and not pieces:
+        pieces = [(lx0, lx1, band)]
+    slab_roof(sc, ov, under, north=[(S.PORCH_X, lx0, "exterior"), (lx0, lx1, None if pieces else "glass"),
                                     (lx1, W, "exterior")], seams=seams)
-    if band:
-        top = under(N)
-        g0 = PLATE + (top - PLATE - band) / 2
-        for z0, z1, m in ((PLATE, g0, "exterior"), (g0, g0 + band, "glass"), (g0 + band, top, "exterior")):
-            quad(sc, m, [lx0, N, z0], [lx1, N, z0], [lx1, N, z1], [lx0, N, z1])
+    if pieces:
+        clerestory(sc, lx0, lx1, under(N), pieces)
     yf = S.FOYER_WALL_END                                   # foyer's open (south) edge
     kx = S.face("kitchen|pantry", -1)
     E_in = S.E_IN
