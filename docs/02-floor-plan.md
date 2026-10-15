@@ -6,7 +6,7 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 
 ## Entry, foyer, and lounge
 
-- **Corner porch** at the lounge/carport (northeast) corner, set into the house, with a post at the outside corner where the carport beam lands. Front step in front.
+- **Corner porch** at the lounge/carport (northeast) corner, set into the house, with a post at the outside corner where the carport beam lands. Front step in front. A wood-look feature wall (noncombustible: fiber-cement panels or porcelain wood-grain tile, in vertical boards) on the porch's back walls, around the front door and the reeded window, wrapping onto the porch ceiling.
 - **Front door** on the street-facing side of the porch, hinged on the east side so it opens flat against the foyer's east wall. No sidelight, so the door itself has glass (tempered, dual-pane, meeting the wildfire rules for exterior doors) to light the foyer.
 - **Reeded-glass window** in the porch's side wall, so you can see who's at the door from the lounge. Narrow reeds or satin-reeded, dual-pane, low-E, tempered, NFRC-rated, from the same window line as the rest of the house.
 - **Foyer:** the **foyer wall** (stopping short of the lobby) separates foyer and lounge; its lounge side is the **TV wall**, and its foyer side holds a closet and bench, across from the front door's swing.

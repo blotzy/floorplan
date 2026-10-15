@@ -267,14 +267,54 @@ STYLES = {
     "ranch-gable": (lambda sc: gable(sc, 4 / 12, 24, 12),
                     {"exterior": 0xB9C2B0, "soffit": 0xF4F2EC, "fascia": 0xF4F2EC, "roofing": 0x45484C, "door": 0x222222}),
 }
-def chosen_exterior(sc):
+PORCH_DOOR = next(o for o in S.OPENINGS if o[0] == "porch front" and o[3] == "door")[1:3]
+PORCH_WIN = next(o for o in S.OPENINGS if o[0] == "porch side" and o[3] == "window")[1:3]
+
+
+def porch_feature(sc):
+    """Wood-look cladding (fiber cement or porcelain wood-grain) on the porch's two back walls,
+    around the front door and the reeded side window, wrapping onto the porch ceiling."""
+    px, py = S.PORCH_X, S.PORCH_Y
+    y = py - 0.4                                         # just proud of the front wall
+    d0, d1 = PORCH_DOOR
+    for a, b, z0, z1 in ((E, d0, 0, 120), (d1, px, 0, 120), (d0, d1, 96, 120)):
+        sc.quad("feature", (a, y), (b, y), z0, z1)
+    x = px - 0.4                                         # side wall, around the reeded window
+    w0, w1 = PORCH_WIN
+    for a, b, z0, z1 in ((N, w0, 0, 120), (w1, py, 0, 120), (w0, w1, 0, 30), (w0, w1, 96, 120)):
+        sc.quad("feature", (x, a), (x, b), z0, z1)
+    sc.boxes["feature"].append([E + 6, N, px, py, 118.5, 119.5])      # porch ceiling
+    sc.mat["feature"] = {"color": 0xA8754B}
+
+
+def porch_breeze(sc):
+    """Breeze-block screen (12" concrete blocks, open centres) on the street-side seat wall, stopping
+    3' short of its driveway end so the wall stays low where you look out when backing out."""
+    x0, y0, x1, y1 = S.ENTRY_WALLS[0]
+    z0, rows, t = S.ENTRY_WALL_H, 4, 2.0
+    n = int((x1 - (x0 + 36)) // 12)
+    xs = x1 - n * 12
+    for i in range(n):
+        for j in range(rows):
+            a, c = xs + i * 12, z0 + j * 12
+            for bx0, bx1, bz0, bz1 in ((a, a + 12, c, c + t), (a, a + 12, c + 12 - t, c + 12),
+                                       (a, a + t, c, c + 12), (a + 12 - t, a + 12, c, c + 12)):
+                sc.boxes["breeze"].append([bx0, y0, bx1, y1, bz0, bz1])
+    sc.mat["breeze"] = {"color": 0xECE7DD}
+
+
+def chosen_exterior(sc, porch=True):
     """The main plan's exterior: MCM low gable (2:12, deep eaves, stucco gable ends), stucco walls,
-    dark shingles and fascia, accent front door. make_3d.py adds this to the main model."""
+    dark shingles and fascia, accent front door; porch with a wood-look feature wall and a
+    breeze-block screen on the seat wall. make_3d.py adds this to the main model."""
     band(sc, "exterior", WALL_TOP, PLATE)
     low_gable(sc, 2 / 12, 36, glazed_ends=False)
     front_door(sc)
     sc.mat = {k: {"color": v} for k, v in STYLES["mcm-gable"][1].items()}
     sc.mat["seam"] = {"color": 0x2A2D31}
+    if porch:
+        porch_feature(sc)
+        porch_breeze(sc)
 
 
 def roof_options():
