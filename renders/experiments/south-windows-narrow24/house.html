@@ -27,6 +27,7 @@
   <label><input type="checkbox" id="furn" checked> Furniture / fixtures</label>
   <label><input type="checkbox" id="labels" checked> Room labels</label>
   <label><input type="checkbox" id="grid" checked> 1' floor grid</label>
+  <label><input type="checkbox" id="edges" checked> Edge lines</label>
   <label id="roofrow"><input type="checkbox" id="roofvis" checked> Roof
     <select id="roofopt" style="display:none"><option value="0">MCM gable 2:12 (plan)</option></select></label>
   <label><input type="checkbox" id="roofsh" checked> Roof shadows (24" eaves)</label>
@@ -306,6 +307,10 @@ if (location.hash === '#touchwalk') startTouchWalk();         // test hook
 const bind = (id, g) => document.getElementById(id).onchange = e => g.visible = e.target.checked;
 bind('ceil', groups.ceil); bind('furn', groups.furn); bind('labels', groups.labels); bind('roofsh', roofCaster);
 bind('roofvis', groups.roof); bind('grid', gridGroup);
+// Outlines on every face: handy for reading the model, but they also draw the seams between wall
+// pieces, which a real stucco wall doesn't have. One shared material, so one switch hides them all.
+document.getElementById('edges').onchange = e => { EDGE.visible = e.target.checked; };
+if (location.hash.includes('smooth')) { EDGE.visible = false; document.getElementById('edges').checked = false; }
 if (D.roof_hidden && !location.hash.includes('roof')) {     // main model opens with the roof off (#roof shows it)
   groups.roof.visible = false; document.getElementById('roofvis').checked = false;
 } else if (location.hash.includes('roof')) {                // exterior view: room labels would float over the roof
