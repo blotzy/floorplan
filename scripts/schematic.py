@@ -102,6 +102,7 @@ OPENINGS = [
                                                           # centred on the dining wall and table
     ("south",       588.0, 648.0, "window", 42.0, 96.0),  # kitchen sink: sill just above the backsplash
     ("south",       880.0, 928.0, "window", 72.0, 96.0),   # primary bath: 4'-0" x 2'-0" high window over the tub
+    ("south",       758.25, 806.25, "window", 72.0, 96.0),  # laundry: matching high window over the rear shelves
     ("south",       975.0, 1023.0, "window", 72.0, 96.0),  # primary bath: matching 4'-0" x 2'-0" over the walkway
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("east",        503.75, 599.75, "slider"),           # dining 8' slider (centred between the carport fence and the corner)
@@ -356,7 +357,7 @@ def utility_block(sh):
                           dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})
     sh.text("CEILING AIRER", (ax0 + ax1) / 2, 545.0, 2.2, "A-CLNG", rot=90)
     sh.rect(l0 + 12, S_IN - 12, lw - 12, S_IN, fu)                           # rear wall: full-height shelves
-    sh.text("SHELVES", (l0 + lw) / 2, S_IN - 6, 2.2)                         # between the mech and storage openings
+    sh.text("SHELVES TO 6'", (l0 + lw) / 2, S_IN - 6, 2.2)                  # up to the high window's sill
     room_label(sh, "LAUNDRY", l0, hall, lw, S_IN, cx=(l0 + lw) / 2 - 8, cy=582.0, h=4.0)
 
 
@@ -607,7 +608,8 @@ def build() -> Sheet:
     sh.line((LOT_X0, fy), (160, fy), "A-FENC"); sh.line((208, fy), (E, fy), "A-FENC")
     sh.text("6' FENCE / GATE", 184, fy - 10, 4.0)
     sh.rect(LOT_X0 + 6, 262, LOT_X0 + 54, 382, "L-SITE"); sh.text("BINS", LOT_X0 + 30, 322, 5.0, rot=90)        # bin pad
-    hx = (face("pantry|laundry", +1) + face("laundry|bath", -1)) / 2                   # heat pump outdoor
+    hx = face("pantry|laundry", +1) - 24.0                                              # heat pump outdoor: behind the mech
+                                                                                        # closet, clear of the laundry window
     sh.rect(hx - 21, S + 10, hx + 21, S + 30, "A-EQPM")                                 # unit behind the laundry
     sh.rect(hx - 27, S + 4, hx + 27, S + 36, "A-FENC")                                  # dog guard
     sh.text("CONDENSER", hx, S + 20, 3.5)
