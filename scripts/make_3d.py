@@ -547,6 +547,12 @@ renderer.domElement.addEventListener('wheel', e => { orbit.zoomSpeed = e.ctrlKey
 const walk = new PointerLockControls(camera, document.body);
 const keys = {};
 addEventListener('keydown', e=>keys[e.code]=true); addEventListener('keyup', e=>keys[e.code]=false);
+// A key held while leaving walk mode (Esc, alt-tab) never sends its keyup, so it would stay
+// "pressed" next time: forget every key whenever walk mode starts or ends, or the page loses focus.
+const releaseKeys = () => { for (const k in keys) keys[k] = false; };
+walk.addEventListener('lock', releaseKeys); walk.addEventListener('unlock', releaseKeys);
+addEventListener('blur', releaseKeys);
+document.addEventListener('visibilitychange', releaseKeys);
 const isTouch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
 if (isTouch) document.getElementById('help').textContent =
   'Orbit: drag · pinch to zoom · two fingers to pan. Walk: tap the button, move with the stick, drag to look.';
