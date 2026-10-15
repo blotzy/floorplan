@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
-"""Experiment: the shed roof's lounge clerestory as one long band or as two symmetrical windows.
+"""Experiment: the shed roof's lounge clerestory as one long band or as two or three windows.
 
 All 3' tall, centred in the tall street wall over the lounge, with the lounge's 10' street window
 below as in the main plan.
@@ -11,6 +11,9 @@ below as in the main plan.
   two8    two 8' windows, evenly spaced
   two6    two 6' windows, evenly spaced
   two5    two 5' windows, evenly spaced
+  three5  three 5' windows, evenly spaced
+  three4  three 4' windows, evenly spaced
+  three3  three 3' windows, evenly spaced
 
 Writes renders/experiments/clerestory-compare.png (the lounge's street wall seen from the street,
 with each option's house glass total) and a 3D model per option (shingle shed, 2:12, great room
@@ -44,6 +47,9 @@ VARIANTS = {
     "two8": ("Two 8' windows, evenly spaced", even(2, 96)),
     "two6": ("Two 6' windows, evenly spaced", even(2, 72)),
     "two5": ("Two 5' windows, evenly spaced", even(2, 60)),
+    "three5": ("Three 5' windows, evenly spaced", even(3, 60)),
+    "three4": ("Three 4' windows, evenly spaced", even(3, 48)),
+    "three3": ("Three 3' windows, evenly spaced", even(3, 36)),
 }
 
 
