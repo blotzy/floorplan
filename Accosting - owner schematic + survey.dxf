@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461329.5755902776
+2461329.584525463
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461329.5755902776
+2461329.584525463
   9
 $TDUUPDATE
  40
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{DA7B3AE3-CFC1-4794-B6EC-775161BAF64A}
+{12A746C1-CAC7-4CFD-BAF4-ECE271FAAC3C}
   9
 $VERSIONGUID
   2
-{3A3E121B-B652-456E-B8A4-F8C3C2C2608D}
+{B8B8B205-D1F1-4406-A11F-793A18F18DD6}
   9
 $EXTNAMES
 290
@@ -1327,9 +1327,9 @@ ISM
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -1343,9 +1343,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -2635,30 +2635,6 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-WALL
- 70
-0
- 62
-1
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
-287
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
 V-SURV-PAVE
  70
 0
@@ -2675,31 +2651,7 @@ Continuous
   0
 LAYER
   5
-288
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-V-SURV-LOT
- 70
-0
- 62
-5
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
-289
+287
 330
 1
 100
@@ -2723,7 +2675,7 @@ Continuous
   0
 LAYER
   5
-28A
+288
 330
 1
 100
@@ -2736,6 +2688,54 @@ V-SURV-MISC
 0
  62
 4
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+289
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-LOT
+ 70
+0
+ 62
+5
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+28A
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-WALL
+ 70
+0
+ 62
+1
   6
 Continuous
 370
@@ -20521,19 +20521,19 @@ AcDbPolyline
  70
 1
  10
-707.25
+823.75
  20
 629.2
  10
-749.25
+865.75
  20
 629.2
  10
-749.25
+865.75
  20
 649.2
  10
-707.25
+823.75
  20
 649.2
   0
@@ -20553,19 +20553,19 @@ AcDbPolyline
  70
 1
  10
-701.25
+817.75
  20
 623.2
  10
-755.25
+871.75
  20
 623.2
  10
-755.25
+871.75
  20
 655.2
  10
-701.25
+817.75
  20
 655.2
   0
@@ -20581,7 +20581,7 @@ A-ANNO-TEXT
 100
 AcDbText
  10
-728.25
+844.75
  20
 639.2
  30
@@ -20593,7 +20593,7 @@ CONDENSER
  72
 1
  11
-728.25
+844.75
  21
 639.2
  31
@@ -34597,7 +34597,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-15T20:48:51.286707+00:00
+1.4.4 @ 2026-10-15T21:01:43.660270+00:00
   0
 VISUALSTYLE
   5
@@ -41159,7 +41159,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-15T20:48:51.535664+00:00
+1.4.4 @ 2026-10-15T21:01:43.911792+00:00
   0
 ENDSEC
   0
