@@ -48,8 +48,9 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | --- | --- |
 | [`Accosting - owner schematic.dxf`](Accosting%20-%20owner%20schematic.dxf) | The plan as a DXF (inches) |
 | [`Accosting - owner schematic + survey.dxf`](Accosting%20-%20owner%20schematic%20%2B%20survey.dxf) | The plan over the topographic survey as a DXF (inches) |
-| `source_files/survey/` | Topographic survey (DWG, DXF, PDF) |
-| `renders/` | Plan renders and the [3D model](https://blotzy.github.io/floorplan/renders/3d/house.html) |
-| `renders/experiments/` | Alternatives explored: exterior styles and roof forms, the laundry / mech swap, and dining and kitchen window options (`south-windows-compare.png`), each with its own 3D model |
+| Topographic survey: [PDF](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.pdf) · [DWG](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dwg) · [DXF](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dxf) | The surveyor's topo of the lot ([folder](https://github.com/blotzy/floorplan/tree/main/source_files/survey)) |
+| Plan renders: [site plan](renders/schematic.png) · [house](renders/schematic-zoom.png) · [survey overlay](renders/survey-overlay.png) | The images at the top of this page, full size ([folder](https://github.com/blotzy/floorplan/tree/main/renders)) |
+| 3D model: [open in the browser](https://blotzy.github.io/floorplan/renders/3d/house.html) · [with the roof](https://blotzy.github.io/floorplan/renders/3d/house.html#roof) · [OBJ](renders/3d/house.obj) | Walkable 3D model; the OBJ opens in Windows 3D Viewer or Blender |
+| Experiments: [exterior styles, street](renders/experiments/exterior-compare-street.png) · [aerial](renders/experiments/exterior-compare-aerial.png) · [metal roofs](renders/experiments/exterior-metal-compare-street.png) · [laundry / mech swap](renders/experiments/utility-swap.png) · [dining and kitchen windows](renders/experiments/south-windows-compare.png) | Alternatives explored, each with its own 3D model ([folder](https://github.com/blotzy/floorplan/tree/main/renders/experiments)) |
 
 Viewing and measuring: open the DXFs in QCAD (View → Auto Zoom; Snap → Endpoint; Info → Distance). Units are inches.
