@@ -333,6 +333,8 @@ def utility_block(sh):
         sh.line((b1 - 5.5, gy + 20 + dy * 0.4), (b1 - 11.0, gy + 20 + dy), eq)
     drain(sh, (b0 + 3, be - 3), (b1 - 3, be - 3))
     room_label(sh, "COMMON BATH", b0, hall, b1, be, cx=b0 + 12, cy=505.0, h=2.4)
+    sh.msp.add_circle((b0 + 13, 520.0), 6.0, dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})   # 10" tube
+    sh.text("SKYLIGHT", b0 + 13, 520.0, 1.6, "A-CLNG")                     # skylight + exhaust fan
     # storage room behind the bath, open to the laundry
     s0 = face("bath|storage", +1)
     sh.rect(b1 - 12, s0, b1, S_IN, fu); sh.text("SHELVES", b1 - 6, (s0 + S_IN) / 2, 2.2, rot=90)
