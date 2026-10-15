@@ -288,11 +288,10 @@ def porch_feature(sc):
 
 
 def porch_breeze(sc):
-    """Breeze-block screen (12" concrete blocks, open centres) on the street-side seat wall, stopping
-    3' short of its driveway end so the wall stays low where you look out when backing out."""
+    """Breeze-block screen (12" concrete blocks, open centres) along the full street-side seat wall."""
     x0, y0, x1, y1 = S.ENTRY_WALLS[0]
     z0, rows, t = S.ENTRY_WALL_H, 4, 2.0
-    n = int((x1 - (x0 + 36)) // 12)
+    n = int((x1 - x0) // 12)
     xs = x1 - n * 12
     for i in range(n):
         for j in range(rows):
