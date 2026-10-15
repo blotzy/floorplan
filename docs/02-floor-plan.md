@@ -20,7 +20,7 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 
 ## Kitchen
 
-See [kitchen](08-kitchen.md). A comfortable work aisle, a 36" fridge, and a peninsula with three stools (with knee overhang) facing the dining area.
+See [kitchen](08-kitchen.md). A comfortable work aisle, a 30" range, a 36" fridge, a single deep sink under the window, and a peninsula with three stools (with knee overhang) facing the dining area.
 
 ## Pantry, laundry, mechanical, common bath (the block behind the kitchen)
 
