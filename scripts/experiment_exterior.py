@@ -266,13 +266,16 @@ def chosen_exterior(sc):
 
 def roof_options():
     """Alternative roofs for the main model's Roof selector: {label: tris}. Each vaults the whole
-    great room under the shed slope, with a 3' clerestory band over the lounge."""
+    great room under the shed slope, with a clerestory over the lounge (3' band or full height)."""
     out = {}
-    for label, seams in (("MCM shingle shed 2:12, 3' clerestory band, great room vaulted", False),
-                         ("MCM metal shed 2:12, 3' clerestory band, great room vaulted", True)):
+    for label, seams, glass_h in (
+            ("MCM shingle shed 2:12, 3' clerestory band, great room vaulted", False, 36.0),
+            ("MCM shingle shed 2:12, full-height clerestory, great room vaulted", False, None),
+            ("MCM metal shed 2:12, 3' clerestory band, great room vaulted", True, 36.0),
+            ("MCM metal shed 2:12, full-height clerestory, great room vaulted", True, None)):
         sc = M.Scene()
         band(sc, "exterior", WALL_TOP, PLATE)
-        shed_vault_great(sc, 2 / 12, 36, seams=seams, band=36.0)
+        shed_vault_great(sc, 2 / 12, 36, seams=seams, band=glass_h)
         out[label] = dict(sc.tris)
     return out
 
