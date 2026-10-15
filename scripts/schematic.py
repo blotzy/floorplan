@@ -75,10 +75,10 @@ WALLS = [
     ("kitchen|pantry",    "y", 674.0,  457.0, S_IN, INT),
     ("pantry|laundry",    "y", 750.0,  457.0, S_IN, INT),
     ("pantry|mech",       "x", 555.2,  674.0, 750.0, INT),
-    ("laundry|bath",      "y", 874.0 - WET - 52.0, 457.0, S_IN, WET),   # 52" clear bath, full depth
-    ("bath|storage",      "x", 566.0 + INT / 2, 874.0 - WET - 52.0, 874.0, INT),  # storage behind the bath
-    ("utility|bath",      "y", 874.0,  457.0, S_IN, WET),
-    ("bath|wic",          "x", S_IN - 72.0 - INT / 2, 874.0, 1062.0, INT),   # bath exactly tub-deep
+    ("laundry|bath",      "y", 884.5 - WET - 52.0, 457.0, S_IN, WET),   # 52" clear bath, full depth
+    ("bath|storage",      "x", 566.0 + INT / 2, 884.5 - WET - 52.0, 884.5, INT),  # storage behind the bath
+    ("utility|bath",      "y", 884.5,  457.0, S_IN, WET),
+    ("bath|wic",          "x", S_IN - 72.0 - INT / 2, 884.5, 1062.0, INT),   # bath exactly tub-deep
     ("suite|primary",     "y", 1062.0, 457.0, S_IN, INT),   # 30" taken from the bedroom for the wet room
 ]
 
@@ -101,8 +101,8 @@ OPENINGS = [
     ("south",       384.0, 528.0, "window", 18.0, 96.0),  # dining: one 12' window (two 6' units), low sill,
                                                           # centred on the dining wall and table
     ("south",       588.0, 648.0, "window", 42.0, 96.0),  # kitchen sink: sill just above the backsplash
-    ("south",       880.0, 928.0, "window", 72.0, 96.0),   # primary bath: 4'-0" x 2'-0" high window over the tub
-    ("south",       758.25, 806.25, "window", 72.0, 96.0),  # laundry: matching high window over the rear shelves
+    ("south",       890.0, 932.0, "window", 72.0, 96.0),   # primary bath: 3'-6" x 2'-0" high window over the tub
+    ("south",       763.5, 811.5, "window", 72.0, 96.0),  # laundry: matching high window over the rear shelves
     ("south",       975.0, 1023.0, "window", 72.0, 96.0),  # primary bath: matching 4'-0" x 2'-0" over the walkway
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("east",        503.75, 599.75, "slider"),           # dining 8' slider (centred between the carport fence and the corner)
@@ -116,7 +116,7 @@ OPENINGS = [
     ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, opposite the primary door
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
-    ("south hall wall", 820.0, 850.0, "door", "a", +1),     # common bath, 30", against its east wall
+    ("south hall wall", 830.5, 860.5, "door", "a", +1),     # common bath, 30", against its east wall
     ("south hall wall", 1070.0, 1106.0, "door", "a", +1),   # primary bedroom
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
@@ -292,7 +292,7 @@ def primary_bath(sh):
     the closet (north) wall; door from the bedroom at the rear-wall end."""
     m0, m1 = face("utility|bath", +1), face("suite|primary", -1)
     top = face("bath|wic", +1)
-    gx = m0 + 90.0                                                     # tub + shower: the wet room's width
+    gx = m0 + 80.0                                                     # tub + shower: the wet room's width
     tz = (top + S_IN - TUB_L) / 2                                       # tub centred end to end (~2.5" gaps)
     wet_zone(sh, m0, top, gx, S_IN)
     tub(sh, m0, tz, m0 + TUB_W, tz + TUB_L, "67x32 TUB")              # back-to-wall: flat back on the plumbing wall
@@ -310,7 +310,7 @@ def primary_bath(sh):
     drain(sh, (gx - 3, top + 3), (gx - 3, ly - 3))
     wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                       # north wall: 17.25" to glass, 15.25" to vanity
     vanity(sh, m1 - 60, top, m1, top + 22, "DOUBLE VANITY 60")
-    for hx in (904.0, 999.0):                                          # both rear windows: sill at 6'
+    for hx in (911.0, 999.0):                                          # both rear windows: sill at 6'
         sh.text("HIGH WINDOW", hx, S_IN - 4, 2.0)
     room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2 - 2, cy=570.0, h=3.2)
 

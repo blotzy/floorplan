@@ -29,9 +29,9 @@ import schematic as S  # noqa: E402
 BASE = (copy.deepcopy(S.WALLS), copy.deepcopy(S.OPENINGS), S.utility_block)
 BUILD = S.build
 EQ, FU = "A-EQPM", "A-FURN"
-L0 = 752.25                      # laundry side of the pantry/mech wall
-B1 = 870.75                      # bath side of the primary-bath wall
-HALL = 461.45                    # inside face of the hall wall
+L0 = S.face("pantry|laundry", +1)   # laundry side of the pantry/mech wall
+B1 = S.face("utility|bath", -1)     # bath side of the primary-bath wall
+HALL = S.face("south hall wall", +1)  # inside face of the hall wall
 
 
 def head_x(sh, x, y, d):
