@@ -3,14 +3,14 @@
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
 """Experiment: exterior styles on the schematic's 3D model (roof form, eaves, colours).
-All roofs are asphalt shingle (Class A), so slopes stay at 3:12 or steeper (shingles need
-double underlayment below 4:12; butterfly roofs and anything under ~2:12 are out).
+The shingle set is Class A asphalt shingle at 2:12, the code minimum for shingles (double
+underlayment below 4:12); butterfly roofs and anything under 2:12 are out for shingles.
 
-  mcm-shed        Midcentury modern: single 3:12 slope, high at the street with clerestory
+  mcm-shed        Midcentury modern: single 2:12 slope, high at the street with clerestory
                   glass, falling to the rear (the big rear plane faces SSW: ideal for solar).
   mcm-shed-vault  The same shed with only the lounge vaulted (clerestory over the lounge);
                   flat 10' ceilings and a sealed attic elsewhere. Writes a cross-section.
-  mcm-gable       Midcentury modern (Eichler-like): 3:12 gable, deep eaves, glazed gable
+  mcm-gable       Midcentury modern (Eichler-like): 2:12 gable, deep eaves, glazed gable
                   ends, dark siding with warm wood-look soffits.
   ranch-hip       California ranch: 4:12 hip roof, 24" eaves, light walls.
   ranch-gable     Ranch: 4:12 gable, board-and-batten colours.
@@ -216,11 +216,11 @@ def low_gable(sc, pitch, ov, seams=False, glazed_ends=True):
 
 WOOD, BLACK, WHITE = 0xB07A4F, 0x2B2D30, 0xF1EDE4
 STYLES = {
-    "mcm-shed": (lambda sc: shed(sc, 3 / 12, 36),
+    "mcm-shed": (lambda sc: shed(sc, 2 / 12, 36),
                  {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3C3F44, "door": 0xD9792B}),
-    "mcm-gable": (lambda sc: low_gable(sc, 3 / 12, 36),
+    "mcm-gable": (lambda sc: low_gable(sc, 2 / 12, 36),
                   {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3C3F44, "door": 0xD9792B}),
-    "mcm-shed-vault": (lambda sc: shed_vault(sc, 3 / 12, 36),
+    "mcm-shed-vault": (lambda sc: shed_vault(sc, 2 / 12, 36),
                        {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3C3F44, "door": 0xD9792B}),
     "ranch-hip": (lambda sc: hip(sc, 4 / 12, 24),
                   {"exterior": WHITE, "soffit": WHITE, "fascia": WHITE, "roofing": 0x6B6E72, "door": 0x2D3E5C}),
@@ -228,10 +228,10 @@ STYLES = {
                     {"exterior": 0xB9C2B0, "soffit": 0xF4F2EC, "fascia": 0xF4F2EC, "roofing": 0x45484C, "door": 0x222222}),
 }
 def chosen_exterior(sc):
-    """The main plan's exterior: MCM low gable (3:12, deep eaves, stucco gable ends), stucco walls,
+    """The main plan's exterior: MCM low gable (2:12, deep eaves, stucco gable ends), stucco walls,
     dark shingles and fascia, accent front door. make_3d.py adds this to the main model."""
     band(sc, "exterior", WALL_TOP, PLATE)
-    low_gable(sc, 3 / 12, 36, glazed_ends=False)
+    low_gable(sc, 2 / 12, 36, glazed_ends=False)
     front_door(sc)
     sc.mat = {k: {"color": v} for k, v in STYLES["mcm-gable"][1].items()}
     sc.mat["seam"] = {"color": 0x2A2D31}
@@ -243,11 +243,11 @@ def roof_options():
     band(sc, "exterior", WALL_TOP, PLATE)
     shed_vault(sc, 2 / 12, 36, seams=True)
     out = {"MCM metal shed 2:12, lounge clerestory": dict(sc.tris)}
-    for label, glass_h in (("MCM shingle shed 3:12, lounge clerestory", None),
-                           ("MCM shingle shed 3:12, 3' clerestory band", 36.0)):
+    for label, glass_h in (("MCM shingle shed 2:12, lounge clerestory", None),
+                           ("MCM shingle shed 2:12, 3' clerestory band", 36.0)):
         sc = M.Scene()
         band(sc, "exterior", WALL_TOP, PLATE)
-        shed_vault(sc, 3 / 12, 36, band=glass_h)
+        shed_vault(sc, 2 / 12, 36, band=glass_h)
         out[label] = dict(sc.tris)
     return out
 
@@ -304,9 +304,9 @@ def screenshot(html: Path, png: Path, cam, target):
     tmp.unlink()
 
 
-LABELS = {"mcm-shed": "MCM shed, 3:12 shingles (clerestory to the street, solar plane to the rear)",
-          "mcm-gable": "MCM gable, 3:12 shingles (Eichler-like, glazed gable ends)",
-          "mcm-shed-vault": "MCM shed, 3:12 shingles: only the lounge vaulted, attic elsewhere",
+LABELS = {"mcm-shed": "MCM shed, 2:12 shingles (clerestory to the street, solar plane to the rear)",
+          "mcm-gable": "MCM gable, 2:12 shingles (Eichler-like, glazed gable ends)",
+          "mcm-shed-vault": "MCM shed, 2:12 shingles: only the lounge vaulted, attic elsewhere",
           "ranch-hip": "Ranch, 4:12 hip, shingles", "ranch-gable": "Ranch, 4:12 gable, shingles, board-and-batten colours"}
 
 
@@ -328,7 +328,7 @@ def contact_sheet(view: str, styles: dict, labels: dict, name: str):
 
 
 SETS = {   # name -> (styles, labels, comparison sheet, lounge-vault section)
-    "shingles": (STYLES, LABELS, "exterior-compare", (3 / 12, "exterior-mcm-shed-vault-section.png", "shingles")),
+    "shingles": (STYLES, LABELS, "exterior-compare", (2 / 12, "exterior-mcm-shed-vault-section.png", "shingles")),
     "metal": (METAL, METAL_LABELS, "exterior-metal-compare",
               (2 / 12, "exterior-metal-mcm-shed-vault-section.png", "standing-seam metal")),
 }

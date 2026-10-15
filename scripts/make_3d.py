@@ -326,7 +326,7 @@ HTML = r"""<!doctype html>
   <label><input type="checkbox" id="labels" checked> Room labels</label>
   <label><input type="checkbox" id="grid" checked> 1' floor grid</label>
   <label id="roofrow"><input type="checkbox" id="roofvis" checked> Roof
-    <select id="roofopt" style="display:none"><option value="0">MCM gable 3:12 (plan)</option></select></label>
+    <select id="roofopt" style="display:none"><option value="0">MCM gable 2:12 (plan)</option></select></label>
   <label><input type="checkbox" id="roofsh" checked> Roof shadows (24" eaves)</label>
   <label>Sun: <select id="day">
     <option value="172">Jun 21</option><option value="80">Mar 20 / Sep 22</option>

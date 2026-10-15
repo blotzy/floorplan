@@ -13,7 +13,7 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild
 | Item | Decision |
 | --- | --- |
 | Style | Midcentury modern (MCM) |
-| Roof | MCM low-pitch gable, about 3:12 (shingles are allowed down to 2:12 with double underlayment; 3:12 leaves margin), ridge running the length of the house (east–west) with the gable ends at the carport and primary-suite ends; deep eaves; Class A dark asphalt shingles. If budget allows, the preferred alternative is an MCM shed roof with a street-facing clerestory |
+| Roof | MCM low-pitch gable at 2:12, the minimum for shingles (CRC R905.2.2): low-slope double underlayment, preferably a full peel-and-stick membrane, and a shingle line the maker warranties to 2:12 in writing, ridge running the length of the house (east–west) with the gable ends at the carport and primary-suite ends; deep eaves; Class A dark asphalt shingles. If budget allows, the preferred alternative is an MCM shed roof with a street-facing clerestory |
 | Carport roof | Nearly flat (about ¼" per foot), sloping east, away from the house, to a gutter on its east edge; Class A low-slope roofing (single-ply TPO/PVC or a mineral-surfaced modified-bitumen cap sheet) |
 | Exterior | Stucco walls (noncombustible); thin dark fascia |
 | Fuel | All-electric, no gas line to the lot |
