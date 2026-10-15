@@ -7,11 +7,11 @@
 Every option keeps the 8' head line and standard 5' units; the kitchen window always clears
 the counter (sill 42").
 
-  rhythm   main plan: three equal 5' windows 4' apart; dining pair at an 18" sill
+  rhythm   three equal 5' windows 4' apart; dining pair at an 18" sill
   narrow24 main plan + a 2' window of the same height centred between the dining pair (12" piers)
   narrow18 the same with a 1'-6" window (15" piers)
   one12    one continuous 12' dining window centred on the wall and table; kitchen unchanged
-  one14    one continuous 14' dining window spanning the main plan pair's full extent; kitchen unchanged
+  one14    main plan: one continuous 14' dining window (rhythm's full extent); kitchen unchanged
   pair     the earlier version: dining 10' (two 5' units) at an 18" sill + kitchen 5'
   matched  dining 10' + kitchen 5', both at a 42" sill (same top and bottom lines)
   ribbon   one band of four 5' units at a 42" sill, dining through to the sink
@@ -49,7 +49,7 @@ PEN_OUT = 546.9                      # peninsula's dining-side face, where it me
 KITCHEN = (588.0, 648.0, 42.0)       # 5' over the sink, sill above the backsplash
 
 VARIANTS = {   # key -> (title, [(from, to, sill), ...] on the south wall, dining + kitchen)
-    "rhythm":  ("Three equal 5' windows, 4' apart; dining sills at 18\" (main plan)",
+    "rhythm":  ("Three equal 5' windows, 4' apart; dining sills at 18\"",
                 [(372.0, 432.0, 18.0), (480.0, 540.0, 18.0), KITCHEN]),
     "narrow24": ("Main plan + a narrow 2' window of the same height centred between the dining pair",
                  [(372.0, 432.0, 18.0), (444.0, 468.0, 18.0), (480.0, 540.0, 18.0), KITCHEN]),
@@ -57,7 +57,7 @@ VARIANTS = {   # key -> (title, [(from, to, sill), ...] on the south wall, dinin
                  [(372.0, 432.0, 18.0), (447.0, 465.0, 18.0), (480.0, 540.0, 18.0), KITCHEN]),
     "one12":   ("One continuous 12' dining window (two 6' units) at 18\", centred; kitchen as main plan",
                 [(384.0, 528.0, 18.0, 2), KITCHEN]),
-    "one14":   ("One continuous 14' dining window (two 7' units) at 18\", the pair's full extent; kitchen as main plan",
+    "one14":   ("One continuous 14' dining window (two 7' units) at 18\"; kitchen 5' (main plan)",
                 [(372.0, 540.0, 18.0, 2), KITCHEN]),
     "pair":    ("Dining 10' (two 5' units) at 18\" + kitchen 5' (earlier version)",
                 [(396.0, 516.0, 18.0), KITCHEN]),
