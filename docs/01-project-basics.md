@@ -12,6 +12,10 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild
 
 | Item | Decision |
 | --- | --- |
+| Style | Midcentury modern (MCM) |
+| Roof | MCM low-pitch gable, about 3:12, ridge running the length of the house (east–west) with the gable ends at the carport and primary-suite ends; deep eaves; Class A dark asphalt shingles. If budget allows, the preferred alternative is an MCM shed roof with a street-facing clerestory |
+| Carport roof | Nearly flat (about ¼" per foot), sloping east, away from the house, to a gutter on its east edge; Class A low-slope roofing (single-ply TPO/PVC or a mineral-surfaced modified-bitumen cap sheet) |
+| Exterior | Stucco walls (noncombustible); thin dark fascia |
 | Fuel | All-electric, no gas line to the lot |
 | Ceiling height | 10' throughout (no step-down over the bedrooms), with a sealed (unvented) attic above |
 | Windows | Standard manufacturer sizes (6" steps in width and height); openings wider than 8' are two mulled units. Heads in line at 8' |

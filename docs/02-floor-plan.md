@@ -54,7 +54,8 @@ Three strips side by side, each with its own door off the main lobby (no side ha
 - Ceiling fans need downrods sized for the 10' ceilings.
 - Keep the plan-south roof (true azimuth ~201°, SSW, which is fine for solar) free of vents and skylights for future solar; no tall trees south of the house.
 - Solar mounts and conduit on the roof, plus a conduit run to a future battery location.
-- **Class A asphalt shingle roof** over the sealed attic (unvented deck allowed by CRC R806.5). Get the roofer to confirm in writing that the shingle warranty covers an unvented deck; a dark shingle is preferred; pick a cool-rated (reflective-granule) dark shingle and confirm it meets the Title 24 roofing requirements. Any roof style must stay at a slope shingles allow: no butterfly or near-flat roofs, and double underlayment on the shallower slopes. A midcentury shed or gable works at a low-but-shingle-friendly slope (see the exterior experiments).
+- **Class A asphalt shingle roof** over the sealed attic (unvented deck allowed by CRC R806.5). Get the roofer to confirm in writing that the shingle warranty covers an unvented deck; a dark shingle is preferred; pick a cool-rated (reflective-granule) dark shingle and confirm it meets the Title 24 roofing requirements. Roof form: a midcentury-modern **low-pitch gable** at the low end of what shingles allow (double underlayment), ridge running the length of the house with the gable ends at the carport and primary-suite ends, deep eaves and a thin dark fascia. If the budget allows, the preferred alternative is an MCM shed roof with a street-facing clerestory over the lounge (see the exterior experiments). No butterfly or near-flat roofs over the house.
+- **Exterior walls: stucco** (noncombustible), in a light MCM palette with a dark fascia and a bright accent front door.
 
 ## Sealed attic and storage
 
@@ -70,7 +71,7 @@ Three strips side by side, each with its own door off the main lobby (no side ha
 
 - Enclosed eaves with noncombustible or ignition-resistant soffits (wood-look is fine if it's fire-retardant-treated or metal/fiber cement).
 - Ember-resistant screens or self-closing dampers on every remaining opening: ERV intake and exhaust, exhaust-fan terminations, the range-hood cap, and foundation vents if the floor is raised.
-- Noncombustible siding and tempered dual-pane windows.
+- Stucco walls (noncombustible) and tempered dual-pane windows.
 - A noncombustible zone around the house (pavers/gravel, no mulch or turf), at least as wide as code requires.
 - Sealed (unvented) attic with no attic vents, so embers have no entry point.
 - Metal (or other noncombustible) fencing where any fence meets the house, for the code-required distance.
