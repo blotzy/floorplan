@@ -66,11 +66,11 @@ PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines 
 # axis "x" = wall runs along x at y = centreline; "y" = runs along y at x = centreline.
 WALLS = [
     ("foyer wall",        "y", PORCH_X + EXT - INT / 2, PORCH_Y, FOYER_WALL_END, INT),
-    ("lounge|gym",       "y", 692.0,  N_IN, 405.45, INT),
+    ("lounge|gym",       "y", 674.0,  N_IN, 405.45, INT),   # in line with the kitchen|pantry wall
     ("gym|ensuite",       "y", 826.0,  N_IN, 405.45, WET),
     ("ensuite|guest",     "y", 905.0,  N_IN, 405.45, INT),
     ("guest|office",     "y", 1064.0, N_IN, 405.45, INT),
-    ("bedroom hall wall", "x", 403.2,  689.75, W_IN, INT),
+    ("bedroom hall wall", "x", 403.2,  671.75, W_IN, INT),
     ("south hall wall",   "x", 459.2,  671.75, W_IN, INT),
     ("kitchen|pantry",    "y", 674.0,  457.0, S_IN, INT),
     ("pantry|laundry",    "y", 750.0,  457.0, S_IN, INT),
@@ -91,8 +91,8 @@ WALLS = [
 #   (normal = +y for "x" walls, +x for "y" walls).
 OPENINGS = [
     # exterior
-    ("north",       511.1, 631.1, "window"),             # lounge 10'
-    ("north",       722.1, 794.1, "window"),             # gym 6'
+    ("north",       502.4, 622.4, "window"),             # lounge 10' (centred)
+    ("north",       714.0, 786.0, "window"),             # gym 6' (centred)
     ("north",       851.0, 881.0, "window"),             # shared ensuite
     ("north",       948.1, 1020.1, "window"),            # guest 6'
     ("north",       1102.6, 1174.6, "window"),           # office 6'
@@ -529,7 +529,6 @@ def build() -> Sheet:
     sh.msp.add_lwpolyline([(505.0, 267.0), (635.0, 267.0), (635.0, 396.0), (597.0, 396.0), (597.0, 305.0),
                            (505.0, 305.0)], close=True, dxfattribs={"layer": fu})   # L sectional, 38" deep
     sh.text("L SECTIONAL", 551.0, 287.0, 4.0)
-    sh.rect(636.5, 305.0, 651.5, 396.0, fu); sh.text("CONSOLE", 644.0, 350.5, 3.5, rot=90)
     sh.rect(533.0, seat_cy - 23, 579.0, seat_cy + 23, fu)                     # 46" square table
     fw = face("foyer wall", -1)             # closet + bench on the foyer side of the TV wall
     sh.rect(fw - 18, 300.0, fw, 333.0, fu); sh.text("CLOSET", fw - 9, 316.5, 3.0, rot=90)

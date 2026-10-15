@@ -5,11 +5,10 @@
 """Experiment: line up the lounge's west wall (shared with the gym) with the kitchen's west wall
 (shared with the pantry), so the great room ends on one straight line at the bedroom hall.
 
-  plan      main plan: the lounge wall sits 18" west of the kitchen wall
-  aligned   the lounge/gym wall moves 18" east onto the kitchen wall's line: the lounge narrows
-            18", the gym grows 18", the bedroom hall wall starts on the same line as the south
-            hall wall, and the lounge and gym windows re-centre. The sectional, console and
-            coffee table slide 12" toward the TV so there's still a walkway behind the console.
+  plan      main plan: the lounge/gym wall in line with the kitchen/pantry wall, the bedroom hall
+            wall starting on the same line as the south hall wall
+  offset    the earlier layout: the lounge/gym wall 18" farther west (lounge 18" wider, gym 18"
+            narrower), the lounge and gym windows re-centred
 
 Writes renders/experiments/align-{plan,aligned}.png (plan close-ups), align-facade.png (street
 elevations with the stucco gaps between windows) and a 3D model of each with
@@ -30,11 +29,10 @@ import schematic as S  # noqa: E402
 
 BASE = (copy.deepcopy(S.WALLS), copy.deepcopy(S.OPENINGS))
 BUILD = S.build
-SHIFT = 18.0                                   # lounge/gym wall: 692 -> 674 (the kitchen wall's line)
-FURN_SHIFT = 12.0                              # lounge furniture toward the TV
+SHIFT = -18.0                                  # offset: lounge/gym wall back to 692 (18" west)
 
 
-def aligned_plan():
+def offset_plan():
     ws, ops = S.WALLS, S.OPENINGS
     for i, w in enumerate(ws):
         if w[0] == "lounge|gym":
@@ -44,28 +42,13 @@ def aligned_plan():
     lounge = (S.face("foyer wall", +1), S.face("lounge|gym", -1))
     gym = (S.face("lounge|gym", +1), S.face("gym|ensuite", -1))
     for i, o in enumerate(ops):                    # re-centre the lounge (10') and gym (6') windows
-        for x0, (lo, hi) in ((511.1, lounge), (722.1, gym)):
+        for x0, (lo, hi) in ((502.4, lounge), (714.0, gym)):
             if o[0] == "north" and o[1] == x0:
                 c, half = (lo + hi) / 2, (o[2] - o[1]) / 2
                 ops[i] = (o[0], c - half, c + half, *o[3:])
 
 
-def shift_lounge_furniture(sh):
-    """Slide the sectional, console and coffee table toward the TV wall."""
-    for e in list(sh.msp):
-        if e.dxf.layer not in ("A-FURN", "A-ANNO-TEXT") or e.dxftype() not in ("LWPOLYLINE", "TEXT"):
-            continue
-        if e.dxftype() == "TEXT":
-            p = e.dxf.align_point if e.dxf.hasattr("align_point") else e.dxf.insert
-            pts = [(p.x, p.y)]
-        else:
-            pts = [(q[0], q[1]) for q in e.get_points("xy")]
-        if all(490 <= x <= 660 and 260 <= y <= 400 for x, y in pts):
-            e.translate(-FURN_SHIFT, 0, 0)
-    return sh
-
-
-VARIANTS = {"plan": (None, None), "aligned": (aligned_plan, shift_lounge_furniture)}
+VARIANTS = {"plan": (None, None), "offset": (offset_plan, None)}
 
 
 def facade(ax, title):
