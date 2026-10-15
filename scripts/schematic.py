@@ -78,7 +78,8 @@ WALLS = [
     ("laundry|bath",      "y", 884.5 - WET - 52.0, 457.0, S_IN, WET),   # 52" clear bath, full depth
     ("bath|storage",      "x", 566.0 + INT / 2, 884.5 - WET - 52.0, 884.5, INT),  # storage behind the bath
     ("utility|bath",      "y", 884.5,  457.0, S_IN, WET),
-    ("bath|wic",          "x", S_IN - 72.0 - INT / 2, 884.5, 1062.0, INT),   # bath exactly tub-deep
+    ("bath|wic",          "x", S_IN - 72.0 - WET / 2, 884.5, 1062.0, WET),   # bath exactly tub-deep; plumbing wall
+                                                                                 # (WC, double vanity, shower head)
     ("suite|primary",     "y", 1062.0, 457.0, S_IN, INT),   # 30" taken from the bedroom for the wet room
 ]
 
