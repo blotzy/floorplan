@@ -186,6 +186,19 @@ def clerestory(sc, x0, x1, top, pieces):
             quad(sc, m, [a, N, z0], [b, N, z0], [b, N, z1], [a, N, z1])
 
 
+def great_room_vault(to_outside=False):
+    """Plan outline (shapely) of the vaulted great room: lounge, foyer, dining and kitchen. With
+    to_outside, it runs on through the exterior walls to the house's outer faces."""
+    from shapely.geometry import box
+    from shapely.ops import unary_union
+    lx0, lx1 = LOUNGE_X
+    yf, fy = S.FOYER_WALL_END, S.PORCH_Y + S.EXT
+    kx = S.face("kitchen|pantry", -1)
+    e, n, s_ = (S.E, S.N, S.S) if to_outside else (S.E_IN, S.N_IN, S.S_IN)
+    fy = S.PORCH_Y if to_outside else fy
+    return unary_union([box(lx0, n, lx1, yf), box(e, fy, lx0, yf), box(e, yf, kx, s_)])
+
+
 def shed_vault_great(sc, pitch, ov, seams=False, band=None, pieces=None):
     """shed_vault, but the whole great room (lounge, dining, kitchen) is vaulted under one continuous
     sloped ceiling, from the clerestory down to the rear wall: no step where the lounge meets the
@@ -331,7 +344,7 @@ def roof_options():
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
     low_gable(sc, 2 / 12, 36, glazed_ends=False)
-    out["MCM gable 2:12, flat 10' ceilings"] = dict(sc.tris)
+    out["MCM gable 2:12, flat 9' ceilings"] = dict(sc.tris)
     for label, seams, glass_h in (
             ("MCM shingle shed 2:12, full-height clerestory, great room vaulted", False, None),
             ("MCM metal shed 2:12, 3' clerestory band, great room vaulted", True, 36.0),
@@ -340,8 +353,8 @@ def roof_options():
         band(sc, "exterior", WALL_TOP, PLATE)
         shed_vault_great(sc, 2 / 12, 36, seams=seams, band=glass_h)
         out[label] = dict(sc.tris)
-    for label, seams in (("MCM shingle shed 2:12, no clerestory, flat 10' ceilings", False),
-                         ("MCM metal shed 2:12, no clerestory, flat 10' ceilings", True)):
+    for label, seams in (("MCM shingle shed 2:12, no clerestory, flat 9' ceilings", False),
+                         ("MCM metal shed 2:12, no clerestory, flat 9' ceilings", True)):
         sc = M.Scene()
         band(sc, "exterior", WALL_TOP, PLATE)
         shed(sc, 2 / 12, 36, seams=seams, clerestory=False)

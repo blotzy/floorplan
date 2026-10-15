@@ -9,7 +9,7 @@ content), written to renders/3d/:
   house.html  - browser viewer (orbit + walk mode, touch controls), open directly
   house.obj   - same geometry for Windows 3D Viewer / Blender
 
-Walls rise to the 10' ceiling; doors and windows get 8' headers, windows a
+Walls rise to the 9' ceiling; doors and windows get 8' headers, windows a
 30" sill and glass. Fixtures and furniture are boxes whose heights come from
 their labels.
 
@@ -372,6 +372,7 @@ const M = {
   ground:{color:0xc9c2a8}, slab:{color:0xb9a98f}, concrete:{color:0xbdbdbd},
   pavers:{color:0xa89f94}, lawn:{color:0x6fa04a}, planter:{color:0x7d6a55},
   ceiling:{color:0xffffff, side:THREE.DoubleSide, transparent:true, opacity:0.92},
+  ceiling_cut:{color:0xffffff, side:THREE.DoubleSide, transparent:true, opacity:0.92},
   fixture:{color:0xd9d4cc}, furniture:{color:0x8fa3b8}, counter:{color:0x9a8f84},
   closet:{color:0xb59a7a}, bed:{color:0xe8e1d4},
   chrome:{color:0xdfe3e8, roughness:0.4, metalness:0.15}, post:{color:0x5a5f66}, roof:{color:0x4a4f55, transparent:true, opacity:0.85},
@@ -386,6 +387,8 @@ for (const [k, v] of Object.entries(D.mat || {})) M[k] = Object.assign({}, M[k] 
 // three.js is right-handed, so north must be +z or the model comes out mirrored.
 const V = (x,y,z) => new THREE.Vector3(x*IN, z*IN, -y*IN);
 const groups = {furn:new THREE.Group(), ceil:new THREE.Group(), labels:new THREE.Group(), roof:new THREE.Group()};
+// Flat ceiling: the full one, or (when the roof vaults the great room) one with the vault cut out.
+const ceilFull = new THREE.Group(), ceilCut = new THREE.Group(); groups.ceil.add(ceilFull, ceilCut);
 Object.values(groups).forEach(g=>scene.add(g));
 const gridGroup = new THREE.Group(); scene.add(gridGroup);   // 1' floor grid, darker every 5'
 for (const [key, color, opacity] of [['minor', 0x4a4e55, 0.55], ['major', 0x202226, 0.9]]) {
@@ -433,7 +436,7 @@ for (const [k, items] of Object.entries(D.polys)) for (const [pts,z0,z1] of item
   const g = new THREE.ExtrudeGeometry(shape, {depth:(z1-z0)*IN, bevelEnabled:false});
   g.rotateX(Math.PI/2);                       // shape xy -> world xz, extrude downward
   const m = new THREE.Mesh(g, mat(k)); m.position.y = z1*IN; m.receiveShadow = true;
-  (k==='ceiling' ? groups.ceil : k==='furniture' ? groups.furn : scene).add(m);
+  (k==='ceiling' ? ceilFull : k==='ceiling_cut' ? ceilCut : k==='furniture' ? groups.furn : scene).add(m);
 }
 for (const [text,x,y,z] of D.labels) {
   const c = document.createElement('canvas'); c.width = 512; c.height = 128;
@@ -465,7 +468,11 @@ for (const [label, tris] of Object.entries(D.roof_options || {})) {
   roofSel.add(new Option(label, roofChoices.length - 1));
 }
 if (roofChoices.length > 1) roofSel.style.display = '';
-roofSel.onchange = () => roofChoices.forEach((g, i) => g.visible = i === +roofSel.value);
+const roofFlat = new Set(D.roof_flat || []);
+const pickCeiling = () => { const hasCut = ceilCut.children.length > 0, flat = roofFlat.has(+roofSel.value);
+  ceilCut.visible = hasCut && !flat; ceilFull.visible = !hasCut || flat; };
+roofSel.onchange = () => { roofChoices.forEach((g, i) => g.visible = i === +roofSel.value); pickCeiling(); };
+pickCeiling();
 groups.ceil.visible = false;
 // Invisible roof that still casts shadows (hidden objects don't cast in
 // three.js, so the ceiling never did): house outline incl. the corner porch,
@@ -657,11 +664,25 @@ def write_model(sc: Scene, out_dir: Path, meta: dict):
     print("wrote", out_dir / "house.html")
 
 
+def add_vault_ceiling(sc, vault):
+    """A second flat ceiling with the vaulted great room cut out, shown instead of the full one
+    when the chosen roof vaults the great room."""
+    from shapely.geometry import Polygon
+    full = Polygon(sc.polys["ceiling"][0][0])
+    cut = full.difference(vault)
+    for poly in getattr(cut, "geoms", [cut]):
+        if poly.area > 144:
+            sc.polys["ceiling_cut"].append([[list(p) for p in poly.exterior.coords[:-1]], CEIL, CEIL + 1])
+
+
 def main():
     import experiment_exterior as X        # the chosen exterior: MCM gable, stucco
     sc = build_schematic()
     X.chosen_exterior(sc)
-    write_model(sc, ROOT / "renders" / "3d", {**sc.meta, "roof_hidden": True, "roof_options": X.roof_options()})
+    add_vault_ceiling(sc, X.great_room_vault(to_outside=True))
+    opts = X.roof_options()
+    write_model(sc, ROOT / "renders" / "3d", {**sc.meta, "roof_hidden": True, "roof_options": opts,
+                                              "roof_flat": [i + 1 for i, k in enumerate(opts) if "flat" in k]})
 
 
 if __name__ == "__main__":
