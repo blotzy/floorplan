@@ -189,7 +189,7 @@ def clerestory(sc, x0, x1, top, pieces):
 def shed_vault_great(sc, pitch, ov, seams=False, band=None, pieces=None):
     """shed_vault, but the whole great room (lounge, dining, kitchen) is vaulted under one continuous
     sloped ceiling, from the clerestory down to the rear wall: no step where the lounge meets the
-    dining, and the foyer opens up to it too (the foyer/TV wall stays 10' tall). Everything west of
+    dining, and the foyer opens up to it too (the foyer/TV wall runs full height). Everything west of
     the kitchen keeps flat 10' ceilings under the attic."""
     under = shed_vault_under(pitch)
     lx0, lx1 = LOUNGE_X
@@ -208,10 +208,13 @@ def shed_vault_great(sc, pitch, ov, seams=False, band=None, pieces=None):
         quad(sc, "wall", [x0, y0, under(y0) - 1], [x1, y0, under(y0) - 1], [x1, y1, under(y1) - 1],
              [x0, y1, under(y1) - 1])                       # just under the slab, so it doesn't flicker
     C = M.CEIL
-    # Walls that rise to the vault: the porch's side wall (lounge corner), the gym and kitchen walls.
-    # The foyer/TV wall stays 10' tall, with the vault open above it.
-    for x, y0, y1 in ((lx0, S.N_IN, S.PORCH_Y), (lx1, S.N_IN, yf), (kx, yf, S.S_IN)):
+    # Walls that rise to the vault: the porch's side wall (lounge corner), the gym and kitchen walls,
+    # and the foyer/TV wall (both faces), so the foyer is a tall space of its own beside the lounge.
+    tv0, tv1 = S.face("foyer wall", -1), S.face("foyer wall", +1)
+    for x, y0, y1 in ((lx0, S.N_IN, S.PORCH_Y), (lx1, S.N_IN, yf), (kx, yf, S.S_IN),
+                      (tv0, fy, yf), (tv1, S.PORCH_Y, yf)):
         quad(sc, "wall", [x, y0, C], [x, y1, C], [x, y1, under(y1)], [x, y0, under(y0)])
+    quad(sc, "wall", [tv0, yf, C], [tv1, yf, C], [tv1, yf, under(yf)], [tv0, yf, under(yf)])   # its end
     quad(sc, "wall", [E_in, fy, C], [lx0, fy, C], [lx0, fy, under(fy)], [E_in, fy, under(fy)])  # over the door
     quad(sc, "wall", [kx, yf, C], [lx1, yf, C], [lx1, yf, under(yf)], [kx, yf, under(yf)])  # jog at the hall
 
