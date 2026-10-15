@@ -19,6 +19,12 @@ Bigger kitchen windows (the kitchen's south wall runs from the peninsula end to 
   backsplash   kitchen8 with the kitchen glass down to the counter (glass backsplash)
   ribbon-wide  one 42"-sill band from the dining room's east end to the kitchen corner
 
+The ribbon broken in two (heads in line, kitchen part always at 42"):
+  split-even      two equal 8' bands, the dining one centred on the table
+  split-12-8      dining 12' centred on the table + kitchen 8'
+  split-pier      split by a narrow pier right at the peninsula end: dining 12' + kitchen 9'
+  split-pier-low  split-pier with the dining part at an 18" sill (the sill steps where the counter starts)
+
 Writes renders/experiments/south-windows-compare.png (the south wall seen from inside, one
 row per option, with each option's glass total), and a 3D model per option.
 
@@ -58,6 +64,15 @@ VARIANTS = {   # key -> (title, [(from, to, sill), ...] on the south wall, dinin
                    [(397.0, 517.0, 18.0), (568.0, 664.0, 37.0)]),
     "ribbon-wide": ("Ribbon to the corner: four 6' units at 42\", dining through the kitchen",
                     [(376.0, 664.0, 42.0, 4)]),
+    # the ribbon broken into a dining part and a kitchen part
+    "split-even":     ("Two equal 8' bands (4' units) at 42\": one centred on the table, one to the kitchen corner",
+                       [(408.0, 504.0, 42.0, 2), (568.0, 664.0, 42.0, 2)]),
+    "split-12-8":     ("Dining 12' (two 6') centred on the table + kitchen 8', both at 42\"",
+                       [(384.0, 528.0, 42.0, 2), (568.0, 664.0, 42.0, 2)]),
+    "split-pier":     ("Ribbon split by a 16\" pier at the peninsula end: dining 12' + kitchen 9' (3' units), 42\"",
+                       [(396.0, 540.0, 42.0, 2), (556.0, 664.0, 42.0, 3)]),
+    "split-pier-low": ("Same split at the peninsula, but the dining part drops to an 18\" sill",
+                       [(396.0, 540.0, 18.0, 2), (556.0, 664.0, 42.0, 3)]),
 }
 
 
