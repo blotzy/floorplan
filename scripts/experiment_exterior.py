@@ -63,7 +63,11 @@ def eaves(sc, ov_x, ov_y):
 
 
 def front_door(sc):
-    sc.boxes["door"].append([385.0, S.PORCH_Y + 2, 423.0, S.PORCH_Y + 5, 0, 96])
+    """Front door with one square glass lite near its top (echoes the shared ensuite's high window)."""
+    x0, x1 = next(o for o in S.OPENINGS if o[0] == "porch front" and o[3] == "door")[1:3]
+    sc.boxes["door"].append([x0, S.PORCH_Y + 2, x1, S.PORCH_Y + 5, 0, 96])
+    c = (x0 + x1) / 2
+    sc.boxes["glass"].append([c - 9, S.PORCH_Y + 1.8, c + 9, S.PORCH_Y + 5.2, 74, 92])   # 18" square lite
 
 
 # ---- roof forms -----------------------------------------------------------------------
