@@ -165,10 +165,37 @@ def shed_vault(sc, pitch, ov, seams=False, band=None):
         for z0, z1, m in ((PLATE, g0, "exterior"), (g0, g0 + band, "glass"), (g0 + band, top, "exterior")):
             quad(sc, m, [x0, N, z0], [x1, N, z0], [x1, N, z1], [x0, N, z1])
     y0, y1 = LOUNGE_Y
-    quad(sc, "wall", [x0, y0, under(y0)], [x1, y0, under(y0)], [x1, y1, under(y1)], [x0, y1, under(y1)])   # vault
+    quad(sc, "wall", [x0, y0, under(y0) - 1], [x1, y0, under(y0) - 1], [x1, y1, under(y1) - 1],
+         [x0, y1, under(y1) - 1])                                                     # vault (just under the slab)
     quad(sc, "wall", [x0, y1, M.CEIL], [x1, y1, M.CEIL], [x1, y1, under(y1)], [x0, y1, under(y1)])      # step down
     for x in (x0, x1):                                      # side walls of the vault
         quad(sc, "wall", [x, y0, M.CEIL], [x, y1, M.CEIL], [x, y1, under(y1)], [x, y0, under(y0)])
+
+
+def shed_vault_great(sc, pitch, ov, seams=False, band=None):
+    """shed_vault, but the whole great room (lounge, dining, kitchen) is vaulted under one continuous
+    sloped ceiling, from the clerestory down to the rear wall: no step where the lounge meets the
+    dining. The foyer and everything west of the kitchen keep flat 10' ceilings under the attic."""
+    under = shed_vault_under(pitch)
+    lx0, lx1 = LOUNGE_X
+    slab_roof(sc, ov, under, north=[(S.PORCH_X, lx0, "exterior"), (lx0, lx1, None if band else "glass"),
+                                    (lx1, W, "exterior")], seams=seams)
+    if band:
+        top = under(N)
+        g0 = PLATE + (top - PLATE - band) / 2
+        for z0, z1, m in ((PLATE, g0, "exterior"), (g0, g0 + band, "glass"), (g0 + band, top, "exterior")):
+            quad(sc, m, [lx0, N, z0], [lx1, N, z0], [lx1, N, z1], [lx0, N, z1])
+    yf = S.FOYER_WALL_END                                   # foyer's open (south) edge
+    kx = S.face("kitchen|pantry", -1)
+    E_in = S.E_IN
+    for x0, x1, y0, y1 in ((lx0, lx1, S.N_IN, yf), (E_in, kx, yf, S.S_IN)):   # lounge; dining + kitchen
+        quad(sc, "wall", [x0, y0, under(y0) - 1], [x1, y0, under(y0) - 1], [x1, y1, under(y1) - 1],
+             [x0, y1, under(y1) - 1])                       # just under the slab, so it doesn't flicker
+    C = M.CEIL
+    for x, y0, y1 in ((lx0, S.N_IN, yf), (lx1, S.N_IN, yf), (kx, yf, S.S_IN)):   # walls rise to the vault
+        quad(sc, "wall", [x, y0, C], [x, y1, C], [x, y1, under(y1)], [x, y0, under(y0)])
+    for x0, x1 in ((E_in, lx0), (kx, lx1)):                 # small faces where the vault meets flat ceilings
+        quad(sc, "wall", [x0, yf, C], [x1, yf, C], [x1, yf, under(yf)], [x0, yf, under(yf)])
 
 
 def section(pitch, path, roofing="shingles"):
@@ -249,6 +276,10 @@ def roof_options():
         band(sc, "exterior", WALL_TOP, PLATE)
         shed_vault(sc, 2 / 12, 36, band=glass_h)
         out[label] = dict(sc.tris)
+    sc = M.Scene()
+    band(sc, "exterior", WALL_TOP, PLATE)
+    shed_vault_great(sc, 2 / 12, 36, band=36.0)
+    out["MCM shingle shed 2:12, 3' clerestory band, whole great room vaulted"] = dict(sc.tris)
     return out
 
 
