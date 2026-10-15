@@ -93,7 +93,7 @@ OPENINGS = [
     # exterior
     ("north",       502.4, 622.4, "window"),             # lounge 10' (centred)
     ("north",       714.0, 786.0, "window"),             # gym 6' (centred)
-    ("north",       851.0, 881.0, "window"),             # shared ensuite
+    ("north",       851.0, 881.0, "window", 78.0, 96.0),  # shared ensuite: high window above the shower spray
     ("north",       948.1, 1020.1, "window"),            # guest 6'
     ("north",       1102.6, 1174.6, "window"),           # office 6'
     ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall

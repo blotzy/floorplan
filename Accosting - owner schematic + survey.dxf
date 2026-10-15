@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461329.5134953703
+2461329.5152430558
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461329.5134953703
+2461329.51525463
   9
 $TDUUPDATE
  40
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{8FD3B35D-18B1-4D2F-9500-8DE14E034A66}
+{ED9A92F6-513F-4008-A7C7-4EDD633A2EB6}
   9
 $VERSIONGUID
   2
-{3BC981EE-826F-4AC5-856C-A15450177D2C}
+{9C17473B-1185-4D8E-B193-7BE49100B535}
   9
 $EXTNAMES
 290
@@ -2635,11 +2635,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-PAVE
+V-SURV-FENC
  70
 0
  62
-8
+3
   6
 Continuous
 370
@@ -2652,54 +2652,6 @@ Continuous
 LAYER
   5
 27F
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-V-SURV-MISC
- 70
-0
- 62
-4
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
-280
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-V-SURV-LOT
- 70
-0
- 62
-5
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
-281
 330
 1
 100
@@ -2723,6 +2675,54 @@ Continuous
   0
 LAYER
   5
+280
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-PAVE
+ 70
+0
+ 62
+8
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+281
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-MISC
+ 70
+0
+ 62
+4
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
 282
 330
 1
@@ -2731,11 +2731,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-FENC
+V-SURV-LOT
  70
 0
  62
-3
+5
   6
 Continuous
 370
@@ -34339,7 +34339,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-15T19:19:26.083265+00:00
+1.4.4 @ 2026-10-15T19:21:57.896117+00:00
   0
 VISUALSTYLE
   5
@@ -40901,7 +40901,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-15T19:19:26.279198+00:00
+1.4.4 @ 2026-10-15T19:21:58.094571+00:00
   0
 ENDSEC
   0
