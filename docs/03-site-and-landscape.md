@@ -28,7 +28,7 @@ From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.
 
 ## Southeast courtyard (behind the carport, east of the house)
 
-- **Dining patio** 12' x 21' along the house wall, from the carport back to the planters, outside the 8' dining slider. 6-seat table oriented north-south.
+- **Dining patio** 12' x 21' along the house wall, from the carport back to the planters, outside the 8' dining slider. Outdoor furniture stays at least 5' from the house and carport (noncombustible zone).
 - **Pavers** 5'-deep band along the back of the carport (keeps the lawn out of the carport's 5' fire zone).
 - **Lawn** about 15' x 14' (~210 sq ft), tall fescue + microclover blend, 1' DG edging. Irrigate from the unsoftened line.
 - **Raised planters** 3' deep along the rear fence (noncombustible: concrete, block, or steel). Shade-tolerant, dog-safe plants (e.g., coral bells, ferns); no oleander, sago palm, foxglove, or azalea.

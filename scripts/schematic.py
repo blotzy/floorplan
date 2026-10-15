@@ -600,7 +600,6 @@ def build() -> Sheet:
     fy = cy1 + 3
     sh.rect(LOT_X0 + 6, fy + 1, E, fy + 61, "L-SITE"); sh.text("PAVERS", LOT_X0 + 106, fy + 31, 6.0)
     sh.rect(E - 144, fy + 1, E, LOT_D - 42, "L-SITE"); sh.text("DINING PATIO 12' x 21'", E - 72, 600.0, 5.0)
-    sh.rect(E - 72 - 20, 650 - 36, E - 72 + 20, 650 + 36, fu)
     sh.rect(LOT_X0 + 18, fy + 73, E - 156, LOT_D - 54, "L-PLNT"); sh.text("LAWN", (LOT_X0 + 18 + E - 156) / 2, 640.0, 7.0)
     sh.rect(LOT_X0 + 6, LOT_D - 42, E, LOT_D - 6, "L-PLNT"); sh.text("RAISED PLANTERS", (LOT_X0 + E) / 2, LOT_D - 24, 5.0)
     sh.line((LOT_X0, fy), (160, fy), "A-FENC"); sh.line((208, fy), (E, fy), "A-FENC")
