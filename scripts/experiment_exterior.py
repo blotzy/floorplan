@@ -116,7 +116,8 @@ def slab_roof(sc, ov, under, splits=(), ends="exterior", north="exterior", south
             x0 = S.PORCH_X if y == N else E                     # over the porch it's a beam, not glass
             segs = mat if isinstance(mat, list) else [(x0, W, mat)]   # [(x from, x to, material)]
             for a, b, m in segs:
-                quad(sc, m, [a, y, PLATE], [b, y, PLATE], [b, y, z], [a, y, z])
+                if m:                                           # None: the caller draws that stretch
+                    quad(sc, m, [a, y, PLATE], [b, y, PLATE], [b, y, z], [a, y, z])
             if y == N:
                 quad(sc, "exterior", [E, y, PLATE], [x0, y, PLATE], [x0, y, z], [E, y, z])
     wall_ys = [N, *splits, Sth]
@@ -150,13 +151,19 @@ def shed_vault_under(pitch):
     return lambda y: PLATE + (Sth - y) * pitch
 
 
-def shed_vault(sc, pitch, ov, seams=False):
+def shed_vault(sc, pitch, ov, seams=False, band=None):
     """Shed roof; only the lounge is vaulted (clerestory along its stretch of the street wall);
-    flat 10' ceilings and a sealed attic everywhere else."""
+    flat 10' ceilings and a sealed attic everywhere else. band: clerestory glass height in inches,
+    centred in the wall above the plate (stucco above and below); None glazes the full height."""
     under = shed_vault_under(pitch)
     x0, x1 = LOUNGE_X
-    slab_roof(sc, ov, under, north=[(S.PORCH_X, x0, "exterior"), (x0, x1, "glass"), (x1, W, "exterior")],
-              seams=seams)
+    slab_roof(sc, ov, under, north=[(S.PORCH_X, x0, "exterior"), (x0, x1, None if band else "glass"),
+                                    (x1, W, "exterior")], seams=seams)
+    if band:
+        top = under(N)
+        g0 = PLATE + (top - PLATE - band) / 2
+        for z0, z1, m in ((PLATE, g0, "exterior"), (g0, g0 + band, "glass"), (g0 + band, top, "exterior")):
+            quad(sc, m, [x0, N, z0], [x1, N, z0], [x1, N, z1], [x0, N, z1])
     y0, y1 = LOUNGE_Y
     quad(sc, "wall", [x0, y0, under(y0)], [x1, y0, under(y0)], [x1, y1, under(y1)], [x0, y1, under(y1)])   # vault
     quad(sc, "wall", [x0, y1, M.CEIL], [x1, y1, M.CEIL], [x1, y1, under(y1)], [x0, y1, under(y1)])      # step down
@@ -235,7 +242,14 @@ def roof_options():
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
     shed_vault(sc, 2 / 12, 36, seams=True)
-    return {"MCM metal shed 2:12, lounge clerestory": dict(sc.tris)}
+    out = {"MCM metal shed 2:12, lounge clerestory": dict(sc.tris)}
+    for label, glass_h in (("MCM shingle shed 3:12, lounge clerestory", None),
+                           ("MCM shingle shed 3:12, 3' clerestory band", 36.0)):
+        sc = M.Scene()
+        band(sc, "exterior", WALL_TOP, PLATE)
+        shed_vault(sc, 3 / 12, 36, band=glass_h)
+        out[label] = dict(sc.tris)
+    return out
 
 
 METAL = {   # the original, lower midcentury slopes, with roofing that suits them

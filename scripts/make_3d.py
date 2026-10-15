@@ -609,7 +609,8 @@ if (D.roof_hidden && !location.hash.includes('roof')) {     // main model opens 
 } else if (location.hash.includes('roof')) {                // exterior view: room labels would float over the roof
   groups.labels.visible = false; document.getElementById('labels').checked = false;
 }
-if (location.hash.includes('shed') && roofChoices.length > 1) { roofSel.value = '1'; roofSel.onchange(); }   // #roof-shed
+{ const pick = location.hash.includes('band') ? 3 : location.hash.includes('shingle') ? 2 : location.hash.includes('shed') ? 1 : 0;
+  if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-shed, -shingle, -band
 if (!Object.keys(D.tris || {}).length) document.getElementById('roofrow').style.display = 'none';
 const clock = new THREE.Clock();
 renderer.setAnimationLoop(()=>{
