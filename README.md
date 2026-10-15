@@ -26,6 +26,10 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 
 ![3D massing preview](renders/3d/preview.png)
 
+![3D exterior: MCM gable, stucco](renders/3d/preview-exterior.png)
+
+*The chosen exterior: midcentury-modern low gable with dark shingles, stucco walls, and the nearly flat carport roof. The model opens with the roof off; tick **Roof** to show it, or open [house.html#roof](https://blotzy.github.io/floorplan/renders/3d/house.html#roof).*
+
 ## Design wishlist by trade
 
 1. [Project basics](docs/01-project-basics.md): orientation, key decisions, code basis

@@ -200,10 +200,11 @@ def section(pitch, path, roofing="shingles"):
     fig.tight_layout(); fig.savefig(path, dpi=100); plt.close(fig)
 
 
-def low_gable(sc, pitch, ov, seams=False):
-    """Shallow gable, ridge along the house, glazed gable ends."""
+def low_gable(sc, pitch, ov, seams=False, glazed_ends=True):
+    """Shallow gable, ridge along the house; glazed gable ends unless glazed_ends is False."""
     half = (Sth - N) / 2
-    slab_roof(sc, ov, lambda y: PLATE + (half - abs(y - YM)) * pitch, splits=(YM,), ends="glass", seams=seams)
+    slab_roof(sc, ov, lambda y: PLATE + (half - abs(y - YM)) * pitch, splits=(YM,),
+              ends="glass" if glazed_ends else "exterior", seams=seams)
 
 
 WOOD, BLACK, WHITE = 0xB07A4F, 0x2B2D30, 0xF1EDE4
@@ -219,6 +220,15 @@ STYLES = {
     "ranch-gable": (lambda sc: gable(sc, 4 / 12, 24, 12),
                     {"exterior": 0xB9C2B0, "soffit": 0xF4F2EC, "fascia": 0xF4F2EC, "roofing": 0x45484C, "door": 0x222222}),
 }
+def chosen_exterior(sc):
+    """The main plan's exterior: MCM low gable (3:12, deep eaves, stucco gable ends), stucco walls,
+    dark shingles and fascia, accent front door. make_3d.py adds this to the main model."""
+    band(sc, "exterior", WALL_TOP, PLATE)
+    low_gable(sc, 3 / 12, 36, glazed_ends=False)
+    front_door(sc)
+    sc.mat = {k: {"color": v} for k, v in STYLES["mcm-gable"][1].items()}
+
+
 METAL = {   # the original, lower midcentury slopes, with roofing that suits them
     "metal-mcm-shed": (lambda sc: shed(sc, 1.5 / 12, 36, seams=True),
                        {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,

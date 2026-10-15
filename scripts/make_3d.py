@@ -590,6 +590,11 @@ if (location.hash === '#touchwalk') startTouchWalk();         // test hook
 const bind = (id, g) => document.getElementById(id).onchange = e => g.visible = e.target.checked;
 bind('ceil', groups.ceil); bind('furn', groups.furn); bind('labels', groups.labels); bind('roofsh', roofCaster);
 bind('roofvis', groups.roof); bind('grid', gridGroup);
+if (D.roof_hidden && !location.hash.includes('roof')) {     // main model opens with the roof off (#roof shows it)
+  groups.roof.visible = false; document.getElementById('roofvis').checked = false;
+} else if (location.hash.includes('roof')) {                // exterior view: room labels would float over the roof
+  groups.labels.visible = false; document.getElementById('labels').checked = false;
+}
 if (!Object.keys(D.tris || {}).length) document.getElementById('roofrow').style.display = 'none';
 const clock = new THREE.Clock();
 renderer.setAnimationLoop(()=>{
@@ -625,8 +630,10 @@ def write_model(sc: Scene, out_dir: Path, meta: dict):
 
 
 def main():
+    import experiment_exterior as X        # the chosen exterior: MCM gable, stucco
     sc = build_schematic()
-    write_model(sc, ROOT / "renders" / "3d", sc.meta)
+    X.chosen_exterior(sc)
+    write_model(sc, ROOT / "renders" / "3d", {**sc.meta, "roof_hidden": True})
 
 
 if __name__ == "__main__":
