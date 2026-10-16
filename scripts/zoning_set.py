@@ -141,7 +141,9 @@ def site_plan(pdf):
     draw_dxf(ax, sh.doc, S.LOT_X0 - 40, -200, S.LOT_X0 + S.LOT_W + 60, S.LOT_D + 60)
     xm = 950.0                                                     # dimension column in front of the bedrooms
     dim(ax, (xm, 0), (xm, S.N), f"FRONT {ftin(S.N)}\n(20'-0\" req.)", rot=90)
-    dim(ax, (xm, S.S), (xm, S.LOT_D), f"REAR {ftin(S.LOT_D - S.S)}\n({ftin(REAR_REQ)} req., note 2)", rot=90)
+    ax.annotate("", (xm, S.S), (xm, S.LOT_D), arrowprops=dict(arrowstyle="<->", color="#c0392b", lw=0.9))
+    ax.text(xm + 12, (S.S + S.LOT_D) / 2, f"REAR {ftin(S.LOT_D - S.S)}\n({ftin(REAR_REQ)} req., note 2)",
+            color="#c0392b", fontsize=8.5, ha="left", va="center")       # beside the arrows: the yard is shallow
     yw = 430.0
     dim(ax, (S.W, yw), (S.LOT_X0 + S.LOT_W, yw), f"{ftin(S.LOT_X0 + S.LOT_W - S.W)}\n({ftin(SIDE_REQ)} req.)", rot=90)
     dim(ax, (S.LOT_X0, 485), (cx0, 485), f"{ftin(cx0 - S.LOT_X0)}\n({ftin(SIDE_REQ)} req.)", off=(0, 0))
