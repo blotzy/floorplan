@@ -4,6 +4,18 @@
 
 One page each for the structural and civil engineers, so they can quote and start design. Send the page with the [architectural set](../renders/permit/architectural-set.pdf) (A-0 to A-6), the topographic survey and the [zoning check set](../renders/zoning/zoning-check-set.pdf).
 
+## Files
+
+| File | For |
+| --- | --- |
+| [Architectural set, draft (PDF)](../renders/permit/architectural-set.pdf), sheets A-0 to A-6 | Both |
+| [Plan as a DXF](../Accosting%20-%20owner%20schematic.dxf) (inches): CAD background for the framing and grading plans | Both |
+| [Plan over the survey as a DXF](../Accosting%20-%20owner%20schematic%20%2B%20survey.dxf) | Civil |
+| Topographic survey: [PDF](../source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.pdf) · [DWG](../source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dwg) · [DXF](../source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dxf) | Civil |
+| [Zoning check set (PDF)](../renders/zoning/zoning-check-set.pdf) | Both |
+| [3D model](../renders/3d/house.html) (open in a browser; Roof menu, walk mode) | Both |
+| [Floor plan and design notes](02-floor-plan.md) · [plumbing](04-plumbing.md) · [open questions](09-open-questions.md) | Both |
+
 ## Structural engineer
 
 **Project:** new one-story, wood-frame single-family residence, Eaton Fire rebuild, 220 Laurel Dr, Altadena (APN 5832-003-027). About 2,238 sq ft, 72' x 31'-6", Type V-B, sprinklered, Very High Fire Hazard Severity Zone. Attached open carport, 18' x 18'.
