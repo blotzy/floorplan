@@ -253,6 +253,10 @@ def openings_on(wall):
         yield o[1], o[2], z0, z1, k
 
 
+WOOD = "#b07a4f"
+PORCH_CEIL = M.CEIL                                    # the porch's own ceiling, 9'-0"
+
+
 def elevation(ax, side):
     """side: north | south | east | west. Horizontal axis runs left-to-right as seen from outside."""
     flip = side in ("south", "east")
@@ -264,8 +268,11 @@ def elevation(ax, side):
         za = UNDER(S.N - OV) if side == "north" else UNDER(S.S + OV)
         ax.add_patch(Rectangle((min(h(a - OV), h(b + OV)), za), b - a + 2 * OV, THK, fc="#3c3f44", ec=INK))
         if side == "north":
-            ax.add_patch(Rectangle((h(a) if not flip else h(S.PORCH_X), 0), S.PORCH_X - a, wall_top,
-                                   fc="#d9d2c6", ec=INK, lw=0.8))                    # recessed porch
+            ax.add_patch(Rectangle((h(a), 0), S.PORCH_X - a, PORCH_CEIL, fc=WOOD, ec=INK, lw=0.8))   # porch: its
+            ax.add_patch(Rectangle((h(a), 0), 6, PORCH_CEIL, fc=INK))       # wood-look back wall under its own
+            ax.annotate("Porch: wood-look walls and ceiling,\nits own 9'-0\" ceiling", (h(a) + 17, PORCH_CEIL - 30),
+                        (h(a) - 140, PORCH_CEIL + 45), fontsize=6.5, ha="center",
+                        arrowprops=dict(arrowstyle="-", lw=0.6))
             for x0, x1, z0, z1, k in openings_on("porch front"):
                 ax.add_patch(Rectangle((h(x0), z0), x1 - x0, z1 - z0, fc="#d9792b" if k == "door" else "#bfe3f2",
                                        ec=INK, lw=0.8))
@@ -296,6 +303,12 @@ def elevation(ax, side):
         ax.add_patch(MPoly(roof, closed=True, fc="#3c3f44", ec=INK))
         for x0, x1, z0, z1, k in openings_on(side):
             ax.add_patch(Rectangle((min(hy(x0), hy(x1)), z0), x1 - x0, z1 - z0, fc="#bfe3f2", ec=INK, lw=0.8))
+        if side == "east":                                         # into the porch: wood-look side wall,
+            ax.add_patch(Rectangle((min(hy(S.N), hy(S.PORCH_Y)), 0), S.PORCH_Y - S.N, PORCH_CEIL,   # reeded window
+                                   fc=WOOD, ec=INK, lw=0.8))
+            for y0, y1, z0, z1, k in openings_on("porch side"):
+                ax.add_patch(Rectangle((min(hy(y0), hy(y1)), z0), y1 - y0, z1 - z0, fc="#bfe3f2", ec=INK, lw=0.8))
+            ax.add_patch(Rectangle((min(hy(S.N), hy(S.N + 6)), 0), 6, PORCH_CEIL, fc=INK))      # porch corner post
         ax.add_patch(Rectangle((min(hy(a - S.CANOPY_D), hy(a)), S.CANOPY_Z), S.CANOPY_D, 3, fc=INK))   # canopy, end-on
         if side == "east":                                         # carport in front: posts + roof
             for yy in (cy0, cy1 - 6):
@@ -307,6 +320,8 @@ def elevation(ax, side):
         hi = max(hi, h(cx0) + 20) if side == "south" else hi
     ax.plot([lo - 40, hi + 40], [0, 0], color=INK, lw=1.5)
     marks = [(0, "Finished floor 0'-0\""), (M.HEAD, "Window/door heads 8'-0\"")]
+    if side in ("north", "east"):
+        marks += [(PORCH_CEIL, f"Porch ceiling {ftin(PORCH_CEIL)}")]
     if side == "north":
         marks += [(UNDER(S.N), f"Top of street wall {ftin(UNDER(S.N))}"), (TOP, f"Top of roof {ftin(TOP)} (highest point)")]
     elif side == "south":
