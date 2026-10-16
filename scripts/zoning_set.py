@@ -141,11 +141,11 @@ def site_plan(pdf):
     draw_dxf(ax, sh.doc, S.LOT_X0 - 40, -200, S.LOT_X0 + S.LOT_W + 60, S.LOT_D + 60)
     xm = 950.0                                                     # dimension column in front of the bedrooms
     dim(ax, (xm, 0), (xm, S.N), f"FRONT {ftin(S.N)}\n(20'-0\" req.)", rot=90)
-    dim(ax, (xm, S.S), (xm, S.LOT_D), f"REAR {ftin(S.LOT_D - S.S)}\n({ftin(REAR_REQ)} req., shallow lot:\n20% of depth, §22.110.080.D)", rot=90)
+    dim(ax, (xm, S.S), (xm, S.LOT_D), f"REAR {ftin(S.LOT_D - S.S)}\n({ftin(REAR_REQ)} req., note 2)", rot=90)
     yw = 430.0
     dim(ax, (S.W, yw), (S.LOT_X0 + S.LOT_W, yw), f"{ftin(S.LOT_X0 + S.LOT_W - S.W)}\n({ftin(SIDE_REQ)} req.)", rot=90)
     dim(ax, (S.LOT_X0, 455), (cx0, 455), f"{ftin(cx0 - S.LOT_X0)}\n({ftin(SIDE_REQ)} req.)", off=(0, 0))
-    ax.text((cx0 + cx1) / 2, cy1 + 30, "2 COVERED PARKING SPACES\n(CARPORT 18'-0\" x 18'-0\")", fontsize=7,
+    ax.text((cx0 + cx1) / 2, cy0 - 40, "2 COVERED PARKING SPACES\n(CARPORT 18'-0\" x 18'-0\")", fontsize=7,
             ha="center", color="#1f5e9e")
     ax.text((S.E + S.W) / 2, -120, "LAUREL DRIVE (50' R/W)", fontsize=10, ha="center", weight="bold")
     ax.text(S.LOT_X0 + S.LOT_W / 2, S.LOT_D + 40,
@@ -180,11 +180,15 @@ def site_plan(pdf):
         y -= 0.036 if "\n" not in v else 0.058
     notes = ("NOTES\n"
              "1. Setbacks measured to the outside face of exterior walls (eaves excluded).\n"
-             "2. Side setback taken as 10% of lot width; rear as 20% of lot depth. Please confirm.\n"
+             "2. Side setback taken as 10% of lot width. Rear yard on a shallow lot (§22.110.080.D):\n"
+             f"   the lot is {LOT_D_FT:.2f}' deep (under 75'), so the rear yard is 20% of the average\n"
+             f"   depth, {ftin(REAR_REQ)}. Please confirm it applies under the Altadena CSD.\n"
              "3. Heights are above finished floor; the lot falls ~4' across the footprint, so\n"
              "   height above grade depends on the foundation design (to be set with the civil).\n"
              "4. Existing retaining wall and chimney (survey) to be removed.\n"
-             "5. Survey: topographic survey on file (APN above).")
+             "5. Survey: topographic survey on file (APN above).\n"
+             f"6. Eaves {ftin(OV)} all round: the most an eave may project into a required yard\n"
+             "   (§22.110.090.A); more than 2'-6\" from every lot line, no supports in the yards.")
     tx.text(0.0, y - 0.01, notes, fontsize=7.5, va="top", transform=tx.transAxes, linespacing=1.4)
     pdf.savefig(fig); fig.savefig(OUT / "Z-1-site-plan.png", dpi=110); plt.close(fig)
 
