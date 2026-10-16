@@ -440,13 +440,28 @@ def roof_plan(pdf):
     ax.plot([cx0 - 8, cx0 - 8], [cy0 - 6, cy1 + 6], color=INK, lw=2.0)
     ax.text(cx0 - 14, (cy0 + cy1) / 2, "GUTTER", fontsize=5.5, rotation=90, ha="right", va="center")
     sh = S.build()
-    for lab, note in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT\n+ FAN (CLASS A ASSEMBLY)"),
-                      ("RANGE", "RANGE HOOD DUCT, CAP WITH\nEMBER-RESISTANT DAMPER")):
+    for lab, note in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A):\nset the PV layout around it"),
+                      ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it")):
         p = text_at(sh, lab)
         if p:
             ax.add_patch(Circle(p, 7, fc="white", ec=INK, lw=0.9))
             ax.text(p[0] + 10, p[1] + 10, note, fontsize=5.5, va="bottom")
-    ax.text((X0 + X1) / 2, Y0 + 28, f"HIGH EDGE AT THE STREET: TOP OF ROOF ~{ftin(Z.TOP)} ABOVE FINISHED FLOOR",
+    # plumbing vents through the roof: grouped in a strip along the high (street) edge, outside the PV area
+    strip = S.N + 24                                                    # fire setback + vent strip edge
+    ax.add_patch(Rectangle((X0 + 36, strip), X1 - X0 - 72, Y1 - strip, fill=False, ec="#1f5e9e", lw=1.0, ls="--"))
+    ax.text(X0 + 48, Y1 - 50, "POTENTIAL SOLAR PV AREA (dashed): clear of the 36\" high-edge setback and the\n"
+            "36\" pathways at both ends (CRC R324.6); final layout per the solar design", fontsize=6.5, color="#1f5e9e")
+    vtrs = [(700.0, "VTR-1: kitchen sink (vent jogs beside the\nwindow in the wall, then runs in the attic)"),
+            (840.0, "VTR-2 (3\" main vent): shared ensuite,\ncommon bath and laundry"),
+            (1000.0, "VTR-3: primary bath")]
+    for vx, lab in vtrs:
+        ax.add_patch(Circle((vx, S.N + 10), 5, fc="white", ec=INK, lw=1.2))
+        ax.plot([vx - 5, vx + 5], [S.N + 10] * 2, color=INK, lw=0.8)
+        ax.text(vx + 9, S.N + 14, lab, fontsize=5.5, va="bottom")
+    ax.text(X1 - 40, S.N + 4, "PLUMBING VENTS (APPROX., FINAL PER PLUMBER):\ncombined in the attic, through the roof in the\n"
+            "strip along the high edge; each 10' from or 3'\nabove openable windows and air intakes", fontsize=5.5,
+            ha="right", va="bottom")
+    ax.text((X0 + X1) / 2, Y0 + 8, f"HIGH EDGE AT THE STREET: TOP OF ROOF ~{ftin(Z.TOP)} ABOVE FINISHED FLOOR",
             fontsize=7, ha="center")
     ax.text((X0 + X1) / 2, Y1 - 24, f"LOW EDGE AT THE REAR: TOP OF ROOF ~{ftin(Z.REAR_TOP)} ABOVE FINISHED FLOOR",
             fontsize=7, ha="center")
@@ -465,9 +480,11 @@ def roof_plan(pdf):
              "4. Gutters with noncombustible gutter guards (CRC R337.5.4);\n"
              "   downspouts to the site drainage system per civil.\n"
              "5. Roof framing, sheathing and connections per structural.\n"
-             "6. Roof penetrations (plumbing vents, exhaust caps, skylight)\n"
-             "   flashed; group them toward the street edge to keep the\n"
-             "   rear plane clear for future solar.\n"
+             "6. Roof penetrations flashed. Plumbing vents (VTR) and bath\n"
+             "   fan caps grouped in the strip along the high edge, outside\n"
+             "   the PV area; bath and laundry fans exit through walls\n"
+             "   where possible. The range hood and skylight sit inside the\n"
+             "   PV area: the panel layout works around them.\n"
              "7. Carport: attached open carport, its own low-slope roof\n"
              "   (Class A), gutter on its east edge.")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
