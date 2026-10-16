@@ -133,6 +133,8 @@ def rooms(sh):
 
 
 def room_at(rms, x, y):
+    if S.face("bedroom hall wall", +1) < y < S.face("south hall wall", -1) and x > S.face("lounge|gym", +1):
+        return "LOBBY"                                   # the hall runs on from the lounge: one open space
     for names, poly in rms:
         if poly.contains(Point(x, y)):
             if not names:
@@ -273,12 +275,12 @@ def floor_plan(pdf):
         placed.append(pt)
         ax.add_patch(Circle(pt, 8, fc="white", ec=INK, lw=0.8, zorder=5))
         ax.text(*pt, str(i), fontsize=6.5, ha="center", va="center", zorder=6)
-        w = o[2] - o[1]
+        w = 36.0 if o[0] == "porch front" else o[2] - o[1]    # front door 3'-0" in its opening
         ext = o[0] in S.EXT_WALLS
         if o[3] == "slider":
             h, typ = 96.0, "Sliding glass door"
         elif o[0] == "west":
-            h, typ = 84.0, "Hinged, half-lite"
+            h, typ = 84.0, "Hinged"
         elif o[3] == "bifold":
             h, typ = DOOR_H, "Bifold, louvered"
         elif o[3] == "pocket":
@@ -289,15 +291,17 @@ def floor_plan(pdf):
         if ext:
             names += " (exterior)"
         notes = []
-        if ext:
+        if o[3] == "slider":
+            notes.append("Dual-pane tempered glazing (CRC R308.4.1, R337.8.2); weatherstripped")
+        elif ext:
             notes.append("Solid core 1-3/8\"+ or noncombustible (CRC R337.8.3); weatherstripped")
-            if o[3] == "slider" or o[0] == "west":
-                notes.append("dual-pane tempered glazing")
+            if o[0] == "porch front":
+                notes.append("glass lite, if any, dual-pane tempered")
         if o[0] == "west":
             notes.append("3'-0\" x 1'-6\" transom above (window J)")
         if any(k in names for k in ("BATH", "ENSUITE")):
             notes.append("privacy lock")
-        if "LAUNDRY" in names or "COMMON BATH" in names:
+        if "LOBBY" in names and ("LAUNDRY" in names or "COMMON BATH" in names):
             notes.append("solid core (noise)")
         if "MECH" in names:
             notes.append("louvered for the water heater's air")
