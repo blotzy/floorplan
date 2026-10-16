@@ -68,6 +68,9 @@ ENTRY_WALLS = [(E + 36.0, 156.0, 504.0, 164.0), (496.0, 164.0, 504.0, N)]
 ENTRY_WALL_H = 24.0
 PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines N22°23'00"E
 
+NOTICE = ("\u00a9 2026 Richard Acosta. All rights reserved. For 220 Laurel Dr only: "
+          "not to be copied, adapted or built from anywhere else.")
+
 # Interior walls: (name, axis, centreline, from, to, thickness).
 # axis "x" = wall runs along x at y = centreline; "y" = runs along y at x = centreline.
 WALLS = [
@@ -208,6 +211,7 @@ class Sheet:
         self.doc.units = ezdxf.units.IN
         self.msp = self.doc.modelspace()
         self.heads = []                     # shower heads for the 3D model: (wall x, wall y, dir x, dir y)
+        self.movable = []                   # loose furniture (beds, sofa, table...): left off permit drawings
         for name, color in [("A-WALL", 7), ("A-WALL-PATT", 8), ("A-DOOR", 3), ("A-GLAZ", 4),
                             ("A-FURN", 9), ("A-EQPM", 6), ("A-AREA-IDEN", 7), ("A-ANNO-DIMS", 1),
                             ("A-ANNO-TEXT", 7), ("C-PROP", 5), ("L-SITE", 94), ("L-PLNT", 3),
@@ -217,6 +221,12 @@ class Sheet:
         st.dxf.dimtxt, st.dxf.dimasz, st.dxf.dimexo, st.dxf.dimexe = 8.0, 6.0, 3.0, 3.0
         st.dxf.dimtsz = 4.0                 # architectural ticks
         st.dxf.dimgap = 2.0
+
+    def mark(self):
+        return len(self.msp)
+
+    def movable_since(self, n):
+        self.movable += list(self.msp)[n:]
 
     def line(self, a, b, layer):
         self.msp.add_line(a, b, dxfattribs={"layer": layer})
@@ -548,6 +558,7 @@ def build() -> Sheet:
     sh.rect(kw - 24, r0, kw, r0 + 30, eq); sh.text("RANGE", kw - 12, r0 + 15, 3.5, rot=90)
     sh.rect(kw - 30, srow, kw, srow + 36, eq); sh.text("FRIDGE", kw - 15, srow + 18, 3.5, rot=90)
     sh.rect(603.0, S_IN - 20, 633.0, S_IN - 4, eq); sh.text("SINK", 618.0, S_IN - 12, 3.0)   # centred under its window
+    m0 = sh.mark()
     for y in (476.7, 512.9, 544.5):                                           # 3 stools
         sh.circle((pen_out - 8, y), 7.5, fu)
     dcx = (E_IN + pen_out) / 2                                                # dining table
@@ -563,6 +574,7 @@ def build() -> Sheet:
                            (505.0, 305.0)], close=True, dxfattribs={"layer": fu})   # L sectional, 38" deep
     sh.text("L SECTIONAL", 551.0, 287.0, 4.0)
     sh.rect(533.0, seat_cy - 23, 579.0, seat_cy + 23, fu)                     # 46" square table
+    sh.movable_since(m0)
     fw = face("foyer wall", -1)             # closet + bench on the foyer side of the TV wall
     sh.rect(fw - 18, 300.0, fw, 333.0, fu); sh.text("CLOSET", fw - 9, 316.5, 3.0, rot=90)
     sh.rect(fw - 18, 333.0, fw, 366.0, fu); sh.text("BENCH", fw - 9, 349.5, 3.0, rot=90)
@@ -580,10 +592,12 @@ def build() -> Sheet:
             sh.rect(n0, ny, n1, ny + 18, fu)                                  # nightstands
 
     open_mid = (N_IN + hall_n - 24) / 2     # gym, guest, office: head wall from the window side to the closets
+    m0 = sh.mark()
     bed(face("lounge|gym", +1), open_mid, 60, +1)
     bed(face("guest|office", -1), open_mid, 60, -1)   # guest: head on the office wall, clear of the bath door
     bed(W_IN, open_mid, 60, -1)
     bed(W_IN, (srow + S_IN) / 2, 76, -1)   # primary: the whole west wall is open
+    sh.movable_since(m0)
 
     def closet(x0, x1, label="CL"):          # 24" reach-in closets on the hall wall
         y1 = hall_n
@@ -692,6 +706,7 @@ def build() -> Sheet:
     sh.text("ACCOSTING REBUILD - OWNER SCHEMATIC (NOT FOR CONSTRUCTION)", LOT_W / 2, LOT_D + 95, 16.0)
     sh.text(f"Walls: exterior {EXT:g}\", interior {INT:g}\", plumbing {WET:g}\". "
             "Room sizes are clear (finish face to finish face).", LOT_W / 2, LOT_D + 75, 8.0)
+    sh.text(NOTICE, LOT_W / 2, LOT_D + 58, 7.0)
     return sh
 
 

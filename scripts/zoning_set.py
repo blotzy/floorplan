@@ -93,6 +93,7 @@ def sheet(num, title):
     fig.add_artist(Rectangle((0.01, 0.015), 0.98, 0.07, transform=fig.transFigure, fill=False, lw=1.0))
     fig.text(0.02, 0.06, PROJECT, fontsize=11, weight="bold")
     fig.text(0.02, 0.035, f"{APN}   ·   Zone R-1, Altadena Community Standards District   ·   {OWNER}", fontsize=9)
+    fig.text(0.47, 0.019, S.NOTICE, fontsize=7, color="#555")
     fig.text(0.47, 0.06, "PRELIMINARY ZONING CHECK SET — OWNER-PREPARED, NOT FOR CONSTRUCTION",
              fontsize=8.5, color="#a33")
     fig.text(0.47, 0.035, f"{DATE}  ·  Dimensions in feet-inches  ·  Plan north = street side", fontsize=8.5)
@@ -195,7 +196,7 @@ def site_plan(pdf):
              "   over the windows only, 1' past each side, no supports in the yard.\n"
              f"7. The street-wall band projects {S.BAND_PROUD:.0f}\" (into the front yard and the west side yard\n"
              "   by a few inches). Please confirm it is a permitted architectural projection.")
-    tx.text(0.0, y - 0.01, notes, fontsize=7.5, va="top", transform=tx.transAxes, linespacing=1.4)
+    tx.text(0.0, y - 0.01, notes, fontsize=7.2, va="top", transform=tx.transAxes, linespacing=1.3)
     pdf.savefig(fig); fig.savefig(OUT / "Z-1-site-plan.png", dpi=110); plt.close(fig)
 
 
