@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-One page each for the structural and civil engineers, so they can quote and start design. Send the page with the [architectural set](../renders/permit/architectural-set.pdf) (A-0 to A-6), the topographic survey (emailed separately) and the [zoning check set](../renders/zoning/zoning-check-set.pdf).
+Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, Altadena: the project, the scope requested and what needs engineering. The drawings and files are linked below; the topographic survey is available from the owner.
 
 ## Files
 
