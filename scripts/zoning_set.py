@@ -185,14 +185,13 @@ def site_plan(pdf):
              f"   depth, {ftin(REAR_REQ)}. Please confirm it applies under the Altadena CSD.\n"
              "3. Heights are above finished floor; the lot falls ~4' across the footprint, so\n"
              "   height above grade depends on the foundation design (to be set with the civil).\n"
-             "4. Existing retaining wall and chimney (survey) to be removed.\n"
-             "5. Lot lines, lot dimensions, existing walls and trees are from the owner's topographic\n"
+             "4. Lot lines, lot dimensions and existing trees are from the owner's topographic\n"
              "   survey (available on request).\n"
-             f"6. Eaves {ftin(OV)} all round: the most an eave may project into a required yard\n"
+             f"5. Eaves {ftin(OV)} all round: the most an eave may project into a required yard\n"
              "   (§22.110.090.A); more than 2'-6\" from every lot line, no supports in the yards.\n"
-             f"7. Rear window canopies {ftin(S.CANOPY_D)} deep (§22.110.090.B: up to 5' into the rear yard):\n"
+             f"6. Rear window canopies {ftin(S.CANOPY_D)} deep (§22.110.090.B: up to 5' into the rear yard):\n"
              "   over the windows only, 1' past each side, no supports in the yard.\n"
-             f"8. The street-wall band projects {S.BAND_PROUD:.0f}\" (into the front yard and the west side yard\n"
+             f"7. The street-wall band projects {S.BAND_PROUD:.0f}\" (into the front yard and the west side yard\n"
              "   by a few inches). Please confirm it is a permitted architectural projection.")
     tx.text(0.0, y - 0.01, notes, fontsize=7.5, va="top", transform=tx.transAxes, linespacing=1.4)
     pdf.savefig(fig); fig.savefig(OUT / "Z-1-site-plan.png", dpi=110); plt.close(fig)
