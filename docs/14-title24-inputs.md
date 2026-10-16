@@ -9,7 +9,7 @@ What the energy consultant needs to model the house and produce the compliance f
 | Item | Value |
 | --- | --- |
 | Location | 220 Laurel Dr, Altadena CA 91001 (climate zone 9: confirm) |
-| Type | New single-family, 1 story, all-electric, 4 bedrooms, 3 baths |
+| Type | New single-family, 1 story, all-electric, 4 bedrooms, 3 baths; Eaton Fire rebuild, non-like-for-like (current Energy Code in full) |
 | Conditioned floor area | About 2,238 sq ft (porch and open carport excluded) |
 | Orientation | The street (front) wall faces about 22° (NNE); rear faces about 202° (SSW); the dining slider faces about 112° (ESE); the west end faces about 292° (WNW) |
 | Ceilings | 9' flat under a sealed attic; the great room (foyer, lounge, dining, kitchen, about 900 sq ft) vaulted under the roof, about 16' at the street down to 11' |

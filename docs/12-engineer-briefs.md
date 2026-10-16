@@ -17,7 +17,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 
 ## Structural engineer
 
-**Project:** new one-story, wood-frame single-family residence, Eaton Fire rebuild, 220 Laurel Dr, Altadena (APN 5832-003-027). About 2,238 sq ft, 72' x 31'-6", Type V-B, sprinklered, Very High Fire Hazard Severity Zone. Attached open carport, 18' x 18'.
+**Project:** new one-story, wood-frame single-family residence, Eaton Fire rebuild (non-like-for-like: current codes in full), 220 Laurel Dr, Altadena (APN 5832-003-027). About 2,238 sq ft, 72' x 31'-6", Type V-B, sprinklered, Very High Fire Hazard Severity Zone. Attached open carport, 18' x 18'.
 
 **Scope requested:** foundation plan, roof and ceiling framing plans, shear wall and hold-down schedule, details, structural calculations (vertical and lateral), truss specifications for the deferred truss submittal, and structural observation. Plans to LA County Building and Safety as the engineer of record.
 

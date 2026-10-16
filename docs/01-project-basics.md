@@ -2,7 +2,9 @@
 
 [← Back to README](../README.md)
 
-All-electric single-story rebuild at 220 Laurel Dr, Altadena (Eaton Fire rebuild) with no gas service, a vaulted great room and 9' ceilings elsewhere, a sealed attic, and an attached 18'-wide two-car carport. The architect owns the floor plan, roof, and finishes. Plumbing, HVAC, and electrical are designed by separate trades, so the architect only needs to reserve the spaces, chases, and openings those sections call for.
+All-electric single-story rebuild at 220 Laurel Dr, Altadena, replacing the house destroyed in the Eaton Fire, with no gas service, a vaulted great room and 9' ceilings elsewhere, a sealed attic, and an attached 18'-wide two-car carport. The architect owns the floor plan, roof, and finishes. Plumbing, HVAC, and electrical are designed by separate trades, so the architect only needs to reserve the spaces, chases, and openings those sections call for.
+
+**Fire rebuild, not like-for-like.** The house burned in the Eaton Fire (January 2025). The new house differs from the old one in layout and size, so it is permitted as a **non-like-for-like** rebuild: a County Disaster Recovery Permit that still gets the expedited fire-rebuild review, but must meet current zoning (Altadena CSD) and the current building, energy and green building codes in full. The relief the County gives like-for-like rebuilds (keeping the old setbacks, and the suspended CALGreen items: future EV charging, cool roof, graywater irrigation, low-impact development) does not apply.
 
 **Orientation used in these docs:** "north", "east", etc. mean **plan** directions: the street is plan north, the carport and great room are at the plan east end, and the bedroom wing and primary suite at the plan west end. (The plan drawings put plan north at the bottom, so east is on the left.)
 

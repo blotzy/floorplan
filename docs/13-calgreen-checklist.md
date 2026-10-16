@@ -2,13 +2,13 @@
 
 [← Back to README](../README.md)
 
-The 2025 California Green Building Standards Code, Chapter 4 (residential mandatory measures), as they apply here. LA County uses its own checklist form; transfer these answers to it. "Owner" means you or your contractor fill it in; others are confirmed by the consultant named.
+The 2025 California Green Building Standards Code, Chapter 4 (residential mandatory measures), as they apply here. This is a non-like-for-like fire rebuild, so all of the mandatory measures apply: the items the County suspends for like-for-like rebuilds (future EV charging, cool roof, graywater irrigation, low-impact development) are not suspended here. LA County uses its own checklist form; transfer these answers to it. "Owner" means you or your contractor fill it in; others are confirmed by the consultant named.
 
 | Section | Measure | This project | Who |
 | --- | --- | --- | --- |
 | 4.106.2 | Storm water during construction (under 1 acre) | Erosion and sediment control BMPs on the plans | Civil |
 | 4.106.3 | Grading and paving | Surface water drains away from the house (A-1, civil) | Civil |
-| 4.106.4 | EV charging | No attached garage (open carport), so not required; a 240V EV circuit at the carport is planned anyway | Owner, electrician |
+| 4.106.4 | EV charging | The code ties this to attached garages and this is an open carport, but the County lists future EV charging among the items suspended only for like-for-like rebuilds; plan on EV-ready: a dedicated 240V circuit and raceway at the carport (planned anyway). Confirm at plan check | Owner, electrician |
 | 4.201.1 | Energy efficiency | Title 24 Part 6 compliance (CF1R) | Energy consultant |
 | 4.303.1.1 | Toilets | 1.28 gal/flush max | Owner |
 | 4.303.1.3.1 | Showerheads | 1.8 gpm max at 80 psi, WaterSense | Owner |
