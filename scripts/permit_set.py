@@ -214,7 +214,7 @@ def build_doc():
         geo = box(bb.extmin.x, bb.extmin.y, bb.extmax.x, bb.extmax.y) if bb.has_data else None
         gone = (id(e) in drop or lay in ("A-ANNO-DIMS", "L-PLNT", "A-FENC", "C-PROP")
                 or (lay == "A-FURN" and not (geo and any(geo.buffer(1).contains(Point(p)) for p in closets)))
-                or (txt in CASEWORK_WORDS) or (lay == "A-CLNG" and txt == "CEILING AIRER"))
+                or (txt in CASEWORK_WORDS) or (txt and "FENCE" in txt) or (lay == "A-CLNG" and txt == "CEILING AIRER"))
         if (not gone and lay == "A-WALL" and geo is not None and geo.area > 0
                 and geo.intersection(house).area < 0.5 * geo.area and not geo.within(carport)):
             gone = True                                                # the entry court's seat wall

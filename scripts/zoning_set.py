@@ -105,10 +105,10 @@ def sheet(num, title):
 def clean_plan_doc(furniture=False):
     """The schematic's DXF without furniture, fixtures and fixture labels inside the house."""
     sh = S.build()
-    drop = {"A-CLNG"} | ({"A-FURN", "A-EQPM"} if not furniture else set())
+    drop = {"A-CLNG", "A-FENC"} | ({"A-FURN", "A-EQPM"} if not furniture else set())   # fences and gates: later
     for e in list(sh.msp):
         lay = e.dxf.layer
-        if lay in drop:
+        if lay in drop or (e.dxftype() == "TEXT" and ("FENCE" in e.dxf.text or e.dxf.text.startswith("\u00a9"))):
             sh.msp.delete_entity(e)
         elif lay == "A-ANNO-TEXT" and e.dxftype() == "TEXT":
             p = e.dxf.insert
@@ -152,7 +152,7 @@ def site_plan(pdf):
             ha="center", color="#1f5e9e")
     ax.text((S.E + S.W) / 2, -120, "LAUREL DRIVE (50' R/W)", fontsize=10, ha="center", weight="bold")
     ax.text(S.LOT_X0 + S.LOT_W / 2, S.LOT_D + 40,
-            "Front-yard walls: entry seat wall 24\" (under the 42\" limit). 6' fences only behind the front setback line.",
+            "Front-yard walls: entry seat wall 24\" (under the 42\" limit).",
             fontsize=7.5, ha="center", color="#555")
     # data table
     tx = fig.add_axes([0.70, 0.1, 0.28, 0.86]); tx.axis("off")
