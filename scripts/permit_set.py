@@ -836,6 +836,9 @@ def loads_plan(pdf):
     ax.text((a0 + a1) / 2, (b0 + b1) / 2, "AIR HANDLER\nON PLATFORM\n~250 LB", fontsize=6, ha="center", va="center",
             zorder=6)
     hx0, hy = 990.0, (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2
+    ax.plot([S.face("lounge|gym", +1), S.W_IN], [hy, hy], color="#8e44ad", lw=1.4, ls=(0, (8, 4)), zorder=5)
+    ax.text(S.face("lounge|gym", +1) + 6, hy + 4, "HALL CENTRELINE: KEEP CLEAR FOR RECESSED LIGHTS (note 7)",
+            fontsize=6, color="#8e44ad", va="bottom", zorder=6)
     ax.add_patch(Rectangle((hx0, hy - 12.75), 54, 25.5, fill=False, ec=INK, lw=1.2, ls="--", zorder=5))
     ax.text(hx0 + 27, hy - 16, "ATTIC HATCH", fontsize=6, ha="center", va="top", zorder=6)
     for rx, ry in L["rings"]:
@@ -868,7 +871,11 @@ def loads_plan(pdf):
              "4. Future solar: on the roof plane, clear of the fire setbacks\n"
              "   (A-3); include its dead load in the roof design.\n"
              "5. Heat pump water heater: on the slab in the mechanical closet.\n"
-             "6. Vaulted great room: no attic and no loads above the ceiling.")
+             "6. Vaulted great room: no attic and no loads above the ceiling.\n"
+             "7. Bedroom hall ceiling: keep the hall's centreline free of\n"
+             "   blocking, strongbacks, ducts and pipes, so recessed lights\n"
+             "   fit between the trusses along it (clear of the hatch, smoke\n"
+             "   alarm and return grille). Run the duct trunk to one side.")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
     pdf.savefig(fig); fig.savefig(OUT / "A-7-attic-loads.png", dpi=80); plt.close(fig)
 

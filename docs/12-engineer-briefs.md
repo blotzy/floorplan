@@ -35,6 +35,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
   - Air handler (about 250 lb) on a platform beside the hall attic hatch, over the guest room.
   - Future solar PV over most of the roof (clear of the fire setbacks): about 3-4 psf dead load.
   - Heat pump water heater, 65 gal (about 800 lb full), on the slab in the mechanical closet.
+- **Hall ceiling:** keep the centreline of the bedroom hall (lobby) free of blocking, strongbacks, ducts and pipes, so recessed lights fit between the trusses along it (sheet A-7).
 - **Exterior:** stucco walls (2x6 with 1" rigid insulation), an 8" trim band 6" proud along the street wall and both ends, two 3' metal window canopies at the rear (attachment).
 
 **Foundation:** the existing grade falls about 4' across the footprint (east to west). Slab on grade preferred; stepped footings or a raised portion as the civil and structural engineers decide together. An old retaining wall and chimney under the southeast corner are being removed. Ask whether a soils report is needed.
