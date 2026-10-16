@@ -20,7 +20,7 @@
 
 **Trades**
 
-- [ ] Architect and civil engineer: foundation and grading for the slope (about 4 ft of fall across the house footprint, more across the lot): stepped vs. raised slab, how the west-end exterior door and the dining slider meet grade, and drainage around the house. The primary bedroom's egress window is at the low corner: with one floor level, the drop outside could be 6' or more, so keep the finished grade (or a landing) there within a few feet of the floor.
+- [ ] Architect and civil engineer: foundation and grading for the slope (about 4 ft of fall across the house footprint, more across the lot): stepped vs. raised slab, how the west-end exterior door and the dining slider meet grade, and drainage around the house.
 - [ ] Civil / demolition: remove the old retaining wall under the southeast corner and the standing chimney in the courtyard; deal with the lower rear terrace they leave.
 - [ ] East property-line wall (front half of the lot, sits above our grade):
   - It retains the neighbour's soil (their side is higher), so our side is the toe of the wall.

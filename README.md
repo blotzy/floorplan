@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 16, 2026, 5:08 AM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 16, 2026, 5:10 AM PT · @Richard
 
 > **Use of these plans.** © 2026 Richard Acosta. All rights reserved. Everything here (plans, drawings, DXF files, 3D models, renders, documents and scripts) is for the rebuild of 220 Laurel Dr only and is shared for the people working on this project. It may not be copied, adapted, built from, submitted for a permit or used commercially anywhere else. These are owner-prepared drafts, not reviewed by a licensed architect, engineer or permitting agency, and not for construction. See [LICENSE](LICENSE).
 
