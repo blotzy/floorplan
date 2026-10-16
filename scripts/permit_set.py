@@ -301,9 +301,6 @@ def floor_plan(pdf):
             notes.append("3'-0\" x 1'-6\" transom above (window J)")
         if any(k in names for k in ("BATH", "ENSUITE")):
             notes.append("privacy lock")
-        if not ext and o[3] == "door":
-            hollow = any(k in names for k in ("PANTRY", "WIC"))
-            notes.append("hollow core, same style as the others" if hollow else "solid core")
         if "MECH" in names:
             notes.append("louvered for the water heater's air")
         dsched.append((str(i), names, f"{ftin(w)} x {ftin(h)}", typ, textwrap.fill("; ".join(notes), 95)))
@@ -363,7 +360,7 @@ def floor_plan(pdf):
         "1. Dimensions are to wall centrelines; exterior walls to\n   the outside face of framing + finish (9\" walls).\n"
         "2. Walls: exterior 2x6 with 1\" rigid insulation and stucco;\n   interior 2x4; plumbing walls 2x6.\n"
         "3. Ceilings 9'-0\" unless noted. The foyer, lounge, dining\n   and kitchen are vaulted under the roof (see sections).\n"
-        "4. Doors 8'-0\" high unless noted; interior hinged doors\n   solid core except as noted. Exterior doors and glazing\n   per CRC R337 (VHFHSZ).\n"
+        "4. Doors 8'-0\" high unless noted; interior doors solid\n   core. Exterior doors and glazing per CRC R337 (VHFHSZ).\n"
         "5. All exterior glazing dual-pane with at least one tempered\n   pane (CRC R337.8.2.1). Fully tempered where noted\n   (CRC R308.4).\n"
         "6. Bedroom windows meet emergency escape: 5.7 sq ft net\n   clear, 20\" min width, 24\" min height, sill 44\" max\n   (CRC R310).\n"
         "7. Smoke alarms in each bedroom and outside the sleeping\n   areas, hard-wired, interconnected, battery backup, at\n   least 3' from bathroom doors (CRC R314). Outside the\n   sleeping areas: combination smoke / CO alarms (CO not\n   required in an all-electric house with no attached\n   garage, CRC R315.2; provided anyway).\n"
