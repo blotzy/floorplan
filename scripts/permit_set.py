@@ -172,19 +172,21 @@ def window_type(rm, w, h, sill, kind):
     if kind == "clerestory":
         return "Fixed (mulled units)", "Clerestory over the lounge"
     if rm in ("GYM", "GUEST", "OFFICE", "PRIMARY") and sill <= 44:
-        return "Horizontal slider", "Emergency escape (egress)"
+        return ("Horizontal slider", "Emergency escape (CRC R310): one sash opens ~2'-9\" x 5'-3\",\n"
+                "over 5.7 sq ft net clear; sill under 44\"")
     if rm in ("LOUNGE",):
         return "Fixed center, slider each end", ""
     if rm == "DINING":
-        return "Fixed, two units mulled", "Tempered: large pane, low sill"
+        return "Fixed, two units mulled", "Tempered: within 24\" of the dining slider (CRC R308.4.2)"
     if rm == "KITCHEN":
         return "Horizontal slider", "Over the sink"
     if rm == "PORCH" or rm == "FOYER":
-        return "Fixed, reeded glass", "Tempered: beside the front door"
+        return "Fixed, reeded glass", "Tempered: within 24\" of the front door (CRC R308.4.2)"
     if rm == "LOBBY":
-        return "Fixed transom", "Tempered: above the door"
+        return "Fixed transom", "Above the door; bottom edge over 60\" (not a hazardous location)"
     if "BATH" in rm or "ENSUITE" in rm:
-        return "Awning", "Tempered: at tub / wet room" + (", obscure" if "ENSUITE" in rm else "")
+        return "Awning", ("Above the tub; bottom edge over 60\" above it, so tempering not\nrequired (CRC R308.4.5)"
+                          + ("; obscure glass" if "ENSUITE" in rm else ""))
     return "Awning", "High window"
 
 
@@ -352,7 +354,7 @@ def floor_plan(pdf):
         "4. Doors 8'-0\" high unless noted. Exterior doors and\n   glazing per CRC R337 (VHFHSZ).\n"
         "5. All exterior glazing dual-pane with at least one tempered\n   pane (CRC R337.8.2.1). Fully tempered where noted\n   (CRC R308.4).\n"
         "6. Bedroom windows meet emergency escape: 5.7 sq ft net\n   clear, 20\" min width, 24\" min height, sill 44\" max\n   (CRC R310).\n"
-        "7. Smoke alarms in each bedroom and outside the sleeping\n   areas, hard-wired, interconnected, battery backup\n   (CRC R314). Combination smoke / CO alarms outside the\n   sleeping areas (CRC R315).\n"
+        "7. Smoke alarms in each bedroom and outside the sleeping\n   areas, hard-wired, interconnected, battery backup, at\n   least 3' from bathroom doors (CRC R314). Outside the\n   sleeping areas: combination smoke / CO alarms (CO not\n   required in an all-electric house with no attached\n   garage, CRC R315.2; provided anyway).\n"
         "8. All-electric: heat pump HVAC (air handler and ERV in\n   the sealed attic; outdoor unit at the rear wall), heat\n   pump water heater (HPWH) in the mechanical closet.\n"
         "9. Fire sprinklers throughout (NFPA 13D); plans by the\n   sprinkler designer (deferred submittal).\n"
         "10. Attic access: 22\" x 54\" pull-down ladder in the hall,\n   30\" min headroom above (CRC R807.1).\n"
@@ -375,7 +377,7 @@ def floor_plan(pdf):
     table(fig, 0.9, 9.0, "DOOR SCHEDULE", ("TAG", "LOCATION", "SIZE (W x H)", "TYPE", "NOTES"),
           (0.45, 2.6, 1.15, 1.6, 6.2), dsched, fs=7)
     table(fig, 13.4, 9.0, "WINDOW SCHEDULE", ("TAG", "QTY", "LOCATION", "SIZE (W x H)", "SILL", "OPERATION", "NOTES"),
-          (0.45, 0.45, 2.7, 1.15, 0.6, 2.2, 3.0), wsched, fs=7)
+          (0.45, 0.45, 2.3, 1.15, 0.6, 2.0, 4.2), wsched, fs=7)
     pdf.savefig(fig)
     fig.savefig(OUT / "A-2-floor-plan.png", dpi=80)
     plt.close(fig)
