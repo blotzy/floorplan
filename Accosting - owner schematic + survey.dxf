@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461329.9561805557
+2461329.963923611
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461329.9561805557
+2461329.963935185
   9
 $TDUUPDATE
  40
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{801AFFEF-97AC-496C-93D0-28BF6F2F5A0A}
+{9FCB8185-A22C-4D1F-9006-13AC6D78EE3B}
   9
 $VERSIONGUID
   2
-{836EFABC-4AEF-48AF-92C2-ED7780C22EAE}
+{F41CB4E7-13AD-4267-88E3-E98CB7D6A029}
   9
 $EXTNAMES
 290
@@ -2659,6 +2659,54 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
+V-SURV-PAVE
+ 70
+0
+ 62
+8
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+29D
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-FENC
+ 70
+0
+ 62
+3
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+29E
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
 V-SURV-LOT
  70
 0
@@ -2675,7 +2723,7 @@ Continuous
   0
 LAYER
   5
-29D
+29F
 330
 1
 100
@@ -2699,7 +2747,7 @@ Continuous
   0
 LAYER
   5
-29E
+2A0
 330
 1
 100
@@ -2712,54 +2760,6 @@ V-SURV-WALL
 0
  62
 1
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
-29F
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-V-SURV-PAVE
- 70
-0
- 62
-8
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
-2A0
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-V-SURV-FENC
- 70
-0
- 62
-3
   6
 Continuous
 370
@@ -20951,7 +20951,7 @@ AcDbCircle
  10
 60.0
  20
-445.0
+420.0
  30
 0.0
  40
@@ -20971,7 +20971,7 @@ AcDbCircle
  10
 60.0
  20
-445.0
+420.0
  30
 0.0
  40
@@ -20991,7 +20991,7 @@ AcDbText
  10
 60.0
  20
-473.0
+448.0
  30
 0.0
  40
@@ -21003,7 +21003,7 @@ NEW TREE
  11
 60.0
  21
-473.0
+448.0
  31
 0.0
 100
@@ -35205,7 +35205,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-16T05:56:54.082726+00:00
+1.4.4 @ 2026-10-16T06:08:03.831277+00:00
   0
 VISUALSTYLE
   5
@@ -41767,7 +41767,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-16T05:56:54.336613+00:00
+1.4.4 @ 2026-10-16T06:08:04.076886+00:00
   0
 ENDSEC
   0

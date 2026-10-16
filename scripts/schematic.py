@@ -57,7 +57,7 @@ CARPORT = (140.1, PORCH_Y, E, PORCH_Y + 216.0)   # x0, y0, x1, y1: 18' x 18' (Co
 DRIVE_IN = (LOT_X0 + 150.0, LOT_X0 + 290.0)   # entrance edges (x) at the property line
 EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives
                                                                         # in the northwest parkway
-SIDE_TREE = (60.0, 445.0)            # new: east strip beside the carport, between the bins and the lawn
+SIDE_TREE = (60.0, 420.0)            # new: east strip beside the carport, between the bins and the lawn
 PRIVACY_TREE = (624.0, 48.0)         # new: inside the front line, west of the lounge window's centre,
                                      # 10'+ from the sewer run to the cleanout (survey ~(492, 22))
 EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
