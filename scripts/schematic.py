@@ -393,11 +393,11 @@ def utility_block(sh):
                                                              # doors open apart (left-hinged washer)
         sh.rect(lw - 30, y, lw, y + 27, eq); sh.text(lbl, lw - 17, y + 13.5, 2.6, rot=90)
         sh.text("ON PEDESTAL", lw - 9, y + 13.5, 1.6, rot=90); y += 28
-    sh.rect(l0, 466.0, l0 + 4, 486.0, eq); sh.text("PANEL", l0 + 10, 476.0, 2.5, rot=90)
-    ax0, ax1 = l0 + 4, l0 + 26                               # pulley ceiling airer over the aisle
-    sh.msp.add_lwpolyline([(ax0, 515.0), (ax1, 515.0), (ax1, 575.0), (ax0, 575.0)], close=True,
-                          dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})
-    sh.text("CEILING AIRER", (ax0 + ax1) / 2, 545.0, 2.2, "A-CLNG", rot=90)
+    sh.rect(l0, 496.0, l0 + 4, 516.0, eq); sh.text("PANEL", l0 + 10, 506.0, 2.5, rot=90)   # past the open
+    ax0, ax1 = l0 + 4, l0 + 26                               # door; airer beyond its working space
+    sh.msp.add_lwpolyline([(ax0, 525.0), (ax1, 525.0), (ax1, 585.0), (ax0, 585.0)], close=True,
+                          dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})   # pulley ceiling airer
+    sh.text("CEILING AIRER", (ax0 + ax1) / 2, 555.0, 2.2, "A-CLNG", rot=90)
     sh.rect(l0 + 12, S_IN - 12, lw - 12, S_IN, fu)                           # rear wall: full-height shelves
     sh.text("SHELVES TO 6'", (l0 + lw) / 2, S_IN - 6, 2.2)                  # up to the high window's sill
     room_label(sh, "LAUNDRY", l0, hall, lw, S_IN, cx=(l0 + lw) / 2 - 8, cy=582.0, h=4.0)
