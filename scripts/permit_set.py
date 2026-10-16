@@ -1072,7 +1072,7 @@ def floor_plan(pdf):
         "7. Smoke alarms: hard-wired, interconnected, battery\n   backup, at least 3' from bathroom doors (CRC R314).\n   Combination smoke / CO alarms outside the sleeping areas.\n"
         "8. All-electric: heat pump HVAC (air handler in the sealed\n   attic; outdoor unit at the rear wall), heat pump water\n   heater (HPWH) in the mechanical closet. Whole-house\n   ventilation by a continuous exhaust fan.\n"
         "9. Fire sprinklers throughout (NFPA 13D); plans by the\n   sprinkler designer (deferred submittal).\n"
-        "10. Attic access: 22\" x 54\" pull-down ladder in the hall,\n   30\" min headroom above (CRC R807.1).\n"
+        "10. Attic access in the hall: 22\" x 54\" pull-down ladder or\n   insulated access panel, 30\" min headroom above (CRC R807.1).\n"
         "11. Furniture not shown; closets, cabinets and fixtures\n   shown for reference.\n")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
     lg = fig.add_axes([27.0 / W_IN, 6.9 / H_IN, 5.5 / W_IN, 2.4 / H_IN]); lg.axis("off")
