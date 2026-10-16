@@ -47,7 +47,7 @@ Three strips side by side, each with its own door off the main lobby (no side ha
 - **Primary suite:** a modest south window, since it faces SSW into a sleeping room; shade it with the overhang. Optional reading nook with a built-in bench (window seat) in the primary bedroom.
 
 - **Interior doors:** solid core throughout, for sound and so the tall doors stay flat (the mechanical closet keeps its louvered bifold).
-- **Lobby:** exterior door at the west end of the bedroom hall, out to the west side yard. A 7' door with a fixed glass transom above it throws daylight down the long hall.
+- **Lobby:** exterior door at the west end of the bedroom hall, out to the west side yard. A solid 7' door (no glass in the door, for security) with a fixed glass transom above it, out of reach, throws daylight down the long hall.
 
 ## Ceilings and roof
 

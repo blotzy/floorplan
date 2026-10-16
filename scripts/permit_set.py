@@ -298,7 +298,7 @@ def floor_plan(pdf):
             if o[0] == "porch front":
                 notes.append("glass lite, if any, dual-pane tempered")
         if o[0] == "west":
-            notes.append("3'-0\" x 1'-6\" transom above (window J)")
+            notes.append("solid slab, no glass; 3'-0\" x 1'-6\" transom above, out of reach (window J)")
         if any(k in names for k in ("BATH", "ENSUITE")):
             notes.append("privacy lock")
         if "MECH" in names:
