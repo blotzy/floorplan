@@ -27,6 +27,7 @@
 | Heat pump dryer | Per model | Laundry, bath wall |
 | Washer | 20A | Laundry, bath wall |
 | Network rack | One 20A | Mechanical / network closet |
+| Chest freezer (possible) | One 15–20A, GFCI where code requires (laundry area) | Storage room behind the common bath, rear wall |
 | Gym | One 20A | Gym (bike/treadmill wall) |
 
 **Outlet locations** (standard outlets, no dedicated circuit needed)
