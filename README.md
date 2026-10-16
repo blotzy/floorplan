@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 16, 2026, 9:10 AM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 16, 2026, 9:17 AM PT · @Richard
 
 > **Use of these plans.** © 2026 Richard Acosta. All rights reserved. Everything here (plans, drawings, DXF files, 3D models, renders, documents and scripts) is for the rebuild of 220 Laurel Dr only and is shared for the people working on this project. It may not be copied, adapted, built from, submitted for a permit or used commercially anywhere else. These are owner-prepared drafts, not reviewed by a licensed architect, engineer or permitting agency, and not for construction. See [LICENSE](LICENSE).
 
@@ -20,7 +20,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 
 ![Survey overlay](renders/survey-overlay.png)
 
-*The topographic survey (`source_files/survey/`) over the schematic: existing walls, the old chimney, paving, fences, trees and utilities in colour; spot elevations in orange; 1' contours in brown. The site falls about 4 ft across the house from the carport end to the primary-suite end. See [site existing conditions](docs/03-site-and-landscape.md#existing-conditions-survey). Combined DXF: [Accosting - owner schematic + survey.dxf](Accosting%20-%20owner%20schematic%20%2B%20survey.dxf).*
+*The topographic survey over the schematic: existing walls, the old chimney, paving, fences, trees and utilities in colour; spot elevations in orange; 1' contours in brown. The site falls about 4 ft across the house from the carport end to the primary-suite end. See [site existing conditions](docs/03-site-and-landscape.md#existing-conditions-survey). Combined DXF: [Accosting - owner schematic + survey.dxf](Accosting%20-%20owner%20schematic%20%2B%20survey.dxf).*
 
 ## 3D massing model
 
@@ -57,7 +57,6 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | [Architectural set, draft (PDF)](renders/permit/architectural-set.pdf) | 24" x 36" permit sheets: [A-0 cover and code analysis](renders/permit/A-0-cover.png) · [A-1 site plan](renders/permit/A-1-site-plan.png) · [A-2 floor plan and schedules](renders/permit/A-2-floor-plan.png) · [A-3 roof plan](renders/permit/A-3-roof-plan.png) · [A-4 elevations](renders/permit/A-4-elevations.png) · [A-5 sections](renders/permit/A-5-sections.png) · [A-6 fire-zone details](renders/permit/A-6-fire-details.png) |
 | [Zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) | Site plan with setbacks and project data, floor plan, roof plan, elevations ([how to submit](docs/11-zoning-check.md)) |
 | [`Accosting - owner schematic + survey.dxf`](Accosting%20-%20owner%20schematic%20%2B%20survey.dxf) | The plan over the topographic survey as a DXF (inches) |
-| Topographic survey: [PDF](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.pdf) · [DWG](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dwg) · [DXF](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dxf) | The surveyor's topo of the lot ([folder](https://github.com/blotzy/floorplan/tree/main/source_files/survey)) |
 | Plan renders: [site plan](renders/schematic.png) · [house](renders/schematic-zoom.png) · [survey overlay](renders/survey-overlay.png) | The images at the top of this page, full size ([folder](https://github.com/blotzy/floorplan/tree/main/renders)) |
 | 3D model: [open in the browser](https://blotzy.github.io/floorplan/renders/3d/house.html) · [with the roof](https://blotzy.github.io/floorplan/renders/3d/house.html#roof) · [OBJ](renders/3d/house.obj) | Walkable 3D model; the OBJ opens in Windows 3D Viewer or Blender |
 

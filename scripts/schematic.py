@@ -41,7 +41,7 @@ EXT = 9.0      # exterior: 1/2" gyp + 2x6 + 1/2" sheathing + 1" rigid insul. + 7
 INT = 4.5      # interior: 2x4 + 1/2" gyp each side
 WET = 6.5      # plumbing walls: 2x6 + 1/2" gyp each side
 
-LOT_W, LOT_D = 1356.0, 777.25        # 113.00' x 64.77' per the topographic survey (source_files/survey)
+LOT_W, LOT_D = 1356.0, 777.25        # 113.00' x 64.77' per the topographic survey (private/survey)
 LOT_X0 = 2.0                         # x of the east property line (side setbacks: 10% of LOT_W each)
 E, W, N, S = 356.1, 1220.0, 241.2, 619.2   # house outer faces (72' x 31'-6")
 E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT

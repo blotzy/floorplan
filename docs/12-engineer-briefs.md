@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-One page each for the structural and civil engineers, so they can quote and start design. Send the page with the [architectural set](../renders/permit/architectural-set.pdf) (A-0 to A-6), the topographic survey and the [zoning check set](../renders/zoning/zoning-check-set.pdf).
+One page each for the structural and civil engineers, so they can quote and start design. Send the page with the [architectural set](../renders/permit/architectural-set.pdf) (A-0 to A-6), the topographic survey (emailed separately) and the [zoning check set](../renders/zoning/zoning-check-set.pdf).
 
 ## Files
 
@@ -11,7 +11,6 @@ One page each for the structural and civil engineers, so they can quote and star
 | [Architectural set, draft (PDF)](../renders/permit/architectural-set.pdf), sheets A-0 to A-6 | Both |
 | [Plan as a DXF](../Accosting%20-%20owner%20schematic.dxf) (inches): CAD background for the framing and grading plans | Both |
 | [Plan over the survey as a DXF](../Accosting%20-%20owner%20schematic%20%2B%20survey.dxf) | Civil |
-| Topographic survey: [PDF](../source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.pdf) · [DWG](../source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dwg) · [DXF](../source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dxf) | Civil |
 | [Zoning check set (PDF)](../renders/zoning/zoning-check-set.pdf) | Both |
 | [3D model](../renders/3d/house.html) (open in a browser; Roof menu, walk mode) | Both |
 | [Floor plan and design notes](02-floor-plan.md) · [plumbing](04-plumbing.md) · [open questions](09-open-questions.md) | Both |
@@ -37,7 +36,7 @@ One page each for the structural and civil engineers, so they can quote and star
 
 ## Civil engineer
 
-**Project:** as above. Lot 113.00' x 64.77' (7,319 sq ft), topographic survey on hand (DWG, DXF, PDF).
+**Project:** as above. Lot 113.00' x 64.77' (7,319 sq ft), topographic survey on hand (DWG, DXF, PDF; sent separately).
 
 **Scope requested:** finished floor elevation, grading and drainage plan, erosion control for construction, and the County grading permit determination (Appendix J103). Coordinate the foundation-to-grade design with the structural engineer.
 

@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
-"""Overlay the topographic survey (source_files/survey/*.dxf) on the owner schematic.
+"""Overlay the topographic survey (private/survey/*.dxf, not published) on the owner schematic.
 
 The survey is in California State Plane (feet). It is moved onto the plan's lot
 coordinates (inches, origin at the street-side east corner, +x west, +y south)
@@ -26,7 +26,7 @@ import ezdxf
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import schematic as S  # noqa: E402
 
-SURVEY = next((S.ROOT / "source_files" / "survey").glob("*.dxf"))
+SURVEY = next((S.ROOT / "private" / "survey").glob("*.dxf"))   # the surveyor's file: kept private
 OUT = S.ROOT / "Accosting - owner schematic + survey.dxf"
 PNG = S.RENDERS / "survey-overlay.png"
 

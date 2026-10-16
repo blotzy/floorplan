@@ -11,7 +11,7 @@
 
 ## Existing conditions (survey)
 
-From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.png](../renders/survey-overlay.png)).
+From the topographic survey (available on request; overlay: [survey-overlay.png](../renders/survey-overlay.png)).
 
 - **Slope:** the lot falls about 8 ft from the east line to the west line, and about 4 ft across the house footprint (high at the carport end, low at the primary-suite end and along the rear). A single flat slab would sit well above grade at the west end. The architect and civil engineer choose the foundation (stepped or raised) and grading approach; drainage must carry water around the house toward the street.
 - **Old retaining wall and chimney:** remnants of the previous house. A 2–3 ft retaining wall crosses the house's southeast corner (under the dining area) with a lower terrace behind it, and the old chimney still stands in the courtyard. Both come out with demolition, but the grade change they hold remains.
