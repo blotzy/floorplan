@@ -440,9 +440,13 @@ def roof_plan(pdf):
     ax.plot([cx0 - 8, cx0 - 8], [cy0 - 6, cy1 + 6], color=INK, lw=2.0)
     ax.text(cx0 - 14, (cy0 + cy1) / 2, "GUTTER", fontsize=5.5, rotation=90, ha="right", va="center")
     sh = S.build()
-    for lab, note in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A):\nset the PV layout around it"),
-                      ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it")):
-        p = text_at(sh, lab)
+    sk = text_at(sh, "SKYLIGHT")                                        # ceiling diffuser in the common bath
+    dome = (sk[0] - 8, S.S - 34) if sk else None                        # roof dome beside the rear plumbing vent
+    if sk:
+        ax.plot([sk[0], dome[0]], [sk[1], dome[1]], color=INK, lw=0.8, ls=":")
+        ax.add_patch(Circle(sk, 5, fill=False, ec=INK, lw=0.8, ls="--"))
+    for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A): dome beside\nthe rear vent, tube angled from the bath ceiling (dashed)", dome),
+                         ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it", text_at(sh, "RANGE"))):
         if p:
             ax.add_patch(Circle(p, 7, fc="white", ec=INK, lw=0.9))
             ax.text(p[0] + 10, p[1] + 10, note, fontsize=5.5, va="bottom")
@@ -483,9 +487,9 @@ def roof_plan(pdf):
              "6. Roof penetrations flashed. Two plumbing vents (VTR): the\n"
              "   shared ensuite's in the strip along the high edge; the\n"
              "   rest combined into one near the rear wall, where the panel\n"
-             "   rows stop short of it. Bath and laundry fans exit through\n"
-             "   walls where possible. The range hood and skylight sit in\n"
-             "   the PV area: the panel layout works around them.\n"
+             "   rows stop short of it; the skylight dome sits beside it.\n"
+             "   Bath and laundry fans exit through walls where possible.\n"
+             "   The range hood cap is the one penetration mid-array.\n"
              "7. Carport: attached open carport, its own low-slope roof\n"
              "   (Class A), gutter on its east edge.")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
