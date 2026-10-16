@@ -8,11 +8,16 @@ or vertical banding or material, projected or recessed 6 inches, entire length o
 Every option keeps the recessed street windows and has no canopies.
 
   recessed     recessed windows only (reference)
-  band-9       one band 8" tall, 6" proud, at the porch ceiling line (9'), the whole length
-  band-9-dark  the same band in dark metal, matching the fascia
-  band-two     two bands: one at 9', one under the clerestory glass
-  band-wood    one tall wood-look band, 6" proud, filling the wall from 9' to the clerestory
-  reveal       a 4" recessed reveal (shadow line) at 10', the whole length
+  band-9-dark  one dark metal band, 8" tall and 6" proud, at the porch ceiling line (9')
+  mid          one band centred between the window heads and the clerestory glass
+  mid-dark     the same band in dark metal
+  thirds       two bands splitting the wall between the window heads and the clerestory into thirds
+  edges-dark   a band filling the course from 9' to the 11' wall plate (between the model's edge
+               lines, below the clerestory), dark, 6" proud
+  edges-wood   the same band in wood-look
+  tone-dark    two-tone: everything above the 9' ceiling line a dark stucco, all round the house
+  tone-wood    two-tone: wood-look above the 9' line, all round
+  tone-mid     two-tone dark, split at the midpoint between the window heads and the clerestory
 
 Writes renders/experiments/band-<option>/house.html, band-<option>-{street,front,close}.png and
 band-compare-{street,front,close}.png.
@@ -37,6 +42,10 @@ G0 = X.PLATE + (TOP - X.PLATE - 36.0) / 2           # underside of the clerestor
 GREY, DARK, WOOD = 0x8E8A84, 0x2B2D30, 0xA8754B
 
 
+HEAD = 96.0                                          # window heads
+MID = (HEAD + G0) / 2
+
+
 def band(z0, z1, colour, proud=6.0):
     def f(sc):
         sc.boxes["band"].append([E, N - proud, W, N, z0, z1])
@@ -44,21 +53,41 @@ def band(z0, z1, colour, proud=6.0):
     return f
 
 
-def reveal(z0, z1):
-    def f(sc):                                       # drawn as the reveal's shadow on the wall face
-        sc.boxes["band"].append([E, N - 0.3, W, N, z0, z1])
-        sc.mat["band"] = {"color": 0x6E6A64}
+def centred(zc, h=8.0):
+    return zc - h / 2, zc + h / 2
+
+
+def tone(z, colour):
+    """A second colour on every wall above height z (just proud of the stucco), around the clerestory."""
+    under = X.shed_vault_under(2 / 12)
+    Sth, d = S.S, 0.3
+    lx0, lx1 = X.LOUNGE_X
+    def f(sc):
+        q = lambda a, b, c, e: X.quad(sc, "tone", a, b, c, e)       # noqa: E731
+        y = N - d                                                    # street wall, around the glass
+        for a, b, z0, z1 in ((E, lx0, z, TOP), (lx1, W, z, TOP), (lx0, lx1, z, G0), (lx0, lx1, G0 + 36, TOP)):
+            q([a, y, z0], [b, y, z0], [b, y, z1], [a, y, z1])
+        if under(Sth) > z:                                           # rear wall
+            q([E, Sth + d, z], [W, Sth + d, z], [W, Sth + d, under(Sth)], [E, Sth + d, under(Sth)])
+        for x in (E - d, W + d):                                     # end walls, up to the slope
+            q([x, N, z], [x, Sth, z], [x, Sth, max(z, under(Sth))], [x, N, under(N)])
+        sc.mat["tone"] = {"color": colour}
     return f
 
 
 VARIANTS = {   # key -> (title, [steps])
     "recessed": ("Recessed windows only (no band)", [A.recessed]),
-    "band-9": ("One 8\" band, 6\" proud, at the porch ceiling line", [A.recessed, band(108, 116, GREY)]),
-    "band-9-dark": ("The same band in dark metal (matches the fascia)", [A.recessed, band(108, 116, DARK)]),
-    "band-two": ("Two bands: 9' and under the clerestory", [A.recessed, band(108, 116, GREY),
-                                                            band(G0 - 8, G0, GREY)]),
-    "band-wood": ("Tall wood-look band, 6\" proud, 9' to the clerestory", [A.recessed, band(108, G0, WOOD)]),
-    "reveal": ("4\" recessed reveal at 10' (shadow line)", [A.recessed, reveal(120, 124)]),
+    "band-9-dark": ("Dark band at the porch ceiling line (9')", [A.recessed, band(108, 116, DARK)]),
+    "mid": ("One band centred between window heads and clerestory", [A.recessed, band(*centred(MID), GREY)]),
+    "mid-dark": ("The centred band in dark metal", [A.recessed, band(*centred(MID), DARK)]),
+    "thirds": ("Two bands, the wall above the windows in thirds",
+               [A.recessed] + [band(*centred(HEAD + (G0 - HEAD) * k / 3), GREY) for k in (1, 2)]),
+    "edges-dark": ("Band filling the 9'-11' course (between the edge lines), dark, 6\" proud",
+                   [A.recessed, band(108, X.PLATE, DARK)]),
+    "edges-wood": ("The same 9'-11' band in wood-look, 6\" proud", [A.recessed, band(108, X.PLATE, WOOD)]),
+    "tone-dark": ("Two-tone: dark stucco above the 9' line, all round", [A.recessed, tone(108, 0x7C8187)]),
+    "tone-wood": ("Two-tone: wood-look above the 9' line, all round", [A.recessed, tone(108, WOOD)]),
+    "tone-mid": ("Two-tone dark, split midway between windows and clerestory", [A.recessed, tone(MID, 0x7C8187)]),
 }
 
 
@@ -76,7 +105,7 @@ def main():
         for view, (cam, tgt) in A.VIEWS.items():
             X.screenshot(out_dir / "house.html", OUT / f"band-{key}-{view}.png", cam, tgt)
     for view in A.VIEWS:
-        fig, axs = plt.subplots(3, 2, figsize=(16, 11.7 if view == "street" else 14.7))
+        fig, axs = plt.subplots(5, 2, figsize=(16, 19.5 if view == "street" else 24.5))
         for ax, (key, (title, _)) in zip(axs.flat, VARIANTS.items()):
             png = OUT / f"band-{key}-{view}.png"
             if png.exists():
