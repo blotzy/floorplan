@@ -5,7 +5,7 @@
 ## Siting and carport
 
 - House near the west side setback: **11'-6"** west side yard (11'-3⅝" required, 10% of the 113' lot width; confirm with the planner).
-- **Carport 18' x 20'** on the east end, two cars side by side, **11'-6"** from the east property line. Clear-span beam with posts only at the corners (no middle post). The driveway is new: a single-car-width entrance between the parkway street tree and the tree just inside the lot, curving west to open onto the full carport width. The old driveway, further west in front of the planned porch and lounge, goes away. (No curbs or sidewalks on Laurel Drive, so there's no curb cut to deal with.) The street is a little higher than the carport, so the drive runs downhill toward the house: a trench drain or grading at the carport keeps runoff away from the house.
+- **Carport 18' x 18'** (the County's minimum space depth) on the east end, its front in line with the front door (parking may not sit closer to the street than the front door, §22.140.520), two cars side by side, **11'-6"** from the east property line. Clear-span beam with posts only at the corners (no middle post). The driveway is new: a single-car-width entrance between the parkway street tree and the tree just inside the lot, curving west to open onto the full carport width. The old driveway, further west in front of the planned porch and lounge, goes away. (No curbs or sidewalks on Laurel Drive, so there's no curb cut to deal with.) The street is a little higher than the carport, so the drive runs downhill toward the house: a trench drain or grading at the carport keeps runoff away from the house.
 - Carport roof: nearly flat (about ¼" per foot), sloping east, away from the house, so water drains off its east edge into a gutter and downspouts tied to the site drainage, not toward the house or porch. Class A low-slope roofing (single-ply TPO/PVC or a mineral-surfaced modified-bitumen cap sheet over a noncombustible or fire-rated deck), with a thin dark fascia to match the house. Where it meets the house's east gable-end wall, flash it to the stucco.
 - Carport: noncombustible framing and finishes; wall space for the EV charger. The exterior meter-main goes where SCE's service point is (the utilities are at the west end), so expect a long run from the panel to the carport charger, or a meter location on the east side if SCE allows.
 
@@ -29,9 +29,9 @@ From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.
 
 ## Southeast courtyard (behind the carport, east of the house)
 
-- **No patio.** A 5' gravel strip runs along the house wall from the pavers to the planters (noncombustible zone), with an at-grade landing outside the 8' dining slider. Nothing raised that would count as a deck or platform.
+- **No patio.** A 5' gravel strip runs along the house wall from the pavers to the planters (noncombustible zone), with an at-grade landing outside the 6' dining slider. Nothing raised that would count as a deck or platform.
 - **Pavers** 5'-deep band along the back of the carport (keeps the lawn out of the carport's 5' fire zone).
-- **Lawn** about 15' x 14' (~210 sq ft), tall fescue + microclover blend, 1' DG edging. Irrigate from the unsoftened line.
+- **Lawn** about 15' x 14' (~210 sq ft), tall fescue + microclover blend, edged by the pavers and the planter wall. Irrigate from the unsoftened line.
 - **Raised planters** 3' deep along the rear fence (noncombustible: concrete, block, or steel). Shade-tolerant, dog-safe plants (e.g., coral bells, ferns); no oleander, sago palm, foxglove, or azalea.
 - **6' fence** across the back of the carport and bin strip with a **4' gate** behind the carport. The bin strip stays outside the dog yard.
 - Optional: one small deciduous tree (e.g., crape myrtle) in the courtyard's southeast corner, ≥10' from the roof; nothing tall south of the house (future solar).

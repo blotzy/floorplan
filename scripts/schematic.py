@@ -49,7 +49,8 @@ E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 # Corner porch notch (outer faces) at the north-east corner.
 PORCH_X, PORCH_Y = 444.1, 289.2      # notch is E..PORCH_X by N..PORCH_Y
 FOYER_WALL_END = PORCH_Y + EXT + 108.0   # foyer/TV wall: 9' of foyer inside the front wall
-CARPORT = (140.1, N, E, 481.3)       # x0, y0, x1, y1 (18' x 20')
+CARPORT = (140.1, PORCH_Y, E, PORCH_Y + 216.0)   # x0, y0, x1, y1: 18' x 18' (County minimum depth), front
+                                     # in line with the front door, not closer to the street (22.140.520)
 # Driveway: a 12' entrance between the parkway street tree (~26'-6" from the east line) and the
 # tree inside the lot (~8'-6"), flaring west to the carport's full width. Runs out across the
 # parkway to the edge of pavement (no curb on Laurel Drive).
@@ -110,7 +111,7 @@ OPENINGS = [
     ("south",       763.5, 811.5, "window", 72.0, 96.0),  # laundry: matching high window over the rear shelves
     ("south",       975.0, 1023.0, "window", 72.0, 96.0),  # primary bath: matching 4'-0" x 2'-0" over the walkway
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
-    ("east",        503.75, 599.75, "slider"),           # dining 8' slider (centred between the carport fence and the corner)
+    ("east",        527.7, 599.7, "slider"),             # dining 6' slider (centred between the carport fence and the corner)
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
     ("west",        414.7, 450.7, "transom", 86.0, 104.0),  # 7' door + fixed 3'-0" x 1'-6" transom: daylight down the hall
     # interior
@@ -595,11 +596,11 @@ def build() -> Sheet:
     sh.msp.add_lwpolyline([(cx0, cy0), (cx1, cy0), (cx1, cy1), (cx0, cy1)], close=True,
                           dxfattribs={"layer": "L-SITE", "linetype": "DASHED"})
     sh.text("CARPORT", (cx0 + cx1) / 2, (cy0 + cy1) / 2, 10.0, "A-AREA-IDEN")
-    sh.text("18' x 20'", (cx0 + cx1) / 2, (cy0 + cy1) / 2 - 12, 6.5, "A-AREA-IDEN")
+    sh.text("18' x 18'", (cx0 + cx1) / 2, (cy0 + cy1) / 2 - 12, 6.5, "A-AREA-IDEN")
     sh.msp.add_lwpolyline(driveway_outline(), close=True, dxfattribs={"layer": "L-SITE"})
     sh.text("DRIVEWAY", (DRIVE_IN[0] + DRIVE_IN[1]) / 2 + 10, 120.0, 9.0, "A-AREA-IDEN")
     sh.rect(E + 4, N - 24, PORCH_X - 4, N, "L-SITE")                          # porch step
-    sh.rect(E, N, E + 6, N + 6, "A-WALL")                                     # porch corner post (carport beam lands here)
+    sh.rect(E, N, E + 6, N + 6, "A-WALL")                                     # porch corner post
     sh.rect(*ENTRY_COURT, "L-SITE")                                           # entry court + seat wall
     sh.text("ENTRY COURT", (ENTRY_COURT[0] + ENTRY_COURT[2]) / 2, 205.0, 6.0, "A-AREA-IDEN")
     for b in ENTRY_WALLS:
@@ -613,7 +614,8 @@ def build() -> Sheet:
     sh.text("GRAVEL", E - 30, 660.0, 4.0, rot=90)                                     # along the house (no patio)
     sx0, sx1 = next(o[1:3] for o in OPENINGS if o[0] == "east" and o[3] == "slider")
     sh.rect(E - 36, sx0, E, sx1, "L-SITE"); sh.text("LANDING", E - 18, (sx0 + sx1) / 2, 3.5, rot=90)  # at grade
-    sh.rect(LOT_X0 + 18, fy + 73, E - 156, LOT_D - 54, "L-PLNT"); sh.text("LAWN", (LOT_X0 + 18 + E - 156) / 2, 640.0, 7.0)
+    sh.rect(LOT_X0 + 18, fy + 61, E - 156, LOT_D - 42, "L-PLNT")                       # edged by the pavers and planter wall
+    sh.text("LAWN", (LOT_X0 + 18 + E - 156) / 2, 650.0, 7.0)
     sh.rect(LOT_X0 + 6, LOT_D - 42, E, LOT_D - 6, "L-PLNT"); sh.text("RAISED PLANTERS", (LOT_X0 + E) / 2, LOT_D - 24, 5.0)
     sh.line((LOT_X0, fy), (160, fy), "A-FENC"); sh.line((208, fy), (E, fy), "A-FENC")
     sh.text("6' FENCE / GATE", 184, fy - 10, 4.0)

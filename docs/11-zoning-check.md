@@ -35,14 +35,14 @@ Check the site for any current requirements on file format or sheets before uplo
 
 **Project description to paste:**
 
-> Non-like-for-like rebuild of a single-family residence destroyed in the Eaton Fire. One story, about 2,238 sq ft (to the outside of the walls), 4 bedrooms and 3 baths, with an attached open carport (2 covered spaces, 360 sq ft) and a 29 sq ft covered porch. Lot 113.00' x 64.77' (7,319 sq ft), R-1, Altadena CSD. Lot coverage about 2,628 sq ft (35.9%). Shed roof at 2:12 with a clerestory over the lounge; top of roof about 17'-7" above finished floor at the street eave. Owner-prepared schematic for a preliminary zoning read; permit drawings to follow from the architect.
+> Non-like-for-like rebuild of a single-family residence destroyed in the Eaton Fire. One story, about 2,238 sq ft (to the outside of the walls), 4 bedrooms and 3 baths, with an attached open carport (2 covered spaces, 324 sq ft) and a 29 sq ft covered porch. Lot 113.00' x 64.77' (7,319 sq ft), R-1, Altadena CSD. Lot coverage about 2,592 sq ft (35.4%). Shed roof at 2:12 with a clerestory over the lounge; top of roof about 17'-7" above finished floor at the street eave. Owner-prepared schematic for a preliminary zoning read; permit drawings to follow from the architect.
 
 **Property details:** 220 Laurel Dr, Altadena, CA 91001 · APN 5832-003-027 · Johnston and Hay Tract, portion of Lot 11 (M.B. 9-50).
 
 ## Questions to ask
 
 1. **Side setbacks:** is the side yard 10% of the lot width (11'-3⅝" here)? The plan provides 11'-6" each side.
-2. **Rear setback:** is the rear yard 20% of the lot depth (12'-11½")? The plan provides 13'-2".
+2. **Rear setback:** the lot is less than 75 ft deep, so the plan uses the shallow-lot rear yard, 20% of the average depth (12'-11½"; §22.110.080.D, Rear Yards on Shallow Lots), and provides 13'-2". Confirm it applies under the CSD's rear-yard standard (25 ft for lots under 20,000 sq ft, §22.320.090.D.1.a), which supersedes only the base zone's yards (§22.18.040.C). The County's Altadena CSD summary lists the shallow-lot rule under the CSD rear yard, and the eCheck passed §22.110.080.D but separately failed the 25 ft CSD figure.
 3. **Floor area and lot coverage:** do both use the CSD limit of ¼ of the net lot area plus 1,000 sq ft (about 2,830 sq ft)? Is the open carport excluded from floor area but counted in coverage? Is the net lot area the full 7,319 sq ft?
 4. **Height:** what is the height limit, and from which grade is it measured on a lot that falls about 4 ft across the footprint? The shed's street eave is the high point.
 5. **Carport:** does the street-facing garage rule for lots over 100' of frontage (§22.140.520) apply to an open carport?
