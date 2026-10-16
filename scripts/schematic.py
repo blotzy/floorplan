@@ -676,7 +676,7 @@ def build() -> Sheet:
     tx = sum(t[0] for t in EXIST_TREES) / len(EXIST_TREES)
     sh.text("EXIST. MATURE OLIVE TREES TO REMAIN", tx, -140.0, 5.0)
     sh.rect(LOT_X0 + 6, 262, LOT_X0 + 54, 382, "L-SITE"); sh.text("BINS", LOT_X0 + 30, 322, 5.0, rot=90)        # bin pad
-    hx = (face("laundry|bath", +1) + face("utility|bath", -1)) / 2                      # heat pump outdoor: behind the storage
+    hx = sum(next(w[3:5] for w in WALLS if w[0] == "bath|storage")) / 2               # heat pump outdoor: behind the storage
                                                                                         # room, between the two high windows
     sh.rect(hx - 21, S + 10, hx + 21, S + 30, "A-EQPM")                                 # unit behind the laundry
     sh.rect(hx - 27, S + 4, hx + 27, S + 36, "A-FENC")                                  # dog guard

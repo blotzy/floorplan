@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 16, 2026, 6:02 AM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 16, 2026, 6:07 AM PT · @Richard
 
 > **Use of these plans.** © 2026 Richard Acosta. All rights reserved. Everything here (plans, drawings, DXF files, 3D models, renders, documents and scripts) is for the rebuild of 220 Laurel Dr only and is shared for the people working on this project. It may not be copied, adapted, built from, submitted for a permit or used commercially anywhere else. These are owner-prepared drafts, not reviewed by a licensed architect, engineer or permitting agency, and not for construction. See [LICENSE](LICENSE).
 
@@ -52,6 +52,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | --- | --- |
 | [`Accosting - owner schematic.dxf`](Accosting%20-%20owner%20schematic.dxf) | The plan as a DXF (inches) |
 | [Architectural set, draft (PDF)](renders/permit/architectural-set.pdf) | 24" x 36" permit-style sheets, in progress: floor plan with door and window schedules ([PNG](renders/permit/A-2-floor-plan.png)) |
+| Experiment: [laundry and common bath swapped](renders/experiments/laundry-swap.png) (vs [the current plan](renders/experiments/laundry-current.png)) | The bath next to the pantry, the laundry against the walk-in closet with a pass-through |
 | [Zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) | Site plan with setbacks and project data, floor plan, roof plan, elevations ([how to submit](docs/11-zoning-check.md)) |
 | [`Accosting - owner schematic + survey.dxf`](Accosting%20-%20owner%20schematic%20%2B%20survey.dxf) | The plan over the topographic survey as a DXF (inches) |
 | Topographic survey: [PDF](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.pdf) · [DWG](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dwg) · [DXF](source_files/survey/102_220%20Laurel%20Drive%20TOPO_ts4096_101.dxf) | The surveyor's topo of the lot ([folder](https://github.com/blotzy/floorplan/tree/main/source_files/survey)) |
