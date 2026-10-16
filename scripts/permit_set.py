@@ -179,7 +179,7 @@ def window_type(rm, w, h, sill, kind):
     if rm in ("LOUNGE",):
         return "Fixed center, slider each end", ""
     if rm == "DINING":
-        return "Fixed, two units mulled", "Tempered: within 24\" of the dining slider (CRC R308.4.2)"
+        return "Fixed, two units mulled", "Large panes, low sill: tempered recommended (more than 24\" from the slider)"
     if rm == "KITCHEN":
         return "Horizontal slider", "Over the sink"
     if rm == "PORCH" or rm == "FOYER":
