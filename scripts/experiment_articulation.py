@@ -3,22 +3,23 @@
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
 """Experiment: street-facade articulation without changing the roof (County building articulation,
-Table 22.140.520-C: at least one strategy plus one per 30 linear feet of street facade).
+Table 22.140.520-C): street windows recessed 6" ("recessed windows, 6 inches deep for over 50% of
+the facade window area") plus metal canopies 3' deep over the street windows ("weather protection
+or shading device over windows, 3 feet deep for 50% of the windows"), in different styles and
+heights. Each canopy runs 1' past its window and no farther (22.110.090.B), so they stay separate.
 
-  plan       main plan as drawn
-  canopies   flat metal eyebrow canopies, 3' deep, over the lounge, gym, guest and office windows
-             (each canopy runs 1' past its window: 22.110.090.B), "weather protection or shading
-             device over windows, 3 feet deep for 50% of the windows"
-  recessed   street windows set 6" back from the stucco face, "recessed windows, 6 inches deep for
-             over 50% of the facade window area"
-  textured   dark fiber-cement board-and-batten on the bedroom wing's street wall, wrapping 4' around
-             the west corner, "textured materials with relief"
-  surrounds  projected window surrounds, 6" wide and 4" proud, around every street window
-             (reviewed by hand: the County's tool doesn't assess it)
-  combo      canopies + recessed + textured
+  plan       main plan as drawn (reference)
+  recessed   recessed windows only
+  flat-8     thin flat plate just above the 8' window heads
+  flat-9     thin flat plate at 9', in line with the porch ceiling
+  hood-9     at 9', with a deep front fascia and side cheeks (a boxed hood)
+  louver-9   at 9', open aluminium louver blades between two outriggers
+  tilt-9     at 9', a thin plate rising toward its outer edge
+  all-9      flat-9, plus a short canopy over the shared ensuite's small high window (all five)
 
-Writes renders/experiments/artic-<option>/house.html, artic-<option>-{street,front}.png and
-artic-compare-{street,front}.png.
+All but plan and recessed: recessed windows + canopies over the lounge, gym, guest and office
+windows (four of the five street windows). Writes renders/experiments/canopy-<option>/house.html,
+canopy-<option>-{street,front,close}.png and canopy-compare-{street,front,close}.png.
 
     uv run scripts/experiment_articulation.py
 """
@@ -32,76 +33,80 @@ import experiment_exterior as X  # noqa: E402
 import make_3d as M  # noqa: E402
 import schematic as S  # noqa: E402
 
-E, W, N = S.E, S.W, S.N
+N = S.N
 OUT = S.RENDERS / "experiments"
-UNDER = X.shed_vault_under(2 / 12)
+DEPTH, RUN = 36.0, 12.0                    # canopy depth off the wall; run past each side of the window
 WINS = [(o[1], o[2], *(o[4:6] if len(o) > 4 else (30.0, 96.0)))
         for o in S.OPENINGS if o[0] == "north" and o[3] == "window"]      # (x0, x1, sill, head)
-CANOPIED = [w for w in WINS if w[2] < 60]                                   # not the ensuite's high window
-WING = S.face("lounge|gym", +1) - 2.25                                      # bedroom wing: wall line to the west end
-VIEWS = {"street": X.VIEWS["street"], "front": ((800, -300, 70), (800, 300, 100))}
-
-
-def canopies(sc):
-    for x0, x1, _, head in CANOPIED:
-        sc.boxes["canopy"].append([x0 - 12, N - 36, x1 + 12, N, head + 2, head + 5])
-    sc.mat["canopy"] = {"color": 0x2B2D30}
+BIG = [w for w in WINS if w[2] < 60]                                        # not the ensuite's high window
+VIEWS = {"street": X.VIEWS["street"], "front": ((800, -300, 70), (800, 300, 100)),
+         "close": ((560, -110, 62), (900, 250, 100))}
+DARK = 0x2B2D30
 
 
 def recessed(sc):
-    """Glass from the wall's centre to 6" behind the stucco face (the openings' jambs are already drawn)."""
+    """Glass 6" behind the stucco face (the openings' jambs are already drawn)."""
     yc = N + S.EXT / 2
     for q in sc.quads["glass"]:
         if abs(q[1] - yc) < 0.01 and abs(q[3] - yc) < 0.01 and q[4] < 100:
             q[1] = q[3] = N + 6.0
 
 
-def textured(sc):
-    """Board-and-batten panels (just proud of the stucco) on the wing's street wall and 4' around the corner."""
-    y, top = N - 0.6, UNDER(N)
-    xs = [WING]
-    for x0, x1, _, _ in WINS:
-        if x0 > WING:
-            xs += [x0, x1]
-    xs.append(W)
-    for a, b in zip(xs[::2], xs[1::2]):                                      # full height between windows
-        sc.boxes["cladding"].append([a, y, b, N, 0, top])
-    for x0, x1, sill, head in WINS:
-        if x0 > WING:
-            sc.boxes["cladding"].append([x0, y, x1, N, 0, sill])
-            sc.boxes["cladding"].append([x0, y, x1, N, head, top])
-    sc.boxes["cladding"].append([W, N, W + 0.6, N + 48, 0, UNDER(N + 48)])  # wrap the west corner
-    x = WING + 8
-    while x < W:                                                             # battens every 16"
-        z_gaps = [(0, top)]
-        for x0, x1, sill, head in WINS:
-            if x0 <= x <= x1:
-                z_gaps = [(0, sill), (head, top)]
-        for z0, z1 in z_gaps:
-            sc.boxes["batten"].append([x, N - 1.5, x + 1.5, N - 0.6, z0, z1])
-        x += 16
-    for yb in range(int(N) + 8, int(N) + 48, 16):
-        sc.boxes["batten"].append([W + 0.6, yb, W + 1.5, yb + 1.5, 0, UNDER(yb)])
-    sc.mat["cladding"] = {"color": 0x646A70}
-    sc.mat["batten"] = {"color": 0x565C62}
+def flat(z, wins=BIG):
+    def f(sc):
+        for x0, x1, _, head in wins:
+            zb = max(z, head + 2)
+            sc.boxes["canopy"].append([x0 - RUN, N - DEPTH, x1 + RUN, N, zb, zb + 3])
+    return f
 
 
-def surrounds(sc):
-    for x0, x1, sill, head in WINS:
-        y0 = N - 4
-        for b in ((x0 - 6, x1 + 6, head, head + 6), (x0 - 6, x1 + 6, sill - 6, sill),
-                  (x0 - 6, x0, sill, head), (x1, x1 + 6, sill, head)):
-            sc.boxes["surround"].append([b[0], y0, b[1], N, max(0.0, b[2]), b[3]])
-    sc.mat["surround"] = {"color": 0x2B2D30}
+def hood(z):
+    def f(sc):
+        for x0, x1, _, _ in BIG:
+            a, b = x0 - RUN, x1 + RUN
+            sc.boxes["canopy"].append([a, N - DEPTH, b, N, z + 6, z + 8])           # top plate
+            sc.boxes["canopy"].append([a, N - DEPTH, b, N - DEPTH + 2, z, z + 8])   # front fascia
+            for x in (a, b - 2):                                                     # side cheeks
+                sc.boxes["canopy"].append([x, N - DEPTH, x + 2, N, z, z + 8])
+    return f
+
+
+def louver(z):
+    def f(sc):
+        for x0, x1, _, _ in BIG:
+            a, b = x0 - RUN, x1 + RUN
+            for x in (a, b - 2):                                                     # outriggers
+                sc.boxes["canopy"].append([x, N - DEPTH, x + 2, N, z, z + 5])
+            sc.boxes["canopy"].append([a, N - DEPTH, b, N - DEPTH + 2, z, z + 5])   # front rail
+            y = N - 6
+            while y > N - DEPTH + 2:                                                 # blades every 5"
+                sc.boxes["canopy"].append([a + 2, y - 2.5, b - 2, y, z + 1.5, z + 2.5])
+                y -= 5
+    return f
+
+
+def tilt(z, rise=6.0):
+    def f(sc):
+        for x0, x1, _, _ in BIG:
+            a, b = x0 - RUN, x1 + RUN
+            y0, y1 = N, N - DEPTH
+            for dz in (0.0, 2.0):                                                    # underside, top
+                X.quad(sc, "canopy", [a, y0, z + dz], [b, y0, z + dz], [b, y1, z + rise + dz], [a, y1, z + rise + dz])
+            X.quad(sc, "canopy", [a, y1, z + rise], [b, y1, z + rise], [b, y1, z + rise + 2], [a, y1, z + rise + 2])
+            for x in (a, b):
+                X.quad(sc, "canopy", [x, y0, z], [x, y1, z + rise], [x, y1, z + rise + 2], [x, y0, z + 2])
+    return f
 
 
 VARIANTS = {   # key -> (title, [steps])
     "plan": ("Main plan as drawn", []),
-    "canopies": ("Metal eyebrow canopies, 3' deep, over 4 of the 5 street windows", [canopies]),
-    "recessed": ("Street windows recessed 6\"", [recessed]),
-    "textured": ("Fiber-cement board-and-batten on the bedroom wing", [textured]),
-    "surrounds": ("Projected window surrounds, 6\" x 4\" (manual review)", [surrounds]),
-    "combo": ("Canopies + recessed windows + board-and-batten", [canopies, recessed, textured]),
+    "recessed": ("Street windows recessed 6\" (no canopies)", [recessed]),
+    "flat-8": ("Recessed + thin flat canopies just above the 8' window heads", [recessed, flat(98.0)]),
+    "flat-9": ("Recessed + thin flat canopies at 9' (porch ceiling line)", [recessed, flat(108.0)]),
+    "hood-9": ("Recessed + boxed hoods at 9' (front fascia, side cheeks)", [recessed, hood(104.0)]),
+    "louver-9": ("Recessed + open louvered sunshades at 9'", [recessed, louver(106.0)]),
+    "tilt-9": ("Recessed + thin canopies at 9', rising toward the edge", [recessed, tilt(106.0)]),
+    "all-9": ("Recessed + flat canopies at 9' over all five street windows", [recessed, flat(108.0, WINS)]),
 }
 
 
@@ -114,25 +119,28 @@ def main():
         X.chosen_exterior(sc)
         for step in steps:
             step(sc)
-        out_dir = OUT / f"artic-{key}"
+        sc.mat["canopy"] = {"color": DARK}
+        out_dir = OUT / f"canopy-{key}"
         M.write_model(sc, out_dir, sc.meta)
         for view, (cam, tgt) in VIEWS.items():
-            X.screenshot(out_dir / "house.html", OUT / f"artic-{key}-{view}.png", cam, tgt)
+            X.screenshot(out_dir / "house.html", OUT / f"canopy-{key}-{view}.png", cam, tgt)
     for view in VIEWS:
-        fig, axs = plt.subplots(3, 2, figsize=(16, 14.4))
+        fig, axs = plt.subplots(4, 2, figsize=(16, 15.6 if view == "street" else 19.6))
         for ax, (key, (title, _)) in zip(axs.flat, VARIANTS.items()):
-            png = OUT / f"artic-{key}-{view}.png"
+            png = OUT / f"canopy-{key}-{view}.png"
             if png.exists():
-                ax.imshow(plt.imread(png))
+                im = plt.imread(png)
+                h, w = im.shape[:2]
+                ax.imshow(im[int(h * .12):int(h * .75), int(w * .08):int(w * .95)] if view == "street" else im)
             ax.set_title(f"{key}: {title}", fontsize=11); ax.axis("off")
         fig.tight_layout()
         try:
-            fig.savefig(OUT / f"artic-compare-{view}.png", dpi=90)
+            fig.savefig(OUT / f"canopy-compare-{view}.png", dpi=90)
         except OSError:                    # locked by a Windows image viewer
             import time
-            fig.savefig(OUT / f"artic-compare-{view}-{time.strftime('%H%M%S')}.png", dpi=90)
+            fig.savefig(OUT / f"canopy-compare-{view}-{time.strftime('%H%M%S')}.png", dpi=90)
         plt.close(fig)
-        print("  ", (OUT / f"artic-compare-{view}.png").relative_to(S.ROOT))
+        print("  ", (OUT / f"canopy-compare-{view}.png").relative_to(S.ROOT))
 
 
 if __name__ == "__main__":
