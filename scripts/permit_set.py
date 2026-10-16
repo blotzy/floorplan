@@ -257,7 +257,7 @@ def floor_plan(pdf):
     dim_string(ax, [S.PORCH_Y, S.S] + ew, S.E - 30, horiz=False)
 
     # door tags (circles) on the side the door doesn't swing to; window tags (hexagons) outside
-    dsched = []
+    dsched, placed = [], []
     for i, o in enumerate(doors(), 1):
         minus, plus = sides(o)
         a, b = room_at(rms, *minus), room_at(rms, *plus)
@@ -267,6 +267,10 @@ def floor_plan(pdf):
         else:
             swing = o[5] if len(o) > 5 else 1
             pt = minus if swing > 0 else plus
+        along_x = S.wall_info(o[0])[0] == "x"
+        while any((pt[0] - q[0]) ** 2 + (pt[1] - q[1]) ** 2 < 18 ** 2 for q in placed):   # clear of other tags
+            pt = (pt[0] + 20, pt[1]) if along_x else (pt[0], pt[1] + 20)
+        placed.append(pt)
         ax.add_patch(Circle(pt, 8, fc="white", ec=INK, lw=0.8, zorder=5))
         ax.text(*pt, str(i), fontsize=6.5, ha="center", va="center", zorder=6)
         w = o[2] - o[1]
@@ -318,6 +322,9 @@ def floor_plan(pdf):
             rms_here.append(rm)
             if kind == "clerestory":
                 outside = ((a + b) / 2 + 40, outside[1])
+            elif any(d[0] == wall and d[1] < b and a < d[2] for d in doors()):   # transom over a door:
+                along = 30.0                                                     # beside the door's tag
+                outside = (outside[0], outside[1] + along) if S.wall_info(wall)[0] == "y" else (outside[0] + along, outside[1])
             pts = [(outside[0] + 9 * dx, outside[1] + 9 * dy) for dx, dy in
                    ((1, 0), (0.5, 0.87), (-0.5, 0.87), (-1, 0), (-0.5, -0.87), (0.5, -0.87))]
             ax.add_patch(MPoly(pts, closed=True, fc="white", ec=INK, lw=0.8, zorder=5))
@@ -334,10 +341,10 @@ def floor_plan(pdf):
     hall_y = (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2
     for nm, (x, y) in {"GYM": (760, 330), "GUEST": (980, 330), "OFFICE": (1140, 330), "PRIMARY": (1140, 540)}.items():
         alarm(x, y, "SD")
-    for x in (780, 1180):
+    for x in (905, 1150):
         alarm(x, hall_y, "SD/\nCO")
-    ax.text(990 + 27, hall_y - 22, "AIR HANDLER + ERV ABOVE\n(SEALED ATTIC, VIA HATCH)", fontsize=5,
-            ha="center", va="top", color=INK)
+    ax.text(990 + 27, hall_y + 15, "AIR HANDLER + ERV ABOVE (SEALED ATTIC)", fontsize=5,
+            ha="center", va="bottom", color=INK)
     for x, y in ((560, 360), (430, 560), (610, 470)):
         pass
     ax.text(585, 445, "VAULTED CEILING\n(FOYER, LOUNGE, DINING, KITCHEN)", fontsize=6, ha="center", color="#555")
