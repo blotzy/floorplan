@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 16, 2026, 9:17 AM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild. Updated Oct 16, 2026, 9:22 AM PT · @Richard
 
 > **Use of these plans.** © 2026 Richard Acosta. All rights reserved. Everything here (plans, drawings, DXF files, 3D models, renders, documents and scripts) is for the rebuild of 220 Laurel Dr only and is shared for the people working on this project. It may not be copied, adapted, built from, submitted for a permit or used commercially anywhere else. These are owner-prepared drafts, not reviewed by a licensed architect, engineer or permitting agency, and not for construction. See [LICENSE](LICENSE).
 
@@ -54,7 +54,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | File | What it is |
 | --- | --- |
 | [`accosting-owner-schematic.dxf`](accosting-owner-schematic.dxf) | The plan as a DXF (inches) |
-| [Architectural set, draft (PDF)](renders/permit/architectural-set.pdf) | 24" x 36" permit sheets: [A-0 cover and code analysis](renders/permit/A-0-cover.png) · [A-1 site plan](renders/permit/A-1-site-plan.png) · [A-2 floor plan and schedules](renders/permit/A-2-floor-plan.png) · [A-3 roof plan](renders/permit/A-3-roof-plan.png) · [A-4 elevations](renders/permit/A-4-elevations.png) · [A-5 sections](renders/permit/A-5-sections.png) · [A-6 fire-zone details](renders/permit/A-6-fire-details.png) |
+| [Architectural set, draft (PDF)](renders/permit/architectural-set.pdf) | 24" x 36" permit sheets: [A-0 cover and code analysis](renders/permit/A-0-cover.png) · [A-1 site plan](renders/permit/A-1-site-plan.png) · [A-2 floor plan and schedules](renders/permit/A-2-floor-plan.png) · [A-3 roof plan](renders/permit/A-3-roof-plan.png) · [A-4 elevations](renders/permit/A-4-elevations.png) · [A-5 sections](renders/permit/A-5-sections.png) · [A-6 fire-zone details](renders/permit/A-6-fire-details.png) · [A-7 attic and loads plan](renders/permit/A-7-attic-loads.png) |
 | [Zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) | Site plan with setbacks and project data, floor plan, roof plan, elevations ([how to submit](docs/11-zoning-check.md)) |
 | [`accosting-owner-schematic-survey.dxf`](accosting-owner-schematic-survey.dxf) | The plan over the topographic survey as a DXF (inches) |
 | Plan renders: [site plan](renders/schematic.png) · [house](renders/schematic-zoom.png) · [survey overlay](renders/survey-overlay.png) | The images at the top of this page, full size ([folder](https://github.com/blotzy/floorplan/tree/main/renders)) |

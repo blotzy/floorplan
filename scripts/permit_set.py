@@ -778,6 +778,82 @@ def cover_view():
     return png if png.exists() else None
 
 
+# ---- A-7 attic and loads plan ---------------------------------------------------------------
+RING_GAP = 20.0                                       # gym rings: 20" apart, side by side across the swing
+
+
+def loads():
+    """Where the special loads sit (plan inches): ring points, storage strip, air handler platform, PV."""
+    gx0, gx1 = S.face("lounge|gym", +1), S.face("gym|ensuite", -1)
+    gy0, gy1 = S.N_IN, S.face("bedroom hall wall", -1)
+    cx, cy = (gx0 + gx1) / 2, (gy0 + gy1) / 2
+    rings = [(cx - RING_GAP / 2, cy), (cx + RING_GAP / 2, cy)]
+    ahu = (975.0, 330.0, 1050.0, gy1)                  # platform over the guest room, beside the hatch
+    store = (gx0, S.N_IN + 24.0, S.W_IN, gy1)          # strip over the bedroom wing, street side
+    pv = (S.E - X.EAVE + 36, S.N + 24, S.W + X.EAVE - 36, S.S + X.EAVE)
+    return dict(gym=(gx0, gy0, gx1, gy1), rings=rings, ahu=ahu, store=store, pv=pv)
+
+
+def loads_plan(pdf):
+    fig = sheet("A-7", "ATTIC AND\nSTRUCTURAL\nLOADS PLAN")
+    sh = build_doc()
+    x0, y0, x1, y1 = S.CARPORT[0] - 20, S.N - 120, S.W + 125, S.S + 110
+    ax = scaled_axes(fig, 0.9, 9.6, x0, y0, x1, y1)
+    Z.draw_dxf(ax, sh.doc, x0, y0, x1, y1)
+    for art in ax.lines + ax.collections + ax.patches + ax.texts:      # plan as a faint background
+        try:
+            art.set_alpha(0.25)
+        except Exception:
+            pass
+    L = loads()
+    sx0, sy0, sx1, sy1 = L["store"]
+    ax.add_patch(Rectangle((sx0, sy0), sx1 - sx0, sy1 - sy0, fc="#f3d9a6", ec="#b07a2a", lw=1.2, alpha=0.6, hatch="..",
+                           zorder=4))
+    ax.text((sx0 + sx1) / 2 + 120, sy0 + 20, "ATTIC STORAGE: 20 PSF LIVE LOAD, PLYWOOD DECKED\n"
+            f"(over the bedroom wing, {ftin(sy0 - S.N_IN)} off the street wall to the hall wall)", fontsize=7,
+            ha="center", zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
+    a0, b0, a1, b1 = L["ahu"]
+    ax.add_patch(Rectangle((a0, b0), a1 - a0, b1 - b0, fc="#cfe0f3", ec="#1f5e9e", lw=1.4, zorder=5))
+    ax.text((a0 + a1) / 2, (b0 + b1) / 2, "AIR HANDLER\nON PLATFORM\n~250 LB", fontsize=6, ha="center", va="center",
+            zorder=6)
+    hx0, hy = 990.0, (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2
+    ax.add_patch(Rectangle((hx0, hy - 12.75), 54, 25.5, fill=False, ec=INK, lw=1.2, ls="--", zorder=5))
+    ax.text(hx0 + 27, hy - 16, "ATTIC HATCH", fontsize=6, ha="center", va="top", zorder=6)
+    for rx, ry in L["rings"]:
+        ax.add_patch(Circle((rx, ry), 5, fc=RED, ec=INK, lw=0.8, zorder=7))
+    (r0x, r0y), (r1x, r1y) = L["rings"]
+    gx0, gy0, gx1, gy1 = L["gym"]
+    ax.text((r0x + r1x) / 2, r0y - 12, "2 GYM RING POINTS\n500 LB EACH (CONCENTRATED)", fontsize=6.5, ha="center",
+            va="top", color=RED, zorder=7)
+    dim_string(ax, [gx0, r0x, r1x, gx1], gy0 + 16, color=RED, fs=6)
+    dim_string(ax, [gy0, r0y, gy1], gx0 + 16, horiz=False, color=RED, fs=6)
+    px0, py0, px1, py1 = L["pv"]
+    ax.add_patch(Rectangle((px0, py0), px1 - px0, py1 - py0, fill=False, ec="#2e7d32", lw=1.2, ls="-.", zorder=4))
+    ax.text(px0 + 8, py1 - 10, "FUTURE SOLAR PV AREA ON THE ROOF (dash-dot): allow ~3-4 PSF dead load", fontsize=6.5,
+            color="#2e7d32", va="top", zorder=6)
+    mx = [o for o in S.OPENINGS if o[0] == "pantry|laundry" and o[3] == "bifold"]
+    ax.text(712, 585, "HEAT PUMP WATER\nHEATER, 65 GAL\n(~800 LB FULL, ON SLAB)", fontsize=5.5, ha="center", va="center",
+            zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
+    ax.text((S.E + S.W) / 2, y0 + 8, "ATTIC AND LOADS PLAN   1/4\" = 1'-0\"", fontsize=12, weight="bold", ha="center")
+    notes = ("LOAD NOTES (for the structural engineer and truss designer)\n"
+             "1. Gym ring points: two eye bolts 20\" apart at the gym's centre,\n"
+             "   rings swinging along the room's long (street-to-hall) direction.\n"
+             "   500 lb concentrated at each, dynamic: blocking across several\n"
+             "   trusses or joists with framing connectors; through-bolted forged\n"
+             "   eye bolts with plate washers.\n"
+             "2. Attic storage: 20 psf live load on the decked strip shown\n"
+             "   (hatched), over the bedroom wing where the shed roof gives\n"
+             "   the attic its height; light storage only.\n"
+             "3. Air handler: on a platform beside the attic hatch with a 30\"\n"
+             "   walkway, light and outlet (mechanical code).\n"
+             "4. Future solar: on the roof plane, clear of the fire setbacks\n"
+             "   (A-3); include its dead load in the roof design.\n"
+             "5. Heat pump water heater: on the slab in the mechanical closet.\n"
+             "6. Vaulted great room: no attic and no loads above the ceiling.")
+    fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
+    pdf.savefig(fig); fig.savefig(OUT / "A-7-attic-loads.png", dpi=80); plt.close(fig)
+
+
 # ---- A-0 cover -------------------------------------------------------------------------------
 def cover(pdf):
     fig = sheet("A-0", "COVER SHEET,\nCODE ANALYSIS")
@@ -791,6 +867,7 @@ def cover(pdf):
     sheets = [("A-0", "Cover sheet, code analysis"), ("A-1", "Site plan, project data"),
               ("A-2", "Floor plan, door and window schedules"), ("A-3", "Roof plan"), ("A-4", "Exterior elevations"),
               ("A-5", "Building sections"), ("A-6", "Fire-zone details (CRC R337)"),
+              ("A-7", "Attic and structural loads plan"),
               ("S-", "Structural (by the structural engineer)"), ("C-", "Grading and drainage (by the civil engineer)"),
               ("T-24", "Energy compliance (CF1R) and solar PV (by the energy consultant)"),
               ("CALGreen", "Green building checklist")]
@@ -1001,6 +1078,7 @@ def main():
         elevations(pdf)
         sections(pdf)
         details(pdf)
+        loads_plan(pdf)
     print("  ", (OUT / "architectural-set.pdf").relative_to(S.ROOT))
 
 

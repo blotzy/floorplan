@@ -8,7 +8,7 @@ One page each for the structural and civil engineers, so they can quote and star
 
 | File | For |
 | --- | --- |
-| [Architectural set, draft (PDF)](../renders/permit/architectural-set.pdf), sheets A-0 to A-6 | Both |
+| [Architectural set, draft (PDF)](../renders/permit/architectural-set.pdf), sheets A-0 to A-7 | Both |
 | [Plan as a DXF](../accosting-owner-schematic.dxf) (inches): CAD background for the framing and grading plans | Both |
 | [Plan over the survey as a DXF](../accosting-owner-schematic-survey.dxf) | Civil |
 | [Zoning check set (PDF)](../renders/zoning/zoning-check-set.pdf) | Both |
@@ -29,7 +29,12 @@ One page each for the structural and civil engineers, so they can quote and star
 - **Large openings:** dining 12' window (two units) on the south wall, with the 6' dining slider on the east wall near the same corner (about 2'-9" of wall at the corner). Ask whether that corner needs steel or special hold-downs; if so, the window can narrow.
 - **Porch:** corner porch notched into the house, roof carried by a corner post.
 - **Carport:** attached open carport, clear span with posts at the corners only, its own low-slope roof.
-- **Loads:** two gym ring points of 500 lb each (concentrated, ceiling); attic storage strip at 20 psf over the bedroom wing, street side; air handler on an attic platform; future solar on the rear roof plane.
+- **Loads (located on sheet A-7, attic and loads plan):**
+  - Gym rings: two points 20" apart at the centre of the gym, swinging toward the street; 500 lb each, concentrated and dynamic.
+  - Attic storage: 20 psf live load on a decked strip over the bedroom wing, from 2' off the street wall to the hall wall, gym to office.
+  - Air handler (about 250 lb) on a platform beside the hall attic hatch, over the guest room.
+  - Future solar PV over most of the roof (clear of the fire setbacks): about 3-4 psf dead load.
+  - Heat pump water heater, 65 gal (about 800 lb full), on the slab in the mechanical closet.
 - **Exterior:** stucco walls (2x6 with 1" rigid insulation), an 8" trim band 6" proud along the street wall and both ends, two 3' metal window canopies at the rear (attachment).
 
 **Foundation:** the existing grade falls about 4' across the footprint (east to west). Slab on grade preferred; stepped footings or a raised portion as the civil and structural engineers decide together. An old retaining wall and chimney under the southeast corner are being removed. Ask whether a soils report is needed.
