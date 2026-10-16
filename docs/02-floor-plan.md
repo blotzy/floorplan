@@ -46,6 +46,7 @@ Three strips side by side, each with its own door off the main lobby (no side ha
 - **Walk-in closet:** between the primary bedroom and the laundry block, behind the bath, entered from the bedroom through a hinged door that swings into the closet and opens flat against the hall-side wall. Hanging rods on both long sides: the one on the bath side runs to the bedroom wall; the one on the entry side stops short of it to leave room for the door and a landing inside it. No door to the bath. The far end wall is one built-in: corner shelves (shoes, folded clothes, bags) either side of a drawer stack.
 - **Primary suite:** a modest south window, since it faces SSW into a sleeping room; shade it with the overhang. Optional reading nook with a built-in bench (window seat) in the primary bedroom.
 
+- **Interior doors:** solid core on every hinged door (bedrooms, baths, laundry) for sound and so the tall doors stay flat; the pantry and walk-in closet doors can be hollow core in the same style, and the mechanical closet keeps its louvered bifold.
 - **Lobby:** exterior door at the west end of the bedroom hall, out to the west side yard. A 7' door with a fixed glass transom above it throws daylight down the long hall.
 
 ## Ceilings and roof
