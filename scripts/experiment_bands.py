@@ -10,6 +10,8 @@ Every option keeps the recessed street windows and has no canopies.
   recessed     recessed windows only (reference)
   band-9-dark  one dark metal band, 8" tall and 6" proud, at the porch ceiling line (9')
   mid          one band centred between the window heads and the clerestory glass
+  mid-wrap     the centred band continued around both ends of the house
+  mid-all      the centred band all the way round, rear wall too
   mid-dark     the same band in dark metal
   thirds       two bands splitting the wall between the window heads and the clerestory into thirds
   edges-dark   a band filling the course from 9' to the 11' wall plate (between the model's edge
@@ -19,8 +21,8 @@ Every option keeps the recessed street windows and has no canopies.
   tone-wood    two-tone: wood-look above the 9' line, all round
   tone-mid     two-tone dark, split at the midpoint between the window heads and the clerestory
 
-Writes renders/experiments/band-<option>/house.html, band-<option>-{street,front,close}.png and
-band-compare-{street,front,close}.png.
+Writes renders/experiments/band-<option>/house.html, band-<option>-{street,front,close,west,rear}.png and
+band-compare-{street,front,close,west,rear}.png.
 
     uv run scripts/experiment_bands.py
 """
@@ -42,6 +44,7 @@ G0 = X.PLATE + (TOP - X.PLATE - 36.0) / 2           # underside of the clerestor
 GREY, DARK, WOOD = 0x8E8A84, 0x2B2D30, 0xA8754B
 
 
+VIEWS = {**A.VIEWS, "west": ((1560, -160, 70), (1000, 330, 100)), "rear": ((1450, 1150, 150), (800, 450, 90))}
 HEAD = 96.0                                          # window heads
 MID = (HEAD + G0) / 2
 
@@ -49,6 +52,19 @@ MID = (HEAD + G0) / 2
 def band(z0, z1, colour, proud=6.0):
     def f(sc):
         sc.boxes["band"].append([E, N - proud, W, N, z0, z1])
+        sc.mat["band"] = {"color": colour}
+    return f
+
+
+def band_wrap(z0, z1, colour, rear=False, proud=6.0):
+    """The band continued around both ends of the house (and the rear), meeting at the corners."""
+    Sth = S.S
+    def f(sc):
+        ys = Sth + (proud if rear else 0.0)
+        sc.boxes["band"] += [[E - proud, N - proud, W + proud, N, z0, z1],          # street
+                             [E - proud, N, E, ys, z0, z1], [W, N, W + proud, ys, z0, z1]]   # ends
+        if rear:
+            sc.boxes["band"].append([E - proud, Sth, W + proud, Sth + proud, z0, z1])
         sc.mat["band"] = {"color": colour}
     return f
 
@@ -79,6 +95,9 @@ VARIANTS = {   # key -> (title, [steps])
     "recessed": ("Recessed windows only (no band)", [A.recessed]),
     "band-9-dark": ("Dark band at the porch ceiling line (9')", [A.recessed, band(108, 116, DARK)]),
     "mid": ("One band centred between window heads and clerestory", [A.recessed, band(*centred(MID), GREY)]),
+    "mid-wrap": ("The centred band, wrapped around both ends", [A.recessed, band_wrap(*centred(MID), GREY)]),
+    "mid-all": ("The centred band, all the way round (rear too)",
+                [A.recessed, band_wrap(*centred(MID), GREY, rear=True)]),
     "mid-dark": ("The centred band in dark metal", [A.recessed, band(*centred(MID), DARK)]),
     "thirds": ("Two bands, the wall above the windows in thirds",
                [A.recessed] + [band(*centred(HEAD + (G0 - HEAD) * k / 3), GREY) for k in (1, 2)]),
@@ -102,10 +121,10 @@ def main():
             step(sc)
         out_dir = OUT / f"band-{key}"
         M.write_model(sc, out_dir, sc.meta)
-        for view, (cam, tgt) in A.VIEWS.items():
+        for view, (cam, tgt) in VIEWS.items():
             X.screenshot(out_dir / "house.html", OUT / f"band-{key}-{view}.png", cam, tgt)
-    for view in A.VIEWS:
-        fig, axs = plt.subplots(5, 2, figsize=(16, 19.5 if view == "street" else 24.5))
+    for view in VIEWS:
+        fig, axs = plt.subplots(6, 2, figsize=(16, 23.4 if view == "street" else 29.4))
         for ax, (key, (title, _)) in zip(axs.flat, VARIANTS.items()):
             png = OUT / f"band-{key}-{view}.png"
             if png.exists():
