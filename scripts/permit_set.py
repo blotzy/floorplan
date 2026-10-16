@@ -170,26 +170,24 @@ def windows():
 
 
 def window_type(rm, w, h, sill, kind):
-    """(operation, notes) for the schedule, from where the window is and its sill."""
+    """(operation, notes) for the schedule: notes only where something is required."""
     if kind == "clerestory":
-        return "Fixed (mulled units)", "Clerestory over the lounge"
+        return "Fixed (mulled units)", "Clerestory"
     if rm in ("GYM", "GUEST", "OFFICE", "PRIMARY") and sill <= 44:
-        return ("Horizontal slider", "Emergency escape (CRC R310): one sash opens ~2'-9\" x 5'-3\",\n"
-                "over 5.7 sq ft net clear; sill under 44\"")
-    if rm in ("LOUNGE",):
+        return "Horizontal slider", "Emergency escape (note 6)"
+    if rm == "LOUNGE":
         return "Fixed center, slider each end", ""
     if rm == "DINING":
-        return "Fixed, two units mulled", "Large panes, low sill: tempered recommended (more than 24\" from the slider)"
+        return "Fixed, two units mulled", ""
     if rm == "KITCHEN":
-        return "Horizontal slider", "Over the sink"
-    if rm == "PORCH" or rm == "FOYER":
-        return "Fixed, reeded glass", "Tempered: within 24\" of the front door (CRC R308.4.2)"
+        return "Horizontal slider", ""
+    if rm in ("PORCH", "FOYER"):
+        return "Fixed, reeded glass", "Tempered (CRC R308.4.2)"
     if rm == "LOBBY":
-        return "Fixed transom", "Above the door; bottom edge over 60\" (not a hazardous location)"
-    if "BATH" in rm or "ENSUITE" in rm:
-        return "Awning", ("Above the tub; bottom edge over 60\" above it, so tempering not\nrequired (CRC R308.4.5)"
-                          + ("; obscure glass" if "ENSUITE" in rm else ""))
-    return "Awning", "High window"
+        return "Fixed transom", ""
+    if "ENSUITE" in rm:
+        return "Awning", "Obscure glass"
+    return "Awning", ""
 
 
 CASEWORK_WORDS = {"HANG", "SHELVES", "SHELVES ABOVE", "SHELVES TO 6'", "DRAWERS", "LINEN", "BENCH", "BEV",
@@ -298,9 +296,9 @@ def floor_plan(pdf):
             if o[0] == "porch front":
                 notes.append("glass lite, if any, dual-pane tempered")
         if o[0] == "west":
-            notes.append("solid slab, no glass; 3'-0\" x 1'-6\" transom above, out of reach (window J)")
+            notes.append("solid slab, no glass; fixed transom above")
         if "MECH" in names:
-            notes.append("louvered for the water heater's air")
+            notes.append("louvered (water heater air)")
         dsched.append((str(i), names, f"{ftin(w)} x {ftin(h)}", typ, textwrap.fill("; ".join(notes), 95)))
 
     groups = {}
@@ -361,7 +359,7 @@ def floor_plan(pdf):
         "4. Doors 8'-0\" high unless noted; interior doors solid\n   core. Exterior doors and glazing per CRC R337 (VHFHSZ).\n"
         "5. All exterior glazing dual-pane with at least one tempered\n   pane (CRC R337.8.2.1). Fully tempered where noted\n   (CRC R308.4).\n"
         "6. Bedroom windows meet emergency escape: 5.7 sq ft net\n   clear, 20\" min width, 24\" min height, sill 44\" max\n   (CRC R310).\n"
-        "7. Smoke alarms in each bedroom and outside the sleeping\n   areas, hard-wired, interconnected, battery backup, at\n   least 3' from bathroom doors (CRC R314). Outside the\n   sleeping areas: combination smoke / CO alarms (CO not\n   required in an all-electric house with no attached\n   garage, CRC R315.2; provided anyway).\n"
+        "7. Smoke alarms: hard-wired, interconnected, battery\n   backup, at least 3' from bathroom doors (CRC R314).\n   Combination smoke / CO alarms outside the sleeping areas.\n"
         "8. All-electric: heat pump HVAC (air handler and ERV in\n   the sealed attic; outdoor unit at the rear wall), heat\n   pump water heater (HPWH) in the mechanical closet.\n"
         "9. Fire sprinklers throughout (NFPA 13D); plans by the\n   sprinkler designer (deferred submittal).\n"
         "10. Attic access: 22\" x 54\" pull-down ladder in the hall,\n   30\" min headroom above (CRC R807.1).\n"
