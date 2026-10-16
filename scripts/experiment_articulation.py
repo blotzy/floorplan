@@ -8,9 +8,9 @@ the facade window area") plus metal canopies 3' deep over the street windows ("w
 or shading device over windows, 3 feet deep for 50% of the windows"), in different styles and
 heights. Each canopy runs 1' past its window and no farther (22.110.090.B), so they stay separate.
 
-  plan       main plan as drawn (reference)
+  plan       before: no recess, no canopies (reference)
   recessed   recessed windows only
-  flat-8     thin flat plate just above the 8' window heads
+  flat-8     thin flat plate just above the 8' window heads (adopted in the main plan)
   flat-9     thin flat plate at 9', in line with the porch ceiling
   hood-9     at 9', with a deep front fascia and side cheeks (a boxed hood)
   louver-9   at 9', open aluminium louver blades between two outriggers
@@ -99,9 +99,9 @@ def tilt(z, rise=6.0):
 
 
 VARIANTS = {   # key -> (title, [steps])
-    "plan": ("Main plan as drawn", []),
+    "plan": ("Before: no recess, no canopies", []),
     "recessed": ("Street windows recessed 6\" (no canopies)", [recessed]),
-    "flat-8": ("Recessed + thin flat canopies just above the 8' window heads", [recessed, flat(98.0)]),
+    "flat-8": ("Recessed + thin flat canopies just above the 8' window heads (main plan)", [recessed, flat(98.0)]),
     "flat-9": ("Recessed + thin flat canopies at 9' (porch ceiling line)", [recessed, flat(108.0)]),
     "hood-9": ("Recessed + boxed hoods at 9' (front fascia, side cheeks)", [recessed, hood(104.0)]),
     "louver-9": ("Recessed + open louvered sunshades at 9'", [recessed, louver(106.0)]),
@@ -116,7 +116,7 @@ def main():
     import matplotlib.pyplot as plt
     for key, (_, steps) in VARIANTS.items():
         sc = M.build_schematic()
-        X.chosen_exterior(sc)
+        X.chosen_exterior(sc, facade=False)
         for step in steps:
             step(sc)
         sc.mat["canopy"] = {"color": DARK}

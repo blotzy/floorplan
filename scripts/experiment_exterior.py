@@ -329,10 +329,22 @@ def porch_breeze(sc):
     sc.mat["breeze"] = {"color": 0xECE7DD}
 
 
-def chosen_exterior(sc, porch=True):
+def street_facade(sc):
+    """Recessed street windows (glass WINDOW_RECESS behind the stucco face) and the flat metal canopies."""
+    yc = N + S.EXT / 2
+    for q in sc.quads["glass"]:
+        if abs(q[1] - yc) < 0.01 and abs(q[3] - yc) < 0.01 and q[4] < 100:
+            q[1] = q[3] = N + S.WINDOW_RECESS
+    for x0, x1 in S.street_canopies():
+        sc.boxes["canopy"].append([x0, N - S.CANOPY_D, x1, N, S.CANOPY_Z, S.CANOPY_Z + 3])
+    sc.mat["canopy"] = {"color": 0x2B2D30}
+
+
+def chosen_exterior(sc, porch=True, facade=True):
     """The main plan's exterior: MCM shingle shed (2:12, 2'-6" eaves) with a 3' clerestory band over the
     lounge and the foyer, lounge, dining and kitchen under one sloped ceiling; stucco walls,
-    dark shingles and fascia, accent front door; porch with a wood-look feature wall. make_3d.py
+    dark shingles and fascia, accent front door; porch with a wood-look feature wall; recessed street
+    windows with flat metal canopies over the four big ones. make_3d.py
     adds this to the main model."""
     band(sc, "exterior", WALL_TOP, PLATE)
     shed_vault_great(sc, 2 / 12, EAVE, band=36.0)
@@ -341,6 +353,8 @@ def chosen_exterior(sc, porch=True):
     sc.mat["seam"] = {"color": 0x2A2D31}
     if porch:
         porch_feature(sc)
+    if facade:
+        street_facade(sc)
 
 
 def roof_options():

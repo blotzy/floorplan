@@ -188,7 +188,9 @@ def site_plan(pdf):
              "4. Existing retaining wall and chimney (survey) to be removed.\n"
              "5. Survey: topographic survey on file (APN above).\n"
              f"6. Eaves {ftin(OV)} all round: the most an eave may project into a required yard\n"
-             "   (§22.110.090.A); more than 2'-6\" from every lot line, no supports in the yards.")
+             "   (§22.110.090.A); more than 2'-6\" from every lot line, no supports in the yards.\n"
+             f"7. Street-window canopies {ftin(S.CANOPY_D)} deep (§22.110.090.B: up to 5' into the front\n"
+             "   yard): over the windows only, 1' past each side, no supports in the yard.")
     tx.text(0.0, y - 0.01, notes, fontsize=7.5, va="top", transform=tx.transAxes, linespacing=1.4)
     pdf.savefig(fig); fig.savefig(OUT / "Z-1-site-plan.png", dpi=110); plt.close(fig)
 
@@ -276,6 +278,13 @@ def elevation(ax, side):
             ax.add_patch(Rectangle((h(cx0) - 6, 0), 6, 108, fc=INK))
         for x0, x1, z0, z1, k in openings_on(side):
             ax.add_patch(Rectangle((min(h(x0), h(x1)), z0), x1 - x0, z1 - z0, fc="#bfe3f2", ec=INK, lw=0.8))
+        if side == "north":                                        # canopies over the street windows
+            for x0, x1 in S.street_canopies():
+                ax.add_patch(Rectangle((h(x0), S.CANOPY_Z), x1 - x0, 3, fc=INK))
+            c0, c1 = S.street_canopies()[-1]
+            ax.annotate(f"{ftin(S.CANOPY_D)} deep metal canopy (typ.)\nwindows recessed {S.WINDOW_RECESS:.0f}\" (typ.)",
+                        ((h(c0) + h(c1)) / 2, S.CANOPY_Z + 3), ((h(c0) + h(c1)) / 2, S.CANOPY_Z + 40),
+                        fontsize=6.5, ha="center", arrowprops=dict(arrowstyle="-", lw=0.6))
         lo, hi = min(h(a - OV), h(b + OV)), max(h(a - OV), h(b + OV))
     else:
         a, b = S.N, S.S
@@ -287,6 +296,7 @@ def elevation(ax, side):
         ax.add_patch(MPoly(roof, closed=True, fc="#3c3f44", ec=INK))
         for x0, x1, z0, z1, k in openings_on(side):
             ax.add_patch(Rectangle((min(hy(x0), hy(x1)), z0), x1 - x0, z1 - z0, fc="#bfe3f2", ec=INK, lw=0.8))
+        ax.add_patch(Rectangle((min(hy(a - S.CANOPY_D), hy(a)), S.CANOPY_Z), S.CANOPY_D, 3, fc=INK))   # canopy, end-on
         if side == "east":                                         # carport in front: posts + roof
             for yy in (cy0, cy1 - 6):
                 ax.add_patch(Rectangle((min(hy(yy), hy(yy + 6)), 0), 6, 108, fc=INK))
@@ -320,8 +330,11 @@ def elevations(pdf):
         elevation(fig.add_axes([0.02, 0.66 - i * 0.27, 0.96, 0.26]), side)
     for i, side in enumerate(("east", "west")):
         elevation(fig.add_axes([0.02 + i * 0.49, 0.1, 0.47, 0.26]), side)
-    fig.text(0.02, 0.95, "Heights above finished floor. The lot falls ~4' across the footprint (survey); grade lines "
+    fig.text(0.02, 0.968, "Heights above finished floor. The lot falls ~4' across the footprint (survey); grade lines "
              "and height above grade to follow the foundation/grading design.", fontsize=8.5, color="#555")
+    fig.text(0.02, 0.952, "Street facade articulation (§22.140.520, Table 22.140.520-C): (1) weather protection: flat metal "
+             f"canopies {ftin(S.CANOPY_D)} deep over 4 of the 5 street windows; (2) recessed windows: all street windows "
+             f"set {S.WINDOW_RECESS:.0f}\" behind the stucco face.", fontsize=8.5, color="#555")
     pdf.savefig(fig); fig.savefig(OUT / "Z-4-elevations.png", dpi=110); plt.close(fig)
 
 

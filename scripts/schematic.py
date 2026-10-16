@@ -57,6 +57,7 @@ CARPORT = (140.1, PORCH_Y, E, PORCH_Y + 216.0)   # x0, y0, x1, y1: 18' x 18' (Co
 DRIVE_IN = (LOT_X0 + 150.0, LOT_X0 + 290.0)   # entrance edges (x) at the property line
 EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives
                                                                         # in the northwest parkway
+SIDE_TREE = (60.0, 445.0)            # new: east strip beside the carport, between the bins and the lawn
 PRIVACY_TREE = (624.0, 48.0)         # new: inside the front line, west of the lounge window's centre,
                                      # 10'+ from the sewer run to the cleanout (survey ~(492, 22))
 EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
@@ -130,6 +131,19 @@ OPENINGS = [
     ("suite|primary", 463.0, 495.0, "door", "a", -1),       # walk-in closet, 32": swings in, opens flat by the hall wall
 ]
 
+# Street-facade articulation (County building articulation, Table 22.140.520-C): the street windows
+# are recessed into the wall, and flat metal canopies sit just above the heads of the four big ones
+# (not the ensuite's high window). Each canopy runs 1' past its window and no farther (22.110.090.B).
+WINDOW_RECESS = 6.0                  # glass behind the stucco face
+CANOPY_D, CANOPY_RUN, CANOPY_Z = 36.0, 12.0, 98.0   # depth off the wall, run past each side, underside
+
+
+def street_canopies():
+    """[(x0, x1)] of the street-window canopies."""
+    return [(o[1] - CANOPY_RUN, o[2] + CANOPY_RUN) for o in OPENINGS
+            if o[0] == "north" and o[3] == "window" and (o[4] if len(o) > 4 else 30.0) < 60]
+
+
 # =============================================================================
 # geometry helpers
 # =============================================================================
@@ -189,7 +203,7 @@ class Sheet:
         for name, color in [("A-WALL", 7), ("A-WALL-PATT", 8), ("A-DOOR", 3), ("A-GLAZ", 4),
                             ("A-FURN", 9), ("A-EQPM", 6), ("A-AREA-IDEN", 7), ("A-ANNO-DIMS", 1),
                             ("A-ANNO-TEXT", 7), ("C-PROP", 5), ("L-SITE", 94), ("L-PLNT", 3),
-                            ("A-FENC", 8), ("A-CLNG", 8)]:
+                            ("A-FENC", 8), ("A-CLNG", 8), ("A-CANP", 8)]:
             self.doc.layers.add(name, color=color)
         st = self.doc.dimstyles.new("OWNER")
         st.dxf.dimtxt, st.dxf.dimasz, st.dxf.dimexo, st.dxf.dimexe = 8.0, 6.0, 3.0, 3.0
@@ -599,6 +613,10 @@ def build() -> Sheet:
     sh.text("18' x 18'", (cx0 + cx1) / 2, (cy0 + cy1) / 2 - 12, 6.5, "A-AREA-IDEN")
     sh.msp.add_lwpolyline(driveway_outline(), close=True, dxfattribs={"layer": "L-SITE"})
     sh.text("DRIVEWAY", (DRIVE_IN[0] + DRIVE_IN[1]) / 2 + 10, 120.0, 9.0, "A-AREA-IDEN")
+    for x0, x1 in street_canopies():                                          # canopies over the street windows
+        sh.msp.add_lwpolyline([(x0, N), (x0, N - CANOPY_D), (x1, N - CANOPY_D), (x1, N)],
+                              dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
+        sh.text("CANOPY ABOVE", (x0 + x1) / 2, N - CANOPY_D / 2, 3.0, "A-CANP")
     sh.rect(E + 4, N - 24, PORCH_X - 4, N, "L-SITE")                          # porch step
     sh.rect(E, N, E + 6, N + 6, "A-WALL")                                     # porch corner post
     sh.rect(*ENTRY_COURT, "L-SITE")                                           # entry court + seat wall
@@ -623,6 +641,8 @@ def build() -> Sheet:
         sh.circle((x, y), 18.0, "L-PLNT"); sh.circle((x, y), 3.0, "L-PLNT")
     sh.circle(PRIVACY_TREE, 18.0, "L-PLNT"); sh.circle(PRIVACY_TREE, 3.0, "L-PLNT")
     sh.text("NEW PRIVACY TREE", PRIVACY_TREE[0], PRIVACY_TREE[1] + 28, 5.0)
+    sh.circle(SIDE_TREE, 18.0, "L-PLNT"); sh.circle(SIDE_TREE, 3.0, "L-PLNT")
+    sh.text("NEW TREE", SIDE_TREE[0], SIDE_TREE[1] + 28, 5.0)
     tx = sum(t[0] for t in EXIST_TREES) / len(EXIST_TREES)
     sh.text("EXIST. MATURE OLIVE TREES TO REMAIN", tx, -140.0, 5.0)
     sh.rect(LOT_X0 + 6, 262, LOT_X0 + 54, 382, "L-SITE"); sh.text("BINS", LOT_X0 + 30, 322, 5.0, rot=90)        # bin pad

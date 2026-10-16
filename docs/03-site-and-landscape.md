@@ -38,6 +38,7 @@ From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.
 
 ## Trash bins
 
+- **Tree beside the carport**, in the east strip between the bin pad and the courtyard fence: a small, low-water tree with a modest root system (e.g., western redbud). Keep it limbed up with its canopy clear of the carport roof, plant it without digging at the base of the east property-line retaining wall, and put a root barrier on the wall side.
 - **Bin pad 4' x 10'** (four carts) along the east property line in the strip beside the carport, behind the 20' front setback and >5' from the carport.
 - Open-top **5' noncombustible screen** on the south and carport sides; open/gated toward the street so carts roll down the strip to the curb.
 - Hose bib for rinsing carts on the nearest carport post (unsoftened).
