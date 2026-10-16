@@ -2,30 +2,12 @@
 # requires-python = ">=3.10"
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
-"""Experiment: exterior styles on the schematic's 3D model (roof form, eaves, colours).
-The shingle set is Class A asphalt shingle at 2:12, the code minimum for shingles (double
-underlayment below 4:12); butterfly roofs and anything under 2:12 are out for shingles.
-
-  mcm-shed        Midcentury modern: single 2:12 slope, high at the street with clerestory
-                  glass, falling to the rear (the big rear plane faces SSW: ideal for solar).
-  mcm-shed-vault  The same shed with only the lounge vaulted (clerestory over the lounge);
-                  flat 10' ceilings and a sealed attic elsewhere. Writes a cross-section.
-  mcm-gable       Midcentury modern (Eichler-like): 2:12 gable, deep eaves, glazed gable
-                  ends, dark siding with warm wood-look soffits.
-  ranch-hip       California ranch: 4:12 hip roof, 24" eaves, light walls.
-  ranch-gable     Ranch: 4:12 gable, board-and-batten colours.
-
-Colours stand in for fire-zone materials (stucco, fiber cement, metal; wood looks are
-wood-look products).
-
-Writes renders/experiments/exterior-<style>/house.html (walkable, Roof toggle) and
-renders/experiments/exterior-<style>-{street,aerial}.png when a Chrome is found.
-
-    uv run scripts/experiment_exterior.py
-"""
+"""The house's exterior for the 3D model and the drawing sets: the MCM shingle shed with the
+clerestory and vaulted great room (chosen_exterior), the street facade (recessed windows, band, rear
+canopies), the porch, and the alternative roofs offered in the 3D viewer's Roof menu (roof_options).
+Imported by make_3d.py, zoning_set.py and permit_set.py; not run on its own."""
 from __future__ import annotations
 
-import subprocess
 import sys
 from pathlib import Path
 
@@ -37,7 +19,6 @@ E, W, N, Sth = S.E, S.W, S.N, S.S
 WALL_TOP = M.CEIL                         # exterior walls in the model stop at the ceiling
 PLATE = 132.0                             # top plate / underside of roof framing (11')
 FASCIA = 8.0
-OUT = S.RENDERS / "experiments"
 
 
 def quad(sc, mat, a, b, c, d):
@@ -389,113 +370,3 @@ def roof_options():
         shed(sc, 2 / 12, EAVE, seams=seams, clerestory=False)
         out[label] = dict(sc.tris)
     return out
-
-
-METAL = {   # the original, lower midcentury slopes, with roofing that suits them
-    "metal-mcm-shed": (lambda sc: shed(sc, 1.5 / 12, 36, seams=True),
-                       {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,
-                        "seam": 0x2A2D31, "door": 0xD9792B}),
-    "metal-mcm-shed-solid": (lambda sc: shed(sc, 1.5 / 12, 36, seams=True, clerestory=False),
-                             {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,
-                              "seam": 0x2A2D31, "door": 0xD9792B}),
-    "metal-mcm-shed-heel": (lambda sc: shed(sc, 1.5 / 12, 36, seams=True, clerestory=False, heel=24.0),
-                            {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,
-                             "seam": 0x2A2D31, "door": 0xD9792B}),
-    "metal-mcm-shed-vault": (lambda sc: shed_vault(sc, 2 / 12, 36, seams=True),
-                             {"exterior": 0xEFE9DF, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,
-                              "seam": 0x2A2D31, "door": 0xD9792B}),
-    "metal-mcm-butterfly": (lambda sc: butterfly(sc, 2 / 12, 30),
-                            {"exterior": 0xE9E4DA, "soffit": WOOD, "fascia": WHITE, "roofing": 0xD5D8DA,
-                             "door": 0x2B8C8C}),
-    "metal-mcm-gable": (lambda sc: low_gable(sc, 2 / 12, 36, seams=True),
-                        {"exterior": 0x4F5358, "soffit": WOOD, "fascia": BLACK, "roofing": 0x3F4347,
-                         "seam": 0x2A2D31, "door": 0xE8B33C}),
-}
-METAL_LABELS = {"metal-mcm-shed": "MCM shed, 1.5:12 standing-seam metal (clerestory to the street)",
-                "metal-mcm-shed-solid": "MCM shed, 1.5:12 standing-seam metal, no clerestory (attic throughout)",
-                "metal-mcm-shed-heel": "MCM shed, 1.5:12 standing-seam metal, no clerestory, raised 2' (raised heel: attic headroom at the rear too)",
-                "metal-mcm-shed-vault": "MCM shed, 2:12 standing-seam metal: only the lounge vaulted, attic elsewhere",
-                "metal-mcm-butterfly": "MCM butterfly, 2:12 single-ply membrane (clerestories both sides)",
-                "metal-mcm-gable": "MCM gable, 2:12 standing-seam metal (Eichler-like, glazed gable ends)"}
-VIEWS = {   # camera position and target in plan inches (x west, y south, z up)
-    "street": ((230, -330, 64), (760, 330, 80)),
-    "aerial": ((120, -380, 430), (780, 420, 40)),
-}
-CHROME = Path("/mnt/c/Program Files/Google/Chrome/Application/chrome.exe")
-
-
-def screenshot(html: Path, png: Path, cam, target):
-    """Render a view with headless Chrome (WSL path conventions); skipped if no Chrome."""
-    if not CHROME.exists():
-        return
-    hook = "if (location.hash === '#touchwalk') startTouchWalk();"
-    (cx, cy, cz), (tx, ty, tz) = cam, target
-    src = html.read_text().replace(hook, hook + (
-        "\norbit.enabled = false; groups.labels.visible = false;"
-        "document.getElementById('ui').style.display='none'; document.getElementById('help').style.display='none';"
-        f"camera.position.set({cx}*IN, {cz}*IN, {-cy}*IN); camera.lookAt({tx}*IN, {tz}*IN, {-ty}*IN);"))
-    tmp = html.with_name("_view.html")
-    tmp.write_text(src)
-    win = lambda p: subprocess.run(["wslpath", "-w", str(p)], capture_output=True, text=True).stdout.strip()
-    subprocess.run([str(CHROME), "--headless=new", "--use-angle=swiftshader", "--enable-unsafe-swiftshader",
-                    "--window-size=1400,800", "--virtual-time-budget=15000", f"--screenshot={win(png)}",
-                    "file:///" + win(tmp).replace("\\", "/")], capture_output=True)
-    tmp.unlink()
-
-
-LABELS = {"mcm-shed": "MCM shed, 2:12 shingles (clerestory to the street, solar plane to the rear)",
-          "mcm-gable": "MCM gable, 2:12 shingles (Eichler-like, glazed gable ends)",
-          "mcm-shed-vault": "MCM shed, 2:12 shingles: only the lounge vaulted, attic elsewhere",
-          "ranch-hip": "Ranch, 4:12 hip, shingles", "ranch-gable": "Ranch, 4:12 gable, shingles, board-and-batten colours"}
-
-
-def contact_sheet(view: str, styles: dict, labels: dict, name: str):
-    """All styles' renders for one view, stacked with labels."""
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    pngs = [(k, OUT / f"exterior-{k}-{view}.png") for k in styles]
-    pngs = [(k, p) for k, p in pngs if p.exists()]
-    if not pngs:
-        return
-    fig, axes = plt.subplots(len(pngs), 1, figsize=(10, 5.9 * len(pngs)))
-    for ax, (k, p) in zip(axes, pngs):
-        ax.imshow(plt.imread(p)); ax.set_title(labels[k], fontsize=13); ax.axis("off")
-    fig.tight_layout()
-    fig.savefig(OUT / f"{name}-{view}.png", dpi=80)
-    plt.close(fig)
-
-
-SETS = {   # name -> (styles, labels, comparison sheet, lounge-vault section)
-    "shingles": (STYLES, LABELS, "exterior-compare", (2 / 12, "exterior-mcm-shed-vault-section.png", "shingles")),
-    "metal": (METAL, METAL_LABELS, "exterior-metal-compare",
-              (2 / 12, "exterior-metal-mcm-shed-vault-section.png", "standing-seam metal")),
-}
-
-
-def main():
-    import argparse
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--only", choices=list(SETS), help="build just one set")
-    args = ap.parse_args()
-    for set_name, (styles, labels, sheet, (pitch, sec_png, roofing)) in SETS.items():
-        if args.only and set_name != args.only:
-            continue
-        for key, (roof, colours) in styles.items():
-            sc = M.build_schematic()
-            band(sc, "exterior", WALL_TOP, PLATE)
-            roof(sc)
-            front_door(sc)
-            sc.mat = {k: {"color": v} for k, v in colours.items()}
-            out_dir = OUT / f"exterior-{key}"
-            M.write_model(sc, out_dir, sc.meta)
-            for view, (cam, target) in VIEWS.items():
-                screenshot(out_dir / "house.html", OUT / f"exterior-{key}-{view}.png", cam, target)
-            print("styled", key)
-        for view in VIEWS:
-            contact_sheet(view, styles, labels, sheet)
-        section(pitch, OUT / sec_png, roofing)
-
-
-if __name__ == "__main__":
-    main()

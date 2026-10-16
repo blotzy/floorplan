@@ -128,7 +128,8 @@ OPENINGS = [
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 849.75, 879.75, "door", "b", +1),   # common bath, 30", against its west wall
-    ("south hall wall", 1070.0, 1106.0, "door", "a", +1),   # primary bedroom
+    ("south hall wall", 1070.0, 1106.0, "door", "b", +1),   # primary bedroom: hinged away from the corner,
+                                                            # so the open door never blocks the closet door
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
     ("suite|primary", 574.0, 606.0, "door", "b", -1),       # primary bath, from the bedroom; opens flat by the rear wall
@@ -141,7 +142,7 @@ OPENINGS = [
 # rear, flat metal canopies shade the kitchen and primary bedroom windows; each runs 1' past its
 # window and no farther (22.110.090.B).
 WINDOW_RECESS = 6.0                  # glass behind the stucco face
-BAND_PROUD, BAND_H = 6.0, 8.0        # band: projection from the wall, height (its height: experiment_exterior)
+BAND_PROUD, BAND_H = 6.0, 8.0        # band: projection from the wall, height (its height: exterior.py)
 CANOPY_D, CANOPY_RUN, CANOPY_Z = 36.0, 12.0, 98.0   # depth off the wall, run past each side, underside
 
 

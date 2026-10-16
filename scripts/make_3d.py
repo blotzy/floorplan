@@ -676,7 +676,7 @@ def add_vault_ceiling(sc, vault):
 
 
 def main():
-    import experiment_exterior as X        # the chosen exterior: MCM gable, stucco
+    import exterior as X        # the chosen exterior: MCM gable, stucco
     sc = build_schematic()
     X.chosen_exterior(sc)
     add_vault_ceiling(sc, X.great_room_vault(to_outside=True))

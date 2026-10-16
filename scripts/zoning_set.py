@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import experiment_exterior as X  # noqa: E402
+import exterior as X  # noqa: E402
 import make_3d as M  # noqa: E402
 import schematic as S  # noqa: E402
 
