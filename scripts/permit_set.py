@@ -459,19 +459,20 @@ def roof_plan(pdf):
     ax.text(cx0 - 14, (cy0 + cy1) / 2, "GUTTER", fontsize=5.5, rotation=90, ha="right", va="center")
     sh = S.build()
     sk = text_at(sh, "SKYLIGHT")                                        # straight up from the common bath ceiling
-    for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A),\nstraight up from the bath; VTR-2 beside it", sk),
+    for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A),\nstraight up from the bath; VTR-2 just downslope", sk),
                          ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it", text_at(sh, "RANGE"))):
         if p:
             ax.add_patch(Circle(p, 7, fc="white", ec=INK, lw=0.9))
-            ax.text(p[0] + 10, p[1] + 10, note, fontsize=5.5, va="bottom")
+            below = lab == "SKYLIGHT"                                    # its vent label sits above it
+            ax.text(p[0] + 10, p[1] - 10 if below else p[1] + 10, note, fontsize=5.5, va="top" if below else "bottom")
     # plumbing vents through the roof: grouped in a strip along the high (street) edge, outside the PV area
     strip = S.N + 24                                                    # fire setback + vent strip edge
     ax.add_patch(Rectangle((X0 + 36, strip), X1 - X0 - 72, Y1 - strip, fill=False, ec="#1f5e9e", lw=1.0, ls="--"))
     ax.text(X0 + 48, Y1 - 50, "POTENTIAL SOLAR PV AREA (dashed): clear of the 36\" high-edge setback and the\n"
             "36\" pathways at both ends (CRC R324.6); final layout per the solar design", fontsize=6.5, color="#1f5e9e")
     vtrs = [(860.0, S.N + 10, "VTR-1: shared ensuite (its own vent,\nin the strip along the high edge)", "bottom"),
-            (842.0, 520.0, "VTR-2 (3\" main vent), beside the skylight: kitchen sink\n(up beside the window, into the pantry wall, then the\n"
-                              "pantry attic), common bath, laundry and primary bath", "top")]
+            (868.0, 544.0, "VTR-2 (3\" main vent), just downslope of the skylight: kitchen sink\n(up beside the window, into the pantry wall, then the\n"
+                              "pantry attic), common bath, laundry and primary bath", "bottom")]
     for vx, vy, lab, va in vtrs:
         ax.add_patch(Circle((vx, vy), 6, fc="white", ec=INK, lw=1.2, zorder=5))
         ax.plot([vx - 6, vx + 6], [vy] * 2, color=INK, lw=0.8, zorder=6)
