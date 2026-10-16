@@ -12,6 +12,7 @@
 
 **Design decisions (owner)**
 
+- [ ] Find a solar provider to lay out the array and choose the mounting for the 2:12 shingle roof (attachment points, flashing, racking), working around the range hood cap and the skylight and vent cluster; size the system and the battery. Do it before the roof framing is designed, so the engineer can allow for the load and the attachment points.
 - [x] Guest closet: decided. One long closet, with the door at the bath end.
 - [x] Primary tub: decided. A back-to-wall freestanding soaking tub (about 5'-7" x 32") in the primary bath wet room; the shared ensuite gets a standard 66" tub with a shower head. Pick both models before framing.
 - [ ] Pick the primary back-to-wall tub. The space between the end walls is 6'-0". Base (floor footprint) no longer than about 5'-0" for at least 6" clear at each end at the floor; rim up to about 5'-8" (2"+ at each end) if the sides flare. Also check width (about 30"–32"), drain position, the wall-mounted filler, and the filled weight.

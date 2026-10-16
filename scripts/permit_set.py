@@ -506,7 +506,11 @@ def roof_plan(pdf):
              "   fans exit through walls where possible. The range hood cap\n"
              "   is the other penetration in the PV area.\n"
              "7. Carport: attached open carport, its own low-slope roof\n"
-             "   (Class A), gutter on its east edge.")
+             "   (Class A), gutter on its east edge.\n"
+             "8. Future solar: layout and mounting by the solar provider.\n"
+             "   Its conduit enters through the roof into the attic and\n"
+             "   runs inside to the panel: none on the roof surface or\n"
+             "   the exterior walls.")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
     pdf.savefig(fig); fig.savefig(OUT / "A-3-roof-plan.png", dpi=80); plt.close(fig)
 
