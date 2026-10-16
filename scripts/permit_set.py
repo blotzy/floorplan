@@ -452,8 +452,8 @@ def roof_plan(pdf):
     ax.text(X0 + 48, Y1 - 50, "POTENTIAL SOLAR PV AREA (dashed): clear of the 36\" high-edge setback and the\n"
             "36\" pathways at both ends (CRC R324.6); final layout per the solar design", fontsize=6.5, color="#1f5e9e")
     vtrs = [(860.0, S.N + 10, "VTR-1: shared ensuite (its own vent,\nin the strip along the high edge)", "bottom"),
-            (840.0, S.S - 36, "VTR-2 (3\" main vent): kitchen sink, common bath,\nlaundry and primary bath, combined in\n"
-                              "the attic near the rear wall", "top")]
+            (840.0, S.S - 36, "VTR-2 (3\" main vent): kitchen sink (up beside the\nwindow, into the pantry wall, then the pantry\n"
+                              "attic), common bath, laundry and primary bath", "top")]
     for vx, vy, lab, va in vtrs:
         ax.add_patch(Circle((vx, vy), 6, fc="white", ec=INK, lw=1.2, zorder=5))
         ax.plot([vx - 6, vx + 6], [vy] * 2, color=INK, lw=0.8, zorder=6)
