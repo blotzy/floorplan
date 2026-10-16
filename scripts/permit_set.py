@@ -271,7 +271,15 @@ def survey():
     names = {"WM": "WATER METER", "SSCO": "SEWER CLEANOUT", "PP": "POWER POLE"}
     utils = {names[t.dxf.text.strip()]: to_lot(t.dxf.insert.x, t.dxf.insert.y)
              for t in msp.query("TEXT") if t.dxf.text.strip() in names}
-    _SURF.update(shots=shots, z=z, utils=utils, grid=(xs, ys, zs, interp))
+    walls = []                                                           # existing walls and the chimney
+    for e in msp:
+        lay = e.dxf.layer
+        if ("sw wall" in lay or "sw chimney" in lay) and "hatch" not in lay and e.dxftype() in ("LINE", "LWPOLYLINE"):
+            pts = ([to_lot(e.dxf.start.x, e.dxf.start.y), to_lot(e.dxf.end.x, e.dxf.end.y)] if e.dxftype() == "LINE"
+                   else [to_lot(q[0], q[1]) for q in e.get_points("xy")])
+            kind = "chimney" if "chimney" in lay else ("line" if max(q[0] for q in pts) < 20 else "old")
+            walls.append((kind, pts))
+    _SURF.update(shots=shots, z=z, utils=utils, grid=(xs, ys, zs, interp), walls=walls)
     return shots, z, utils
 
 
@@ -342,6 +350,13 @@ def site_plan(pdf):
         ax.add_patch(Circle((x, y), 3, fc="#2e7d32", ec="none"))
         ax.text(x, y - 38, lab, fontsize=4.5, ha="center", va="top", color="#2e7d32")
     _, z, utils = survey()
+    for kind, pts in _SURF["walls"]:                                     # existing walls and chimney
+        c, ls = ("#b03a2e", "--") if kind != "line" else ("#555", "-")
+        ax.plot([q[0] for q in pts], [q[1] for q in pts], color=c, lw=1.4 if kind == "line" else 1.1, ls=ls)
+    ax.text(150, 690, "EXIST. RETAINING WALL\nAND CHIMNEY (DASHED)\nTO BE REMOVED", fontsize=5.5, color="#b03a2e",
+            va="center")
+    ax.text(S.LOT_X0 + 10, 300, "EXIST. RETAINING WALL AT THE\nEAST LINE (NEIGHBOR'S GRADE):\nTO REMAIN, NO EXCAVATION\n"
+            "AT ITS BASE", fontsize=5, color="#555", va="center", rotation=90)
     for lab, (x, y) in utils.items():
         ax.add_patch(Rectangle((x - 5, y - 5), 10, 10, fc="white", ec="#1f5e9e", lw=0.8))
         ax.text(x + 9, y, lab, fontsize=5, color="#1f5e9e", va="center")
@@ -404,7 +419,10 @@ def site_plan(pdf):
              "3. Eaves (dashed) 2'-6\" all round (LACC 22.110.090).\n"
              "4. Existing street and parkway trees protected\n   during construction (root zones).\n"
              "5. 5' noncombustible zone around the house.\n"
-             "6. Water, sewer and SCE service per the utilities;\n   no gas service (all-electric).")
+             "6. Water, sewer and SCE service per the utilities;\n   no gas service (all-electric).\n"
+             "7. Demolition: remove the remaining retaining wall and\n   chimney from the burned house (dashed red); asbestos\n"
+             "   survey first if required (SCAQMD Rule 1403); fill\n   and grade per civil.\n"
+             "8. The retaining wall along the east line holds the\n   neighbor's higher grade: protect it in place.")
     fig.text(25.9 / W_IN, (y - 0.3) / H_IN, notes, fontsize=8, va="top", linespacing=1.35)
     pdf.savefig(fig); fig.savefig(OUT / "A-1-site-plan.png", dpi=80); plt.close(fig)
 
