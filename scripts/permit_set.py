@@ -339,8 +339,7 @@ def floor_plan(pdf):
     hall_y = (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2
     for nm, (x, y) in {"GYM": (760, 330), "GUEST": (980, 330), "OFFICE": (1140, 330), "PRIMARY": (1140, 540)}.items():
         alarm(x, y, "SD")
-    for x in (905, 1150):
-        alarm(x, hall_y, "SD/\nCO")
+    alarm(955, hall_y + 15, "SD/\nCO")           # one, mid-lobby: within 21' of every bedroom door
     ax.text(990 + 27, hall_y + 15, "AIR HANDLER ABOVE (SEALED ATTIC)", fontsize=5,
             ha="center", va="bottom", color=INK)
     for x, y in ((560, 360), (430, 560), (610, 470)):
