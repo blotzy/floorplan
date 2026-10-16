@@ -82,7 +82,7 @@ def glass_total():
         if o[0] in S.EXT_WALLS and o[3] in ("window", "slider", "transom"):
             h = 96.0 if o[3] == "slider" else (o[5] - o[4] if len(o) > 4 else 66.0)
             tot += (o[2] - o[1]) * h / 144
-    lx0, lx1 = X.LOUNGE_X
+    lx0, lx1 = X.CLERESTORY_X
     return tot + (lx1 - lx0) * 36 / 144
 
 
@@ -281,9 +281,12 @@ def elevation(ax, side):
             for x0, x1, z0, z1, k in openings_on("porch front"):
                 ax.add_patch(Rectangle((h(x0), z0), x1 - x0, z1 - z0, fc="#d9792b" if k == "door" else "#bfe3f2",
                                        ec=INK, lw=0.8))
-            lx0, lx1 = X.LOUNGE_X
+            lx0, lx1 = X.CLERESTORY_X
             g0 = X.PLATE + (wall_top - X.PLATE - 36) / 2
             ax.add_patch(Rectangle((h(lx0), g0), lx1 - lx0, 36, fc="#bfe3f2", ec=INK, lw=0.8))   # clerestory
+            for k in range(1, X.CLERESTORY_UNITS):                                            # mullions
+                mx = lx0 + k * X.CLERESTORY_UNIT
+                ax.plot([h(mx), h(mx)], [g0, g0 + 36], color=INK, lw=0.6)
             ax.add_patch(Rectangle((h(cx0), 0), 6, 108, fc=INK)); ax.add_patch(Rectangle((h(cx0 - 6), 108), cx1 - cx0 + 6, 4, fc=INK))
         else:
             ax.add_patch(Rectangle((h(cx1), 108), cx1 - cx0 + 6, 4, fc=INK))

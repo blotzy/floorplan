@@ -164,7 +164,7 @@ def doors():
 def windows():
     ws = [(o[0], o[1], o[2], *(o[4:6] if len(o) > 4 else (30.0, 96.0)), "window")
           for o in S.OPENINGS if o[3] in ("window", "transom")]
-    lx0, lx1 = X.LOUNGE_X                                                 # clerestory, above the lounge window
+    lx0, lx1 = X.CLERESTORY_X                                             # clerestory, above the lounge window
     ws.append(("north", lx0, lx1, X.CLERESTORY_SILL, X.CLERESTORY_SILL + 36.0, "clerestory"))
     return ws
 
@@ -172,7 +172,7 @@ def windows():
 def window_type(rm, w, h, sill, kind):
     """(operation, notes) for the schedule: notes only where something is required."""
     if kind == "clerestory":
-        return "Fixed (mulled units)", "Clerestory"
+        return f"Fixed, {X.CLERESTORY_UNITS} units mulled", "Clerestory"
     if rm in ("GYM", "GUEST", "OFFICE", "PRIMARY") and sill <= 44:
         return "Horizontal slider", "Emergency escape (note 6)"
     if rm == "LOUNGE":
@@ -648,7 +648,7 @@ def section_cut(ax, cut, at, ff):
                 head = 84.0
             u0 = a if o[0] in ("north", "east") else b - S.EXT
             ax.add_patch(Rectangle((u0, sill), S.EXT, head - sill, fc="#bfe3f2", ec=INK, lw=0.6))
-    lx0, lx1 = X.LOUNGE_X
+    lx0, lx1 = X.CLERESTORY_X
     if cut == "x" and lx0 <= at <= lx1:
         ax.add_patch(Rectangle((a, X.CLERESTORY_SILL), S.EXT, 36, fc="#bfe3f2", ec=INK, lw=0.6))
         ax.text(a + S.EXT + 4, X.CLERESTORY_SILL + 18, "CLERESTORY", fontsize=5.5, va="center")

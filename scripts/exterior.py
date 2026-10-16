@@ -130,6 +130,8 @@ def butterfly(sc, pitch, ov, seams=False):
 
 
 LOUNGE_X = (S.face("foyer wall", +1), S.face("lounge|gym", -1))
+CLERESTORY_UNITS, CLERESTORY_UNIT = 3, 72.0       # three 6'-0" x 3'-0" units, mulled, centred over the lounge
+CLERESTORY_X = tuple(sum(LOUNGE_X) / 2 + d * CLERESTORY_UNITS * CLERESTORY_UNIT / 2 for d in (-1, 1))
 LOUNGE_Y = (S.N_IN, S.face("south hall wall", -1))          # street wall to the lobby edge
 JOISTS = 10.0                                               # ceiling framing above the 10' ceiling
 
@@ -194,7 +196,7 @@ def shed_vault_great(sc, pitch, ov, seams=False, band=None, pieces=None):
     under = shed_vault_under(pitch)
     lx0, lx1 = LOUNGE_X
     if band and not pieces:
-        pieces = [(lx0, lx1, band)]
+        pieces = [(*CLERESTORY_X, band)]
     slab_roof(sc, ov, under, north=[(S.PORCH_X, lx0, "exterior"), (lx0, lx1, None if pieces else "glass"),
                                     (lx1, W, "exterior")], seams=seams)
     if pieces:
