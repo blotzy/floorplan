@@ -133,15 +133,26 @@ OPENINGS = [
 
 # Street-facade articulation (County building articulation, Table 22.140.520-C): the street windows
 # are recessed into the wall, and flat metal canopies sit just above the heads of the four big ones
-# (not the ensuite's high window). Each canopy runs 1' past its window and no farther (22.110.090.B).
+# (not the ensuite's high window); the same canopies shade the kitchen and primary bedroom windows
+# at the rear. Each canopy runs 1' past its window and no farther (22.110.090.B).
 WINDOW_RECESS = 6.0                  # glass behind the stucco face
 CANOPY_D, CANOPY_RUN, CANOPY_Z = 36.0, 12.0, 98.0   # depth off the wall, run past each side, underside
 
 
+def canopies(wall=None):
+    """[(wall, x0, x1)] of the window canopies: the four big street windows, and at the rear the
+    kitchen and primary bedroom windows (the standard-sill ones: not the dining window's low sill
+    or the baths' and laundry's high ones)."""
+    out = []
+    for o in OPENINGS:
+        sill = o[4] if len(o) > 4 else 30.0
+        if o[3] == "window" and ((o[0] == "north" and sill < 60) or (o[0] == "south" and 30 <= sill < 60)):
+            out.append((o[0], o[1] - CANOPY_RUN, o[2] + CANOPY_RUN))
+    return [c for c in out if wall in (None, c[0])]
+
+
 def street_canopies():
-    """[(x0, x1)] of the street-window canopies."""
-    return [(o[1] - CANOPY_RUN, o[2] + CANOPY_RUN) for o in OPENINGS
-            if o[0] == "north" and o[3] == "window" and (o[4] if len(o) > 4 else 30.0) < 60]
+    return [(x0, x1) for _, x0, x1 in canopies("north")]
 
 
 # =============================================================================
@@ -613,10 +624,11 @@ def build() -> Sheet:
     sh.text("18' x 18'", (cx0 + cx1) / 2, (cy0 + cy1) / 2 - 12, 6.5, "A-AREA-IDEN")
     sh.msp.add_lwpolyline(driveway_outline(), close=True, dxfattribs={"layer": "L-SITE"})
     sh.text("DRIVEWAY", (DRIVE_IN[0] + DRIVE_IN[1]) / 2 + 10, 120.0, 9.0, "A-AREA-IDEN")
-    for x0, x1 in street_canopies():                                          # canopies over the street windows
-        sh.msp.add_lwpolyline([(x0, N), (x0, N - CANOPY_D), (x1, N - CANOPY_D), (x1, N)],
+    for wall, x0, x1 in canopies():                                           # window canopies
+        y, d = (N, -CANOPY_D) if wall == "north" else (S, CANOPY_D)
+        sh.msp.add_lwpolyline([(x0, y), (x0, y + d), (x1, y + d), (x1, y)],
                               dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
-        sh.text("CANOPY ABOVE", (x0 + x1) / 2, N - CANOPY_D / 2, 3.0, "A-CANP")
+        sh.text("CANOPY ABOVE", (x0 + x1) / 2, y + d / 2, 3.0, "A-CANP")
     sh.rect(E + 4, N - 24, PORCH_X - 4, N, "L-SITE")                          # porch step
     sh.rect(E, N, E + 6, N + 6, "A-WALL")                                     # porch corner post
     sh.rect(*ENTRY_COURT, "L-SITE")                                           # entry court + seat wall

@@ -330,13 +330,15 @@ def porch_breeze(sc):
 
 
 def street_facade(sc):
-    """Recessed street windows (glass WINDOW_RECESS behind the stucco face) and the flat metal canopies."""
+    """Recessed street windows (glass WINDOW_RECESS behind the stucco face) and the flat metal window
+    canopies (street, plus the kitchen and primary bedroom at the rear)."""
     yc = N + S.EXT / 2
     for q in sc.quads["glass"]:
         if abs(q[1] - yc) < 0.01 and abs(q[3] - yc) < 0.01 and q[4] < 100:
             q[1] = q[3] = N + S.WINDOW_RECESS
-    for x0, x1 in S.street_canopies():
-        sc.boxes["canopy"].append([x0, N - S.CANOPY_D, x1, N, S.CANOPY_Z, S.CANOPY_Z + 3])
+    for wall, x0, x1 in S.canopies():
+        y0, y1 = (N - S.CANOPY_D, N) if wall == "north" else (Sth, Sth + S.CANOPY_D)
+        sc.boxes["canopy"].append([x0, y0, x1, y1, S.CANOPY_Z, S.CANOPY_Z + 3])
     sc.mat["canopy"] = {"color": 0x2B2D30}
 
 
