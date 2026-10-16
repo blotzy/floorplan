@@ -95,7 +95,7 @@ VARIANTS = {   # key -> (title, [steps])
     "recessed": ("Recessed windows only (no band)", [A.recessed]),
     "band-9-dark": ("Dark band at the porch ceiling line (9')", [A.recessed, band(108, 116, DARK)]),
     "mid": ("One band centred between window heads and clerestory", [A.recessed, band(*centred(MID), GREY)]),
-    "mid-wrap": ("The centred band, wrapped around both ends", [A.recessed, band_wrap(*centred(MID), GREY)]),
+    "mid-wrap": ("The centred band, wrapped around both ends (main plan)", [A.recessed, band_wrap(*centred(MID), GREY)]),
     "mid-all": ("The centred band, all the way round (rear too)",
                 [A.recessed, band_wrap(*centred(MID), GREY, rear=True)]),
     "mid-dark": ("The centred band in dark metal", [A.recessed, band(*centred(MID), DARK)]),

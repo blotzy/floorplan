@@ -48,7 +48,8 @@ Check the site for any current requirements on file format or sheets before uplo
 5. **Carport:** does the street-facing garage rule for lots over 100' of frontage (§22.140.520) apply to an open carport?
 6. **Parking:** are the two carport spaces enough, and can uncovered parking in the driveway count?
 7. **Eaves:** 2'-6" all round, the most an eave may project into a required yard (§22.110.090.A). The front, rear and west walls sit just outside their setback lines (1¼", 2½" and 2⅜"), so the eaves reach about 2'-4¾", 2'-3½" and 2'-3⅝" into those yards. Each stays more than 2'-6" from the lot line and more than 8' above grade, with no supports in the yard. Confirm the projection is measured to the fascia.
-8. **Driveway Zone:** what are its dimensions for fences, walls and hedges near the driveway? (The entry court's seat wall is 24".)
-9. **Rebuild size limit:** any limit on the rebuild's size compared with the house that burned?
+8. **Street-wall band:** the street facade's horizontal band (Table 22.140.520-C banding, with recessed windows as the second strategy) projects 6" from the street wall and wraps both ends, so it reaches a few inches into the front yard and the west side yard. Is it a permitted projection, like an eave? If not, the fallback is canopies over the street windows (allowed into the front yard under §22.110.090.B).
+9. **Driveway Zone:** what are its dimensions for fences, walls and hedges near the driveway? (The entry court's seat wall is 24".)
+10. **Rebuild size limit:** any limit on the rebuild's size compared with the house that burned?
 
 Note the answers in [open questions](09-open-questions.md) and pass them to the architect.

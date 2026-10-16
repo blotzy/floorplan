@@ -189,8 +189,10 @@ def site_plan(pdf):
              "5. Survey: topographic survey on file (APN above).\n"
              f"6. Eaves {ftin(OV)} all round: the most an eave may project into a required yard\n"
              "   (§22.110.090.A); more than 2'-6\" from every lot line, no supports in the yards.\n"
-             f"7. Window canopies {ftin(S.CANOPY_D)} deep, street and rear (§22.110.090.B: up to 5' into\n"
-             "   front and rear yards): over the windows only, 1' past each side, no supports in the yards.")
+             f"7. Rear window canopies {ftin(S.CANOPY_D)} deep (§22.110.090.B: up to 5' into the rear yard):\n"
+             "   over the windows only, 1' past each side, no supports in the yard.\n"
+             f"8. The street-wall band projects {S.BAND_PROUD:.0f}\" (into the front yard and the west side yard\n"
+             "   by a few inches). Please confirm it is a permitted architectural projection.")
     tx.text(0.0, y - 0.01, notes, fontsize=7.5, va="top", transform=tx.transAxes, linespacing=1.4)
     pdf.savefig(fig); fig.savefig(OUT / "Z-1-site-plan.png", dpi=110); plt.close(fig)
 
@@ -287,10 +289,12 @@ def elevation(ax, side):
             ax.add_patch(Rectangle((min(h(x0), h(x1)), z0), x1 - x0, z1 - z0, fc="#bfe3f2", ec=INK, lw=0.8))
         for _, x0, x1 in S.canopies(side):                         # window canopies
             ax.add_patch(Rectangle((min(h(x0), h(x1)), S.CANOPY_Z), x1 - x0, 3, fc=INK))
-        if side == "north":
-            c0, c1 = S.street_canopies()[-1]
-            ax.annotate(f"{ftin(S.CANOPY_D)} deep metal canopy (typ.)\nwindows recessed {S.WINDOW_RECESS:.0f}\" (typ.)",
-                        ((h(c0) + h(c1)) / 2, S.CANOPY_Z + 3), ((h(c0) + h(c1)) / 2, S.CANOPY_Z + 40),
+        if side == "north":                                        # band along the street wall
+            z0, z1 = X.BAND
+            ax.add_patch(Rectangle((h(a - S.BAND_PROUD), z0), b - a + 2 * S.BAND_PROUD, z1 - z0, fc="#8e8a84", ec=INK, lw=0.6))
+            xm = (S.W + 1101.6) / 2 + 40
+            ax.annotate(f"{S.BAND_H:.0f}\" band, {S.BAND_PROUD:.0f}\" proud, full length, wraps both ends\n"
+                        f"windows recessed {S.WINDOW_RECESS:.0f}\" (typ.)", (h(xm), z1), (h(xm), z1 + 32),
                         fontsize=6.5, ha="center", arrowprops=dict(arrowstyle="-", lw=0.6))
         lo, hi = min(h(a - OV), h(b + OV)), max(h(a - OV), h(b + OV))
     else:
@@ -309,8 +313,10 @@ def elevation(ax, side):
             for y0, y1, z0, z1, k in openings_on("porch side"):
                 ax.add_patch(Rectangle((min(hy(y0), hy(y1)), z0), y1 - y0, z1 - z0, fc="#bfe3f2", ec=INK, lw=0.8))
             ax.add_patch(Rectangle((min(hy(S.N), hy(S.N + 6)), 0), 6, PORCH_CEIL, fc=INK))      # porch corner post
-        ax.add_patch(Rectangle((min(hy(a - S.CANOPY_D), hy(a)), S.CANOPY_Z), S.CANOPY_D, 3, fc=INK))   # canopies,
-        ax.add_patch(Rectangle((min(hy(b), hy(b + S.CANOPY_D)), S.CANOPY_Z), S.CANOPY_D, 3, fc=INK))   # end-on
+        z0, z1 = X.BAND                                            # the band, wrapping round this end
+        ax.add_patch(Rectangle((min(hy(a - S.BAND_PROUD), hy(b)), z0), b - a + S.BAND_PROUD, z1 - z0,
+                               fc="#8e8a84", ec=INK, lw=0.6))
+        ax.add_patch(Rectangle((min(hy(b), hy(b + S.CANOPY_D)), S.CANOPY_Z), S.CANOPY_D, 3, fc=INK))   # rear canopy, end-on
         if side == "east":                                         # carport in front: posts + roof
             for yy in (cy0, cy1 - 6):
                 ax.add_patch(Rectangle((min(hy(yy), hy(yy + 6)), 0), 6, 108, fc=INK))
@@ -348,10 +354,10 @@ def elevations(pdf):
         elevation(fig.add_axes([0.02 + i * 0.49, 0.1, 0.47, 0.26]), side)
     fig.text(0.02, 0.972, "Heights above finished floor. The lot falls ~4' across the footprint (survey); grade lines "
              "and height above grade to follow the foundation/grading design.", fontsize=8.5, color="#555")
-    fig.text(0.02, 0.962, "Street facade articulation (§22.140.520, Table 22.140.520-C): (1) weather protection: flat metal "
-             f"canopies {ftin(S.CANOPY_D)} deep over 4 of the 5 street windows; (2) recessed windows: all street windows "
-             f"set {S.WINDOW_RECESS:.0f}\" behind the stucco face.\nRear: matching canopies over the kitchen and primary "
-             "bedroom windows.", fontsize=8.5, color="#555", va="top")
+    fig.text(0.02, 0.962, "Street facade articulation (§22.140.520, Table 22.140.520-C): (1) horizontal banding: an "
+             f"{S.BAND_H:.0f}\" band projecting {S.BAND_PROUD:.0f}\" the full length of the street wall, wrapping both ends; "
+             f"(2) recessed windows: all street windows set {S.WINDOW_RECESS:.0f}\" behind the stucco face.\n"
+             "Rear: metal canopies over the kitchen and primary bedroom windows.", fontsize=8.5, color="#555", va="top")
     pdf.savefig(fig); fig.savefig(OUT / "Z-4-elevations.png", dpi=110); plt.close(fig)
 
 

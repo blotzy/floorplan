@@ -132,27 +132,24 @@ OPENINGS = [
 ]
 
 # Street-facade articulation (County building articulation, Table 22.140.520-C): the street windows
-# are recessed into the wall, and flat metal canopies sit just above the heads of the four big ones
-# (not the ensuite's high window); the same canopies shade the kitchen and primary bedroom windows
-# at the rear. Each canopy runs 1' past its window and no farther (22.110.090.B).
+# are recessed into the wall, and a horizontal band (6" proud) runs the length of the street wall,
+# centred between the window heads and the clerestory, and around both ends of the house. At the
+# rear, flat metal canopies shade the kitchen and primary bedroom windows; each runs 1' past its
+# window and no farther (22.110.090.B).
 WINDOW_RECESS = 6.0                  # glass behind the stucco face
+BAND_PROUD, BAND_H = 6.0, 8.0        # band: projection from the wall, height (its height: experiment_exterior)
 CANOPY_D, CANOPY_RUN, CANOPY_Z = 36.0, 12.0, 98.0   # depth off the wall, run past each side, underside
 
 
 def canopies(wall=None):
-    """[(wall, x0, x1)] of the window canopies: the four big street windows, and at the rear the
-    kitchen and primary bedroom windows (the standard-sill ones: not the dining window's low sill
-    or the baths' and laundry's high ones)."""
+    """[(wall, x0, x1)] of the window canopies: the kitchen and primary bedroom windows at the rear
+    (the standard-sill ones: not the dining window's low sill or the baths' and laundry's high ones)."""
     out = []
     for o in OPENINGS:
         sill = o[4] if len(o) > 4 else 30.0
-        if o[3] == "window" and ((o[0] == "north" and sill < 60) or (o[0] == "south" and 30 <= sill < 60)):
+        if o[3] == "window" and o[0] == "south" and 30 <= sill < 60:
             out.append((o[0], o[1] - CANOPY_RUN, o[2] + CANOPY_RUN))
     return [c for c in out if wall in (None, c[0])]
-
-
-def street_canopies():
-    return [(x0, x1) for _, x0, x1 in canopies("north")]
 
 
 # =============================================================================
@@ -624,6 +621,10 @@ def build() -> Sheet:
     sh.text("18' x 18'", (cx0 + cx1) / 2, (cy0 + cy1) / 2 - 12, 6.5, "A-AREA-IDEN")
     sh.msp.add_lwpolyline(driveway_outline(), close=True, dxfattribs={"layer": "L-SITE"})
     sh.text("DRIVEWAY", (DRIVE_IN[0] + DRIVE_IN[1]) / 2 + 10, 120.0, 9.0, "A-AREA-IDEN")
+    p = BAND_PROUD                                                            # band: street wall and both ends
+    sh.msp.add_lwpolyline([(E, S), (E - p, S), (E - p, N - p), (W + p, N - p), (W + p, S), (W, S)],
+                          dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
+    sh.text("BAND ABOVE", (E + W) / 2 + 200, N - p - 6, 3.0, "A-CANP")
     for wall, x0, x1 in canopies():                                           # window canopies
         y, d = (N, -CANOPY_D) if wall == "north" else (S, CANOPY_D)
         sh.msp.add_lwpolyline([(x0, y), (x0, y + d), (x1, y + d), (x1, y)],
