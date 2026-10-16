@@ -36,7 +36,7 @@ Three strips side by side, each with its own door off the main lobby (no side ha
 
 ## Bedroom wing
 
-- **Gym:** North window matching the office's. Mineral wool in the walls shared with the lounge end. ERV boost control. Outlet for a stationary bike.
+- **Gym:** North window matching the office's. Mineral wool in the walls shared with the lounge end. Outlet for a stationary bike.
 - **Gym ring mounts:** two ceiling points near the room's centre (the 9' ceiling suits strength and static ring work; kipping and muscle-ups are tight at that height), swinging along the room's long direction. The truss designer must carry a concentrated load of about 500 lb at each point (blocking across several trusses with framing connectors; through-bolted forged eye bolts with plate washers). Keep lights, fans, HVAC/ERV registers, and the smoke alarm out of the swing zone. Photograph the blocking before drywall.
 - **Guest:** door at the bath end of the hall wall, with one long closet on the rest of that wall. A hinged door into the shared ensuite, in the wall between them just inside the entry and swinging into the guest room, makes it the guest's private bath when someone is staying.
 - **Office:** Solid-core door and insulated walls for calls; wall blocking for monitor arms and shelves; dimmable ceiling light.
@@ -52,7 +52,7 @@ Three strips side by side, each with its own door off the main lobby (no side ha
 ## Ceilings and roof
 
 - **Vaulted great room:** the foyer, lounge, dining room and kitchen share one continuous sloped ceiling following the roof, highest at the clerestory and lowest at the rear wall, with no step between rooms. The foyer/TV wall runs full height up to the sloped ceiling, so the foyer is a tall space of its own, open toward the dining room. Insulation goes at the roof deck (spray foam in the rafter bays). Light fixtures, fans, smoke alarms and sprinkler heads in the vault are laid out and wired before insulation, with a few spare conduits up the rafter bays; prefer surface, pendant or slim fixtures over recessed cans. The range hood ducts straight up through the roof.
-- Everywhere else: flat 9' ceilings under the sealed attic. The ducted heat pump unit, its ducts, and the ERV go in that attic (over the bedroom wing and utility block), so no hallway drop ceiling is needed.
+- Everywhere else: flat 9' ceilings under the sealed attic. The ducted heat pump unit and its ducts go in that attic (over the bedroom wing and utility block), so no hallway drop ceiling is needed.
 - The clerestory glass counts toward the Title 24 glazing budget, which puts the house right at the 20% prescriptive limit: confirm with the energy consultant (a slightly shorter band, or the performance path, covers it).
 - Ceiling box or low-voltage bracket at the two Wi-Fi access point locations, installed at rough-in with the Cat6A ending inside.
 - Ceiling fans: short downrods under the 9' ceilings, longer ones (or sloped-ceiling mounts) in the vault.
@@ -66,8 +66,8 @@ Three strips side by side, each with its own door off the main lobby (no side ha
 
 - Insulation at the roofline: spray foam under the roof deck or rigid board above it. No attic vents.
 - Attic storage loading (about 20 psf) on a strip over the bedroom wing, between the hall and the street wall, where the shed roof gives the attic its height (it tapers to very little over the rear rooms), specified to the truss designer, with plywood decking over it. Keep it clear of the equipment platform and walkway by the hatch.
-- Insulated, gasketed pull-down ladder sized for 9' ceilings, in the bedroom hall across from the walk-in closet wall, where no doors are in the ladder's way. Keep the hall's Wi-Fi access point, return grille and smoke alarm clear of it. Light switch at the hatch and an outlet in the attic. Code wants at least 30" of headroom above the opening and a 30"-high, floored passage to the air handler and ERV within 20' (CRC R807.1, M1305.1.3); the builder's target is 36" at the opening, which the shed roof gives over the hall with room to spare. Put the air handler toward the street side, where the attic is tallest.
-- Equipment access per mechanical code (opening, walkway, and service platform with a light and outlet) at the ducted unit and ERV. Place that equipment near the hatch.
+- Insulated, gasketed pull-down ladder sized for 9' ceilings, in the bedroom hall across from the walk-in closet wall, where no doors are in the ladder's way. Keep the hall's Wi-Fi access point, return grille and smoke alarm clear of it. Light switch at the hatch and an outlet in the attic. Code wants at least 30" of headroom above the opening and a 30"-high, floored passage to the air handler within 20' (CRC R807.1, M1305.1.3); the builder's target is 36" at the opening, which the shed roof gives over the hall with room to spare. Put the air handler toward the street side, where the attic is tallest.
+- Equipment access per mechanical code (opening, walkway, and service platform with a light and outlet) at the ducted unit. Place that equipment near the hatch.
 - Thermal barrier over the spray foam (drywall or an approved coating), since the attic will be used for storage.
 - Smurf tube or a cable tray across the attic from the network rack for future runs.
 - Keep heavy items and heat-producing equipment such as servers out of the attic.
@@ -75,7 +75,7 @@ Three strips side by side, each with its own door off the main lobby (no side ha
 ## Wildfire hardening
 
 - Enclosed eaves with noncombustible or ignition-resistant soffits (wood-look is fine if it's fire-retardant-treated or metal/fiber cement).
-- Ember-resistant screens or self-closing dampers on every remaining opening: ERV intake and exhaust, exhaust-fan terminations, the range-hood cap, and foundation vents if the floor is raised.
+- Ember-resistant screens or self-closing dampers on every remaining opening: exhaust-fan terminations, the range-hood cap, and foundation vents if the floor is raised.
 - Stucco walls (noncombustible) and tempered dual-pane windows.
 - A noncombustible zone around the house (pavers/gravel, no mulch or turf), at least as wide as code requires.
 - Sealed (unvented) attic with no attic vents, so embers have no entry point.

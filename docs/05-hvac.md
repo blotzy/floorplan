@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-One fully ducted, variable-speed heat pump split into zones with motorized (electric) dampers, plus an ERV for code-required fresh air. Every room gets ceiling registers. Capacities are rough; the HVAC contractor's Manual J sets the final sizes. No electric backup heat strips are needed in this climate.
+One fully ducted, variable-speed heat pump split into zones with motorized (electric) dampers, plus a continuously running exhaust fan for code-required fresh air. Every room gets ceiling registers. Capacities are rough; the HVAC contractor's Manual J sets the final sizes. No electric backup heat strips are needed in this climate.
 
 | Zone | Serves | Thermostat |
 | --- | --- | --- |
@@ -25,11 +25,10 @@ Three zones are preferred. If the Manual J or the equipment's minimum airflow ma
 - Gym: keep registers out of the ring swing zone.
 - Primary bedroom register aimed along the room, not at the bed.
 - No return in the kitchen (grease) or the laundry (lint).
-- Ducts stay in the sealed attic; no ducts, returns, or ERV openings into the carport.
+- Ducts stay in the sealed attic; no ducts, returns, or vent openings into the carport.
 
 **Ventilation**
 
-- ERV (energy recovery ventilator) with MERV 13 filtration for wildfire smoke. Exhaust pickups in the baths and laundry; fresh-air supply to the bedrooms and great room. ERV boost control in the gym.
-- ERV fresh-air intake ≥10' from the exhaust terminations and the heat pump outdoor unit.
+- Whole-house ventilation: a quiet, continuous-rated exhaust fan running all the time at the code's ventilation rate (one of the bath fans, upsized), with its own termination and ember-resistant damper. The other bath fans and the laundry fan run on demand (humidity or timer switches).
 - Range hood ducted outside through the roof, 400 CFM or less to avoid a makeup-air requirement.
 - Network rack and water heater share the mechanical closet, which opens into the laundry through a louvered bifold so the water heater can draw on the laundry's air (and the rack's waste heat); no conditioned supply into the closet.

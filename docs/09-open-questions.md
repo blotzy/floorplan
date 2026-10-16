@@ -35,7 +35,7 @@
 - [ ] Truss designer: 500 lb concentrated loads at the gym ring points; 20 psf attic storage strip.
 - [ ] Plumber and sprinkler designer: does the sprinkler system require a 1" water service / meter upsize?
 - [ ] Plumber: confirm the robot vacuum dock drain connection and trap.
-- [ ] HVAC and energy consultant: whole-house ventilation by the ERV (as planned) or by a continuously running exhaust fan. Compare cost, energy (the Title 24 result), comfort, and filtering incoming air during wildfire smoke, and confirm which the energy code allows here.
+- [ ] HVAC and energy consultant: an ERV instead of the continuous exhaust fan (about $4,000–7,000 more installed): fresh air through a MERV 13 filter on smoke days and some heat and humidity recovery. What does it earn in the Title 24 run?
 - [ ] HVAC: Manual J load calculation and Manual D duct design to size the ducted heat pump and confirm three zones (or two, if the primary suite is too small to run alone).
 - [ ] Electrician: load calculation with the full appliance list, confirming 200A.
 - [ ] Electrician: SCE service point and meter location (west end?) and the EV charger run to the carport.

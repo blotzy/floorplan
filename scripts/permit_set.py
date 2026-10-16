@@ -341,7 +341,7 @@ def floor_plan(pdf):
         alarm(x, y, "SD")
     for x in (905, 1150):
         alarm(x, hall_y, "SD/\nCO")
-    ax.text(990 + 27, hall_y + 15, "AIR HANDLER + ERV ABOVE (SEALED ATTIC)", fontsize=5,
+    ax.text(990 + 27, hall_y + 15, "AIR HANDLER ABOVE (SEALED ATTIC)", fontsize=5,
             ha="center", va="bottom", color=INK)
     for x, y in ((560, 360), (430, 560), (610, 470)):
         pass
@@ -360,7 +360,7 @@ def floor_plan(pdf):
         "5. All exterior glazing dual-pane with at least one tempered\n   pane (CRC R337.8.2.1). Fully tempered where noted\n   (CRC R308.4).\n"
         "6. Bedroom windows meet emergency escape: 5.7 sq ft net\n   clear, 20\" min width, 24\" min height, sill 44\" max\n   (CRC R310).\n"
         "7. Smoke alarms: hard-wired, interconnected, battery\n   backup, at least 3' from bathroom doors (CRC R314).\n   Combination smoke / CO alarms outside the sleeping areas.\n"
-        "8. All-electric: heat pump HVAC (air handler and ERV in\n   the sealed attic; outdoor unit at the rear wall), heat\n   pump water heater (HPWH) in the mechanical closet.\n"
+        "8. All-electric: heat pump HVAC (air handler in the sealed\n   attic; outdoor unit at the rear wall), heat pump water\n   heater (HPWH) in the mechanical closet. Whole-house\n   ventilation by a continuous exhaust fan.\n"
         "9. Fire sprinklers throughout (NFPA 13D); plans by the\n   sprinkler designer (deferred submittal).\n"
         "10. Attic access: 22\" x 54\" pull-down ladder in the hall,\n   30\" min headroom above (CRC R807.1).\n"
         "11. Furniture not shown; closets, cabinets and fixtures\n   shown for reference.\n")
