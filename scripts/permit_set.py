@@ -732,13 +732,23 @@ def details(pdf):
     for txt, (x, y) in {"Noncombustible gutter guard\n(CRC R337.5.4)": (2, 96), "Metal gutter + drip edge": (16, 62),
                         "Downspout to site drainage\n(per civil)": (2, 50)}.items():
         ax.text(x, y, txt, fontsize=7, va="top")
-    # 4. exhaust termination
-    ax = detail_box(fig, 25.2, 13.0, 7.3, 9.8, "4  EXHAUST TERMINATION   NTS")
-    ax.add_patch(Rectangle((40, 10), 9, 90, fc="#ccc", ec=INK))
-    ax.add_patch(Rectangle((10, 52), 40, 8, fc="white", ec=INK))
-    ax.add_patch(Rectangle((30, 46), 10, 20, fc="#999", ec=INK))
-    for txt, (x, y) in {"Duct from the fan or hood": (52, 62), "Listed ember-resistant cap\nwith back-draft damper\n(ASTM E2886)": (2, 40)}.items():
-        ax.text(x, y, txt, fontsize=7, va="top")
+    # 4. exhaust terminations: roof cap (range hood, interior bath) and wall cap (rooms on an exterior wall)
+    ax = detail_box(fig, 25.2, 13.0, 7.3, 9.8, "4  EXHAUST TERMINATIONS   NTS")
+    ax.text(4, 112, "4a ROOF CAP: range hood; fans in rooms\nwith no exterior wall (common bath)", fontsize=7, va="top")
+    ax.add_patch(MPoly([(4, 66), (84, 80), (84, 86), (4, 72)], closed=True, fc="#666", ec=INK))     # roof slab
+    ax.add_patch(Rectangle((40, 40), 6, 44, fc="white", ec=INK, zorder=3))                          # duct through
+    ax.add_patch(MPoly([(33, 84), (53, 84), (53, 91), (33, 91)], closed=True, fc="#999", ec=INK, zorder=4))  # cap
+    ax.add_patch(MPoly([(34, 77.5), (52, 80.6), (52, 82), (34, 79)], closed=True, fc="#222", ec=INK, zorder=4))  # flashing
+    ax.text(55, 92, "Listed ember-resistant roof cap\nwith back-draft damper\n(ASTM E2886)", fontsize=6.5, va="bottom")
+    ax.annotate("Flashing", (36, 78.5), (8, 96), fontsize=6.5, arrowprops=dict(arrowstyle="-", lw=0.6))
+    ax.text(48, 46, "Duct up from the\nhood or fan", fontsize=6.5, va="center")
+    ax.plot([2, 86], [36, 36], color=INK, lw=0.5, ls=":")
+    ax.text(4, 33, "4b WALL CAP: bath and laundry fans\non an exterior wall (no roof penetration)", fontsize=7, va="top")
+    ax.add_patch(Rectangle((50, 4), 9, 20, fc="#ccc", ec=INK))                                        # wall (section)
+    ax.add_patch(Rectangle((22, 12), 30, 5, fc="white", ec=INK))                                      # duct
+    ax.add_patch(Rectangle((59, 9), 6, 11, fc="#999", ec=INK))                                        # cap
+    ax.text(67, 14, "Ember-resistant wall cap\nwith damper", fontsize=6.5, va="center")
+    ax.text(22, 21, "Duct from the fan", fontsize=6.5, va="bottom")
     table(fig, 0.9, 11.9, "WILDLAND-URBAN INTERFACE REQUIREMENTS (VERY HIGH FIRE HAZARD SEVERITY ZONE)",
           ("CRC", "ITEM", "THIS PROJECT"), (1.0, 1.6, 9.5), [(a, b, c) for a, b, c in R337], fs=7.5)
     pdf.savefig(fig); fig.savefig(OUT / "A-6-fire-details.png", dpi=80); plt.close(fig)
