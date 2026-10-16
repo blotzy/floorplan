@@ -9,8 +9,8 @@ One page each for the structural and civil engineers, so they can quote and star
 | File | For |
 | --- | --- |
 | [Architectural set, draft (PDF)](../renders/permit/architectural-set.pdf), sheets A-0 to A-6 | Both |
-| [Plan as a DXF](../Accosting%20-%20owner%20schematic.dxf) (inches): CAD background for the framing and grading plans | Both |
-| [Plan over the survey as a DXF](../Accosting%20-%20owner%20schematic%20%2B%20survey.dxf) | Civil |
+| [Plan as a DXF](../accosting-owner-schematic.dxf) (inches): CAD background for the framing and grading plans | Both |
+| [Plan over the survey as a DXF](../accosting-owner-schematic-survey.dxf) | Civil |
 | [Zoning check set (PDF)](../renders/zoning/zoning-check-set.pdf) | Both |
 | [3D model](../renders/3d/house.html) (open in a browser; Roof menu, walk mode) | Both |
 | [Floor plan and design notes](02-floor-plan.md) · [plumbing](04-plumbing.md) · [open questions](09-open-questions.md) | Both |

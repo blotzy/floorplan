@@ -7,7 +7,7 @@
 Reproduces the current owner-edits layout (through step 21) with real wall
 thicknesses and writes a clean DXF + PNG:
 
-    Accosting - owner schematic.dxf
+    accosting-owner-schematic.dxf
     renders/schematic.png, renders/schematic-zoom.png
 
     uv run scripts/schematic.py
@@ -31,7 +31,7 @@ from shapely.geometry import Polygon, box
 from shapely.ops import unary_union
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "Accosting - owner schematic.dxf"
+OUT = ROOT / "accosting-owner-schematic.dxf"
 RENDERS = ROOT / "renders"
 
 # =============================================================================

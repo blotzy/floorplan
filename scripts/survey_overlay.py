@@ -10,7 +10,7 @@ using the survey's own lot lines, so the fit is exact. Draws the survey's
 existing conditions (walls, chimney, concrete, fences, edge of pavement, trees,
 utilities), spot elevations, and 1' contours computed from the ground shots.
 
-Writes "Accosting - owner schematic + survey.dxf" and renders/survey-overlay.png.
+Writes "accosting-owner-schematic-survey.dxf" and renders/survey-overlay.png.
 
     uv run scripts/survey_overlay.py
 """
@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import schematic as S  # noqa: E402
 
 SURVEY = next((S.ROOT / "private" / "survey").glob("*.dxf"))   # the surveyor's file: kept private
-OUT = S.ROOT / "Accosting - owner schematic + survey.dxf"
+OUT = S.ROOT / "accosting-owner-schematic-survey.dxf"
 PNG = S.RENDERS / "survey-overlay.png"
 
 LAYERS = {   # survey layer keyword -> (our layer, ACI colour, line weight in 1/100 mm)
