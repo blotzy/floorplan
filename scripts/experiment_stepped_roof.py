@@ -30,7 +30,7 @@ import schematic as S  # noqa: E402
 
 E, W, N, Sth = S.E, S.W, S.N, S.S
 OUT = S.RENDERS / "experiments"
-PITCH, OV = 2 / 12, 36.0
+PITCH, OV = 2 / 12, X.EAVE
 XS = 674.0                          # the step: lounge/gym and kitchen/pantry walls (one line)
 quad = X.quad
 VARIANTS = {   # key -> (title, rise, clerestory glass height)

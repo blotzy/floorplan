@@ -92,6 +92,8 @@ def gable(sc, pitch, ov, rake, glazed_ends=False):
 
 
 THK = 10.0                                # MCM roof slab: roofing on top, sloped soffit underneath
+EAVE = 30.0                               # main plan: eaves may project at most 2'-6" into a required yard
+                                          # (22.110.090.A); the front, rear and west walls sit on their setback lines
 
 
 def slab_roof(sc, ov, under, splits=(), ends="exterior", north="exterior", south="exterior", seams=False):
@@ -328,12 +330,12 @@ def porch_breeze(sc):
 
 
 def chosen_exterior(sc, porch=True):
-    """The main plan's exterior: MCM shingle shed (2:12, deep eaves) with a 3' clerestory band over the
+    """The main plan's exterior: MCM shingle shed (2:12, 2'-6" eaves) with a 3' clerestory band over the
     lounge and the foyer, lounge, dining and kitchen under one sloped ceiling; stucco walls,
     dark shingles and fascia, accent front door; porch with a wood-look feature wall. make_3d.py
     adds this to the main model."""
     band(sc, "exterior", WALL_TOP, PLATE)
-    shed_vault_great(sc, 2 / 12, 36, band=36.0)
+    shed_vault_great(sc, 2 / 12, EAVE, band=36.0)
     front_door(sc)
     sc.mat = {k: {"color": v} for k, v in STYLES["mcm-gable"][1].items()}
     sc.mat["seam"] = {"color": 0x2A2D31}
@@ -347,7 +349,7 @@ def roof_options():
     out = {}
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
-    low_gable(sc, 2 / 12, 36, glazed_ends=False)
+    low_gable(sc, 2 / 12, EAVE, glazed_ends=False)
     out["MCM gable 2:12, flat 9' ceilings"] = dict(sc.tris)
     for label, seams, glass_h in (
             ("MCM shingle shed 2:12, full-height clerestory, great room vaulted", False, None),
@@ -355,13 +357,13 @@ def roof_options():
             ("MCM metal shed 2:12, full-height clerestory, great room vaulted", True, None)):
         sc = M.Scene()
         band(sc, "exterior", WALL_TOP, PLATE)
-        shed_vault_great(sc, 2 / 12, 36, seams=seams, band=glass_h)
+        shed_vault_great(sc, 2 / 12, EAVE, seams=seams, band=glass_h)
         out[label] = dict(sc.tris)
     for label, seams in (("MCM shingle shed 2:12, no clerestory, flat 9' ceilings", False),
                          ("MCM metal shed 2:12, no clerestory, flat 9' ceilings", True)):
         sc = M.Scene()
         band(sc, "exterior", WALL_TOP, PLATE)
-        shed(sc, 2 / 12, 36, seams=seams, clerestory=False)
+        shed(sc, 2 / 12, EAVE, seams=seams, clerestory=False)
         out[label] = dict(sc.tris)
     return out
 

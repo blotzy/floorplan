@@ -34,7 +34,7 @@ APN = "APN 5832-003-027"
 OWNER = "Owner: Richard Acosta"
 PITCH = 2 / 12
 UNDER = X.shed_vault_under(PITCH)              # underside of the roof framing at plan y
-THK, OV = X.THK, 36.0                          # roof framing depth, eave overhang
+THK, OV = X.THK, X.EAVE                        # roof framing depth, eave overhang
 INK, SOFT = "#222", "#888"
 
 
@@ -216,7 +216,7 @@ def roof_plan(pdf):
     ax.text((X0 + X1) / 2, (Y0 + Y1) / 2, "MAIN ROOF: SINGLE SLOPE 2:12, DOWN TOWARD THE REAR\n"
             "Class A asphalt shingles over low-slope double underlayment\n"
             f"High edge at the street (top ~{ftin(TOP)}), low edge at the rear (top ~{ftin(REAR_TOP)}) above finished floor\n"
-            "3'-0\" eaves all round · gutter along the rear edge", ha="center", va="center", fontsize=9,
+            f"{ftin(OV)} eaves all round (max. 2'-6\" into a required yard, §22.110.090.A) · gutter along the rear edge", ha="center", va="center", fontsize=9,
             bbox=dict(fc="white", ec="none"))
     ax.annotate("", (cx0 + 10, (cy0 + cy1) / 2), (cx1 - 20, (cy0 + cy1) / 2), arrowprops=dict(arrowstyle="->", lw=1.2))
     ax.text((cx0 + cx1) / 2, (cy0 + cy1) / 2 + 22, "CARPORT ROOF\n¼\":12, slopes away from house\nClass A low-slope roofing\n"
