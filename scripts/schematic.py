@@ -54,6 +54,8 @@ CARPORT = (140.1, N, E, 481.3)       # x0, y0, x1, y1 (18' x 20')
 # tree inside the lot (~8'-6"), flaring west to the carport's full width. Runs out across the
 # parkway to the edge of pavement (no curb on Laurel Drive).
 DRIVE_IN = (LOT_X0 + 150.0, LOT_X0 + 290.0)   # entrance edges (x) at the property line
+EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives
+                                                                        # in the northwest parkway
 EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
 # Entry court in front of the porch, edged on the street side by a 24" seat wall (8" block) that
 # returns to the house just short of the lounge window; you walk in from the driveway side.
@@ -605,11 +607,18 @@ def build() -> Sheet:
     # courtyard
     fy = cy1 + 3
     sh.rect(LOT_X0 + 6, fy + 1, E, fy + 61, "L-SITE"); sh.text("PAVERS", LOT_X0 + 106, fy + 31, 6.0)
-    sh.rect(E - 144, fy + 1, E, LOT_D - 42, "L-SITE"); sh.text("DINING PATIO 12' x 21'", E - 72, 600.0, 5.0)
+    sh.rect(E - 60, fy + 61, E, LOT_D - 42, "L-SITE")                                  # 5' noncombustible strip
+    sh.text("GRAVEL", E - 30, 660.0, 4.0, rot=90)                                     # along the house (no patio)
+    sx0, sx1 = next(o[1:3] for o in OPENINGS if o[0] == "east" and o[3] == "slider")
+    sh.rect(E - 36, sx0, E, sx1, "L-SITE"); sh.text("LANDING", E - 18, (sx0 + sx1) / 2, 3.5, rot=90)  # at grade
     sh.rect(LOT_X0 + 18, fy + 73, E - 156, LOT_D - 54, "L-PLNT"); sh.text("LAWN", (LOT_X0 + 18 + E - 156) / 2, 640.0, 7.0)
     sh.rect(LOT_X0 + 6, LOT_D - 42, E, LOT_D - 6, "L-PLNT"); sh.text("RAISED PLANTERS", (LOT_X0 + E) / 2, LOT_D - 24, 5.0)
     sh.line((LOT_X0, fy), (160, fy), "A-FENC"); sh.line((208, fy), (E, fy), "A-FENC")
     sh.text("6' FENCE / GATE", 184, fy - 10, 4.0)
+    for x, y in EXIST_TREES:                                                            # existing olives in the parkway
+        sh.circle((x, y), 18.0, "L-PLNT"); sh.circle((x, y), 3.0, "L-PLNT")
+    tx = sum(t[0] for t in EXIST_TREES) / len(EXIST_TREES)
+    sh.text("EXIST. MATURE OLIVE TREES TO REMAIN", tx, -140.0, 5.0)
     sh.rect(LOT_X0 + 6, 262, LOT_X0 + 54, 382, "L-SITE"); sh.text("BINS", LOT_X0 + 30, 322, 5.0, rot=90)        # bin pad
     hx = (face("laundry|bath", +1) + face("utility|bath", -1)) / 2                      # heat pump outdoor: behind the storage
                                                                                         # room, between the two high windows
@@ -678,7 +687,7 @@ def main():
     sh = build()
     sh.doc.saveas(OUT)
     print("wrote", OUT.name)
-    render(sh.doc, RENDERS / "schematic.png", -40, -110, LOT_W + 140, LOT_D + 130, dpi=220)
+    render(sh.doc, RENDERS / "schematic.png", -40, -180, LOT_W + 140, LOT_D + 130, dpi=220)
     render(sh.doc, RENDERS / "schematic-zoom.png", E - 20, N - 40, W + 20, S + 30, width_in=24, dpi=250)
     print("rendered")
 

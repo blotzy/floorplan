@@ -39,7 +39,7 @@
 - Countertop corner, for the appliance garage.
 - Behind the TV on the **lounge side of the foyer wall** (the TV wall), in a recessed box.
 - Office: outlets at desk height on the desk wall.
-- Exterior GFCI outlets at the dining patio and near the bin pad.
+- Exterior GFCI outlets outside the dining slider and near the bin pad.
 
 **Boxes and wiring**
 

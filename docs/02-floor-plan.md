@@ -15,7 +15,7 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 ## Dining
 
 - **Dining:** table centred on the south window.
-- **Sliding door** on the east wall, centred between the carport fence and the house's southeast corner, opening onto the dining patio.
+- **Sliding door** on the east wall, centred between the carport fence and the house's southeast corner, opening onto an at-grade landing in the gravel strip along the house (no patio or deck).
 - **South window:** one wide window across most of the dining wall (two mulled units), with solid wall left at each end, centred on the wall, with a low sill (seated-height view of the garden) and its head in line with the other windows, including the kitchen sink window beside it, which sits higher to clear the counter. It faces SSW (azimuth ~201°), so it takes strong low afternoon sun that the eaves won't block: plan an exterior shade or awning and low-SHGC glass, and check it against the Title 24 glazing budget. If the window's size leaves too little wall at the southeast corner (with the slider around that corner) and the engineer needs steel framing or a steel hold-down there, reconsider: a narrower window that leaves more wall at each end is the fallback.
 
 ## Kitchen

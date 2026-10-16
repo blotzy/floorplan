@@ -203,9 +203,9 @@ def build_schematic() -> Scene:
             if e.dxf.get("linetype", "BYLAYER").upper().startswith("DASH"):
                 continue                                         # carport roof outline
             lab = label_in(*b)
-            if "PAVERS" in lab or "PATIO" in lab:
+            if "PAVERS" in lab or "PATIO" in lab or "LANDING" in lab:
                 sc.polys["pavers"].append([[list(p) for p in pts], 0.0, 2.0])
-            elif "BINS" in lab:
+            elif "BINS" in lab or "GRAVEL" in lab:
                 sc.polys["concrete"].append([[list(p) for p in pts], 0.0, 3.0])
         elif lay == "L-PLNT":
             lab = label_in(*b)

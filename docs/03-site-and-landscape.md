@@ -14,9 +14,10 @@
 From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.png](../renders/survey-overlay.png)).
 
 - **Slope:** the lot falls about 8 ft from the east line to the west line, and about 4 ft across the house footprint (high at the carport end, low at the primary-suite end and along the rear). A single flat slab would sit well above grade at the west end. The architect and civil engineer choose the foundation (stepped or raised) and grading approach; drainage must carry water around the house toward the street.
-- **Old retaining wall and chimney:** remnants of the previous house. A 2–3 ft retaining wall crosses the house's southeast corner (under the dining area) with a lower terrace behind it, and the old chimney still stands in the planned dining patio. Both come out with demolition, but the grade change they hold remains.
+- **Old retaining wall and chimney:** remnants of the previous house. A 2–3 ft retaining wall crosses the house's southeast corner (under the dining area) with a lower terrace behind it, and the old chimney still stands in the courtyard. Both come out with demolition, but the grade change they hold remains.
 - **East property-line wall:** a retaining wall along the east line from the street back about 43 ft, holding up the neighbour's higher ground; our side is the low side, at its base. Don't excavate or lower the grade along its base on our side, and give the water that seeps through it (weep holes) a path away from the house: a drainage swale or gravel strip along the wall feeding the site drainage. The bin pad and side strip sit beside it.
 - **Driveway and trees:** the existing driveway is further west than the planned carport driveway (no curbs on the street, so moving it is simple). The new drive threads between a parkway street tree and a tree just inside the east side of the lot; keep both protected during construction (root zones, no grade change at the trunks).
+- **Mature olive trees:** three surveyed trunks in the northwest parkway, in front of the bedroom wing: two mature olive trees, to remain. Protect their root zones during construction (no trenching or grade change under the canopy; route any utilities clear of them).
 - **Utilities:** water meter and power pole are at the west end of the frontage (in the parkway); the sewer cleanout is at the front, roughly in line with the porch and lounge.
 - **Street:** Laurel Drive right-of-way is 50 ft (25 ft half-width); edge of pavement is about 13 ft in front of the property line.
 
@@ -28,7 +29,7 @@ From the topographic survey in `source_files/survey/` (overlay: [survey-overlay.
 
 ## Southeast courtyard (behind the carport, east of the house)
 
-- **Dining patio** 12' x 21' along the house wall, from the carport back to the planters, outside the 8' dining slider. Outdoor furniture stays at least 5' from the house and carport (noncombustible zone).
+- **No patio.** A 5' gravel strip runs along the house wall from the pavers to the planters (noncombustible zone), with an at-grade landing outside the 8' dining slider. Nothing raised that would count as a deck or platform.
 - **Pavers** 5'-deep band along the back of the carport (keeps the lawn out of the carport's 5' fire zone).
 - **Lawn** about 15' x 14' (~210 sq ft), tall fescue + microclover blend, 1' DG edging. Irrigate from the unsoftened line.
 - **Raised planters** 3' deep along the rear fence (noncombustible: concrete, block, or steel). Shade-tolerant, dog-safe plants (e.g., coral bells, ferns); no oleander, sago palm, foxglove, or azalea.
