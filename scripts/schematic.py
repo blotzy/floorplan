@@ -56,6 +56,8 @@ CARPORT = (140.1, N, E, 481.3)       # x0, y0, x1, y1 (18' x 20')
 DRIVE_IN = (LOT_X0 + 150.0, LOT_X0 + 290.0)   # entrance edges (x) at the property line
 EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives
                                                                         # in the northwest parkway
+PRIVACY_TREE = (624.0, 48.0)         # new: inside the front line, west of the lounge window's centre,
+                                     # 10'+ from the sewer run to the cleanout (survey ~(492, 22))
 EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
 # Entry court in front of the porch, edged on the street side by a 24" seat wall (8" block) that
 # returns to the house just short of the lounge window; you walk in from the driveway side.
@@ -617,6 +619,8 @@ def build() -> Sheet:
     sh.text("6' FENCE / GATE", 184, fy - 10, 4.0)
     for x, y in EXIST_TREES:                                                            # existing olives in the parkway
         sh.circle((x, y), 18.0, "L-PLNT"); sh.circle((x, y), 3.0, "L-PLNT")
+    sh.circle(PRIVACY_TREE, 18.0, "L-PLNT"); sh.circle(PRIVACY_TREE, 3.0, "L-PLNT")
+    sh.text("NEW PRIVACY TREE", PRIVACY_TREE[0], PRIVACY_TREE[1] + 28, 5.0)
     tx = sum(t[0] for t in EXIST_TREES) / len(EXIST_TREES)
     sh.text("EXIST. MATURE OLIVE TREES TO REMAIN", tx, -140.0, 5.0)
     sh.rect(LOT_X0 + 6, 262, LOT_X0 + 54, 382, "L-SITE"); sh.text("BINS", LOT_X0 + 30, 322, 5.0, rot=90)        # bin pad
