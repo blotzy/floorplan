@@ -127,7 +127,7 @@ OPENINGS = [
     ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, opposite the primary door
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
-    ("south hall wall", 830.5, 860.5, "door", "a", +1),     # common bath, 30", against its east wall
+    ("south hall wall", 849.75, 879.75, "door", "b", +1),   # common bath, 30", against its west wall
     ("south hall wall", 1070.0, 1106.0, "door", "a", +1),   # primary bedroom
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
@@ -361,22 +361,23 @@ def utility_block(sh):
     l0, lw = face("pantry|laundry", +1), face("laundry|bath", -1)            # laundry galley
     b0, b1 = face("laundry|bath", +1), face("utility|bath", -1)              # bath
     be = face("bath|storage", -1)
-    # bath: sink, toilet, then a curbless shower across the end, all on the primary-bath wall
-    vanity(sh, b1 - 20, 466.0, b1, 490.0, "SINK", rot=90)
-    wc(sh, b1 - 28, 497.0, b1, 527.0)
+    # bath: sink, toilet, then a curbless shower across the end, all on the laundry wall (one plumbing
+    # wall for both rooms); the door is at the west end, so the toilet is out of view from the lounge
+    vanity(sh, b0, 466.0, b0 + 20, 490.0, "SINK", rot=90)
+    wc(sh, b0, 497.0, b0 + 28, 527.0)
     gy = 530.0                                                               # shower: full width x 36"
     wet_zone(sh, b0, gy, b1, be)
     sh.rect(b0, gy, b1, be, eq)
-    glass(sh, (b0 + 24, gy), (b1, gy))                                       # 24" open entry, door side
+    glass(sh, (b0, gy), (b1 - 24, gy))                                       # 24" open entry, door side
     sh.text("SHOWER", (b0 + b1) / 2, gy + 14, 3.2)
-    sh.heads.append((b1, gy + 20, -1.0, 0.0))
-    sh.circle((b1 - 2.5, gy + 20), 2.5, eq)
+    sh.heads.append((b0, gy + 20, 1.0, 0.0))
+    sh.circle((b0 + 2.5, gy + 20), 2.5, eq)
     for dy in (-5.0, 0.0, 5.0):
-        sh.line((b1 - 5.5, gy + 20 + dy * 0.4), (b1 - 11.0, gy + 20 + dy), eq)
+        sh.line((b0 + 5.5, gy + 20 + dy * 0.4), (b0 + 11.0, gy + 20 + dy), eq)
     drain(sh, (b0 + 3, be - 3), (b1 - 3, be - 3))
-    room_label(sh, "COMMON BATH", b0, hall, b1, be, cx=b0 + 12, cy=505.0, h=2.4)
-    sh.msp.add_circle((b0 + 13, 520.0), 6.0, dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})   # 10" tube
-    sh.text("SKYLIGHT", b0 + 13, 520.0, 1.6, "A-CLNG")                     # skylight + exhaust fan
+    room_label(sh, "COMMON BATH", b0, hall, b1, be, cx=b1 - 12, cy=505.0, h=2.4)
+    sh.msp.add_circle((b1 - 13, 520.0), 6.0, dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})   # 10" tube
+    sh.text("SKYLIGHT", b1 - 13, 520.0, 1.6, "A-CLNG")                     # skylight + exhaust fan
     # storage room behind the bath, open to the laundry
     s0 = face("bath|storage", +1)
     sh.rect(b1 - 12, s0, b1, S_IN, fu); sh.text("SHELVES", b1 - 6, (s0 + S_IN) / 2, 2.2, rot=90)
