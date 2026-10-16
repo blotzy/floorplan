@@ -458,12 +458,8 @@ def roof_plan(pdf):
     ax.plot([cx0 - 8, cx0 - 8], [cy0 - 6, cy1 + 6], color=INK, lw=2.0)
     ax.text(cx0 - 14, (cy0 + cy1) / 2, "GUTTER", fontsize=5.5, rotation=90, ha="right", va="center")
     sh = S.build()
-    sk = text_at(sh, "SKYLIGHT")                                        # ceiling diffuser in the common bath
-    dome = (sk[0] - 8, S.S - 34) if sk else None                        # roof dome beside the rear plumbing vent
-    if sk:
-        ax.plot([sk[0], dome[0]], [sk[1], dome[1]], color=INK, lw=0.8, ls=":")
-        ax.add_patch(Circle(sk, 5, fill=False, ec=INK, lw=0.8, ls="--"))
-    for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A): dome beside\nthe rear vent, tube angled from the bath ceiling (dashed)", dome),
+    sk = text_at(sh, "SKYLIGHT")                                        # straight up from the common bath ceiling
+    for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A),\nstraight up from the bath; VTR-2 beside it", sk),
                          ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it", text_at(sh, "RANGE"))):
         if p:
             ax.add_patch(Circle(p, 7, fc="white", ec=INK, lw=0.9))
@@ -474,14 +470,14 @@ def roof_plan(pdf):
     ax.text(X0 + 48, Y1 - 50, "POTENTIAL SOLAR PV AREA (dashed): clear of the 36\" high-edge setback and the\n"
             "36\" pathways at both ends (CRC R324.6); final layout per the solar design", fontsize=6.5, color="#1f5e9e")
     vtrs = [(860.0, S.N + 10, "VTR-1: shared ensuite (its own vent,\nin the strip along the high edge)", "bottom"),
-            (840.0, S.S - 36, "VTR-2 (3\" main vent): kitchen sink (up beside the\nwindow, into the pantry wall, then the pantry\n"
-                              "attic), common bath, laundry and primary bath", "top")]
+            (842.0, 520.0, "VTR-2 (3\" main vent), beside the skylight: kitchen sink\n(up beside the window, into the pantry wall, then the\n"
+                              "pantry attic), common bath, laundry and primary bath", "top")]
     for vx, vy, lab, va in vtrs:
         ax.add_patch(Circle((vx, vy), 6, fc="white", ec=INK, lw=1.2, zorder=5))
         ax.plot([vx - 6, vx + 6], [vy] * 2, color=INK, lw=0.8, zorder=6)
         ax.text(vx + 10, vy + (4 if va == "bottom" else -8), lab, fontsize=5.5, va=va)
     ax.text(X1 - 40, S.N + 4, "PLUMBING VENTS (APPROX., FINAL PER PLUMBER): each\n6\" min. above the roof and 10' from or 3' above\n"
-            "openable windows and air intakes (the rear vent is\nover 3' above the rear high windows)", fontsize=5.5,
+            "openable windows and air intakes", fontsize=5.5,
             ha="right", va="bottom")
     ax.text((X0 + X1) / 2, Y0 + 8, f"HIGH EDGE AT THE STREET: TOP OF ROOF ~{ftin(Z.TOP)} ABOVE FINISHED FLOOR",
             fontsize=7, ha="center")
@@ -504,10 +500,10 @@ def roof_plan(pdf):
              "5. Roof framing, sheathing and connections per structural.\n"
              "6. Roof penetrations flashed. Two plumbing vents (VTR): the\n"
              "   shared ensuite's in the strip along the high edge; the\n"
-             "   rest combined into one near the rear wall, where the panel\n"
-             "   rows stop short of it; the skylight dome sits beside it.\n"
-             "   Bath and laundry fans exit through walls where possible.\n"
-             "   The range hood cap is the one penetration mid-array.\n"
+             "   rest combined into one beside the common bath skylight, so\n"
+             "   the panel layout works around one cluster. Bath and laundry\n"
+             "   fans exit through walls where possible. The range hood cap\n"
+             "   is the other penetration in the PV area.\n"
              "7. Carport: attached open carport, its own low-slope roof\n"
              "   (Class A), gutter on its east edge.")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
