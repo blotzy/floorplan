@@ -514,7 +514,10 @@ def roof_plan(pdf):
              "   standing seams (no roof penetrations for the racking).\n"
              "   Its conduit enters through the roof into the attic and\n"
              "   runs inside to the panel: none on the roof surface or\n"
-             "   the exterior walls.")
+             "   the exterior walls.\n"
+             "9. Wind: severe downslope winds from the north / northeast\n"
+             "   strike the high street edge. Uplift-rated panel assembly and\n"
+             "   clip spacing, eave and carport tie-downs per structural.")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
     pdf.savefig(fig); fig.savefig(OUT / "A-3-roof-plan.png", dpi=80); plt.close(fig)
 

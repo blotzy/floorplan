@@ -35,7 +35,7 @@
 - [ ] Plumber: confirm the building sewer can reach the existing front cleanout with code slope from the west-end baths, given the lot falls to the west.
 
 - [ ] Architect and insulation contractor: spray foam under the roof deck or rigid board above it, and the matching thermal barrier for storage use.
-- [ ] Roofer: standing-seam panel line and color; confirm the Class A assembly over the wood deck (underlayment per the listing) and that the panel and underlayment warranties cover an unvented (spray-foam) deck, in writing.
+- [ ] Roofer: standing-seam panel line and color, with an uplift-rated assembly and clip spacing for the site's design wind speed (strong north and northeast winds hit the high, street-side eave); confirm the Class A assembly over the wood deck (underlayment per the listing) and that the panel and underlayment warranties cover an unvented (spray-foam) deck, in writing.
 - [ ] Truss designer: 500 lb concentrated loads at the gym ring points; 20 psf attic storage strip.
 - [ ] Plumber and sprinkler designer: does the sprinkler system require a 1" water service / meter upsize?
 - [ ] Plumber: confirm the robot vacuum dock drain connection and trap.
