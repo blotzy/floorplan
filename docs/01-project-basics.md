@@ -4,7 +4,7 @@
 
 All-electric single-story rebuild at 220 Laurel Dr, Altadena, replacing the house destroyed in the Eaton Fire, with no gas service, a vaulted great room and 9' ceilings elsewhere, a sealed attic, and an attached 18'-wide two-car carport. The architect owns the floor plan, roof, and finishes. Plumbing, HVAC, and electrical are designed by separate trades, so the architect only needs to reserve the spaces, chases, and openings those sections call for.
 
-**Fire rebuild, not like-for-like.** The house burned in the Eaton Fire (January 2025). The new house differs from the old one in layout and size, so it is permitted as a **non-like-for-like** rebuild: a County Disaster Recovery Permit that still gets the expedited fire-rebuild review, but must meet current zoning (Altadena CSD) and the current building, energy and green building codes in full. The relief the County gives like-for-like rebuilds (keeping the old setbacks, and the suspended CALGreen items: future EV charging, cool roof, graywater irrigation, low-impact development) does not apply.
+**Fire rebuild, not like-for-like.** The house burned in the Eaton Fire (January 2025). The new house differs from the old one in layout and size, so it is permitted as a **non-like-for-like** rebuild: a County Disaster Recovery Permit that still gets the expedited fire-rebuild review, but must meet current zoning (Altadena CSD) in full, and the building, energy and green building codes in full (the 2022 editions, under the fire-rebuild executive order: see the code basis below). The relief the County gives like-for-like rebuilds (keeping the old setbacks, and the suspended CALGreen items: future EV charging, cool roof, graywater irrigation, low-impact development) does not apply.
 
 **Orientation used in these docs:** "north", "east", etc. mean **plan** directions: the street is plan north, the carport and great room are at the plan east end, and the bedroom wing and primary suite at the plan west end. (The plan drawings put plan north at the bottom, so east is on the left.)
 
@@ -30,6 +30,6 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena, replacing the hous
 | Floor area | About 2,238 sq ft enclosed (carport excluded). Altadena CSD limit uses the same formula, about 2,830 sq ft. Separate from the fire-rebuild permit's size limit (see [open questions](09-open-questions.md)). |
 | Bedrooms | Primary + 3 secondary: gym, guest, office |
 | Baths | Primary bath, shared ensuite, common bath (three-quarter, with a shower) |
-| Code basis | 2022 California codes allowed for fire rebuilds (EO N-29-25); fire sprinklers required (NFPA 13D); Class A roof and Chapter 7A wildfire construction (VHFHSZ) |
+| Code basis | 2022 California codes, as allowed for fire rebuilds by Executive Order N-29-25 (it suspends the 2025 codes for rebuild projects designed to the 2022 codes; confirm with Building and Safety that it covers a non-like-for-like rebuild); fire sprinklers required (NFPA 13D); Class A roof and Chapter 7A wildfire construction (VHFHSZ) |
 
 Final square footage is still to be confirmed. See [open questions](09-open-questions.md).

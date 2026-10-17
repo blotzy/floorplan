@@ -399,8 +399,8 @@ def site_plan(pdf):
             ("Address / APN", "220 Laurel Dr, Altadena CA 91001\nAPN 5832-003-027"),
             ("Zoning", "R-1-7500 · Altadena CSD"), ("Fire zone", "Very High Fire Hazard Severity Zone"),
             ("Occupancy", "R-3 (dwelling), U (carport)"), ("Construction type", "V-B, fully sprinklered (NFPA 13D)"),
-            ("Codes", "2025 California Residential, Building,\nElectrical, Mechanical, Plumbing, Energy\n"
-             "and Green Building Codes, as amended\nby LA County Title 26"),
+            ("Codes", "2022 California Residential, Building,\nElectrical, Mechanical, Plumbing, Energy\n"
+             "and Green Building Codes (fire rebuild,\nEO N-29-25), as amended by LA County\nTitle 26"),
             ("Lot", f"{Z.LOT_W_FT:.2f}' x {Z.LOT_D_FT:.2f}' = {Z.LOT_AREA:,.0f} sq ft"),
             ("Floor area", f"{Z.HOUSE:,.0f} sq ft (to outside of walls)"),
             ("Porch / carport", f"{Z.PORCH:,.0f} / {Z.CARPORT:,.0f} sq ft"),
@@ -912,8 +912,9 @@ def cover(pdf):
                 ("2", "Roof truss drawings and calculations (truss manufacturer), reviewed by the engineer of record"),
                 ("3", "Solar PV plans, if not in the energy package")]
     y = table(fig, 17.3, y - 0.5, "DEFERRED SUBMITTALS", ("#", "ITEM"), (0.5, 7.5), deferred, fs=8)
-    code = [("Codes", "2025 California Residential, Building, Electrical, Mechanical, Plumbing,\nEnergy, Fire and "
-                      "Green Building Standards Codes; LA County Title 26 amendments"),
+    code = [("Codes", "2022 California Residential, Building, Electrical, Mechanical, Plumbing,\nEnergy, Fire and "
+                      "Green Building Standards Codes, as allowed for fire rebuilds by Executive\nOrder N-29-25; "
+                      "LA County Title 26 amendments"),
             ("Occupancy", "R-3 single-family dwelling; U open carport (attached)"),
             ("Construction", "Type V-B; automatic fire sprinklers throughout (NFPA 13D)"),
             ("Stories / height", f"1 story; ~{ftin(Z.TOP)} above finished floor (30' limit, Altadena CSD)"),

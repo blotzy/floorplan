@@ -8,6 +8,7 @@
 - [ ] Planner: does the 100'-frontage street-facing garage rule (§22.140.520) apply to a carport? If so, request a modification under Procedure A.
 - [ ] Planner: can uncovered parking in the driveway inside the front setback count as a required space?
 - [ ] Driveway: the drawn entrance threads between the parkway street tree and the lot tree; confirm the root-zone clearance with an arborist (and any County requirement for work near a street tree), and drain the drive away from the house at the carport.
+- [ ] Building and Safety: confirm that Executive Order N-29-25 (2022 codes for fire rebuilds instead of the 2025 codes) applies to a non-like-for-like rebuild, so the set, Title 24 and CALGreen all use the 2022 editions.
 - [ ] Architect: final square footage, checked against the rebuild permit's size limit.
 
 **Design decisions (owner)**

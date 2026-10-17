@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-The 2025 California Green Building Standards Code, Chapter 4 (residential mandatory measures), as they apply here. This is a non-like-for-like fire rebuild, so all of the mandatory measures apply: the items the County suspends for like-for-like rebuilds (future EV charging, cool roof, graywater irrigation, low-impact development) are not suspended here. LA County uses its own checklist form; transfer these answers to it. "Owner" means you or your contractor fill it in; others are confirmed by the consultant named.
+The 2022 California Green Building Standards Code (the edition the fire-rebuild executive order allows; the 2025 numbering is nearly the same), Chapter 4 (residential mandatory measures), as they apply here. This is a non-like-for-like fire rebuild, so all of the mandatory measures apply: the items the County suspends for like-for-like rebuilds (future EV charging, cool roof, graywater irrigation, low-impact development) are not suspended here. LA County uses its own checklist form; transfer these answers to it. "Owner" means you or your contractor fill it in; others are confirmed by the consultant named.
 
 | Section | Measure | This project | Who |
 | --- | --- | --- | --- |
