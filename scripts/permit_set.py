@@ -868,7 +868,7 @@ def loads_plan(pdf):
     ax.text(px0 + 8, py1 - 10, "FUTURE SOLAR PV AREA ON THE ROOF (dash-dot): allow ~3-4 PSF dead load", fontsize=6.5,
             color="#2e7d32", va="top", zorder=6)
     mx = [o for o in S.OPENINGS if o[0] == "pantry|laundry" and o[3] == "bifold"]
-    ax.text(712, 585, "HEAT PUMP WATER\nHEATER, 65 GAL\n(~800 LB FULL, ON SLAB)", fontsize=5.5, ha="center", va="center",
+    ax.text(712, 585, "HEAT PUMP WATER\nHEATER, 80 GAL\n(~900 LB FULL, ON SLAB)", fontsize=5.5, ha="center", va="center",
             zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
     ax.text((S.E + S.W) / 2, y0 + 8, "ATTIC AND LOADS PLAN   1/4\" = 1'-0\"", fontsize=12, weight="bold", ha="center")
     notes = ("LOAD NOTES (for the structural engineer and truss designer)\n"
