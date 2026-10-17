@@ -16,7 +16,7 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena, replacing the hous
 | --- | --- |
 | Style | Midcentury modern (MCM) |
 | Roof | MCM shed roof at 2:12: one slope rising from the rear to the street, 2'-6" eaves all round (the most an eave may project into a required yard). Dark standing-seam metal (mechanically seamed, CRC R905.10), Class A as an assembly over the wood deck, on high-temperature self-adhered underlayment; solar clamps to the seams without roof penetrations. A 3'-tall clerestory band runs along the street wall over the lounge. Fallback if the budget needs it: an MCM gable at 2:12 with flat ceilings |
-| Carport roof | Nearly flat (about ¼" per foot), sloping east, away from the house, to a gutter on its east edge; Class A low-slope roofing (single-ply TPO/PVC or a mineral-surfaced modified-bitumen cap sheet) |
+| Carport roof | Low slope (about ½" per foot), sloping east, away from the house, to a gutter on its east edge; standing-seam metal to match the house, double-locked seams, Class A assembly, uplift-rated |
 | Exterior | Stucco walls (noncombustible); thin dark fascia |
 | Fuel | All-electric, no gas line to the lot |
 | Ceiling height | The great room (foyer, lounge, dining, kitchen) is vaulted under the roof slope, about 16' at the clerestory down to about 11' at the rear wall. Everywhere else: flat 9' ceilings under a sealed (unvented) attic, which leaves about 3'-9" of attic headroom over the middle of the hall |

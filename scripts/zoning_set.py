@@ -230,7 +230,7 @@ def roof_plan(pdf):
             f"{ftin(OV)} eaves all round (max. 2'-6\" into a required yard, §22.110.090.A) · gutter along the rear edge", ha="center", va="center", fontsize=9,
             bbox=dict(fc="white", ec="none"))
     ax.annotate("", (cx0 + 10, (cy0 + cy1) / 2), (cx1 - 20, (cy0 + cy1) / 2), arrowprops=dict(arrowstyle="->", lw=1.2))
-    ax.text((cx0 + cx1) / 2, (cy0 + cy1) / 2 + 22, "CARPORT ROOF\n¼\":12, slopes away from house\nClass A low-slope roofing\n"
+    ax.text((cx0 + cx1) / 2, (cy0 + cy1) / 2 + 22, "CARPORT ROOF\n½\":12, slopes away from house\nstanding-seam metal\n"
             "gutter on east edge", ha="center", fontsize=7.5)
     ax.text(X0, Y0 - 25, "STREET (PLAN NORTH)", fontsize=9, weight="bold")
     dim(ax, (X0, Y1 + 30), (X1, Y1 + 30), ftin(X1 - X0) + " to fascia")

@@ -28,7 +28,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 - **Tall street wall at the lounge:** about 16' at the street, with an 18' clerestory band (3' tall) above a 10' window. Lateral bracing of that wall.
 - **Large openings:** dining 12' window (two units) on the south wall, with the 6' dining slider on the east wall near the same corner (about 2'-9" of wall at the corner). Ask whether that corner needs steel or special hold-downs; if so, the window can narrow.
 - **Porch:** corner porch notched into the house, roof carried by a corner post.
-- **Carport:** attached open carport, clear span with posts at the corners only, its own low-slope roof.
+- **Carport:** attached open carport, clear span with posts at the corners only, its own roof at about ½" per foot in double-lock standing-seam metal. It faces the north / northeast winds with its open sides, so uplift governs its posts, beam connections, ledger at the house and roof attachment.
 - **Loads (located on sheet A-7, attic and loads plan):**
   - Gym rings: two points 20" apart at the centre of the gym, swinging toward the street; 500 lb each, concentrated and dynamic.
   - Attic storage: 20 psf live load on a decked strip over the bedroom wing, from 2' off the street wall to the hall wall, gym to office.

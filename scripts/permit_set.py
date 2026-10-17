@@ -448,7 +448,7 @@ def roof_plan(pdf):
         ax.annotate("", (xx, Y1 - 30), (xx, Y0 + 40), arrowprops=dict(arrowstyle="->", lw=1.4))
         ax.text(xx + 8, (Y0 + Y1) / 2, "2:12\nDN", fontsize=8, va="center")
     ax.annotate("", (cx0 + 10, (cy0 + cy1) / 2), (cx1 - 20, (cy0 + cy1) / 2), arrowprops=dict(arrowstyle="->", lw=1.2))
-    ax.text((cx0 + cx1) / 2, (cy0 + cy1) / 2 + 14, "CARPORT ROOF\n1/4\":12 DN, away from house\nClass A low-slope roofing",
+    ax.text((cx0 + cx1) / 2, (cy0 + cy1) / 2 + 14, "CARPORT ROOF\n1/2\":12 DN, away from house\nstanding-seam metal, double-lock",
             ha="center", fontsize=6.5)
     ax.plot([X0, X1], [Y1 + 4, Y1 + 4], color=INK, lw=2.5)                 # rear gutter
     for gx in (X0 + 14, (X0 + X1) / 2, X1 - 14):
@@ -508,8 +508,9 @@ def roof_plan(pdf):
              "   the panel layout works around one cluster. Bath and laundry\n"
              "   fans exit through walls where possible. The range hood cap\n"
              "   is the other penetration in the PV area.\n"
-             "7. Carport: attached open carport, its own low-slope roof\n"
-             "   (Class A), gutter on its east edge.\n"
+             "7. Carport: attached open carport, its own roof at 1/2\":12 in\n"
+             "   double-lock standing seam (Class A assembly, uplift-rated),\n"
+             "   gutter on its east edge.\n"
              "8. Future solar: layout by the solar provider, clamped to the\n"
              "   standing seams (no roof penetrations for the racking).\n"
              "   Its conduit enters through the roof into the attic and\n"
