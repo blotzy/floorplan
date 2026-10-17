@@ -45,4 +45,4 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 
 - Reading nook with built-in bench in the primary bedroom.
 - **Back-to-wall freestanding soaking tub (about 5'-7" x 32") in the primary bath wet room**, shown in [floor plan](02-floor-plan.md). Pick the model before framing: its exact length, drain position and filler (location still open: see the open questions). Fill is about 55–70 gal and the filler is limited to 120°F (CPC 409.4); the 80-gal water heater at 140°F with its mixing valve covers it with margin. No pump, so no access panel. Wet room: one waterproofed zone (membrane floor and walls), curbless with a linear drain and the slab recessed for the slope.
-- On-demand hot water recirculation to the primary bath, the run farthest from the water heater.
+- No hot water recirculation. Optional: while the walls are open, run a return line from the primary bath (the farthest fixtures) back to the water heater, capped, so an on-demand recirculation pump can be added later without opening walls.
