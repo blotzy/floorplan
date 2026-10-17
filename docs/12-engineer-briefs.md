@@ -23,7 +23,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 
 **What needs engineering (non-prescriptive items):**
 
-- **Roof:** single-slope shed at 2:12, high at the street, 2'-6" eaves all round, Class A shingles. Sealed (unvented) attic with spray foam at the deck.
+- **Roof:** single-slope shed at 2:12, high at the street, 2'-6" eaves all round, standing-seam metal roofing (Class A assembly; future solar clamps to the seams). Sealed (unvented) attic with spray foam at the deck.
 - **Vaulted great room:** foyer, lounge, dining and kitchen have a sloped ceiling following the roof (rafters, no attic). Elsewhere, flat 9' ceilings with an attic. The vault ends on one straight line (the lounge/gym and kitchen/pantry walls are aligned): the bearing or beam line between the two framing systems.
 - **Tall street wall at the lounge:** about 16' at the street, with an 18' clerestory band (3' tall) above a 10' window. Lateral bracing of that wall.
 - **Large openings:** dining 12' window (two units) on the south wall, with the 6' dining slider on the east wall near the same corner (about 2'-9" of wall at the corner). Ask whether that corner needs steel or special hold-downs; if so, the window can narrow.

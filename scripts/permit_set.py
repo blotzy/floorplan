@@ -489,9 +489,11 @@ def roof_plan(pdf):
     ax.text((X0 + X1) / 2, y0 + 8, "ROOF PLAN   1/4\" = 1'-0\"", fontsize=12, weight="bold", ha="center")
     ax.text(X0, Y0 - 70, "STREET (PLAN NORTH)", fontsize=8, weight="bold")
     notes = ("ROOF NOTES\n"
-             "1. Main roof: single slope at 2:12, high at the street. Class A asphalt\n"
-             "   shingles over the low-slope double underlayment (CRC R905.2.2);\n"
-             "   shingle line warranted for 2:12 (dark, cool-rated per Title 24).\n"
+             "1. Main roof: single slope at 2:12, high at the street. Standing-seam\n"
+             "   metal panels, mechanically seamed (CRC R905.10), dark PVDF finish\n"
+             "   (cool-rated per Title 24), over high-temperature self-adhered\n"
+             "   underlayment; Class A assembly per the panel listing over the\n"
+             "   wood deck. Panels run down the slope; seams every 12\"-18\".\n"
              "2. Sealed (unvented) attic, CRC R806.5: insulation at the roof deck;\n"
              "   NO attic or eave vents.\n"
              "3. Eaves 2'-6\" all round, enclosed; dark metal fascia and drip edge.\n"
@@ -499,7 +501,8 @@ def roof_plan(pdf):
              "4. Gutters with noncombustible gutter guards (CRC R337.5.4);\n"
              "   downspouts to the site drainage system per civil.\n"
              "5. Roof framing, sheathing and connections per structural.\n"
-             "6. Roof penetrations flashed. Two plumbing vents (VTR): the\n"
+             "6. Roof penetrations flashed with boots or curbs fitted to the\n"
+             "   panel pans. Two plumbing vents (VTR): the\n"
              "   shared ensuite's in the strip along the high edge; the\n"
              "   rest combined into one beside the common bath skylight, so\n"
              "   the panel layout works around one cluster. Bath and laundry\n"
@@ -507,7 +510,8 @@ def roof_plan(pdf):
              "   is the other penetration in the PV area.\n"
              "7. Carport: attached open carport, its own low-slope roof\n"
              "   (Class A), gutter on its east edge.\n"
-             "8. Future solar: layout and mounting by the solar provider.\n"
+             "8. Future solar: layout by the solar provider, clamped to the\n"
+             "   standing seams (no roof penetrations for the racking).\n"
              "   Its conduit enters through the roof into the attic and\n"
              "   runs inside to the panel: none on the roof surface or\n"
              "   the exterior walls.")
@@ -518,7 +522,7 @@ def roof_plan(pdf):
 # ---- A-4 elevations ------------------------------------------------------------------------
 MATERIALS = ("EXTERIOR MATERIALS\n"
              "1. Walls: 3-coat stucco, light color (noncombustible).\n"
-             "2. Roof: Class A asphalt shingles, dark (A-3).\n"
+             "2. Roof: standing-seam metal, dark, Class A assembly (A-3).\n"
              "3. Fascia, drip edge, band and canopies: dark metal.\n"
              "4. Street-wall band: 8\" high, 6\" proud, wraps both ends.\n"
              "5. Porch walls and ceiling: wood-look fiber cement or\n"
@@ -578,7 +582,8 @@ def elevations(pdf):
 
 # ---- A-5 sections --------------------------------------------------------------------------
 ASSEMBLIES = ("ASSEMBLIES (insulation values per the Title 24 report)\n"
-              "R1 ROOF: Class A shingles, low-slope double underlayment,\n"
+              "R1 ROOF: standing-seam metal (Class A assembly), high-temp\n"
+              "   self-adhered underlayment,\n"
               "   roof sheathing, framing per structural; spray foam at the\n"
               "   underside of the deck (unvented, CRC R806.5); ignition\n"
               "   barrier / thermal barrier where the attic is used.\n"
@@ -700,7 +705,8 @@ def sections(pdf):
 
 # ---- A-6 fire-zone details -------------------------------------------------------------------
 R337 = [
-    ("R337.5", "Roof", "Class A asphalt shingles; low-slope double underlayment. Valleys and edges metal-flashed."),
+    ("R337.5", "Roof", "Standing-seam metal roofing, Class A assembly per its listing over the wood deck;\n"
+                       "panel ends and ridge/eave closures sealed so embers can't enter under the panels."),
     ("R337.5.4", "Gutters", "Noncombustible gutter guards on all gutters."),
     ("R337.6", "Vents", "No attic or eave vents (sealed attic). Exhaust and hood terminations: listed\n"
                         "ember-resistant vents (ASTM E2886) or noncombustible 1/16\"-1/8\" mesh with dampers."),
@@ -734,7 +740,7 @@ def details(pdf):
     ax.add_patch(MPoly([(10, 82), (69, 92), (69, 100), (10, 90)], closed=True, fc="#666", ec=INK))   # roof slab
     ax.add_patch(MPoly([(10, 82), (60, 90.5), (60, 88), (14, 80.5)], closed=True, fc="#e8d5b5", ec=INK))  # soffit
     ax.add_patch(Rectangle((8, 78), 4, 13, fc="#222", ec=INK))                        # fascia
-    for txt, (x, y) in {"Class A shingles over\nlow-slope underlayment": (30, 104),
+    for txt, (x, y) in {"Standing-seam metal, Class A\nassembly, on underlayment": (30, 104),
                         "Dark metal fascia\n+ drip edge": (2, 64), "Enclosed soffit, fiber cement\nor metal: NO VENTS": (14, 70),
                         "Stucco to the soffit,\nsealed at the joint": (72, 70), "Spray foam at the deck\n(sealed attic)": (72, 92)}.items():
         ax.text(x, y, txt, fontsize=7, va="top")

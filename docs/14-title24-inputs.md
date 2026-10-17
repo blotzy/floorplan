@@ -13,7 +13,7 @@ What the energy consultant needs to model the house and produce the compliance f
 | Conditioned floor area | About 2,238 sq ft (porch and open carport excluded) |
 | Orientation | The street (front) wall faces about 22° (NNE); rear faces about 202° (SSW); the dining slider faces about 112° (ESE); the west end faces about 292° (WNW) |
 | Ceilings | 9' flat under a sealed attic; the great room (foyer, lounge, dining, kitchen, about 900 sq ft) vaulted under the roof, about 16' at the street down to 11' |
-| Roof | Single-slope 2:12 shed, dark Class A asphalt shingles (check cool-roof requirements), 2'-6" eaves |
+| Roof | Single-slope 2:12 shed, dark standing-seam metal with a cool-rated PVDF finish (check the cool-roof requirements and pick the color to meet them), 2'-6" eaves |
 
 ## Envelope (targets)
 

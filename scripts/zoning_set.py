@@ -225,7 +225,7 @@ def roof_plan(pdf):
     for xx in (520, 780, 1040):
         ax.annotate("", (xx, Y1 - 20), (xx, Y0 + 40), arrowprops=dict(arrowstyle="->", lw=1.2))
     ax.text((X0 + X1) / 2, (Y0 + Y1) / 2, "MAIN ROOF: SINGLE SLOPE 2:12, DOWN TOWARD THE REAR\n"
-            "Class A asphalt shingles over low-slope double underlayment\n"
+            "Standing-seam metal roofing (Class A assembly)\n"
             f"High edge at the street (top ~{ftin(TOP)}), low edge at the rear (top ~{ftin(REAR_TOP)}) above finished floor\n"
             f"{ftin(OV)} eaves all round (max. 2'-6\" into a required yard, §22.110.090.A) · gutter along the rear edge", ha="center", va="center", fontsize=9,
             bbox=dict(fc="white", ec="none"))

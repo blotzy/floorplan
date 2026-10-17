@@ -12,7 +12,7 @@
 
 **Design decisions (owner)**
 
-- [ ] Find a solar provider to lay out the array and choose the mounting for the 2:12 shingle roof (attachment points, flashing, racking), working around the range hood cap and the skylight and vent cluster; size the system and the battery. Do it before the roof framing is designed, so the engineer can allow for the load and the attachment points.
+- [ ] Find a solar provider to lay out the array and choose the mounting for the 2:12 standing-seam metal roof (clamps on the seams, so no racking penetrations), working around the range hood cap and the skylight and vent cluster; size the system and the battery. Do it before the roof framing is designed, so the engineer can allow for the load and the attachment points.
 - [x] Guest closet: decided. One long closet, with the door at the bath end.
 - [x] Primary tub: decided. A back-to-wall freestanding soaking tub (about 5'-7" x 32") in the primary bath wet room; the shared ensuite gets a standard 66" tub with a shower head. Pick both models before framing.
 - [ ] Pick the primary back-to-wall tub. The space between the end walls is 6'-0". Base (floor footprint) no longer than about 5'-0" for at least 6" clear at each end at the floor; rim up to about 5'-8" (2"+ at each end) if the sides flare. Also check width (about 30"–32"), drain position, the wall-mounted filler, and the filled weight.
@@ -34,7 +34,7 @@
 - [ ] Plumber: confirm the building sewer can reach the existing front cleanout with code slope from the west-end baths, given the lot falls to the west.
 
 - [ ] Architect and insulation contractor: spray foam under the roof deck or rigid board above it, and the matching thermal barrier for storage use.
-- [ ] Roofer: written confirmation that the shingle warranty covers an unvented (spray-foam) deck.
+- [ ] Roofer: standing-seam panel line and color; confirm the Class A assembly over the wood deck (underlayment per the listing) and that the panel and underlayment warranties cover an unvented (spray-foam) deck, in writing.
 - [ ] Truss designer: 500 lb concentrated loads at the gym ring points; 20 psf attic storage strip.
 - [ ] Plumber and sprinkler designer: does the sprinkler system require a 1" water service / meter upsize?
 - [ ] Plumber: confirm the robot vacuum dock drain connection and trap.

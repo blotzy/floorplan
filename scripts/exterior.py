@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
-"""The house's exterior for the 3D model and the drawing sets: the MCM shingle shed with the
+"""The house's exterior for the 3D model and the drawing sets: the MCM standing-seam metal shed with the
 clerestory and vaulted great room (chosen_exterior), the street facade (recessed windows, band, rear
 canopies), the porch, and the alternative roofs offered in the 3D viewer's Roof menu (roof_options).
 Imported by make_3d.py, zoning_set.py and permit_set.py; not run on its own."""
@@ -333,15 +333,16 @@ def street_facade(sc):
 
 
 def chosen_exterior(sc, porch=True, facade=True):
-    """The main plan's exterior: MCM shingle shed (2:12, 2'-6" eaves) with a 3' clerestory band over the
-    lounge and the foyer, lounge, dining and kitchen under one sloped ceiling; stucco walls,
-    dark shingles and fascia, accent front door; porch with a wood-look feature wall; recessed street
+    """The main plan's exterior: MCM standing-seam metal shed (2:12, 2'-6" eaves) with a 3' clerestory
+    band over the lounge and the foyer, lounge, dining and kitchen under one sloped ceiling; stucco walls,
+    dark metal roof and fascia, accent front door; porch with a wood-look feature wall; recessed street
     windows with a horizontal band wrapping both ends; canopies over two rear windows. make_3d.py
     adds this to the main model."""
     band(sc, "exterior", WALL_TOP, PLATE)
-    shed_vault_great(sc, 2 / 12, EAVE, band=36.0)
+    shed_vault_great(sc, 2 / 12, EAVE, seams=True, band=36.0)
     front_door(sc)
     sc.mat = {k: {"color": v} for k, v in STYLES["mcm-gable"][1].items()}
+    sc.mat["roofing"] = {"color": 0x3F4347}
     sc.mat["seam"] = {"color": 0x2A2D31}
     if porch:
         porch_feature(sc)
@@ -350,23 +351,23 @@ def chosen_exterior(sc, porch=True, facade=True):
 
 
 def roof_options():
-    """Alternative roofs for the main model's Roof selector: {label: tris} (the main plan's shingle
-    shed with a 3' clerestory band is the model's own roof)."""
+    """Alternative roofs for the main model's Roof selector: {label: tris} (the main plan's standing-seam
+    metal shed with a 3' clerestory band is the model's own roof). Order matters: make_3d's hash links."""
     out = {}
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
     low_gable(sc, 2 / 12, EAVE, glazed_ends=False)
     out["MCM gable 2:12, flat 9' ceilings"] = dict(sc.tris)
     for label, seams, glass_h in (
-            ("MCM shingle shed 2:12, full-height clerestory, great room vaulted", False, None),
-            ("MCM metal shed 2:12, 3' clerestory band, great room vaulted", True, 36.0),
-            ("MCM metal shed 2:12, full-height clerestory, great room vaulted", True, None)):
+            ("MCM metal shed 2:12, full-height clerestory, great room vaulted", True, None),
+            ("MCM shingle shed 2:12, 3' clerestory band, great room vaulted", False, 36.0),
+            ("MCM shingle shed 2:12, full-height clerestory, great room vaulted", False, None)):
         sc = M.Scene()
         band(sc, "exterior", WALL_TOP, PLATE)
         shed_vault_great(sc, 2 / 12, EAVE, seams=seams, band=glass_h)
         out[label] = dict(sc.tris)
-    for label, seams in (("MCM shingle shed 2:12, no clerestory, flat 9' ceilings", False),
-                         ("MCM metal shed 2:12, no clerestory, flat 9' ceilings", True)):
+    for label, seams in (("MCM metal shed 2:12, no clerestory, flat 9' ceilings", True),
+                         ("MCM shingle shed 2:12, no clerestory, flat 9' ceilings", False)):
         sc = M.Scene()
         band(sc, "exterior", WALL_TOP, PLATE)
         shed(sc, 2 / 12, EAVE, seams=seams, clerestory=False)
