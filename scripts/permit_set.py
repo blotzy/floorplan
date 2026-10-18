@@ -442,7 +442,7 @@ def roof_plan(pdf):
     ax.add_patch(Rectangle((X0, Y0), X1 - X0, Y1 - Y0, fc="#e6e6e6", ec=INK, lw=1.6))
     ax.add_patch(MPoly(Z.FOOT, closed=True, fill=False, ec="#777", ls="--", lw=0.8))
     ax.add_patch(Rectangle((cx0 - 6, cy0 - 6), cx1 - cx0 + 6, cy1 - cy0 + 12, fc="#f4f4f4", ec=INK, lw=1.0))
-    for xx in (470, 760, 1050):                                        # slope arrows, down toward the rear
+    for xx in (470, 760, 1000):                                        # slope arrows, down toward the rear
         ax.annotate("", (xx, Y1 - 30), (xx, Y0 + 40), arrowprops=dict(arrowstyle="->", lw=1.4))
         ax.text(xx + 8, (Y0 + Y1) / 2, "2:12\nDN", fontsize=8, va="center")
     ax.annotate("", (cx0 + 10, (cy0 + cy1) / 2), (cx1 - 20, (cy0 + cy1) / 2), arrowprops=dict(arrowstyle="->", lw=1.2))
@@ -458,7 +458,9 @@ def roof_plan(pdf):
     sh = S.build()
     sk = text_at(sh, "SKYLIGHT")                                        # straight up from the common bath ceiling
     for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A),\nstraight up from the bath; VTR-2 just downslope", sk),
-                         ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it", text_at(sh, "RANGE"))):
+                         ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it", text_at(sh, "RANGE")),
+                         ("HALL", "14\" TUBULAR SKYLIGHT (CLASS A), straight up from\nthe hall ceiling; set the PV layout around it",
+                          text_at(sh, '14" SKYLIGHT'))):
         if p:
             ax.add_patch(Circle(p, 7, fc="white", ec=INK, lw=0.9))
             below = lab == "SKYLIGHT"                                    # its vent label sits above it
@@ -505,7 +507,8 @@ def roof_plan(pdf):
              "   rest combined into one beside the common bath skylight, so\n"
              "   the panel layout works around one cluster. Bath and laundry\n"
              "   fans exit through walls where possible. The range hood cap\n"
-             "   is the other penetration in the PV area.\n"
+             "   and the hall's 14\" skylight are the other penetrations in\n"
+             "   the PV area.\n"
              "7. Carport: attached open carport, its own roof at 1/2\":12 in\n"
              "   double-lock standing seam (Class A assembly, uplift-rated),\n"
              "   gutter on its east edge.\n"
@@ -848,6 +851,9 @@ def loads_plan(pdf):
             fontsize=6, color="#8e44ad", va="bottom", zorder=6)
     ax.add_patch(Rectangle((hx0, hy - 12.75), 54, 25.5, fill=False, ec=INK, lw=1.2, ls="--", zorder=5))
     ax.text(hx0 + 27, hy - 16, "ATTIC HATCH", fontsize=6, ha="center", va="top", zorder=6)
+    ax.add_patch(Circle((S.HALL_TUBE, hy), 8, fill=False, ec=INK, lw=1.2, ls="--", zorder=5))
+    ax.text(S.HALL_TUBE, hy - 12, "14\" SKYLIGHT TUBE\n(insulated, through the attic)", fontsize=5.5, ha="center",
+            va="top", zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
     for rx, ry in L["rings"]:
         ax.add_patch(Circle((rx, ry), 5, fc=RED, ec=INK, lw=0.8, zorder=7))
     (r0x, r0y), (r1x, r1y) = L["rings"]
@@ -882,7 +888,8 @@ def loads_plan(pdf):
              "7. Bedroom hall ceiling: keep the hall's centreline free of\n"
              "   blocking, strongbacks, ducts and pipes, so recessed lights\n"
              "   fit between the trusses along it (clear of the hatch, smoke\n"
-             "   alarm and return grille). Run the duct trunk to one side.")
+             "   alarm and return grille). Run the duct trunk to one side.\n"
+             "   The 14\" skylight tube takes the last spot, near the hall's end.")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
     pdf.savefig(fig); fig.savefig(OUT / "A-7-attic-loads.png", dpi=80); plt.close(fig)
 
@@ -972,7 +979,8 @@ def floor_plan(pdf):
     dim_string(ax, [S.PORCH_Y, S.S] + ew, S.E - 30, horiz=False)
 
     # door tags (circles) on the side the door doesn't swing to; window tags (hexagons) outside
-    dsched, placed = [], []
+    dsched = []
+    placed = [(S.HALL_TUBE, (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2)]   # keep tags off the hall skylight
     for i, o in enumerate(doors(), 1):
         minus, plus = sides(o)
         a, b = room_at(rms, *minus), room_at(rms, *plus)
