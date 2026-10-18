@@ -58,6 +58,8 @@ CARPORT = (140.1, N, E, PORCH_Y + 192.0)   # x0, y0, x1, y1: 18' x 20', front in
 DRIVE_IN = (LOT_X0 + 150.0, LOT_X0 + 290.0)   # entrance edges (x) at the property line
 EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives
                                                                         # in the northwest parkway
+GATE_L = 168.0                       # courtyard gate behind the carport: 14' wide, hinged at the house corner,
+                                     # it opens flat against the house wall, joining carport and courtyard
 SIDE_TREE = (60.0, 420.0)            # new: east strip beside the carport, between the bins and the lawn
 PRIVACY_TREE = (624.0, 48.0)         # new: inside the front line, west of the lounge window's centre,
                                      # 10'+ from the sewer run to the cleanout (survey ~(492, 22))
@@ -672,8 +674,12 @@ def build() -> Sheet:
     sh.rect(LOT_X0 + 18, fy + 61, E - 156, LOT_D - 42, "L-PLNT")                       # edged by the pavers and planter wall
     sh.text("LAWN", (LOT_X0 + 18 + E - 156) / 2, 650.0, 7.0)
     sh.rect(LOT_X0 + 6, LOT_D - 42, E, LOT_D - 6, "L-PLNT"); sh.text("RAISED PLANTERS", (LOT_X0 + E) / 2, LOT_D - 24, 5.0)
-    sh.line((LOT_X0, fy), (160, fy), "A-FENC"); sh.line((208, fy), (E, fy), "A-FENC")
-    sh.text("6' FENCE / GATE", 184, fy - 10, 4.0)
+    gx = E - GATE_L                                                                     # carport gate: hinged at the
+    sh.line((LOT_X0, fy), (gx, fy), "A-FENC"); sh.line((gx, fy), (E, fy), "A-FENC")   # house corner, swings into
+    sh.msp.add_arc((E, fy), GATE_L, 180.0, 270.0,                                      # the carport and opens flat
+                   dxfattribs={"layer": "A-FENC", "linetype": "DASHED"})               # against the house wall
+    sh.text("6' FENCE", (LOT_X0 + gx) / 2, fy + 10, 4.0)
+    sh.text(f"{fmt(GATE_L)} GATE, OPENS FLAT AGAINST THE HOUSE", (gx + E) / 2, fy + 10, 4.0)
     for x, y in EXIST_TREES:                                                            # existing olives in the parkway
         sh.circle((x, y), 18.0, "L-PLNT"); sh.circle((x, y), 3.0, "L-PLNT")
     sh.circle(PRIVACY_TREE, 18.0, "L-PLNT"); sh.circle(PRIVACY_TREE, 3.0, "L-PLNT")
