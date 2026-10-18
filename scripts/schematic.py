@@ -49,8 +49,9 @@ E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 # Corner porch notch (outer faces) at the north-east corner.
 PORCH_X, PORCH_Y = 444.1, 289.2      # notch is E..PORCH_X by N..PORCH_Y
 FOYER_WALL_END = PORCH_Y + EXT + 108.0   # foyer/TV wall: 9' of foyer inside the front wall
-CARPORT = (140.1, PORCH_Y, E, PORCH_Y + 216.0)   # x0, y0, x1, y1: 18' x 18' (County minimum depth), front
-                                     # in line with the front door, not closer to the street (22.140.520)
+CARPORT = (140.1, N, E, PORCH_Y + 192.0)   # x0, y0, x1, y1: 18' x 20', front in line with the house front and
+                                     # the porch, so the walk from the carport to the porch stays covered.
+                                     # (The 22.140.520 front-door rule for parking: question for the planner.)
 # Driveway: a 12' entrance between the parkway street tree (~26'-6" from the east line) and the
 # tree inside the lot (~8'-6"), flaring west to the carport's full width. Runs out across the
 # parkway to the edge of pavement (no curb on Laurel Drive).
@@ -630,7 +631,7 @@ def build() -> Sheet:
     sh.msp.add_lwpolyline([(cx0, cy0), (cx1, cy0), (cx1, cy1), (cx0, cy1)], close=True,
                           dxfattribs={"layer": "L-SITE", "linetype": "DASHED"})
     sh.text("CARPORT", (cx0 + cx1) / 2, (cy0 + cy1) / 2, 10.0, "A-AREA-IDEN")
-    sh.text("18' x 18'", (cx0 + cx1) / 2, (cy0 + cy1) / 2 - 12, 6.5, "A-AREA-IDEN")
+    sh.text("18' x 20'", (cx0 + cx1) / 2, (cy0 + cy1) / 2 - 12, 6.5, "A-AREA-IDEN")
     sh.msp.add_lwpolyline(driveway_outline(), close=True, dxfattribs={"layer": "L-SITE"})
     sh.text("DRIVEWAY", (DRIVE_IN[0] + DRIVE_IN[1]) / 2 + 10, 120.0, 9.0, "A-AREA-IDEN")
     p = BAND_PROUD                                                            # band: street wall and both ends

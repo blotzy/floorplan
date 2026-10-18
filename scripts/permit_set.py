@@ -193,7 +193,7 @@ def window_type(rm, w, h, sill, kind):
 CASEWORK_WORDS = {"HANG", "SHELVES", "SHELVES ABOVE", "SHELVES TO 6'", "DRAWERS", "BENCH", "BEV",
                   "TALL STORAGE", "TRASH", "ON PEDESTAL", "HIGH WINDOW", "FOLDING COUNTER",
                   "LEDGE", "CURBLESS"}
-KEEP_OUTSIDE = {"CARPORT", "18' x 18'", "CONDENSER", "PORCH", "WOOD-LOOK FEATURE WALL"}
+KEEP_OUTSIDE = {"CARPORT", "18' x 20'", "CONDENSER", "PORCH", "WOOD-LOOK FEATURE WALL"}
 
 
 def build_doc():
