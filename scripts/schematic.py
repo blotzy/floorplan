@@ -213,6 +213,11 @@ def face(name, side):
     return c + side * t / 2
 
 
+# The hall skylight sits 18" street-side of the hall's centreline, so its tube rises to the gable's street
+# slope just below the ridge (out of the solar area) and the centreline stays free for the hall lights.
+HALL_TUBE_Y = (face("bedroom hall wall", +1) + face("south hall wall", -1)) / 2 - 18.0
+
+
 def fmt(inches: float) -> str:
     i = int(round(inches))
     return f"{i // 12}'-{i % 12}\""
@@ -553,8 +558,8 @@ def build() -> Sheet:
                            (hx0, hy + 12.75)], close=True,             # across from the closet wall
                           dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})
     sh.text("ATTIC HATCH", hx0 + 27, hy, 2.6, "A-CLNG")
-    sh.msp.add_circle((HALL_TUBE, hy), 8.0, dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})   # 14" tube
-    sh.text('14" SKYLIGHT', HALL_TUBE, hy, 1.6, "A-CLNG")
+    sh.msp.add_circle((HALL_TUBE, HALL_TUBE_Y), 8.0, dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})
+    sh.text('14" SKYLIGHT', HALL_TUBE, HALL_TUBE_Y, 1.6, "A-CLNG")
     sh.text("LOBBY", (HATCH_X + 54 + HALL_TUBE - 9) / 2, (face("bedroom hall wall", +1) + hall_s) / 2, 7.0, "A-AREA-IDEN")
     sh.text("PORCH", (E + PORCH_X) / 2, (N + PORCH_Y) / 2, 7.0, "A-AREA-IDEN")
 

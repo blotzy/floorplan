@@ -51,7 +51,7 @@ Shading: 2'-6" eaves all round; at the rear, 3'-deep metal canopies over the kit
 | Heating and cooling | Ducted, variable-speed heat pump (about 3 tons, sized by the Manual J), three zones with motorized dampers; air handler and all ducts in the sealed attic |
 | Water heating | Heat pump water heater, 80 gallons, in the mechanical closet (louvered into the laundry); thermostatic mixing valve at the outlet, tank at about 140°F; no recirculation |
 | Ventilation | Continuous exhaust fan sized to the code rate (about 105 cfm: 0.03 x floor area + 7.5 x (bedrooms + 1)); an ERV is an open question |
-| Kitchen | Induction range; range hood ducted outside, 400 cfm or less |
+| Kitchen | Induction range; range hood ducted outside through a rear-wall cap, 400 cfm or less |
 | Laundry | Heat pump (ventless) dryer |
 | Lighting | All LED, high-efficacy, with the required controls |
 | Solar and battery | Solar PV per the Energy Code (the County notes solar may be optional for rebuilds: confirm); panel and conduit ready for a future battery |

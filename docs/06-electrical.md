@@ -46,7 +46,7 @@
 
 - Ceiling-fan-rated boxes in the bedrooms and great room (not in the gym's ring swing zone).
 - Vaulted great room (no attic above it): wall outlets and switches are fed from the walls that border the attic and run sideways through the studs, or through slab conduit (the peninsula needs that anyway). Vault lights, fans, smoke alarms and any clerestory shade motors are wired in the rafter bays before the spray foam, with a few spare conduits and pull strings to likely future spots.
-- Recessed lights down the centre of the bedroom hall (lobby), between the ceiling trusses, IC-rated and airtight; spaced clear of the attic hatch, smoke alarm and return grille; the hall skylight takes the last spot, near the hall's end. The framing and HVAC keep that centreline free (see sheet A-7).
+- Recessed lights down the centre of the bedroom hall (lobby), between the ceiling trusses, IC-rated and airtight; spaced clear of the attic hatch, smoke alarm and return grille; the hall skylight sits just to the street side of the line, near the hall's end. The framing and HVAC keep that centreline free (see sheet A-7).
 - Neutral wires in all switch boxes, for smart switches.
 - Door contact sensor and smart lock at the front door.
 

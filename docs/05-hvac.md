@@ -30,5 +30,5 @@ Three zones are preferred. If the Manual J or the equipment's minimum airflow ma
 **Ventilation**
 
 - Whole-house ventilation: a quiet, continuous-rated exhaust fan running all the time at the code's ventilation rate (one of the bath fans, upsized), with its own termination and ember-resistant damper. The other bath fans and the laundry fan run on demand (humidity or timer switches).
-- Range hood ducted outside through the roof, 400 CFM or less to avoid a makeup-air requirement.
+- Range hood ducted outside through the pantry attic to an ember-resistant wall cap on the rear wall (no roof penetration), 400 CFM or less to avoid a makeup-air requirement. Keep the run short and smooth; the cap clears the kitchen window and the property line by the code distances.
 - Network rack and water heater share the mechanical closet, which opens into the laundry through a louvered bifold so the water heater can draw on the laundry's air (and the rack's waste heat); no conditioned supply into the closet.

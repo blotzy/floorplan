@@ -28,7 +28,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 
 - Integrated drain board on the dishwasher side of the sink (countertop with a slight slope and grooves).
 - Coffee station on the peninsula counter over the drink fridge.
-- Sink vent: the kitchen is vaulted (no attic above it), so the vent rises in the rear wall beside the window, turns into the pantry wall at the corner a few feet away, and goes up into the attic over the pantry, then on to the rear plumbing vent. A vent through the vaulted roof above the sink is the fallback.
+- Sink vent: the kitchen is vaulted (no attic above it), so the vent rises in the rear wall beside the window, turns into the pantry wall at the corner a few feet away, and goes up into the attic over the pantry, then on to the house's one roof vent. All the fixtures' vents gather in the attic (sized by the plumber) and leave through a single vent on the bedroom wing's street-facing slope just below the ridge, keeping the solar side of the roof clear. A vent through the vaulted roof above the sink is the fallback.
 
 **Equipment and fixtures**
 
