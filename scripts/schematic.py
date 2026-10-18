@@ -78,7 +78,8 @@ NOTICE = ("\u00a9 2026 Richard Acosta. All rights reserved. For 220 Laurel Dr on
 # hall's last stretch as an entry nook. Halfway down, just past the common bath, a cased opening with a
 # dropped header marks the bedroom end (no door).
 HALL_END = 1110.5                    # centreline of the hall's end wall (the primary door)
-HALL_ARCH = 892.0                    # centreline of the threshold wall, between the common bath and guest doors
+HALL_ARCH = 897.5                    # centreline of the threshold wall: in line with the ensuite|guest wall,
+                                     # between the common bath and guest doors
 ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
 
 # Interior walls: (name, axis, centreline, from, to, thickness).
@@ -132,7 +133,7 @@ OPENINGS = [
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
     ("ensuite|guest", 335.0, 365.0, "door", "a", +1),       # guest ensuite's only door: swings into the guest room (the bath is narrow)
-    ("bedroom hall wall", 904.5, 940.5, "door", "a", -1),  # guest
+    ("bedroom hall wall", 906.5, 942.5, "door", "a", -1),  # guest: 2" clear of the hall threshold wall for its trim
     ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, by the hall's end
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
