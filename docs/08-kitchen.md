@@ -9,7 +9,7 @@ An upside-down U: the sink on the south wall under the window (its sill just abo
 | Item | Spec |
 | --- | --- |
 | Range | **30"** slide-in induction (decided) |
-| Range hood | Ducted through the pantry attic to a wall cap on the rear wall (no roof penetration), 400 CFM or less |
+| Range hood | Ducted outside through the roof, 400 CFM or less |
 | Fridge | **36"** wide (decided), counter-depth; RO water line and a leak pan |
 | Dishwasher | In the peninsula on the kitchen side, at its south end, just around the corner from the sink; not across from the range. |
 | Sink | Single deep bowl, about 32"–33" wide and 9"–10" deep, undermount (16-gauge stainless or fireclay), in a 36" sink base centred under the window; pull-down faucet. RO filter tap (the tankless RO unit is in the mechanical closet, so the sink base is free for the trash pull-out); integrated drain board on the dishwasher side |

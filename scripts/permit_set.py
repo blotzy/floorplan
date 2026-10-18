@@ -446,7 +446,7 @@ def roof_plan(pdf):
     ax.plot([wx, wx], [Y0, Y1], color=INK, lw=1.2)                         # shed / gable line
     ax.plot([wx, X1], [ry, ry], color=INK, lw=1.8)                         # the wing's ridge
     ax.text(X1 - 8, ry - 6, "RIDGE", fontsize=7, ha="right")
-    ax.text(wx + 6, Y0 + 110, "SHED WALL ABOVE THE GABLE:\nstep + kick-out flashing", fontsize=5.5)
+    ax.text(wx + 6, Y0 + 45, "SHED WALL ABOVE THE GABLE:\nstep + kick-out flashing", fontsize=5.5)
     for xx in (470, 680):                                              # shed: down toward the rear
         ax.annotate("", (xx, Y1 - 30), (xx, Y0 + 40), arrowprops=dict(arrowstyle="->", lw=1.4))
         ax.text(xx + 8, (Y0 + Y1) / 2, "2:12\nDN", fontsize=8, va="center")
@@ -471,24 +471,22 @@ def roof_plan(pdf):
     sk = text_at(sh, "SKYLIGHT")                                        # straight up from the common bath ceiling
     hs = text_at(sh, '14" SKYLIGHT')                                    # the hall's: dome on the street slope,
     hs = hs and (hs[0], X.RIDGE_Y - 30)                                 # just below the ridge
-    for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A), straight up from\nthe common bath: "
-                          "the only penetration in the PV area", sk),
+    for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A),\nstraight up from the bath; VTR-2 just downslope", sk),
+                         ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it", text_at(sh, "RANGE")),
                          ("HALL", "14\" TUBULAR SKYLIGHT (CLASS A) from the hall ceiling, dome on\nthe street slope just "
                           "below the ridge (small offset): out of the PV area", hs)):
         if p:
             ax.add_patch(Circle(p, 7, fc="white", ec=INK, lw=0.9))
-            below = lab == "SKYLIGHT"
+            below = lab == "SKYLIGHT"                                    # its vent label sits above it
             ax.text(p[0] + 10, p[1] - 10 if below else p[1] + 10, note, fontsize=5.5, va="top" if below else "bottom")
-    ax.add_patch(Rectangle((690, S.S - 4), 20, 8, fc="white", ec=INK, lw=1.0, zorder=5))   # range hood wall cap
-    ax.text(700, S.S - 12, "RANGE HOOD: WALL CAP ON THE REAR WALL (A-6, 4b), ducted through the\n"
-            "pantry attic; no roof penetration", fontsize=5.5, ha="center", va="top")
+    # plumbing vents: the guest ensuite's on the street slope (off the PV area), the rest in one cluster
     ax.add_patch(MPoly(pv_area(), closed=True, fill=False, ec="#1f5e9e", lw=1.0, ls="--"))
     ax.text(X0 + 48, Y1 - 50, "POTENTIAL SOLAR PV AREA (dashed): the south-facing planes, clear of the shed's high-edge\n"
             "setback, the ridge setback and the 36\" pathways at both ends (CRC R324.6); final layout per the solar design",
             fontsize=6.5, color="#1f5e9e")
-    vtrs = [(860.0, X.RIDGE_Y - 36, "VTR (3\" main vent, the whole house): on the wing's street slope just below the\n"
-             "ridge, out of the PV area. The fixtures' vents gather in the attic: kitchen sink\n(up beside the window, into "
-             "the pantry wall, then the pantry attic), laundry,\ncommon bath, primary bath and guest ensuite", "top")]
+    vtrs = [(850.0, 330.0, "VTR-1: guest ensuite (its own vent, on the\nwing's street slope, out of the PV area)", "bottom"),
+            (868.0, 544.0, "VTR-2 (3\" main vent), just downslope of the skylight: kitchen sink\n(up beside the window, into the pantry wall, then the\n"
+                              "pantry attic), common bath, laundry and primary bath", "bottom")]
     for vx, vy, lab, va in vtrs:
         ax.add_patch(Circle((vx, vy), 6, fc="white", ec=INK, lw=1.2, zorder=5))
         ax.plot([vx - 6, vx + 6], [vy] * 2, color=INK, lw=0.8, zorder=6)
@@ -520,12 +518,13 @@ def roof_plan(pdf):
              "   downspouts to the site drainage system per civil. No gutter\n"
              "   on the wing's street eave: drip edge over a gravel drip trench.\n"
              "5. Roof framing, sheathing and connections per structural.\n"
-             "6. Roof penetrations flashed per the shingle maker, kept off the\n"
-             "   PV area: one plumbing vent (VTR) for the whole house and the\n"
-             "   hall skylight's dome, both on the wing's street slope just\n"
-             "   below the ridge. The range hood exits through the rear wall;\n"
-             "   bath and laundry fans through walls where possible. The only\n"
-             "   penetration in the PV area is the common bath's skylight.\n"
+             "6. Roof penetrations flashed per the shingle maker. Two plumbing\n"
+             "   vents (VTR): the guest ensuite's on the wing's street slope; the\n"
+             "   rest combined into one just downslope of the common bath\n"
+             "   skylight, so the panel layout works around one cluster. The\n"
+             "   hall skylight's dome is on the street slope too. Bath and laundry\n"
+             "   fans exit through walls where possible; the range hood cap is\n"
+             "   the other penetration in the PV area.\n"
              "7. Carport: attached open carport, its own roof at 1/2\":12 in\n"
              "   double-lock standing seam (Class A assembly, uplift-rated),\n"
              "   gutter on its east edge.\n"
@@ -784,16 +783,16 @@ def details(pdf):
         ax.text(x, y, txt, fontsize=7, va="top")
     # 4. exhaust terminations: roof cap (range hood, interior bath) and wall cap (rooms on an exterior wall)
     ax = detail_box(fig, 25.2, 13.0, 7.3, 9.8, "4  EXHAUST TERMINATIONS   NTS")
-    ax.text(4, 112, "4a ROOF CAP: fans in rooms with no exterior\nwall (common bath, through its skylight unit)", fontsize=7, va="top")
+    ax.text(4, 112, "4a ROOF CAP: range hood; fans in rooms\nwith no exterior wall (common bath)", fontsize=7, va="top")
     ax.add_patch(MPoly([(4, 66), (84, 80), (84, 86), (4, 72)], closed=True, fc="#666", ec=INK))     # roof slab
     ax.add_patch(Rectangle((40, 40), 6, 44, fc="white", ec=INK, zorder=3))                          # duct through
     ax.add_patch(MPoly([(33, 84), (53, 84), (53, 91), (33, 91)], closed=True, fc="#999", ec=INK, zorder=4))  # cap
     ax.add_patch(MPoly([(34, 77.5), (52, 80.6), (52, 82), (34, 79)], closed=True, fc="#222", ec=INK, zorder=4))  # flashing
     ax.text(55, 92, "Listed ember-resistant roof cap\nwith back-draft damper\n(ASTM E2886)", fontsize=6.5, va="bottom")
     ax.annotate("Flashing", (36, 78.5), (8, 96), fontsize=6.5, arrowprops=dict(arrowstyle="-", lw=0.6))
-    ax.text(48, 46, "Duct up from\nthe fan", fontsize=6.5, va="center")
+    ax.text(48, 46, "Duct up from the\nhood or fan", fontsize=6.5, va="center")
     ax.plot([2, 86], [36, 36], color=INK, lw=0.5, ls=":")
-    ax.text(4, 33, "4b WALL CAP: range hood (through the pantry attic),\nbath and laundry fans on an exterior wall", fontsize=7, va="top")
+    ax.text(4, 33, "4b WALL CAP: bath and laundry fans\non an exterior wall (no roof penetration)", fontsize=7, va="top")
     ax.add_patch(Rectangle((50, 4), 9, 20, fc="#ccc", ec=INK))                                        # wall (section)
     ax.add_patch(Rectangle((22, 12), 30, 5, fc="white", ec=INK))                                      # duct
     ax.add_patch(Rectangle((59, 9), 6, 11, fc="#999", ec=INK))                                        # cap
