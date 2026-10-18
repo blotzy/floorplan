@@ -817,7 +817,7 @@ def loads():
     gy0, gy1 = S.N_IN, S.face("bedroom hall wall", -1)
     cx, cy = (gx0 + gx1) / 2, (gy0 + gy1) / 2
     rings = [(cx - RING_GAP / 2, cy), (cx + RING_GAP / 2, cy)]
-    ahu = (975.0, 330.0, 1050.0, gy1)                  # platform over the guest room, beside the hatch
+    ahu = (S.HATCH_X - 15, 330.0, S.HATCH_X + 60, gy1)                  # platform over the guest room, beside the hatch
     store = (gx0, S.N_IN + 24.0, S.W_IN, gy1)          # strip over the bedroom wing, street side
     pv = (S.E - X.EAVE + 36, S.N + 24, S.W + X.EAVE - 36, S.S + X.EAVE)
     return dict(gym=(gx0, gy0, gx1, gy1), rings=rings, ahu=ahu, store=store, pv=pv)
@@ -845,7 +845,7 @@ def loads_plan(pdf):
     ax.add_patch(Rectangle((a0, b0), a1 - a0, b1 - b0, fc="#cfe0f3", ec="#1f5e9e", lw=1.4, zorder=5))
     ax.text((a0 + a1) / 2, (b0 + b1) / 2, "AIR HANDLER\nON PLATFORM\n~250 LB", fontsize=6, ha="center", va="center",
             zorder=6)
-    hx0, hy = 990.0, (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2
+    hx0, hy = S.HATCH_X, (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2
     ax.plot([S.face("lounge|gym", +1), S.W_IN], [hy, hy], color="#8e44ad", lw=1.4, ls=(0, (8, 4)), zorder=5)
     ax.text(S.face("lounge|gym", +1) + 6, hy + 4, "HALL CENTRELINE: KEEP CLEAR FOR RECESSED LIGHTS (note 7)",
             fontsize=6, color="#8e44ad", va="bottom", zorder=6)
@@ -1060,8 +1060,8 @@ def floor_plan(pdf):
     hall_y = (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2
     for nm, (x, y) in {"GYM": (760, 330), "GUEST": (980, 330), "OFFICE": (1140, 330), "PRIMARY": (1140, 540)}.items():
         alarm(x, y, "SD")
-    alarm(955, hall_y + 15, "SD/\nCO")           # one, mid-lobby: within 21' of every bedroom door
-    ax.text(990 + 27, hall_y + 15, "AIR HANDLER ABOVE (SEALED ATTIC)", fontsize=5,
+    alarm(S.HATCH_X - 24, hall_y + 15, "SD/\nCO")           # one, mid-lobby: within 21' of every bedroom door
+    ax.text(S.HATCH_X + 27, hall_y + 15, "AIR HANDLER ABOVE (SEALED ATTIC)", fontsize=5,
             ha="center", va="bottom", color=INK)
     for x, y in ((560, 360), (430, 560), (610, 470)):
         pass

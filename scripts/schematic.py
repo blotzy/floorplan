@@ -81,6 +81,8 @@ HALL_END = 1110.5                    # centreline of the hall's end wall (the pr
 HALL_ARCH = 897.5                    # centreline of the threshold wall: in line with the ensuite|guest wall,
                                      # between the common bath and guest doors
 ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
+HATCH_X = 966.0                         # attic pull-down (22" x 54") along the hall, from here west: about 4'
+                                        # clear of the skylight, beside the air handler platform
 HALL_TUBE = HALL_END - INT / 2 - 32.0   # 14" tubular skylight on the hall's centreline, 2'-8" short of the end
                                         # wall: lights the end wall and the primary door
 
@@ -546,14 +548,14 @@ def build() -> Sheet:
     utility_block(sh)
     wic(sh)
     room("PRIMARY", face("suite|primary", +1), srow, W_IN, S_IN, cx=(face("suite|primary", +1) + W_IN - 80) / 2)
-    hx0, hy = 990.0, (face("bedroom hall wall", +1) + hall_s) / 2      # attic pull-down in the hall,
+    hx0, hy = HATCH_X, (face("bedroom hall wall", +1) + hall_s) / 2      # attic pull-down in the hall,
     sh.msp.add_lwpolyline([(hx0, hy - 12.75), (hx0 + 54, hy - 12.75), (hx0 + 54, hy + 12.75),
                            (hx0, hy + 12.75)], close=True,             # across from the closet wall
                           dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})
     sh.text("ATTIC HATCH", hx0 + 27, hy, 2.6, "A-CLNG")
     sh.msp.add_circle((HALL_TUBE, hy), 8.0, dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})   # 14" tube
     sh.text('14" SKYLIGHT', HALL_TUBE, hy, 1.6, "A-CLNG")
-    sh.text("LOBBY", 950.0, (face("bedroom hall wall", +1) + hall_s) / 2, 7.0, "A-AREA-IDEN")
+    sh.text("LOBBY", (HATCH_X + 54 + HALL_TUBE - 9) / 2, (face("bedroom hall wall", +1) + hall_s) / 2, 7.0, "A-AREA-IDEN")
     sh.text("PORCH", (E + PORCH_X) / 2, (N + PORCH_Y) / 2, 7.0, "A-AREA-IDEN")
 
     # ---- fixtures & furniture (simple symbols) --------------------------------
