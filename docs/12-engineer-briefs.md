@@ -23,7 +23,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 
 **What needs engineering (non-prescriptive items):**
 
-- **Roof:** single-slope shed at 2:12, high at the street, 2'-6" eaves all round, standing-seam metal roofing (Class A assembly; future solar clamps to the seams). Sealed (unvented) attic with spray foam at the deck.
+- **Roof:** split roof at 2:12, 2'-6" eaves all round: a shed from the porch into the bedroom wing (high at the street) and a gable over the rest of the wing, its ridge down the middle and its rear slope in the shed's plane. The shed's side wall rises above the gable where they meet (the shed's west edge falls over the gym, not on a wall line). Class A asphalt shingles, wind-rated, two layers of underlayment; future solar on rails over flashed attachments. Sealed (unvented) attic with spray foam at the deck.
 - **Vaulted great room:** foyer, lounge, dining and kitchen have a sloped ceiling following the roof (rafters, no attic). Elsewhere, flat 9' ceilings with an attic. The vault ends on one straight line (the lounge/gym and kitchen/pantry walls are aligned): the bearing or beam line between the two framing systems.
 - **Tall street wall at the lounge:** about 16' at the street, with an 18' clerestory band (3' tall) above a 10' window. Lateral bracing of that wall.
 - **Large openings:** dining 12' window (two units) on the south wall, with the 8' dining slider on the east wall near the same corner (about 2'-9" of wall at the corner). Ask whether that corner needs steel or special hold-downs; if so, the window can narrow.
@@ -31,14 +31,14 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 - **Carport:** attached open carport, clear span with posts at the corners only, its own roof at about ½" per foot in double-lock standing-seam metal. It faces the north / northeast winds with its open sides, so uplift governs its posts, beam connections, ledger at the house and roof attachment.
 - **Loads (located on sheet A-7, attic and loads plan):**
   - Gym rings: two points 20" apart at the centre of the gym, swinging toward the street; 500 lb each, concentrated and dynamic.
-  - Attic storage: 20 psf live load on a decked strip over the bedroom wing, from 2' off the street wall to the hall wall, gym to office.
-  - Air handler (about 250 lb) on a platform beside the hall attic hatch, over the guest room.
-  - Future solar PV over most of the roof (clear of the fire setbacks): about 3-4 psf dead load.
+  - Attic storage: 20 psf live load on a decked area over the gym's east half, under the shed, from 2' off the street wall to the hall wall.
+  - Air handler (about 250 lb) on a platform beside the hall attic hatch, over the guest room, near the gable's ridge.
+  - Future solar PV over the south-facing planes (the shed and the gable's rear slope, clear of the fire setbacks): about 3-4 psf dead load.
   - Heat pump water heater, 80 gal (about 900 lb full), on the slab in the mechanical closet.
 - **Hall ceiling:** keep the centreline of the bedroom hall (lobby) free of blocking, strongbacks, ducts and pipes, so recessed lights fit between the trusses along it; a 14" tubular skylight near the hall's end takes the last spot (sheet A-7).
 - **Exterior:** stucco walls (2x6 with 1" rigid insulation), two 3' metal window canopies at the rear (attachment).
 
-**Wind:** the site sits below the San Gabriel Mountains and gets severe downslope windstorms (Santa Ana and "mono" wind events) from the north and northeast, with gusts of roughly 80 to 100 mph in January 2025. The street side faces about 22° (NNE), straight into them, and it is the tall side of the house: the high edge of the shed roof with its 2'-6" eave, the 16' street wall and the clerestory. Please confirm the design wind speed (LA County's foothill special wind areas), exposure and topographic factor, and check uplift at the street eave and the overhangs, the open carport roof, the porch, the standing-seam panel attachment (clip spacing at edges and corners) and the future solar racking. Windows and the clerestory need design-pressure ratings to suit.
+**Wind:** the site sits below the San Gabriel Mountains and gets severe downslope windstorms (Santa Ana and "mono" wind events) from the north and northeast, with gusts of roughly 80 to 100 mph in January 2025. The street side faces about 22° (NNE), straight into them, and it is the tall side of the house: the high edge of the shed roof with its 2'-6" eave, the 16' street wall and the clerestory. Please confirm the design wind speed (LA County's foothill special wind areas), exposure and topographic factor, and check uplift at the street eave and the overhangs, the open carport roof (standing seam: clip spacing at edges and corners), the porch, the shingle roof's edges and the future solar attachments. Windows and the clerestory need design-pressure ratings to suit.
 
 **Foundation:** the existing grade falls about 4' across the footprint (east to west). Slab on grade preferred; stepped footings or a raised portion as the civil and structural engineers decide together. An old retaining wall and chimney under the southeast corner are being removed. Ask whether a soils report is needed.
 
@@ -53,7 +53,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 - **Slope:** about 8' of fall across the lot from east to west and about 4' across the house footprint. The house sits near the minimum setbacks on three sides (front 1¼", rear 2½", west about 2⅜" of margin), so the foundation location needs a survey check before the slab.
 - **Demolition:** remove the old retaining wall crossing the house's southeast corner and the standing chimney in the courtyard; regrade the lower rear terrace they leave.
 - **East property-line wall:** a retaining wall along the east line (front half), holding up the neighbour's higher ground. No excavation or lowering of grade at its base on our side; a swale or gravel drain along it carries its seepage to the site drainage.
-- **Drainage:** grade away from the house all round (CRC R401.3). Three downspouts along the rear gutter, plus the carport gutter on its east edge. A 5' noncombustible zone (gravel or pavers) around the house.
+- **Drainage:** grade away from the house all round (CRC R401.3). Three downspouts along the rear gutter, two along the bedroom wing's street gutter, plus the carport gutter on its east edge. A 5' noncombustible zone (gravel or pavers) around the house.
 - **Driveway:** new, threading between the parkway street tree and a lot tree near the east side; drained away from the carport. Public Works approach permit.
 - **Utilities:** sewer from the west-end baths to the existing cleanout near the porch, at code slope (lot falls to the west: confirm it works). Water service may need a 1" meter for the sprinklers. Electric service at the northwest corner (SCE). No gas.
 - **Trees:** protect the parkway olives and street tree root zones.

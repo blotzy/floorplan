@@ -331,7 +331,7 @@ HTML = r"""<!doctype html>
   <label><input type="checkbox" id="grid" checked> 1' floor grid</label>
   <label><input type="checkbox" id="edges" checked> Edge lines</label>
   <label id="roofrow"><input type="checkbox" id="roofvis" checked> Roof
-    <select id="roofopt" style="display:none"><option value="0">MCM shed 2:12, 3&#39; clerestory band (plan)</option></select></label>
+    <select id="roofopt" style="display:none"><option value="0">MCM split: shed 2:12 from the porch into the bedroom wing (18&#39; x 3&#39; clerestory), gable 2:12 over the rest of the wing (plan)</option></select></label>
   <label><input type="checkbox" id="roofsh" checked> Roof shadows</label>
   <label>Sun: <select id="day">
     <option value="172">Jun 21</option><option value="80">Mar 20 / Sep 22</option>
@@ -632,8 +632,8 @@ if (D.roof_hidden && !location.hash.includes('roof')) {     // main model opens 
   groups.labels.visible = false; document.getElementById('labels').checked = false;
 }
 { const h = location.hash;
-  const pick = h.includes('split-wide') ? 3 : h.includes('split') ? 2 : h.includes('gable') ? 1 : 0;
-  if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-gable; #roof-split; #roof-split-wide
+  const pick = h.includes('split-wide') ? 0 : h.includes('split') ? 2 : h.includes('gable') ? 1 : h.includes('shed') ? 3 : 0;
+  if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-gable; #roof-split; #roof-shed (#roof-split-wide: the plan)
 if (!Object.keys(D.tris || {}).length) document.getElementById('roofrow').style.display = 'none';
 const clock = new THREE.Clock();
 renderer.setAnimationLoop(()=>{

@@ -33,7 +33,8 @@ PROJECT = "Single-family residence rebuild (Eaton Fire), 220 Laurel Dr, Altadena
 APN = "APN 5832-003-027"
 OWNER = "Owner: Richard Acosta"
 PITCH = 2 / 12
-UNDER = X.shed_vault_under(PITCH)              # underside of the roof framing at plan y
+UNDER = X.shed_vault_under(PITCH)              # underside of the shed's framing at plan y
+GABLE = X.gable_under(PITCH)                   # and of the bedroom wing's gable (west of X.WING_X)
 THK, OV = X.THK, X.EAVE                        # roof framing depth, eave overhang
 INK, SOFT = "#222", "#888"
 
@@ -74,6 +75,8 @@ SETBACKS = [   # (label, required, provided) in inches
 ]
 TOP = UNDER(S.N - OV) + THK                      # highest point: roof top at the street fascia
 REAR_TOP = UNDER(S.S + OV) + THK
+RIDGE_TOP = GABLE(X.RIDGE_Y) + THK               # the wing's ridge
+WING_EAVE_TOP = GABLE(S.N - OV) + THK            # the wing's street eave
 
 
 def glass_total():
@@ -220,20 +223,29 @@ def roof_plan(pdf):
     ax.add_patch(Rectangle((X0, Y0), X1 - X0, Y1 - Y0, fc="#e9e9e9", ec=INK, lw=1.4))
     ax.add_patch(MPoly(FOOT, closed=True, fill=False, ec=SOFT, ls="--", lw=0.8))
     ax.add_patch(Rectangle((cx0 - 6, cy0 - 6), cx1 - cx0 + 6, cy1 - cy0 + 12, fc="#f6f6f6", ec=INK, lw=1.0))
-    for xx in (520, 780, 1040):
+    wx, ry = X.WING_X, X.RIDGE_Y
+    ax.plot([wx, wx], [Y0, Y1], color=INK, lw=1.0)                       # shed / gable line
+    ax.plot([wx, X1], [ry, ry], color=INK, lw=1.4)                       # the wing's ridge
+    for xx in (420, 700):                                                # shed: down to the rear
         ax.annotate("", (xx, Y1 - 20), (xx, Y0 + 40), arrowprops=dict(arrowstyle="->", lw=1.2))
-    ax.text((X0 + X1) / 2, (Y0 + Y1) / 2, "MAIN ROOF: SINGLE SLOPE 2:12, DOWN TOWARD THE REAR\n"
-            "Standing-seam metal roofing (Class A assembly)\n"
-            f"High edge at the street (top ~{ftin(TOP)}), low edge at the rear (top ~{ftin(REAR_TOP)}) above finished floor\n"
-            f"{ftin(OV)} eaves all round (max. 2'-6\" into a required yard, §22.110.090.A) · gutter along the rear edge", ha="center", va="center", fontsize=9,
+    for xx in (930, 1150):                                               # gable: down each way from the ridge
+        ax.annotate("", (xx, Y1 - 20), (xx, ry + 10), arrowprops=dict(arrowstyle="->", lw=1.2))
+        ax.annotate("", (xx, Y0 + 20), (xx, ry - 10), arrowprops=dict(arrowstyle="->", lw=1.2))
+    ax.text((X0 + wx) / 2, (Y0 + Y1) / 2 - 40, "SHED 2:12, DOWN TOWARD THE REAR\n"
+            f"high edge at the street (top ~{ftin(TOP)}),\nlow edge at the rear (top ~{ftin(REAR_TOP)})",
+            ha="center", va="center", fontsize=8.5, bbox=dict(fc="white", ec="none"))
+    ax.text((wx + X1) / 2, ry - 60, f"GABLE 2:12, RIDGE ~{ftin(RIDGE_TOP)}", ha="center", va="center", fontsize=8.5,
             bbox=dict(fc="white", ec="none"))
+    ax.text((X0 + X1) / 2, Y1 + 50, "Class A asphalt shingles · heights above finished floor · "
+            f"{ftin(OV)} eaves all round (max. 2'-6\" into a required yard, §22.110.090.A) · "
+            "gutters along the rear edge and the wing's street edge", ha="center", fontsize=8.5)
     ax.annotate("", (cx0 + 10, (cy0 + cy1) / 2), (cx1 - 20, (cy0 + cy1) / 2), arrowprops=dict(arrowstyle="->", lw=1.2))
     ax.text((cx0 + cx1) / 2, (cy0 + cy1) / 2 + 22, "CARPORT ROOF\n½\":12, slopes away from house\nstanding-seam metal\n"
             "gutter on east edge", ha="center", fontsize=7.5)
     ax.text(X0, Y0 - 25, "STREET (PLAN NORTH)", fontsize=9, weight="bold")
-    dim(ax, (X0, Y1 + 30), (X1, Y1 + 30), ftin(X1 - X0) + " to fascia")
+    dim(ax, (X0, Y1 + 25), (X1, Y1 + 25), ftin(X1 - X0) + " to fascia")
     dim(ax, (X1 + 30, Y0), (X1 + 30, Y1), ftin(Y1 - Y0) + " to fascia", rot=90)
-    ax.set_aspect("equal"); ax.set_xlim(cx0 - 60, X1 + 80); ax.set_ylim(Y0 - 60, Y1 + 70); ax.axis("off")
+    ax.set_aspect("equal"); ax.set_xlim(cx0 - 60, X1 + 80); ax.set_ylim(Y0 - 60, Y1 + 80); ax.axis("off")
     pdf.savefig(fig); fig.savefig(OUT / "Z-3-roof-plan.png", dpi=110); plt.close(fig)
 
 
@@ -267,9 +279,18 @@ def elevation(ax, side):
     if side in ("north", "south"):
         a, b = S.E, S.W
         wall_top = UNDER(S.N) if side == "north" else UNDER(S.S)
-        ax.add_patch(Rectangle((min(h(a), h(b)), 0), b - a, wall_top, fc="#efe9df", ec=INK, lw=1.2))
         za = UNDER(S.N - OV) if side == "north" else UNDER(S.S + OV)
-        ax.add_patch(Rectangle((min(h(a - OV), h(b + OV)), za), b - a + 2 * OV, THK, fc="#3c3f44", ec=INK))
+        if side == "north":                                        # shed block, then the wing's gable beside it
+            wx = X.WING_X
+            ax.add_patch(Rectangle((h(a), 0), wx - a, wall_top, fc="#efe9df", ec=INK, lw=1.2))
+            ax.add_patch(Rectangle((h(wx), 0), b - wx, X.PLATE, fc="#efe9df", ec=INK, lw=1.2))
+            ax.add_patch(Rectangle((h(wx), GABLE(S.N - OV)), b + OV - wx, RIDGE_TOP - GABLE(S.N - OV),
+                                   fc="#55595e", ec=INK, lw=0.8))        # the gable's street slope, seen face-on
+            ax.add_patch(Rectangle((h(wx), GABLE(S.N - OV)), b + OV - wx, THK, fc="#3c3f44", ec=INK))
+            ax.add_patch(Rectangle((h(a - OV), za), wx - a + OV, THK, fc="#3c3f44", ec=INK))
+        else:                                                      # rear: one plane, shed and gable alike
+            ax.add_patch(Rectangle((min(h(a), h(b)), 0), b - a, wall_top, fc="#efe9df", ec=INK, lw=1.2))
+            ax.add_patch(Rectangle((min(h(a - OV), h(b + OV)), za), b - a + 2 * OV, THK, fc="#3c3f44", ec=INK))
         if side == "north":
             ax.add_patch(Rectangle((h(a), 0), S.PORCH_X - a, PORCH_CEIL, fc=WOOD, ec=INK, lw=0.8))   # porch: its
             ax.add_patch(Rectangle((h(a), 0), 6, PORCH_CEIL, fc=INK))       # wood-look back wall under its own
@@ -295,17 +316,27 @@ def elevation(ax, side):
             ax.add_patch(Rectangle((min(h(x0), h(x1)), S.CANOPY_Z), x1 - x0, 3, fc=INK))
         if side == "north":
             xm = (1101.6 + 1173.6) / 2                             # the office window
-            ax.annotate(f"windows recessed {S.WINDOW_RECESS:.0f}\" (typ.)", (h(xm), 96.0), (h(xm), 140.0),
+            ax.annotate(f"windows recessed {S.WINDOW_RECESS:.0f}\" (typ.)", (h(xm), 96.0), (h(xm) + 70, 110.0),
                         fontsize=6.5, ha="center", arrowprops=dict(arrowstyle="-", lw=0.6))
         lo, hi = min(h(a - OV), h(b + OV)), max(h(a - OV), h(b + OV))
     else:
         a, b = S.N, S.S
         hy = (lambda y: y) if side == "west" else (lambda y: -y)
         pts = [(hy(a), 0), (hy(a), UNDER(a)), (hy(b), UNDER(b)), (hy(b), 0)]
-        ax.add_patch(MPoly(pts, closed=True, fc="#efe9df", ec=INK, lw=1.2))
         roof = [(hy(a - OV), UNDER(a - OV)), (hy(b + OV), UNDER(b + OV)), (hy(b + OV), UNDER(b + OV) + THK),
                 (hy(a - OV), UNDER(a - OV) + THK)]
-        ax.add_patch(MPoly(roof, closed=True, fc="#3c3f44", ec=INK))
+        if side == "west":                                         # the shed beyond, then the gable end
+            ax.add_patch(MPoly(pts, closed=True, fc="#e2dccf", ec=INK, lw=0.8))
+            ax.add_patch(MPoly(roof, closed=True, fc="#5a5e63", ec=INK, lw=0.8))
+            ry = X.RIDGE_Y
+            ax.add_patch(MPoly([(hy(a), 0), (hy(a), GABLE(a)), (hy(ry), GABLE(ry)), (hy(b), GABLE(b)), (hy(b), 0)],
+                               closed=True, fc="#efe9df", ec=INK, lw=1.2))
+            for e in (a - OV, b + OV):
+                ax.add_patch(MPoly([(hy(e), GABLE(e)), (hy(ry), GABLE(ry)), (hy(ry), GABLE(ry) + THK),
+                                    (hy(e), GABLE(e) + THK)], closed=True, fc="#3c3f44", ec=INK))
+        else:
+            ax.add_patch(MPoly(pts, closed=True, fc="#efe9df", ec=INK, lw=1.2))
+            ax.add_patch(MPoly(roof, closed=True, fc="#3c3f44", ec=INK))
         for x0, x1, z0, z1, k in openings_on(side):
             ax.add_patch(Rectangle((min(hy(x0), hy(x1)), z0), x1 - x0, z1 - z0, fc="#bfe3f2", ec=INK, lw=0.8))
         if side == "east":                                         # into the porch: wood-look side wall,
@@ -328,7 +359,11 @@ def elevation(ax, side):
     if side in ("north", "east"):
         marks += [(PORCH_CEIL, f"Porch ceiling {ftin(PORCH_CEIL)}")]
     if side == "north":
-        marks += [(UNDER(S.N), f"Top of street wall {ftin(UNDER(S.N))}"), (TOP, f"Top of roof {ftin(TOP)} (highest point)")]
+        marks += [(UNDER(S.N), f"Top of street wall {ftin(UNDER(S.N))}"), (TOP, f"Top of roof {ftin(TOP)} (highest point)"),
+                  (RIDGE_TOP, f"Bedroom wing ridge {ftin(RIDGE_TOP)}")]
+    elif side == "west":
+        marks += [(REAR_TOP, f"Roof, rear eave {ftin(REAR_TOP)}"), (RIDGE_TOP, f"Gable ridge {ftin(RIDGE_TOP)}"),
+                  (TOP, f"Shed beyond, street eave {ftin(TOP)}")]
     elif side == "south":
         marks += [(REAR_TOP, f"Top of roof at rear eave {ftin(REAR_TOP)} (wall plate 11'-0\")")]
     else:

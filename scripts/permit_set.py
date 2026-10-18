@@ -442,9 +442,19 @@ def roof_plan(pdf):
     ax.add_patch(Rectangle((X0, Y0), X1 - X0, Y1 - Y0, fc="#e6e6e6", ec=INK, lw=1.6))
     ax.add_patch(MPoly(Z.FOOT, closed=True, fill=False, ec="#777", ls="--", lw=0.8))
     ax.add_patch(Rectangle((cx0 - 6, cy0 - 6), cx1 - cx0 + 6, cy1 - cy0 + 12, fc="#f4f4f4", ec=INK, lw=1.0))
-    for xx in (470, 760, 1000):                                        # slope arrows, down toward the rear
+    wx, ry = X.WING_X, X.RIDGE_Y
+    ax.plot([wx, wx], [Y0, Y1], color=INK, lw=1.2)                         # shed / gable line
+    ax.plot([wx, X1], [ry, ry], color=INK, lw=1.8)                         # the wing's ridge
+    ax.text(X1 - 8, ry - 6, "RIDGE", fontsize=7, ha="right")
+    ax.text(wx + 6, Y0 + 30, "SHED WALL ABOVE THE GABLE:\nstep + kick-out flashing", fontsize=5.5)
+    for xx in (470, 680):                                              # shed: down toward the rear
         ax.annotate("", (xx, Y1 - 30), (xx, Y0 + 40), arrowprops=dict(arrowstyle="->", lw=1.4))
         ax.text(xx + 8, (Y0 + Y1) / 2, "2:12\nDN", fontsize=8, va="center")
+    for xx in (960, 1170):                                             # gable: down each way from the ridge
+        ax.annotate("", (xx, Y1 - 30), (xx, ry + 12), arrowprops=dict(arrowstyle="->", lw=1.4))
+        ax.annotate("", (xx, Y0 + 30), (xx, ry - 12), arrowprops=dict(arrowstyle="->", lw=1.4))
+        ax.text(xx + 8, (ry + Y1) / 2 + 40, "2:12\nDN", fontsize=8, va="center")
+        ax.text(xx + 8, (Y0 + ry) / 2, "2:12\nDN", fontsize=8, va="center")
     ax.annotate("", (cx0 + 10, (cy0 + cy1) / 2), (cx1 - 20, (cy0 + cy1) / 2), arrowprops=dict(arrowstyle="->", lw=1.2))
     ax.text((cx0 + cx1) / 2, (cy0 + cy1) / 2 + 14, "CARPORT ROOF\n1/2\":12 DN, away from house\nstanding-seam metal, double-lock",
             ha="center", fontsize=6.5)
@@ -453,24 +463,30 @@ def roof_plan(pdf):
         ax.add_patch(Circle((gx, Y1 + 4), 6, fc="white", ec=INK, lw=1.0))
     ax.text(X1 - 14, Y1 + 18, "GUTTER ALONG THE REAR EAVE, 3 DOWNSPOUTS (O) TO SITE DRAINAGE (CIVIL)",
             fontsize=6.5, ha="right", va="bottom")
+    ax.plot([wx, X1], [Y0 - 4, Y0 - 4], color=INK, lw=2.5)                 # the wing's street gutter
+    for gx in (wx + 14, X1 - 14):
+        ax.add_patch(Circle((gx, Y0 - 4), 6, fc="white", ec=INK, lw=1.0))
+    ax.text(X1 - 14, Y0 - 16, "GUTTER ALONG THE WING'S STREET EAVE, 2 DOWNSPOUTS", fontsize=6.5, ha="right")
     ax.plot([cx0 - 8, cx0 - 8], [cy0 - 6, cy1 + 6], color=INK, lw=2.0)
     ax.text(cx0 - 14, (cy0 + cy1) / 2, "GUTTER", fontsize=5.5, rotation=90, ha="right", va="center")
     sh = S.build()
     sk = text_at(sh, "SKYLIGHT")                                        # straight up from the common bath ceiling
+    hs = text_at(sh, '14" SKYLIGHT')                                    # the hall's: its dome just off the ridge
+    hs = hs and (hs[0], X.RIDGE_Y + 24)
     for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A),\nstraight up from the bath; VTR-2 just downslope", sk),
                          ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it", text_at(sh, "RANGE")),
-                         ("HALL", "14\" TUBULAR SKYLIGHT (CLASS A), straight up from\nthe hall ceiling; set the PV layout around it",
-                          text_at(sh, '14" SKYLIGHT'))):
+                         ("HALL", "14\" TUBULAR SKYLIGHT (CLASS A) from the hall ceiling,\ndome 2' downslope of the ridge "
+                          "(short offset);\nset the PV layout around it", hs)):
         if p:
             ax.add_patch(Circle(p, 7, fc="white", ec=INK, lw=0.9))
             below = lab == "SKYLIGHT"                                    # its vent label sits above it
             ax.text(p[0] + 10, p[1] - 10 if below else p[1] + 10, note, fontsize=5.5, va="top" if below else "bottom")
     # plumbing vents through the roof: grouped in a strip along the high (street) edge, outside the PV area
-    strip = S.N + 24                                                    # fire setback + vent strip edge
-    ax.add_patch(Rectangle((X0 + 36, strip), X1 - X0 - 72, Y1 - strip, fill=False, ec="#1f5e9e", lw=1.0, ls="--"))
-    ax.text(X0 + 48, Y1 - 50, "POTENTIAL SOLAR PV AREA (dashed): clear of the 36\" high-edge setback and the\n"
-            "36\" pathways at both ends (CRC R324.6); final layout per the solar design", fontsize=6.5, color="#1f5e9e")
-    vtrs = [(860.0, S.N + 10, "VTR-1: guest ensuite (its own vent,\nin the strip along the high edge)", "bottom"),
+    ax.add_patch(MPoly(pv_area(), closed=True, fill=False, ec="#1f5e9e", lw=1.0, ls="--"))
+    ax.text(X0 + 48, Y1 - 50, "POTENTIAL SOLAR PV AREA (dashed): the south-facing planes, clear of the shed's high-edge\n"
+            "setback, the ridge setback and the 36\" pathways at both ends (CRC R324.6); final layout per the solar design",
+            fontsize=6.5, color="#1f5e9e")
+    vtrs = [(860.0, S.N + 10, "VTR-1: guest ensuite (its own vent, on the\nwing's street-facing slope, outside the PV area)", "bottom"),
             (868.0, 544.0, "VTR-2 (3\" main vent), just downslope of the skylight: kitchen sink\n(up beside the window, into the pantry wall, then the\n"
                               "pantry attic), common bath, laundry and primary bath", "bottom")]
     for vx, vy, lab, va in vtrs:
@@ -480,8 +496,9 @@ def roof_plan(pdf):
     ax.text(X1 - 40, S.N + 4, "PLUMBING VENTS (APPROX., FINAL PER PLUMBER): each\n6\" min. above the roof and 10' from or 3' above\n"
             "openable windows and air intakes", fontsize=5.5,
             ha="right", va="bottom")
-    ax.text((X0 + X1) / 2, Y0 + 8, f"HIGH EDGE AT THE STREET: TOP OF ROOF ~{ftin(Z.TOP)} ABOVE FINISHED FLOOR",
+    ax.text((X0 + wx) / 2, Y0 + 8, f"SHED'S HIGH EDGE AT THE STREET: TOP ~{ftin(Z.TOP)} ABOVE FINISHED FLOOR",
             fontsize=7, ha="center")
+    ax.text((wx + X1) / 2, ry - 30, f"GABLE RIDGE: TOP ~{ftin(Z.RIDGE_TOP)}", fontsize=7, ha="center")
     ax.text((X0 + X1) / 2, Y1 - 24, f"LOW EDGE AT THE REAR: TOP OF ROOF ~{ftin(Z.REAR_TOP)} ABOVE FINISHED FLOOR",
             fontsize=7, ha="center")
     dim_string(ax, [X0, S.E, S.W, X1], Y0 - 30)
@@ -489,11 +506,12 @@ def roof_plan(pdf):
     ax.text((X0 + X1) / 2, y0 + 8, "ROOF PLAN   1/4\" = 1'-0\"", fontsize=12, weight="bold", ha="center")
     ax.text(X0, Y0 - 70, "STREET (PLAN NORTH)", fontsize=8, weight="bold")
     notes = ("ROOF NOTES\n"
-             "1. Main roof: single slope at 2:12, high at the street. Standing-seam\n"
-             "   metal panels, mechanically seamed (CRC R905.10), dark PVDF finish\n"
-             "   (cool-rated per Title 24), over high-temperature self-adhered\n"
-             "   underlayment; Class A assembly per the panel listing over the\n"
-             "   wood deck. Panels run down the slope; seams every 12\"-18\".\n"
+             "1. Main roof at 2:12: a shed from the porch into the bedroom wing,\n"
+             "   high at the street, and a gable over the rest of the wing.\n"
+             "   Class A asphalt shingles (fiberglass), dark, wind-rated\n"
+             "   (ASTM D7158 Class H / D3161 Class F), over two layers of\n"
+             "   underlayment as required at 2:12 (CRC R905.2); self-adhered\n"
+             "   underlayment at the eaves and along the shed / gable junction.\n"
              "2. Sealed (unvented) attic, CRC R806.5: insulation at the roof deck;\n"
              "   NO attic or eave vents.\n"
              "3. Eaves 2'-6\" all round, enclosed; dark metal fascia and drip edge.\n"
@@ -501,9 +519,8 @@ def roof_plan(pdf):
              "4. Gutters with noncombustible gutter guards (CRC R337.5.4);\n"
              "   downspouts to the site drainage system per civil.\n"
              "5. Roof framing, sheathing and connections per structural.\n"
-             "6. Roof penetrations flashed with boots or curbs fitted to the\n"
-             "   panel pans. Two plumbing vents (VTR): the\n"
-             "   guest ensuite's in the strip along the high edge; the\n"
+             "6. Roof penetrations flashed per the shingle maker. Two plumbing\n"
+             "   vents (VTR): the guest ensuite's on the wing's street slope; the\n"
              "   rest combined into one beside the common bath skylight, so\n"
              "   the panel layout works around one cluster. Bath and laundry\n"
              "   fans exit through walls where possible. The range hood cap\n"
@@ -512,14 +529,15 @@ def roof_plan(pdf):
              "7. Carport: attached open carport, its own roof at 1/2\":12 in\n"
              "   double-lock standing seam (Class A assembly, uplift-rated),\n"
              "   gutter on its east edge.\n"
-             "8. Future solar: layout by the solar provider, clamped to the\n"
-             "   standing seams (no roof penetrations for the racking).\n"
+             "8. Future solar: layout by the solar provider, on rails over\n"
+             "   flashed attachments into the framing (per the solar design).\n"
              "   Its conduit enters through the roof into the attic and\n"
              "   runs inside to the panel: none on the roof surface or\n"
              "   the exterior walls.\n"
              "9. Wind: severe downslope winds from the north / northeast\n"
-             "   strike the high street edge. Uplift-rated panel assembly and\n"
-             "   clip spacing, eave and carport tie-downs per structural.")
+             "   strike the shed's high street edge. Wind-rated shingles with\n"
+             "   the maker's high-wind nailing, sealed starter strips at eaves\n"
+             "   and rakes; eave and carport tie-downs per structural.")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
     pdf.savefig(fig); fig.savefig(OUT / "A-3-roof-plan.png", dpi=80); plt.close(fig)
 
@@ -527,7 +545,8 @@ def roof_plan(pdf):
 # ---- A-4 elevations ------------------------------------------------------------------------
 MATERIALS = ("EXTERIOR MATERIALS\n"
              "1. Walls: 3-coat stucco, light color (noncombustible).\n"
-             "2. Roof: standing-seam metal, dark, Class A assembly (A-3).\n"
+             "2. Roof: asphalt shingles, dark, Class A (A-3); carport\n"
+             "   roof standing-seam metal.\n"
              "3. Fascia, drip edge and canopies: dark metal.\n"
              "4. Porch walls and ceiling: wood-look fiber cement or\n"
              "   porcelain (noncombustible / ignition-resistant).\n"
@@ -586,8 +605,8 @@ def elevations(pdf):
 
 # ---- A-5 sections --------------------------------------------------------------------------
 ASSEMBLIES = ("ASSEMBLIES (insulation values per the Title 24 report)\n"
-              "R1 ROOF: standing-seam metal (Class A assembly), high-temp\n"
-              "   self-adhered underlayment,\n"
+              "R1 ROOF: Class A asphalt shingles on two layers of\n"
+              "   underlayment (2:12),\n"
               "   roof sheathing, framing per structural; spray foam at the\n"
               "   underside of the deck (unvented, CRC R806.5); ignition\n"
               "   barrier / thermal barrier where the attic is used.\n"
@@ -605,15 +624,17 @@ ASSEMBLIES = ("ASSEMBLIES (insulation values per the Title 24 report)\n"
 
 def section_cut(ax, cut, at, ff):
     """Section through the house: cut 'x' (plan x = at, looking east-west across y) or 'y'."""
-    under = X.shed_vault_under(2 / 12)
+    roof = X.roof_under(2 / 12)
     THK, OV, P, C = X.THK, X.EAVE, X.PLATE, M_CEIL
     if cut == "x":
         a, b = S.N, S.S
-        und = under
+        und = lambda u: roof(at, u)                                     # noqa: E731
+        brk = X.RIDGE_Y
     else:
         a, b = S.E, S.W
-        und = lambda u: under(at)                                       # noqa: E731
-    us = [a - OV, b + OV]
+        und = lambda u: roof(u, at)                                     # noqa: E731
+        brk = X.WING_X
+    us = [a - OV, brk, b + OV]
     ax.fill_between(us, [und(u) for u in us], [und(u) + THK for u in us], color="#555")       # roof
     for w0, w1 in ((a, a + S.EXT), (b - S.EXT, b)):                                         # exterior walls
         top = und(w0 if w0 == a else w1)
@@ -686,10 +707,9 @@ M_CEIL = 108.0
 def sections(pdf):
     fig = sheet("A-5", "BUILDING\nSECTIONS")
     ff = ff_elev()
-    under = X.shed_vault_under(2 / 12)
-    top = under(S.N - X.EAVE) + X.THK + 30
+    top = X.shed_vault_under(2 / 12)(S.N - X.EAVE) + X.THK + 30
     cuts = [("A", "x", 600.0, "SECTION A: THROUGH THE LOUNGE AND KITCHEN (VAULTED)", (0.9, 16.4)),
-            ("B", "x", 960.0, "SECTION B: THROUGH THE GUEST ROOM, LOBBY AND WALK-IN CLOSET", (13.6, 16.4)),
+            ("B", "x", 960.0, "SECTION B: THROUGH THE GUEST ROOM, LOBBY AND WALK-IN CLOSET (GABLE)", (13.6, 16.4)),
             ("C", "y", 432.0, "SECTION C: ALONG THE LOBBY, LOOKING SOUTH", (0.9, 4.0))]
     for tag, cut, at, title, (lx, by) in cuts:
         a, b = (S.N, S.S) if cut == "x" else (S.E, S.W)
@@ -705,8 +725,8 @@ def sections(pdf):
 
 # ---- A-6 fire-zone details -------------------------------------------------------------------
 R337 = [
-    ("R337.5", "Roof", "Standing-seam metal roofing, Class A assembly per its listing over the wood deck;\n"
-                       "panel ends and ridge/eave closures sealed so embers can't enter under the panels."),
+    ("R337.5", "Roof", "Class A asphalt shingles; eave and rake edges, ridge cap and the shed / gable junction\n"
+                       "closed and sealed so embers can't get under them. Carport: standing seam, Class A."),
     ("R337.5.4", "Gutters", "Noncombustible gutter guards on all gutters."),
     ("R337.6", "Vents", "No attic or eave vents (sealed attic). Exhaust and hood terminations: listed\n"
                         "ember-resistant vents (ASTM E2886) or noncombustible 1/16\"-1/8\" mesh with dampers."),
@@ -740,7 +760,7 @@ def details(pdf):
     ax.add_patch(MPoly([(10, 82), (69, 92), (69, 100), (10, 90)], closed=True, fc="#666", ec=INK))   # roof slab
     ax.add_patch(MPoly([(10, 82), (60, 90.5), (60, 88), (14, 80.5)], closed=True, fc="#e8d5b5", ec=INK))  # soffit
     ax.add_patch(Rectangle((8, 78), 4, 13, fc="#222", ec=INK))                        # fascia
-    for txt, (x, y) in {"Standing-seam metal, Class A\nassembly, on underlayment": (30, 104),
+    for txt, (x, y) in {"Class A asphalt shingles on\ntwo layers of underlayment": (30, 104),
                         "Dark metal fascia\n+ drip edge": (2, 64), "Enclosed soffit, fiber cement\nor metal: NO VENTS": (14, 70),
                         "Stucco to the soffit,\nsealed at the joint": (72, 70), "Spray foam at the deck\n(sealed attic)": (72, 92)}.items():
         ax.text(x, y, txt, fontsize=7, va="top")
@@ -817,10 +837,17 @@ def loads():
     gy0, gy1 = S.N_IN, S.face("bedroom hall wall", -1)
     cx, cy = (gx0 + gx1) / 2, (gy0 + gy1) / 2
     rings = [(cx - RING_GAP / 2, cy), (cx + RING_GAP / 2, cy)]
-    ahu = (S.HATCH_X - 15, 330.0, S.HATCH_X + 60, gy1)                  # platform over the guest room, beside the hatch
-    store = (gx0, S.N_IN + 24.0, S.W_IN, gy1)          # strip over the bedroom wing, street side
-    pv = (S.E - X.EAVE + 36, S.N + 24, S.W + X.EAVE - 36, S.S + X.EAVE)
-    return dict(gym=(gx0, gy0, gx1, gy1), rings=rings, ahu=ahu, store=store, pv=pv)
+    ahu = (S.HATCH_X - 15, 360.0, S.HATCH_X + 60, gy1)  # platform over the guest room, beside the hatch, near
+                                                        # the gable's ridge (the wing's tallest attic)
+    store = (gx0, S.N_IN + 24.0, X.WING_X, gy1)        # over the gym's east half, under the shed's tall attic
+    return dict(gym=(gx0, gy0, gx1, gy1), rings=rings, ahu=ahu, store=store, pv=pv_area())
+
+
+def pv_area():
+    """Outline of the potential PV area (plan inches): the south-facing planes, clear of the shed's high-edge
+    setback, the ridge setback and the pathways at both ends."""
+    X0, X1, Y1 = S.E - X.EAVE + 36, S.W + X.EAVE - 36, S.S + X.EAVE
+    return [(X0, S.N + 24), (X.WING_X, S.N + 24), (X.WING_X, X.RIDGE_Y + 18), (X1, X.RIDGE_Y + 18), (X1, Y1), (X0, Y1)]
 
 
 def loads_plan(pdf):
@@ -838,8 +865,8 @@ def loads_plan(pdf):
     sx0, sy0, sx1, sy1 = L["store"]
     ax.add_patch(Rectangle((sx0, sy0), sx1 - sx0, sy1 - sy0, fc="#f3d9a6", ec="#b07a2a", lw=1.2, alpha=0.6, hatch="..",
                            zorder=4))
-    ax.text((sx0 + sx1) / 2 + 120, sy0 + 20, "ATTIC STORAGE: 20 PSF LIVE LOAD, PLYWOOD DECKED\n"
-            f"(over the bedroom wing, {ftin(sy0 - S.N_IN)} off the street wall to the hall wall)", fontsize=7,
+    ax.text((sx0 + sx1) / 2, S.N - 30, "ATTIC STORAGE (hatched): 20 PSF LIVE LOAD, PLYWOOD DECKED\n"
+            f"(over the gym's east half, under the shed: {ftin(sy0 - S.N_IN)} off the street wall to the hall wall)", fontsize=7,
             ha="center", zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
     a0, b0, a1, b1 = L["ahu"]
     ax.add_patch(Rectangle((a0, b0), a1 - a0, b1 - b0, fc="#cfe0f3", ec="#1f5e9e", lw=1.4, zorder=5))
@@ -862,9 +889,9 @@ def loads_plan(pdf):
             va="top", color=RED, zorder=7)
     dim_string(ax, [gx0, r0x, r1x, gx1], gy0 + 16, color=RED, fs=6)
     dim_string(ax, [gy0, r0y, gy1], gx0 + 16, horiz=False, color=RED, fs=6)
-    px0, py0, px1, py1 = L["pv"]
-    ax.add_patch(Rectangle((px0, py0), px1 - px0, py1 - py0, fill=False, ec="#2e7d32", lw=1.2, ls="-.", zorder=4))
-    ax.text(px0 + 8, py1 - 10, "FUTURE SOLAR PV AREA ON THE ROOF (dash-dot): allow ~3-4 PSF dead load", fontsize=6.5,
+    pv = L["pv"]
+    ax.add_patch(MPoly(pv, closed=True, fill=False, ec="#2e7d32", lw=1.2, ls="-.", zorder=4))
+    ax.text(pv[0][0] + 8, pv[-1][1] - 10, "FUTURE SOLAR PV AREA ON THE ROOF (dash-dot): allow ~3-4 PSF dead load", fontsize=6.5,
             color="#2e7d32", va="top", zorder=6)
     mx = [o for o in S.OPENINGS if o[0] == "pantry|laundry" and o[3] == "bifold"]
     ax.text(712, 585, "HEAT PUMP WATER\nHEATER, 80 GAL\n(~900 LB FULL, ON SLAB)", fontsize=5.5, ha="center", va="center",
@@ -876,11 +903,12 @@ def loads_plan(pdf):
              "   500 lb concentrated at each, dynamic: blocking across several\n"
              "   trusses or joists with framing connectors; through-bolted forged\n"
              "   eye bolts with plate washers.\n"
-             "2. Attic storage: 20 psf live load on the decked strip shown\n"
-             "   (hatched), over the bedroom wing where the shed roof gives\n"
-             "   the attic its height; light storage only.\n"
-             "3. Air handler: on a platform beside the attic hatch with a 30\"\n"
-             "   walkway, light and outlet (mechanical code).\n"
+             "2. Attic storage: 20 psf live load on the decked area shown\n"
+             "   (hatched), over the gym's east half, where the shed roof gives\n"
+             "   the attic its height; light storage only. The rest of the\n"
+             "   wing's attic, under the gable, is tallest along the ridge.\n"
+             "3. Air handler: on a platform beside the attic hatch, near the\n"
+             "   ridge, with a 30\" walkway, light and outlet (mechanical code).\n"
              "4. Future solar: on the roof plane, clear of the fire setbacks\n"
              "   (A-3); include its dead load in the roof design.\n"
              "5. Heat pump water heater: on the slab in the mechanical closet.\n"

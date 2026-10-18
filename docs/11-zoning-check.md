@@ -10,7 +10,7 @@ An owner-prepared set for a first zoning read before the architect's permit draw
 | --- | --- |
 | Z-1 | Site plan with setbacks (required vs provided), parking, front-yard walls, and the project data table (lot, floor area, lot coverage, CSD limit, height, bedrooms) |
 | Z-2 | Floor plan with overall dimensions, room sizes and areas |
-| Z-3 | Roof plan: shed roof at 2:12, eaves, highest point, carport roof |
+| Z-3 | Roof plan: split roof at 2:12 (shed and gable), eaves, highest point, carport roof |
 | Z-4 | Four elevations with heights above finished floor |
 
 It is a schematic, marked "not for construction", and asks for a preliminary read only. Heights are above finished floor; height above grade waits on the foundation and grading design.
@@ -35,7 +35,7 @@ Check the site for any current requirements on file format or sheets before uplo
 
 **Project description to paste:**
 
-> Non-like-for-like rebuild of a single-family residence destroyed in the Eaton Fire. One story, about 2,238 sq ft (to the outside of the walls), 4 bedrooms and 3 baths, with an attached open carport (2 covered spaces, 360 sq ft) and a 29 sq ft covered porch. Lot 113.00' x 64.77' (7,319 sq ft), R-1, Altadena CSD. Lot coverage about 2,628 sq ft (35.9%). Shed roof at 2:12 with a clerestory over the lounge; top of roof about 17'-6" above finished floor at the street eave. Owner-prepared schematic for a preliminary zoning read; permit drawings to follow from the architect.
+> Non-like-for-like rebuild of a single-family residence destroyed in the Eaton Fire. One story, about 2,238 sq ft (to the outside of the walls), 4 bedrooms and 3 baths, with an attached open carport (2 covered spaces, 360 sq ft) and a 29 sq ft covered porch. Lot 113.00' x 64.77' (7,319 sq ft), R-1, Altadena CSD. Lot coverage about 2,628 sq ft (35.9%). Split roof at 2:12: a shed over the great room with a clerestory over the lounge, and a low gable over the rest of the bedroom wing; top of roof about 17'-6" above finished floor at the street eave. Owner-prepared schematic for a preliminary zoning read; permit drawings to follow from the architect.
 
 **Property details:** 220 Laurel Dr, Altadena, CA 91001 · APN 5832-003-027 · Johnston and Hay Tract, portion of Lot 11 (M.B. 9-50).
 

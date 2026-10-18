@@ -13,7 +13,7 @@
 
 **Design decisions (owner)**
 
-- [ ] Find a solar provider to lay out the array and choose the mounting for the 2:12 standing-seam metal roof (clamps on the seams, so no racking penetrations), working around the range hood cap, the hall skylight, and the common bath's skylight and vent cluster; size the system and the battery. Do it before the roof framing is designed, so the engineer can allow for the load and the attachment points.
+- [ ] Find a solar provider to lay out the array and choose the mounting for the 2:12 asphalt shingle roof (rails over flashed attachments into the framing), working around the range hood cap, the hall skylight, and the common bath's skylight and vent cluster; size the system and the battery. Do it before the roof framing is designed, so the engineer can allow for the load and the attachment points.
 - [x] Guest closet: decided. One long closet, with the door at the bath end.
 - [x] Primary tub: decided. A back-to-wall freestanding soaking tub (about 5'-7" x 32") in the primary bath wet room; the guest ensuite gets a standard 66" tub with a shower head. Pick both models before framing.
 - [ ] Pick the primary back-to-wall tub. The space between the end walls is 6'-0". Base (floor footprint) no longer than about 5'-0" for at least 6" clear at each end at the floor; rim up to about 5'-8" (2"+ at each end) if the sides flare. Also check width (about 30"–32"), drain position, the wall-mounted filler, and the filled weight.
@@ -35,7 +35,7 @@
 - [ ] Plumber: confirm the building sewer can reach the existing front cleanout with code slope from the west-end baths, given the lot falls to the west.
 
 - [ ] Architect and insulation contractor: spray foam under the roof deck or rigid board above it, and the matching thermal barrier for storage use.
-- [ ] Roofer: standing-seam panel line and color, with an uplift-rated assembly and clip spacing for the site's design wind speed (strong north and northeast winds hit the high, street-side eave); confirm the Class A assembly over the wood deck (underlayment per the listing) and that the panel and underlayment warranties cover an unvented (spray-foam) deck, in writing.
+- [ ] Roofer: shingle line and color, wind-rated (ASTM D7158 Class H or D3161 Class F) with the maker's high-wind nailing for the site's design wind speed (strong north and northeast winds hit the shed's high street edge); two layers of underlayment at 2:12; flashing where the shed's side wall rises above the gable; confirm Class A and that the shingle warranty covers an unvented (spray-foam) deck, in writing. The carport keeps a double-lock standing-seam roof (too flat for shingles).
 - [ ] Truss designer: 500 lb concentrated loads at the gym ring points; 20 psf attic storage strip.
 - [ ] Plumber and sprinkler designer: does the sprinkler system require a 1" water service / meter upsize?
 - [ ] Plumber: confirm the robot vacuum dock drain connection and trap.
@@ -43,5 +43,5 @@
 - [ ] HVAC: Manual J load calculation and Manual D duct design to size the ducted heat pump and confirm three zones (or two, if the primary suite is too small to run alone).
 - [ ] Electrician: load calculation with the full appliance list, confirming 200A.
 - [ ] Electrician: SCE service point and meter location (west end?) and the EV charger run to the carport.
-- [ ] Engineer: shed roof framing over the vaulted great room: the bearing/beam line where the vault meets the flat ceilings (the lounge/gym and kitchen/pantry walls are on one line, so the vault ends on one straight line), the tall street wall with the clerestory band, and lateral bracing along it.
+- [ ] Engineer: split roof framing: the shed over the vaulted great room and the east end of the wing, the gable over the rest of the wing, and the shed's side wall where it rises above the gable; the bearing/beam line where the vault meets the flat ceilings (the lounge/gym and kitchen/pantry walls are on one line, so the vault ends on one straight line), the tall street wall with the clerestory band, and lateral bracing along it.
 - [ ] Engineer: does the wide dining window (with the dining slider around the southeast corner) need steel framing or a steel hold-down at that corner? If so, reconsider the window size; a narrower window with more wall at each end is the fallback.

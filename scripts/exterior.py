@@ -2,8 +2,9 @@
 # requires-python = ">=3.10"
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
-"""The house's exterior for the 3D model and the drawing sets: the MCM standing-seam metal shed with the
-clerestory and vaulted great room (chosen_exterior), the street facade (recessed windows, rear
+"""The house's exterior for the 3D model and the drawing sets: the split roof in asphalt shingles (a shed
+from the porch into the bedroom wing with the clerestory and the vaulted great room, a gable over the rest
+of the wing: chosen_exterior), the street facade (recessed windows, rear
 canopies), the porch, and the alternative roofs offered in the 3D viewer's Roof menu (roof_options).
 Imported by make_3d.py, zoning_set.py and permit_set.py; not run on its own."""
 from __future__ import annotations
@@ -253,8 +254,21 @@ SPLIT_X = (S.wall_info("foyer wall")[1], LOUNGE_X[1] + S.INT / 2)   # the lounge
                                                                     # to the lounge|gym wall, centred on the clerestory
 CLERESTORY_MID = sum(CLERESTORY_X) / 2
 FOYER_BEAM = 12.0                                  # lounge-only split: beam depth below the shed ceiling
-SPLIT_WIDE_X = (E, 2 * CLERESTORY_MID - E)         # a shed from the east end (porch corner) into the bedroom
-                                                   # wing, the 18' clerestory centred in it
+SPLIT_WIDE_X = (E, 2 * CLERESTORY_MID - E)         # the plan's shed: from the east end (porch corner) into the
+                                                   # bedroom wing, the 18' clerestory centred in it
+WING_X = SPLIT_WIDE_X[1]                           # west of it, the bedroom wing's gable
+RIDGE_Y = (N + Sth) / 2                            # the gable's ridge, down the middle of the house
+
+
+def gable_under(pitch=2 / 12):
+    """Underside of the wing's gable framing at plan y (its rear slope is the shed's plane)."""
+    return lambda y: PLATE + ((Sth - N) / 2 - abs(y - RIDGE_Y)) * pitch
+
+
+def roof_under(pitch=2 / 12):
+    """Underside of the plan's roof framing at plan (x, y): the shed east of WING_X, the gable west of it."""
+    shed_u, gable_u = shed_vault_under(pitch), gable_under(pitch)
+    return lambda x, y: shed_u(y) if x <= WING_X else gable_u(y)
 
 
 def slab_part(sc, x0, x1, under, ys, seams):
@@ -434,17 +448,16 @@ def street_facade(sc):
 
 
 def chosen_exterior(sc, porch=True, facade=True):
-    """The main plan's exterior: MCM standing-seam metal shed (2:12, 2'-6" eaves) with a 3' clerestory
-    band over the lounge and the foyer, lounge, dining and kitchen under one sloped ceiling; stucco walls,
-    dark metal roof and fascia, accent front door; porch with a wood-look feature wall; recessed street
-    windows; canopies over two rear windows. make_3d.py
-    adds this to the main model."""
+    """The main plan's exterior: the split roof at 2:12 with 2'-6" eaves, in dark asphalt shingles: a shed
+    from the porch into the bedroom wing (high at the street, the 18' x 3' clerestory band centred in it;
+    the foyer, lounge, dining and kitchen under one sloped ceiling) and a gable over the rest of the wing;
+    stucco walls, dark fascia, accent front door; porch with a wood-look feature wall; recessed street
+    windows; canopies over two rear windows. make_3d.py adds this to the main model."""
     band(sc, "exterior", WALL_TOP, PLATE)
-    shed_vault_great(sc, 2 / 12, EAVE, seams=True, band=36.0)
+    shed_gable(sc, 2 / 12, EAVE, xs=SPLIT_WIDE_X)
     front_door(sc)
     sc.mat = {k: {"color": v} for k, v in STYLES["mcm-gable"][1].items()}
-    sc.mat["roofing"] = {"color": 0x3F4347}
-    sc.mat["seam"] = {"color": 0x2A2D31}
+    sc.mat["roofing"] = {"color": 0x484B50}
     if porch:
         porch_feature(sc)
     if facade:
@@ -452,20 +465,19 @@ def chosen_exterior(sc, porch=True, facade=True):
 
 
 def roof_options():
-    """Alternative roofs for the main model's Roof selector, all standing-seam metal: {label: tris} (the main
-    plan's shed with a 3' clerestory band is the model's own roof). Order matters: make_3d's hash links."""
+    """Alternative roofs for the main model's Roof selector, all asphalt shingles: {label: tris} (the main
+    plan's split roof is the model's own roof). Order matters: make_3d's hash links."""
     out = {}
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
-    low_gable(sc, 2 / 12, EAVE, seams=True, glazed_ends=False)
+    low_gable(sc, 2 / 12, EAVE, glazed_ends=False)
     out["MCM gable 2:12, flat 9' ceilings"] = dict(sc.tris)
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
-    shed_gable(sc, 2 / 12, EAVE, glass=(CLERESTORY_MID - 90.0, CLERESTORY_MID + 90.0), seams=True)
+    shed_gable(sc, 2 / 12, EAVE, glass=(CLERESTORY_MID - 90.0, CLERESTORY_MID + 90.0))
     out["MCM split: shed 2:12 over the lounge (15' x 3' clerestory), gables 2:12 either side"] = dict(sc.tris)
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
-    shed_gable(sc, 2 / 12, EAVE, xs=SPLIT_WIDE_X, seams=True)
-    out["MCM split: shed 2:12 from the porch into the bedroom wing (18' x 3' clerestory centred), "
-        "gable 2:12 over the rest of the wing"] = dict(sc.tris)
+    shed_vault_great(sc, 2 / 12, EAVE, band=36.0)
+    out["MCM shed 2:12 over the whole house, 3' clerestory band"] = dict(sc.tris)
     return out
