@@ -137,6 +137,8 @@ OPENINGS = [
     ("south hall wall", 849.75, 879.75, "door", "b", +1),   # common bath, 30", against its west wall
     ("hall end", 411.0, 447.0, "door", "a", +1),            # primary bedroom, at the end of the hall: opens
                                                             # flat against the office wall, into the entry nook
+    ("hall end", 411.0, 447.0, "transom", 98.0, 106.0),     # reeded glass over the 8' door, up to the 9' ceiling:
+                                                            # the bedroom's daylight lights the end of the hall
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry

@@ -163,7 +163,8 @@ def doors():
 
 
 def windows():
-    ws = [(o[0], o[1], o[2], *(o[4:6] if len(o) > 4 else (30.0, 96.0)), "window")
+    ws = [(o[0], o[1], o[2], *(o[4:6] if len(o) > 4 else (30.0, 96.0)),
+           "window" if o[0] in S.EXT_WALLS else "interior")
           for o in S.OPENINGS if o[3] in ("window", "transom")]
     lx0, lx1 = X.CLERESTORY_X                                             # clerestory, above the lounge window
     ws.append(("north", lx0, lx1, X.CLERESTORY_SILL, X.CLERESTORY_SILL + 36.0, "clerestory"))
@@ -174,6 +175,8 @@ def window_type(rm, w, h, sill, kind):
     """(operation, notes) for the schedule: notes only where something is required."""
     if kind == "clerestory":
         return f"Fixed, {X.CLERESTORY_UNITS} units mulled", "Clerestory"
+    if kind == "interior":
+        return "Fixed transom", "Interior, over the door; reeded glass"
     if rm in ("GYM", "GUEST", "OFFICE", "PRIMARY") and sill <= 44:
         return "Horizontal slider", "Emergency escape (note 6)"
     if rm == "LOUNGE":
@@ -1021,10 +1024,12 @@ def floor_plan(pdf):
         for wall, a, b, sill, head, kind in items:
             o = (wall, a, b)
             minus, plus = sides(o)
-            out = outward(wall)
+            out = outward(wall) if wall in S.EXT_WALLS else 1
             inside = minus if out > 0 else plus
             outside = plus if out > 0 else minus
             rm = room_at(rms, *inside) if kind != "clerestory" else "LOUNGE"
+            if kind == "interior":
+                rm = f"{room_at(rms, *minus)} / {room_at(rms, *plus)}"
             rms_here.append(rm)
             if kind == "clerestory":
                 outside = ((a + b) / 2 + 40, outside[1])
