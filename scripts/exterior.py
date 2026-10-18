@@ -3,7 +3,7 @@
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
 """The house's exterior for the 3D model and the drawing sets: the MCM standing-seam metal shed with the
-clerestory and vaulted great room (chosen_exterior), the street facade (recessed windows, band, rear
+clerestory and vaulted great room (chosen_exterior), the street facade (recessed windows, rear
 canopies), the porch, and the alternative roofs offered in the 3D viewer's Roof menu (roof_options).
 Imported by make_3d.py, zoning_set.py and permit_set.py; not run on its own."""
 from __future__ import annotations
@@ -399,12 +399,11 @@ def porch_breeze(sc):
 
 
 CLERESTORY_SILL = PLATE + (shed_vault_under(2 / 12)(N) - PLATE - 36.0) / 2   # the 3' band, centred in the wall
-BAND = tuple(z + (96.0 + CLERESTORY_SILL) / 2 for z in (-S.BAND_H / 2, S.BAND_H / 2))   # between heads and glass
 
 
 def street_facade(sc):
-    """Recessed street windows (glass WINDOW_RECESS behind the stucco face), the band along the street
-    wall and around both ends, and the flat metal canopies over the rear kitchen and primary bedroom windows."""
+    """Recessed street windows (glass WINDOW_RECESS behind the stucco face), and the flat metal canopies
+    over the rear kitchen and primary bedroom windows."""
     yc = N + S.EXT / 2
     for q in sc.quads["glass"]:
         if abs(q[1] - yc) < 0.01 and abs(q[3] - yc) < 0.01 and q[4] < 100:
@@ -413,16 +412,13 @@ def street_facade(sc):
         y0, y1 = (N - S.CANOPY_D, N) if wall == "north" else (Sth, Sth + S.CANOPY_D)
         sc.boxes["canopy"].append([x0, y0, x1, y1, S.CANOPY_Z, S.CANOPY_Z + 3])
     sc.mat["canopy"] = {"color": 0x2B2D30}
-    p, (z0, z1) = S.BAND_PROUD, BAND
-    sc.boxes["band"] += [[E - p, N - p, W + p, N, z0, z1], [E - p, N, E, Sth, z0, z1], [W, N, W + p, Sth, z0, z1]]
-    sc.mat["band"] = {"color": 0x8E8A84}
 
 
 def chosen_exterior(sc, porch=True, facade=True):
     """The main plan's exterior: MCM standing-seam metal shed (2:12, 2'-6" eaves) with a 3' clerestory
     band over the lounge and the foyer, lounge, dining and kitchen under one sloped ceiling; stucco walls,
     dark metal roof and fascia, accent front door; porch with a wood-look feature wall; recessed street
-    windows with a horizontal band wrapping both ends; canopies over two rear windows. make_3d.py
+    windows; canopies over two rear windows. make_3d.py
     adds this to the main model."""
     band(sc, "exterior", WALL_TOP, PLATE)
     shed_vault_great(sc, 2 / 12, EAVE, seams=True, band=36.0)

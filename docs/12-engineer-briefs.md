@@ -36,7 +36,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
   - Future solar PV over most of the roof (clear of the fire setbacks): about 3-4 psf dead load.
   - Heat pump water heater, 80 gal (about 900 lb full), on the slab in the mechanical closet.
 - **Hall ceiling:** keep the centreline of the bedroom hall (lobby) free of blocking, strongbacks, ducts and pipes, so recessed lights fit between the trusses along it (sheet A-7).
-- **Exterior:** stucco walls (2x6 with 1" rigid insulation), an 8" trim band 6" proud along the street wall and both ends, two 3' metal window canopies at the rear (attachment).
+- **Exterior:** stucco walls (2x6 with 1" rigid insulation), two 3' metal window canopies at the rear (attachment).
 
 **Wind:** the site sits below the San Gabriel Mountains and gets severe downslope windstorms (Santa Ana and "mono" wind events) from the north and northeast, with gusts of roughly 80 to 100 mph in January 2025. The street side faces about 22° (NNE), straight into them, and it is the tall side of the house: the high edge of the shed roof with its 2'-6" eave, the 16' street wall and the clerestory. Please confirm the design wind speed (LA County's foothill special wind areas), exposure and topographic factor, and check uplift at the street eave and the overhangs, the open carport roof, the porch, the standing-seam panel attachment (clip spacing at edges and corners) and the future solar racking. Windows and the clerestory need design-pressure ratings to suit.
 

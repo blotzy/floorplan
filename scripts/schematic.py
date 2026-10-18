@@ -145,12 +145,9 @@ OPENINGS = [
 ]
 
 # Street-facade articulation (County building articulation, Table 22.140.520-C): the street windows
-# are recessed into the wall, and a horizontal band (6" proud) runs the length of the street wall,
-# centred between the window heads and the clerestory, and around both ends of the house. At the
-# rear, flat metal canopies shade the kitchen and primary bedroom windows; each runs 1' past its
-# window and no farther (22.110.090.B).
+# are recessed into the wall. At the rear, flat metal canopies shade the kitchen and primary bedroom
+# windows; each runs 1' past its window and no farther (22.110.090.B).
 WINDOW_RECESS = 6.0                  # glass behind the stucco face
-BAND_PROUD, BAND_H = 6.0, 8.0        # band: projection from the wall, height (its height: exterior.py)
 CANOPY_D, CANOPY_RUN, CANOPY_Z = 36.0, 12.0, 98.0   # depth off the wall, run past each side, underside
 
 
@@ -650,10 +647,6 @@ def build() -> Sheet:
     sh.text("18' x 20'", (cx0 + cx1) / 2, (cy0 + cy1) / 2 - 12, 6.5, "A-AREA-IDEN")
     sh.msp.add_lwpolyline(driveway_outline(), close=True, dxfattribs={"layer": "L-SITE"})
     sh.text("DRIVEWAY", (DRIVE_IN[0] + DRIVE_IN[1]) / 2 + 10, 120.0, 9.0, "A-AREA-IDEN")
-    p = BAND_PROUD                                                            # band: street wall and both ends
-    sh.msp.add_lwpolyline([(E, S), (E - p, S), (E - p, N - p), (W + p, N - p), (W + p, S), (W, S)],
-                          dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
-    sh.text("BAND ABOVE", (E + W) / 2 + 200, N - p - 6, 3.0, "A-CANP")
     for wall, x0, x1 in canopies():                                           # window canopies
         y, d = (N, -CANOPY_D) if wall == "north" else (S, CANOPY_D)
         sh.msp.add_lwpolyline([(x0, y), (x0, y + d), (x1, y + d), (x1, y)],

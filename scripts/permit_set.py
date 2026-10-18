@@ -522,14 +522,13 @@ def roof_plan(pdf):
 MATERIALS = ("EXTERIOR MATERIALS\n"
              "1. Walls: 3-coat stucco, light color (noncombustible).\n"
              "2. Roof: standing-seam metal, dark, Class A assembly (A-3).\n"
-             "3. Fascia, drip edge, band and canopies: dark metal.\n"
-             "4. Street-wall band: 8\" high, 6\" proud, wraps both ends.\n"
-             "5. Porch walls and ceiling: wood-look fiber cement or\n"
+             "3. Fascia, drip edge and canopies: dark metal.\n"
+             "4. Porch walls and ceiling: wood-look fiber cement or\n"
              "   porcelain (noncombustible / ignition-resistant).\n"
-             "6. Windows: dual-pane, one pane tempered (CRC R337.8);\n"
+             "5. Windows: dual-pane, one pane tempered (CRC R337.8);\n"
              "   street windows recessed 6\". See A-2 schedule.\n"
-             "7. Eave soffits enclosed, no vents (A-6).\n"
-             "8. Existing grade (dashed) is approximate, from the\n"
+             "6. Eave soffits enclosed, no vents (A-6).\n"
+             "7. Existing grade (dashed) is approximate, from the\n"
              "   survey with an assumed finished floor; finished\n"
              "   grades and floor elevation per civil.")
 
@@ -664,8 +663,6 @@ def section_cut(ax, cut, at, ff):
     if cut == "x":
         ax.text(a - OV - 40, und(a) + THK + 8, "STREET", fontsize=7, weight="bold")
         ax.text(b + OV - 60, und(b) + THK + 8, "REAR", fontsize=7, weight="bold")
-        z0, z1 = X.BAND
-        ax.add_patch(Rectangle((a - S.BAND_PROUD, z0), S.BAND_PROUD, z1 - z0, fc="#8e8a84", ec=INK, lw=0.5))
     _, z, _ = survey()
     gu = list(range(int(a - OV - 40), int(b + OV + 41), 12))
     gz = [(z(at, u) if cut == "x" else z(u, at)) - ff for u in gu]
@@ -1086,7 +1083,7 @@ def floor_plan(pdf):
     lg.add_patch(Circle((3, 6), 1.6, fc="white", ec=RED)); lg.text(3, 6, "SD", fontsize=4.5, ha="center", va="center", color=RED)
     lg.text(7, 6, "Smoke alarm (SD), smoke / CO alarm (SD/CO)", fontsize=8, va="center")
     lg.plot([0.5, 5.5], [1.5, 1.5], ls="--", color=INK, lw=0.8)
-    lg.text(7, 1.5, "Overhead: band, canopy, attic hatch, skylight", fontsize=8, va="center")
+    lg.text(7, 1.5, "Overhead: canopy, attic hatch, skylight", fontsize=8, va="center")
 
     # schedules (below the plan)
     table(fig, 0.9, 9.0, "DOOR SCHEDULE", ("TAG", "LOCATION", "SIZE (W x H)", "TYPE", "NOTES"),
