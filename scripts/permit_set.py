@@ -133,7 +133,8 @@ def rooms(sh):
 
 
 def room_at(rms, x, y):
-    if S.face("bedroom hall wall", +1) < y < S.face("south hall wall", -1) and x > S.face("lounge|gym", +1):
+    if S.face("bedroom hall wall", +1) < y < S.face("south hall wall", -1) and \
+            S.face("lounge|gym", +1) < x < S.face("hall end", -1):
         return "LOBBY"                                   # the hall runs on from the lounge: one open space
     for names, poly in rms:
         if poly.contains(Point(x, y)):
@@ -183,8 +184,6 @@ def window_type(rm, w, h, sill, kind):
         return "Horizontal slider", ""
     if rm in ("PORCH", "FOYER"):
         return "Fixed, reeded glass", "Tempered (CRC R308.4.2)"
-    if rm == "LOBBY":
-        return "Fixed transom", ""
     if "ENSUITE" in rm:
         return "Awning", "Obscure glass"
     return "Awning", ""
@@ -653,8 +652,6 @@ def section_cut(ax, cut, at, ff):
                 sill, head = (o[4], o[5]) if len(o) > 4 else (30.0, 96.0)
             else:
                 sill, head = 0.0, 96.0
-            if o[0] == "west" and o[3] == "door":
-                head = 84.0
             u0 = a if o[0] in ("north", "east") else b - S.EXT
             ax.add_patch(Rectangle((u0, sill), S.EXT, head - sill, fc="#bfe3f2", ec=INK, lw=0.6))
     lx0, lx1 = X.CLERESTORY_X
@@ -995,8 +992,6 @@ def floor_plan(pdf):
         ext = o[0] in S.EXT_WALLS
         if o[3] == "slider":
             h, typ = 96.0, "Sliding glass door"
-        elif o[0] == "west":
-            h, typ = 84.0, "Hinged"
         elif o[3] == "bifold":
             h, typ = DOOR_H, "Bifold, louvered"
         elif o[3] == "pocket":
@@ -1013,8 +1008,6 @@ def floor_plan(pdf):
             notes.append("Solid core 1-3/8\"+ or noncombustible (CRC R337.8.3); weatherstripped")
             if o[0] == "porch front":
                 notes.append("glass lite, if any, dual-pane tempered")
-        if o[0] == "west":
-            notes.append("solid slab, no glass; fixed transom above")
         if "MECH" in names:
             notes.append("louvered (water heater air)")
         dsched.append((str(i), names, f"{ftin(w)} x {ftin(h)}", typ, textwrap.fill("; ".join(notes), 95)))

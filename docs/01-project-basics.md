@@ -21,7 +21,7 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena, replacing the hous
 | Fuel | All-electric, no gas line to the lot |
 | Ceiling height | The great room (foyer, lounge, dining, kitchen) is vaulted under the roof slope, about 16' at the clerestory down to about 11' at the rear wall. Everywhere else: flat 9' ceilings under a sealed (unvented) attic, which leaves about 3'-9" of attic headroom over the middle of the hall |
 | Windows | Standard manufacturer sizes (6" steps in width and height); openings wider than 8' are two mulled units. Heads in line at 8' |
-| Doors | 8' tall doors throughout (the west hall door is 7' with a glass transom above); front door at least 36" wide (3'-0" slab) |
+| Doors | 8' tall doors throughout; front door at least 36" wide (3'-0" slab) |
 | Flooring | LVP throughout, flush transitions with no raised thresholds |
 | Footprint | House 72' x 31'-6"; carport 18' x 20' on the east end |
 | Siting | House near the west side setback: 11'-6" on the west, 11'-6" from the carport to the east line, 20'-1¼" front, 13'-2" rear (shallow-lot rear yard, §22.110.080.D: 20% of the 64.77' lot depth is 12'-11½") |

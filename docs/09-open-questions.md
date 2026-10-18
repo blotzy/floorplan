@@ -23,7 +23,7 @@
 
 **Trades**
 
-- [ ] Architect and civil engineer: foundation and grading for the slope (about 4 ft of fall across the house footprint, more across the lot): stepped vs. raised slab, how the west-end exterior door and the dining slider meet grade, and drainage around the house.
+- [ ] Architect and civil engineer: foundation and grading for the slope (about 4 ft of fall across the house footprint, more across the lot): stepped vs. raised slab, how the dining slider meets grade, and drainage around the house.
 - [ ] Civil / demolition: remove the old retaining wall under the southeast corner and the standing chimney in the courtyard; deal with the lower rear terrace they leave.
 - [ ] East property-line wall (front half of the lot, sits above our grade):
   - It retains the neighbour's soil (their side is higher), so our side is the toe of the wall.

@@ -72,6 +72,13 @@ PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines 
 NOTICE = ("\u00a9 2026 Richard Acosta. All rights reserved. For 220 Laurel Dr only: "
           "not to be copied, adapted or built from anywhere else.")
 
+# The bedroom hall ends at the primary bedroom door, just past the office door; the primary takes the
+# hall's last stretch as an entry nook. Halfway down, just past the common bath, a cased opening with a
+# dropped header marks the bedroom end (no door).
+HALL_END = 1110.5                    # centreline of the hall's end wall (the primary door)
+HALL_ARCH = 892.0                    # centreline of the threshold wall, between the common bath and guest doors
+ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
+
 # Interior walls: (name, axis, centreline, from, to, thickness).
 # axis "x" = wall runs along x at y = centreline; "y" = runs along y at x = centreline.
 WALLS = [
@@ -81,7 +88,9 @@ WALLS = [
     ("ensuite|guest",    "y", 897.5,  N_IN, 405.45, INT),
     ("guest|office",     "y", 1062.0, N_IN, 405.45, INT),
     ("bedroom hall wall", "x", 403.2,  671.75, W_IN, INT),
-    ("south hall wall",   "x", 459.2,  671.75, W_IN, INT),
+    ("south hall wall",   "x", 459.2,  671.75, HALL_END + INT / 2, INT),
+    ("hall end",          "y", HALL_END, 403.2, 459.2, INT),      # the primary bedroom door
+    ("hall threshold",    "y", HALL_ARCH, 403.2, 459.2, INT),     # cased opening, dropped header
     ("kitchen|pantry",    "y", 674.0,  457.0, S_IN, INT),
     ("pantry|laundry",    "y", 750.0,  457.0, S_IN, INT),
     ("pantry|mech",       "x", 555.2,  674.0, 750.0, INT),
@@ -118,18 +127,17 @@ OPENINGS = [
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("east",        490.0, 586.0, "slider"),             # dining 8' slider: just past the courtyard fence, leaving
                                                           # ~2'-9" of solid wall at the dining corner
-    ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
-    ("west",        414.7, 450.7, "transom", 86.0, 104.0),  # 7' door + fixed 3'-0" x 1'-6" transom: daylight down the hall
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
     ("ensuite|guest", 335.0, 365.0, "door", "a", +1),       # guest ensuite's only door: swings into the guest room (the bath is narrow)
     ("bedroom hall wall", 904.5, 940.5, "door", "a", -1),  # guest
-    ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, opposite the primary door
+    ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, by the hall's end
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 849.75, 879.75, "door", "b", +1),   # common bath, 30", against its west wall
-    ("south hall wall", 1070.0, 1106.0, "door", "b", +1),   # primary bedroom: hinged away from the corner,
-                                                            # so the open door never blocks the closet door
+    ("hall end", 411.0, 447.0, "door", "a", +1),            # primary bedroom, at the end of the hall: opens
+                                                            # flat against the office wall, into the entry nook
+    ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
     ("suite|primary", 574.0, 606.0, "door", "b", -1),       # primary bath, from the bedroom; opens flat by the rear wall
@@ -507,7 +515,12 @@ def build() -> Sheet:
         elif kind == "transom":            # glass above a door: note it in plan
             mx, my = P((a + b) / 2, 0.0)
             sh.text("TRANSOM ABOVE", mx + (8 if axis == "y" else 0), my, 2.0, rot=90 if axis == "y" else 0)
-        # cased openings: just the gap
+        elif kind == "cased" and len(o) > 5:   # dropped header over the opening: dashed, with its height
+            for v in (-t / 2, t / 2):
+                sh.msp.add_line(P(a, v), P(b, v), dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})
+            mx, my = P((a + b) / 2, -t / 2 - 8)
+            sh.text(f"HEADER AT {fmt(o[5])}", mx, my, 2.4, "A-CLNG", rot=90 if axis == "y" else 0)
+        # other cased openings: just the gap
 
     # ---- rooms: labels with clear sizes ---------------------------------------
     def room(*a, **k):
@@ -596,6 +609,9 @@ def build() -> Sheet:
     bed(face("guest|office", -1), open_mid, 60, -1)   # guest: head on the office wall, clear of the bath door
     bed(W_IN, open_mid, 60, -1)
     bed(W_IN, (srow + S_IN) / 2, 76, -1)   # primary: the whole west wall is open
+    d0 = HALL_END + INT / 2 + 40                                              # dresser in the entry nook, on
+    sh.rect(d0, hall_n + INT, W_IN, hall_n + INT + 20, fu)                    # the office wall past the open door
+    sh.text("DRESSER", (d0 + W_IN) / 2, hall_n + INT + 10, 3.5)
     sh.movable_since(m0)
 
     def closet(x0, x1, label="CL"):          # 24" reach-in closets on the hall wall

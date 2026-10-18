@@ -126,6 +126,10 @@ def build_schematic() -> Scene:
                 sc.quad(face_mat(*seg(v)), *seg(v), head, CEIL)
             sc.quad("glass", *seg(0), sill, head)
             continue
+        if kind == "cased" and len(o) > 5:                        # dropped header: solid down to its height
+            (x0, y0), (x1, y1) = seg(-t / 2)[0], seg(t / 2)[1]
+            sc.boxes["wall"].append([min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1), o[5], CEIL])
+            continue
         topped = any(p[0] == name and p[1:3] == (a, b) and p[3] == "transom" for p in S.OPENINGS)
         if not topped:                                           # header (the transom draws its own)
             for v in (-t / 2, t / 2):
