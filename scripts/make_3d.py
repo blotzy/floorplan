@@ -631,9 +631,9 @@ if (D.roof_hidden && !location.hash.includes('roof')) {     // main model opens 
 } else if (location.hash.includes('roof')) {                // exterior view: room labels would float over the roof
   groups.labels.visible = false; document.getElementById('labels').checked = false;
 }
-{ const h = location.hash, full = h.includes('full');
-  const pick = h.includes('split-wide') ? 4 : h.includes('split') ? 3 : h.includes('gable') ? 1 : full ? 2 : 0;
-  if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-gable; #roof-full; #roof-split; #roof-split-wide
+{ const h = location.hash;
+  const pick = h.includes('split-wide') ? 3 : h.includes('split') ? 2 : h.includes('gable') ? 1 : 0;
+  if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-gable; #roof-split; #roof-split-wide
 if (!Object.keys(D.tris || {}).length) document.getElementById('roofrow').style.display = 'none';
 const clock = new THREE.Clock();
 renderer.setAnimationLoop(()=>{
