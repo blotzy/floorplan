@@ -204,10 +204,13 @@ def shed_vault_great(sc, pitch, ov, seams=False, band=None, pieces=None):
     great_room_inside(sc, under)
 
 
-def great_room_inside(sc, under, ceil=None, xs=(), ys=()):
+def great_room_inside(sc, under, ceil=None, xs=(), ys=(), foyer=None):
     """The vaulted great room's sloped ceiling and the interior walls that rise to it. ceil(x, y) gives
-    the ceiling's height where it isn't just under(y) (a split roof), planar between the breaks xs, ys."""
+    the ceiling's height where it isn't just under(y) (a split roof), planar between the breaks xs, ys.
+    foyer: (x, z): the foyer east of x gets a flat ceiling at z instead."""
     ceil = ceil or (lambda x, y: under(y))
+    fx, fz = foyer or (None, None)
+    flat = lambda x: fx is not None and x < fx              # noqa: E731  in the flat-ceilinged foyer
     lx0, lx1 = LOUNGE_X
     yf = S.FOYER_WALL_END                                   # foyer's open (south) edge
     kx = S.face("kitchen|pantry", -1)
@@ -217,10 +220,13 @@ def great_room_inside(sc, under, ceil=None, xs=(), ys=()):
     def cuts(a, b, at):
         return list(zip(*(lambda v: (v, v[1:]))(sorted({a, b, *[c for c in at if a < c < b]}))))
 
-    for x0, x1, y0, y1 in ((lx0, lx1, S.N_IN, yf), (E_in, lx0, fy, yf),      # lounge; foyer;
-                           (E_in, kx, yf, S.S_IN)):                           # dining + kitchen
+    for x0, x1, y0, y1, fo in ((lx0, lx1, S.N_IN, yf, False), (E_in, lx0, fy, yf, True),   # lounge; foyer;
+                               (E_in, kx, yf, S.S_IN, False)):                            # dining + kitchen
         for xa, xb in cuts(x0, x1, xs):
             for ya, yb in cuts(y0, y1, ys):
+                if fo and flat((xa + xb) / 2):
+                    quad(sc, "wall", [xa, ya, fz], [xb, ya, fz], [xb, yb, fz], [xa, yb, fz])
+                    continue
                 z = lambda y: ceil((xa + xb) / 2, y) - 1    # noqa: E731  just under the slab (no flicker)
                 quad(sc, "wall", [xa, ya, z(ya)], [xb, ya, z(ya)], [xb, yb, z(yb)], [xa, yb, z(yb)])
     C = M.CEIL
@@ -229,17 +235,24 @@ def great_room_inside(sc, under, ceil=None, xs=(), ys=()):
     tv0, tv1 = S.face("foyer wall", -1), S.face("foyer wall", +1)
     for x, y0, y1 in ((lx0, S.N_IN, S.PORCH_Y), (lx1, S.N_IN, yf), (kx, yf, S.S_IN),
                       (tv0, fy, yf), (tv1, S.PORCH_Y, yf)):
+        if y1 <= yf and flat(x):
+            continue                                                     # the foyer side, under its flat ceiling
         for ya, yb in cuts(y0, y1, ys):
             quad(sc, "wall", [x, ya, C], [x, yb, C], [x, yb, ceil(x, yb)], [x, ya, ceil(x, ya)])
     for x0, x1, y in ((tv0, tv1, yf), (E_in, lx0, fy), (kx, lx1, yf)):   # TV wall's end; over the door;
         for xa, xb in cuts(x0, x1, xs):                                  # jog at the hall
             m = (xa + xb) / 2
+            if y == fy and flat(m):
+                continue
             quad(sc, "wall", [xa, y, C], [xb, y, C], [xb, y, ceil(m, y)], [xa, y, ceil(m, y)])
+    if fx is not None:                                                   # header from the flat foyer up to
+        quad(sc, "wall", [E_in, yf, fz], [tv0, yf, fz], [tv0, yf, ceil(E_in, yf)], [E_in, yf, ceil(E_in, yf)])
 
 
 SPLIT_X = (S.wall_info("foyer wall")[1], LOUNGE_X[1] + S.INT / 2)   # the lounge's shed band: foyer/TV wall
                                                                     # to the lounge|gym wall, centred on the clerestory
 CLERESTORY_MID = sum(CLERESTORY_X) / 2
+FOYER_BEAM = 12.0                                  # lounge-only split: beam depth below the shed ceiling
 SPLIT_WIDE_X = (E, 2 * CLERESTORY_MID - E)         # a shed from the east end (porch corner) into the bedroom
                                                    # wing, the 18' clerestory centred in it
 
@@ -302,9 +315,15 @@ def shed_gable(sc, pitch, ov, xs=SPLIT_X, glass=CLERESTORY_X, seams=False, band=
         great_room_inside(sc, under)
         return
     ceil = lambda x, y: under(y) if xa <= x <= xb else gable(y)     # noqa: E731
-    great_room_inside(sc, under, ceil, xs=(xa,), ys=(ym,))
-    yf = S.FOYER_WALL_END                                            # dining: the ceiling steps up into the shed
-    quad(sc, "wall", [xa, yf, gable(yf)], [xa, ym, gable(ym)], [xa, ym, under(ym)], [xa, yf, under(yf)])
+    great_room_inside(sc, under, ceil, xs=(xa,), ys=(ym,), foyer=(xa, M.CEIL))   # flat 9' foyer ceiling
+    yf, ys = S.FOYER_WALL_END, S.S_IN                                # dining: a beam on the foyer-wall line,
+    t0, t1 = S.face("foyer wall", -1), S.face("foyer wall", +1)      # TV wall to the rear wall, 12" below the
+    bot = lambda y: under(y) - FOYER_BEAM                           # noqa: E731  shed ceiling, hiding the step
+    quad(sc, "wall", [t0, yf, bot(yf)], [t1, yf, bot(yf)], [t1, ys, bot(ys)], [t0, ys, bot(ys)])   # underside
+    quad(sc, "wall", [t1, yf, bot(yf)], [t1, ys, bot(ys)], [t1, ys, under(ys)], [t1, yf, under(yf)])  # shed side
+    for ya, yb in ((yf, ym), (ym, ys)):                              # gable side
+        quad(sc, "wall", [t0, ya, bot(ya)], [t0, yb, bot(yb)], [t0, yb, gable(yb)], [t0, ya, gable(ya)])
+    quad(sc, "wall", [t0, ys, bot(ys)], [t1, ys, bot(ys)], [t1, ys, under(ys)], [t0, ys, under(ys)])  # end
 
 
 def section(pitch, path, roofing="shingles"):
