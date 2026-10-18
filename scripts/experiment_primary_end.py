@@ -11,7 +11,8 @@ end wall.
     (room for a dresser past the open door); the bed stays out of view from the hall.
   - The office (door, closet) and the walk-in closet stay as they are.
 
-Writes renders/experiments/primary-end.png. Not part of the regular build (the current plan for
+Writes renders/experiments/primary-end.png and a 3D model, renders/experiments/primary-end/house.html
+(open in a browser; walk mode). Not part of the regular build (the current plan for
 comparison is renders/experiments/office-end-current.png).
 
     uv run scripts/experiment_primary_end.py
@@ -41,8 +42,11 @@ def plan():
                                                               # opens flat against the office wall
 
 
+_build = S.build
+
+
 def build():
-    sh = S.build()
+    sh = _build()
     hall_n = S.face("bedroom hall wall", +1)
     m = sh.mark()
     d0 = END + S.INT / 2 + 40                                   # dresser on the office wall, past
@@ -58,6 +62,18 @@ def main():
     plan()
     S.render(build().doc, OUT / "primary-end.png", S.face("lounge|gym", -1) - 20, S.N - 40, S.W + 40,
              S.S + 40, width_in=14, dpi=200)
+    import exterior as X
+    import make_3d as M
+    S.build = build                                            # the 3D model reads the plan through it
+    try:
+        sc = M.build_schematic()
+    finally:
+        S.build = _build
+    X.chosen_exterior(sc)
+    M.add_vault_ceiling(sc, X.great_room_vault(to_outside=True))
+    opts = X.roof_options()
+    M.write_model(sc, OUT / "primary-end", {**sc.meta, "roof_hidden": True, "roof_options": opts,
+                                            "roof_flat": [i + 1 for i, k in enumerate(opts) if "flat" in k]})
     S.WALLS, S.OPENINGS = base
 
 
