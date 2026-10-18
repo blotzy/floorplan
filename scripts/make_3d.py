@@ -632,8 +632,8 @@ if (D.roof_hidden && !location.hash.includes('roof')) {     // main model opens 
   groups.labels.visible = false; document.getElementById('labels').checked = false;
 }
 { const h = location.hash, shingle = h.includes('shingle'), full = h.includes('full');
-  const pick = h.includes('split-wide') ? 8 : h.includes('split') ? 7 : h.includes('gable') ? 1 : h.includes('plain') ? (shingle ? 6 : 5) : shingle ? (full ? 4 : 3) : full ? 2 : 0;
-  if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-gable; #roof-full; #roof-shingle(-full); #roof-plain, #roof-shingle-plain; #roof-split; #roof-split-wide
+  const pick = h.includes('split-wide') ? 6 : h.includes('split') ? 5 : h.includes('gable') ? 1 : shingle ? (full ? 4 : 3) : full ? 2 : 0;
+  if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-gable; #roof-full; #roof-shingle(-full); #roof-split; #roof-split-wide
 if (!Object.keys(D.tris || {}).length) document.getElementById('roofrow').style.display = 'none';
 const clock = new THREE.Clock();
 renderer.setAnimationLoop(()=>{
