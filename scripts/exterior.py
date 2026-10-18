@@ -204,30 +204,41 @@ def shed_vault_great(sc, pitch, ov, seams=False, band=None, pieces=None):
     great_room_inside(sc, under)
 
 
-def great_room_inside(sc, under):
-    """The vaulted great room's sloped ceiling and the interior walls that rise to it."""
+def great_room_inside(sc, under, ceil=None, xs=(), ys=()):
+    """The vaulted great room's sloped ceiling and the interior walls that rise to it. ceil(x, y) gives
+    the ceiling's height where it isn't just under(y) (a split roof), planar between the breaks xs, ys."""
+    ceil = ceil or (lambda x, y: under(y))
     lx0, lx1 = LOUNGE_X
     yf = S.FOYER_WALL_END                                   # foyer's open (south) edge
     kx = S.face("kitchen|pantry", -1)
     E_in = S.E_IN
     fy = S.PORCH_Y + S.EXT                                  # foyer's front wall (behind the porch)
+
+    def cuts(a, b, at):
+        return list(zip(*(lambda v: (v, v[1:]))(sorted({a, b, *[c for c in at if a < c < b]}))))
+
     for x0, x1, y0, y1 in ((lx0, lx1, S.N_IN, yf), (E_in, lx0, fy, yf),      # lounge; foyer;
                            (E_in, kx, yf, S.S_IN)):                           # dining + kitchen
-        quad(sc, "wall", [x0, y0, under(y0) - 1], [x1, y0, under(y0) - 1], [x1, y1, under(y1) - 1],
-             [x0, y1, under(y1) - 1])                       # just under the slab, so it doesn't flicker
+        for xa, xb in cuts(x0, x1, xs):
+            for ya, yb in cuts(y0, y1, ys):
+                z = lambda y: ceil((xa + xb) / 2, y) - 1    # noqa: E731  just under the slab (no flicker)
+                quad(sc, "wall", [xa, ya, z(ya)], [xb, ya, z(ya)], [xb, yb, z(yb)], [xa, yb, z(yb)])
     C = M.CEIL
     # Walls that rise to the vault: the porch's side wall (lounge corner), the gym and kitchen walls,
     # and the foyer/TV wall (both faces), so the foyer is a tall space of its own beside the lounge.
     tv0, tv1 = S.face("foyer wall", -1), S.face("foyer wall", +1)
     for x, y0, y1 in ((lx0, S.N_IN, S.PORCH_Y), (lx1, S.N_IN, yf), (kx, yf, S.S_IN),
                       (tv0, fy, yf), (tv1, S.PORCH_Y, yf)):
-        quad(sc, "wall", [x, y0, C], [x, y1, C], [x, y1, under(y1)], [x, y0, under(y0)])
-    quad(sc, "wall", [tv0, yf, C], [tv1, yf, C], [tv1, yf, under(yf)], [tv0, yf, under(yf)])   # its end
-    quad(sc, "wall", [E_in, fy, C], [lx0, fy, C], [lx0, fy, under(fy)], [E_in, fy, under(fy)])  # over the door
-    quad(sc, "wall", [kx, yf, C], [lx1, yf, C], [lx1, yf, under(yf)], [kx, yf, under(yf)])  # jog at the hall
+        for ya, yb in cuts(y0, y1, ys):
+            quad(sc, "wall", [x, ya, C], [x, yb, C], [x, yb, ceil(x, yb)], [x, ya, ceil(x, ya)])
+    for x0, x1, y in ((tv0, tv1, yf), (E_in, lx0, fy), (kx, lx1, yf)):   # TV wall's end; over the door;
+        for xa, xb in cuts(x0, x1, xs):                                  # jog at the hall
+            m = (xa + xb) / 2
+            quad(sc, "wall", [xa, y, C], [xb, y, C], [xb, y, ceil(m, y)], [xa, y, ceil(m, y)])
 
 
-SPLIT_X = LOUNGE_X[1] + S.INT / 2                    # vault's end: the lounge|gym and kitchen|pantry walls
+SPLIT_X = (S.wall_info("foyer wall")[1], LOUNGE_X[1] + S.INT / 2)   # the shed band: foyer/TV wall to the
+                                                                    # lounge|gym wall, centred on the clerestory
 
 
 def slab_part(sc, x0, x1, under, ys, seams):
@@ -250,33 +261,41 @@ def fascia(sc, a, b, under):
 
 
 def shed_gable(sc, pitch, ov, seams=False, band=36.0):
-    """Split roof: the great room under the shed (high at the street, clerestory band, vaulted inside),
-    the bedroom wing under a low gable at the same pitch, ridge down the middle. The gable's rear slope
-    lines up with the shed's, so the whole rear roof is one plane; at the street the shed stands taller,
-    its end wall rising above the gable."""
+    """Split roof: a shed band over the lounge (high at the street, centred on the clerestory band), with
+    low gables at the same pitch either side, over the foyer and dining at the east end and the bedroom
+    wing at the west, ridges down the middle. The gables' rear slopes line up with the shed's, so the
+    whole rear roof is one plane; at the street the shed stands taller, its side walls rising above the
+    gables. Inside, the foyer and the east end of the dining room follow the gable; the lounge and
+    kitchen, the shed."""
     under = shed_vault_under(pitch)
     half, ym = (Sth - N) / 2, (N + Sth) / 2
     gable = lambda y: PLATE + (half - abs(y - ym)) * pitch          # noqa: E731
-    X0, X1, Y0, Y1, xs = E - ov, W + ov, N - ov, Sth + ov, SPLIT_X
-    slab_part(sc, X0, xs, under, [Y0, Y1], seams)                    # shed
-    slab_part(sc, xs, X1, gable, [Y0, ym, Y1], seams)                # gable
-    fascia(sc, (X0, Y0), (X0, Y1), under)                            # shed: east rake, street eave,
-    fascia(sc, (X0, Y0), (xs, Y0), under)                            # rear eave, and its west edge
-    fascia(sc, (X0, Y1), (xs, Y1), under)                            # where it stands above the gable
-    fascia(sc, (xs, Y0), (xs, ym), under)
-    for a, b in (((X1, Y0), (X1, ym)), ((X1, ym), (X1, Y1)), ((xs, Y0), (X1, Y0)), ((xs, Y1), (X1, Y1))):
-        fascia(sc, a, b, gable)                                      # gable: rakes and eaves
+    X0, X1, Y0, Y1 = E - ov, W + ov, N - ov, Sth + ov
+    xa, xb = SPLIT_X
+    slab_part(sc, xa, xb, under, [Y0, Y1], seams)                    # shed band
+    for g0, g1 in ((X0, xa), (xb, X1)):                              # gables
+        slab_part(sc, g0, g1, gable, [Y0, ym, Y1], seams)
+        for a, b in (((g0, Y0), (g1, Y0)), ((g0, Y1), (g1, Y1))):
+            fascia(sc, a, b, gable)
+    for x in (X0, X1):                                               # gable rakes
+        for a, b in (((x, Y0), (x, ym)), ((x, ym), (x, Y1))):
+            fascia(sc, a, b, gable)
+    for a, b in (((xa, Y0), (xb, Y0)), ((xa, Y1), (xb, Y1)), ((xa, Y0), (xa, ym)), ((xb, Y0), (xb, ym))):
+        fascia(sc, a, b, under)                                      # shed: eaves, and its sides above the gables
     lx0, lx1 = LOUNGE_X                                              # shed's street wall: clerestory band
     top = under(N)
-    for a, b in ((S.PORCH_X, lx0), (lx1, xs)):
+    for a, b in ((xa, lx0), (lx1, xb)):
         quad(sc, "exterior", [a, N, PLATE], [b, N, PLATE], [b, N, top], [a, N, top])
-    quad(sc, "exterior", [E, N, PLATE], [S.PORCH_X, N, PLATE], [S.PORCH_X, N, top], [E, N, top])
     clerestory(sc, lx0, lx1, top, [(*CLERESTORY_X, band)])
-    quad(sc, "exterior", [E, N, PLATE], [E, Sth, PLATE], [E, Sth, under(Sth)], [E, N, top])   # east end
-    sc.tris["exterior"].append([[xs, N, gable(N)], [xs, N, top], [xs, ym, under(ym)]])        # shed above gable
-    for ya, yb in ((N, ym), (ym, Sth)):                              # west gable end
-        quad(sc, "exterior", [W, ya, PLATE], [W, yb, PLATE], [W, yb, gable(yb)], [W, ya, gable(ya)])
-    great_room_inside(sc, under)
+    for x in (xa, xb):                                               # shed's sides, above the gables
+        sc.tris["exterior"].append([[x, N, gable(N)], [x, N, top], [x, ym, under(ym)]])
+    for x in (E, W):                                                 # gable ends
+        for ya, yb in ((N, ym), (ym, Sth)):
+            quad(sc, "exterior", [x, ya, PLATE], [x, yb, PLATE], [x, yb, gable(yb)], [x, ya, gable(ya)])
+    ceil = lambda x, y: under(y) if xa <= x <= xb else gable(y)     # noqa: E731
+    great_room_inside(sc, under, ceil, xs=(xa,), ys=(ym,))
+    yf = S.FOYER_WALL_END                                            # dining: the ceiling steps up into the shed
+    quad(sc, "wall", [xa, yf, gable(yf)], [xa, ym, gable(ym)], [xa, ym, under(ym)], [xa, yf, under(yf)])
 
 
 def section(pitch, path, roofing="shingles"):
@@ -433,5 +452,5 @@ def roof_options():
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
     shed_gable(sc, 2 / 12, EAVE, seams=True)
-    out["MCM metal shed 2:12 over the great room (3' clerestory band), gable 2:12 over the bedroom wing"] = dict(sc.tris)
+    out["MCM split: metal shed 2:12 over the lounge (3' clerestory band), gables 2:12 either side"] = dict(sc.tris)
     return out
