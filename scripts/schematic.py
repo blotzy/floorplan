@@ -132,6 +132,8 @@ OPENINGS = [
     ("south",       766.5, 808.5, "window", 72.0, 96.0),  # laundry: 3'-6" x 2'-0" high window, matching the tub's
     ("south",       978.0, 1020.0, "window", 72.0, 96.0),  # primary bath: matching 3'-6" x 2'-0" over the walkway
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
+    ("west",        415.45, 451.45, "window", 48.0, 96.0),  # reading nook: 3'-0" x 4'-0", centred on the nook,
+                                                          # light over the reader's shoulder from the bench
     ("east",        490.0, 586.0, "slider"),             # dining 8' slider: just past the courtyard fence, leaving
                                                           # ~2'-9" of solid wall at the dining corner
     # interior
