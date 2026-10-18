@@ -17,7 +17,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 
 ## Structural engineer
 
-**Project:** new one-story, wood-frame single-family residence, Eaton Fire rebuild (non-like-for-like: current codes in full), 220 Laurel Dr, Altadena (APN 5832-003-027). About 2,238 sq ft, 72' x 31'-6", Type V-B, sprinklered, Very High Fire Hazard Severity Zone. Attached open carport, 18' x 18'.
+**Project:** new one-story, wood-frame single-family residence, Eaton Fire rebuild (non-like-for-like: current codes in full), 220 Laurel Dr, Altadena (APN 5832-003-027). About 2,238 sq ft, 72' x 31'-6", Type V-B, sprinklered, Very High Fire Hazard Severity Zone. Attached open carport, 18' x 20'.
 
 **Scope requested:** foundation plan, roof and ceiling framing plans, shear wall and hold-down schedule, details, structural calculations (vertical and lateral), truss specifications for the deferred truss submittal, and structural observation. Plans to LA County Building and Safety as the engineer of record.
 
@@ -26,7 +26,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 - **Roof:** single-slope shed at 2:12, high at the street, 2'-6" eaves all round, standing-seam metal roofing (Class A assembly; future solar clamps to the seams). Sealed (unvented) attic with spray foam at the deck.
 - **Vaulted great room:** foyer, lounge, dining and kitchen have a sloped ceiling following the roof (rafters, no attic). Elsewhere, flat 9' ceilings with an attic. The vault ends on one straight line (the lounge/gym and kitchen/pantry walls are aligned): the bearing or beam line between the two framing systems.
 - **Tall street wall at the lounge:** about 16' at the street, with an 18' clerestory band (3' tall) above a 10' window. Lateral bracing of that wall.
-- **Large openings:** dining 12' window (two units) on the south wall, with the 6' dining slider on the east wall near the same corner (about 2'-9" of wall at the corner). Ask whether that corner needs steel or special hold-downs; if so, the window can narrow.
+- **Large openings:** dining 12' window (two units) on the south wall, with the 8' dining slider on the east wall near the same corner (about 2'-9" of wall at the corner). Ask whether that corner needs steel or special hold-downs; if so, the window can narrow.
 - **Porch:** corner porch notched into the house, roof carried by a corner post.
 - **Carport:** attached open carport, clear span with posts at the corners only, its own roof at about ½" per foot in double-lock standing-seam metal. It faces the north / northeast winds with its open sides, so uplift governs its posts, beam connections, ledger at the house and roof attachment.
 - **Loads (located on sheet A-7, attic and loads plan):**

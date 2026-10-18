@@ -34,13 +34,13 @@ What the energy consultant needs to model the house and produce the compliance f
 | Street (22°) | Gym, guest, office (3) | 6'-0" x 5'-6" each | 99.0 sq ft |
 | Street (22°) | Guest ensuite (high) | 2'-6" x 1'-6" | 3.8 sq ft |
 | Porch side (112°) | Reeded window | 2'-0" x 5'-6" | 11.0 sq ft |
-| East (112°) | Dining slider | 6'-0" x 8'-0" | 48.0 sq ft |
+| East (112°) | Dining slider | 8'-0" x 8'-0" | 64.0 sq ft |
 | Rear (202°) | Dining (two units) | 12'-0" x 6'-6" | 78.0 sq ft |
 | Rear (202°) | Kitchen | 5'-0" x 4'-6" | 22.5 sq ft |
 | Rear (202°) | High windows (3: primary tub, primary bath, laundry) | 3'-6" x 2'-0" each | 21.0 sq ft |
 | Rear (202°) | Primary bedroom | 6'-0" x 5'-6" | 33.0 sq ft |
 | West (292°) | Transom over the hall door | 3'-0" x 1'-6" | 4.5 sq ft |
-| | **Total** | | **about 430 sq ft (about 19% of the floor area)** |
+| | **Total** | | **about 446 sq ft (just under 20% of the floor area)** |
 
 Shading: 2'-6" eaves all round; at the rear, 3'-deep metal canopies over the kitchen and primary bedroom windows. The front door's glass lite (if any) is still to be chosen.
 

@@ -116,7 +116,7 @@ OPENINGS = [
     ("south",       766.5, 808.5, "window", 72.0, 96.0),  # laundry: 3'-6" x 2'-0" high window, matching the tub's
     ("south",       978.0, 1020.0, "window", 72.0, 96.0),  # primary bath: matching 3'-6" x 2'-0" over the walkway
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
-    ("east",        514.0, 586.0, "slider"),             # dining 6' slider: just past the courtyard fence, leaving
+    ("east",        490.0, 586.0, "slider"),             # dining 8' slider: just past the courtyard fence, leaving
                                                           # ~2'-9" of solid wall at the dining corner
     ("west",        414.7, 450.7, "door", "b", -1),      # hall-end exterior door
     ("west",        414.7, 450.7, "transom", 86.0, 104.0),  # 7' door + fixed 3'-0" x 1'-6" transom: daylight down the hall

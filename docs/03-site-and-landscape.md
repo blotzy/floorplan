@@ -29,7 +29,7 @@ From the topographic survey (available on request; overlay: [survey-overlay.png]
 
 ## Southeast courtyard (behind the carport, east of the house)
 
-- **No patio.** A 5' gravel strip runs along the house wall from the pavers to the planters (noncombustible zone), with an at-grade landing outside the 6' dining slider. Nothing raised that would count as a deck or platform.
+- **No patio.** A 5' gravel strip runs along the house wall from the pavers to the planters (noncombustible zone), with an at-grade landing outside the 8' dining slider. Nothing raised that would count as a deck or platform.
 - **Pavers** 5'-deep band along the back of the carport (keeps the lawn out of the carport's 5' fire zone).
 - **Lawn** about 15' x 14' (~210 sq ft), tall fescue + microclover blend, edged by the pavers and the planter wall. Irrigate from the unsoftened line.
 - **Raised planters** 3' deep along the rear fence (noncombustible: concrete, block, or steel). Shade-tolerant, dog-safe plants (e.g., coral bells, ferns); no oleander, sago palm, foxglove, or azalea.
