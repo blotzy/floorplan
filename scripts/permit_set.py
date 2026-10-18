@@ -991,8 +991,10 @@ def floor_plan(pdf):
             swing = o[5] if len(o) > 5 else 1
             pt = minus if swing > 0 else plus
         along_x = S.wall_info(o[0])[0] == "x"
-        while any((pt[0] - q[0]) ** 2 + (pt[1] - q[1]) ** 2 < 18 ** 2 for q in placed):   # clear of other tags
-            pt = (pt[0] + 20, pt[1]) if along_x else (pt[0], pt[1] + 20)
+        other = plus if pt == minus else minus           # clear of other tags: this side, then the other side
+        tries = [pt, other] + [(pt[0] + d, pt[1]) if along_x else (pt[0], pt[1] + d)   # then 20" steps either way
+                               for n in range(1, 8) for d in (20 * n, -20 * n)]
+        pt = next(p for p in tries if all((p[0] - q[0]) ** 2 + (p[1] - q[1]) ** 2 >= 18 ** 2 for q in placed))
         placed.append(pt)
         ax.add_patch(Circle(pt, 8, fc="white", ec=INK, lw=0.8, zorder=5))
         ax.text(*pt, str(i), fontsize=6.5, ha="center", va="center", zorder=6)

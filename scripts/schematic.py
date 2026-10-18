@@ -74,17 +74,17 @@ PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines 
 NOTICE = ("\u00a9 2026 Richard Acosta. All rights reserved. For 220 Laurel Dr only: "
           "not to be copied, adapted or built from anywhere else.")
 
-# The bedroom hall ends at the primary bedroom door, just past the office door; the primary takes the
-# hall's last stretch as an entry nook. Halfway down, just past the common bath, a cased opening with a
-# dropped header marks the bedroom end (no door).
-HALL_END = 1110.5                    # centreline of the hall's end wall (the primary door)
+# The bedroom hall ends in a wall just past the office and primary doors; beyond it, the hall's last
+# stretch is the primary bedroom's reading nook. Halfway down, just past the common bath, a cased opening
+# with a dropped header marks the bedroom end (no door).
+HALL_END = 1110.5                    # centreline of the hall's end wall
 HALL_ARCH = 897.5                    # centreline of the threshold wall: in line with the ensuite|guest wall,
                                      # between the common bath and guest doors
 ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
 HATCH_X = 966.0                         # attic access panel (22" x 54", passes the air handler) along the hall,
                                         # from here west: about 4' clear of the skylight, beside the air handler platform
 HALL_TUBE = HALL_END - INT / 2 - 32.0   # 14" tubular skylight on the hall's centreline, 2'-8" short of the end
-                                        # wall: lights the end wall and the primary door
+                                        # wall: lights the end wall
 
 # Interior walls: (name, axis, centreline, from, to, thickness).
 # axis "x" = wall runs along x at y = centreline; "y" = runs along y at x = centreline.
@@ -96,7 +96,7 @@ WALLS = [
     ("guest|office",     "y", 1062.0, N_IN, 405.45, INT),
     ("bedroom hall wall", "x", 403.2,  671.75, W_IN, INT),
     ("south hall wall",   "x", 459.2,  671.75, HALL_END + INT / 2, INT),
-    ("hall end",          "y", HALL_END, 403.2, 459.2, INT),      # the primary bedroom door
+    ("hall end",          "y", HALL_END, 403.2, 459.2, INT),      # the reading nook behind it
     ("hall threshold",    "y", HALL_ARCH, 403.2, 459.2, INT),     # cased opening, dropped header
     ("kitchen|pantry",    "y", 674.0,  457.0, S_IN, INT),
     ("pantry|laundry",    "y", 750.0,  457.0, S_IN, INT),
@@ -142,10 +142,8 @@ OPENINGS = [
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 849.75, 879.75, "door", "b", +1),   # common bath, 30", against its west wall
-    ("hall end", 411.0, 447.0, "door", "a", +1),            # primary bedroom, at the end of the hall: opens
-                                                            # flat against the office wall, into the entry nook
-    ("hall end", 411.0, 447.0, "transom", 98.0, 106.0),     # reeded glass over the 8' door, up to the 9' ceiling:
-                                                            # the bedroom's daylight lights the end of the hall
+    ("south hall wall", 1070.0, 1106.0, "door", "b", +1),   # primary bedroom, at the closet corner: hinged on its
+                                                            # far side, so the open door never blocks the closet door
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
@@ -617,10 +615,11 @@ def build() -> Sheet:
     bed(face("guest|office", -1), open_mid, 60, -1)   # guest: head on the office wall, clear of the bath door
     bed(W_IN, open_mid, 60, -1)
     bed(W_IN, (srow + S_IN) / 2, 76, -1)   # primary: the whole west wall is open
-    d0 = HALL_END + INT / 2 + 40                                              # dresser in the entry nook, on
-    sh.rect(d0, hall_n + INT, W_IN, hall_n + INT + 20, fu)                    # the office wall past the open door
-    sh.text("DRESSER", (d0 + W_IN) / 2, hall_n + INT + 10, 3.5)
     sh.movable_since(m0)
+    n0, ny = HALL_END + INT / 2, hall_n + INT                                 # reading nook: built-in bench the
+    sh.rect(n0, ny, W_IN, ny + 24, fu)                                        # length of the office wall
+    sh.text("BENCH", (n0 + W_IN) / 2, ny + 12, 3.5)
+    sh.text("READING NOOK", (n0 + W_IN) / 2, ny + 38, 3.5, "A-AREA-IDEN")
 
     def closet(x0, x1, label="CL"):          # 24" reach-in closets on the hall wall
         y1 = hall_n
