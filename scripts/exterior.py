@@ -254,8 +254,9 @@ SPLIT_X = (S.wall_info("foyer wall")[1], LOUNGE_X[1] + S.INT / 2)   # the lounge
                                                                     # to the lounge|gym wall, centred on the clerestory
 CLERESTORY_MID = sum(CLERESTORY_X) / 2
 FOYER_BEAM = 12.0                                  # lounge-only split: beam depth below the shed ceiling
-SPLIT_WIDE_X = (E, 2 * CLERESTORY_MID - E)         # the plan's shed: from the east end (porch corner) into the
-                                                   # bedroom wing, the 18' clerestory centred in it
+SPLIT_WIDE_X = (E, S.wall_info("gym|ensuite")[1])  # the plan's shed: from the east end (porch corner) to the
+                                                   # gym|ensuite wall, so its edge lands on a wall line, clear of
+                                                   # the gym's street window (the clerestory sits over the lounge)
 WING_X = SPLIT_WIDE_X[1]                           # west of it, the bedroom wing's gable
 RIDGE_Y = (N + Sth) / 2                            # the gable's ridge, down the middle of the house
 
@@ -449,7 +450,7 @@ def street_facade(sc):
 
 def chosen_exterior(sc, porch=True, facade=True):
     """The main plan's exterior: the split roof at 2:12 with 2'-6" eaves, in dark asphalt shingles: a shed
-    from the porch into the bedroom wing (high at the street, the 18' x 3' clerestory band centred in it;
+    from the porch into the bedroom wing (high at the street, the 18' x 3' clerestory band in it over the lounge;
     the foyer, lounge, dining and kitchen under one sloped ceiling) and a gable over the rest of the wing;
     stucco walls, dark fascia, accent front door; porch with a wood-look feature wall; recessed street
     windows; canopies over two rear windows. make_3d.py adds this to the main model."""

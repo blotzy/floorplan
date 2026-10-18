@@ -839,7 +839,7 @@ def loads():
     rings = [(cx - RING_GAP / 2, cy), (cx + RING_GAP / 2, cy)]
     ahu = (S.HATCH_X - 15, 360.0, S.HATCH_X + 60, gy1)  # platform over the guest room, beside the hatch, near
                                                         # the gable's ridge (the wing's tallest attic)
-    store = (gx0, S.N_IN + 24.0, X.WING_X, gy1)        # over the gym's east half, under the shed's tall attic
+    store = (gx0, S.N_IN + 24.0, gx1, gy1)              # over the gym, under the shed's tall attic
     return dict(gym=(gx0, gy0, gx1, gy1), rings=rings, ahu=ahu, store=store, pv=pv_area())
 
 
@@ -866,7 +866,7 @@ def loads_plan(pdf):
     ax.add_patch(Rectangle((sx0, sy0), sx1 - sx0, sy1 - sy0, fc="#f3d9a6", ec="#b07a2a", lw=1.2, alpha=0.6, hatch="..",
                            zorder=4))
     ax.text((sx0 + sx1) / 2, S.N - 30, "ATTIC STORAGE (hatched): 20 PSF LIVE LOAD, PLYWOOD DECKED\n"
-            f"(over the gym's east half, under the shed: {ftin(sy0 - S.N_IN)} off the street wall to the hall wall)", fontsize=7,
+            f"(over the gym, under the shed: {ftin(sy0 - S.N_IN)} off the street wall to the hall wall)", fontsize=7,
             ha="center", zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
     a0, b0, a1, b1 = L["ahu"]
     ax.add_patch(Rectangle((a0, b0), a1 - a0, b1 - b0, fc="#cfe0f3", ec="#1f5e9e", lw=1.4, zorder=5))
@@ -904,7 +904,7 @@ def loads_plan(pdf):
              "   trusses or joists with framing connectors; through-bolted forged\n"
              "   eye bolts with plate washers.\n"
              "2. Attic storage: 20 psf live load on the decked area shown\n"
-             "   (hatched), over the gym's east half, where the shed roof gives\n"
+             "   (hatched), over the gym, where the shed roof gives\n"
              "   the attic its height; light storage only. The rest of the\n"
              "   wing's attic, under the gable, is tallest along the ridge.\n"
              "3. Air handler: on a platform beside the attic hatch, near the\n"
