@@ -29,7 +29,7 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena, replacing the hous
 | Lot coverage | About 2,592 sq ft (house ~2,238 + porch ~29 + carport ~324), 35% of the lot. Altadena CSD limit: ¼ of net lot area + 1,000 sq ft, about 2,830 sq ft, so ~240 sq ft to spare. Any future covered patio, shed or pergola counts. Confirm the formula and net lot area with the planner. |
 | Floor area | About 2,238 sq ft enclosed (carport excluded). Altadena CSD limit uses the same formula, about 2,830 sq ft. Separate from the fire-rebuild permit's size limit (see [open questions](09-open-questions.md)). |
 | Bedrooms | Primary + 3 secondary: gym, guest, office |
-| Baths | Primary bath, shared ensuite, common bath (three-quarter, with a shower) |
+| Baths | Primary bath, guest ensuite (off the guest room only), common bath (three-quarter, with a shower) |
 | Code basis | 2022 California codes, as allowed for fire rebuilds by Executive Order N-29-25 (it suspends the 2025 codes for rebuild projects designed to the 2022 codes; confirm with Building and Safety that it covers a non-like-for-like rebuild); fire sprinklers required (NFPA 13D); Class A roof and Chapter 7A wildfire construction (VHFHSZ) |
 
 Final square footage is still to be confirmed. See [open questions](09-open-questions.md).

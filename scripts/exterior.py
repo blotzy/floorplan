@@ -44,7 +44,7 @@ def eaves(sc, ov_x, ov_y):
 
 
 def front_door(sc):
-    """Front door with one horizontal glass lite near its top (echoes the shared ensuite's high window)."""
+    """Front door with one horizontal glass lite near its top (echoes the guest ensuite's high window)."""
     x0, x1 = next(o for o in S.OPENINGS if o[0] == "porch front" and o[3] == "door")[1:3]
     sc.boxes["door"].append([x0, S.PORCH_Y + 2, x1, S.PORCH_Y + 5, 0, 96])
     c = (x0 + x1) / 2

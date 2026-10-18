@@ -32,7 +32,7 @@ What the energy consultant needs to model the house and produce the compliance f
 | Street (22°) | Lounge | 10'-0" x 5'-6" | 55.0 sq ft |
 | Street (22°) | Clerestory over the lounge (three 6' units) | 18'-0" x 3'-0" | 54.0 sq ft |
 | Street (22°) | Gym, guest, office (3) | 6'-0" x 5'-6" each | 99.0 sq ft |
-| Street (22°) | Shared ensuite (high) | 2'-6" x 1'-6" | 3.8 sq ft |
+| Street (22°) | Guest ensuite (high) | 2'-6" x 1'-6" | 3.8 sq ft |
 | Porch side (112°) | Reeded window | 2'-0" x 5'-6" | 11.0 sq ft |
 | East (112°) | Dining slider | 6'-0" x 8'-0" | 48.0 sq ft |
 | Rear (202°) | Dining (two units) | 12'-0" x 6'-6" | 78.0 sq ft |

@@ -190,8 +190,8 @@ def window_type(rm, w, h, sill, kind):
     return "Awning", ""
 
 
-CASEWORK_WORDS = {"HANG", "SHELVES", "SHELVES ABOVE", "SHELVES TO 6'", "DRAWERS", "LINEN", "BENCH", "BEV",
-                  "TALL STORAGE", "TRASH", "ON PEDESTAL", "HIGH WINDOW", "FOLDING COUNTER", "CEILING AIRER",
+CASEWORK_WORDS = {"HANG", "SHELVES", "SHELVES ABOVE", "SHELVES TO 6'", "DRAWERS", "BENCH", "BEV",
+                  "TALL STORAGE", "TRASH", "ON PEDESTAL", "HIGH WINDOW", "FOLDING COUNTER",
                   "LEDGE", "CURBLESS"}
 KEEP_OUTSIDE = {"CARPORT", "18' x 18'", "CONDENSER", "PORCH", "WOOD-LOOK FEATURE WALL"}
 
@@ -206,7 +206,7 @@ def build_doc():
     house = box(S.E - 2, S.N - 2, S.W + 2, S.S + 2)
     carport = box(*S.CARPORT).buffer(8)
     closets = [(e.dxf.insert.x, e.dxf.insert.y) for e in sh.msp.query("TEXT")
-               if e.dxf.text in ("CL", "CLOSET")]
+               if e.dxf.text in ("CL", "CLOSET", "LINEN CLOSET")]
     for e in list(sh.msp):
         lay, kind = e.dxf.layer, e.dxftype()
         txt = e.dxf.text if kind == "TEXT" else None
@@ -214,7 +214,7 @@ def build_doc():
         geo = box(bb.extmin.x, bb.extmin.y, bb.extmax.x, bb.extmax.y) if bb.has_data else None
         gone = (id(e) in drop or lay in ("A-ANNO-DIMS", "L-PLNT", "A-FENC", "C-PROP")
                 or (lay == "A-FURN" and not (geo and any(geo.buffer(1).contains(Point(p)) for p in closets)))
-                or (txt in CASEWORK_WORDS) or (txt and "FENCE" in txt) or (lay == "A-CLNG" and txt == "CEILING AIRER"))
+                or (txt in CASEWORK_WORDS) or (txt and "FENCE" in txt))
         if (not gone and lay == "A-WALL" and geo is not None and geo.area > 0
                 and geo.intersection(house).area < 0.5 * geo.area and not geo.within(carport)):
             gone = True                                                # the entry court's seat wall
@@ -223,10 +223,6 @@ def build_doc():
         if lay == "L-SITE" and not (geo and geo.within(carport)):
             gone = True
         if gone:
-            sh.msp.delete_entity(e)
-    for e in list(sh.msp.query("LWPOLYLINE[layer=='A-CLNG']")):    # the airer's dashed outline
-        bb = bbox.extents([e])
-        if bb.size.y > 50 and bb.size.x < 30:
             sh.msp.delete_entity(e)
     return sh
 
@@ -470,7 +466,7 @@ def roof_plan(pdf):
     ax.add_patch(Rectangle((X0 + 36, strip), X1 - X0 - 72, Y1 - strip, fill=False, ec="#1f5e9e", lw=1.0, ls="--"))
     ax.text(X0 + 48, Y1 - 50, "POTENTIAL SOLAR PV AREA (dashed): clear of the 36\" high-edge setback and the\n"
             "36\" pathways at both ends (CRC R324.6); final layout per the solar design", fontsize=6.5, color="#1f5e9e")
-    vtrs = [(860.0, S.N + 10, "VTR-1: shared ensuite (its own vent,\nin the strip along the high edge)", "bottom"),
+    vtrs = [(860.0, S.N + 10, "VTR-1: guest ensuite (its own vent,\nin the strip along the high edge)", "bottom"),
             (868.0, 544.0, "VTR-2 (3\" main vent), just downslope of the skylight: kitchen sink\n(up beside the window, into the pantry wall, then the\n"
                               "pantry attic), common bath, laundry and primary bath", "bottom")]
     for vx, vy, lab, va in vtrs:
@@ -503,7 +499,7 @@ def roof_plan(pdf):
              "5. Roof framing, sheathing and connections per structural.\n"
              "6. Roof penetrations flashed with boots or curbs fitted to the\n"
              "   panel pans. Two plumbing vents (VTR): the\n"
-             "   shared ensuite's in the strip along the high edge; the\n"
+             "   guest ensuite's in the strip along the high edge; the\n"
              "   rest combined into one beside the common bath skylight, so\n"
              "   the panel layout works around one cluster. Bath and laundry\n"
              "   fans exit through walls where possible. The range hood cap\n"

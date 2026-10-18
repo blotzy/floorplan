@@ -15,7 +15,7 @@
 
 - [ ] Find a solar provider to lay out the array and choose the mounting for the 2:12 standing-seam metal roof (clamps on the seams, so no racking penetrations), working around the range hood cap and the skylight and vent cluster; size the system and the battery. Do it before the roof framing is designed, so the engineer can allow for the load and the attachment points.
 - [x] Guest closet: decided. One long closet, with the door at the bath end.
-- [x] Primary tub: decided. A back-to-wall freestanding soaking tub (about 5'-7" x 32") in the primary bath wet room; the shared ensuite gets a standard 66" tub with a shower head. Pick both models before framing.
+- [x] Primary tub: decided. A back-to-wall freestanding soaking tub (about 5'-7" x 32") in the primary bath wet room; the guest ensuite gets a standard 66" tub with a shower head. Pick both models before framing.
 - [ ] Pick the primary back-to-wall tub. The space between the end walls is 6'-0". Base (floor footprint) no longer than about 5'-0" for at least 6" clear at each end at the floor; rim up to about 5'-8" (2"+ at each end) if the sides flare. Also check width (about 30"–32"), drain position, the wall-mounted filler, and the filled weight.
 - [ ] Primary tub filler: wall-mounted on the wall behind the tub (shared with the common bath), floor-mounted beside the tub, or on the tub's end wall at the closet side (already a plumbing wall). Only the first keeps the wall behind the tub a 2x6 plumbing wall; otherwise it can be a plain 2x4 wall, and the robot vacuum dock in the storage room takes its water and drain through the floor.
 - [x] Kitchen tall storage: decided. Floor-to-ceiling cabinets on both sides of the range.
