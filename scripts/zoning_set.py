@@ -238,7 +238,7 @@ def roof_plan(pdf):
             bbox=dict(fc="white", ec="none"))
     ax.text((X0 + X1) / 2, Y1 + 50, "Class A asphalt shingles · heights above finished floor · "
             f"{ftin(OV)} eaves all round (max. 2'-6\" into a required yard, §22.110.090.A) · "
-            "gutters along the rear edge and the wing's street edge", ha="center", fontsize=8.5)
+            "gutter along the rear edge (none on the wing's street eave)", ha="center", fontsize=8.5)
     ax.annotate("", (cx0 + 10, (cy0 + cy1) / 2), (cx1 - 20, (cy0 + cy1) / 2), arrowprops=dict(arrowstyle="->", lw=1.2))
     ax.text((cx0 + cx1) / 2, (cy0 + cy1) / 2 + 22, "CARPORT ROOF\n½\":12, slopes away from house\nstanding-seam metal\n"
             "gutter on east edge", ha="center", fontsize=7.5)

@@ -25,6 +25,7 @@ From the topographic survey (available on request; overlay: [survey-overlay.png]
 
 - Site drains (area drains, the swale/gravel drain along the east wall, downspout lines) and the building sewer use smooth-wall, solid pipe with glued or gasketed root-resistant joints; no perforated pipe within root range of trees. Perforated drains, where needed, go in a filter-fabric wrapped gravel trench.
 - Install vertical root barrier panels (about 2 ft deep, between trees and pipe runs) next to the street tree, the lot tree beside the driveway, and any tree planted near a drain or the sewer line. Plant trees at least 10 ft from drain and sewer lines.
+- **Drip trench at the bedroom wing's street wall:** that eave has no gutter, so a gravel-filled trench (part of the 5' noncombustible strip) runs under its drip line, with a drain at the bottom carrying the water to the site system (solid pipe where it passes near trees, per the rule above). A drip edge on the eave keeps the water off the fascia.
 - Cleanouts at each change of direction and at the ends of drain runs, so roots or debris can be cleared without digging; a backwater/cleanout at the sewer connection.
 
 ## Southeast courtyard (behind the carport, east of the house)

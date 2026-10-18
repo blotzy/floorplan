@@ -446,7 +446,7 @@ def roof_plan(pdf):
     ax.plot([wx, wx], [Y0, Y1], color=INK, lw=1.2)                         # shed / gable line
     ax.plot([wx, X1], [ry, ry], color=INK, lw=1.8)                         # the wing's ridge
     ax.text(X1 - 8, ry - 6, "RIDGE", fontsize=7, ha="right")
-    ax.text(wx + 6, Y0 + 30, "SHED WALL ABOVE THE GABLE:\nstep + kick-out flashing", fontsize=5.5)
+    ax.text(wx + 6, Y0 + 110, "SHED WALL ABOVE THE GABLE:\nstep + kick-out flashing", fontsize=5.5)
     for xx in (470, 680):                                              # shed: down toward the rear
         ax.annotate("", (xx, Y1 - 30), (xx, Y0 + 40), arrowprops=dict(arrowstyle="->", lw=1.4))
         ax.text(xx + 8, (Y0 + Y1) / 2, "2:12\nDN", fontsize=8, va="center")
@@ -463,10 +463,8 @@ def roof_plan(pdf):
         ax.add_patch(Circle((gx, Y1 + 4), 6, fc="white", ec=INK, lw=1.0))
     ax.text(X1 - 14, Y1 + 18, "GUTTER ALONG THE REAR EAVE, 3 DOWNSPOUTS (O) TO SITE DRAINAGE (CIVIL)",
             fontsize=6.5, ha="right", va="bottom")
-    ax.plot([wx, X1], [Y0 - 4, Y0 - 4], color=INK, lw=2.5)                 # the wing's street gutter
-    for gx in (wx + 14, X1 - 14):
-        ax.add_patch(Circle((gx, Y0 - 4), 6, fc="white", ec=INK, lw=1.0))
-    ax.text(X1 - 14, Y0 - 16, "GUTTER ALONG THE WING'S STREET EAVE, 2 DOWNSPOUTS", fontsize=6.5, ha="right")
+    ax.text(X1 - 14, Y0 - 16, "WING'S STREET EAVE: NO GUTTER (drip edge to a gravel drip trench with a drain, per civil)",
+            fontsize=6.5, ha="right")
     ax.plot([cx0 - 8, cx0 - 8], [cy0 - 6, cy1 + 6], color=INK, lw=2.0)
     ax.text(cx0 - 14, (cy0 + cy1) / 2, "GUTTER", fontsize=5.5, rotation=90, ha="right", va="center")
     sh = S.build()
@@ -516,8 +514,9 @@ def roof_plan(pdf):
              "   NO attic or eave vents.\n"
              "3. Eaves 2'-6\" all round, enclosed; dark metal fascia and drip edge.\n"
              "   See A-6 for fire-zone details (CRC R337).\n"
-             "4. Gutters with noncombustible gutter guards (CRC R337.5.4);\n"
-             "   downspouts to the site drainage system per civil.\n"
+             "4. Rear gutter with noncombustible gutter guards (CRC R337.5.4);\n"
+             "   downspouts to the site drainage system per civil. No gutter\n"
+             "   on the wing's street eave: drip edge over a gravel drip trench.\n"
              "5. Roof framing, sheathing and connections per structural.\n"
              "6. Roof penetrations flashed per the shingle maker. Two plumbing\n"
              "   vents (VTR): the guest ensuite's on the wing's street slope; the\n"
