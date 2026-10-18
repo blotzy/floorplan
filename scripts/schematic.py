@@ -213,9 +213,9 @@ def face(name, side):
     return c + side * t / 2
 
 
-# The hall skylight sits 18" street-side of the hall's centreline, so its tube rises to the gable's street
-# slope just below the ridge (out of the solar area) and the centreline stays free for the hall lights.
-HALL_TUBE_Y = (face("bedroom hall wall", +1) + face("south hall wall", -1)) / 2 - 18.0
+# The hall skylight is centred in the hall, in line with its lights; in the attic its tube jogs toward the
+# street (two adjustable elbows) to a dome on the gable's street slope just below the ridge, off the solar area.
+HALL_TUBE_Y = (face("bedroom hall wall", +1) + face("south hall wall", -1)) / 2
 
 
 def fmt(inches: float) -> str:

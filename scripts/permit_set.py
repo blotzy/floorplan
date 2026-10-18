@@ -422,7 +422,7 @@ def site_plan(pdf):
              "   survey first if required (SCAQMD Rule 1403); fill\n   and grade per civil.\n"
              "8. The retaining wall along the east line holds the\n   neighbor's higher grade: protect it in place.")
     fig.text(25.9 / W_IN, (y - 0.3) / H_IN, notes, fontsize=8, va="top", linespacing=1.35)
-    pdf.savefig(fig); fig.savefig(OUT / "A-1-site-plan.png", dpi=80); plt.close(fig)
+    pdf.savefig(fig); Z.save_png(fig, OUT / "A-1-site-plan.png", dpi=80); plt.close(fig)
 
 
 # ---- A-3 roof plan ---------------------------------------------------------------------------
@@ -473,8 +473,8 @@ def roof_plan(pdf):
     hs = hs and (hs[0], X.RIDGE_Y - 30)                                 # just below the ridge
     for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A),\nstraight up from the bath; VTR-2 just downslope", sk),
                          ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it", text_at(sh, "RANGE")),
-                         ("HALL", "14\" TUBULAR SKYLIGHT (CLASS A) from the hall ceiling, dome on\nthe street slope just "
-                          "below the ridge (small offset): out of the PV area", hs)):
+                         ("HALL", "14\" TUBULAR SKYLIGHT (CLASS A), centred in the hall; its tube jogs\n2'-6\" in the attic to a "
+                          "dome on the street slope below the ridge: out of the PV area", hs)):
         if p:
             ax.add_patch(Circle(p, 7, fc="white", ec=INK, lw=0.9))
             below = lab == "SKYLIGHT"                                    # its vent label sits above it
@@ -522,8 +522,8 @@ def roof_plan(pdf):
              "   vents (VTR): the guest ensuite's on the wing's street slope; the\n"
              "   rest combined into one just downslope of the common bath\n"
              "   skylight, so the panel layout works around one cluster. The\n"
-             "   hall skylight's dome is on the street slope too. Bath and laundry\n"
-             "   fans exit through walls where possible; the range hood cap is\n"
+             "   hall skylight's dome is on the street slope too. Bath fans\n"
+             "   exit through walls where possible; the range hood cap is\n"
              "   the other penetration in the PV area.\n"
              "7. Carport: attached open carport, its own roof at 1/2\":12 in\n"
              "   double-lock standing seam (Class A assembly, uplift-rated),\n"
@@ -538,7 +538,7 @@ def roof_plan(pdf):
              "   the maker's high-wind nailing, sealed starter strips at eaves\n"
              "   and rakes; eave and carport tie-downs per structural.")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
-    pdf.savefig(fig); fig.savefig(OUT / "A-3-roof-plan.png", dpi=80); plt.close(fig)
+    pdf.savefig(fig); Z.save_png(fig, OUT / "A-3-roof-plan.png", dpi=80); plt.close(fig)
 
 
 # ---- A-4 elevations ------------------------------------------------------------------------
@@ -599,7 +599,7 @@ def elevations(pdf):
     fig.text(26.0 / W_IN, 22.9 / H_IN, MATERIALS, fontsize=8.5, va="top", linespacing=1.35)
     fig.text(26.0 / W_IN, 18.6 / H_IN, f"Heights are above finished floor (0'-0\").\nAssumed finished floor: {ff:.1f}' "
              "(6\" above the\nhighest existing grade at the walls).\nScale: 3/16\" = 1'-0\"", fontsize=8.5, va="top")
-    pdf.savefig(fig); fig.savefig(OUT / "A-4-elevations.png", dpi=80); plt.close(fig)
+    pdf.savefig(fig); Z.save_png(fig, OUT / "A-4-elevations.png", dpi=80); plt.close(fig)
 
 
 # ---- A-5 sections --------------------------------------------------------------------------
@@ -719,7 +719,7 @@ def sections(pdf):
     fig.text(27.0 / W_IN, 15.0 / H_IN, "Section cuts: A at the lounge / kitchen, B at the guest room,\n"
              "C along the lobby (see A-2). Heights above finished floor;\nexisting grade approximate (survey, assumed "
              f"floor {ff:.1f}').", fontsize=8.5, va="top")
-    pdf.savefig(fig); fig.savefig(OUT / "A-5-sections.png", dpi=80); plt.close(fig)
+    pdf.savefig(fig); Z.save_png(fig, OUT / "A-5-sections.png", dpi=80); plt.close(fig)
 
 
 # ---- A-6 fire-zone details -------------------------------------------------------------------
@@ -792,7 +792,7 @@ def details(pdf):
     ax.annotate("Flashing", (36, 78.5), (8, 96), fontsize=6.5, arrowprops=dict(arrowstyle="-", lw=0.6))
     ax.text(48, 46, "Duct up from the\nhood or fan", fontsize=6.5, va="center")
     ax.plot([2, 86], [36, 36], color=INK, lw=0.5, ls=":")
-    ax.text(4, 33, "4b WALL CAP: bath and laundry fans\non an exterior wall (no roof penetration)", fontsize=7, va="top")
+    ax.text(4, 33, "4b WALL CAP: bath fans on an exterior\nwall (no roof penetration)", fontsize=7, va="top")
     ax.add_patch(Rectangle((50, 4), 9, 20, fc="#ccc", ec=INK))                                        # wall (section)
     ax.add_patch(Rectangle((22, 12), 30, 5, fc="white", ec=INK))                                      # duct
     ax.add_patch(Rectangle((59, 9), 6, 11, fc="#999", ec=INK))                                        # cap
@@ -800,7 +800,7 @@ def details(pdf):
     ax.text(22, 21, "Duct from the fan", fontsize=6.5, va="bottom")
     table(fig, 0.9, 11.9, "WILDLAND-URBAN INTERFACE REQUIREMENTS (VERY HIGH FIRE HAZARD SEVERITY ZONE)",
           ("CRC", "ITEM", "THIS PROJECT"), (1.0, 1.6, 9.5), [(a, b, c) for a, b, c in R337], fs=7.5)
-    pdf.savefig(fig); fig.savefig(OUT / "A-6-fire-details.png", dpi=80); plt.close(fig)
+    pdf.savefig(fig); Z.save_png(fig, OUT / "A-6-fire-details.png", dpi=80); plt.close(fig)
 
 
 def cover_view():
@@ -916,9 +916,10 @@ def loads_plan(pdf):
              "   blocking, strongbacks, ducts and pipes, so recessed lights\n"
              "   fit between the trusses along it (clear of the hatch, smoke\n"
              "   alarm and return grille). Run the duct trunk to one side.\n"
-             "   The 14\" skylight tube sits just street-side of it, near the end.")
+             "   The 14\" skylight takes the last spot, near the end; its tube\n"
+             "   jogs toward the street in the attic (two elbows) to its dome.")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
-    pdf.savefig(fig); fig.savefig(OUT / "A-7-attic-loads.png", dpi=80); plt.close(fig)
+    pdf.savefig(fig); Z.save_png(fig, OUT / "A-7-attic-loads.png", dpi=80); plt.close(fig)
 
 
 # ---- A-0 cover -------------------------------------------------------------------------------
@@ -977,7 +978,7 @@ def cover(pdf):
            "4. Special inspections and structural observation per the structural engineer.\n"
            "5. Smoke and CO alarms per A-2; fire sprinklers per the deferred submittal.")
     fig.text(9.0 / W_IN, 6.2 / H_IN, gen, fontsize=9, va="top", linespacing=1.5)
-    pdf.savefig(fig); fig.savefig(OUT / "A-0-cover.png", dpi=80); plt.close(fig)
+    pdf.savefig(fig); Z.save_png(fig, OUT / "A-0-cover.png", dpi=80); plt.close(fig)
 
 
 # ---- A-2 floor plan --------------------------------------------------------------------------
@@ -1133,7 +1134,7 @@ def floor_plan(pdf):
     table(fig, 13.4, 9.0, "WINDOW SCHEDULE", ("TAG", "QTY", "LOCATION", "SIZE (W x H)", "SILL", "OPERATION", "NOTES"),
           (0.45, 0.45, 2.3, 1.15, 0.6, 2.0, 4.2), wsched, fs=7)
     pdf.savefig(fig)
-    fig.savefig(OUT / "A-2-floor-plan.png", dpi=80)
+    Z.save_png(fig, OUT / "A-2-floor-plan.png", dpi=80)
     plt.close(fig)
 
 

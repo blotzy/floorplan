@@ -39,6 +39,17 @@ THK, OV = X.THK, X.EAVE                        # roof framing depth, eave overha
 INK, SOFT = "#222", "#888"
 
 
+def save_png(fig, path, dpi):
+    """Save a sheet image; if Windows has the file open (locked), write a timestamped copy beside it."""
+    try:
+        fig.savefig(path, dpi=dpi)
+    except OSError:
+        import time
+        alt = path.with_name(f"{path.stem}-{time.strftime('%H%M%S')}{path.suffix}")
+        fig.savefig(alt, dpi=dpi)
+        print("   locked:", path.name, "-> wrote", alt.name)
+
+
 def ftin(v):
     """Inches -> 12'-3 1/4" style."""
     neg, v = v < 0, abs(v)
@@ -198,7 +209,7 @@ def site_plan(pdf):
              f"6. Rear window canopies {ftin(S.CANOPY_D)} deep (§22.110.090.B: up to 5' into the rear yard):\n"
              "   over the windows only, 1' past each side, no supports in the yard.")
     tx.text(0.0, y - 0.01, notes, fontsize=7.2, va="top", transform=tx.transAxes, linespacing=1.3)
-    pdf.savefig(fig); fig.savefig(OUT / "Z-1-site-plan.png", dpi=110); plt.close(fig)
+    pdf.savefig(fig); save_png(fig, OUT / "Z-1-site-plan.png", dpi=110); plt.close(fig)
 
 
 # ---- Z-2 floor plan ---------------------------------------------------------------------------------
@@ -212,7 +223,7 @@ def floor_plan(pdf):
     ax.text((S.E + S.W) / 2, S.N - 70,
             f"Floor area {HOUSE:,.0f} sq ft (to outside of walls)  ·  covered porch {PORCH:,.0f} sq ft  ·  "
             f"carport {CARPORT:,.0f} sq ft  ·  room sizes are clear dimensions", fontsize=9, ha="center")
-    pdf.savefig(fig); fig.savefig(OUT / "Z-2-floor-plan.png", dpi=110); plt.close(fig)
+    pdf.savefig(fig); save_png(fig, OUT / "Z-2-floor-plan.png", dpi=110); plt.close(fig)
 
 
 # ---- Z-3 roof plan --------------------------------------------------------------------------------
@@ -246,7 +257,7 @@ def roof_plan(pdf):
     dim(ax, (X0, Y1 + 25), (X1, Y1 + 25), ftin(X1 - X0) + " to fascia")
     dim(ax, (X1 + 30, Y0), (X1 + 30, Y1), ftin(Y1 - Y0) + " to fascia", rot=90)
     ax.set_aspect("equal"); ax.set_xlim(cx0 - 60, X1 + 80); ax.set_ylim(Y0 - 60, Y1 + 80); ax.axis("off")
-    pdf.savefig(fig); fig.savefig(OUT / "Z-3-roof-plan.png", dpi=110); plt.close(fig)
+    pdf.savefig(fig); save_png(fig, OUT / "Z-3-roof-plan.png", dpi=110); plt.close(fig)
 
 
 # ---- Z-4 elevations -------------------------------------------------------------------------------
@@ -390,7 +401,7 @@ def elevations(pdf):
     fig.text(0.02, 0.962, "Street facade articulation (§22.140.520, Table 22.140.520-C): recessed windows: all street "
              f"windows set {S.WINDOW_RECESS:.0f}\" behind the stucco face.\n"
              "Rear: metal canopies over the kitchen and primary bedroom windows.", fontsize=8.5, color="#555", va="top")
-    pdf.savefig(fig); fig.savefig(OUT / "Z-4-elevations.png", dpi=110); plt.close(fig)
+    pdf.savefig(fig); save_png(fig, OUT / "Z-4-elevations.png", dpi=110); plt.close(fig)
 
 
 def main():
