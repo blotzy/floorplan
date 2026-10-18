@@ -437,28 +437,24 @@ def chosen_exterior(sc, porch=True, facade=True):
 
 
 def roof_options():
-    """Alternative roofs for the main model's Roof selector: {label: tris} (the main plan's standing-seam
-    metal shed with a 3' clerestory band is the model's own roof). Order matters: make_3d's hash links."""
+    """Alternative roofs for the main model's Roof selector, all standing-seam metal: {label: tris} (the main
+    plan's shed with a 3' clerestory band is the model's own roof). Order matters: make_3d's hash links."""
     out = {}
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
-    low_gable(sc, 2 / 12, EAVE, glazed_ends=False)
+    low_gable(sc, 2 / 12, EAVE, seams=True, glazed_ends=False)
     out["MCM gable 2:12, flat 9' ceilings"] = dict(sc.tris)
-    for label, seams, glass_h in (
-            ("MCM metal shed 2:12, full-height clerestory, great room vaulted", True, None),
-            ("MCM shingle shed 2:12, 3' clerestory band, great room vaulted", False, 36.0),
-            ("MCM shingle shed 2:12, full-height clerestory, great room vaulted", False, None)):
-        sc = M.Scene()
-        band(sc, "exterior", WALL_TOP, PLATE)
-        shed_vault_great(sc, 2 / 12, EAVE, seams=seams, band=glass_h)
-        out[label] = dict(sc.tris)
+    sc = M.Scene()
+    band(sc, "exterior", WALL_TOP, PLATE)
+    shed_vault_great(sc, 2 / 12, EAVE, seams=True)
+    out["MCM shed 2:12, full-height clerestory, great room vaulted"] = dict(sc.tris)
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
     shed_gable(sc, 2 / 12, EAVE, glass=(CLERESTORY_MID - 90.0, CLERESTORY_MID + 90.0), seams=True)
-    out["MCM split: metal shed 2:12 over the lounge (15' x 3' clerestory), gables 2:12 either side"] = dict(sc.tris)
+    out["MCM split: shed 2:12 over the lounge (15' x 3' clerestory), gables 2:12 either side"] = dict(sc.tris)
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
     shed_gable(sc, 2 / 12, EAVE, xs=SPLIT_WIDE_X, seams=True)
-    out["MCM split: metal shed 2:12 from the porch into the bedroom wing (18' x 3' clerestory centred), "
+    out["MCM split: shed 2:12 from the porch into the bedroom wing (18' x 3' clerestory centred), "
         "gable 2:12 over the rest of the wing"] = dict(sc.tris)
     return out
