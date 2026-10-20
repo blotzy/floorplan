@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 19, 2026
 
+- **11:08 PM**: Driveway reshaped to keep the east parkway olive: a 12' approach in the parkway just east of the olive (3' clear of its trunk), widening past it to the carport's full 18' at the property line, then straight to the carport. Only the parkway ficus (and the lot tree) are removed. Plan, 3D model, A-1, FM-1, site doc, open questions and engineer brief.
 - **10:59 PM**: East parkway trees: the tree in the driveway is identified as an olive, and a ficus about 10' east of it (not on the survey, drawn approximately) is added; both are removed under a County permit. Site plan A-1, FM-1 (existing vegetation table and notes), site doc and open questions.
 - **10:56 PM**: Open questions: the parkway tree to-do now covers the two east parkway trees, the olive in the driveway and a ficus beside it (not on the survey); the west parkway olives stay.
 - **10:52 PM**: Fuel modification plan FM-1 (owner-prepared, for LA County Fire): ember-resistant zone under the eaves and 5' beyond them, the whole lot in Zone A, planting legend with botanical names (Toyon as the privacy tree, since Catalina cherry is Zone B only; western redbud in front of the bedroom wing), existing vegetation and notes. The privacy tree moves 20" toward the street to keep its canopy clear of the eaves. Site plan A-1 notes updated to match.
