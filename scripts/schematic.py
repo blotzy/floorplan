@@ -442,6 +442,12 @@ def wic(sh):
     room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=5.0)
 
 
+def carport_size():
+    """The carport's size label, e.g. 18' x 23'."""
+    cx0, cy0, cx1, cy1 = CARPORT
+    return f"{round((cx1 - cx0) / 12)}' x {round((cy1 - cy0) / 12)}'"
+
+
 def driveway_outline():
     """Closed outline of the driveway, parkway apron included (lot inches)."""
     x0, x1 = DRIVE_IN
@@ -670,7 +676,7 @@ def build() -> Sheet:
     for k in range(2):
         sh.rect(sx + k * STALL_W, py, sx + (k + 1) * STALL_W, py + STALL_D, "L-SITE")
     sh.text("CARPORT", (cx0 + cx1) / 2, py + STALL_D / 2 + 14, 10.0, "A-AREA-IDEN")
-    sh.text("18' x 23'", (cx0 + cx1) / 2, py + STALL_D / 2, 6.5, "A-AREA-IDEN")
+    sh.text(carport_size(), (cx0 + cx1) / 2, py + STALL_D / 2, 6.5, "A-AREA-IDEN")
     sh.text("2 SPACES, 8'-6\" x 18'-0\"", (cx0 + cx1) / 2, py + STALL_D / 2 - 14, 5.0, "A-AREA-IDEN")
     sh.msp.add_lwpolyline(driveway_outline(), close=True, dxfattribs={"layer": "L-SITE"})
     sh.text("DRIVEWAY", (DRIVE_IN[0] + DRIVE_IN[1]) / 2 + 10, 120.0, 9.0, "A-AREA-IDEN")
