@@ -49,6 +49,15 @@ E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 # Corner porch notch (outer faces) at the north-east corner.
 PORCH_X, PORCH_Y = 444.1, 289.2      # notch is E..PORCH_X by N..PORCH_Y
 FOYER_WALL_END = PORCH_Y + EXT + 108.0   # foyer/TV wall: 9' of foyer inside the front wall
+# Hearth bench: one built-in bench along the lounge's TV wall (the lounge side of the foyer wall and the porch
+# side wall), from the street-wall corner to just short of the foyer-to-hall walkway. Framed and drywalled on a
+# recessed base (it reads as floating); window seat at the reeded window end, a linear electric fireplace in
+# its face under the TV, and cubbies.
+HEARTH_D = 21.0                          # deep enough for a receiver in a cubby
+HEARTH_Y = (N_IN, 398.0)
+TV_CY = (305.0 + 396.0) / 2 - 9.0        # 90" TV centre line: about centred on the wall
+HEARTH_FIRE = (TV_CY - 30.0, TV_CY + 30.0)   # 60" linear electric fireplace, centred under the TV
+HEARTH_CUBBIES = [(293.5, 307.5), (375.5, 395.5)]   # small cubby by the window seat; AV cubby at the walkway end
 # Porch: a qualifying covered entry porch under Table 22.140.520-D (8' x 5', ceiling no more than 12' above
 # its floor). It runs 1' past the house front toward the street (a covered porch may project up to 5' into
 # the front yard, §22.110.090.D.2) under a slim canopy at the porch ceiling's height, and 8" east into the
@@ -606,8 +615,16 @@ def build() -> Sheet:
     for y in (523 - 51, 523 + 51):
         sh.circle((dcx, y), 7, fu)
     seat_cy = (305.0 + 396.0) / 2           # centre of the sectional's seating area
-    tv = face("foyer wall", +1)             # 90" TV, ~78.5" wide, centred on the seating
-    sh.rect(tv, seat_cy - 39.25, tv + 3, seat_cy + 39.25, fu); sh.text('TV 90"', tv + 8, seat_cy, 4.0, rot=90)
+    tv = face("foyer wall", +1)
+    hx, (hy0, hy1) = tv + HEARTH_D, HEARTH_Y              # hearth bench (drawn before the TV, whose label sits
+    sh.rect(tv, hy0, hx, hy1, fu)                          # over it: the 3D model reads the first label inside)
+    sh.text("HEARTH BENCH", tv + HEARTH_D / 2, hy0 + 18, 3.0, rot=90)
+    sh.text("WINDOW SEAT", hx + 8, hy0 + 20, 3.0, rot=90)
+    for (a, b), lab in ((HEARTH_FIRE, "ELEC. FIREPLACE"), *((c, "CUBBY") for c in HEARTH_CUBBIES)):
+        for p, q in (((hx - 3, a), (hx, a)), ((hx - 3, b), (hx, b)), ((hx - 3, a), (hx - 3, b))):
+            sh.line(p, q, "A-EQPM")                        # openings in the bench face
+        sh.text(lab, hx + 6, (a + b) / 2, 2.5 if lab == "CUBBY" else 3.0, rot=90)
+    sh.rect(tv, TV_CY - 39.25, tv + 3, TV_CY + 39.25, fu); sh.text('TV 90"', tv + 8, TV_CY, 4.0, rot=90)   # 90" TV
     sh.msp.add_lwpolyline([(505.0, 267.0), (635.0, 267.0), (635.0, 396.0), (597.0, 396.0), (597.0, 305.0),
                            (505.0, 305.0)], close=True, dxfattribs={"layer": fu})   # L sectional, 38" deep
     sh.text("L SECTIONAL", 551.0, 287.0, 4.0)

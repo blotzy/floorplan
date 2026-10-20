@@ -26,6 +26,7 @@
 - [ ] Pick the primary back-to-wall tub. The space between the end walls is 6'-0". Base (floor footprint) no longer than about 5'-0" for at least 6" clear at each end at the floor; rim up to about 5'-8" (2"+ at each end) if the sides flare. Also check width (about 30"–32"), drain position, the wall-mounted filler, and the filled weight.
 - [ ] Primary tub filler: wall-mounted on the wall behind the tub (shared with the common bath), floor-mounted beside the tub, or on the tub's end wall at the closet side (already a plumbing wall). Only the first keeps the wall behind the tub a 2x6 plumbing wall; otherwise it can be a plain 2x4 wall, and the robot vacuum dock in the storage room takes its water and drain through the floor.
 - [x] Kitchen tall storage: decided. Floor-to-ceiling cabinets on both sides of the range.
+- [ ] Pick the linear electric fireplace (about 60") for the hearth bench: listed for a built-in install with a bench or shelf directly above it, heat venting to the front or bottom, its circuit, and its clearance to the TV above. The framer builds the bench to its installation sheet.
 - [ ] Pick the fridge model (sets the exact opening and door clearance). When shopping, check that its depth and open doors leave the walkway past it clear.
 
 **Trades**

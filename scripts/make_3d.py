@@ -50,7 +50,7 @@ LABEL_H = [            # label inside a shape -> (z0, z1); first match wins
     ("FRIDGE", (0, 70)), ("RANGE", (0, 36)), ("DOUBLE VANITY", (0, 34)), ("VANITY", (0, 34)),
     ("VAN", (0, 34)), ("WC", (0, 16)), ("TUB ACCESS", None), ("TUB", (0, 20)), ("DRYER", (0, 53)),
     ("WASHER", (0, 53)), ("FOLDING", (0, 36)), ("PANEL", (36, 66)), ("RACK", (0, 72)),
-    ("TALL STORAGE", (0, 96)), ("CLOSET", (0, 96)), ("LINEN", (0, 84)), ("HANG", (0, 84)), ("SHELVES TO", (0, 70)), ("SHELVES", (0, 84)), ("CL", (0, 96)), ("BENCH", (0, 18)),
+    ("TALL STORAGE", (0, 96)), ("CLOSET", (0, 96)), ("LINEN", (0, 84)), ("HANG", (0, 84)), ("SHELVES TO", (0, 70)), ("SHELVES", (0, 84)), ("CL", (0, 96)), ("HEARTH", (8, 18)), ("BENCH", (0, 18)),
     ("DRAWERS", (0, 36)),  # WIC end-wall drawer stack (shelves/mirror above in reality)
     ("LEDGE", (0, 42)),    # shower ledge wall, tiled shelf on top
     ("TV", (24, 68)),      # 90" TV: ~44" tall, centre ~42" above the floor for seated viewing
@@ -95,6 +95,14 @@ def build_schematic() -> Scene:
         sc.boxes["concrete"].append([x0, y0, x1, y1, 0, S.ENTRY_WALL_H])
     w0 = S.ENTRY_WALLS[0]
     sc.boxes["post"].append([w0[2] - 30, w0[1] - 0.5, w0[2] - 12, w0[1], 10, 16])   # lit house numbers
+    hx0, (hy0, hy1) = S.face("foyer wall", +1), S.HEARTH_Y              # hearth bench: recessed base (the bench
+    hx1 = hx0 + S.HEARTH_D                                              # itself comes from the plan's label)
+    sc.boxes["frame"].append([hx0, hy0 + 3, hx1 - 3, hy1 - 3, 0, 8])
+    a, b = S.HEARTH_FIRE                                                # fireplace, high in the bench face
+    sc.boxes["frame"].append([hx1 - 4, a - 1, hx1 + 0.2, b + 1, 9, 16.5])
+    sc.boxes["flame"].append([hx1 - 0.5, a + 2, hx1 + 0.3, b - 2, 10.5, 15])
+    for a, b in S.HEARTH_CUBBIES:                                       # open cubbies
+        sc.boxes["frame"].append([hx1 - 0.6, a, hx1 + 0.2, b, 9.5, 16.5])
 
     # ---- walls: a face along every edge of the wall outline ----------------------
     # Faces on the house's outer perimeter are "exterior" (siding colour), the rest "wall".
@@ -381,7 +389,7 @@ const M = {
   ceiling_cut:{color:0xffffff, side:THREE.DoubleSide, transparent:true, opacity:0.92},
   fixture:{color:0xd9d4cc}, furniture:{color:0x8fa3b8}, counter:{color:0x9a8f84},
   closet:{color:0xb59a7a}, bed:{color:0xe8e1d4},
-  chrome:{color:0xdfe3e8, roughness:0.4, metalness:0.15}, post:{color:0x5a5f66}, roof:{color:0x4a4f55, transparent:true, opacity:0.85},
+  chrome:{color:0xdfe3e8, roughness:0.4, metalness:0.15}, post:{color:0x5a5f66}, frame:{color:0x2B2D30}, flame:{color:0xFF8A2A, emissive:0xC0501A}, roof:{color:0x4a4f55, transparent:true, opacity:0.85},
 };
 const mat = k => new THREE.MeshStandardMaterial(Object.assign(
   {roughness:0.9, polygonOffset:true, polygonOffsetFactor:1, polygonOffsetUnits:1}, M[k]||{color:0xcccccc}));
