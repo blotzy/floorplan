@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 20, 2026, 2:15 PM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 20, 2026, 3:51 PM PT · @Richard
 
 [CHANGELOG](CHANGELOG.md)
 
@@ -61,6 +61,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | Experiment: [hall ending at the office](renders/experiments/office-end.png) (vs [the current plan](renders/experiments/office-end-current.png)) | No west door: the office door closes the end of the hall, and the primary bedroom is entered through a small foyer with the closet on one side and the bedroom on the other |
 | Experiment: [hall ending just past the primary door](renders/experiments/office-alcove.png) (vs [the current plan](renders/experiments/office-end-current.png)) | No west door: the office door closes the hall just past the primary bedroom door, and the office gains the old hall end as a desk alcove; the primary entry and closet stay as they are |
 | Experiment: [office patio](renders/experiments/office-patio.png) · [3D model](renders/experiments/office-patio/house.html) · views [from the street](renders/experiments/office-patio/street-view.png), [from the office](renders/experiments/office-patio/office-view.png) | The hall ending at the office, plus a covered 4'-deep patio across the office's street side (guest room to the west end), with 6' French doors from the office |
+| Experiment: [hearth bench](renders/experiments/hearth-bench.png) · [3D model](renders/experiments/hearth-bench/house.html) · views [from the couch](renders/experiments/hearth-bench/couch-view.png), [from the dining room](renders/experiments/hearth-bench/lounge-view.png) | A floating 16"-deep hearth bench along the lounge TV wall, a 60" linear electric fireplace set into its face, the 90" TV just above it, and a wood-slat wall up to the sloped ceiling |
 | [Fuel modification plan (PDF)](renders/fuelmod/fuel-modification-plan.pdf) | [FM-1](renders/fuelmod/FM-1-fuel-modification-plan.png): owner-prepared plan for LA County Fire: ember-resistant zone, Zone A, existing and proposed planting with botanical names |
 | [Zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) | Site plan with setbacks and project data, floor plan, roof plan, elevations ([how to submit](docs/11-zoning-check.md)) |
 | [`accosting-owner-schematic-survey.dxf`](accosting-owner-schematic-survey.dxf) | The plan over the topographic survey as a DXF (inches) |
