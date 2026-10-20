@@ -40,7 +40,8 @@ What the energy consultant needs to model the house and produce the compliance f
 | Rear (202°) | High windows (3: primary tub, primary bath, laundry) | 3'-6" x 2'-0" each | 21.0 sq ft |
 | Rear (202°) | Primary bedroom | 6'-0" x 5'-6" | 33.0 sq ft |
 | West (292°) | Reading nook | 3'-0" x 4'-0" | 12.0 sq ft |
-| | **Total** | | **about 437 sq ft (about 19.5% of the floor area, under the prescriptive 20%)** |
+| West (292°) | Office (high) | 4'-0" x 2'-0" | 8.0 sq ft |
+| | **Total** | | **about 445 sq ft (about 19.9% of the floor area, just under the prescriptive 20%)** |
 
 Shading: 2'-6" eaves all round; at the rear, 3'-deep metal canopies over the kitchen and primary bedroom windows. The front door's glass lite (if any) is still to be chosen.
 
