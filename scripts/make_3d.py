@@ -694,6 +694,7 @@ def main():
     X.chosen_exterior(sc)
     add_vault_ceiling(sc, X.great_room_vault(to_outside=True))
     opts = X.roof_options()
+    plan_boxes = {k: list(v) for k, v in sc.boxes.items()}      # the OBJ keeps the plan's carport
     cx0, cy0, cx1, cy1 = X.S.CARPORT                               # the carport's roof and posts move to the
     sc.boxes["roof"] = [b for b in sc.boxes["roof"] if b[4] != 108]   # Carport selector
     posts = [b[:4] for b in sc.boxes["post"] if b[5] == 108 and cx0 - 12 <= b[0] <= cx1 + 12 and cy0 - 12 <= b[1] <= cy1 + 12]
@@ -702,6 +703,8 @@ def main():
     write_model(sc, ROOT / "renders" / "3d", {**sc.meta, "roof_hidden": True, "roof_options": opts,
                                               "carport_options": X.carport_options(posts),
                                               "roof_flat": [i + 1 for i, k in enumerate(opts) if "flat" in k]})
+    sc.boxes.update(plan_boxes)
+    write_obj(sc, ROOT / "renders" / "3d" / "house.obj")
 
 
 if __name__ == "__main__":
