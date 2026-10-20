@@ -611,9 +611,9 @@ def build() -> Sheet:
     sh.text("L SECTIONAL", 551.0, 287.0, 4.0)
     sh.rect(533.0, seat_cy - 23, 579.0, seat_cy + 23, fu)                     # 46" square table
     sh.movable_since(m0)
-    fw = face("foyer wall", -1)             # closet + bench on the foyer side of the TV wall
-    sh.rect(fw - 18, 300.0, fw, 333.0, fu); sh.text("CLOSET", fw - 9, 316.5, 3.0, rot=90)
-    sh.rect(fw - 18, 333.0, fw, 366.0, fu); sh.text("BENCH", fw - 9, 349.5, 3.0, rot=90)
+    fw = face("foyer wall", -1)             # closet | bench niche | closet on the foyer side of the TV wall
+    for y0, y1, lab in ((300.0, 330.0, "CLOSET"), (330.0, 370.0, "BENCH"), (370.0, 400.0, "CLOSET")):
+        sh.rect(fw - 18, y0, fw, y1, fu); sh.text(lab, fw - 9, (y0 + y1) / 2, 3.0, rot=90)
 
     def bed(head_x, cy, w, d):              # 80" mattress + 3" headboard on the wall at head_x,
         hb = head_x + d * 3                 # running in x-direction d; 18" x 16" nightstands

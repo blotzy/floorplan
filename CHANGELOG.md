@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **2:02 PM**: Foyer: the foyer wall is now one built-in, closet / bench niche / closet (was a closet and a bench), with shoes and coats behind closed doors. Plan, 3D model, zoning and permit sets, floor-plan doc.
 - **1:58 PM**: New inspiration page with a foyer storage reference photo (built-in bench niche between floor-to-ceiling cabinets); the image is kept in the repo.
 - **1:49 PM**: Office: a 4'-0" x 2'-0" high window on the west wall (sill 6'), over the bed head, for cross-breeze and privacy from the neighbour's two-story house. Glazing about 445 sq ft (19.9%, just under 20%). Plan, 3D model, zoning and permit sets, floor-plan and Title 24 docs.
 - **1:43 PM**: Ceiling fans with lights in the primary bedroom, guest bedroom and office: electrical (fan-rated boxes, separate fan and light control), HVAC (registers clear of the blades), plumbing and open questions (sprinkler heads clear of the fans).
