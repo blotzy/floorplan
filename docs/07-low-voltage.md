@@ -11,5 +11,6 @@ All structured cabling home-runs to the network rack (in the mechanical / networ
 - **Cameras:** PoE exterior cameras. Include drops at the carport, the corner porch, the bin pad, and under the rear eave.
 - **Doorbell:** PoE doorbell at the corner porch. Confirm the chosen model's chime wiring (some PoE models use a digital chime and need no transformer). Feed can show on the lounge TV.
 - **TV wall:** conduit from the lounge side of the foyer wall to the network rack, 2" or larger since AV equipment may live with the rack.
+- **Primary bedroom TV:** a low-voltage pass-through at the recessed TV box on the wall facing the bed, with a data drop (or a conduit to the attic).
 - **Attic access:** a conduit from the network rack into the attic for future runs.
 - **Optional:** low-voltage or power at window heads for motorized shades.
