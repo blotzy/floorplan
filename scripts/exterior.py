@@ -509,8 +509,34 @@ def carport_options(posts):
                 quad(sc, "pv", *[[a, b, top(a, b) + 0.8] for a, b in ((x, y), (x + 68, y), (x + 68, y + 40), (x, y + 40))])
                 x += 69
             y += 41
+    def gable_style(pitch, ridge_y):
+        """Gable on the posts, eaves at 9': ridge front-to-back (gable end to the street) or, with
+        ridge_y, side-to-side (gable ends east and west). Closed stucco gable ends."""
+        sc = M.Scene()
+        eave, thk = 108.0, 6.0
+        if ridge_y:
+            ym = (Y0 + Y1) / 2
+            top = lambda x, y: eave + thk + ((Y1 - Y0) / 2 - abs(y - ym)) * pitch
+            for a, b in ((Y0, ym), (ym, Y1)):
+                sloped_slab(sc, "roofing", X0, a, X1, b, top, thk)
+            for x in (X0 + 6, X1):                                  # gable ends (the west one against the house)
+                sc.tris["exterior"].append([[x, Y0 + 6, eave], [x, Y1 - 6, eave], [x, ym, top(x, ym) - thk]])
+        else:
+            xm = (X0 + X1) / 2
+            top = lambda x, y: eave + thk + ((X1 - X0) / 2 - abs(x - xm)) * pitch
+            for a, b in ((X0, xm), (xm, X1)):
+                sloped_slab(sc, "roofing", a, Y0, b, Y1, top, thk)
+            for y in (Y0 + 6, Y1 - 6):                              # gable ends, street and rear
+                sc.tris["exterior"].append([[X0 + 6, y, eave], [X1, y, eave], [xm, y, top(xm, y) - thk]])
+        for p in posts:
+            box_tris(sc, "post", *p, 0, eave)
+        return dict(sc.tris)
+
     return {
         "Flat standing-seam metal at 9' (plan)": style(lambda x, y: 112, 4, "roof"),
+        "Gable 4:12, gable end to the street (ridge front to back)": gable_style(4 / 12, False),
+        "Gable 6:12, gable end to the street (ridge front to back)": gable_style(6 / 12, False),
+        "Gable 4:12, gable ends east and west (ridge side to side)": gable_style(4 / 12, True),
         "Thick MCM slab with a dark 12\" fascia, in line with the porch canopy": style(lambda x, y: 111, 12, "canopy"),
         "Shed 2:12, high at the house, sloping away to the east": style(lambda x, y: 138 - (cx1 - x) * 2 / 12, 6, "roof"),
         "Solar canopy: PV panels on a steel frame, 1:12 down toward the rear": style(lambda x, y: 126 - (y - Y0) / 12, 4,
