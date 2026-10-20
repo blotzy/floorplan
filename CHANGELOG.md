@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **4:36 PM**: Hearth bench window seat: lift-up lid over a lined storage box, hinged at the wall on a soft-close stay that stops it short of the reeded window. Floor-plan doc.
 - **4:30 PM**: Hearth bench: the two cubbies now match (20" each), one each side of the fireplace, symmetrical under the TV; a data drop in each. Plan, 3D model, sets, floor-plan and low-voltage docs.
 - **4:28 PM**: Lounge: a hearth bench along the whole TV wall, framed and drywalled on a recessed base (reads as floating), 21" deep. It has a window seat at the reeded window, a 60" linear electric fireplace in its face under the TV, and two open cubbies, the larger an AV cubby at the walkway end. The TV moves 9" north to centre on the wall and hangs just above the bench. The foyer closet at the dining-room end, behind the TV, becomes the AV closet. Electrical (fireplace circuit, low TV box, cubby outlets, AV closet outlet and fan) and low-voltage notes (conduit from the TV box to the AV closet and on to the rack, cubby conduits and data). Plan, 3D model, sets, floor-plan doc, open questions (fireplace model). The hearth bench experiment is adopted and removed.
 - **2:15 PM**: Primary bedroom TV wall (between the walk-in closet and bath doors): a recessed TV box set for a lower, tilting mount (keeps the high window's reflection off the screen), blocking for the mount, and a data drop. Electrical and low-voltage docs.
