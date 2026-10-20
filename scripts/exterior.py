@@ -489,4 +489,13 @@ def roof_options():
         band(sc, "exterior", WALL_TOP, PLATE)
         low_gable(sc, rise / 12, EAVE, glazed_ends=False)
         out[f"Gable {rise}:12, flat 9' ceilings"] = dict(sc.tris)
+    for label, roof in (("Hip 4:12, flat 9' ceilings", lambda sc: hip(sc, 4 / 12, EAVE)),
+                        ("MCM butterfly 2:12 (valley down the middle), flat 9' ceilings",
+                         lambda sc: slab_roof(sc, EAVE, lambda y: PLATE + abs(y - YM) * 2 / 12, splits=(YM,))),
+                        ("Flat roof (1/4:12 to the rear, membrane), flat 9' ceilings",
+                         lambda sc: slab_roof(sc, EAVE, lambda y: PLATE + (Sth - y) * 0.25 / 12))):
+        sc = M.Scene()
+        band(sc, "exterior", WALL_TOP, PLATE)
+        roof(sc)
+        out[label] = dict(sc.tris)
     return out
