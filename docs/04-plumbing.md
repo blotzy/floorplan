@@ -12,7 +12,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 
 | Line | Water | Notes |
 | --- | --- | --- |
-| Fire sprinklers | Unsoftened, direct from main | Sprinkler designer to confirm service/meter size (often 1"); plans due by foundation sign-off |
+| Fire sprinklers | Unsoftened, direct from main | Sprinkler designer to confirm service/meter size (often 1"); plans due by foundation sign-off; heads placed clear of the ceiling fans (primary, guest, office) |
 | Hose bibs and irrigation | Unsoftened | Tee before the softener; includes the courtyard lawn and the bin-pad hose bib |
 | Bathrooms | Softened |  |
 | Kitchen | Softened | Plus RO for drinking and the fridge |

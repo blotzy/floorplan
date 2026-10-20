@@ -30,6 +30,11 @@
 | Chest freezer (possible) | One 15–20A, GFCI where code requires (laundry area) | Storage room behind the common bath, rear wall |
 | Gym | One 20A | Gym (bike/treadmill wall) |
 
+**Ceiling fans**
+
+- Ceiling fans with lights in the primary bedroom, the guest bedroom and the office, each on a fan-rated box with blocking, centred on the room (or over the bed area).
+- Fan and light controlled separately from the wall (an extra conductor from the switch box, or a smart fan control), next to the room's light switch.
+
 **Outlet locations** (standard outlets, no dedicated circuit needed)
 
 - In the mechanical closet, for the tankless RO filter.

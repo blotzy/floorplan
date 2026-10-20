@@ -45,6 +45,7 @@
 - [ ] Roofer: shingle line and color, wind-rated (ASTM D7158 Class H or D3161 Class F) with the maker's high-wind nailing for the site's design wind speed (strong north and northeast winds hit the shed's high street edge); two layers of underlayment at 2:12; flashing where the shed's side wall rises above the gable; confirm Class A and that the shingle warranty covers an unvented (spray-foam) deck, in writing. The carport keeps a double-lock standing-seam roof (too flat for shingles).
 - [ ] Truss designer: 500 lb concentrated loads at the gym ring points; 20 psf attic storage strip.
 - [ ] Plumber and sprinkler designer: does the sprinkler system require a 1" water service / meter upsize?
+- [ ] Sprinkler designer: place the heads clear of the ceiling fans in the primary bedroom, guest bedroom and office (or confirm the fans meet the code's open-fan exception).
 - [ ] Plumber: confirm the robot vacuum dock drain connection and trap.
 - [ ] HVAC and energy consultant: an ERV instead of the continuous exhaust fan (about $4,000–7,000 more installed): fresh air through a MERV 13 filter on smoke days and some heat and humidity recovery. What does it earn in the Title 24 run?
 - [ ] HVAC: Manual J load calculation and Manual D duct design to size the ducted heat pump and confirm three zones (or two, if the primary suite is too small to run alone).

@@ -24,6 +24,7 @@ Three zones are preferred. If the Manual J or the equipment's minimum airflow ma
 - Supplies: ceiling registers in the flat-ceiling rooms, near the windows and throwing across the room. The vaulted great room has no attic above it, so its supplies are high sidewall registers on the walls bordering the attic (the lounge/gym and kitchen/pantry walls), throwing across the room, with ducting in the insulated rafter bays only where unavoidable. The dining room's large south glass gets its own supply; the great room's return sits low on one of those walls. Destratification (a ceiling fan) helps under the high clerestory.
 - Gym: keep registers out of the ring swing zone.
 - Primary bedroom register aimed along the room, not at the bed.
+- Primary, guest and office have ceiling fans: keep their registers out from under the blades and don't aim them at the fans.
 - No return in the kitchen (grease) or the laundry (lint).
 - Ducts stay in the sealed attic; no ducts, returns, or vent openings into the carport.
 
