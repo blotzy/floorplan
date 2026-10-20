@@ -5,7 +5,7 @@
 **Planner / permits**
 
 - [ ] Planner: confirm the side setback is 10% of lot width (11'-3⅝"; the plan uses 11'-6" on the west and 11'-6" to the carport on the east).
-- [ ] Planner: do the §22.140.520 parking rules apply to an open carport: the front-door rule (the carport's front is in line with the house front, about 4' ahead of the recessed front door; the County's eCheck flagged it) and the 100'-frontage street-facing garage rule? If the front-door rule applies: a set-back carport with a narrow covered walkway to the porch, or an 8' x 5' qualifying porch; for the garage rule, a modification under Procedure A.
+- [ ] Planner: confirm the carport meets the §22.140.520 front-door rule as drawn (its front 5' a covered walkway, the two spaces starting 5' behind the house front, behind the front door), and whether the 100'-frontage street-facing garage rule applies to an open carport (if so, a modification under Procedure A).
 - [ ] Planner: can uncovered parking in the driveway inside the front setback count as a required space?
 - [ ] Driveway: the drawn entrance threads between the parkway street tree and the lot tree; confirm the root-zone clearance with an arborist (and any County requirement for work near a street tree), and drain the drive away from the house at the carport.
 - [ ] Building and Safety: confirm that Executive Order N-29-25 (2022 codes for fire rebuilds instead of the 2025 codes) applies to a non-like-for-like rebuild, so the set, Title 24 and CALGreen all use the 2022 editions.

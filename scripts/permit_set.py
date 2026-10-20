@@ -195,7 +195,7 @@ def window_type(rm, w, h, sill, kind):
 CASEWORK_WORDS = {"HANG", "SHELVES", "SHELVES ABOVE", "SHELVES TO 6'", "DRAWERS", "BENCH", "BEV",
                   "TALL STORAGE", "TRASH", "ON PEDESTAL", "HIGH WINDOW", "FOLDING COUNTER",
                   "LEDGE", "CURBLESS"}
-KEEP_OUTSIDE = {"CARPORT", "18' x 20'", "CONDENSER", "PORCH", "WOOD-LOOK FEATURE WALL"}
+KEEP_OUTSIDE = {"CARPORT", "18' x 23'", "COVERED WALKWAY (NOT PARKING)", "CONDENSER", "PORCH", "WOOD-LOOK FEATURE WALL"}
 
 
 def build_doc():
@@ -325,8 +325,12 @@ def site_plan(pdf):
                            fill=False, ec=INK, lw=0.6, ls="--"))
     cx0, cy0, cx1, cy1 = S.CARPORT
     ax.add_patch(Rectangle((cx0, cy0), cx1 - cx0, cy1 - cy0, fc="#eeeeee", ec=INK, lw=1.0, ls="--"))
-    ax.text((cx0 + cx1) / 2, (cy0 + cy1) / 2, f"OPEN CARPORT\n{Z.CARPORT:,.0f} SQ FT\n2 SPACES", ha="center",
-            va="center", fontsize=6.5)
+    py = cy0 + S.CARPORT_WALK
+    ax.plot([cx0, cx1], [py, py], color=INK, lw=0.8, ls="--")
+    ax.text((cx0 + cx1) / 2, cy0 + S.CARPORT_WALK / 2, "COVERED WALKWAY\n(NOT PARKING)", ha="center", va="center",
+            fontsize=5.5)
+    ax.text((cx0 + cx1) / 2, (py + cy1) / 2, f"OPEN CARPORT\n{Z.CARPORT:,.0f} SQ FT\n2 SPACES 8'-6\" x 18'-0\",\n"
+            "5'-0\" BEHIND THE HOUSE FRONT", ha="center", va="center", fontsize=6.5)
     ax.text((S.E + S.PORCH_X) / 2, (S.N + S.PORCH_Y) / 2, "PORCH", ha="center", va="center", fontsize=5.5)
     # hardscape
     ax.add_patch(MPoly(S.driveway_outline(), closed=True, fc="#f3f3f3", ec=INK, lw=0.8))

@@ -49,9 +49,12 @@ E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 # Corner porch notch (outer faces) at the north-east corner.
 PORCH_X, PORCH_Y = 444.1, 289.2      # notch is E..PORCH_X by N..PORCH_Y
 FOYER_WALL_END = PORCH_Y + EXT + 108.0   # foyer/TV wall: 9' of foyer inside the front wall
-CARPORT = (140.1, N, E, PORCH_Y + 192.0)   # x0, y0, x1, y1: 18' x 20', front in line with the house front and
-                                     # the porch, so the walk from the carport to the porch stays covered.
-                                     # (The 22.140.520 front-door rule for parking: question for the planner.)
+# Carport: its roof is in line with the house front and the porch, so the walk to the porch stays covered,
+# but its front 5' is a covered walkway, not parking: the two 8'-6" x 18' spaces start 5' behind the house
+# front (§22.140.520 b.i, Table 22.140.520-D: parking no closer to the street than the front door, and 5'
+# behind the dwelling frontage where there's no qualifying covered entry porch).
+CARPORT_WALK, STALL_W, STALL_D = 60.0, 102.0, 216.0
+CARPORT = (140.1, N, E, N + CARPORT_WALK + STALL_D)   # x0, y0, x1, y1: 18' x 23'
 # Driveway: a 12' entrance between the parkway street tree (~26'-6" from the east line) and the
 # tree inside the lot (~8'-6"), flaring west to the carport's full width. Runs out across the
 # parkway to the edge of pavement (no curb on Laurel Drive).
@@ -134,7 +137,7 @@ OPENINGS = [
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("west",        415.45, 451.45, "window", 48.0, 96.0),  # reading nook: 3'-0" x 4'-0", centred on the nook,
                                                           # light over the reader's shoulder from the bench
-    ("east",        490.0, 586.0, "slider"),             # dining 8' slider: just past the courtyard fence, leaving
+    ("east",        526.0, 586.0, "slider"),             # dining 5' slider: just past the courtyard fence, leaving
                                                           # ~2'-9" of solid wall at the dining corner
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
@@ -660,8 +663,15 @@ def build() -> Sheet:
         sh.rect(x0, y0, x0 + 6, y0 + 6, "A-WALL")
     sh.msp.add_lwpolyline([(cx0, cy0), (cx1, cy0), (cx1, cy1), (cx0, cy1)], close=True,
                           dxfattribs={"layer": "L-SITE", "linetype": "DASHED"})
-    sh.text("CARPORT", (cx0 + cx1) / 2, (cy0 + cy1) / 2, 10.0, "A-AREA-IDEN")
-    sh.text("18' x 20'", (cx0 + cx1) / 2, (cy0 + cy1) / 2 - 12, 6.5, "A-AREA-IDEN")
+    py = cy0 + CARPORT_WALK                                                   # walkway | parking line
+    sh.msp.add_line((cx0, py), (cx1, py), dxfattribs={"layer": "L-SITE", "linetype": "DASHED"})
+    sh.text("COVERED WALKWAY (NOT PARKING)", (cx0 + cx1) / 2, cy0 + CARPORT_WALK / 2, 5.0)
+    sx = cx0 + 6                                                              # two stalls, clear of the posts
+    for k in range(2):
+        sh.rect(sx + k * STALL_W, py, sx + (k + 1) * STALL_W, py + STALL_D, "L-SITE")
+    sh.text("CARPORT", (cx0 + cx1) / 2, py + STALL_D / 2 + 14, 10.0, "A-AREA-IDEN")
+    sh.text("18' x 23'", (cx0 + cx1) / 2, py + STALL_D / 2, 6.5, "A-AREA-IDEN")
+    sh.text("2 SPACES, 8'-6\" x 18'-0\"", (cx0 + cx1) / 2, py + STALL_D / 2 - 14, 5.0, "A-AREA-IDEN")
     sh.msp.add_lwpolyline(driveway_outline(), close=True, dxfattribs={"layer": "L-SITE"})
     sh.text("DRIVEWAY", (DRIVE_IN[0] + DRIVE_IN[1]) / 2 + 10, 120.0, 9.0, "A-AREA-IDEN")
     for wall, x0, x1 in canopies():                                           # window canopies
