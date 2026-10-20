@@ -16,7 +16,7 @@
 - [ ] Driveway: remove the dead lot tree beside the carport; drain the drive away from the house at the carport.
 - [ ] East parkway trees (owner wants both removed; both healthy): the olive in the driveway (on the survey) and a ficus about 10 ft east of it (not on the survey; drawn approximately on A-1 and FM-1, have the surveyor locate both trunks). They're County trees in the right-of-way: call Road Maintenance District 2 (Alhambra), (626) 300-2080, for the Urban Forestry contact; ask whether they'll support removing both for the new driveway approach, what replacement street trees they require and where, and whether the removal can go on the driveway approach's Road Encroachment Permit (EPIC-LA). Removal of healthy trees is approved only for a conflict with infrastructure (the new approach). Fallbacks if refused: keep the olive (12' approach east of it, removing only the ficus) or keep both (angle the drive from the old opening west of the olive). The olives in the west parkway stay.
 - [ ] Building and Safety: confirm that Executive Order N-29-25 (2022 codes for fire rebuilds instead of the 2025 codes) applies to a non-like-for-like rebuild, so the set, Title 24 and CALGreen all use the 2022 editions.
-- [ ] Architect: final square footage, checked against the rebuild permit's size limit.
+- [ ] Architect: final square footage, checked against the CSD floor-area limit (about 2,830 sq ft).
 
 **Design decisions (owner)**
 

@@ -50,6 +50,6 @@ Check the site for any current requirements on file format or sheets before uplo
 7. **Eaves:** 2'-6" all round, the most an eave may project into a required yard (§22.110.090.A). The front, rear and west walls sit just outside their setback lines (1¼", 2½" and 2⅜"), so the eaves reach about 2'-4¾", 2'-3½" and 2'-3⅝" into those yards. Each stays more than 2'-6" from the lot line and more than 8' above grade, with no supports in the yard. Confirm the projection is measured to the fascia.
 8. **Street facade articulation:** the street windows are recessed into the wall (a Table 22.140.520-C strategy). How many strategies does the street wall need at its length (the table's count goes up with the facade's length), and do the recessed corner porch and the clerestory count toward them? If more are needed, the fallback is canopies over the street windows (allowed into the front yard under §22.110.090.B).
 9. **Driveway Zone:** what are its dimensions for fences, walls and hedges near the driveway? (The entry court's seat wall is 24".)
-10. **Rebuild size limit:** any limit on the rebuild's size compared with the house that burned?
+10. **Rebuild size limit** (confirmed by Planning, Oct 20, 2026): none; as a non-like-for-like rebuild, only the CSD limits apply.
 
 Note the answers in [open questions](09-open-questions.md) and pass them to the architect.

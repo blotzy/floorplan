@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **1:14 PM**: No rebuild size limit (non-like-for-like; only the CSD floor-area limit applies). Project basics, open questions and zoning check doc updated.
 - **1:13 PM**: Planning confirmed the setbacks (10% side yards, the shallow-lot rear yard) and the carport and porch parking layout as drawn. Open questions, zoning check doc, site doc and the Z-1 note updated.
 - **1:11 PM**: Open questions: a "Waiting on replies" list for the requests sent to Urban Forestry (parkway trees), Public Works (sewer connection) and Lincoln Avenue Water Company (will-serve letter and service questions).
 - **12:01 PM**: 3D Carport roof selector: three gable options, all with eaves at 9' and closed stucco gable ends: 4:12 and 6:12 with the gable end to the street, and 4:12 with the gable ends east and west. The plan's carport is unchanged.
