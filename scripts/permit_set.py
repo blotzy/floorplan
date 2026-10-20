@@ -334,7 +334,7 @@ def site_plan(pdf):
     ax.text((S.E + S.PORCH_X) / 2, (S.N + S.PORCH_Y) / 2, "PORCH", ha="center", va="center", fontsize=5.5)
     # hardscape
     ax.add_patch(MPoly(S.driveway_outline(), closed=True, fc="#f3f3f3", ec=INK, lw=0.8))
-    ax.text((S.DRIVE_IN[0] + S.DRIVE_IN[1]) / 2, 120, "NEW DRIVEWAY", ha="center", fontsize=6.5)
+    ax.text((S.CARPORT[0] + S.CARPORT[2]) / 2, 120, "NEW DRIVEWAY", ha="center", fontsize=6.5)
     e0, e1, e2, e3 = S.ENTRY_COURT
     ax.add_patch(Rectangle((e0, e1), e2 - e0, e3 - e1, fc="#f3f3f3", ec=INK, lw=0.6))
     for b in S.ENTRY_WALLS:
@@ -345,8 +345,11 @@ def site_plan(pdf):
     ax.text(L[0] + 20, S.EDGE_OF_PAVEMENT + 5, "EDGE OF PAVEMENT", fontsize=5)
     # trees and utilities
     trees = [(x, y, "EXIST. OLIVE (REMAIN)") for x, y in S.EXIST_TREES] + [
-        (*S.PRIVACY_TREE, "NEW TREE"), (*S.SIDE_TREE, "NEW TREE"), (107.0, 158.0, "EXIST. TREE (ARBORIST)"),
-        (322.0, -114.0, "EXIST. STREET TREE")]
+        (*S.PRIVACY_TREE, "NEW TREE"), (*S.SIDE_TREE, "NEW TREE")]
+    for x, y in ((107.0, 158.0), (322.0, -114.0)):                      # removed for the driveway
+        ax.plot([x - 14, x + 14], [y - 14, y + 14], color="#b03a2e", lw=1.0)
+        ax.plot([x - 14, x + 14], [y + 14, y - 14], color="#b03a2e", lw=1.0)
+        ax.text(x, y - 20, "EXIST. TREE\nTO BE REMOVED", fontsize=4.5, ha="center", va="top", color="#b03a2e")
     for x, y, lab in trees:
         ax.add_patch(Circle((x, y), 30, fill=False, ec="#2e7d32", lw=0.8))
         ax.add_patch(Circle((x, y), 3, fc="#2e7d32", ec="none"))

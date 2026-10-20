@@ -55,10 +55,8 @@ FOYER_WALL_END = PORCH_Y + EXT + 108.0   # foyer/TV wall: 9' of foyer inside the
 # behind the dwelling frontage where there's no qualifying covered entry porch).
 CARPORT_WALK, STALL_W, STALL_D = 60.0, 102.0, 216.0
 CARPORT = (140.1, N, E, N + CARPORT_WALK + STALL_D)   # x0, y0, x1, y1: 18' x 23'
-# Driveway: a 12' entrance between the parkway street tree (~26'-6" from the east line) and the
-# tree inside the lot (~8'-6"), flaring west to the carport's full width. Runs out across the
-# parkway to the edge of pavement (no curb on Laurel Drive).
-DRIVE_IN = (LOT_X0 + 150.0, LOT_X0 + 290.0)   # entrance edges (x) at the property line
+# Driveway: straight and the carport's full 18' width from the edge of pavement (no curb on Laurel
+# Drive) to the carport; the parkway street tree and the lot tree in its way are removed.
 EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives
                                                                         # in the northwest parkway
 GATE_L = 168.0                       # courtyard gate behind the carport: 14' wide, hinged at the house corner,
@@ -450,14 +448,8 @@ def carport_size():
 
 def driveway_outline():
     """Closed outline of the driveway, parkway apron included (lot inches)."""
-    x0, x1 = DRIVE_IN
     cx0, cy0, cx1, _ = CARPORT
-    curve = []                                   # west edge: straight out of the entrance, then
-    for i in range(13):                          # bending west into the carport (quadratic)
-        t = i / 12
-        curve.append(((1 - t) ** 2 * x1 + 2 * (1 - t) * t * x1 + t * t * cx1,
-                      (1 - t) ** 2 * 0 + 2 * (1 - t) * t * 170 + t * t * cy0))
-    return [(x0, EDGE_OF_PAVEMENT), (x1, EDGE_OF_PAVEMENT), *curve, (cx0, cy0), (x0, 0.0)]
+    return [(cx0, EDGE_OF_PAVEMENT), (cx1, EDGE_OF_PAVEMENT), (cx1, cy0), (cx0, cy0)]
 
 
 def wall_geometry():
@@ -679,7 +671,7 @@ def build() -> Sheet:
     sh.text(carport_size(), (cx0 + cx1) / 2, py + STALL_D / 2, 6.5, "A-AREA-IDEN")
     sh.text("2 SPACES, 8'-6\" x 18'-0\"", (cx0 + cx1) / 2, py + STALL_D / 2 - 14, 5.0, "A-AREA-IDEN")
     sh.msp.add_lwpolyline(driveway_outline(), close=True, dxfattribs={"layer": "L-SITE"})
-    sh.text("DRIVEWAY", (DRIVE_IN[0] + DRIVE_IN[1]) / 2 + 10, 120.0, 9.0, "A-AREA-IDEN")
+    sh.text("DRIVEWAY", (CARPORT[0] + CARPORT[2]) / 2, 120.0, 9.0, "A-AREA-IDEN")
     for wall, x0, x1 in canopies():                                           # window canopies
         y, d = (N, -CANOPY_D) if wall == "north" else (S, CANOPY_D)
         sh.msp.add_lwpolyline([(x0, y), (x0, y + d), (x1, y + d), (x1, y)],

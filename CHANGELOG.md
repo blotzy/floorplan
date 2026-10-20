@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 19, 2026
 
+- **9:01 PM**: Driveway now straight at the carport's full 18' width from the street to the carport (it was a 12' entrance curving between two trees). The parkway street tree and the lot tree beside the drive are removed; the street tree needs a County removal permit. The two new trees still meet the two-tree requirement.
 - **8:56 PM**: Zoning set Z-1: the parking note moved off the drawing (it overlapped the entry court) into the Project Data table's Parking row; the carport's "covered walkway (not parking)" label is larger on all the drawings.
 - **8:33 PM**: Carport 18' x 23' (was 18' x 20'). Its roof stays in line with the house front and the porch, but the front 5' is now a covered walkway (not parking), and the two 8'-6" x 18' spaces start 5' behind the house front, behind the front door (§22.140.520 b.i and Table 22.140.520-D). The courtyard fence and gate move 3' back with it, and the dining slider shrinks from 8' to 5' to stay clear of the fence. Lot coverage about 2,682 sq ft (36.6%); glazing about 429 sq ft (19.2%, now under the 20% limit).
 
