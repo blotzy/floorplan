@@ -64,7 +64,7 @@ CARPORT = (140.1, N, E, N + CARPORT_WALK + STALL_D)   # x0, y0, x1, y1: 18' x 22
 # Drive) to the carport; the lot tree and the east parkway olive and ficus in its way are removed.
 EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives
                                                                         # in the northwest parkway
-REMOVED_TREES = [(107.0, 158.0, "EXIST. TREE"), (322.0, -114.0, "EXIST. OLIVE"),   # in the driveway's way;
+REMOVED_TREES = [(107.0, 158.0, "EXIST. DEAD TREE"), (322.0, -114.0, "EXIST. OLIVE"),   # in the driveway's way;
                  (202.0, -114.0, "EXIST. FICUS\n(NOT SURVEYED,\nAPPROX.)")]           # ficus ~10' east of the olive
 GATE_L = 168.0                       # courtyard gate behind the carport: 14' wide, hinged at the house corner,
                                      # it opens flat against the house wall, joining carport and courtyard

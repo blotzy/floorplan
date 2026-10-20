@@ -65,7 +65,7 @@ PLANTS = [
 ]
 EXISTING = [
     ("Olea europaea (3)", "Olive, mature", "Public parkway, outside the property", "Existing to remain"),
-    ("Unidentified", "Lot tree", "On the lot, east of the driveway", "Remove"),
+    ("Unidentified", "Lot tree (dead)", "On the lot, beside the carport", "Remove"),
     ("Olea europaea", "Olive", "Public parkway, in the driveway", "Remove (County permit)"),
     ("Ficus sp.", "Ficus (not surveyed)", "Public parkway, ~10' east of the olive", "Remove (County permit)"),
 ]
@@ -166,7 +166,7 @@ ZONE 1 (A), 0-30' (the whole property)
     shown in the legend.
 EXISTING VEGETATION
  7. The burned lot is cleared: no existing on-lot vegetation remains except
-    as shown. The lot tree beside the driveway is removed; the olive and
+    as shown. The dead lot tree beside the carport is removed; the olive and
     ficus in the east parkway are removed under a County permit. The parkway olives are
     outside the property and remain.
 IRRIGATION
