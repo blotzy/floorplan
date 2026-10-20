@@ -57,7 +57,8 @@ HEARTH_D = 21.0                          # deep enough for a receiver in a cubby
 HEARTH_Y = (N_IN, 398.0)
 TV_CY = (305.0 + 396.0) / 2 - 9.0        # 90" TV centre line: about centred on the wall
 HEARTH_FIRE = (TV_CY - 30.0, TV_CY + 30.0)   # 60" linear electric fireplace, centred under the TV
-HEARTH_CUBBIES = [(293.5, 307.5), (375.5, 395.5)]   # small cubby by the window seat; AV cubby at the walkway end
+HEARTH_CUBBIES = [(HEARTH_FIRE[0] - 24.0, HEARTH_FIRE[0] - 4.0),    # two matching 20" cubbies, one each side
+                  (HEARTH_FIRE[1] + 4.0, HEARTH_FIRE[1] + 24.0)]    # of the fireplace (4" between)
 # Porch: a qualifying covered entry porch under Table 22.140.520-D (8' x 5', ceiling no more than 12' above
 # its floor). It runs 1' past the house front toward the street (a covered porch may project up to 5' into
 # the front yard, §22.110.090.D.2) under a slim canopy at the porch ceiling's height, and 8" east into the
