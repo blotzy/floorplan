@@ -9,6 +9,7 @@
 - [ ] Planner: can uncovered parking in the driveway inside the front setback count as a required space?
 - [ ] Fuel modification plan (owner-prepared) for LA County Fire, Very High Fire Hazard Severity Zone: the ember-resistant zone (under the eaves and 5' beyond), the two front trees (spacing and canopy clearance from the roof), and the irrigated planting; confirm whether it must be approved before the building permit.
 - [ ] Driveway: County permit to remove the parkway street tree (and any replacement it requires) with the driveway approach permit; remove the lot tree beside the drive; drain the drive away from the house at the carport.
+- [ ] Parkway olives: the owner wants them removed. They're County trees in the right-of-way: ask Public Works Urban Forestry to assess them (online service request) or apply for a Road Encroachment Permit (EpicLA). Removal is approved only if a tree is dead, diseased, dying, structurally unsound, or conflicts with infrastructure (check for fire damage); expect replacement street trees. Update the site plan, zoning set and FM-1 once decided.
 - [ ] Building and Safety: confirm that Executive Order N-29-25 (2022 codes for fire rebuilds instead of the 2025 codes) applies to a non-like-for-like rebuild, so the set, Title 24 and CALGreen all use the 2022 editions.
 - [ ] Architect: final square footage, checked against the rebuild permit's size limit.
 
