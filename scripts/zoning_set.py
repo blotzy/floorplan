@@ -162,8 +162,6 @@ def site_plan(pdf):
     yw = 430.0
     dim(ax, (S.W, yw), (S.LOT_X0 + S.LOT_W, yw), f"{ftin(S.LOT_X0 + S.LOT_W - S.W)}\n({ftin(SIDE_REQ)} req.)", rot=90)
     dim(ax, (S.LOT_X0, 485), (cx0, 485), f"{ftin(cx0 - S.LOT_X0)}\n({ftin(SIDE_REQ)} req.)", off=(0, 0))
-    ax.text((cx0 + cx1) / 2, cy0 - 40, "2 COVERED PARKING SPACES, 8'-6\" x 18'-0\", 5'-0\" BEHIND THE HOUSE FRONT\n(CARPORT 18'-0\" x 23'-0\"; ITS FRONT 5'-0\" IS A COVERED WALKWAY)", fontsize=7,
-            ha="center", color="#1f5e9e")
     ax.text((S.E + S.W) / 2, -120, "LAUREL DRIVE (50' R/W)", fontsize=10, ha="center", weight="bold")
     ax.text(S.LOT_X0 + S.LOT_W / 2, S.LOT_D + 40,
             "Front-yard walls: entry seat wall 24\" (under the 42\" limit).",
@@ -182,7 +180,8 @@ def site_plan(pdf):
         ("CSD limit (¼ lot + 1,000)", f"{LIMIT:,.0f} sq ft (coverage and floor area)"),
         ("Stories / max height", f"1 story · ~{ftin(TOP)} above finished floor\n(top of roof at the street eave)"),
         ("Bedrooms / baths", "4 / 3"),
-        ("Parking", "2 covered (carport)"),
+        ("Parking", f"2 covered, 8'-6\" x 18'-0\" each, starting\n{ftin(S.CARPORT_WALK)} behind the house front; the "
+                    f"carport's\nfront {ftin(S.CARPORT_WALK)} is a covered walkway, not parking"),
         ("", ""),
         ("SETBACKS", "required  ·  provided"),
     ] + [(n, f"{ftin(r)}  ·  {ftin(p)}") for n, r, p in SETBACKS] + [

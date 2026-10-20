@@ -671,7 +671,7 @@ def build() -> Sheet:
                           dxfattribs={"layer": "L-SITE", "linetype": "DASHED"})
     py = cy0 + CARPORT_WALK                                                   # walkway | parking line
     sh.msp.add_line((cx0, py), (cx1, py), dxfattribs={"layer": "L-SITE", "linetype": "DASHED"})
-    sh.text("COVERED WALKWAY (NOT PARKING)", (cx0 + cx1) / 2, cy0 + CARPORT_WALK / 2, 5.0)
+    sh.text("COVERED WALKWAY (NOT PARKING)", (cx0 + cx1) / 2, cy0 + CARPORT_WALK / 2, 7.0)
     sx = cx0 + 6                                                              # two stalls, clear of the posts
     for k in range(2):
         sh.rect(sx + k * STALL_W, py, sx + (k + 1) * STALL_W, py + STALL_D, "L-SITE")
