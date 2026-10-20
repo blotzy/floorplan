@@ -6,7 +6,7 @@
 
   - A floating bench 18" high runs the whole east wall of the lounge, from the street-wall corner to
     the walkway between the foyer and the bedroom hall. Its north end, under the reeded porch-side
-    window, is a 21"-deep window seat; the rest is 16" deep.
+    window, is the window seat; the whole bench is 21" deep (a receiver fits in a cubby).
   - The bench floats on a recessed 4" plinth; the fireplace's flame window sits high in its face
     (about 9"-15" off the floor), clear of an 18" coffee table from the couch.
   - The 90" TV moves 9" north so it sits centred on the wall. A linear electric fireplace (60") is set
@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import schematic as S  # noqa: E402
 
 OUT = S.RENDERS / "experiments"
-DEPTH, SEAT_D, HEIGHT = 16.0, 21.0, 18.0      # bench, window-seat end, height
+DEPTH, SEAT_D, HEIGHT = 21.0, 21.0, 18.0      # bench (one depth throughout), window-seat end, height
 BENCH_Y = (S.N_IN, 398.0)                     # street-wall corner to just short of the walkway
 SEAT_END = 296.0                              # window seat: the corner to just past the reeded window
 FIRE_W = 60.0                                 # linear electric fireplace, set into the bench face
