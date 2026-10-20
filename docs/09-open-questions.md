@@ -10,8 +10,7 @@
 
 **Planner / permits**
 
-- [ ] Planner: confirm the side setback is 10% of lot width (11'-3⅝"; the plan uses 11'-6" on the west and 11'-6" to the carport on the east).
-- [ ] Planner: confirm the carport meets the §22.140.520 parking rules as drawn (a qualifying 8' x 5' covered entry porch projecting 1' into the front yard; the carport's front 4' a covered walkway, the two spaces starting at the front door's line), and whether the 100'-frontage street-facing garage rule applies to an open carport (if so, a modification under Procedure A).
+- [x] Planning confirmed (Oct 20, 2026): the setbacks as drawn (10% side yards; the shallow-lot rear yard, 20% of the lot depth) and the carport and porch parking layout (qualifying covered entry porch, the carport's front 4' a covered walkway, the two spaces behind the front door).
 - [ ] Planner: can uncovered parking in the driveway inside the front setback count as a required space?
 - [ ] Fuel modification plan (owner-prepared) for LA County Fire, Very High Fire Hazard Severity Zone: the ember-resistant zone (under the eaves and 5' beyond), the two front trees (spacing and canopy clearance from the roof), and the irrigated planting; confirm whether it must be approved before the building permit.
 - [ ] Driveway: remove the dead lot tree beside the carport; drain the drive away from the house at the carport.

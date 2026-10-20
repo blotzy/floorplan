@@ -199,7 +199,7 @@ def site_plan(pdf):
              "1. Setbacks measured to the outside face of exterior walls (eaves excluded).\n"
              "2. Side setback taken as 10% of lot width. Rear yard on a shallow lot (§22.110.080.D):\n"
              f"   the lot is {LOT_D_FT:.2f}' deep (under 75'), so the rear yard is 20% of the average\n"
-             f"   depth, {ftin(REAR_REQ)}. Please confirm it applies under the Altadena CSD.\n"
+             f"   depth, {ftin(REAR_REQ)} (confirmed with Planning).\n"
              "3. Heights are above finished floor; the lot falls ~4' across the footprint, so\n"
              "   height above grade depends on the foundation design (to be set with the civil).\n"
              "4. Lot lines, lot dimensions and existing trees are from the owner's topographic\n"
