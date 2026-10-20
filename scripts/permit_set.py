@@ -346,10 +346,10 @@ def site_plan(pdf):
     # trees and utilities
     trees = [(x, y, "EXIST. OLIVE (REMAIN)") for x, y in S.EXIST_TREES] + [
         (*S.PRIVACY_TREE, "NEW TREE"), (*S.FRONT_TREE, "NEW TREE")]
-    for x, y in ((107.0, 158.0), (322.0, -114.0)):                      # removed for the driveway
+    for x, y, lab in S.REMOVED_TREES:                                   # removed for the driveway
         ax.plot([x - 14, x + 14], [y - 14, y + 14], color="#b03a2e", lw=1.0)
         ax.plot([x - 14, x + 14], [y + 14, y - 14], color="#b03a2e", lw=1.0)
-        ax.text(x, y - 20, "EXIST. TREE\nTO BE REMOVED", fontsize=4.5, ha="center", va="top", color="#b03a2e")
+        ax.text(x, y - 20, lab + "\nTO BE REMOVED", fontsize=4.5, ha="center", va="top", color="#b03a2e")
     for x, y, lab in trees:
         ax.add_patch(Circle((x, y), 30, fill=False, ec="#2e7d32", lw=0.8))
         ax.add_patch(Circle((x, y), 3, fc="#2e7d32", ec="none"))
@@ -422,7 +422,7 @@ def site_plan(pdf):
              "   the owner's topographic survey.\n"
              "2. Finished floor elevation, grading and drainage\n   per civil (separate sheets).\n"
              "3. Eaves (dashed) 2'-6\" all round (LACC 22.110.090).\n"
-             "4. Parkway olives protected during construction\n   (root zones); the two trees in the driveway removed.\n"
+             "4. West parkway olives protected during construction\n   (root zones); the lot tree and the east parkway\n   olive and ficus removed (County permit).\n"
              "5. Ember-resistant zone under the eaves and 5' beyond\n   them; planting per the fuel modification plan (FM-1).\n"
              "6. Water, sewer and SCE service per the utilities;\n   no gas service (all-electric).\n"
              "7. Demolition: remove the remaining retaining wall and\n   chimney from the burned house (dashed red); asbestos\n"

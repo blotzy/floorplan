@@ -61,9 +61,11 @@ PORCH_OUT = (E - PORCH_EAST, N - PORCH_FWD)    # the porch's outer corner (x, y)
 CARPORT_WALK, STALL_W, STALL_D = PORCH_Y - N, 102.0, 216.0
 CARPORT = (140.1, N, E, N + CARPORT_WALK + STALL_D)   # x0, y0, x1, y1: 18' x 22'
 # Driveway: straight and the carport's full 18' width from the edge of pavement (no curb on Laurel
-# Drive) to the carport; the parkway street tree and the lot tree in its way are removed.
+# Drive) to the carport; the lot tree and the east parkway olive and ficus in its way are removed.
 EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives
                                                                         # in the northwest parkway
+REMOVED_TREES = [(107.0, 158.0, "EXIST. TREE"), (322.0, -114.0, "EXIST. OLIVE"),   # in the driveway's way;
+                 (202.0, -114.0, "EXIST. FICUS\n(NOT SURVEYED,\nAPPROX.)")]           # ficus ~10' east of the olive
 GATE_L = 168.0                       # courtyard gate behind the carport: 14' wide, hinged at the house corner,
                                      # it opens flat against the house wall, joining carport and courtyard
 FRONT_TREE = (880.0, 40.0)           # new: front yard, in front of the bedroom wing, ~17' from the house front

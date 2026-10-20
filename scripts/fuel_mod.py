@@ -66,7 +66,8 @@ PLANTS = [
 EXISTING = [
     ("Olea europaea (3)", "Olive, mature", "Public parkway, outside the property", "Existing to remain"),
     ("Unidentified", "Lot tree", "On the lot, east of the driveway", "Remove"),
-    ("Unidentified", "Street tree", "Public parkway, in the driveway", "Remove (County permit)"),
+    ("Olea europaea", "Olive", "Public parkway, in the driveway", "Remove (County permit)"),
+    ("Ficus sp.", "Ficus (not surveyed)", "Public parkway, ~10' east of the olive", "Remove (County permit)"),
 ]
 
 
@@ -131,10 +132,10 @@ def plan(ax):
         ax.add_patch(Circle((x, y), 3, fc=GREEN, ec="none"))
     ax.text(sum(t[0] for t in S.EXIST_TREES) / 3, -150, "EXIST. OLIVES IN THE PARKWAY TO REMAIN",
             fontsize=5.5, ha="center", color=GREEN)
-    for x, y in ((107.0, 158.0), (322.0, -114.0)):
+    for x, y, lab in S.REMOVED_TREES:
         ax.plot([x - 14, x + 14], [y - 14, y + 14], color=P.RED, lw=1.0)
         ax.plot([x - 14, x + 14], [y + 14, y - 14], color=P.RED, lw=1.0)
-        ax.text(x, y - 20, "EXIST. TREE\nTO BE REMOVED", fontsize=4.5, ha="center", va="top", color=P.RED)
+        ax.text(x, y - 20, lab + "\nTO BE REMOVED", fontsize=4.5, ha="center", va="top", color=P.RED)
     for x, y in ((700, 70), (780, 100), (1060, 80), (1140, 60), (1240, 100), (470, 90), (1000, 110), (540, 60)):
         ax.add_patch(Circle((x, y), 15, fill=False, ec=GREEN, lw=0.7))           # S1 accents, 10'+ from the house
         ax.text(x, y, "S1", fontsize=4, ha="center", va="center")
@@ -165,8 +166,8 @@ ZONE 1 (A), 0-30' (the whole property)
     shown in the legend.
 EXISTING VEGETATION
  7. The burned lot is cleared: no existing on-lot vegetation remains except
-    as shown. The lot tree beside the driveway is removed; the parkway
-    street tree is removed under a County permit. The parkway olives are
+    as shown. The lot tree beside the driveway is removed; the olive and
+    ficus in the east parkway are removed under a County permit. The parkway olives are
     outside the property and remain.
 IRRIGATION
  8. Automatic system with a weather-based controller: drip at trees, shrubs
