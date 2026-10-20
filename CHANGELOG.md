@@ -6,15 +6,27 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 19, 2026
 
-- **11:08 PM**: Driveway reshaped to keep the east parkway olive: a 12' approach in the parkway just east of the olive (3' clear of its trunk), widening past it to the carport's full 18' at the property line, then straight to the carport. Only the parkway ficus (and the lot tree) are removed. Plan, 3D model, A-1, FM-1, site doc, open questions and engineer brief.
-- **10:59 PM**: East parkway trees: the tree in the driveway is identified as an olive, and a ficus about 10' east of it (not on the survey, drawn approximately) is added; both are removed under a County permit. Site plan A-1, FM-1 (existing vegetation table and notes), site doc and open questions.
-- **10:56 PM**: Open questions: the parkway tree to-do now covers the two east parkway trees, the olive in the driveway and a ficus beside it (not on the survey); the west parkway olives stay.
-- **10:52 PM**: Fuel modification plan FM-1 (owner-prepared, for LA County Fire): ember-resistant zone under the eaves and 5' beyond them, the whole lot in Zone A, planting legend with botanical names (Toyon as the privacy tree, since Catalina cherry is Zone B only; western redbud in front of the bedroom wing), existing vegetation and notes. The privacy tree moves 20" toward the street to keep its canopy clear of the eaves. Site plan A-1 notes updated to match.
-- **10:43 PM**: Trees: the new tree beside the carport moves to the front yard, in front of the bedroom wing, about 17' from the house, so its canopy stays clear of the roof for fuel modification. The optional courtyard tree is dropped: the plan has just the two required new trees, both in the front yard. Fuel modification plan (owner-prepared) added to the open questions.
-- **9:05 PM**: Porch enlarged to a qualifying 8' x 5' covered entry (Table 22.140.520-D): its floor runs 1' past the house front under a slim canopy at 9' and 8" into the carport's walkway; the front door doesn't move. With it, the parking only has to sit behind the front door: carport 18' x 22' (front 4' a covered walkway), the courtyard fence and gate 1' forward, and the dining slider back to 6'. Lot coverage about 2,672 sq ft (36.5%); glazing about 437 sq ft (19.5%).
-- **9:01 PM**: Driveway now straight at the carport's full 18' width from the street to the carport (it was a 12' entrance curving between two trees). The parkway street tree and the lot tree beside the drive are removed; the street tree needs a County removal permit. The two new trees still meet the two-tree requirement.
-- **8:56 PM**: Zoning set Z-1: the parking note moved off the drawing (it overlapped the entry court) into the Project Data table's Parking row; the carport's "covered walkway (not parking)" label is larger on all the drawings.
-- **8:33 PM**: Carport 18' x 23' (was 18' x 20'). Its roof stays in line with the house front and the porch, but the front 5' is now a covered walkway (not parking), and the two 8'-6" x 18' spaces start 5' behind the house front, behind the front door (§22.140.520 b.i and Table 22.140.520-D). The courtyard fence and gate move 3' back with it, and the dining slider shrinks from 8' to 5' to stay clear of the fence. Lot coverage about 2,682 sq ft (36.6%); glazing about 429 sq ft (19.2%, now under the 20% limit).
+**Porch and parking**
+- The porch is now a qualifying 8' x 5' covered entry (Table 22.140.520-D). Its floor runs 1' past the house front under a slim canopy at 9', and 8" into the carport's walkway. The front door doesn't move.
+- With the qualifying porch, the parking only has to sit behind the front door (§22.140.520 b.i). The carport is now 18' x 22' (was 18' x 20'). Its roof stays in line with the house front and the porch. Its front 4' is a covered walkway (not parking), and the two 8'-6" x 18' spaces start at the front door's line.
+- The courtyard fence and gate move 2' back with the carport.
+- Dining slider: 6' (was 8').
+- Lot coverage is about 2,672 sq ft (36.5%). Glazing is about 437 sq ft (19.5%), now under the 20% prescriptive limit.
+- Zoning set Z-1: the parking note is in the Project Data table's Parking row, and the carport's "covered walkway (not parking)" label is larger on all the drawings.
+
+**Driveway**
+- A 12' approach in the parkway, just east of the east parkway olive (3' clear of its trunk), widens past it to the carport's full 18' at the property line, then runs straight to the carport. It was a 12' entrance curving between two trees.
+- The east parkway olive stays. The lot tree beside the drive and a parkway ficus about 10' east of the olive (not on the survey, drawn approximately) are removed. The ficus is a County tree, so it needs a removal permit; that's an open-questions to-do.
+
+**Trees and fuel modification**
+- The plan has just the two required new trees, both in the front yard:
+  - Toyon (*Heteromeles arbutifolia*) as the privacy tree across from the lounge window, moved slightly toward the street to keep its canopy clear of the eaves. It replaces Catalina cherry, which the County lists for Zone B only.
+  - Western redbud (*Cercis occidentalis*) in front of the bedroom wing, about 17' from the house. It was beside the carport.
+  - The optional courtyard tree is dropped.
+- New fuel modification plan FM-1 (owner-prepared, for LA County Fire):
+  - The ember-resistant zone under the eaves and 5' beyond them; the whole lot is in Zone A.
+  - A planting legend with botanical names, the existing vegetation, and notes.
+- Site plan A-1 notes and the site doc now refer to the ember-resistant zone and FM-1. The "5' noncombustible strip" wording is gone.
 
 ## Oct 18, 2026: changes from Oct 17
 
