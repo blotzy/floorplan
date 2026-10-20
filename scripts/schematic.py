@@ -66,7 +66,8 @@ EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey t
                                                                         # in the northwest parkway
 GATE_L = 168.0                       # courtyard gate behind the carport: 14' wide, hinged at the house corner,
                                      # it opens flat against the house wall, joining carport and courtyard
-SIDE_TREE = (60.0, 420.0)            # new: east strip beside the carport, between the bins and the lawn
+FRONT_TREE = (880.0, 40.0)           # new: front yard, in front of the bedroom wing, ~17' from the house front
+                                     # (fuel modification: canopy well clear of the roof), clear of the olives
 PRIVACY_TREE = (624.0, 48.0)         # new: inside the front line, west of the lounge window's centre,
                                      # 10'+ from the sewer run to the cleanout (survey ~(492, 22))
 EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
@@ -716,8 +717,8 @@ def build() -> Sheet:
         sh.circle((x, y), 18.0, "L-PLNT"); sh.circle((x, y), 3.0, "L-PLNT")
     sh.circle(PRIVACY_TREE, 18.0, "L-PLNT"); sh.circle(PRIVACY_TREE, 3.0, "L-PLNT")
     sh.text("NEW PRIVACY TREE", PRIVACY_TREE[0], PRIVACY_TREE[1] + 28, 5.0)
-    sh.circle(SIDE_TREE, 18.0, "L-PLNT"); sh.circle(SIDE_TREE, 3.0, "L-PLNT")
-    sh.text("NEW TREE", SIDE_TREE[0], SIDE_TREE[1] + 28, 5.0)
+    sh.circle(FRONT_TREE, 18.0, "L-PLNT"); sh.circle(FRONT_TREE, 3.0, "L-PLNT")
+    sh.text("NEW TREE", FRONT_TREE[0], FRONT_TREE[1] + 28, 5.0)
     tx = sum(t[0] for t in EXIST_TREES) / len(EXIST_TREES)
     sh.text("EXIST. MATURE OLIVE TREES TO REMAIN", tx, -140.0, 5.0)
     sh.rect(LOT_X0 + 6, 262, LOT_X0 + 54, 382, "L-SITE"); sh.text("BINS", LOT_X0 + 30, 322, 5.0, rot=90)        # bin pad

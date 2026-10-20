@@ -35,11 +35,10 @@ From the topographic survey (available on request; overlay: [survey-overlay.png]
 - **Lawn** about 15' x 14' (~210 sq ft), tall fescue + microclover blend, edged by the pavers and the planter wall. Irrigate from the unsoftened line.
 - **Raised planters** 3' deep along the rear fence (noncombustible: concrete, block, or steel). Shade-tolerant, dog-safe plants (e.g., coral bells, ferns); no oleander, sago palm, foxglove, or azalea.
 - **6' fence** across the back of the carport and bin strip with a **14' gate** behind the carport, hinged at the house corner: it swings into the carport and opens flat against the house wall, so with the cars out the carport and the courtyard become one space for parties. Metal (noncombustible, as it meets the house), on its own hinge post rather than hung off the stucco, with a wheel or cable brace so the long leaf doesn't sag; keep the carport slab flat enough under its swing. The bin strip stays outside the dog yard.
-- Optional: one small deciduous tree (e.g., crape myrtle) in the courtyard's southeast corner, ≥10' from the roof; nothing tall south of the house (future solar).
+- No trees in the courtyard or rear yard: nothing tall south of the house (future solar), and the yards are too shallow to keep a canopy clear of the roof.
 
 ## Trash bins
 
-- **Tree beside the carport**, in the east strip between the bin pad and the courtyard fence: a small, low-water tree with a modest root system (e.g., western redbud). Keep it limbed up with its canopy clear of the carport roof, plant it without digging at the base of the east property-line retaining wall, and put a root barrier on the wall side.
 - **Bin pad 4' x 10'** (four carts) along the east property line in the strip beside the carport, behind the 20' front setback and >5' from the carport.
 - Open-top **5' noncombustible screen** on the south and carport sides; open/gated toward the street so carts roll down the strip to the curb.
 - Hose bib for rinsing carts on the nearest carport post (unsoftened).
@@ -66,3 +65,4 @@ From the topographic survey (available on request; overlay: [survey-overlay.png]
   - Plant it inside the lot near the front line, not in the parkway, and slightly west of the window's centre: that keeps it at least 10 ft from the sewer line (it runs out to the cleanout near the porch) and from the driveway.
   - Fire-zone rules: nothing in the 5 ft noncombustible zone around the house; keep it limbed up, irrigated, and with its canopy clear of the roof and the eaves.
   - Put a root barrier between the tree and the sewer line (see drainage below).
+- **Second front tree, in front of the bedroom wing:** a small, low-water tree with a modest root system and an open canopy (e.g., western redbud), set well back from the house so its mature canopy stays clear of the roof and eaves, and clear of the parkway olives' root zones and the water and electric lines coming in at the west end. With the privacy tree, it meets the County's two-tree requirement.

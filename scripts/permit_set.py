@@ -345,7 +345,7 @@ def site_plan(pdf):
     ax.text(L[0] + 20, S.EDGE_OF_PAVEMENT + 5, "EDGE OF PAVEMENT", fontsize=5)
     # trees and utilities
     trees = [(x, y, "EXIST. OLIVE (REMAIN)") for x, y in S.EXIST_TREES] + [
-        (*S.PRIVACY_TREE, "NEW TREE"), (*S.SIDE_TREE, "NEW TREE")]
+        (*S.PRIVACY_TREE, "NEW TREE"), (*S.FRONT_TREE, "NEW TREE")]
     for x, y in ((107.0, 158.0), (322.0, -114.0)):                      # removed for the driveway
         ax.plot([x - 14, x + 14], [y - 14, y + 14], color="#b03a2e", lw=1.0)
         ax.plot([x - 14, x + 14], [y + 14, y - 14], color="#b03a2e", lw=1.0)
