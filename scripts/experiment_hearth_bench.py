@@ -7,6 +7,8 @@
   - A floating bench 18" high runs the whole east wall of the lounge, from the street-wall corner to
     the walkway between the foyer and the bedroom hall. Its north end, under the reeded porch-side
     window, is a 21"-deep window seat; the rest is 16" deep.
+  - The bench floats on a recessed 4" plinth; the fireplace's flame window sits high in its face
+    (about 9"-15" off the floor), clear of an 18" coffee table from the couch.
   - The 90" TV moves 9" north so it sits centred on the wall. A linear electric fireplace (60") is set
     into the bench's face, centred under the TV, so the flames sit low and the TV stays at
     seated-viewing height just above the bench.
@@ -32,6 +34,9 @@ BENCH_Y = (S.N_IN, 398.0)                     # street-wall corner to just short
 SEAT_END = 296.0                              # window seat: the corner to just past the reeded window
 SLATS_Y = (SEAT_END + 2, BENCH_Y[1])          # slat wall over the fireplace section only
 FIRE_W = 60.0                                 # linear electric fireplace, set into the bench face
+FIRE_Z = (9.0, 15.0)                          # its flame window: high in the face, clear of the coffee table
+TOE = 4.0                                     # recessed plinth under the bench, so it reads as floating
+SLAB = 4.0                                    # the 3D model's floor surface sits on its 4" slab
 PLAN_TV_CY = (305.0 + 396.0) / 2              # the plan's TV centre line (on the couch)
 SEAT_CY = PLAN_TV_CY - 9.0                    # moved 9" north, about centred on the wall
 _build = S.build
@@ -81,9 +86,17 @@ def model():
     while y + 1.5 <= SLATS_Y[1]:                             # wood slats, 1-1/2" every 3", to the ceiling
         sc.boxes["feature"].append([x0, y, x0 + 1.25, y + 1.5, HEIGHT, under(y + 1.5) - 1])
         y += 3.0
-    fx = x0 + DEPTH
-    sc.boxes["frame"].append([fx - 4, SEAT_CY - FIRE_W / 2 - 1, fx + 0.2, SEAT_CY + FIRE_W / 2 + 1, 4, 14])
-    sc.boxes["flame"].append([fx - 0.5, SEAT_CY - FIRE_W / 2 + 2, fx + 0.3, SEAT_CY + FIRE_W / 2 - 2, 6, 12])
+    bench = []
+    for b in sc.boxes["furniture"]:                          # the bench floats on a recessed 4" plinth
+        if abs(b[0] - x0) < 1 and b[4] == 0 and b[5] == HEIGHT:
+            b[4] = SLAB + TOE
+            bench.append(b)
+    for b in bench:
+        sc.boxes["frame"].append([b[0], b[1] + 3, b[2] - 3, b[3] - 3, 0, SLAB + TOE])
+    fx = x0 + DEPTH                                          # insert set high in the face, its top just
+    sc.boxes["frame"].append([fx - 4, SEAT_CY - FIRE_W / 2 - 1, fx + 0.2, SEAT_CY + FIRE_W / 2 + 1,  # under
+                              FIRE_Z[0] - 1.5, FIRE_Z[1] + 1.5])                                   # the top
+    sc.boxes["flame"].append([fx - 0.5, SEAT_CY - FIRE_W / 2 + 2, fx + 0.3, SEAT_CY + FIRE_W / 2 - 2, *FIRE_Z])
     X.chosen_exterior(sc)
     sc.mat["frame"] = {"color": 0x2B2D30}
     sc.mat["flame"] = {"color": 0xFF8A2A, "emissive": 0xC0501A}
@@ -95,7 +108,8 @@ def model():
 
 
 def views(html):
-    """Stills: from the couch toward the TV wall, and the lounge from the dining room."""
+    """Stills: from the couch toward the TV wall, the lounge from the dining room, and a close look at the
+    bench."""
     import subprocess
     chrome = Path("/mnt/c/Program Files/Google/Chrome/Application/chrome.exe")
     if not chrome.exists():
@@ -103,7 +117,8 @@ def views(html):
     hook = "if (location.hash === '#touchwalk') startTouchWalk();"
     win = lambda p: subprocess.run(["wslpath", "-w", str(p)], capture_output=True, text=True).stdout.strip()  # noqa: E731
     shots = {"couch-view": ((610, 345, 42), (453, 345, 50)),
-             "lounge-view": ((640, 470, 62), (453, 320, 70))}
+             "lounge-view": ((640, 470, 62), (453, 320, 70)),
+             "bench-view": ((560, 420, 34), (462, 320, 14))}
     for name, ((cx, cy, cz), (tx, ty, tz)) in shots.items():
         tmp = html.with_name(f"_{name}.html")
         tmp.write_text(html.read_text().replace(hook, hook + (
