@@ -12,8 +12,6 @@
   - The 90" TV moves 9" north so it sits centred on the wall. A linear electric fireplace (60") is set
     into the bench's face, centred under the TV, so the flames sit low and the TV stays at
     seated-viewing height just above the bench.
-  - The wall above the fireplace section is a wood-slat feature wall up to the sloped ceiling; the
-    window-seat end stays plain around the reeded window.
 
 Writes renders/experiments/hearth-bench.png and a 3D model, renders/experiments/hearth-bench/house.html,
 with eye-level views. Not part of the regular build.
@@ -32,7 +30,6 @@ OUT = S.RENDERS / "experiments"
 DEPTH, SEAT_D, HEIGHT = 16.0, 21.0, 18.0      # bench, window-seat end, height
 BENCH_Y = (S.N_IN, 398.0)                     # street-wall corner to just short of the walkway
 SEAT_END = 296.0                              # window seat: the corner to just past the reeded window
-SLATS_Y = (SEAT_END + 2, BENCH_Y[1])          # slat wall over the fireplace section only
 FIRE_W = 60.0                                 # linear electric fireplace, set into the bench face
 FIRE_Z = (9.0, 15.0)                          # its flame window: high in the face, clear of the coffee table
 TOE = 4.0                                     # recessed plinth under the bench, so it reads as floating
@@ -76,16 +73,11 @@ def model():
     finally:
         S.build = _build
     x0 = S.face("foyer wall", +1)
-    under = X.shed_vault_under(2 / 12)                       # the great room's sloped ceiling
     sc.boxes["fixture"] = [b for b in sc.boxes["fixture"]          # the fireplace's plan outline (drawn
                            if abs(b[0] - (x0 + DEPTH - 3)) > 0.5]     # below instead)
-    for b in sc.boxes["furniture"]:                          # the TV moves out in front of the slats
+    for b in sc.boxes["furniture"]:                          # the TV, just above the bench
         if abs(b[0] - x0) < 1 and b[3] - b[1] > 70 and b[4] > 20:
-            b[0], b[2], b[4], b[5] = x0 + 1.5, x0 + 4.5, 26.0, 70.0
-    y = SLATS_Y[0]
-    while y + 1.5 <= SLATS_Y[1]:                             # wood slats, 1-1/2" every 3", to the ceiling
-        sc.boxes["feature"].append([x0, y, x0 + 1.25, y + 1.5, HEIGHT, under(y + 1.5) - 1])
-        y += 3.0
+            b[4], b[5] = 26.0, 70.0
     bench = []
     for b in sc.boxes["furniture"]:                          # the bench floats on a recessed 4" plinth
         if abs(b[0] - x0) < 1 and b[4] == 0 and b[5] == HEIGHT:
@@ -100,7 +92,6 @@ def model():
     X.chosen_exterior(sc)
     sc.mat["frame"] = {"color": 0x2B2D30}
     sc.mat["flame"] = {"color": 0xFF8A2A, "emissive": 0xC0501A}
-    sc.mat["feature"] = {"color": 0xA8754B}
     M.add_vault_ceiling(sc, X.great_room_vault(to_outside=True))
     out = OUT / "hearth-bench"
     M.write_model(sc, out, {**sc.meta, "roof_hidden": True})
