@@ -2,6 +2,12 @@
 
 [← Back to README](../README.md)
 
+**Waiting on replies (emailed Oct 20, 2026)**
+
+- [ ] LA County Public Works, Road Maintenance District 2 (Urban Forestry): removal of the two east parkway trees (olive and ficus) for the driveway approach, replacement street trees, and whether the removal can go on the approach's Road Encroachment Permit. If refused: the angled drive from the old opening that keeps both trees.
+- [ ] LA County Public Works: sewer connection location and depth (where the lateral meets the main, and whether the west-end baths can reach it by gravity).
+- [ ] Lincoln Avenue Water Company (Support@lawc.org, (626) 798-9101): will-serve letter ($200; plans plus LA County Fire Form 195 page 1; owner signs in person), confirming no fire flow test for a fire rebuild under 3,600 sq ft, the existing service and meter size and condition, a 1" meter upsize for the sprinklers, static pressure for the sprinkler designer, backflow, and construction water.
+
 **Planner / permits**
 
 - [ ] Planner: confirm the side setback is 10% of lot width (11'-3⅝"; the plan uses 11'-6" on the west and 11'-6" to the carport on the east).

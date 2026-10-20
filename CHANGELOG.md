@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **1:11 PM**: Open questions: a "Waiting on replies" list for the requests sent to Urban Forestry (parkway trees), Public Works (sewer connection) and Lincoln Avenue Water Company (will-serve letter and service questions).
 - **12:01 PM**: 3D Carport roof selector: three gable options, all with eaves at 9' and closed stucco gable ends: 4:12 and 6:12 with the gable end to the street, and 4:12 with the gable ends east and west. The plan's carport is unchanged.
 - **11:59 AM**: 3D model: a new Carport roof selector to compare styles: the plan's flat standing-seam metal at 9', a thick MCM slab with a dark fascia in line with the porch canopy, a 2:12 shed sloping away from the house, and a solar canopy (PV panels on a steel frame). The plan's carport is unchanged.
 - **11:53 AM**: 3D Roof menu: three more alternatives, all with flat 9' ceilings: a 4:12 hip, an MCM butterfly at 2:12 (valley down the middle), and a flat roof (1/4:12 to the rear, membrane). The plan's roof is unchanged.

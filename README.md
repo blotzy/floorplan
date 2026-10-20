@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 20, 2026, 12:44 PM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 20, 2026, 1:11 PM PT · @Richard
 
 [CHANGELOG](CHANGELOG.md)
 
