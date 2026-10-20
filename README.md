@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 19, 2026, 9:01 PM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 19, 2026, 9:05 PM PT · @Richard
 
 [CHANGELOG](CHANGELOG.md)
 
@@ -60,7 +60,6 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | Experiment: [hall ending at the office](renders/experiments/office-end.png) (vs [the current plan](renders/experiments/office-end-current.png)) | No west door: the office door closes the end of the hall, and the primary bedroom is entered through a small foyer with the closet on one side and the bedroom on the other |
 | Experiment: [hall ending just past the primary door](renders/experiments/office-alcove.png) (vs [the current plan](renders/experiments/office-end-current.png)) | No west door: the office door closes the hall just past the primary bedroom door, and the office gains the old hall end as a desk alcove; the primary entry and closet stay as they are |
 | Experiment: [office patio](renders/experiments/office-patio.png) · [3D model](renders/experiments/office-patio/house.html) · views [from the street](renders/experiments/office-patio/street-view.png), [from the office](renders/experiments/office-patio/office-view.png) | The hall ending at the office, plus a covered 4'-deep patio across the office's street side (guest room to the west end), with 6' French doors from the office |
-| Experiment: [extended porch](renders/experiments/porch/plan.png) · [3D model](renders/experiments/porch/house.html) · views [entry](renders/experiments/porch/entry.png), [east](renders/experiments/porch/east.png) | The porch grows 1' toward the street under a 9' canopy and 8" into the carport walkway (8' x 5', a qualifying covered entry), so the parking only has to sit behind the front door: carport 18' x 22', fence and gate 1' forward, 6' dining slider |
 | [Zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) | Site plan with setbacks and project data, floor plan, roof plan, elevations ([how to submit](docs/11-zoning-check.md)) |
 | [`accosting-owner-schematic-survey.dxf`](accosting-owner-schematic-survey.dxf) | The plan over the topographic survey as a DXF (inches) |
 | Plan renders: [site plan](renders/schematic.png) · [house](renders/schematic-zoom.png) · [survey overlay](renders/survey-overlay.png) | The images at the top of this page, full size ([folder](https://github.com/blotzy/floorplan/tree/main/renders)) |

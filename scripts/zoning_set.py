@@ -71,7 +71,8 @@ def poly_area(pts):
 
 
 HOUSE = poly_area(FOOT) / 144
-PORCH = (S.PORCH_X - S.E) * (S.PORCH_Y - S.N) / 144
+PORCH = ((S.PORCH_X - S.E) * (S.PORCH_Y - S.N) + (S.PORCH_X - S.PORCH_OUT[0]) * S.PORCH_FWD) / 144   # the strip in
+                                                 # the carport's walkway is counted with the carport
 cx0, cy0, cx1, cy1 = S.CARPORT
 CARPORT = (cx1 - cx0) * (cy1 - cy0) / 144
 COVER = HOUSE + PORCH + CARPORT
@@ -180,8 +181,8 @@ def site_plan(pdf):
         ("CSD limit (¼ lot + 1,000)", f"{LIMIT:,.0f} sq ft (coverage and floor area)"),
         ("Stories / max height", f"1 story · ~{ftin(TOP)} above finished floor\n(top of roof at the street eave)"),
         ("Bedrooms / baths", "4 / 3"),
-        ("Parking", f"2 covered, 8'-6\" x 18'-0\" each, starting\n{ftin(S.CARPORT_WALK)} behind the house front; the "
-                    f"carport's\nfront {ftin(S.CARPORT_WALK)} is a covered walkway, not parking"),
+        ("Parking", f"2 covered, 8'-6\" x 18'-0\" each, behind the front\ndoor; the carport's front "
+                    f"{ftin(S.CARPORT_WALK)} is a covered\nwalkway, not parking (8' x 5' covered porch)"),
         ("", ""),
         ("SETBACKS", "required  ·  provided"),
     ] + [(n, f"{ftin(r)}  ·  {ftin(p)}") for n, r, p in SETBACKS] + [
@@ -206,8 +207,10 @@ def site_plan(pdf):
              f"5. Eaves {ftin(OV)} all round: the most an eave may project into a required yard\n"
              "   (§22.110.090.A); more than 2'-6\" from every lot line, no supports in the yards.\n"
              f"6. Rear window canopies {ftin(S.CANOPY_D)} deep (§22.110.090.B: up to 5' into the rear yard):\n"
-             "   over the windows only, 1' past each side, no supports in the yard.")
-    tx.text(0.0, y - 0.01, notes, fontsize=7.2, va="top", transform=tx.transAxes, linespacing=1.3)
+             "   over the windows only, 1' past each side, no supports in the yard.\n"
+             f"7. Covered entry porch 8'-0\" x 5'-0\" (Table 22.140.520-D), {ftin(S.PORCH_FWD)} into the front yard under a\n"
+             "   9' canopy (§22.110.090.D.2 allows 5'); parking sits behind the front door.")
+    tx.text(0.0, y - 0.01, notes, fontsize=6.9, va="top", transform=tx.transAxes, linespacing=1.25)
     pdf.savefig(fig); save_png(fig, OUT / "Z-1-site-plan.png", dpi=110); plt.close(fig)
 
 
@@ -304,6 +307,8 @@ def elevation(ax, side):
         if side == "north":
             ax.add_patch(Rectangle((h(a), 0), S.PORCH_X - a, PORCH_CEIL, fc=WOOD, ec=INK, lw=0.8))   # porch: its
             ax.add_patch(Rectangle((h(a), 0), 6, PORCH_CEIL, fc=INK))       # wood-look back wall under its own
+            ox = S.PORCH_OUT[0]
+            ax.add_patch(Rectangle((h(ox), PORCH_CEIL), S.PORCH_X - ox, 3, fc=INK))   # canopy over its front
             ax.annotate("Porch: wood-look walls and ceiling,\nits own 9'-0\" ceiling", (h(a) + 17, PORCH_CEIL - 30),
                         (h(a) - 140, PORCH_CEIL + 45), fontsize=6.5, ha="center",
                         arrowprops=dict(arrowstyle="-", lw=0.6))
@@ -355,6 +360,7 @@ def elevation(ax, side):
             for y0, y1, z0, z1, k in openings_on("porch side"):
                 ax.add_patch(Rectangle((min(hy(y0), hy(y1)), z0), y1 - y0, z1 - z0, fc="#bfe3f2", ec=INK, lw=0.8))
             ax.add_patch(Rectangle((min(hy(S.N), hy(S.N + 6)), 0), 6, PORCH_CEIL, fc=INK))      # porch corner post
+            ax.add_patch(Rectangle((min(hy(S.PORCH_OUT[1]), hy(S.N)), PORCH_CEIL), S.PORCH_FWD, 3, fc=INK))   # canopy
         ax.add_patch(Rectangle((min(hy(b), hy(b + S.CANOPY_D)), S.CANOPY_Z), S.CANOPY_D, 3, fc=INK))   # rear canopy, end-on
         if side == "east":                                         # carport in front: posts + roof
             for yy in (cy0, cy1 - 6):

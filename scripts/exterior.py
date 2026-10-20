@@ -414,6 +414,9 @@ def porch_feature(sc):
     for a, b, z0, z1 in ((N, w0, 0, 120), (w1, py, 0, 120), (w0, w1, 0, 30), (w0, w1, 96, 120)):
         sc.quad("feature", (x, a), (x, b), z0, z1)
     sc.boxes["feature"].append([E + 6, N, px, py, M.CEIL - 1.5, M.CEIL - 0.5])   # porch ceiling
+    ox, oy = S.PORCH_OUT                                 # canopy over the porch's front foot, at its ceiling
+    sc.boxes["canopy"].append([ox, oy, px, N, M.CEIL, M.CEIL + 3])
+    sc.mat["canopy"] = {"color": 0x2B2D30}
     sc.mat["feature"] = {"color": 0xA8754B}
 
 

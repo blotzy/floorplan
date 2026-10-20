@@ -49,12 +49,17 @@ E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 # Corner porch notch (outer faces) at the north-east corner.
 PORCH_X, PORCH_Y = 444.1, 289.2      # notch is E..PORCH_X by N..PORCH_Y
 FOYER_WALL_END = PORCH_Y + EXT + 108.0   # foyer/TV wall: 9' of foyer inside the front wall
-# Carport: its roof is in line with the house front and the porch, so the walk to the porch stays covered,
-# but its front 5' is a covered walkway, not parking: the two 8'-6" x 18' spaces start 5' behind the house
-# front (§22.140.520 b.i, Table 22.140.520-D: parking no closer to the street than the front door, and 5'
-# behind the dwelling frontage where there's no qualifying covered entry porch).
-CARPORT_WALK, STALL_W, STALL_D = 60.0, 102.0, 216.0
-CARPORT = (140.1, N, E, N + CARPORT_WALK + STALL_D)   # x0, y0, x1, y1: 18' x 23'
+# Porch: a qualifying covered entry porch under Table 22.140.520-D (8' x 5', ceiling no more than 12' above
+# its floor). It runs 1' past the house front toward the street (a covered porch may project up to 5' into
+# the front yard, §22.110.090.D.2) under a slim canopy at the porch ceiling's height, and 8" east into the
+# carport's walkway; the front door stays at the back of the notch.
+PORCH_FWD, PORCH_EAST = 12.0, 8.0
+PORCH_OUT = (E - PORCH_EAST, N - PORCH_FWD)    # the porch's outer corner (x, y)
+# Carport: its roof is in line with the house front, so the walk to the porch stays covered, but its front
+# 4' (to the front door's line) is a covered walkway, not parking: with the qualifying porch, the parking
+# needs only to sit no closer to the street than the front door (§22.140.520 b.i).
+CARPORT_WALK, STALL_W, STALL_D = PORCH_Y - N, 102.0, 216.0
+CARPORT = (140.1, N, E, N + CARPORT_WALK + STALL_D)   # x0, y0, x1, y1: 18' x 22'
 # Driveway: straight and the carport's full 18' width from the edge of pavement (no curb on Laurel
 # Drive) to the carport; the parkway street tree and the lot tree in its way are removed.
 EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives
@@ -135,7 +140,7 @@ OPENINGS = [
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("west",        415.45, 451.45, "window", 48.0, 96.0),  # reading nook: 3'-0" x 4'-0", centred on the nook,
                                                           # light over the reader's shoulder from the bench
-    ("east",        526.0, 586.0, "slider"),             # dining 5' slider: just past the courtyard fence, leaving
+    ("east",        514.0, 586.0, "slider"),             # dining 6' slider: just past the courtyard fence, leaving
                                                           # ~2'-9" of solid wall at the dining corner
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
@@ -677,7 +682,13 @@ def build() -> Sheet:
         sh.msp.add_lwpolyline([(x0, y), (x0, y + d), (x1, y + d), (x1, y)],
                               dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
         sh.text("CANOPY ABOVE", (x0 + x1) / 2, y + d / 2, 3.0, "A-CANP")
-    sh.rect(E + 4, N - 24, PORCH_X - 4, N, "L-SITE")                          # porch step
+    px0, py0 = PORCH_OUT                                                      # porch: 1' forward and 8" east,
+    sh.rect(px0, py0, PORCH_X, N, "L-SITE"); sh.rect(px0, N, E, PORCH_Y, "L-SITE")   # its step in front
+    sh.rect(px0 + 4, py0 - 24, PORCH_X - 4, py0, "L-SITE")
+    sh.msp.add_lwpolyline([(px0, py0), (PORCH_X, py0), (PORCH_X, N), (px0, N)], close=True,
+                          dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})          # canopy over the 1'
+    sh.text("CANOPY ABOVE (9')", (px0 + PORCH_X) / 2, py0 + 5, 2.4, "A-CANP")
+    sh.text("8'-0\" x 5'-0\"", (px0 + PORCH_X) / 2, N + 12, 3.0)
     sh.rect(E, N, E + 6, N + 6, "A-WALL")                                     # porch corner post
     sh.rect(*ENTRY_COURT, "L-SITE")                                           # entry court + seat wall
     sh.text("ENTRY COURT", (ENTRY_COURT[0] + ENTRY_COURT[2]) / 2, 205.0, 6.0, "A-AREA-IDEN")

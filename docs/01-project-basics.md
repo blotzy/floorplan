@@ -23,10 +23,10 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena, replacing the hous
 | Windows | Standard manufacturer sizes (6" steps in width and height); openings wider than 8' are two mulled units. Heads in line at 8' |
 | Doors | 8' tall doors throughout; front door at least 36" wide (3'-0" slab) |
 | Flooring | LVP throughout, flush transitions with no raised thresholds |
-| Footprint | House 72' x 31'-6"; carport 18' x 23' on the east end (its front 5' a covered walkway, the parking behind it) |
+| Footprint | House 72' x 31'-6"; carport 18' x 22' on the east end (its front 4' a covered walkway, the parking behind it); covered entry porch 8' x 5' |
 | Siting | House near the west side setback: 11'-6" on the west, 11'-6" from the carport to the east line, 20'-1¼" front, 13'-2" rear (shallow-lot rear yard, §22.110.080.D: 20% of the 64.77' lot depth is 12'-11½") |
 | Setback buffer | Room to spare, measured to the outside face of the exterior walls (eaves not included): front 1¼" (20' required), rear 2½" (12'-11½" required, 20% of lot depth), west 2⅜" (11'-3⅝" required, 10% of the 113' lot width), east 2½" to the carport (same 11'-3⅝"). Confirm with the planner. |
-| Lot coverage | About 2,682 sq ft (house ~2,238 + porch ~29 + carport ~414), 36.6% of the lot. Altadena CSD limit: ¼ of net lot area + 1,000 sq ft, about 2,830 sq ft, so ~150 sq ft to spare. Any future covered patio, shed or pergola counts. Confirm the formula and net lot area with the planner. |
+| Lot coverage | About 2,672 sq ft (house ~2,238 + porch ~37 + carport ~396), 36.5% of the lot. Altadena CSD limit: ¼ of net lot area + 1,000 sq ft, about 2,830 sq ft, so ~160 sq ft to spare. Any future covered patio, shed or pergola counts. Confirm the formula and net lot area with the planner. |
 | Floor area | About 2,238 sq ft enclosed (carport excluded). Altadena CSD limit uses the same formula, about 2,830 sq ft. Separate from the fire-rebuild permit's size limit (see [open questions](09-open-questions.md)). |
 | Bedrooms | Primary + 3 secondary: gym, guest, office |
 | Baths | Primary bath, guest ensuite (off the guest room only), common bath (three-quarter, with a shower) |
