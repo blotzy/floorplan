@@ -484,4 +484,9 @@ def roof_options():
     band(sc, "exterior", WALL_TOP, PLATE)
     shed_vault_great(sc, 2 / 12, EAVE, band=36.0)
     out["MCM shed 2:12 over the whole house, 3' clerestory band"] = dict(sc.tris)
+    for rise in (4, 6):                                  # steeper gables, same flat 9' ceilings
+        sc = M.Scene()
+        band(sc, "exterior", WALL_TOP, PLATE)
+        low_gable(sc, rise / 12, EAVE, glazed_ends=False)
+        out[f"Gable {rise}:12, flat 9' ceilings"] = dict(sc.tris)
     return out
