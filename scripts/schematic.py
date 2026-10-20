@@ -49,13 +49,13 @@ E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 # Corner porch notch (outer faces) at the north-east corner.
 PORCH_X, PORCH_Y = 444.1, 289.2      # notch is E..PORCH_X by N..PORCH_Y
 FOYER_WALL_END = PORCH_Y + EXT + 108.0   # foyer/TV wall: 9' of foyer inside the front wall
-# Hearth bench: one built-in bench along the lounge's TV wall (the lounge side of the foyer wall and the porch
-# side wall), from the street-wall corner to just short of the foyer-to-hall walkway. Framed and drywalled on a
-# recessed base (it reads as floating); window seat at the reeded window end, a linear electric fireplace in
-# its face under the TV, and cubbies.
+# Hearth bench: a built-in bench on the lounge's TV wall, centred on the TV: from just past the reeded porch-side
+# window to just short of the foyer-to-hall walkway. Framed and drywalled on a recessed base (it reads as
+# floating); a linear electric fireplace in its face under the TV, a matching cubby each side. The street-wall
+# corner by the reeded window stays open floor.
 HEARTH_D = 21.0                          # deep enough for a receiver in a cubby
-HEARTH_Y = (N_IN, 398.0)
 TV_CY = (305.0 + 396.0) / 2 - 9.0        # 90" TV centre line: about centred on the wall
+HEARTH_Y = (2 * TV_CY - 398.0, 398.0)    # symmetrical about the TV, its walkway end just short of the walkway
 HEARTH_FIRE = (TV_CY - 30.0, TV_CY + 30.0)   # 60" linear electric fireplace, centred under the TV
 HEARTH_CUBBIES = [(HEARTH_FIRE[0] - 24.0, HEARTH_FIRE[0] - 4.0),    # two matching 20" cubbies, one each side
                   (HEARTH_FIRE[1] + 4.0, HEARTH_FIRE[1] + 24.0)]    # of the fireplace (4" between)
@@ -619,8 +619,7 @@ def build() -> Sheet:
     tv = face("foyer wall", +1)
     hx, (hy0, hy1) = tv + HEARTH_D, HEARTH_Y              # hearth bench (drawn before the TV, whose label sits
     sh.rect(tv, hy0, hx, hy1, fu)                          # over it: the 3D model reads the first label inside)
-    sh.text("HEARTH BENCH", tv + HEARTH_D / 2, hy0 + 18, 3.0, rot=90)
-    sh.text("WINDOW SEAT", hx + 8, hy0 + 20, 3.0, rot=90)
+    sh.text("HEARTH BENCH", tv + 16, TV_CY - 12, 3.0, rot=90)       # clear of the TV label's search box
     for (a, b), lab in ((HEARTH_FIRE, "ELEC. FIREPLACE"), *((c, "CUBBY") for c in HEARTH_CUBBIES)):
         for p, q in (((hx - 3, a), (hx, a)), ((hx - 3, b), (hx, b)), ((hx - 3, a), (hx - 3, b))):
             sh.line(p, q, "A-EQPM")                        # openings in the bench face
