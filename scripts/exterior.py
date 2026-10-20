@@ -468,6 +468,56 @@ def chosen_exterior(sc, porch=True, facade=True):
         street_facade(sc)
 
 
+def box_tris(sc, mat, x0, y0, x1, y1, z0, z1):
+    """A box as triangles (for roof option groups)."""
+    quad(sc, mat, [x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1])
+    quad(sc, mat, [x0, y0, z0], [x1, y0, z0], [x1, y1, z0], [x0, y1, z0])
+    for (a, b), (c, d) in (((x0, y0), (x1, y0)), ((x1, y0), (x1, y1)), ((x1, y1), (x0, y1)), ((x0, y1), (x0, y0))):
+        quad(sc, mat, [a, b, z0], [c, d, z0], [c, d, z1], [a, b, z1])
+
+
+def sloped_slab(sc, mat, x0, y0, x1, y1, top, thk):
+    """Slab whose top height is top(x, y) (planar), thk deep, with its edges closed."""
+    c = [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
+    quad(sc, mat, *[[x, y, top(x, y)] for x, y in c])
+    quad(sc, mat, *[[x, y, top(x, y) - thk] for x, y in c])
+    for (a, b), (p, q) in zip(c, c[1:] + c[:1]):
+        quad(sc, mat, [a, b, top(a, b) - thk], [p, q, top(p, q) - thk], [p, q, top(p, q)], [a, b, top(a, b)])
+
+
+def carport_options(posts):
+    """Carport roof styles for the model's Carport selector: {label: tris}; the first is the plan's.
+    posts: the carport's posts [x0, y0, x1, y1]; each style runs them up to its underside."""
+    cx0, cy0, cx1, cy1 = S.CARPORT
+    X0, Y0, X1, Y1 = cx0 - 6, cy0 - 6, cx1, cy1 + 6
+
+    def style(top, thk, mat, extra=None):
+        sc = M.Scene()
+        sloped_slab(sc, mat, X0, Y0, X1, Y1, top, thk)
+        for p in posts:
+            box_tris(sc, "post", *p, 0, top((p[0] + p[2]) / 2, (p[1] + p[3]) / 2) - thk)
+        if extra:
+            extra(sc)
+        return dict(sc.tris)
+
+    def pv(sc):                                          # panel grid on the frame, 40" x 68" modules
+        top = lambda x, y: 126 - (y - Y0) / 12           # 1:12 down toward the rear (south)
+        y = Y0 + 4
+        while y + 40 <= Y1 - 2:
+            x = X0 + 4
+            while x + 68 <= X1 - 2:
+                quad(sc, "pv", *[[a, b, top(a, b) + 0.8] for a, b in ((x, y), (x + 68, y), (x + 68, y + 40), (x, y + 40))])
+                x += 69
+            y += 41
+    return {
+        "Flat standing-seam metal at 9' (plan)": style(lambda x, y: 112, 4, "roof"),
+        "Thick MCM slab with a dark 12\" fascia, in line with the porch canopy": style(lambda x, y: 111, 12, "canopy"),
+        "Shed 2:12, high at the house, sloping away to the east": style(lambda x, y: 138 - (cx1 - x) * 2 / 12, 6, "roof"),
+        "Solar canopy: PV panels on a steel frame, 1:12 down toward the rear": style(lambda x, y: 126 - (y - Y0) / 12, 4,
+                                                                                      "post", pv),
+    }
+
+
 def roof_options():
     """Alternative roofs for the main model's Roof selector, all asphalt shingles: {label: tris} (the main
     plan's split roof is the model's own roof). Order matters: make_3d's hash links."""

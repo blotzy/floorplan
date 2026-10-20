@@ -333,6 +333,7 @@ HTML = r"""<!doctype html>
   <label><input type="checkbox" id="edges" checked> Edge lines</label>
   <label id="roofrow"><input type="checkbox" id="roofvis" checked> Roof
     <select id="roofopt" style="display:none"><option value="0">MCM split: shed 2:12 from the porch into the bedroom wing (18&#39; x 3&#39; clerestory), gable 2:12 over the rest of the wing (plan)</option></select></label>
+  <label id="cportrow" style="display:none">Carport roof <select id="cportopt"></select></label>
   <label><input type="checkbox" id="roofsh" checked> Roof shadows</label>
   <label>Sun: <select id="day">
     <option value="172">Jun 21</option><option value="80">Mar 20 / Sep 22</option>
@@ -473,6 +474,13 @@ for (const [label, tris] of Object.entries(D.roof_options || {})) {
   roofSel.add(new Option(label, roofChoices.length - 1));
 }
 if (roofChoices.length > 1) roofSel.style.display = '';
+const cportSel = document.getElementById('cportopt'), cportChoices = [];   // carport roof styles; first = plan
+for (const [label, tris] of Object.entries(D.carport_options || {})) {
+  const g = addTris(tris, new THREE.Group()); groups.roof.remove(g); scene.add(g);
+  g.visible = !cportChoices.length; cportChoices.push(g); cportSel.add(new Option(label, cportChoices.length - 1));
+}
+if (cportChoices.length) document.getElementById('cportrow').style.display = '';
+cportSel.onchange = () => cportChoices.forEach((g, i) => g.visible = i === +cportSel.value);
 const roofFlat = new Set(D.roof_flat || []);
 const pickCeiling = () => { const hasCut = ceilCut.children.length > 0, flat = roofFlat.has(+roofSel.value);
   ceilCut.visible = hasCut && !flat; ceilFull.visible = !hasCut || flat; };
@@ -686,7 +694,13 @@ def main():
     X.chosen_exterior(sc)
     add_vault_ceiling(sc, X.great_room_vault(to_outside=True))
     opts = X.roof_options()
+    cx0, cy0, cx1, cy1 = X.S.CARPORT                               # the carport's roof and posts move to the
+    sc.boxes["roof"] = [b for b in sc.boxes["roof"] if b[4] != 108]   # Carport selector
+    posts = [b[:4] for b in sc.boxes["post"] if b[5] == 108 and cx0 - 12 <= b[0] <= cx1 + 12 and cy0 - 12 <= b[1] <= cy1 + 12]
+    sc.boxes["post"] = [b for b in sc.boxes["post"] if b[:4] not in posts]
+    sc.mat["pv"] = {"color": 0x1E2A44, "roughness": 0.35}
     write_model(sc, ROOT / "renders" / "3d", {**sc.meta, "roof_hidden": True, "roof_options": opts,
+                                              "carport_options": X.carport_options(posts),
                                               "roof_flat": [i + 1 for i, k in enumerate(opts) if "flat" in k]})
 
 

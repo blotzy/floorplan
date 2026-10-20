@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **11:59 AM**: 3D model: a new Carport roof selector to compare styles: the plan's flat standing-seam metal at 9', a thick MCM slab with a dark fascia in line with the porch canopy, a 2:12 shed sloping away from the house, and a solar canopy (PV panels on a steel frame). The plan's carport is unchanged.
 - **11:53 AM**: 3D Roof menu: three more alternatives, all with flat 9' ceilings: a 4:12 hip, an MCM butterfly at 2:12 (valley down the middle), and a flat roof (1/4:12 to the rear, membrane). The plan's roof is unchanged.
 - **11:48 AM**: 3D Roof menu: two more alternatives, a 4:12 gable and a 6:12 gable, both with flat 9' ceilings. The plan's roof is unchanged.
 - **10:53 AM**: The lot tree beside the carport is marked as dead (to be removed) on A-1 and FM-1, and in the site doc, open questions and engineer brief.
