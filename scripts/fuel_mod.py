@@ -66,8 +66,8 @@ PLANTS = [
 EXISTING = [
     ("Olea europaea (3)", "Olive, mature", "Public parkway, outside the property", "Existing to remain"),
     ("Unidentified", "Lot tree", "On the lot, east of the driveway", "Remove"),
-    ("Olea europaea", "Olive", "Public parkway, beside the driveway", "Existing to remain"),
-    ("Ficus sp.", "Ficus (not surveyed)", "Public parkway, in the driveway", "Remove (County permit)"),
+    ("Olea europaea", "Olive", "Public parkway, in the driveway", "Remove (County permit)"),
+    ("Ficus sp.", "Ficus (not surveyed)", "Public parkway, ~10' east of the olive", "Remove (County permit)"),
 ]
 
 
@@ -127,12 +127,11 @@ def plan(ax):
         ax.add_patch(Circle((x, y), d / 2, fill=False, ec=GREEN, lw=1.0, ls="--"))
         ax.add_patch(Circle((x, y), 4, fc=GREEN, ec="none"))
         ax.text(x, y + 10, key, fontsize=7, weight="bold", ha="center", color=GREEN)
-    for x, y in S.EXIST_TREES + [S.EAST_OLIVE]:
+    for x, y in S.EXIST_TREES:
         ax.add_patch(Circle((x, y), 30, fill=False, ec=GREEN, lw=0.8))
         ax.add_patch(Circle((x, y), 3, fc=GREEN, ec="none"))
     ax.text(sum(t[0] for t in S.EXIST_TREES) / 3, -150, "EXIST. OLIVES IN THE PARKWAY TO REMAIN",
             fontsize=5.5, ha="center", color=GREEN)
-    ax.text(S.EAST_OLIVE[0] + 40, S.EAST_OLIVE[1] - 40, "EXIST. OLIVE\nTO REMAIN", fontsize=4.5, ha="left", color=GREEN)
     for x, y, lab in S.REMOVED_TREES:
         ax.plot([x - 14, x + 14], [y - 14, y + 14], color=P.RED, lw=1.0)
         ax.plot([x - 14, x + 14], [y + 14, y - 14], color=P.RED, lw=1.0)
@@ -167,9 +166,9 @@ ZONE 1 (A), 0-30' (the whole property)
     shown in the legend.
 EXISTING VEGETATION
  7. The burned lot is cleared: no existing on-lot vegetation remains except
-    as shown. The lot tree beside the driveway is removed; the ficus in the
-    east parkway is removed under a County permit. The parkway olives
-    are outside the property and remain.
+    as shown. The lot tree beside the driveway is removed; the olive and
+    ficus in the east parkway are removed under a County permit. The parkway olives are
+    outside the property and remain.
 IRRIGATION
  8. Automatic system with a weather-based controller: drip at trees, shrubs
     and ground cover; spray at the lawn. Maintained year-round.

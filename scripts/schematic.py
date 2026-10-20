@@ -60,14 +60,12 @@ PORCH_OUT = (E - PORCH_EAST, N - PORCH_FWD)    # the porch's outer corner (x, y)
 # needs only to sit no closer to the street than the front door (§22.140.520 b.i).
 CARPORT_WALK, STALL_W, STALL_D = PORCH_Y - N, 102.0, 216.0
 CARPORT = (140.1, N, E, N + CARPORT_WALK + STALL_D)   # x0, y0, x1, y1: 18' x 22'
-# Driveway (no curb on Laurel Drive): a 12' approach in the parkway, east of the east olive, widening
-# past the olive to the carport's full 18' width at the lot line; the ficus and the lot tree are removed.
+# Driveway: straight and the carport's full 18' width from the edge of pavement (no curb on Laurel
+# Drive) to the carport; the lot tree and the east parkway olive and ficus in its way are removed.
 EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives
                                                                         # in the northwest parkway
-EAST_OLIVE = (322.0, -114.0)                                            # survey trunk, east parkway: remains
-OLIVE_CLEAR = 36.0                                                      # approach edge to the olive's trunk
-REMOVED_TREES = [(107.0, 158.0, "EXIST. TREE"),                         # in the driveway's way;
-                 (202.0, -114.0, "EXIST. FICUS\n(NOT SURVEYED,\nAPPROX.)")]   # ficus ~10' east of the olive
+REMOVED_TREES = [(107.0, 158.0, "EXIST. TREE"), (322.0, -114.0, "EXIST. OLIVE"),   # in the driveway's way;
+                 (202.0, -114.0, "EXIST. FICUS\n(NOT SURVEYED,\nAPPROX.)")]           # ficus ~10' east of the olive
 GATE_L = 168.0                       # courtyard gate behind the carport: 14' wide, hinged at the house corner,
                                      # it opens flat against the house wall, joining carport and courtyard
 FRONT_TREE = (880.0, 40.0)           # new: front yard, in front of the bedroom wing, ~17' from the house front
@@ -459,9 +457,7 @@ def carport_size():
 def driveway_outline():
     """Closed outline of the driveway, parkway apron included (lot inches)."""
     cx0, cy0, cx1, _ = CARPORT
-    ax1 = EAST_OLIVE[0] - OLIVE_CLEAR                                   # approach's west edge, clear of the olive
-    return [(cx0, EDGE_OF_PAVEMENT), (ax1, EDGE_OF_PAVEMENT), (ax1, EAST_OLIVE[1] + OLIVE_CLEAR),
-            (cx1, 0.0), (cx1, cy0), (cx0, cy0)]
+    return [(cx0, EDGE_OF_PAVEMENT), (cx1, EDGE_OF_PAVEMENT), (cx1, cy0), (cx0, cy0)]
 
 
 def wall_geometry():
@@ -725,8 +721,6 @@ def build() -> Sheet:
     sh.text("NEW PRIVACY TREE", PRIVACY_TREE[0], PRIVACY_TREE[1] + 28, 5.0)
     sh.circle(FRONT_TREE, 18.0, "L-PLNT"); sh.circle(FRONT_TREE, 3.0, "L-PLNT")
     sh.text("NEW TREE", FRONT_TREE[0], FRONT_TREE[1] + 28, 5.0)
-    sh.circle(EAST_OLIVE, 18.0, "L-PLNT"); sh.circle(EAST_OLIVE, 3.0, "L-PLNT")
-    sh.text("EXIST. OLIVE TO REMAIN", EAST_OLIVE[0] + 60, EAST_OLIVE[1] - 26, 5.0)
     tx = sum(t[0] for t in EXIST_TREES) / len(EXIST_TREES)
     sh.text("EXIST. MATURE OLIVE TREES TO REMAIN", tx, -140.0, 5.0)
     sh.rect(LOT_X0 + 6, 262, LOT_X0 + 54, 382, "L-SITE"); sh.text("BINS", LOT_X0 + 30, 322, 5.0, rot=90)        # bin pad
