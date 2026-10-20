@@ -25,12 +25,12 @@ From the topographic survey (available on request; overlay: [survey-overlay.png]
 
 - Site drains (area drains, the swale/gravel drain along the east wall, downspout lines) and the building sewer use smooth-wall, solid pipe with glued or gasketed root-resistant joints; no perforated pipe within root range of trees. Perforated drains, where needed, go in a filter-fabric wrapped gravel trench.
 - Install vertical root barrier panels (about 2 ft deep, between trees and pipe runs) next to the parkway olives and any tree planted near a drain or the sewer line. Plant trees at least 10 ft from drain and sewer lines.
-- **Drip trench at the bedroom wing's street wall:** that eave has no gutter, so a gravel-filled trench (part of the 5' noncombustible strip) runs under its drip line, with a drain at the bottom carrying the water to the site system (solid pipe where it passes near trees, per the rule above). A drip edge on the eave keeps the water off the fascia.
+- **Drip trench at the bedroom wing's street wall:** that eave has no gutter, so a gravel-filled trench (part of the ember-resistant zone) runs under its drip line, with a drain at the bottom carrying the water to the site system (solid pipe where it passes near trees, per the rule above). A drip edge on the eave keeps the water off the fascia.
 - Cleanouts at each change of direction and at the ends of drain runs, so roots or debris can be cleared without digging; a backwater/cleanout at the sewer connection.
 
 ## Southeast courtyard (behind the carport, east of the house)
 
-- **No patio.** A 5' gravel strip runs along the house wall from the pavers to the planters (noncombustible zone), with an at-grade landing outside the dining slider. Nothing raised that would count as a deck or platform.
+- **No patio.** A gravel strip runs along the house wall from the pavers to the planters (ember-resistant zone), with an at-grade landing outside the dining slider. Nothing raised that would count as a deck or platform.
 - **Pavers** 5'-deep band along the back of the carport (keeps the lawn out of the carport's 5' fire zone).
 - **Lawn** about 15' x 14' (~210 sq ft), tall fescue + microclover blend, edged by the pavers and the planter wall. Irrigate from the unsoftened line.
 - **Raised planters** 3' deep along the rear fence (noncombustible: concrete, block, or steel). Shade-tolerant, dog-safe plants (e.g., coral bells, ferns); no oleander, sago palm, foxglove, or azalea.
@@ -57,12 +57,12 @@ From the topographic survey (available on request; overlay: [survey-overlay.png]
 
 ## Front yard (no lawn)
 
-- Native/Mediterranean low-water planting: dry creek bed / rain garden taking the downspouts, boulders, low shrubs screening the bedroom windows.
+- Native/Mediterranean low-water planting: dry creek bed / rain garden taking the downspouts, boulders, low ground covers and perennials; no woody shrubs over 12" within 10' of the house.
 - **Entry court** in front of the porch, paved, edged on the street side by a seat-height masonry wall (noncombustible) that returns to the house just short of the lounge window. You walk in from the driveway side. Lit house numbers on the wall; low-voltage path lights.
-- 5' gravel or paver strip along the house; no bark mulch within 30' of the house.
+- **Ember-resistant zone** under the eaves and 5' beyond them all round (pavers, gravel, or low irrigated ground cover; nothing receptive to embers); no bark mulch within 30' of the house. The whole lot is within Zone A (30'). See the fuel modification plan (FM-1).
 - Driveway: permeable pavers or concrete with gravel strips.
-- **Privacy tree by the street, across from the lounge window:** an evergreen California native that grows fast, screens the big north window from the street, and has non-invasive roots. **Catalina cherry** (*Prunus ilicifolia* ssp. *lyonii*) is the first choice: evergreen, fast, dense, drought-tolerant, and its roots don't chase pipes. **Toyon** (*Heteromeles arbutifolia*) is a smaller, tough alternative; **Pacific wax myrtle** (*Morella californica*) works if it gets a little summer water. Avoid oaks and sycamores (big root zones), and resinous or oily plants such as pines, eucalyptus and juniper (fire risk).
+- **Privacy tree by the street, across from the lounge window:** **Toyon** (*Heteromeles arbutifolia*): an evergreen California native, dense enough to screen the big north window from the street, under 25' at maturity, with non-invasive roots, and on the County's fuel modification plant list for Zone A. (Catalina cherry is listed for Zone B only, so it can't be used here.) Avoid oaks and sycamores (big root zones), and resinous or oily plants such as pines, eucalyptus and juniper (fire risk).
   - Plant it inside the lot near the front line, not in the parkway, and slightly west of the window's centre: that keeps it at least 10 ft from the sewer line (it runs out to the cleanout near the porch) and from the driveway.
-  - Fire-zone rules: nothing in the 5 ft noncombustible zone around the house; keep it limbed up, irrigated, and with its canopy clear of the roof and the eaves.
+  - Fire-zone rules: outside the ember-resistant zone; keep it limbed up, irrigated, and with its canopy clear of the roof and the eaves.
   - Put a root barrier between the tree and the sewer line (see drainage below).
-- **Second front tree, in front of the bedroom wing:** a small, low-water tree with a modest root system and an open canopy (e.g., western redbud), set well back from the house so its mature canopy stays clear of the roof and eaves, and clear of the parkway olives' root zones and the water and electric lines coming in at the west end. With the privacy tree, it meets the County's two-tree requirement.
+- **Second front tree, in front of the bedroom wing:** **western redbud** (*Cercis occidentalis*), a small, low-water native with a modest root system and an open canopy, on the Zone A list, set well back from the house so its mature canopy stays clear of the roof and eaves, and clear of the parkway olives' root zones and the water and electric lines coming in at the west end. With the privacy tree, it meets the County's two-tree requirement.

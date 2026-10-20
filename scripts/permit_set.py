@@ -330,7 +330,7 @@ def site_plan(pdf):
     ax.text((cx0 + cx1) / 2, cy0 + S.CARPORT_WALK / 2, "COVERED WALKWAY\n(NOT PARKING)", ha="center", va="center",
             fontsize=5.5)
     ax.text((cx0 + cx1) / 2, (py + cy1) / 2, f"OPEN CARPORT\n{Z.CARPORT:,.0f} SQ FT\n2 SPACES 8'-6\" x 18'-0\",\n"
-            "5'-0\" BEHIND THE HOUSE FRONT", ha="center", va="center", fontsize=6.5)
+            "BEHIND THE FRONT DOOR", ha="center", va="center", fontsize=6.5)
     ax.text((S.E + S.PORCH_X) / 2, (S.N + S.PORCH_Y) / 2, "PORCH", ha="center", va="center", fontsize=5.5)
     # hardscape
     ax.add_patch(MPoly(S.driveway_outline(), closed=True, fc="#f3f3f3", ec=INK, lw=0.8))
@@ -422,8 +422,8 @@ def site_plan(pdf):
              "   the owner's topographic survey.\n"
              "2. Finished floor elevation, grading and drainage\n   per civil (separate sheets).\n"
              "3. Eaves (dashed) 2'-6\" all round (LACC 22.110.090).\n"
-             "4. Existing street and parkway trees protected\n   during construction (root zones).\n"
-             "5. 5' noncombustible zone around the house.\n"
+             "4. Parkway olives protected during construction\n   (root zones); the two trees in the driveway removed.\n"
+             "5. Ember-resistant zone under the eaves and 5' beyond\n   them; planting per the fuel modification plan (FM-1).\n"
              "6. Water, sewer and SCE service per the utilities;\n   no gas service (all-electric).\n"
              "7. Demolition: remove the remaining retaining wall and\n   chimney from the burned house (dashed red); asbestos\n"
              "   survey first if required (SCAQMD Rule 1403); fill\n   and grade per civil.\n"

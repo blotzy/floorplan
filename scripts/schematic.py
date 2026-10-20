@@ -68,7 +68,7 @@ GATE_L = 168.0                       # courtyard gate behind the carport: 14' wi
                                      # it opens flat against the house wall, joining carport and courtyard
 FRONT_TREE = (880.0, 40.0)           # new: front yard, in front of the bedroom wing, ~17' from the house front
                                      # (fuel modification: canopy well clear of the roof), clear of the olives
-PRIVACY_TREE = (624.0, 48.0)         # new: inside the front line, west of the lounge window's centre,
+PRIVACY_TREE = (624.0, 28.0)         # new: inside the front line, west of the lounge window's centre, 15'+ from the eaves,
                                      # 10'+ from the sewer run to the cleanout (survey ~(492, 22))
 EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
 # Entry court in front of the porch, edged on the street side by a 24" seat wall (8" block) that
