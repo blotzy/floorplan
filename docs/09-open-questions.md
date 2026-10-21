@@ -6,6 +6,7 @@
 
 - [ ] LA County Public Works, Road Maintenance District 2 (Urban Forestry): removal of the two east parkway trees (olive and ficus) for the driveway approach, replacement street trees, and whether the removal can go on the approach's Road Encroachment Permit. If refused: the angled drive from the old opening that keeps both trees.
 - [ ] LA County Public Works: sewer connection location and depth (where the lateral meets the main, and whether the west-end baths can reach it by gravity).
+- [ ] LA County Building & Safety / Geotechnical (GMED), emailed Oct 21, 2026: is a soils report required (or can the foundation use the presumptive soil values, CRC Table R401.4.1); does the County require a fault investigation in the Alquist-Priolo zone or does the single-family exemption (PRC 2621.6) apply; and at what amount of grading a soils report or grading permit is triggered. Pass the answer to the engineer in writing.
 - [ ] Lincoln Avenue Water Company (Support@lawc.org, (626) 798-9101): will-serve letter ($200; plans plus LA County Fire Form 195 page 1; owner signs in person), confirming no fire flow test for a fire rebuild under 3,600 sq ft, the existing service and meter size and condition, a 1" meter upsize for the sprinklers, static pressure for the sprinkler designer, backflow, and construction water.
 
 **Planner / permits**
