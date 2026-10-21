@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Oct 21, 2026
+
+- **11:01 AM**: Solar: the first array (about 10 kW, 24 panels) on the shed east of the range cap, with its mounting installed with the roofing and the panels added later; the engineer designs the south-facing plane for the PV load and shows the attachment points for wind uplift; the array's wiring runs under the panels to one roof penetration over the pantry attic. Engineer brief, open questions (including whether the Energy Code's solar requirement applies), floor-plan and electrical docs.
+
 ## Oct 20, 2026
 
 - **7:58 PM**: Lounge subwoofers: a sub cable from the AV closet and a floor-level outlet in both of the lounge's street-wall corners (TV-wall corner and gym-wall corner). Low-voltage and electrical docs.

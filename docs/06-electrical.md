@@ -65,4 +65,4 @@
 **Solar and battery prep (installed later)**
 
 - Solar breaker space on the 225A busbar, at the opposite end from the main.
-- Solar conduit runs through the interior: from the array through the roof into the attic, then inside the walls to the panel. No conduit on the roof surface or down the outside walls. Leave an empty conduit (with pull string) from the attic to the panel at rough-in, and one from the panel to the future battery location (about 3' clear of doors and windows).
+- Solar conduit runs through the interior: from the array through the roof into the attic, then inside the walls to the panel. The first array sits over the vaulted great room (no attic below it), so its wiring runs under the panels to one flashed roof penetration just west of it, over the attic above the pantry and laundry. No conduit on the roof surface or down the outside walls. Leave an empty conduit (with pull string) from the attic to the panel at rough-in, and one from the panel to the future battery location (about 3' clear of doors and windows).
