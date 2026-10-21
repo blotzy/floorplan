@@ -119,7 +119,7 @@ def model():
     opts = X.roof_options()
     out = OUT / "office-patio"
     M.write_model(sc, out, {**sc.meta, "roof_hidden": True, "roof_options": opts,
-                            "roof_flat": [i + 1 for i, k in enumerate(opts) if "flat" in k]})
+                            "roof_flat": [i + 1 for i, k in enumerate(opts) if k in X.FLAT_CEILINGS]})
     return out / "house.html"
 
 

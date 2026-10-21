@@ -345,7 +345,7 @@ HTML = r"""<!doctype html>
   <label><input type="checkbox" id="grid" checked> 1' floor grid</label>
   <label><input type="checkbox" id="edges" checked> Edge lines</label>
   <label id="roofrow"><input type="checkbox" id="roofvis" checked> Roof
-    <select id="roofopt" style="display:none"><option value="0">MCM split: shed 2:12 from the porch into the bedroom wing (18&#39; x 3&#39; clerestory), gable 2:12 over the rest of the wing (plan)</option></select></label>
+    <select id="roofopt" style="display:none"><option value="0">Split: shed + gable (plan)</option></select></label>
   <label id="cportrow" style="display:none">Carport roof <select id="cportopt"></select></label>
   <label><input type="checkbox" id="roofsh" checked> Roof shadows</label>
   <label>Sun: <select id="day">
@@ -715,7 +715,7 @@ def main():
     sc.mat["pv"] = {"color": 0x1E2A44, "roughness": 0.35}
     write_model(sc, ROOT / "renders" / "3d", {**sc.meta, "roof_hidden": True, "roof_options": opts,
                                               "carport_options": X.carport_options(posts),
-                                              "roof_flat": [i + 1 for i, k in enumerate(opts) if "flat" in k]})
+                                              "roof_flat": [i + 1 for i, k in enumerate(opts) if k in X.FLAT_CEILINGS]})
     sc.boxes.update(plan_boxes)
     write_obj(sc, ROOT / "renders" / "3d" / "house.obj")
 

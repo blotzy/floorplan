@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **7:43 PM**: 3D model: short names in the Roof and Carport roof menus (e.g. "Split: shed + gable (plan)", "Gable 4:12", "Flat metal (plan)"), so the controls panel stays narrow.
 - **7:18 PM**: Kitchen doc: the range hood is an insert in a built-in enclosure between the tall cabinets, up to the sloped ceiling, with the duct hidden inside it straight up to the roof cap.
 - **7:10 PM**: Prep sink: no RO tap; its vent shares the main kitchen sink's (joining above the main sink's flood rim). Plumbing and kitchen docs.
 - **7:09 PM**: Plumbing doc: the prep sink's venting spelled out: island loop vent in the cabinet, foot vent and an under-slab run to the main kitchen sink's vent riser (no new roof penetration), cleanout inside the sink cabinet.

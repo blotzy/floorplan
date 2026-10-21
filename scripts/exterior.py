@@ -534,42 +534,47 @@ def carport_options(posts):
         return dict(sc.tris)
 
     return {
-        "Flat standing-seam metal at 9' (plan)": style(lambda x, y: 112, 4, "roof"),
-        "Gable 4:12, gable end to the street (ridge front to back)": gable_style(4 / 12, False),
-        "Gable 6:12, gable end to the street (ridge front to back)": gable_style(6 / 12, False),
-        "Gable 4:12, gable ends east and west (ridge side to side)": gable_style(4 / 12, True),
-        "Thick MCM slab with a dark 12\" fascia, in line with the porch canopy": style(lambda x, y: 111, 12, "canopy"),
-        "Shed 2:12, high at the house, sloping away to the east": style(lambda x, y: 138 - (cx1 - x) * 2 / 12, 6, "roof"),
-        "Solar canopy: PV panels on a steel frame, 1:12 down toward the rear": style(lambda x, y: 126 - (y - Y0) / 12, 4,
+        "Flat metal (plan)": style(lambda x, y: 112, 4, "roof"),
+        "Gable 4:12, end to street": gable_style(4 / 12, False),
+        "Gable 6:12, end to street": gable_style(6 / 12, False),
+        "Gable 4:12, ends east/west": gable_style(4 / 12, True),
+        "MCM slab": style(lambda x, y: 111, 12, "canopy"),
+        "Shed 2:12": style(lambda x, y: 138 - (cx1 - x) * 2 / 12, 6, "roof"),
+        "Solar canopy": style(lambda x, y: 126 - (y - Y0) / 12, 4,
                                                                                       "post", pv),
     }
 
 
+FLAT_CEILINGS = {"Gable 2:12", "Gable 4:12", "Gable 6:12", "Hip 4:12", "Butterfly 2:12", "Flat"}   # roofs whose
+                                                                    # options keep flat 9' ceilings throughout
+
+
 def roof_options():
     """Alternative roofs for the main model's Roof selector, all asphalt shingles: {label: tris} (the main
-    plan's split roof is the model's own roof). Order matters: make_3d's hash links."""
+    plan's split roof is the model's own roof). Order matters: make_3d's hash links. Labels stay short (the
+    selector sits in the model's overlay); FLAT_CEILINGS marks those with flat 9' ceilings."""
     out = {}
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
     low_gable(sc, 2 / 12, EAVE, glazed_ends=False)
-    out["MCM gable 2:12, flat 9' ceilings"] = dict(sc.tris)
+    out["Gable 2:12"] = dict(sc.tris)
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
     shed_gable(sc, 2 / 12, EAVE, glass=(CLERESTORY_MID - 90.0, CLERESTORY_MID + 90.0))
-    out["MCM split: shed 2:12 over the lounge (15' x 3' clerestory), gables 2:12 either side"] = dict(sc.tris)
+    out["Split: shed over the lounge only"] = dict(sc.tris)
     sc = M.Scene()
     band(sc, "exterior", WALL_TOP, PLATE)
     shed_vault_great(sc, 2 / 12, EAVE, band=36.0)
-    out["MCM shed 2:12 over the whole house, 3' clerestory band"] = dict(sc.tris)
+    out["Shed over the whole house"] = dict(sc.tris)
     for rise in (4, 6):                                  # steeper gables, same flat 9' ceilings
         sc = M.Scene()
         band(sc, "exterior", WALL_TOP, PLATE)
         low_gable(sc, rise / 12, EAVE, glazed_ends=False)
-        out[f"Gable {rise}:12, flat 9' ceilings"] = dict(sc.tris)
-    for label, roof in (("Hip 4:12, flat 9' ceilings", lambda sc: hip(sc, 4 / 12, EAVE)),
-                        ("MCM butterfly 2:12 (valley down the middle), flat 9' ceilings",
+        out[f"Gable {rise}:12"] = dict(sc.tris)
+    for label, roof in (("Hip 4:12", lambda sc: hip(sc, 4 / 12, EAVE)),
+                        ("Butterfly 2:12",
                          lambda sc: slab_roof(sc, EAVE, lambda y: PLATE + abs(y - YM) * 2 / 12, splits=(YM,))),
-                        ("Flat roof (1/4:12 to the rear, membrane), flat 9' ceilings",
+                        ("Flat",
                          lambda sc: slab_roof(sc, EAVE, lambda y: PLATE + (Sth - y) * 0.25 / 12))):
         sc = M.Scene()
         band(sc, "exterior", WALL_TOP, PLATE)
