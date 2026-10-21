@@ -493,8 +493,9 @@ def roof_plan(pdf):
             "setback, the ridge setback and the 36\" pathways at both ends (CRC R324.6); final layout per the solar design",
             fontsize=6.5, color="#1f5e9e")
     vtrs = [(850.0, 330.0, "VTR-1: guest ensuite (its own vent, on the\nwing's street slope, out of the PV area)", "bottom"),
-            (868.0, 544.0, "VTR-2 (3\" main vent), just downslope of the skylight: kitchen sink\n(up beside the window, into the pantry wall, then the\n"
-                              "pantry attic), common bath, laundry and primary bath", "bottom")]
+            (868.0, 544.0, "VTR-2, just downslope of the skylight: common bath, laundry\nand primary bath (combined where short; a second vent\n"
+                              "on this slope if simpler), outside the first PV array", "bottom"),
+            (655.0, 612.0, "VTR-3: kitchen sink (and the prep sink's\nriser), straight up at the rear wall line", "top")]
     for vx, vy, lab, va in vtrs:
         ax.add_patch(Circle((vx, vy), 6, fc="white", ec=INK, lw=1.2, zorder=5))
         ax.plot([vx - 6, vx + 6], [vy] * 2, color=INK, lw=0.8, zorder=6)
@@ -526,18 +527,19 @@ def roof_plan(pdf):
              "   downspouts to the site drainage system per civil. No gutter\n"
              "   on the wing's street eave: drip edge over a gravel drip trench.\n"
              "5. Roof framing, sheathing and connections per structural.\n"
-             "6. Roof penetrations flashed per the shingle maker. Two plumbing\n"
-             "   vents (VTR): the guest ensuite's on the wing's street slope; the\n"
-             "   rest combined into one just downslope of the common bath\n"
-             "   skylight, so the panel layout works around one cluster. The\n"
-             "   hall skylight's dome is on the street slope too. Bath fans\n"
-             "   exit through walls where possible; the range hood cap is\n"
-             "   the other penetration in the PV area.\n"
+             "6. Roof penetrations flashed per the shingle maker, metal\n"
+             "   flashings, all outside the first PV array. Plumbing vents\n"
+             "   (VTR): the guest ensuite's on the wing's street slope; the\n"
+             "   kitchen's at the rear wall line; the baths and laundry on the\n"
+             "   wing's rear slope. The hall skylight's dome is on the street\n"
+             "   slope. Exhaust caps metal with backdraft dampers; bath fans\n"
+             "   exit through walls where possible. No dryer vent.\n"
              "7. Carport: attached open carport, its own roof at 1/2\":12 in\n"
              "   double-lock standing seam (Class A assembly, uplift-rated),\n"
              "   gutter on its east edge.\n"
-             "8. Future solar: layout by the solar provider, on rails over\n"
-             "   flashed attachments into the framing (per the solar design).\n"
+             "8. Solar: first array (about 10 kW) on the shed, layout by the\n"
+             "   solar provider. Its mounting (rails over flashed attachments\n"
+             "   into the rafters) is installed with the roofing; panels later.\n"
              "   Its conduit enters through the roof into the attic and\n"
              "   runs inside to the panel: none on the roof surface or\n"
              "   the exterior walls.\n"
