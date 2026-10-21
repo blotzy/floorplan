@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **7:18 PM**: Kitchen doc: the range hood is an insert in a built-in enclosure between the tall cabinets, up to the sloped ceiling, with the duct hidden inside it straight up to the roof cap.
 - **7:10 PM**: Prep sink: no RO tap; its vent shares the main kitchen sink's (joining above the main sink's flood rim). Plumbing and kitchen docs.
 - **7:09 PM**: Plumbing doc: the prep sink's venting spelled out: island loop vent in the cabinet, foot vent and an under-slab run to the main kitchen sink's vent riser (no new roof penetration), cleanout inside the sink cabinet.
 - **7:00 PM**: Kitchen: a small prep sink on the peninsula's kitchen side, toward its north end, across the aisle from the fridge and range (a second work zone). Plan, 3D model, sets, kitchen and plumbing docs (island-style venting in the slab).
