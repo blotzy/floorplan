@@ -80,7 +80,8 @@ def build_schematic() -> Scene:
 
     # ---- ground, slab, carport, porch ------------------------------------------
     ep = S.EDGE_OF_PAVEMENT                                     # lot plus the parkway out to the street
-    sc.polys["ground"].append([[[S.LOT_X0, ep], [S.LOT_X0 + S.LOT_W, ep], [S.LOT_X0 + S.LOT_W, S.LOT_D], [S.LOT_X0, S.LOT_D]], -1.0, 0.0])
+    sc.polys["ground"].append([[[S.LOT_X0, ep], [S.LOT_X0 + S.LOT_W, ep], [S.LOT_X0 + S.LOT_W, S.LOT_D], [S.LOT_X0, S.LOT_D]], -2.0, -1.0])   # 1" below the floor:
+                                                                         # coplanar faces flicker
     sc.polys["slab"].append([footprint, -4.0, 0.0])                    # floor surface = height 0 (the datum)
     cx0, cy0, cx1, cy1 = S.CARPORT
     sc.polys["concrete"].append([[[cx0, cy0], [cx1, cy0], [cx1, cy1], [cx0, cy1]], 0.0, 2.0])
