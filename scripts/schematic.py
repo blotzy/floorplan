@@ -600,6 +600,9 @@ def build() -> Sheet:
     sh.text("DW", pen_in - 12, S_IN - 36, 3.5)                                 # side, around the corner from the sink
     sh.rect(pen_in - 24, S_IN - 72, pen_in, S_IN - 48, eq)                     # 24" triple pull-out beside the DW:
     sh.text("TRASH", pen_in - 12, S_IN - 60, 3.0)                              # trash, recycling, food scraps
+    py0 = 497.0                                                               # prep sink: peninsula, kitchen side,
+    sh.rect(pen_in - 20, py0, pen_in - 4, py0 + 16, eq)                       # across from the fridge/range gap
+    sh.text("PREP SINK", pen_in - 12, py0 + 8, 2.2, rot=90)
     sh.rect(pen_out, S_IN - 15, pen_out + 24, S_IN, eq)                        # 15" drink fridge under the counter,
     sh.text("BEV", pen_out + 12, S_IN - 7.5, 3.0)                              # stool side, corner by the south wall
     sh.line((pen_out + 15, srow), (pen_out + 15, S_IN), eq)                   # 15" overhang
