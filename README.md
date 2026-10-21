@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 20, 2026, 5:57 PM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 20, 2026, 6:15 PM PT · @Richard
 
 [CHANGELOG](CHANGELOG.md)
 
@@ -61,6 +61,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | Experiment: [hall ending at the office](renders/experiments/office-end.png) (vs [the current plan](renders/experiments/office-end-current.png)) | No west door: the office door closes the end of the hall, and the primary bedroom is entered through a small foyer with the closet on one side and the bedroom on the other |
 | Experiment: [hall ending just past the primary door](renders/experiments/office-alcove.png) (vs [the current plan](renders/experiments/office-end-current.png)) | No west door: the office door closes the hall just past the primary bedroom door, and the office gains the old hall end as a desk alcove; the primary entry and closet stay as they are |
 | Experiment: [office patio](renders/experiments/office-patio.png) · [3D model](renders/experiments/office-patio/house.html) · views [from the street](renders/experiments/office-patio/street-view.png), [from the office](renders/experiments/office-patio/office-view.png) | The hall ending at the office, plus a covered 4'-deep patio across the office's street side (guest room to the west end), with 6' French doors from the office |
+| Experiment: [vault only the lounge](renders/experiments/lounge-vault/house.html) (3D model) · views [from the lounge toward the kitchen](renders/experiments/lounge-vault/lounge-to-kitchen.png), [from the dining table toward the lounge](renders/experiments/lounge-vault/dining-to-lounge.png) | Same roof outside; inside, the lounge and foyer keep the sloped ceiling up to the clerestory, while the dining room and kitchen get a flat 9' ceiling (attic space above for ducts, the hood duct and lights), with a drywall step across the great room on the foyer-wall line |
 | [Fuel modification plan (PDF)](renders/fuelmod/fuel-modification-plan.pdf) | [FM-1](renders/fuelmod/FM-1-fuel-modification-plan.png): owner-prepared plan for LA County Fire: ember-resistant zone, Zone A, existing and proposed planting with botanical names |
 | [Zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) | Site plan with setbacks and project data, floor plan, roof plan, elevations ([how to submit](docs/11-zoning-check.md)) |
 | [`accosting-owner-schematic-survey.dxf`](accosting-owner-schematic-survey.dxf) | The plan over the topographic survey as a DXF (inches) |
