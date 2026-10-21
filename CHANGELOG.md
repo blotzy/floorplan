@@ -11,40 +11,40 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
-- **7:58 PM**: Lounge subwoofers: a sub cable from the AV closet and a floor-level outlet in both of the lounge's street-wall corners (TV-wall corner and gym-wall corner). Low-voltage and electrical docs.
-- **7:56 PM**: Lounge surround speakers: speaker wire from the AV closet and an outlet at two positions on the gym wall behind the couch. Low-voltage and electrical docs.
-- **7:45 PM**: Primary bedroom: the high west window over the bed is removed (cost and TV glare); cross-breeze comes from the south window through to the reading nook's west window. Glazing about 444 sq ft (19.8%), just under the prescriptive 20%. Plan, 3D model, sets, floor-plan, Title 24, electrical and open-question docs.
-- **7:43 PM**: 3D model: short names in the Roof and Carport roof menus (e.g. "Split: shed + gable (plan)", "Gable 4:12", "Flat metal (plan)"), so the controls panel stays narrow.
-- **7:18 PM**: Kitchen doc: the range hood is an insert in a built-in enclosure between the tall cabinets, up to the sloped ceiling, with the duct hidden inside it straight up to the roof cap.
-- **7:10 PM**: Prep sink: no RO tap; its vent shares the main kitchen sink's (joining above the main sink's flood rim). Plumbing and kitchen docs.
-- **7:09 PM**: Plumbing doc: the prep sink's venting spelled out: island loop vent in the cabinet, foot vent and an under-slab run to the main kitchen sink's vent riser (no new roof penetration), cleanout inside the sink cabinet.
-- **7:00 PM**: Kitchen: a small prep sink on the peninsula's kitchen side, toward its north end, across the aisle from the fridge and range (a second work zone). Plan, 3D model, sets, kitchen and plumbing docs (island-style venting in the slab).
-- **6:34 PM**: Street facade: only the punched street windows (lounge, gym, guest, office, guest ensuite) are recessed 6", about 74% of the facade's window area against the 50% the recessed-window strategy needs; the clerestory band is flush. Z-4 note (with the area calculation), A-4 note, floor-plan and zoning check docs.
-- **5:56 PM**: 3D model: the floor surface is now the height datum (the slab sits below it), so walls, ceilings, windows, furniture and the hearth bench show at their true heights above the floor (they were 4" low); walk-mode eye height 5'-3½" (a 5'-8" person). Views recaptured. The drawings were already measured from the finished floor.
-- **5:50 PM**: Irrigation rough-in: unsoftened irrigation branch with its own backflow preventer and a valve manifold, drip zones plus a spray zone for the courtyard lawn on a weather-based controller (with an outlet), and sleeves under all paving. Plumbing, electrical and site docs; open question on the water-efficient landscape (MWELO) submittal.
-- **5:46 PM**: Plans now show the carport roof outline (dashed, "carport roof above (9')"), its front edge in line with the porch canopy's, so the site and floor plans (schematic, Z-1, Z-2, A-1, A-2) match the roof plans and elevations.
-- **5:43 PM**: Carport roof: its front edge now lines up with the porch canopy's, 1' past the house front (was 6"), one continuous front edge under the house's eave. 3D model and carport roof options, zoning and permit sets (roof plans, elevations), fuel modification plan, site and zoning docs.
-- **5:34 PM**: Reading nook window: 3'-0" x 3'-6" (was 4'-0" tall), sill unchanged, its head 6" below the lowered ceiling so a band of wall shows above it. Glazing about 452 sq ft (20.2%). Plan, 3D model, sets, floor-plan, Title 24 and open-question docs.
-- **5:30 PM**: Reading nook: the ceiling drops to 7'-6" (the bedroom's is 9') with built-in cabinets above it, 24" deep, running the nook's length with doors facing the bedroom; the nook window moves down 6" (still 3'-0" x 4'-0") so its head meets the lowered ceiling; recessed reading lights in the lowered ceiling. Plan, 3D model, sets, floor-plan and electrical docs, open questions (sprinkler coverage).
-- **4:47 PM**: Hearth bench: now symmetrical about the TV (cubby, fireplace, cubby with even ends), from just past the reeded window to the walkway end; the window seat and its lift-up lid are dropped, and the street-wall corner by the reeded window stays open floor. Plan, 3D model, sets, floor-plan doc.
-- **4:36 PM**: Hearth bench window seat: lift-up lid over a lined storage box, hinged at the wall on a soft-close stay that stops it short of the reeded window. Floor-plan doc.
-- **4:30 PM**: Hearth bench: the two cubbies now match (20" each), one each side of the fireplace, symmetrical under the TV; a data drop in each. Plan, 3D model, sets, floor-plan and low-voltage docs.
-- **4:28 PM**: Lounge: a hearth bench along the whole TV wall, framed and drywalled on a recessed base (reads as floating), 21" deep. It has a window seat at the reeded window, a 60" linear electric fireplace in its face under the TV, and two open cubbies, the larger an AV cubby at the walkway end. The TV moves 9" north to centre on the wall and hangs just above the bench. The foyer closet at the dining-room end, behind the TV, becomes the AV closet. Electrical (fireplace circuit, low TV box, cubby outlets, AV closet outlet and fan) and low-voltage notes (conduit from the TV box to the AV closet and on to the rack, cubby conduits and data). Plan, 3D model, sets, floor-plan doc, open questions (fireplace model). The hearth bench experiment is adopted and removed.
-- **2:15 PM**: Primary bedroom TV wall (between the walk-in closet and bath doors): a recessed TV box set for a lower, tilting mount (keeps the high window's reflection off the screen), blocking for the mount, and a data drop. Electrical and low-voltage docs.
-- **2:06 PM**: Primary bedroom: a 4'-0" x 2'-0" high window on the west wall (sill 6') above the headboard, matching the office's, for cross-breeze with the south window. The reading nook window stays. Glazing about 453 sq ft (20.2%), just over the prescriptive 20%, so the energy consultant confirms the performance path (open question added). Plan, 3D model, zoning and permit sets, floor-plan and Title 24 docs.
-- **2:02 PM**: Foyer: the foyer wall is now one built-in, closet / bench niche / closet (was a closet and a bench), with shoes and coats behind closed doors. Plan, 3D model, zoning and permit sets, floor-plan doc.
-- **1:58 PM**: New inspiration page with a foyer storage reference photo (built-in bench niche between floor-to-ceiling cabinets); the image is kept in the repo.
-- **1:49 PM**: Office: a 4'-0" x 2'-0" high window on the west wall (sill 6'), over the bed head, for cross-breeze and privacy from the neighbour's two-story house. Glazing about 445 sq ft (19.9%, just under 20%). Plan, 3D model, zoning and permit sets, floor-plan and Title 24 docs.
-- **1:43 PM**: Ceiling fans with lights in the primary bedroom, guest bedroom and office: electrical (fan-rated boxes, separate fan and light control), HVAC (registers clear of the blades), plumbing and open questions (sprinkler heads clear of the fans).
-- **1:14 PM**: No rebuild size limit (non-like-for-like; only the CSD floor-area limit applies). Project basics, open questions and zoning check doc updated.
-- **1:13 PM**: Planning confirmed the setbacks (10% side yards, the shallow-lot rear yard) and the carport and porch parking layout as drawn. Open questions, zoning check doc, site doc and the Z-1 note updated.
-- **1:11 PM**: Open questions: a "Waiting on replies" list for the requests sent to Urban Forestry (parkway trees), Public Works (sewer connection) and Lincoln Avenue Water Company (will-serve letter and service questions).
-- **12:01 PM**: 3D Carport roof selector: three gable options, all with eaves at 9' and closed stucco gable ends: 4:12 and 6:12 with the gable end to the street, and 4:12 with the gable ends east and west. The plan's carport is unchanged.
-- **11:59 AM**: 3D model: a new Carport roof selector to compare styles: the plan's flat standing-seam metal at 9', a thick MCM slab with a dark fascia in line with the porch canopy, a 2:12 shed sloping away from the house, and a solar canopy (PV panels on a steel frame). The plan's carport is unchanged.
-- **11:53 AM**: 3D Roof menu: three more alternatives, all with flat 9' ceilings: a 4:12 hip, an MCM butterfly at 2:12 (valley down the middle), and a flat roof (1/4:12 to the rear, membrane). The plan's roof is unchanged.
-- **11:48 AM**: 3D Roof menu: two more alternatives, a 4:12 gable and a 6:12 gable, both with flat 9' ceilings. The plan's roof is unchanged.
-- **10:53 AM**: The lot tree beside the carport is marked as dead (to be removed) on A-1 and FM-1, and in the site doc, open questions and engineer brief.
-- **10:44 AM**: Driveway back to straight at the carport's full 18' width from the street to the carport. Both east parkway trees, the olive and the ficus, are removed (County permit to be requested). The open-questions to-do lists the District 2 contact and the fallbacks if the County refuses: keep the olive, or keep both. Plan, 3D model, A-1, FM-1, site doc and engineer brief.
+**Permits and approvals**
+- Planning confirmed the setbacks (10% side yards, the shallow-lot rear yard) and the carport and porch parking layout as drawn. There is no rebuild size limit (non-like-for-like): only the CSD floor-area limit applies.
+- Open questions: a "Waiting on replies" list for the requests sent to Urban Forestry (parkway trees), Public Works (sewer connection) and Lincoln Avenue Water Company (will-serve letter and service questions).
+
+**Site**
+- Driveway: straight at the carport's full 18' width from the street. Both east parkway trees, the olive and the ficus, are to be removed (County permit to be requested), with fallbacks if the County refuses (keep the olive, or keep both). The lot tree beside the carport is marked as dead.
+- Carport roof: its front edge lines up with the porch canopy's, 1' past the house front, one continuous edge under the house's eave; the plans show it as a dashed outline.
+- Irrigation rough-in: an unsoftened irrigation branch with its own backflow preventer and a valve manifold, drip zones plus a spray zone for the courtyard lawn on a weather-based controller (with an outlet), and sleeves under all paving. Open question on the water-efficient landscape (MWELO) submittal.
+
+**Street facade**
+- Only the punched street windows (lounge, gym, guest, office, guest ensuite) are recessed 6", about 74% of the facade's window area against the 50% the recessed-window strategy needs; the clerestory band is flush.
+
+**Lounge and foyer**
+- Hearth bench along the TV wall, symmetrical about the TV: framed and drywalled on a recessed base (reads as floating), 21" deep, with a 60" linear electric fireplace set high in its face and a matching 20" cubby on each side. The TV moves 9" north to centre on the wall and hangs just above the bench. The street-wall corner by the reeded window stays open floor.
+- The foyer wall is one built-in: closet / bench niche / closet, with shoes and coats behind closed doors. The closet at the dining-room end, behind the TV, is the AV closet.
+- AV rough-in: fireplace circuit, low TV box, outlets and data in the cubbies, conduit from the TV box to the AV closet and on to the rack, conduits from the cubbies, an outlet and vent fan in the AV closet. Speaker wire and an outlet at two surround positions on the gym wall, and a sub cable and floor-level outlet in both of the lounge's street-wall corners.
+
+**Bedrooms**
+- Office: a 4'-0" x 2'-0" high window on the west wall (sill 6') over the bed head, for cross-breeze and privacy from the neighbour's two-story house.
+- Reading nook: the ceiling drops to 7'-6" (the bedroom's is 9') with 24"-deep built-in cabinets above it facing the bedroom, and recessed reading lights; the nook window is 3'-0" x 3'-6" (was 4'-0" tall), its head 6" below the lowered ceiling.
+- Ceiling fans with lights in the primary bedroom, guest bedroom and office (fan-rated boxes, registers and sprinkler heads clear of the blades).
+- Primary bedroom TV wall (between the walk-in closet and bath doors): a recessed TV box for a lower, tilting mount, blocking and a data drop.
+- Glazing about 444 sq ft (19.8%), just under the prescriptive 20%.
+
+**Kitchen**
+- A small prep sink on the peninsula's kitchen side, across from the fridge and range: island-style venting (loop vent in the cabinet, under-slab run) joining the main sink's vent, a cleanout in the cabinet, no RO tap.
+- Range hood: an insert in a built-in enclosure between the tall cabinets, up to the sloped ceiling, its duct hidden inside, straight up to the roof cap.
+
+**3D model**
+- The floor surface is the height datum, so everything shows at its true height above the floor (it was 4" low); walk-mode eye height 5'-3½".
+- Roof menu alternatives: gables at 4:12 and 6:12, a 4:12 hip, a 2:12 butterfly and a flat roof. A new Carport roof menu: the plan's flat metal, an MCM slab, three gables, a 2:12 shed and a solar canopy. Short names in both menus.
+
+**Other**
+- A new inspiration page, starting with a foyer storage photo kept in the repo.
 
 ## Oct 19, 2026
 
