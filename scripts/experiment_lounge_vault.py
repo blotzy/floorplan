@@ -10,10 +10,11 @@
     4' where it meets the lounge, for ducts, the range hood duct and recessed lights).
   - The step between them is a drywall face across the great room on the foyer-wall / bedroom-hall line.
 
-Writes a 3D model, renders/experiments/lounge-vault/house.html, with eye-level views. The floor plan doesn't
-change. Not part of the regular build.
+Writes a 3D model, renders/experiments/lounge-vault/house.html, with eye-level views; with an argument of 10,
+the same with a 10' flat ceiling (a shorter step, a shallower attic space) in renders/experiments/lounge-vault-10ft/.
+The floor plan doesn't change. Not part of the regular build.
 
-    uv run scripts/experiment_lounge_vault.py
+    uv run scripts/experiment_lounge_vault.py [10]
 """
 from __future__ import annotations
 
@@ -23,7 +24,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import schematic as S  # noqa: E402
 
-OUT = S.RENDERS / "experiments" / "lounge-vault"
+FLAT = 120.0 if sys.argv[1:] == ["10"] else 108.0       # the dining room and kitchen's flat ceiling
+OUT = S.RENDERS / "experiments" / ("lounge-vault-10ft" if FLAT > 108 else "lounge-vault")
 
 
 def model():
@@ -39,9 +41,9 @@ def model():
         dining = lambda t: all(p[1] >= yf - 0.1 and S.E_IN - 0.1 <= p[0] <= kx + 0.1 and p[2] > C + 0.5   # noqa: E731
                                for p in t)                    # the sloped ceiling over the dining and kitchen
         sc.tris["wall"] = [t for t in sc.tris["wall"] if not dining(t)]
-        X.quad(sc, "wall", [S.E_IN, yf, C - 1], [kx, yf, C - 1], [kx, S.S_IN, C - 1], [S.E_IN, S.S_IN, C - 1])
-        X.quad(sc, "wall", [S.E_IN, yf, C - 1], [kx, yf, C - 1], [kx, yf, under(yf) - 1],   # the step, up
-               [S.E_IN, yf, under(yf) - 1])                                                # to the slope
+        z = FLAT - 1
+        X.quad(sc, "wall", [S.E_IN, yf, z], [kx, yf, z], [kx, S.S_IN, z], [S.E_IN, S.S_IN, z])
+        X.quad(sc, "wall", [S.E_IN, yf, z], [kx, yf, z], [kx, yf, under(yf) - 1], [S.E_IN, yf, under(yf) - 1])   # step
 
     X.great_room_inside = inside
     try:
@@ -49,8 +51,9 @@ def model():
         X.chosen_exterior(sc)
     finally:
         X.great_room_inside = real
-    lx0, lx1 = X.LOUNGE_X                                     # flat ceilings everywhere but the lounge and foyer
-    M.add_vault_ceiling(sc, unary_union([box(lx0, S.N, lx1, yf), box(S.E, S.PORCH_Y, lx0, yf)]))
+    lx0, lx1 = X.LOUNGE_X                                     # 9' flat ceilings everywhere but the lounge and foyer
+    vault = unary_union([box(lx0, S.N, lx1, yf), box(S.E, S.PORCH_Y, lx0, yf)])   # (and, at 10', the dining
+    M.add_vault_ceiling(sc, vault if FLAT <= 108 else X.great_room_vault(to_outside=True))   # and kitchen)
     M.write_model(sc, OUT, {**sc.meta, "roof_hidden": True})
     return OUT / "house.html"
 
