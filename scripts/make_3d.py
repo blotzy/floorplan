@@ -103,6 +103,10 @@ def build_schematic() -> Scene:
     sc.boxes["flame"].append([hx1 - 0.5, a + 2, hx1 + 0.3, b - 2, 10.5, 15])
     for a, b in S.HEARTH_CUBBIES:                                       # open cubbies
         sc.boxes["frame"].append([hx1 - 0.6, a, hx1 + 0.2, b, 9.5, 16.5])
+    nx0, ny0 = S.HALL_END + S.INT / 2, S.face("bedroom hall wall", +1)  # reading nook: lowered ceiling, with
+    ny1 = S.face("south hall wall", -1) + S.INT                         # cabinets above it facing the bedroom
+    sc.boxes["wall"].append([nx0, ny0, S.W_IN, ny1 - S.NOOK_CAB_D, S.NOOK_CEIL, CEIL])
+    sc.boxes["closet"].append([nx0, ny1 - S.NOOK_CAB_D, S.W_IN, ny1, S.NOOK_CEIL, CEIL])
 
     # ---- walls: a face along every edge of the wall outline ----------------------
     # Faces on the house's outer perimeter are "exterior" (siding colour), the rest "wall".

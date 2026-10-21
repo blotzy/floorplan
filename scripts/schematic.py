@@ -97,6 +97,8 @@ NOTICE = ("\u00a9 2026 Richard Acosta. All rights reserved. For 220 Laurel Dr on
 # stretch is the primary bedroom's reading nook. Halfway down, just past the common bath, a cased opening
 # with a dropped header marks the bedroom end (no door).
 HALL_END = 1110.5                    # centreline of the hall's end wall
+NOOK_CEIL = 90.0                     # reading nook: lowered ceiling at 7'-6" (the room's is 9'), built-in cabinets
+NOOK_CAB_D = 24.0                    # above it with doors facing the bedroom; the nook window's head meets it
 HALL_ARCH = 897.5                    # centreline of the threshold wall: in line with the ensuite|guest wall,
                                      # between the common bath and guest doors
 ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
@@ -155,7 +157,7 @@ OPENINGS = [
                                                           # (cross-breeze, privacy from the neighbour's 2nd floor)
     ("west",        511.8, 559.8, "window", 72.0, 96.0),    # primary: 4'-0" x 2'-0" high window over the bed head
                                                           # (cross-breeze with the south window; matches the office)
-    ("west",        415.45, 451.45, "window", 48.0, 96.0),  # reading nook: 3'-0" x 4'-0", centred on the nook,
+    ("west",        415.45, 451.45, "window", 42.0, NOOK_CEIL),  # reading nook, head at the lowered ceiling: 3'-0" x 4'-0", centred on the nook,
                                                           # light over the reader's shoulder from the bench
     ("east",        514.0, 586.0, "slider"),             # dining 6' slider: just past the courtyard fence, leaving
                                                           # ~2'-9" of solid wall at the dining corner
@@ -657,6 +659,11 @@ def build() -> Sheet:
     sh.rect(n0, ny, W_IN, ny + 24, fu)                                        # length of the office wall
     sh.text("BENCH", (n0 + W_IN) / 2, ny + 12, 3.5)
     sh.text("READING NOOK", (n0 + W_IN) / 2, ny + 38, 3.5, "A-AREA-IDEN")
+    ys = face("south hall wall", -1) + INT                                    # the nook's open (bedroom) edge
+    dash = {"layer": "A-CLNG", "linetype": "DASHED"}
+    for p, q in (((n0, ny - INT), (W_IN, ny - INT)), ((n0, ys), (W_IN, ys)), ((n0, ys - NOOK_CAB_D), (W_IN, ys - NOOK_CAB_D))):
+        sh.msp.add_line(p, q, dxfattribs=dash)                                # lowered ceiling; cabinet backs
+    sh.text("CABINETS ABOVE, LOWERED CEILING 7'-6\"", (n0 + W_IN) / 2, ys - 6, 2.5, "A-CLNG")
 
     def closet(x0, x1, label="CL"):          # 24" reach-in closets on the hall wall
         y1 = hall_n

@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **5:30 PM**: Reading nook: the ceiling drops to 7'-6" (the bedroom's is 9') with built-in cabinets above it, 24" deep, running the nook's length with doors facing the bedroom; the nook window moves down 6" (still 3'-0" x 4'-0") so its head meets the lowered ceiling; recessed reading lights in the lowered ceiling. Plan, 3D model, sets, floor-plan and electrical docs, open questions (sprinkler coverage).
 - **4:47 PM**: Hearth bench: now symmetrical about the TV (cubby, fireplace, cubby with even ends), from just past the reeded window to the walkway end; the window seat and its lift-up lid are dropped, and the street-wall corner by the reeded window stays open floor. Plan, 3D model, sets, floor-plan doc.
 - **4:36 PM**: Hearth bench window seat: lift-up lid over a lined storage box, hinged at the wall on a soft-close stay that stops it short of the reeded window. Floor-plan doc.
 - **4:30 PM**: Hearth bench: the two cubbies now match (20" each), one each side of the fireplace, symmetrical under the TV; a data drop in each. Plan, 3D model, sets, floor-plan and low-voltage docs.
