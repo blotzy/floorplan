@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **7:09 PM**: Plumbing doc: the prep sink's venting spelled out: island loop vent in the cabinet, foot vent and an under-slab run to the main kitchen sink's vent riser (no new roof penetration), cleanout inside the sink cabinet.
 - **7:00 PM**: Kitchen: a small prep sink on the peninsula's kitchen side, toward its north end, across the aisle from the fridge and range (a second work zone). Plan, 3D model, sets, kitchen and plumbing docs (island-style venting in the slab).
 - **6:34 PM**: Street facade: only the punched street windows (lounge, gym, guest, office, guest ensuite) are recessed 6", about 74% of the facade's window area against the 50% the recessed-window strategy needs; the clerestory band is flush. Z-4 note (with the area calculation), A-4 note, floor-plan and zoning check docs.
 - **5:56 PM**: 3D model: the floor surface is now the height datum (the slab sits below it), so walls, ceilings, windows, furniture and the hearth bench show at their true heights above the floor (they were 4" low); walk-mode eye height 5'-3½" (a 5'-8" person). Views recaptured. The drawings were already measured from the finished floor.
