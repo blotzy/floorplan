@@ -181,8 +181,9 @@ OPENINGS = [
     ("suite|primary", 463.0, 495.0, "door", "a", -1),       # walk-in closet, 32": swings in, opens flat by the hall wall
 ]
 
-# Street-facade articulation (County building articulation, Table 22.140.520-C): the street windows
-# are recessed into the wall. At the rear, flat metal canopies shade the kitchen and primary bedroom
+# Street-facade articulation (County building articulation, Table 22.140.520-C): the punched street windows
+# (lounge, gym, guest, office, guest ensuite) are recessed into the wall, over 50% of the facade's window area;
+# the clerestory band stays flush. At the rear, flat metal canopies shade the kitchen and primary bedroom
 # windows; each runs 1' past its window and no farther (22.110.090.B).
 WINDOW_RECESS = 6.0                  # glass behind the stucco face
 CANOPY_D, CANOPY_RUN, CANOPY_Z = 36.0, 12.0, 98.0   # depth off the wall, run past each side, underside

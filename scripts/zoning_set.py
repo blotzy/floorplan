@@ -405,8 +405,13 @@ def elevations(pdf):
         elevation(fig.add_axes([0.02 + i * 0.49, 0.1, 0.47, 0.26]), side)
     fig.text(0.02, 0.972, "Heights above finished floor. The lot falls ~4' across the footprint (survey); grade lines "
              "and height above grade to follow the foundation/grading design.", fontsize=8.5, color="#555")
-    fig.text(0.02, 0.962, "Street facade articulation (§22.140.520, Table 22.140.520-C): recessed windows: all street "
-             f"windows set {S.WINDOW_RECESS:.0f}\" behind the stucco face.\n"
+    punched = sum((o[2] - o[1]) * ((o[5] if len(o) > 5 else 96.0) - (o[4] if len(o) > 4 else 30.0))
+                  for o in S.OPENINGS if o[0] == "north" and o[3] == "window") / 144
+    clere = X.CLERESTORY_UNITS * X.CLERESTORY_UNIT * 36.0 / 144
+    fig.text(0.02, 0.962, "Street facade articulation (§22.140.520, Table 22.140.520-C): recessed windows: the punched "
+             f"street windows (~{punched:.0f} sq ft) set {S.WINDOW_RECESS:.0f}\" behind the stucco face, "
+             f"~{punched / (punched + clere):.0%} of the facade's window area (~{punched + clere:.0f} sq ft; "
+             "the clerestory band is flush); the standard asks for over 50%.\n"
              "Rear: metal canopies over the kitchen and primary bedroom windows.", fontsize=8.5, color="#555", va="top")
     pdf.savefig(fig); save_png(fig, OUT / "Z-4-elevations.png", dpi=110); plt.close(fig)
 

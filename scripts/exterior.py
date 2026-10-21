@@ -439,7 +439,8 @@ CLERESTORY_SILL = PLATE + (shed_vault_under(2 / 12)(N) - PLATE - 36.0) / 2   # t
 
 
 def street_facade(sc):
-    """Recessed street windows (glass WINDOW_RECESS behind the stucco face), and the flat metal canopies
+    """Recessed punched street windows (glass WINDOW_RECESS behind the stucco face; the clerestory band, higher
+    up, stays flush), and the flat metal canopies
     over the rear kitchen and primary bedroom windows."""
     yc = N + S.EXT / 2
     for q in sc.quads["glass"]:
