@@ -21,6 +21,11 @@ From the topographic survey (available on request; overlay: [survey-overlay.png]
 - **Utilities:** water meter and power pole are at the west end of the frontage (in the parkway); the sewer cleanout is at the front, roughly in line with the porch and lounge.
 - **Street:** Laurel Drive right-of-way is 50 ft (25 ft half-width); edge of pavement is about 13 ft in front of the property line.
 
+## Irrigation
+
+- Automatic, on a weather-based controller: drip at the trees, shrubs and ground cover, spray only on the courtyard lawn (required for the fuel modification plan's Zone A planting; see FM-1). Unsoftened supply with its own backflow preventer; details in the [plumbing doc](04-plumbing.md).
+- Sleeves under all paving (driveway, carport, entry court, courtyard pavers) before it goes in.
+
 ## Drainage and root protection
 
 - Site drains (area drains, the swale/gravel drain along the east wall, downspout lines) and the building sewer use smooth-wall, solid pipe with glued or gasketed root-resistant joints; no perforated pipe within root range of trees. Perforated drains, where needed, go in a filter-fabric wrapped gravel trench.

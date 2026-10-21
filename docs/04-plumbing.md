@@ -13,12 +13,18 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 | Line | Water | Notes |
 | --- | --- | --- |
 | Fire sprinklers | Unsoftened, direct from main | Sprinkler designer to confirm service/meter size (often 1"); plans due by foundation sign-off; heads placed clear of the ceiling fans (primary, guest, office) |
-| Hose bibs and irrigation | Unsoftened | Tee before the softener; includes the courtyard lawn and the bin-pad hose bib |
+| Hose bibs and irrigation | Unsoftened | Tee before the softener; includes the courtyard lawn and the bin-pad hose bib. The irrigation branch has its own backflow preventer (per the plumbing code and the water company) and feeds a valve manifold in a box (point of connection agreed between plumber and landscaper) |
 | Bathrooms | Softened |  |
 | Kitchen | Softened | Plus RO for drinking and the fridge |
 | Water heater | Softened |  |
 | Laundry | Softened |  |
 | Robot vacuum dock | Softened cold | Needs a drain with a proper trap, often tied into the washer standpipe |
+
+**Irrigation rough-in** (fuel modification plan FM-1 and the state's water-efficient landscape rules)
+
+- Unsoftened irrigation branch, backflow preventer and valve manifold as above; drip zones for trees, shrubs and ground cover, a spray zone only for the courtyard lawn, no overspray onto paving.
+- Weather- or soil-moisture-based controller (see the electrical doc for its outlet).
+- Sleeves (empty 2"–3" pipes) under the driveway, carport slab, entry court and courtyard pavers before they're poured or laid, so irrigation lines (and future low-voltage landscape lighting) can cross without cutting paving.
 
 **Bathrooms**
 
