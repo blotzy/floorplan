@@ -87,7 +87,7 @@ def build_schematic() -> Scene:
     sc.polys["concrete"].append([[list(p) for p in S.driveway_outline()], 0.0, 1.0])
     ox, oy = S.PORCH_OUT                                                 # porch (8' x 5') and its step
     sc.polys["concrete"].append([[[ox, oy - 24], [px, oy - 24], [px, py], [ox, py]], 0.0, 3.0])
-    sc.boxes["roof"].append([cx0 - 6, cy0 - 6, cx1, cy1 + 6, 108, 112])
+    sc.boxes["roof"].append([*S.CARPORT_ROOF, 108, 112])
     sc.boxes["post"].append([E_, N_, E_ + 6, N_ + 6, 0, CEIL])        # porch corner post
     ex0, ey0, ex1, ey1 = S.ENTRY_COURT                                  # entry court + seat wall
     sc.polys["pavers"].append([[[ex0, ey0], [ex1, ey0], [ex1, ey1], [ex0, ey1]], 0.0, 2.0])

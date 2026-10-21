@@ -70,6 +70,8 @@ PORCH_OUT = (E - PORCH_EAST, N - PORCH_FWD)    # the porch's outer corner (x, y)
 # needs only to sit no closer to the street than the front door (§22.140.520 b.i).
 CARPORT_WALK, STALL_W, STALL_D = PORCH_Y - N, 102.0, 216.0
 CARPORT = (140.1, N, E, N + CARPORT_WALK + STALL_D)   # x0, y0, x1, y1: 18' x 22'
+CARPORT_ROOF = (CARPORT[0] - 6, PORCH_OUT[1], E, CARPORT[3] + 6)   # 6" past the posts; its front edge in line
+                                                                   # with the porch canopy's
 # Driveway: straight and the carport's full 18' width from the edge of pavement (no curb on Laurel
 # Drive) to the carport; the lot tree and the east parkway olive and ficus in its way are removed.
 EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives

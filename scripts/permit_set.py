@@ -448,7 +448,8 @@ def roof_plan(pdf):
     X0, X1, Y0, Y1 = S.E - OV, S.W + OV, S.N - OV, S.S + OV
     ax.add_patch(Rectangle((X0, Y0), X1 - X0, Y1 - Y0, fc="#e6e6e6", ec=INK, lw=1.6))
     ax.add_patch(MPoly(Z.FOOT, closed=True, fill=False, ec="#777", ls="--", lw=0.8))
-    ax.add_patch(Rectangle((cx0 - 6, cy0 - 6), cx1 - cx0 + 6, cy1 - cy0 + 12, fc="#f4f4f4", ec=INK, lw=1.0))
+    rx0, ry0, rx1, ry1 = S.CARPORT_ROOF
+    ax.add_patch(Rectangle((rx0, ry0), rx1 - rx0, ry1 - ry0, fc="#f4f4f4", ec=INK, lw=1.0))
     wx, ry = X.WING_X, X.RIDGE_Y
     ax.plot([wx, wx], [Y0, Y1], color=INK, lw=1.2)                         # shed / gable line
     ax.plot([wx, X1], [ry, ry], color=INK, lw=1.8)                         # the wing's ridge
@@ -472,7 +473,7 @@ def roof_plan(pdf):
             fontsize=6.5, ha="right", va="bottom")
     ax.text(X1 - 14, Y0 - 16, "WING'S STREET EAVE: NO GUTTER (drip edge to a gravel drip trench with a drain, per civil)",
             fontsize=6.5, ha="right")
-    ax.plot([cx0 - 8, cx0 - 8], [cy0 - 6, cy1 + 6], color=INK, lw=2.0)
+    ax.plot([cx0 - 8, cx0 - 8], [S.CARPORT_ROOF[1], S.CARPORT_ROOF[3]], color=INK, lw=2.0)
     ax.text(cx0 - 14, (cy0 + cy1) / 2, "GUTTER", fontsize=5.5, rotation=90, ha="right", va="center")
     sh = S.build()
     sk = text_at(sh, "SKYLIGHT")                                        # straight up from the common bath ceiling

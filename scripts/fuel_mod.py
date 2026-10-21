@@ -43,7 +43,7 @@ def roofs():
     ox, oy = S.PORCH_OUT
     canopy = box(ox, oy, S.PORCH_X, S.N)
     cx0, cy0, cx1, cy1 = S.CARPORT
-    carport = box(cx0 - 6, cy0, cx1, cy1 + 6)
+    carport = box(*S.CARPORT_ROOF)
     return unary_union([house, canopy, carport])
 
 

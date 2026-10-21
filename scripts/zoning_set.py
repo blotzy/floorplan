@@ -235,7 +235,8 @@ def roof_plan(pdf):
     X0, X1, Y0, Y1 = S.E - OV, S.W + OV, S.N - OV, S.S + OV
     ax.add_patch(Rectangle((X0, Y0), X1 - X0, Y1 - Y0, fc="#e9e9e9", ec=INK, lw=1.4))
     ax.add_patch(MPoly(FOOT, closed=True, fill=False, ec=SOFT, ls="--", lw=0.8))
-    ax.add_patch(Rectangle((cx0 - 6, cy0 - 6), cx1 - cx0 + 6, cy1 - cy0 + 12, fc="#f6f6f6", ec=INK, lw=1.0))
+    rx0, ry0, rx1, ry1 = S.CARPORT_ROOF
+    ax.add_patch(Rectangle((rx0, ry0), rx1 - rx0, ry1 - ry0, fc="#f6f6f6", ec=INK, lw=1.0))
     wx, ry = X.WING_X, X.RIDGE_Y
     ax.plot([wx, wx], [Y0, Y1], color=INK, lw=1.0)                       # shed / gable line
     ax.plot([wx, X1], [ry, ry], color=INK, lw=1.4)                       # the wing's ridge
@@ -365,7 +366,8 @@ def elevation(ax, side):
         if side == "east":                                         # carport in front: posts + roof
             for yy in (cy0, cy1 - 6):
                 ax.add_patch(Rectangle((min(hy(yy), hy(yy + 6)), 0), 6, 108, fc=INK))
-            ax.add_patch(Rectangle((min(hy(cy0 - 6), hy(cy1 + 6)), 108), cy1 - cy0 + 12, 4, fc=INK))
+            ry0, ry1 = S.CARPORT_ROOF[1], S.CARPORT_ROOF[3]
+            ax.add_patch(Rectangle((min(hy(ry0), hy(ry1)), 108), ry1 - ry0, 4, fc=INK))
         lo, hi = min(hy(a - OV), hy(b + OV)), max(hy(a - OV), hy(b + OV))
     if side in ("north", "south"):
         lo = min(lo, h(cx0) - 20, h(cx1) - 20) if side == "north" else lo

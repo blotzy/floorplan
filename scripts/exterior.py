@@ -489,7 +489,7 @@ def carport_options(posts):
     """Carport roof styles for the model's Carport selector: {label: tris}; the first is the plan's.
     posts: the carport's posts [x0, y0, x1, y1]; each style runs them up to its underside."""
     cx0, cy0, cx1, cy1 = S.CARPORT
-    X0, Y0, X1, Y1 = cx0 - 6, cy0 - 6, cx1, cy1 + 6
+    X0, Y0, X1, Y1 = S.CARPORT_ROOF
 
     def style(top, thk, mat, extra=None):
         sc = M.Scene()
