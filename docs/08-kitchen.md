@@ -13,7 +13,7 @@ An upside-down U: the sink on the south wall under the window (its sill just abo
 | Fridge | **36"** wide (decided), counter-depth; RO water line and a leak pan |
 | Dishwasher | In the peninsula on the kitchen side, at its south end, just around the corner from the sink; not across from the range. |
 | Sink | Single deep bowl, about 32"–33" wide and 9"–10" deep, undermount (16-gauge stainless or fireclay), in a 36" sink base centred under the window; pull-down faucet. RO filter tap (the tankless RO unit is in the mechanical closet, so the sink base is free for the trash pull-out); integrated drain board on the dishwasher side |
-| Prep sink | Small (about 15" x 15") bar/prep sink on the peninsula's kitchen side, toward its north end, across the aisle from the fridge and range: a second work zone (fridge → prep sink → range) apart from the main sink, dishwasher and trash. Tall bar faucet, softened hot and cold; optional second RO tap. Island-style venting (see the plumbing doc). |
+| Prep sink | Small (about 15" x 15") bar/prep sink on the peninsula's kitchen side, toward its north end, across the aisle from the fridge and range: a second work zone (fridge → prep sink → range) apart from the main sink, dishwasher and trash. Tall bar faucet, softened hot and cold. Island-style venting (see the plumbing doc). |
 | Peninsula | Three stools; a small under-counter drink fridge at the stool-side corner by the south wall, opening toward the dining room, with the coffee station on the counter above |
 | Corner storage | Corner drawers at the range-side corner |
 | Pantry | Off the lobby at the corner by the fridge; outlets inside |
