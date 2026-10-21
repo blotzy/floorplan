@@ -50,7 +50,7 @@ LABEL_H = [            # label inside a shape -> (z0, z1); first match wins
     ("FRIDGE", (0, 70)), ("RANGE", (0, 36)), ("DOUBLE VANITY", (0, 34)), ("VANITY", (0, 34)),
     ("VAN", (0, 34)), ("WC", (0, 16)), ("TUB ACCESS", None), ("TUB", (0, 20)), ("DRYER", (0, 53)),
     ("WASHER", (0, 53)), ("FOLDING", (0, 36)), ("PANEL", (36, 66)), ("RACK", (0, 72)),
-    ("TALL STORAGE", (0, 96)), ("CLOSET", (0, 96)), ("LINEN", (0, 84)), ("HANG", (0, 84)), ("SHELVES TO", (0, 70)), ("SHELVES", (0, 84)), ("CL", (0, 96)), ("HEARTH", (8, 18)), ("BENCH", (0, 18)),
+    ("TALL STORAGE", (0, 96)), ("CLOSET", (0, 96)), ("LINEN", (0, 84)), ("HANG", (0, 84)), ("SHELVES TO", (0, 70)), ("SHELVES", (0, 84)), ("CL", (0, 96)), ("HEARTH", (4, 18)), ("BENCH", (0, 18)),
     ("DRAWERS", (0, 36)),  # WIC end-wall drawer stack (shelves/mirror above in reality)
     ("LEDGE", (0, 42)),    # shower ledge wall, tiled shelf on top
     ("TV", (24, 68)),      # 90" TV: ~44" tall, centre ~42" above the floor for seated viewing
@@ -81,12 +81,12 @@ def build_schematic() -> Scene:
     # ---- ground, slab, carport, porch ------------------------------------------
     ep = S.EDGE_OF_PAVEMENT                                     # lot plus the parkway out to the street
     sc.polys["ground"].append([[[S.LOT_X0, ep], [S.LOT_X0 + S.LOT_W, ep], [S.LOT_X0 + S.LOT_W, S.LOT_D], [S.LOT_X0, S.LOT_D]], -1.0, 0.0])
-    sc.polys["slab"].append([footprint, 0.0, 4.0])
+    sc.polys["slab"].append([footprint, -4.0, 0.0])                    # floor surface = height 0 (the datum)
     cx0, cy0, cx1, cy1 = S.CARPORT
     sc.polys["concrete"].append([[[cx0, cy0], [cx1, cy0], [cx1, cy1], [cx0, cy1]], 0.0, 2.0])
     sc.polys["concrete"].append([[list(p) for p in S.driveway_outline()], 0.0, 1.0])
     ox, oy = S.PORCH_OUT                                                 # porch (8' x 5') and its step
-    sc.polys["concrete"].append([[[ox, oy - 24], [px, oy - 24], [px, py], [ox, py]], 0.0, 3.0])
+    sc.polys["concrete"].append([[[ox, oy - 24], [px, oy - 24], [px, py], [ox, py]], 0.0, 0.5])   # flush with the floor
     sc.boxes["roof"].append([*S.CARPORT_ROOF, 108, 112])
     sc.boxes["post"].append([E_, N_, E_ + 6, N_ + 6, 0, CEIL])        # porch corner post
     ex0, ey0, ex1, ey1 = S.ENTRY_COURT                                  # entry court + seat wall
@@ -97,7 +97,7 @@ def build_schematic() -> Scene:
     sc.boxes["post"].append([w0[2] - 30, w0[1] - 0.5, w0[2] - 12, w0[1], 10, 16])   # lit house numbers
     hx0, (hy0, hy1) = S.face("foyer wall", +1), S.HEARTH_Y              # hearth bench: recessed base (the bench
     hx1 = hx0 + S.HEARTH_D                                              # itself comes from the plan's label)
-    sc.boxes["frame"].append([hx0, hy0 + 3, hx1 - 3, hy1 - 3, 0, 8])
+    sc.boxes["frame"].append([hx0, hy0 + 3, hx1 - 3, hy1 - 3, 0, 4])
     a, b = S.HEARTH_FIRE                                                # fireplace, high in the bench face
     sc.boxes["frame"].append([hx1 - 4, a - 1, hx1 + 0.2, b + 1, 9, 16.5])
     sc.boxes["flame"].append([hx1 - 0.5, a + 2, hx1 + 0.3, b - 2, 10.5, 15])
@@ -412,7 +412,7 @@ const gridGroup = new THREE.Group(); scene.add(gridGroup);   // 1' floor grid, d
 for (const [key, color, opacity] of [['minor', 0x4a4e55, 0.55], ['major', 0x202226, 0.9]]) {
   const p = [];
   for (const [x0, y0, x1, y1] of (D.grid || {})[key] || []) {
-    const a = V(x0, y0, 4.6), b = V(x1, y1, 4.6);   // just above the slab top (4")
+    const a = V(x0, y0, 0.6), b = V(x1, y1, 0.6);   // just above the floor (the slab top)
     p.push(a.x, a.y, a.z, b.x, b.y, b.z);
   }
   const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(p, 3));
@@ -589,8 +589,8 @@ const isTouch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoi
 if (isTouch) document.getElementById('help').textContent =
   'Orbit: drag · pinch to zoom · two fingers to pan. Walk: tap the button, move with the stick, drag to look.';
 function toEntry() {
-  camera.position.set(D.entry[0]*IN, 64*IN, -D.entry[1]*IN);  // inside the foyer, 5'-4" eye height
-  camera.lookAt(D.entry[0]*IN, 64*IN, -D.entry[1]*IN - 10);    // facing south, into the house
+  camera.position.set(D.entry[0]*IN, 63.5*IN, -D.entry[1]*IN);  // inside the foyer, eye height 5'-3 1/2"
+  camera.lookAt(D.entry[0]*IN, 63.5*IN, -D.entry[1]*IN - 10);    // (a 5'-8" person), facing south
 }
 function toOrbit() { orbit.enabled = true; camera.position.set(ctr.x-30,70,ctr.z+75); orbit.target.copy(ctr); orbit.update(); }
 walk.addEventListener('unlock', toOrbit);

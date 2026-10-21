@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **5:56 PM**: 3D model: the floor surface is now the height datum (the slab sits below it), so walls, ceilings, windows, furniture and the hearth bench show at their true heights above the floor (they were 4" low); walk-mode eye height 5'-3½" (a 5'-8" person). Views recaptured. The drawings were already measured from the finished floor.
 - **5:50 PM**: Irrigation rough-in: unsoftened irrigation branch with its own backflow preventer and a valve manifold, drip zones plus a spray zone for the courtyard lawn on a weather-based controller (with an outlet), and sleeves under all paving. Plumbing, electrical and site docs; open question on the water-efficient landscape (MWELO) submittal.
 - **5:46 PM**: Plans now show the carport roof outline (dashed, "carport roof above (9')"), its front edge in line with the porch canopy's, so the site and floor plans (schematic, Z-1, Z-2, A-1, A-2) match the roof plans and elevations.
 - **5:43 PM**: Carport roof: its front edge now lines up with the porch canopy's, 1' past the house front (was 6"), one continuous front edge under the house's eave. 3D model and carport roof options, zoning and permit sets (roof plans, elevations), fuel modification plan, site and zoning docs.
