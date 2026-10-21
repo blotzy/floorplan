@@ -14,6 +14,7 @@ All structured cabling home-runs to the network rack (in the mechanical / networ
 - **Hearth bench cubbies:** a conduit from each cubby up to the recessed TV box (HDMI), and a data drop in each cubby; streamers and consoles live in the cubbies for line of sight.
 - **AV closet:** a data drop and a shelf for the receiver and other set-and-forget gear.
 - **Lounge surround speakers:** in-wall rated speaker wire (CL2/CL3, 14- or 16-gauge) from the AV closet to two positions on the lounge side of the gym wall, behind the couch at about ear height, one to each side of the seating; labelled at both ends, ending in blank wall plates until speakers are chosen (in-wall, or bookshelf on brackets).
+- **Lounge subwoofers:** a subwoofer cable (or a small conduit with a pull string) from the AV closet to a low wall plate in each of the lounge's two street-wall corners: by the TV wall (beside the hearth bench's window end) and by the gym wall (at the couch's end). Start with one sub; the second evens out the bass across the seating.
 - **Primary bedroom TV:** a low-voltage pass-through at the recessed TV box on the wall facing the bed, with a data drop (or a conduit to the attic).
 - **Attic access:** a conduit from the network rack into the attic for future runs.
 - **Optional:** low-voltage or power at window heads for motorized shades.

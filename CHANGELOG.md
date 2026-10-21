@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **7:58 PM**: Lounge subwoofers: a sub cable from the AV closet and a floor-level outlet in both of the lounge's street-wall corners (TV-wall corner and gym-wall corner). Low-voltage and electrical docs.
 - **7:56 PM**: Lounge surround speakers: speaker wire from the AV closet and an outlet at two positions on the gym wall behind the couch. Low-voltage and electrical docs.
 - **7:45 PM**: Primary bedroom: the high west window over the bed is removed (cost and TV glare); cross-breeze comes from the south window through to the reading nook's west window. Glazing about 444 sq ft (19.8%), just under the prescriptive 20%. Plan, 3D model, sets, floor-plan, Title 24, electrical and open-question docs.
 - **7:43 PM**: 3D model: short names in the Roof and Carport roof menus (e.g. "Split: shed + gable (plan)", "Gable 4:12", "Flat metal (plan)"), so the controls panel stays narrow.
