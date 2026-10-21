@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **7:45 PM**: Primary bedroom: the high west window over the bed is removed (cost and TV glare); cross-breeze comes from the south window through to the reading nook's west window. Glazing about 444 sq ft (19.8%), just under the prescriptive 20%. Plan, 3D model, sets, floor-plan, Title 24, electrical and open-question docs.
 - **7:43 PM**: 3D model: short names in the Roof and Carport roof menus (e.g. "Split: shed + gable (plan)", "Gable 4:12", "Flat metal (plan)"), so the controls panel stays narrow.
 - **7:18 PM**: Kitchen doc: the range hood is an insert in a built-in enclosure between the tall cabinets, up to the sloped ceiling, with the duct hidden inside it straight up to the roof cap.
 - **7:10 PM**: Prep sink: no RO tap; its vent shares the main kitchen sink's (joining above the main sink's flood rim). Plumbing and kitchen docs.

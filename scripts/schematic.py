@@ -157,8 +157,6 @@ OPENINGS = [
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("west",        289.6, 337.6, "window", 72.0, 96.0),    # office: 4'-0" x 2'-0" high window over the bed head
                                                           # (cross-breeze, privacy from the neighbour's 2nd floor)
-    ("west",        511.8, 559.8, "window", 72.0, 96.0),    # primary: 4'-0" x 2'-0" high window over the bed head
-                                                          # (cross-breeze with the south window; matches the office)
     ("west",        415.45, 451.45, "window", 42.0, NOOK_CEIL - 6.0),  # reading nook: 3'-0" x 3'-6", its head 6"
                                                                      # below the lowered ceiling: 3'-0" x 4'-0", centred on the nook,
                                                           # light over the reader's shoulder from the bench

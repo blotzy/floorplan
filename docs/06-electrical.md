@@ -46,7 +46,7 @@
 - Behind the TV on the **lounge side of the foyer wall** (the TV wall), in a recessed box set low, just above the hearth bench, with blocking for the mount.
 - **Hearth bench:** a dedicated circuit (120V, 15–20A per the chosen model's listing) to the linear electric fireplace inside the bench; an outlet in the back of each cubby; optional low-voltage LED strip under the bench lip (driver inside the bench, on a wall switch).
 - **AV closet** (the foyer closet at the dining-room end, behind the TV): an outlet at the AV shelf, and a quiet thermostat-controlled exhaust fan (or a louvered door) to vent the gear.
-- Primary bedroom TV, on the wall between the walk-in closet and bath doors, facing the bed: a recessed TV box (power and low-voltage pass-through) set for a lower, tilting mount (tilting down 5–10° keeps the high window behind the bed out of the screen's reflection), with blocking in the wall for the mount.
+- Primary bedroom TV, on the wall between the walk-in closet and bath doors, facing the bed: a recessed TV box (power and low-voltage pass-through) set for a lower, tilting mount (tilting down 5–10° keeps window reflections off the screen), with blocking in the wall for the mount.
 - Office: outlets at desk height on the desk wall.
 - Exterior GFCI outlets outside the dining slider and near the bin pad.
 - Irrigation controller: an outlet where it mounts (an exterior wall near the valve manifold, or inside the carport), within Wi-Fi range for a weather-based controller.
