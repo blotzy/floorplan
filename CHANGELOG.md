@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 20, 2026
 
+- **5:46 PM**: Plans now show the carport roof outline (dashed, "carport roof above (9')"), its front edge in line with the porch canopy's, so the site and floor plans (schematic, Z-1, Z-2, A-1, A-2) match the roof plans and elevations.
 - **5:43 PM**: Carport roof: its front edge now lines up with the porch canopy's, 1' past the house front (was 6"), one continuous front edge under the house's eave. 3D model and carport roof options, zoning and permit sets (roof plans, elevations), fuel modification plan, site and zoning docs.
 - **5:34 PM**: Reading nook window: 3'-0" x 3'-6" (was 4'-0" tall), sill unchanged, its head 6" below the lowered ceiling so a band of wall shows above it. Glazing about 452 sq ft (20.2%). Plan, 3D model, sets, floor-plan, Title 24 and open-question docs.
 - **5:30 PM**: Reading nook: the ceiling drops to 7'-6" (the bedroom's is 9') with built-in cabinets above it, 24" deep, running the nook's length with doors facing the bedroom; the nook window moves down 6" (still 3'-0" x 4'-0") so its head meets the lowered ceiling; recessed reading lights in the lowered ceiling. Plan, 3D model, sets, floor-plan and electrical docs, open questions (sprinkler coverage).

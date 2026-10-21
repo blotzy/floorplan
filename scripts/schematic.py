@@ -722,6 +722,10 @@ def build() -> Sheet:
     sh.msp.add_lwpolyline([(px0, py0), (PORCH_X, py0), (PORCH_X, N), (px0, N)], close=True,
                           dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})          # canopy over the 1'
     sh.text("CANOPY ABOVE (9')", (px0 + PORCH_X) / 2, py0 + 5, 2.4, "A-CANP")
+    rx0, ry0, rx1, ry1 = CARPORT_ROOF                                         # carport roof: its front edge in
+    sh.msp.add_lwpolyline([(rx0, ry0), (rx1, ry0), (rx1, ry1), (rx0, ry1)], close=True,   # line with the canopy's
+                          dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
+    sh.text("CARPORT ROOF ABOVE (9')", (rx0 + rx1) / 2, ry0 + 5, 2.4, "A-CANP")
     sh.text("8'-0\" x 5'-0\"", (px0 + PORCH_X) / 2, N + 12, 3.0)
     sh.rect(E, N, E + 6, N + 6, "A-WALL")                                     # porch corner post
     sh.rect(*ENTRY_COURT, "L-SITE")                                           # entry court + seat wall
