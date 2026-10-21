@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 20, 2026, 7:58 PM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 21, 2026, 10:57 AM PT · @Richard
 
 [CHANGELOG](CHANGELOG.md)
 
@@ -61,6 +61,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | Experiment: [hall ending at the office](renders/experiments/office-end.png) (vs [the current plan](renders/experiments/office-end-current.png)) | No west door: the office door closes the end of the hall, and the primary bedroom is entered through a small foyer with the closet on one side and the bedroom on the other |
 | Experiment: [hall ending just past the primary door](renders/experiments/office-alcove.png) (vs [the current plan](renders/experiments/office-end-current.png)) | No west door: the office door closes the hall just past the primary bedroom door, and the office gains the old hall end as a desk alcove; the primary entry and closet stay as they are |
 | Experiment: [office patio](renders/experiments/office-patio.png) · [3D model](renders/experiments/office-patio/house.html) · views [from the street](renders/experiments/office-patio/street-view.png), [from the office](renders/experiments/office-patio/office-view.png) | The hall ending at the office, plus a covered 4'-deep patio across the office's street side (guest room to the west end), with 6' French doors from the office |
+| Experiment: [solar layout](renders/experiments/solar-layout.png) | Panels on the roof's south-facing plane (the shed and the wing's rear slope, 2:12 facing SSW), clear of the range cap, skylight and vent: up to about 66 panels fit; a suggested 24-panel (~10 kW) block on the shed |
 | [Fuel modification plan (PDF)](renders/fuelmod/fuel-modification-plan.pdf) | [FM-1](renders/fuelmod/FM-1-fuel-modification-plan.png): owner-prepared plan for LA County Fire: ember-resistant zone, Zone A, existing and proposed planting with botanical names |
 | [Zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) | Site plan with setbacks and project data, floor plan, roof plan, elevations ([how to submit](docs/11-zoning-check.md)) |
 | [`accosting-owner-schematic-survey.dxf`](accosting-owner-schematic-survey.dxf) | The plan over the topographic survey as a DXF (inches) |
