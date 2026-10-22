@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Oct 22, 2026
+
+- **1:33 AM**: Architect review: great room acoustics added to the open concerns (built-in ways to cut echo in the vaulted, hard-surfaced great room).
+
 ## Oct 21, 2026
 
 - **9:45 PM**: Primary shower bench: top sloped slightly toward the shower floor (in the bench itself, under the waterproofing); the bench runs through the glass line with the fixed panel set on its top. Floor-plan doc.
