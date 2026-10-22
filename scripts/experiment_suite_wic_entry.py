@@ -12,10 +12,11 @@
     end of the hall-side hanging; the bath door (32") swings into the bath, hinged at the bedroom end, and opens
     flat against the bath's end wall, clear of the vanity.
   - Closet: the hall-side hanging runs the full length (no landing needed); the bath-side run stops at the
-    bath door. About 21'-8" of rod. Corner shelves and drawer stack at the far end, as now.
-  - Bath: the vanity on the rear wall under the high window (mirror below the 6' sill), facing the door; the
-    WC beside the shower glass on the closet wall.
-  - The bedroom has the hall door, the closet opening and the nook. The closet opening sits near the bed's
+    bath door. About 21'-5" of rod. Corner shelves and drawer stack at the far end, as now.
+  - Bath: the WC and the vanity side by side on the rear wall (the vanity under the high window, mirror below
+    the 6' sill), a walkway along the closet wall from the door to the shower's walk-in entry at that wall. The shower
+    heads (plumbing wall and closet wall) spray away from the entry; the niche is in the closet wall.
+  - The bedroom has the hall door, the closet door and the nook. The closet door sits near the bed's
     centre line, so the bedroom TV goes off-centre on the wall beside it.
 
 Writes renders/experiments/suite-wic-entry.png and a 3D model with views into the closet and the bath. Not
@@ -54,20 +55,20 @@ def primary_bath(sh):
     top = S.face("bath|wic", +1)
     gx = m0 + SHOWER_W
     S.wet_zone(sh, m0, top, gx, S.S_IN)
-    hy = (top + S.S_IN) / 2
-    sh.circle((m0 + 4, hy), 2.5, "A-EQPM"); sh.heads.append((m0, hy, 1.0, 0.0))   # head on the plumbing wall
-    S.shower_head(sh, m0 + 42, top, +1)                                    # and one on the closet wall
-    sh.rect(m0 + 8, top - 3.5, m0 + 26, top, "A-EQPM")                     # niche in the closet wall
-    sh.text("NICHE", m0 + 17, top + 4, 2.0)
-    sh.text("CURBLESS SHOWER", (m0 + gx) / 2, hy + 6, 2.6)
-    S.glass(sh, (gx, top), (gx, S.S_IN - 30))                              # fixed panel, walk-in by the rear wall
-    S.drain(sh, (gx - 3, top + 3), (gx - 3, S.S_IN - 3))
-    S.wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                         # closet wall: 17.25" to the glass
-    S.vanity(sh, BATH_DOOR[1] - 62, S.S_IN - 22, BATH_DOOR[1] - 2, S.S_IN, "DOUBLE VANITY 60")   # rear wall,
-    sh.text("HIGH WINDOW", 911.0, S.S_IN - 4, 2.0)                         # facing the door
+    hy = S.S_IN - 20                                                       # heads spraying away from the entry:
+    sh.circle((m0 + 4, hy), 2.5, "A-EQPM"); sh.heads.append((m0, hy, 1.0, 0.0))   # plumbing wall, at the glass,
+    S.shower_head(sh, m0 + 14, top, +1)                                    # and closet wall, at the rear wall
+    sh.rect(m0 + 28, top - 3.5, m0 + 46, top, "A-EQPM")                    # niche in the closet wall
+    sh.text("NICHE", m0 + 37, top + 4, 2.0)
+    sh.text("CURBLESS SHOWER", (m0 + gx) / 2, (top + S.S_IN) / 2 + 2, 2.6)
+    S.glass(sh, (gx, S.S_IN), (gx, top + 30))                              # fixed panel from the rear wall;
+    S.drain(sh, (gx - 3, top + 3), (gx - 3, S.S_IN - 3))                   # walk-in by the closet wall
+    wx = gx + 2.25                                                         # rear wall: WC by the glass, then
+    S.wc(sh, wx, S.S_IN - 28, wx + 30, S.S_IN)                             # the vanity (15"+ from the WC centre)
+    S.vanity(sh, wx + 33, S.S_IN - 22, wx + 93, S.S_IN, "DOUBLE VANITY 60")
+    sh.text("HIGH WINDOW", 911.0, S.S_IN - 4, 2.0)
     sh.text("HIGH WINDOW ABOVE", 999.0, S.S_IN - 4, 1.6)
-    S.room_label(sh, "PRIMARY BATH", m0, top, m1, S.S_IN, cx=(gx + 32 + BATH_DOOR[0]) / 2 + 6, cy=top + 22,
-                 h=2.6)
+    S.room_label(sh, "PRIMARY BATH", m0, top, m1, S.S_IN, cx=(gx + BATH_DOOR[0]) / 2, cy=top + 14, h=2.6)
 
 
 def wic(sh):
