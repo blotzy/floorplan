@@ -5,7 +5,9 @@
 """Experiment: a hall closet in the walk-in closet's hall-side corner, by the cased opening.
 
   - The hall's cased opening (and its dropped header) moves about 14" east, in line with the walk-in closet's
-    end wall, just past the common bath door, so its wall stub lands at the closet's corner.
+    end wall, just past the common bath door, so its wall stub lands at the closet's corner. The common bath
+    door slides 2" east, leaving room for standard casing between it and the stub, and its sink 2" away from
+    the door, clear of its swing.
   - A hall closet about 2'-3" wide x 2' deep in that corner, opening onto the hall right past the stub through
     24" doors (bifold here) 7'-6" tall, their heads in line with the dropped header: linens and towels, or
     the vacuum and cleaning supplies. Its two walls against the walk-in closet are 2x3 partitions (about
@@ -43,6 +45,26 @@ def plan():
     S.WALLS.append(("hall closet|wic", "x", y0 + CL_D + T23 / 2, 883.5, x0 + CL_W + T23, T23))
     S.WALLS.append(("hall closet|wic end", "y", x0 + CL_W + T23 / 2, S.HALL_S, y0 + CL_D + T23, T23))
     S.OPENINGS.append(("south hall wall", *DOOR, "bifold", "a", +1))
+    for i, o in enumerate(S.OPENINGS):                           # common bath door 2" east, so its casing
+        if o[:3] == ("south hall wall", 849.75, 879.75):         # clears the moved opening's stub
+            S.OPENINGS[i] = (o[0], o[1] - 2.0, o[2] - 2.0, *o[3:])
+
+
+def build():
+    """The plan, with the common bath's sink 2" further from its door (clear of the door's swing)."""
+    sh = _build()
+    b0 = S.face("laundry|bath", +1)
+    for e in sh.msp:
+        if e.dxftype() == "LWPOLYLINE" and e.dxf.layer == "A-EQPM":
+            pts = list(e.get_points("xy"))
+            if min(p[0] for p in pts) == b0 and min(p[1] for p in pts) == 466.0:
+                e.set_points([(x, y + 2.0) for x, y in pts], format="xy")
+        elif e.dxftype() == "TEXT" and e.dxf.text == "SINK":
+            for k in ("insert", "align_point"):
+                if e.dxf.hasattr(k) and abs(e.dxf.get(k)[0] - (b0 + 10)) < 0.1 and abs(e.dxf.get(k)[1] - 478.0) < 0.1:
+                    v = e.dxf.get(k)
+                    e.dxf.set(k, (v[0], v[1] + 2.0))
+    return sh
 
 
 def wic(sh):
@@ -107,7 +129,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     render(OUT / "hall-closet-current.png", _build())
     plan()
-    S.wic = wic
+    S.wic, S.build = wic, build
     render(OUT / "hall-closet.png", S.build())
     model()
 
