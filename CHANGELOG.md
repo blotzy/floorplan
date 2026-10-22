@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 22, 2026
 
+- **12:10 PM**: Public Works' sewer reply recorded: an 8" clay main in Laurel Drive (1952 as-built added under renders/county), its inverts and the street's curb grade along the frontage; the 1952 plan shows the lot served from Las Flores Drive, with no Laurel lateral. New to-dos: locate the existing lateral from the front cleanout, check for later connection records and a sewer easement, and tie the 1952 elevations to the survey datum. Open questions, plumbing, site and engineer-brief docs.
 - **1:33 AM**: Architect review: great room acoustics added to the open concerns (built-in ways to cut echo in the vaulted, hard-surfaced great room).
 
 ## Oct 21, 2026
