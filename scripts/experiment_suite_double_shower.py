@@ -10,8 +10,9 @@ bedroom.
     from the bedroom at the rear-wall end. Both doors 30".
   - Shower: 6'-0" curbless at the plumbing-wall end, the walk-in entry by the rear wall. Two heads on the rear
     wall 36" apart (a station each, spraying toward the closet wall), each with its own valve, the valves by the
-    entry so the water can be started from outside the spray; a full-width solid bench (foam kit or block,
-    membrane-wrapped) along the closet wall facing them, the niche above it. The shower's high window is a
+    entry so the water can be started from outside the spray; a solid corner bench (foam kit or block,
+    membrane-wrapped, about 16" x 3') on the closet wall at the plumbing-wall end, facing the far head, the
+    niche above it; the station by the entry keeps the full depth. The shower's high window is a
     strip above the heads (sill 7', head 8'); plumbing in the rear (outside) wall stays on the warm side of the
     insulation. The WC and the 60" double vanity on the closet wall, as now; the bath door opens flat against the rear
     wall.
@@ -32,7 +33,8 @@ import schematic as S  # noqa: E402
 OUT = S.RENDERS / "experiments"
 WIC_D = 84.0                                    # closet depth: 24" hanging + 36" aisle + 24" hanging
 SHOWER_W = 72.0                                 # shower width along the bath, from the plumbing wall
-BENCH_D = 16.0                                  # shower bench depth (rear wall)
+BENCH_D = 16.0                                  # shower corner bench: depth
+BENCH_L = 36.0                                  # and length along the closet wall
 ENTRY_W = 30.0                                  # walk-in shower entry, by the rear wall
 WIN_SILL = 84.0                                 # shower window sill: 7', above the heads (head height stays 8')
 
@@ -59,13 +61,13 @@ def primary_bath(sh):
     for hx in (m0 + 18, m0 + 54):                                          # two heads on the rear wall, 36" apart,
         S.shower_head(sh, hx, S.S_IN, -1)                                  # spraying toward the closet wall; the
     sh.text("VALVES", gx - 7, S.S_IN - 9, 1.8, rot=90)                     # valves by the entry, reachable from it
-    sh.rect(m0, top, gx, top + BENCH_D, "A-EQPM")                          # solid bench along the closet wall,
-    sh.text("BENCH (SOLID)", (m0 + gx) / 2, top + BENCH_D / 2, 2.2)        # full width, facing the heads
-    sh.rect(m0 + 27, top - 3.5, m0 + 45, top, "A-EQPM")                    # niche above the bench
-    sh.text("NICHE ABOVE", m0 + 36, top + BENCH_D + 3, 1.8)
-    sh.text("CURBLESS SHOWER", (m0 + gx) / 2, top + BENCH_D + 9, 2.6)
+    sh.rect(m0, top, m0 + BENCH_L, top + BENCH_D, "A-EQPM")                # solid corner bench: closet wall, at the
+    sh.text("CORNER BENCH", m0 + BENCH_L / 2, top + BENCH_D / 2, 2.0)      # plumbing-wall end (the far station);
+    sh.rect(m0 + 9, top - 3.5, m0 + 27, top, "A-EQPM")                     # the entry station keeps the full depth
+    sh.text("NICHE ABOVE", m0 + 18, top + BENCH_D + 3, 1.8)
+    sh.text("CURBLESS SHOWER", (m0 + gx) / 2 + 6, (top + S.S_IN) / 2 + 2, 2.6)
     S.glass(sh, (gx, top), (gx, S.S_IN - ENTRY_W))                         # fixed panel from the closet wall;
-    S.drain(sh, (gx - 3, top + BENCH_D + 3), (gx - 3, S.S_IN - 3))                   # walk-in by the rear wall
+    S.drain(sh, (gx - 3, top + 3), (gx - 3, S.S_IN - 3))                   # walk-in by the rear wall
     S.wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                         # closet wall: 17.25" to the glass
     S.vanity(sh, m1 - 60, top, m1, top + 22, "DOUBLE VANITY 60")           # 22.5" from the WC centre
     sh.text("HIGH WINDOW ABOVE, SILL 7'", (m0 + gx) / 2, S.S_IN - 16, 1.6)
