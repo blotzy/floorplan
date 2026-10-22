@@ -214,8 +214,8 @@ def build_schematic() -> Scene:
             else:
                 sc.boxes["furniture" if lay == "A-FURN" else "fixture"].append([*b, *z])
         elif lay == "A-GLAZ" and inside_house(*b) and min(w, h) <= 1.5 and \
-                not any(abs(v - f) < 10 for v in (b[1], b[3]) for f in (N_, S_)) and \
-                not any(abs(v - f) < 10 for v in (b[0], b[2]) for f in (E_, W_)):
+                not (h <= 1.5 and any(abs(b[1] - f) < 10 for f in (N_, S_))) and \
+                not (w <= 1.5 and any(abs(b[0] - f) < 10 for f in (E_, W_))):   # not along an outside wall
             sc.boxes["glass"].append([*b, 0, 80.0])              # fixed shower glass
         elif lay == "L-SITE":
             if e.dxf.get("linetype", "BYLAYER").upper().startswith("DASH"):
