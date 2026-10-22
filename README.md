@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 22, 2026, 1:33 AM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 22, 2026, 1:41 AM PT · @Richard
 
 [CHANGELOG](CHANGELOG.md)
 
@@ -67,6 +67,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | Experiment: [wardrobe instead of a walk-in closet](renders/experiments/suite-wardrobe.png) · [3D model](renders/experiments/suite-wardrobe/house.html) | No walk-in closet: a sliding-door wardrobe on the bedroom's east wall, a bigger primary bath (about 12' x 9'-3"), and a 3'-deep hall storage closet with bifold doors |
 | Experiment: [no tub, wider walk-in closet](renders/experiments/suite-wide-wic.png) · [3D model](renders/experiments/suite-wide-wic/house.html) | The current suite layout without the primary tub: the bath about 4'-10" deep with a 5' curbless shower at the plumbing-wall end, the WC and double vanity on the closet wall; the walk-in closet 7'-0" deep, hanging on both long walls with a 3' aisle |
 | Experiment: [no tub, wider walk-in closet, bath through the closet](renders/experiments/suite-wic-entry.png) · [3D model](renders/experiments/suite-wic-entry/house.html) | The no-tub, wider-closet suite with the closet door centred on its aisle (swinging in, hinged on the hall side) and the bath reached from the closet by a door just inside it (swinging into the bath, opening flat on its end wall): no bath door in the bedroom, a shelf bay for the open closet door at the end of the hall-side hanging, the WC and vanity side by side on the bath's rear wall and the shower entered from the closet-wall side; the bedroom TV off-centre beside the closet door |
+| Experiment: [primary suite as a west wing](renders/experiments/suite-west-wing.png) (vs [the current plan](renders/experiments/suite-west-wing-current.png)) · [3D model](renders/experiments/suite-west-wing/house.html) | The primary suite runs front to back across the west end: the hall ends at one suite door, the entry (where the reading nook is) leads to the bedroom (same rear corner, one door) and to the walk-in closet and bath (where the office is); the office moves to the rear room off the hall |
 | [Fuel modification plan (PDF)](renders/fuelmod/fuel-modification-plan.pdf) | [FM-1](renders/fuelmod/FM-1-fuel-modification-plan.png): owner-prepared plan for LA County Fire: ember-resistant zone, Zone A, existing and proposed planting with botanical names |
 | [Zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) | Site plan with setbacks and project data, floor plan, roof plan, elevations ([how to submit](docs/11-zoning-check.md)) |
 | [`accosting-owner-schematic-survey.dxf`](accosting-owner-schematic-survey.dxf) | The plan over the topographic survey as a DXF (inches) |
