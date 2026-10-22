@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 21, 2026, 2:42 PM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 21, 2026, 6:12 PM PT · @Richard
 
 [CHANGELOG](CHANGELOG.md)
 
@@ -49,6 +49,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 11. [CALGreen checklist](docs/13-calgreen-checklist.md): green building mandatory measures
 12. [Title 24 inputs](docs/14-title24-inputs.md): what the energy consultant needs
 13. [Inspiration](docs/15-inspiration.md): reference photos (foyer storage)
+14. [Architect review](docs/16-architect-review.md): requirements, the reasoning behind the layout, and open concerns for the architect consultation
 
 **Preliminary zoning check:** [zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) and [how to submit it](docs/11-zoning-check.md) (eCheck or a planner consultation).
 

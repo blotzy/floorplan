@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 21, 2026
 
+- **6:12 PM**: New architect review doc for the consultation: the hard requirements (setbacks, coverage, parking, articulation, energy, fire), the reasoning behind the layout, and the open concerns (primary bath shower storage, primary bedroom doors, storage, dining room size).
 - **2:42 PM**: Open questions: the soils report and fault investigation question to County Building & Safety / Geotechnical added to the waiting-on-replies list.
 - **11:30 AM**: Vents simplified now that solar needs only part of the roof: the kitchen sink vents straight up at the rear wall line (VTR-3, the prep sink joining it); the baths and laundry through one or two vents on the wing's rear slope; all roof penetrations outside the first PV array. Fire-zone vent rules spelled out (metal flashings and caps, backdraft dampers, no attic or soffit vents, no dryer vent). A-3 roof plan, plumbing and floor-plan docs.
 - **11:01 AM**: Solar: the first array (about 10 kW, 24 panels) on the shed east of the range cap, with its mounting installed with the roofing and the panels added later; the engineer designs the south-facing plane for the PV load and shows the attachment points for wind uplift; the array's wiring runs under the panels to one roof penetration over the pantry attic. Engineer brief, open questions (including whether the Energy Code's solar requirement applies), floor-plan and electrical docs.
