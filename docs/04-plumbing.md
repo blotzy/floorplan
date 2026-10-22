@@ -18,7 +18,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 | Kitchen | Softened | Plus RO for drinking and the fridge |
 | Water heater | Softened |  |
 | Laundry | Softened |  |
-| Robot vacuum dock | Softened cold | Needs a drain with a proper trap, often tied into the washer standpipe |
+| Robot vacuum dock | Softened cold | In the laundry counter beside the utility sink: teed off the sink's cold supply, its drain into the sink's trapped drain |
 
 **Irrigation rough-in** (fuel modification plan FM-1 and the state's water-efficient landscape rules)
 

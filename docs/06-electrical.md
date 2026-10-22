@@ -38,7 +38,7 @@
 **Outlet locations** (standard outlets, no dedicated circuit needed)
 
 - In the mechanical closet, for the tankless RO filter.
-- Robot vacuum dock niche.
+- Robot vacuum dock, in the laundry counter's floor-level bay beside the utility sink.
 - GFCI outlet beside each toilet in all three baths, for bidet seats.
 - Inside the pantry.
 - On the peninsula, under the countertop or on the end panel (code-required).

@@ -439,7 +439,8 @@ def utility_block(sh):
     sh.rect(lw - 22, hall, lw, 514.0, fu)                    # 22" deep: clears the door swing
     sh.text("FOLDING COUNTER", lw - 11, (hall + 499.0) / 2, 2.2, rot=90)
     sh.text("SHELVES ABOVE", lw - 5, (hall + 499.0) / 2, 1.6, rot=90)
-    vanity(sh, lw - 18, 500.0, lw, 514.0, "SINK", rot=90)    # set into the counter
+    vanity(sh, lw - 18, 500.0, lw, 514.0, "SINK", rot=90)    # set into the counter; the robot vacuum dock
+    sh.text("VAC DOCK BELOW", lw - 18, 491.0, 1.4, rot=90)   # in an open floor-level bay beside its cabinet
     y = 515.0
     for lbl in ("DRYER", "WASHER"):                          # facing the wall, washer on the left: the
                                                              # doors open apart (left-hinged washer)

@@ -48,7 +48,7 @@
 - [ ] Truss designer: 500 lb concentrated loads at the gym ring points; 20 psf attic storage strip.
 - [ ] Plumber and sprinkler designer: does the sprinkler system require a 1" water service / meter upsize?
 - [ ] Sprinkler designer: place the heads clear of the ceiling fans in the primary bedroom, guest bedroom and office (or confirm the fans meet the code's open-fan exception), and cover the reading nook under its lowered ceiling.
-- [ ] Plumber: confirm the robot vacuum dock drain connection and trap.
+- [ ] Plumber: confirm the robot vacuum dock's drain connection into the laundry sink's trapped drain.
 - [ ] Energy consultant: glazing is about 439 sq ft (about 19.6% of the floor area), just under the prescriptive 20%, with little margin; confirm the path (prescriptive or performance) and the front door's glass lite (see [Title 24 inputs](14-title24-inputs.md)).
 - [ ] HVAC and energy consultant: an ERV instead of the continuous exhaust fan (about $4,000–7,000 more installed): fresh air through a MERV 13 filter on smoke days and some heat and humidity recovery. What does it earn in the Title 24 run?
 - [ ] HVAC: Manual J load calculation and Manual D duct design to size the ducted heat pump and confirm three zones (or two, if the primary suite is too small to run alone).
