@@ -415,7 +415,7 @@ def utility_block(sh):
     be = face("bath|storage", -1)
     # bath: sink, toilet, then a curbless shower across the end; sink, toilet and shower drain on the laundry
     # wall (one plumbing wall for both rooms); the door is at the west end, so the toilet is out of view from
-    # the lounge. The shower's valve and head are on its back (storage) wall at the entry end
+    # the lounge. The shower's valve and head are on its end wall at the entry, spraying away from it
     vanity(sh, b0, 466.0, b0 + 20, 490.0, "SINK", rot=90)
     wc(sh, b0, 497.0, b0 + 28, 527.0)
     gy = 530.0                                                               # shower: full width x 36"
@@ -423,14 +423,12 @@ def utility_block(sh):
     sh.rect(b0, gy, b1, be, eq)
     glass(sh, (b0, gy), (b1 - 24, gy))                                       # 24" open entry, door side
     sh.text("SHOWER", (b0 + b1) / 2, gy + 14, 3.2)
-    hx, k = b1 - 30.0, 0.7071                                                # head on the back wall just past the
-    sh.heads.append((hx, be, -k, -k))                                        # entry, angled toward the laundry
-    sh.circle((hx - 1.8, be - 1.8), 2.5, eq)                                 # end, away from the opening
-    for ang in (200.0, 225.0, 250.0):
-        dx, dy = math.cos(math.radians(ang)), math.sin(math.radians(ang))
-        sh.line((hx - 4.0, be - 4.0), (hx - 4.0 + 8.0 * dx, be - 4.0 + 8.0 * dy), eq)
-    sh.text("VALVE", b1 - 18, be - 4, 1.6)                                   # by the entry, its access panel behind
-    sh.text("ACCESS PANEL", b1 - 18, be + 6, 1.4)                            # it in the storage room, clear of the shelves
+    hy = gy + 20.0                                                           # head on the end wall (the primary
+    sh.heads.append((b1, hy, -1.0, 0.0))                                     # suite's), spraying down the shower's
+    sh.circle((b1 - 2.5, hy), 2.5, eq)                                       # length, away from the entry
+    for dy in (-5.0, 0.0, 5.0):
+        sh.line((b1 - 5.5, hy + dy * 0.4), (b1 - 11.0, hy + dy), eq)
+    sh.text("VALVE", b1 - 5, gy + 6, 1.6)                                    # valve beside the entry
     drain(sh, (b0 + 3, be - 3), (b1 - 3, be - 3))
     room_label(sh, "COMMON BATH", b0, hall, b1, be, cx=b1 - 12, cy=505.0, h=2.4)
     sh.msp.add_circle((b1 - 13, 520.0), 6.0, dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})   # 10" tube
