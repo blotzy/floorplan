@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 21, 2026, 7:10 PM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 21, 2026, 7:14 PM PT · @Richard
 
 [CHANGELOG](CHANGELOG.md)
 
@@ -65,6 +65,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | Experiment: [solar layout](renders/experiments/solar-layout.png) | Panels on the roof's south-facing plane (the shed and the wing's rear slope, 2:12 facing SSW), clear of the range cap, skylight and vent: up to about 66 panels fit; a suggested 24-panel (~10 kW) block on the shed |
 | Experiment: [primary bath and closet side by side](renders/experiments/suite-side-by-side.png) (vs [the current plan](renders/experiments/suite-side-by-side-current.png)) · [3D model](renders/experiments/suite-side-by-side/house.html) | A compact 5'-0" x 12'-5" bath on the plumbing-wall side of the suite block and a 9'-0" x 12'-5" dressing-room closet on the bedroom side: one opening from the bedroom into the closet (in the hall corner, keeping the bedroom TV centred on the bed), the bath straight across it along the hall wall, by a pocket door in line with the opening. No tub: a full-width curbless walk-in shower with two heads and a niche; the double vanity and the WC on the plumbing wall |
 | Experiment: [wardrobe instead of a walk-in closet](renders/experiments/suite-wardrobe.png) · [3D model](renders/experiments/suite-wardrobe/house.html) | No walk-in closet: a sliding-door wardrobe on the bedroom's east wall, a bigger primary bath (about 12' x 9'-3"), and a 3'-deep hall storage closet with bifold doors |
+| Experiment: [no tub, wider walk-in closet](renders/experiments/suite-wide-wic.png) · [3D model](renders/experiments/suite-wide-wic/house.html) | The current suite layout without the primary tub: the bath about 4'-10" deep with a 5' curbless shower at the plumbing-wall end, the WC and double vanity on the closet wall; the walk-in closet 7'-0" deep, hanging on both long walls with a 3' aisle |
 | [Fuel modification plan (PDF)](renders/fuelmod/fuel-modification-plan.pdf) | [FM-1](renders/fuelmod/FM-1-fuel-modification-plan.png): owner-prepared plan for LA County Fire: ember-resistant zone, Zone A, existing and proposed planting with botanical names |
 | [Zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) | Site plan with setbacks and project data, floor plan, roof plan, elevations ([how to submit](docs/11-zoning-check.md)) |
 | [`accosting-owner-schematic-survey.dxf`](accosting-owner-schematic-survey.dxf) | The plan over the topographic survey as a DXF (inches) |
