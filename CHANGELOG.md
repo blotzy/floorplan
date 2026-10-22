@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 22, 2026
 
+- **1:28 PM**: Hall closet: the cased opening (and its dropped header) moves about 14" east, in line with the walk-in closet's end wall, and a 2'-5" x 2' hall closet takes the walk-in closet's hall-side corner (a blind corner before), with 24" doors 7'-6" tall just past the opening's stub and 2x3 walls to the closet. The walk-in closet keeps its 3' aisle (rod about 21'-3"); the common bath door slides 2" east for casing room and its sink 2" clear of the swing. Plan, 3D, sets, floor-plan doc.
 - **1:03 PM**: Reverted the recessed hall cabinets and the walk-in closet rework: the closet is back to 7'-0" deep with hanging on both long sides and a 3' aisle, and the hall wall back in line (hall 4'-0" clear). The hall storage is an experiment again.
 - **12:57 PM**: Hall storage and walk-in closet reworked: the hall's wall along the closet moves 6" into it, and 12"-deep built-in linen and storage cabinets sit half in that recess along the lobby (hall 3'-6" clear there, the attic hatch clear). The closet (now 6'-6" deep, about a 2'-6" aisle) gets double hang down the bath side and, on the entry side, long hang then a 4' bank of drawers with a counter by the door; the end-wall shelves and drawers stay. The closet door moves 6" with the wall. Plan, 3D, sets, floor-plan doc, engineer brief (the wall jog).
 - **12:24 PM**: Architect review: the hallway concern also asks whether the 4'-0" hall width is right.

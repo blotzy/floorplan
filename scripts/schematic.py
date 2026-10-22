@@ -108,9 +108,13 @@ SHOWER_BENCH_D = 16.0                # primary shower: solid bench along the clo
 SHOWER_ENTRY = 30.0                  # primary shower: walk-in entry by the rear wall
 NOOK_CEIL = 90.0                     # reading nook: lowered ceiling at 7'-6" (the room's is 9'), built-in cabinets
 NOOK_CAB_D = 24.0                    # above it with doors facing the bedroom; the nook window's head meets it
-HALL_ARCH = 897.5                    # centreline of the threshold wall: in line with the ensuite|guest wall,
-                                     # between the common bath and guest doors
+HALL_ARCH = 883.5                    # centreline of the threshold wall: in line with the walk-in closet's end
+                                     # wall, just past the common bath door
 ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
+HALL_CL_DOOR = (HALL_ARCH + INT / 2 + 3.5, HALL_ARCH + INT / 2 + 27.5)   # hall closet: 24" doors (7'-6", in line
+                                     # with the header), 3 1/2" past the opening's stub for casing
+HALL_CL_W, HALL_CL_D = HALL_CL_DOOR[1] + 1.5 - (HALL_ARCH + INT / 2), 24.0   # in the walk-in closet's corner
+PART = 3.5                           # its two walls to the walk-in closet: 2x3 + 1/2" gyp each side
 HATCH_X = 966.0                         # attic access panel (22" x 54", passes the air handler) along the hall,
                                         # from here west: about 4' clear of the skylight, beside the air handler platform
 HALL_TUBE = HALL_END - INT / 2 - 32.0   # 14" tubular skylight on the hall's centreline, 2'-8" short of the end
@@ -137,6 +141,10 @@ WALLS = [
     ("bath|wic",          "x", HALL_S + INT / 2 + WIC_D + WET / 2, 883.5, 1062.0, WET),   # closet 7' deep; plumbing
                                                                                  # wall (WC, double vanity)
     ("suite|primary",     "y", 1062.0, HALL_S - INT / 2, S_IN, INT),
+    ("hall closet|wic",   "x", HALL_S + INT / 2 + HALL_CL_D + PART / 2, 883.5,
+     HALL_ARCH + INT / 2 + HALL_CL_W + PART, PART),                          # hall closet's back wall
+    ("hall closet|wic end", "y", HALL_ARCH + INT / 2 + HALL_CL_W + PART / 2, HALL_S,
+     HALL_S + INT / 2 + HALL_CL_D + PART, PART),                             # and its side wall
 ]
 
 # Openings: (wall name, from, to, kind, hinge, swing)
@@ -173,11 +181,13 @@ OPENINGS = [
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
     ("ensuite|guest", 335.0, 365.0, "door", "a", +1),       # guest ensuite's only door: swings into the guest room (the bath is narrow)
-    ("bedroom hall wall", 906.5, 942.5, "door", "a", -1),  # guest: 2" clear of the hall threshold wall for its trim
+    ("bedroom hall wall", 906.5, 942.5, "door", "a", -1),  # guest
     ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, by the hall's end
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
-    ("south hall wall", 849.75, 879.75, "door", "b", +1),   # common bath, 30", against its west wall
+    ("south hall wall", 847.75, 877.75, "door", "b", +1),   # common bath, 30", by its west wall (3 1/2" for casing
+                                                            # beside the cased opening's stub)
+    ("south hall wall", *HALL_CL_DOOR, "bifold", "a", +1),  # hall closet
     ("south hall wall", 1070.0, 1106.0, "door", "b", +1),   # primary bedroom, at the closet corner: hinged on its
                                                             # far side, so the open door never blocks the closet door
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
@@ -416,7 +426,7 @@ def utility_block(sh):
     # bath: sink, toilet, then a curbless shower across the end; sink, toilet and shower drain on the laundry
     # wall (one plumbing wall for both rooms); the door is at the west end, so the toilet is out of view from
     # the lounge. The shower's valve and head are on its end wall at the entry, spraying away from it
-    vanity(sh, b0, 466.0, b0 + 20, 490.0, "SINK", rot=90)
+    vanity(sh, b0, 468.0, b0 + 20, 492.0, "SINK", rot=90)    # clear of the door's swing
     wc(sh, b0, 497.0, b0 + 28, 527.0)
     gy = 530.0                                                               # shower: full width x 36"
     wet_zone(sh, b0, gy, b1, be)
@@ -455,6 +465,9 @@ def utility_block(sh):
 
 
 def wic(sh):
+    """Walk-in closet: hanging on both long walls (the hall side starting past the hall closet and stopping
+    short of the bedroom wall for the door's landing), corner shelves and a drawer stack on the end wall.
+    The hall closet takes the hall-side corner, opening onto the hall."""
     x0, x1 = face("utility|bath", +1), face("suite|primary", -1)
     y0, y1 = face("south hall wall", +1), face("bath|wic", -1)
     fu = "A-FURN"
@@ -464,14 +477,17 @@ def wic(sh):
         sh.line((a, y + d * 12), (b, y + d * 12), fu)
         sh.text("HANG", (a + b) / 2, y + d * 18, 3.0)
 
-    hang(x0 + 24, 1023.0, y0, +1)           # entry side: stops 3' short of the bedroom wall (landing inside
-    hang(x0 + 24, x1, y1, -1)               # the cased entry); far side runs to the bedroom wall
-    for ya, yb in ((y0, y0 + 24), (y1 - 24, y1)):  # end wall wrapped in one built-in: corner shelves
-        sh.rect(x0, ya, x0 + 24, yb, fu)    # (shoes, folded, bags) either side of a drawer stack
-        sh.text("SHELVES", x0 + 12, (ya + yb) / 2, 2.2)
-    sh.rect(x0, y0 + 24, x0 + 20, y1 - 24, fu)
-    sh.text("DRAWERS", x0 + 10, (y0 + y1) / 2, 2.2, rot=90)
+    hx, cy = face("hall closet|wic end", +1), face("hall closet|wic", +1)
+    hang(hx, 1023.0, y0, +1)                # entry side: from the hall closet to 3' short of the bedroom wall
+    hang(x0 + 24, x1, y1, -1)               # far side runs to the bedroom wall
+    sh.rect(x0, y1 - 24, x0 + 24, y1, fu)   # end wall: corner shelves (shoes, folded, bags) and a drawer stack
+    sh.text("SHELVES", x0 + 12, y1 - 12, 2.2)
+    sh.rect(x0, cy, x0 + 20, y1 - 24, fu)
+    sh.text("DRAWERS", x0 + 10, (cy + y1 - 24) / 2, 2.2, rot=90)
     room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=5.0)
+    c1, cb = face("hall closet|wic end", -1), face("hall closet|wic", -1)   # hall closet: shelves at the back
+    sh.rect(x0, cb - 14, c1, cb, fu); sh.text("SHELVES", (x0 + c1) / 2, cb - 7, 1.8)
+    sh.text("HALL CLOSET", (x0 + c1) / 2, cb - 18, 1.6)
 
 
 def carport_size():
