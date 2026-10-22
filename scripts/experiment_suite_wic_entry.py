@@ -16,7 +16,8 @@
   - Bath: the WC and the vanity side by side on the rear wall (the vanity under the high window, mirror below
     the 6' sill), a walkway along the closet wall from the door to the shower's walk-in entry at that wall. A 6'-0"
     shower with two heads on the closet wall, 36" apart (a station each, spraying toward the rear wall), each
-    with its own valve; the niche between them; a 16"-deep floating bench along the rear wall.
+    with its own valve; the niche between them; a 16"-deep solid bench along the rear wall (a foam bench kit or block,
+    wrapped in the shower membrane).
   - The bedroom has the hall door, the closet door and the nook. The closet door sits near the bed's
     centre line, so the bedroom TV goes off-centre on the wall beside it.
 
@@ -61,8 +62,8 @@ def primary_bath(sh):
         S.shower_head(sh, hx, top, +1)                                     # apart: a station each, spraying
     sh.rect(m0 + 23, top - 3.5, m0 + 41, top, "A-EQPM")                    # toward the rear wall; niche between
     sh.text("NICHE", m0 + 32, top + 4, 2.0)
-    sh.rect(m0, S.S_IN - BENCH_D, gx, S.S_IN, "A-EQPM")                     # floating bench along the rear wall,
-    sh.text("FLOATING BENCH", (m0 + gx) / 2, S.S_IN - BENCH_D / 2, 2.2)    # under the window, out of the way
+    sh.rect(m0, S.S_IN - BENCH_D, gx, S.S_IN, "A-EQPM")                     # solid bench along the rear wall (foam
+    sh.text("BENCH (SOLID)", (m0 + gx) / 2, S.S_IN - BENCH_D / 2, 2.2)     # or block, membrane-wrapped), under the window
     sh.text("CURBLESS SHOWER", (m0 + gx) / 2, (top + S.S_IN - BENCH_D) / 2, 2.6)
     S.glass(sh, (gx, S.S_IN), (gx, top + 30))                              # fixed panel from the rear wall;
     S.drain(sh, (gx - 3, top + 3), (gx - 3, S.S_IN - BENCH_D - 3))                   # walk-in by the closet wall
