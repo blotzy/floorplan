@@ -8,12 +8,12 @@
     curbless shower at the plumbing-wall end), but the bedroom's bath door goes: the closet opening moves to
     the middle of its bedroom-side end, straight into the aisle, and the bath is entered from the closet by a
     door at the bedroom end of the closet | bath wall, just inside the closet door.
-  - Doors: the closet door (32") swings into the closet, hinged on the hall side, and opens into the
-    door bay; the bath door (32") swings into the bath, hinged at the bedroom end, and opens
+  - Doors: the closet door (30") swings into the closet, hinged on the hall side, and opens into the
+    door bay; the bath door (30") swings into the bath, hinged at the bedroom end, and opens
     flat against the bath's end wall, clear of the vanity.
   - Closet: the hall-side hanging stops 3' short of the bedroom wall, where 12"-deep shelves make a bay the
     open closet door rests in (a door stop holds it at 90 degrees, clear of the shelves and the clothes; a
-    mirror can go on the door's inside face); the bath-side run stops at the bath door. About 18'-5" of rod.
+    mirror can go on the door's inside face); the bath-side run stops at the bath door. About 18'-9" of rod.
     Corner shelves and drawer stack at the far end, as now.
   - Bath: the WC and the vanity side by side on the rear wall (the vanity under the high window, mirror below
     the 6' sill), a walkway along the closet wall from the door to the shower's walk-in entry at that wall. A 6'-0"
@@ -39,9 +39,9 @@ import schematic as S  # noqa: E402
 OUT = S.RENDERS / "experiments"
 WIC_D = 84.0                                    # closet depth: 24" hanging + 36" aisle + 24" hanging
 SHOWER_W = 72.0                                 # shower width along the bath, from the plumbing wall
-DOOR_BAY = 36.0                                 # closet: shallow shelves where the closet door opens
+DOOR_BAY = 34.0                                 # closet: shallow shelves where the closet door opens
 BENCH_D = 16.0                                  # shower bench depth (rear wall)
-BATH_DOOR = (1024.0, 1056.0)                    # 32" door, closet -> bath: swings in, opens flat on the bath's end wall
+BATH_DOOR = (1026.0, 1056.0)                    # 30" door, closet -> bath: swings in, opens flat on the bath's end wall
 
 
 def plan():
@@ -52,7 +52,7 @@ def plan():
             ws[i] = (w[0], w[1], y, *w[3:])
     mid = S.face("south hall wall", +1) + WIC_D / 2                       # closet opening centred on the aisle
     S.OPENINGS[:] = [o for o in S.OPENINGS if o[0] != "suite|primary"]
-    S.OPENINGS += [("suite|primary", mid - 16, mid + 16, "door", "a", -1),   # closet: swings in, opens into the door bay
+    S.OPENINGS += [("suite|primary", mid - 15, mid + 15, "door", "a", -1),   # closet: swings in, opens into the door bay
                    ("bath|wic", *BATH_DOOR, "door", "b", +1)]
 
 
