@@ -101,7 +101,9 @@ NOTICE = ("\u00a9 2026 Richard Acosta. All rights reserved. For 220 Laurel Dr on
 HALL_END = 1110.5                    # centreline of the hall's end wall
 HALL_S = 403.2 + INT + 48.0          # centreline of the hall's south wall: a 4'-0" clear hall
 KITCHEN_ROW = 461.45                 # front line of the kitchen peninsula and fridge (the lounge's south edge)
-WIC_D = 84.0                         # primary walk-in closet depth: 24" hanging + 36" aisle + 24" hanging
+WIC_D = 78.0                         # primary walk-in closet depth: 24" hanging + 30" aisle + 24" hanging
+LOBBY_RECESS = 6.0                   # the lobby's wall along the closet sits 6" into it: the hall storage
+                                     # cabinets, 12" deep, half in the recess and half in the hall
 SHOWER_W = 74.0                      # primary shower: 6'-2" from the common bath wall
 SHOWER_WIN = (912.0, 936.0)          # primary shower: high strip window, the two heads 18" either side of its centre
 SHOWER_BENCH_D = 16.0                # primary shower: solid bench along the closet wall
@@ -125,16 +127,18 @@ WALLS = [
     ("ensuite|guest",    "y", 897.5,  N_IN, 405.45, INT),
     ("guest|office",     "y", 1062.0, N_IN, 405.45, INT),
     ("bedroom hall wall", "x", 403.2,  671.75, W_IN, INT),
-    ("south hall wall",   "x", HALL_S, 671.75, HALL_END + INT / 2, INT),
+    ("south hall wall",   "x", HALL_S, 671.75, 883.5 + INT / 2, INT),
+    ("lobby wall",        "x", HALL_S + LOBBY_RECESS, 883.5 - INT / 2, 1062.0 + INT / 2, INT),   # along the closet
+    ("bedroom wall",      "x", HALL_S, 1062.0 - INT / 2, HALL_END + INT / 2, INT),
     ("hall end",          "y", HALL_END, 403.2, HALL_S, INT),      # the reading nook behind it
-    ("hall threshold",    "y", HALL_ARCH, 403.2, HALL_S, INT),     # cased opening, dropped header
+    ("hall threshold",    "y", HALL_ARCH, 403.2, HALL_S + LOBBY_RECESS, INT),   # cased opening, dropped header
     ("kitchen|pantry",    "y", 674.0,  HALL_S - INT / 2, S_IN, INT),
     ("pantry|laundry",    "y", 750.0,  HALL_S - INT / 2, S_IN, INT),
     ("pantry|mech",       "x", 555.2,  674.0, 750.0, INT),
     ("laundry|bath",      "y", 826.0,  HALL_S - INT / 2, S_IN, WET),   # 52" clear bath, full depth
     ("bath|storage",      "x", 566.0 + INT / 2, 826.0, 883.5, INT),  # storage behind the bath
     ("utility|bath",      "y", 883.5,  HALL_S - INT / 2, S_IN, INT),   # 2x4: nothing plumbed in it
-    ("bath|wic",          "x", HALL_S + INT / 2 + WIC_D + WET / 2, 883.5, 1062.0, WET),   # closet 7' deep; plumbing
+    ("bath|wic",          "x", HALL_S + LOBBY_RECESS + INT / 2 + WIC_D + WET / 2, 883.5, 1062.0, WET),   # closet 7' deep; plumbing
                                                                                  # wall (WC, double vanity)
     ("suite|primary",     "y", 1062.0, HALL_S - INT / 2, S_IN, INT),
 ]
@@ -178,13 +182,13 @@ OPENINGS = [
     ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 849.75, 879.75, "door", "b", +1),   # common bath, 30", against its west wall
-    ("south hall wall", 1070.0, 1106.0, "door", "b", +1),   # primary bedroom, at the closet corner: hinged on its
+    ("bedroom wall", 1070.0, 1106.0, "door", "b", +1),      # primary bedroom, at the closet corner: hinged on its
                                                             # far side, so the open door never blocks the closet door
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
     ("suite|primary", 576.0, 606.0, "door", "b", -1),       # primary bath, 30", from the bedroom; opens flat by the rear wall
-    ("suite|primary", HALL_S + 4.0, HALL_S + 34.0, "door", "a", -1),       # walk-in closet, 30": swings in, opens flat by the hall wall
+    ("suite|primary", HALL_S + LOBBY_RECESS + 4.0, HALL_S + LOBBY_RECESS + 34.0, "door", "a", -1),       # walk-in closet, 30": swings in, opens flat by the hall wall
 ]
 
 # Street-facade articulation (County building articulation, Table 22.140.520-C): the punched street windows
@@ -455,23 +459,31 @@ def utility_block(sh):
 
 
 def wic(sh):
+    """Walk-in closet: double hang down the bath side; on the hall side, long hang then a bank of drawers
+    with a counter by the entry; the end wall shelves and drawers. Also the hall storage cabinets on the
+    lobby side of its wall."""
     x0, x1 = face("utility|bath", +1), face("suite|primary", -1)
-    y0, y1 = face("south hall wall", +1), face("bath|wic", -1)
+    y0, y1 = face("lobby wall", +1), face("bath|wic", -1)
     fu = "A-FURN"
 
-    def hang(a, b, y, d):                   # 24"-deep hanging section with its rod
+    def hang(a, b, y, d, label):            # 24"-deep hanging section with its rod
         sh.rect(a, min(y, y + d * 24), b, max(y, y + d * 24), fu)
         sh.line((a, y + d * 12), (b, y + d * 12), fu)
-        sh.text("HANG", (a + b) / 2, y + d * 18, 3.0)
+        sh.text(label, (a + b) / 2, y + d * 18, 2.6)
 
-    hang(x0 + 24, 1023.0, y0, +1)           # entry side: stops 3' short of the bedroom wall (landing inside
-    hang(x0 + 24, x1, y1, -1)               # the cased entry); far side runs to the bedroom wall
+    dr = 1023.0 - 48.0                      # hall side: long hang, then 4' of drawers by the entry, stopping
+    hang(x0 + 24, dr, y0, +1, "LONG HANG")  # 3' short of the bedroom wall (landing inside the door)
+    sh.rect(dr, y0, 1023.0, y0 + 20, fu); sh.text("DRAWERS, COUNTER", (dr + 1023.0) / 2, y0 + 10, 2.2)
+    hang(x0 + 24, x1, y1, -1, "DOUBLE HANG")   # bath side: two rods, the full length
     for ya, yb in ((y0, y0 + 24), (y1 - 24, y1)):  # end wall wrapped in one built-in: corner shelves
         sh.rect(x0, ya, x0 + 24, yb, fu)    # (shoes, folded, bags) either side of a drawer stack
         sh.text("SHELVES", x0 + 12, (ya + yb) / 2, 2.2)
     sh.rect(x0, y0 + 24, x0 + 20, y1 - 24, fu)
     sh.text("DRAWERS", x0 + 10, (y0 + y1) / 2, 2.2, rot=90)
-    room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=5.0)
+    room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=4.0)
+    hy = face("lobby wall", -1)                                       # hall storage: 12" deep, half in the
+    sh.rect(HALL_ARCH + INT / 2 + 4.0, hy - 12.0, x1, hy, "A-EQPM")   # wall's recess, past the cased opening
+    sh.text("HALL LINEN / STORAGE", (HALL_ARCH + x1) / 2, hy - 6.0, 2.4)
 
 
 def carport_size():

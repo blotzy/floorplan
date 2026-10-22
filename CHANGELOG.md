@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 22, 2026
 
+- **12:57 PM**: Hall storage and walk-in closet reworked: the hall's wall along the closet moves 6" into it, and 12"-deep built-in linen and storage cabinets sit half in that recess along the lobby (hall 3'-6" clear there, the attic hatch clear). The closet (now 6'-6" deep, about a 2'-6" aisle) gets double hang down the bath side and, on the entry side, long hang then a 4' bank of drawers with a counter by the door; the end-wall shelves and drawers stay. The closet door moves 6" with the wall. Plan, 3D, sets, floor-plan doc, engineer brief (the wall jog).
 - **12:24 PM**: Architect review: the hallway concern also asks whether the 4'-0" hall width is right.
 - **12:14 PM**: Open questions: the old house drained under the old driveway toward Laurel Drive, so the existing lateral is most likely a later Laurel connection; the camera inspection confirms its route and condition before the new driveway is poured.
 - **12:10 PM**: Public Works' sewer reply recorded: an 8" clay main in Laurel Drive (1952 as-built added under renders/county), its inverts and the street's curb grade along the frontage; the 1952 plan shows the lot served from Las Flores Drive, with no Laurel lateral. New to-dos: locate the existing lateral from the front cleanout, check for later connection records and a sewer easement, and tie the 1952 elevations to the survey datum. Open questions, plumbing, site and engineer-brief docs.

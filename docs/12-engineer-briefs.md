@@ -35,6 +35,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
   - Air handler (about 250 lb) on a platform beside the hall attic hatch, over the guest room, near the gable's ridge.
   - Solar PV over the south-facing planes (the shed and the gable's rear slope, one plane at 2:12 facing SSW, clear of the fire setbacks): about 3-4 psf dead load over the whole plane, so the array can grow. The first array is about 10 kW (about 24 panels) on the shed, east of the range hood cap ([solar layout](../renders/experiments/solar-layout.png)). The **mounting is installed with the roofing** (flashed attachments into the rafters, with rails), the panels later: show the attachment points and spacing, sized for wind uplift in this high-wind area, on the structural sheets.
   - Heat pump water heater, 80 gal (about 900 lb full), on the slab in the mechanical closet.
+- **Hall wall jog:** along the walk-in closet, the hall's south wall is set 6" into the closet (between the common bath wall and the primary bedroom wall) for recessed hall cabinets. Assumed non-bearing; confirm, and note it if it's a braced wall line.
 - **Hall ceiling:** keep the centreline of the bedroom hall (lobby) free of blocking, strongbacks, ducts and pipes, so recessed lights fit between the trusses along it; a 14" tubular skylight near the hall's end takes the last spot, its tube jogging toward the street in the attic to a dome on the street slope (sheet A-7).
 - **Exterior:** stucco walls (2x6 with 1" rigid insulation), two 3' metal window canopies at the rear (attachment).
 
