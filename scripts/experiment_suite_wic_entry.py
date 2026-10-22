@@ -14,8 +14,9 @@
   - Closet: the hall-side hanging runs the full length (no landing needed); the bath-side run stops at the
     bath door. About 21'-5" of rod. Corner shelves and drawer stack at the far end, as now.
   - Bath: the WC and the vanity side by side on the rear wall (the vanity under the high window, mirror below
-    the 6' sill), a walkway along the closet wall from the door to the shower's walk-in entry at that wall. The shower
-    heads (plumbing wall and closet wall) spray away from the entry; the niche is in the closet wall.
+    the 6' sill), a walkway along the closet wall from the door to the shower's walk-in entry at that wall. Two shower
+    heads on the plumbing wall, 30" apart (a station each), each with its own valve; the niche is in the closet
+    wall.
   - The bedroom has the hall door, the closet door and the nook. The closet door sits near the bed's
     centre line, so the bedroom TV goes off-centre on the wall beside it.
 
@@ -55,9 +56,8 @@ def primary_bath(sh):
     top = S.face("bath|wic", +1)
     gx = m0 + SHOWER_W
     S.wet_zone(sh, m0, top, gx, S.S_IN)
-    hy = S.S_IN - 20                                                       # heads spraying away from the entry:
-    sh.circle((m0 + 4, hy), 2.5, "A-EQPM"); sh.heads.append((m0, hy, 1.0, 0.0))   # plumbing wall, at the glass,
-    S.shower_head(sh, m0 + 14, top, +1)                                    # and closet wall, at the rear wall
+    for hy in ((top + S.S_IN) / 2 - 15, (top + S.S_IN) / 2 + 15):          # two heads on the plumbing wall,
+        sh.circle((m0 + 4, hy), 2.5, "A-EQPM"); sh.heads.append((m0, hy, 1.0, 0.0))   # 30" apart: two stations
     sh.rect(m0 + 28, top - 3.5, m0 + 46, top, "A-EQPM")                    # niche in the closet wall
     sh.text("NICHE", m0 + 37, top + 4, 2.0)
     sh.text("CURBLESS SHOWER", (m0 + gx) / 2, (top + S.S_IN) / 2 + 2, 2.6)
