@@ -5,7 +5,7 @@
 """Experiment: the no-tub, wider walk-in closet suite, with the bath reached through the closet.
 
   - As experiment_suite_wide_wic.py (the closet 7'-0" deep with a 3' aisle, the bath about 4'-10" deep with a
-    5' curbless shower at the plumbing-wall end), but the bedroom's bath door goes: the closet opening moves to
+    curbless shower at the plumbing-wall end), but the bedroom's bath door goes: the closet opening moves to
     the middle of its bedroom-side end, straight into the aisle, and the bath is entered from the closet by a
     door at the bedroom end of the closet | bath wall, just inside the closet door.
   - Doors: the closet door (32") swings into the closet, hinged on the hall side, and rests open against the
@@ -14,9 +14,9 @@
   - Closet: the hall-side hanging runs the full length (no landing needed); the bath-side run stops at the
     bath door. About 21'-5" of rod. Corner shelves and drawer stack at the far end, as now.
   - Bath: the WC and the vanity side by side on the rear wall (the vanity under the high window, mirror below
-    the 6' sill), a walkway along the closet wall from the door to the shower's walk-in entry at that wall. Two shower
-    heads on the plumbing wall, 30" apart (a station each), each with its own valve; the niche is in the closet
-    wall.
+    the 6' sill), a walkway along the closet wall from the door to the shower's walk-in entry at that wall. A 6'-0"
+    shower with two heads on the closet wall, 36" apart (a station each, spraying toward the rear wall), each
+    with its own valve; the niche between them.
   - The bedroom has the hall door, the closet door and the nook. The closet door sits near the bed's
     centre line, so the bedroom TV goes off-centre on the wall beside it.
 
@@ -35,7 +35,7 @@ import schematic as S  # noqa: E402
 
 OUT = S.RENDERS / "experiments"
 WIC_D = 84.0                                    # closet depth: 24" hanging + 36" aisle + 24" hanging
-SHOWER_W = 60.0                                 # shower width along the bath, from the plumbing wall
+SHOWER_W = 72.0                                 # shower width along the bath, from the plumbing wall
 BATH_DOOR = (1024.0, 1056.0)                    # 32" door, closet -> bath: swings in, opens flat on the bath's end wall
 
 
@@ -56,10 +56,10 @@ def primary_bath(sh):
     top = S.face("bath|wic", +1)
     gx = m0 + SHOWER_W
     S.wet_zone(sh, m0, top, gx, S.S_IN)
-    for hy in ((top + S.S_IN) / 2 - 15, (top + S.S_IN) / 2 + 15):          # two heads on the plumbing wall,
-        sh.circle((m0 + 4, hy), 2.5, "A-EQPM"); sh.heads.append((m0, hy, 1.0, 0.0))   # 30" apart: two stations
-    sh.rect(m0 + 28, top - 3.5, m0 + 46, top, "A-EQPM")                    # niche in the closet wall
-    sh.text("NICHE", m0 + 37, top + 4, 2.0)
+    for hx in (m0 + 14, m0 + 50):                                          # two heads on the closet wall, 36"
+        S.shower_head(sh, hx, top, +1)                                     # apart: a station each, spraying
+    sh.rect(m0 + 23, top - 3.5, m0 + 41, top, "A-EQPM")                    # toward the rear wall; niche between
+    sh.text("NICHE", m0 + 32, top + 4, 2.0)
     sh.text("CURBLESS SHOWER", (m0 + gx) / 2, (top + S.S_IN) / 2 + 2, 2.6)
     S.glass(sh, (gx, S.S_IN), (gx, top + 30))                              # fixed panel from the rear wall;
     S.drain(sh, (gx - 3, top + 3), (gx - 3, S.S_IN - 3))                   # walk-in by the closet wall
