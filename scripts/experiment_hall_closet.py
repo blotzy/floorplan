@@ -4,11 +4,12 @@
 # ///
 """Experiment: a hall closet in the walk-in closet's hall-side corner, by the cased opening.
 
-  - A closet about 4'-2" wide x 2' deep, taken from the walk-in closet's corner next to the hall's cased
-    opening, opening onto the hall just past the opening's wall stub through a pair of doors (bifold here)
-    7'-6" tall, their heads in line with the dropped header. Linens and towels, the vacuum, cleaning
-    supplies, bulk paper goods.
-  - The walk-in closet loses that corner's shelf unit and about 2'-6" of the hall-side hanging (its drawer
+  - The hall's cased opening (and its dropped header) moves about 14" east, in line with the walk-in closet's
+    end wall, just past the common bath door, so its wall stub lands at the closet's corner.
+  - A hall closet about 2'-3" wide x 2' deep in that corner, opening onto the hall right past the stub through
+    24" doors (bifold here) 7'-6" tall, their heads in line with the dropped header: linens and towels, or
+    the vacuum and cleaning supplies.
+  - The walk-in closet loses that corner's shelf unit and about 7" of the hall-side hanging (its drawer
     stack gets a little narrower); its 3' aisle and the hall's 4' width are unchanged.
 
 Writes renders/experiments/hall-closet.png (with the current plan, hall-closet-current.png, to compare)
@@ -25,12 +26,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import schematic as S  # noqa: E402
 
 OUT = S.RENDERS / "experiments"
-CL_W, CL_D = 50.0, 24.0                         # hall closet: width along the hall (from the closet's end wall),
-DOOR = (S.HALL_ARCH + S.INT / 2 + 1.5, S.HALL_ARCH + S.INT / 2 + 31.5)   # depth; 30" doors past the stub
+ARCH = 883.5                                    # cased opening moved 14" east, in line with the closet's end wall
+DOOR = (ARCH + S.INT / 2 + 1.5, ARCH + S.INT / 2 + 25.5)   # 24" hall closet doors, right past its stub
+CL_W, CL_D = DOOR[1] + 1.5 - (ARCH + S.INT / 2), 24.0       # hall closet: as wide as its doors, 2' deep
 _build, _wic = S.build, S.wic
 
 
 def plan():
+    for i, w in enumerate(S.WALLS):
+        if w[0] == "hall threshold":
+            S.WALLS[i] = (w[0], w[1], ARCH, *w[3:])
     x0 = S.face("utility|bath", +1)
     y0 = S.face("south hall wall", +1)
     S.WALLS.append(("hall closet|wic", "x", y0 + CL_D + S.INT / 2, 883.5, x0 + CL_W + S.INT, S.INT))
@@ -58,8 +63,9 @@ def wic(sh):
     sh.text("DRAWERS", x0 + 10, (cy + y1 - 24) / 2, 2.2, rot=90)
     S.room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=5.0)
     c0, c1 = x0, S.face("hall closet|wic end", -1)            # the hall closet
-    sh.rect(c0, y0 + 9, c0 + 24, cy, fu); sh.text("SHELVES", c0 + 12, (y0 + 9 + cy) / 2, 1.8)
-    sh.text("HALL CLOSET", (c0 + 24 + c1) / 2, cy - 4, 1.6)
+    cb = S.face("hall closet|wic", -1)                         # its back wall's hall-closet face
+    sh.rect(c0, cb - 14, c1, cb, fu); sh.text("SHELVES", (c0 + c1) / 2, cb - 7, 1.8)
+    sh.text("HALL CLOSET", (c0 + c1) / 2, cb - 18, 1.6)
 
 
 def render(png, sh):
