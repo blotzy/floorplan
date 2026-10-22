@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 21, 2026
 
+- **9:19 PM**: Primary shower niche moved to the rear wall, centred between the heads below the window and matching its width (within reach of both stations, out of the direct spray; rigid foam behind it in the exterior wall). Plan, sets, floor-plan doc.
 - **9:14 PM**: Robot vacuum dock moved from the storage room to the laundry: an open floor-level bay in the folding counter beside the utility sink, sharing its cold supply and trapped drain. Notes only (floor-plan, plumbing, electrical and open-questions docs); not drawn.
 - **9:13 PM**: 3D model: the primary shower's niche no longer shows as a solid block in the closet wall behind the bench.
 - **9:11 PM**: The wall between the common bath / storage room and the primary bath / walk-in closet is a plain 2x4 wall with sound insulation (nothing is plumbed in it any more; the robot vacuum dock's water and drain come up through the slab). Its 2" go to the primary side: the double shower is 6'-2" wide, its heads centred on the strip window. Plan, 3D, sets, floor-plan doc.

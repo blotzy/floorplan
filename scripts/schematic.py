@@ -391,11 +391,11 @@ def primary_bath(sh):
     sh.text("VALVES", gx - 7, S_IN - 9, 1.8, rot=90)                   # drop from the attic beside the window
     sh.rect(m0, top, gx, top + SHOWER_BENCH_D, "A-EQPM")               # solid bench, full width, facing the heads
     sh.text("BENCH (SOLID)", (m0 + gx) / 2, top + SHOWER_BENCH_D / 2, 2.2)
-    nx = sum(SHOWER_WIN) / 2                                           # niche above the bench, recessed into the
-    for p0, p1 in (((nx - 9, top), (nx - 9, top - 3.5)), ((nx - 9, top - 3.5), (nx + 9, top - 3.5)),
-                   ((nx + 9, top - 3.5), (nx + 9, top))):                 # wall (lines: a recess, not a 3D box)
-        sh.line(p0, p1, "A-EQPM")
-    sh.text("NICHE ABOVE", nx, top + SHOWER_BENCH_D + 3, 1.8)
+    n0, n1 = SHOWER_WIN                                                # niche in the rear wall between the heads,
+    for p0, p1 in (((n0, S_IN), (n0, S_IN + 3.5)), ((n0, S_IN + 3.5), (n1, S_IN + 3.5)),
+                   ((n1, S_IN + 3.5), (n1, S_IN))):                     # below the window and its width (lines:
+        sh.line(p0, p1, "A-EQPM")                                      # a recess, not a 3D box)
+    sh.text("NICHE", sum(SHOWER_WIN) / 2, S_IN - 4, 1.6)
     sh.text("CURBLESS SHOWER", (m0 + gx) / 2, top + SHOWER_BENCH_D + 9, 2.6)
     glass(sh, (gx, top), (gx, S_IN - SHOWER_ENTRY))                    # fixed panel from the closet wall;
     drain(sh, (gx - 3, top + SHOWER_BENCH_D + 3), (gx - 3, S_IN - 3))  # walk-in entry by the rear wall
