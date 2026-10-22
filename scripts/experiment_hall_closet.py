@@ -8,8 +8,9 @@
     end wall, just past the common bath door, so its wall stub lands at the closet's corner.
   - A hall closet about 2'-3" wide x 2' deep in that corner, opening onto the hall right past the stub through
     24" doors (bifold here) 7'-6" tall, their heads in line with the dropped header: linens and towels, or
-    the vacuum and cleaning supplies.
-  - The walk-in closet loses that corner's shelf unit and about 7" of the hall-side hanging (its drawer
+    the vacuum and cleaning supplies. Its two walls against the walk-in closet are 2x3 partitions (about
+    3 1/2" finished), not 2x4.
+  - The walk-in closet loses that corner's shelf unit and about 6" of the hall-side hanging (its drawer
     stack gets a little narrower); its 3' aisle and the hall's 4' width are unchanged.
 
 Writes renders/experiments/hall-closet.png (with the current plan, hall-closet-current.png, to compare)
@@ -29,6 +30,7 @@ OUT = S.RENDERS / "experiments"
 ARCH = 883.5                                    # cased opening moved 14" east, in line with the closet's end wall
 DOOR = (ARCH + S.INT / 2 + 1.5, ARCH + S.INT / 2 + 25.5)   # 24" hall closet doors, right past its stub
 CL_W, CL_D = DOOR[1] + 1.5 - (ARCH + S.INT / 2), 24.0       # hall closet: as wide as its doors, 2' deep
+T23 = 3.5                                       # its two partitions: 2x3 studs + 1/2" drywall each side
 _build, _wic = S.build, S.wic
 
 
@@ -38,8 +40,8 @@ def plan():
             S.WALLS[i] = (w[0], w[1], ARCH, *w[3:])
     x0 = S.face("utility|bath", +1)
     y0 = S.face("south hall wall", +1)
-    S.WALLS.append(("hall closet|wic", "x", y0 + CL_D + S.INT / 2, 883.5, x0 + CL_W + S.INT, S.INT))
-    S.WALLS.append(("hall closet|wic end", "y", x0 + CL_W + S.INT / 2, S.HALL_S, y0 + CL_D + S.INT, S.INT))
+    S.WALLS.append(("hall closet|wic", "x", y0 + CL_D + T23 / 2, 883.5, x0 + CL_W + T23, T23))
+    S.WALLS.append(("hall closet|wic end", "y", x0 + CL_W + T23 / 2, S.HALL_S, y0 + CL_D + T23, T23))
     S.OPENINGS.append(("south hall wall", *DOOR, "bifold", "a", +1))
 
 
