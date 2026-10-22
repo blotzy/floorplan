@@ -1011,7 +1011,7 @@ def floor_plan(pdf):
     dim_string(ax, [S.E, S.W] + s_open, S.S + 50)
     dim_string(ax, s_walls, S.S + 80)
     dim_string(ax, [S.E, S.W], S.S + 110)
-    dim_string(ax, [S.N, 403.2, 459.2, S.S], S.W + 50, horiz=False)
+    dim_string(ax, [S.N, 403.2, S.HALL_S, S.S], S.W + 50, horiz=False)
     dim_string(ax, [S.N, S.S], S.W + 85, horiz=False)
     ew = [v for o in S.OPENINGS if o[0] == "east" for v in o[1:3]]
     dim_string(ax, [S.PORCH_Y, S.S] + ew, S.E - 30, horiz=False)

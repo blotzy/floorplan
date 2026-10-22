@@ -99,6 +99,8 @@ NOTICE = ("\u00a9 2026 Richard Acosta. All rights reserved. For 220 Laurel Dr on
 # stretch is the primary bedroom's reading nook. Halfway down, just past the common bath, a cased opening
 # with a dropped header marks the bedroom end (no door).
 HALL_END = 1110.5                    # centreline of the hall's end wall
+HALL_S = 403.2 + INT + 48.0          # centreline of the hall's south wall: a 4'-0" clear hall
+KITCHEN_ROW = 461.45                 # front line of the kitchen peninsula and fridge (the lounge's south edge)
 WIC_D = 84.0                         # primary walk-in closet depth: 24" hanging + 36" aisle + 24" hanging
 NOOK_CEIL = 90.0                     # reading nook: lowered ceiling at 7'-6" (the room's is 9'), built-in cabinets
 NOOK_CAB_D = 24.0                    # above it with doors facing the bedroom; the nook window's head meets it
@@ -119,18 +121,18 @@ WALLS = [
     ("ensuite|guest",    "y", 897.5,  N_IN, 405.45, INT),
     ("guest|office",     "y", 1062.0, N_IN, 405.45, INT),
     ("bedroom hall wall", "x", 403.2,  671.75, W_IN, INT),
-    ("south hall wall",   "x", 459.2,  671.75, HALL_END + INT / 2, INT),
-    ("hall end",          "y", HALL_END, 403.2, 459.2, INT),      # the reading nook behind it
-    ("hall threshold",    "y", HALL_ARCH, 403.2, 459.2, INT),     # cased opening, dropped header
-    ("kitchen|pantry",    "y", 674.0,  457.0, S_IN, INT),
-    ("pantry|laundry",    "y", 750.0,  457.0, S_IN, INT),
+    ("south hall wall",   "x", HALL_S, 671.75, HALL_END + INT / 2, INT),
+    ("hall end",          "y", HALL_END, 403.2, HALL_S, INT),      # the reading nook behind it
+    ("hall threshold",    "y", HALL_ARCH, 403.2, HALL_S, INT),     # cased opening, dropped header
+    ("kitchen|pantry",    "y", 674.0,  HALL_S - INT / 2, S_IN, INT),
+    ("pantry|laundry",    "y", 750.0,  HALL_S - INT / 2, S_IN, INT),
     ("pantry|mech",       "x", 555.2,  674.0, 750.0, INT),
-    ("laundry|bath",      "y", 884.5 - WET - 52.0, 457.0, S_IN, WET),   # 52" clear bath, full depth
+    ("laundry|bath",      "y", 884.5 - WET - 52.0, HALL_S - INT / 2, S_IN, WET),   # 52" clear bath, full depth
     ("bath|storage",      "x", 566.0 + INT / 2, 884.5 - WET - 52.0, 884.5, INT),  # storage behind the bath
-    ("utility|bath",      "y", 884.5,  457.0, S_IN, WET),
-    ("bath|wic",          "x", 459.2 + INT / 2 + WIC_D + WET / 2, 884.5, 1062.0, WET),   # closet 7' deep; plumbing
+    ("utility|bath",      "y", 884.5,  HALL_S - INT / 2, S_IN, WET),
+    ("bath|wic",          "x", HALL_S + INT / 2 + WIC_D + WET / 2, 884.5, 1062.0, WET),   # closet 7' deep; plumbing
                                                                                  # wall (WC, double vanity)
-    ("suite|primary",     "y", 1062.0, 457.0, S_IN, INT),
+    ("suite|primary",     "y", 1062.0, HALL_S - INT / 2, S_IN, INT),
 ]
 
 # Openings: (wall name, from, to, kind, hinge, swing)
@@ -178,7 +180,7 @@ OPENINGS = [
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
     ("suite|primary", 576.0, 606.0, "door", "b", -1),       # primary bath, 30", from the bedroom; opens flat by the rear wall
-    ("suite|primary", 463.0, 493.0, "door", "a", -1),       # walk-in closet, 30": swings in, opens flat by the hall wall
+    ("suite|primary", HALL_S + 4.0, HALL_S + 34.0, "door", "a", -1),       # walk-in closet, 30": swings in, opens flat by the hall wall
 ]
 
 # Street-facade articulation (County building articulation, Table 22.140.520-C): the punched street windows
@@ -567,9 +569,9 @@ def build() -> Sheet:
     srow = face("south hall wall", +1)
     pen_out, pen_in = 546.9, 598.0
     room("FOYER", E_IN, PORCH_Y + EXT, face("foyer wall", -1), FOYER_WALL_END, cx=410.0, cy=385.0, h=6.0)
-    room("LOUNGE", face("foyer wall", +1), N_IN, face("lounge|gym", -1), hall_s, cx=600.0, cy=428.0)
-    room("DINING", E_IN, srow, pen_out, S_IN, cy=592.0)
-    room("KITCHEN", pen_out, srow, face("kitchen|pantry", -1), S_IN, cx=622.0, cy=545.0, h=7.0)
+    room("LOUNGE", face("foyer wall", +1), N_IN, face("lounge|gym", -1), KITCHEN_ROW - INT, cx=600.0, cy=428.0)
+    room("DINING", E_IN, KITCHEN_ROW, pen_out, S_IN, cy=592.0)
+    room("KITCHEN", pen_out, KITCHEN_ROW, face("kitchen|pantry", -1), S_IN, cx=622.0, cy=545.0, h=7.0)
     room("GYM", face("lounge|gym", +1), N_IN, face("gym|ensuite", -1), hall_n, cy=272.0)
     room("GUEST", face("ensuite|guest", +1), N_IN, face("guest|office", -1), hall_n, cy=272.0)
     room("OFFICE", face("guest|office", +1), N_IN, W_IN, hall_n, cy=272.0)
@@ -592,7 +594,7 @@ def build() -> Sheet:
     # ---- fixtures & furniture (simple symbols) --------------------------------
     eq, fu = "A-EQPM", "A-FURN"
     kw = face("kitchen|pantry", -1)
-    sh.rect(pen_out, srow, pen_in, S_IN, eq)                                  # peninsula
+    sh.rect(pen_out, KITCHEN_ROW, pen_in, S_IN, eq)                           # peninsula
     sh.rect(pen_in - 24, S_IN - 48, pen_in, S_IN - 24, eq)                     # dishwasher: peninsula, kitchen
     sh.text("DW", pen_in - 12, S_IN - 36, 3.5)                                 # side, around the corner from the sink
     sh.rect(pen_in - 24, S_IN - 72, pen_in, S_IN - 48, eq)                     # 24" triple pull-out beside the DW:
@@ -602,15 +604,15 @@ def build() -> Sheet:
     sh.text("PREP SINK", pen_in - 12, py0 + 8, 2.2, rot=90)
     sh.rect(pen_out, S_IN - 15, pen_out + 24, S_IN, eq)                        # 15" drink fridge under the counter,
     sh.text("BEV", pen_out + 12, S_IN - 7.5, 3.0)                              # stool side, corner by the south wall
-    sh.line((pen_out + 15, srow), (pen_out + 15, S_IN), eq)                   # 15" overhang
+    sh.line((pen_out + 15, KITCHEN_ROW), (pen_out + 15, S_IN), eq)            # 15" overhang
     sh.rect(pen_in, S_IN - 24, kw, S_IN, eq)                                  # sink run, into the corner
-    ta, r0 = srow + 36 + 15, srow + 36 + 15 + 12                              # range wall: tall cabinet,
+    ta, r0 = KITCHEN_ROW + 36 + 15, KITCHEN_ROW + 36 + 15 + 12                # range wall: tall cabinet,
     tb = r0 + 30 + 15                                                         # 12" landing, range, 15"
     sh.rect(kw - 24, ta, kw, tb, eq)                                          # landing, tall cabinet
-    for y0, y1 in ((srow + 36, ta), (tb, S_IN - 24)):
+    for y0, y1 in ((KITCHEN_ROW + 36, ta), (tb, S_IN - 24)):
         sh.rect(kw - 24, y0, kw, y1, eq); sh.text("TALL STORAGE", kw - 12, (y0 + y1) / 2, 1.6, rot=90)
     sh.rect(kw - 24, r0, kw, r0 + 30, eq); sh.text("RANGE", kw - 12, r0 + 15, 3.5, rot=90)
-    sh.rect(kw - 30, srow, kw, srow + 36, eq); sh.text("FRIDGE", kw - 15, srow + 18, 3.5, rot=90)
+    sh.rect(kw - 30, KITCHEN_ROW, kw, KITCHEN_ROW + 36, eq); sh.text("FRIDGE", kw - 15, KITCHEN_ROW + 18, 3.5, rot=90)
     sh.rect(603.0, S_IN - 20, 633.0, S_IN - 4, eq); sh.text("SINK", 618.0, S_IN - 12, 3.0)   # centred under its window
     m0 = sh.mark()
     for y in (476.7, 512.9, 544.5):                                           # 3 stools
