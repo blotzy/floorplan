@@ -398,7 +398,9 @@ def primary_bath(sh):
     sh.text("NICHE", sum(SHOWER_WIN) / 2, S_IN - 4, 1.6)
     sh.text("CURBLESS SHOWER", (m0 + gx) / 2, top + SHOWER_BENCH_D + 9, 2.6)
     glass(sh, (gx, top), (gx, S_IN - SHOWER_ENTRY))                    # fixed panel from the closet wall;
-    drain(sh, (gx - 3, top + SHOWER_BENCH_D + 3), (gx - 3, S_IN - 3))  # walk-in entry by the rear wall
+    sh.line((m0 + 3, S_IN - 3), (gx - 3, S_IN - 3), "A-EQPM")          # walk-in entry by the rear wall; linear
+    sh.circle((gx - 7, S_IN - 3), 1.0, "A-EQPM")                       # drain along the rear wall under the heads,
+                                                                       # its outlet at the entry end
     wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                       # north wall: 17.25" to glass, 22.5" to vanity
     vanity(sh, m1 - 60, top, m1, top + 22, "DOUBLE VANITY 60")
     sh.text("HIGH WINDOW ABOVE, SILL 7'", (m0 + gx) / 2, S_IN - 16, 1.6)
