@@ -11,7 +11,7 @@ tub, the bath made shallower and the walk-in closet wider.
   - The bath is about 4'-10" deep. No tub: a 5'-0" curbless shower at the plumbing-wall end (heads on the
     plumbing wall and the closet wall, a niche in the closet wall, a fixed glass panel with a walk-in opening
     by the rear wall), then the WC and the 60" double vanity on the closet wall, as now. Door from the bedroom
-    at the rear-wall end, as now. The house's tub is the common bath's.
+    at the rear-wall end, as now. The house's tub is the guest ensuite's.
 
 Writes renders/experiments/suite-wide-wic.png and a 3D model with views into the closet and the bath. Not part
 of the regular build.

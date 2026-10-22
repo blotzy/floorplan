@@ -11,7 +11,7 @@
     the closet, along the hall wall, by a pocket door in line with it. The bedroom loses one door.
   - Bath, no tub: a curbless walk-in shower across the rear wall under the high window (two heads facing each
     other, a niche in the closet wall), the 60" double vanity on the plumbing wall facing the door, and the
-    WC on the plumbing wall between the vanity and the glass. The house's tub is the common bath's.
+    WC on the plumbing wall between the vanity and the glass. The house's tub is the guest ensuite's.
   - The closet opening is in the hall corner, so the bedroom's TV wall (the rest of that wall) stays centred on
     the bed. Closet: the walkway along the hall wall, hanging down both long walls, drawers and shelves under
     the rear high window, and room to dress in the middle.

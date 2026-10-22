@@ -15,7 +15,7 @@ Richard Acosta's Eaton Fire rebuild at 220 Laurel Dr, Altadena (APN 5832-003-027
 - `scripts/zoning_set.py`: zoning check set Z-1 to Z-4 (`renders/zoning/`).
 - `scripts/permit_set.py`: architectural set A-0 to A-7 (`renders/permit/`).
 - `scripts/fuel_mod.py`: fuel modification plan FM-1 (`renders/fuelmod/`).
-- `scripts/experiment_*.py`: experiments (`renders/experiments/`); the office-* ones are stale against the current plan.
+- `scripts/experiment_*.py`: experiments (`renders/experiments/`); the office-* and suite-* ones are stale against the current plan.
 - `docs/`: project docs (01 basics, 02 floor plan, 03 site and landscape, 04-08 trades, 09 open questions, 11 zoning check, 12 engineer briefs, 13 CALGreen, 14 Title 24). `docs/10` is retired; don't update it.
 - `inspiration/` + `docs/15-inspiration.md`: reference photos, saved in the repo (in case links die) and credited to their source.
 - `renders/county/`: documents shared with the County (e.g., the parkway trees packet).
@@ -66,6 +66,7 @@ If Windows has a PNG open, `save_png` writes a timestamped copy (`*-HHMMSS.png`)
 - **Carport:** 18' x 22', flat standing-seam metal at 9'; front 4' is a covered walkway, parking behind the front door (qualifying 8' x 5' covered porch). The 3D Carport roof menu has alternatives (MCM slab, gables, shed, solar canopy).
 - **Driveway:** straight at the full 18' width from the street. Both east parkway trees (an olive on the survey, and a ficus about 10' east of it, not on the survey) are to be removed under a County Road Encroachment Permit; Richard is contacting LA County Public Works Road Maintenance District 2 Urban Forestry. Fallbacks if refused: keep the olive (12' approach east of it), or keep both (angle the drive from the old opening west of the olive). The dead lot tree beside the carport is removed.
 - **Trees:** Toyon (privacy tree) and western redbud in the front yard, both Zone A on the County's fuel modification plant list. FM-1 is owner-prepared.
+- **Primary suite:** no tub. Walk-in closet 7' deep (hanging both sides, 3' aisle); bath with a 6' curbless double shower (two heads on the rear wall, valves by the walk-in entry, supplies dropping from the attic either side of a 2'x1' high window centred between the heads), a full-width solid bench on the closet wall, WC and double vanity on the closet wall; both doors 30" from the bedroom.
 - **Engineer:** structural/civil contract being finalized (stamp/engineer of record and plan-check corrections agreed; structural observation per visit; truss review vs designing the roof framing in the set; foundation designed per the soils report).
 - **Waiting on replies** (emailed Oct 20): Urban Forestry (parkway trees), Public Works (sewer connection), Lincoln Avenue Water Company (will-serve letter, meter, pressure). Also County Building & Safety / Geotechnical (soils report, fault investigation), emailed Oct 21. Tracked at the top of `docs/09-open-questions.md`; update or tick them off as answers come in.
 - **Open County questions:** whether a soils report is required, and whether the County requires a fault investigation despite the state's single-family exemption (PRC 2621.6). Planning confirmed the setbacks (including the shallow-lot rear yard) and the carport/porch parking layout on Oct 20, 2026; see `docs/09-open-questions.md` and `docs/11-zoning-check.md`.

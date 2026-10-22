@@ -12,7 +12,7 @@ The 2022 California Green Building Standards Code (the edition the fire-rebuild 
 | 4.201.1 | Energy efficiency | Title 24 Part 6 compliance (CF1R) | Energy consultant |
 | 4.303.1.1 | Toilets | 1.28 gal/flush max | Owner |
 | 4.303.1.3.1 | Showerheads | 1.8 gpm max at 80 psi, WaterSense | Owner |
-| 4.303.1.3.2 | Multiple showerheads in one shower | Primary shower: combined flow of heads that can run at once is 1.8 gpm max, or only one runs at a time (the handheld shares the rear head's valve through a diverter) | Owner, plumber |
+| 4.303.1.3.2 | Multiple showerheads in one shower | Primary shower: two heads, each on its own valve (one outlet per valve, 1.8 gpm max each); confirm with plan check | Owner, plumber |
 | 4.303.1.4.1 | Bathroom faucets | 1.2 gpm max at 60 psi (0.8 gpm min at 20 psi) | Owner |
 | 4.303.1.4.4 | Kitchen faucet | 1.8 gpm max (may increase temporarily to 2.2 gpm, then default back) | Owner |
 | 4.304.1 | Outdoor water use | Landscape and irrigation per the County water-efficient landscape ordinance (MWELO), if new landscaped area is 500 sq ft or more; weather- or soil-moisture-based irrigation controller | Owner, landscaper |

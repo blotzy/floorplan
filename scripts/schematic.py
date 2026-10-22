@@ -99,6 +99,7 @@ NOTICE = ("\u00a9 2026 Richard Acosta. All rights reserved. For 220 Laurel Dr on
 # stretch is the primary bedroom's reading nook. Halfway down, just past the common bath, a cased opening
 # with a dropped header marks the bedroom end (no door).
 HALL_END = 1110.5                    # centreline of the hall's end wall
+WIC_D = 84.0                         # primary walk-in closet depth: 24" hanging + 36" aisle + 24" hanging
 NOOK_CEIL = 90.0                     # reading nook: lowered ceiling at 7'-6" (the room's is 9'), built-in cabinets
 NOOK_CAB_D = 24.0                    # above it with doors facing the bedroom; the nook window's head meets it
 HALL_ARCH = 897.5                    # centreline of the threshold wall: in line with the ensuite|guest wall,
@@ -127,9 +128,9 @@ WALLS = [
     ("laundry|bath",      "y", 884.5 - WET - 52.0, 457.0, S_IN, WET),   # 52" clear bath, full depth
     ("bath|storage",      "x", 566.0 + INT / 2, 884.5 - WET - 52.0, 884.5, INT),  # storage behind the bath
     ("utility|bath",      "y", 884.5,  457.0, S_IN, WET),
-    ("bath|wic",          "x", S_IN - 72.0 - WET / 2, 884.5, 1062.0, WET),   # bath exactly tub-deep; plumbing wall
-                                                                                 # (WC, double vanity, shower head)
-    ("suite|primary",     "y", 1062.0, 457.0, S_IN, INT),   # 30" taken from the bedroom for the wet room
+    ("bath|wic",          "x", 459.2 + INT / 2 + WIC_D + WET / 2, 884.5, 1062.0, WET),   # closet 7' deep; plumbing
+                                                                                 # wall (WC, double vanity)
+    ("suite|primary",     "y", 1062.0, 457.0, S_IN, INT),
 ]
 
 # Openings: (wall name, from, to, kind, hinge, swing)
@@ -151,9 +152,10 @@ OPENINGS = [
     ("south",       384.0, 528.0, "window", 18.0, 96.0),  # dining: one 12' window (two 6' units), low sill,
                                                           # centred on the dining wall and table
     ("south",       588.0, 648.0, "window", 42.0, 96.0),  # kitchen sink, 5' (clear of the corner cabinets): sill just above the backsplash
-    ("south",       890.0, 932.0, "window", 72.0, 96.0),   # primary bath: 3'-6" x 2'-0" high window over the tub
+    ("south",       912.0, 936.0, "window", 84.0, 96.0),   # primary shower: 2'-0" x 1'-0" strip above and between the
+                                                           # two heads (stud bays either side clear for their drops)
     ("south",       766.5, 808.5, "window", 72.0, 96.0),  # laundry: 3'-6" x 2'-0" high window, matching the tub's
-    ("south",       978.0, 1020.0, "window", 72.0, 96.0),  # primary bath: matching 3'-6" x 2'-0" over the walkway
+    ("south",       978.0, 1020.0, "window", 72.0, 96.0),  # primary bath: 3'-6" x 2'-0" high window over the walkway
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("west",        289.6, 337.6, "window", 72.0, 96.0),    # office: 4'-0" x 2'-0" high window over the bed head
                                                           # (cross-breeze, privacy from the neighbour's 2nd floor)
@@ -175,8 +177,8 @@ OPENINGS = [
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
-    ("suite|primary", 574.0, 606.0, "door", "b", -1),       # primary bath, from the bedroom; opens flat by the rear wall
-    ("suite|primary", 463.0, 495.0, "door", "a", -1),       # walk-in closet, 32": swings in, opens flat by the hall wall
+    ("suite|primary", 576.0, 606.0, "door", "b", -1),       # primary bath, 30", from the bedroom; opens flat by the rear wall
+    ("suite|primary", 463.0, 493.0, "door", "a", -1),       # walk-in closet, 30": swings in, opens flat by the hall wall
 ]
 
 # Street-facade articulation (County building articulation, Table 22.140.520-C): the punched street windows
@@ -306,8 +308,9 @@ def room_label(sh, name, x0, y0, x1, y1, cx=None, cy=None, h=8.0):
 
 
 # Bath fit-outs are separate functions so experiments can swap them.
-TUB_L, TUB_W = 67.0, 32.0          # back-to-wall freestanding soaking tub (primary bath)
-LEDGE_D = 6.0                      # primary shower: closet wall built out below chest height
+SHOWER_W = 72.0                    # primary shower: 6' from the plumbing wall
+SHOWER_BENCH_D = 16.0              # primary shower: solid bench along the closet wall
+SHOWER_ENTRY = 30.0                # primary shower: walk-in entry by the rear wall
 
 
 def wet_zone(sh, x0, y0, x1, y1):
@@ -373,32 +376,28 @@ def common_bath(sh):
 
 
 def primary_bath(sh):
-    """Wet room: back-to-wall freestanding tub against the plumbing wall + a wide curbless shower behind
-    glass; WC and double vanity on
-    the closet (north) wall; door from the bedroom at the rear-wall end."""
+    """No tub: a 6' curbless double shower at the plumbing-wall end, with two heads on the rear wall and their
+    valves by the walk-in entry, a solid bench along the closet wall facing them; WC and double vanity on the
+    closet (north) wall; door from the bedroom at the rear-wall end."""
     m0, m1 = face("utility|bath", +1), face("suite|primary", -1)
     top = face("bath|wic", +1)
-    gx = m0 + 80.0                                                     # tub + shower: the wet room's width
-    tz = (top + S_IN - TUB_L) / 2                                       # tub centred end to end (~2.5" gaps)
+    gx = m0 + SHOWER_W
     wet_zone(sh, m0, top, gx, S_IN)
-    tub(sh, m0, tz, m0 + TUB_W, tz + TUB_L, "67x32 TUB")              # back-to-wall: flat back on the plumbing wall
-    sx = (m0 + TUB_W + gx) / 2                                         # two heads, facing each other
-    sh.text("CURBLESS", sx, 575.0, 3.5, rot=90)
-    ly = S_IN - LEDGE_D                                                # ledge wall on the rear wall, under
-    sh.rect(m0 + TUB_W, ly, gx, S_IN, "A-EQPM")                       # the everyday head by the entry:
-    sh.text("LEDGE", sx, ly + LEDGE_D / 2, 2.0)                        # tiled shelf, that head's plumbing inside
-    shower_head(sh, sx, ly, -1)                                        # above the ledge, arm clears it
-    shower_head(sh, sx, top, +1)
-    glass(sh, (gx, top), (gx, ly - 30))                                # glass wall to wall: fixed panel from the closet wall,
-    glass(sh, (gx, ly - 30), (gx, ly))                                 # then a 30" glass door hung off the ledge wall's end
-    sh.line((gx, ly), (gx + 30, ly), "A-DOOR")                         # (no gap or inside corner to clean); swings out
-    sh.msp.add_arc((gx, ly), 30, 270, 360, dxfattribs={"layer": "A-DOOR"})
-    drain(sh, (gx - 3, top + 3), (gx - 3, ly - 3))
-    wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                       # north wall: 17.25" to glass, 15.25" to vanity
+    for hx in (m0 + 18, m0 + 54):                                      # two heads on the rear wall, 36" apart,
+        shower_head(sh, hx, S_IN, -1)                                  # spraying toward the closet wall; supplies
+    sh.text("VALVES", gx - 7, S_IN - 9, 1.8, rot=90)                   # drop from the attic beside the window
+    sh.rect(m0, top, gx, top + SHOWER_BENCH_D, "A-EQPM")               # solid bench, full width, facing the heads
+    sh.text("BENCH (SOLID)", (m0 + gx) / 2, top + SHOWER_BENCH_D / 2, 2.2)
+    sh.rect(m0 + 27, top - 3.5, m0 + 45, top, "A-EQPM")                # niche above the bench
+    sh.text("NICHE ABOVE", m0 + 36, top + SHOWER_BENCH_D + 3, 1.8)
+    sh.text("CURBLESS SHOWER", (m0 + gx) / 2, top + SHOWER_BENCH_D + 9, 2.6)
+    glass(sh, (gx, top), (gx, S_IN - SHOWER_ENTRY))                    # fixed panel from the closet wall;
+    drain(sh, (gx - 3, top + SHOWER_BENCH_D + 3), (gx - 3, S_IN - 3))  # walk-in entry by the rear wall
+    wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                       # north wall: 17.25" to glass, 22.5" to vanity
     vanity(sh, m1 - 60, top, m1, top + 22, "DOUBLE VANITY 60")
-    for hx in (911.0, 999.0):                                          # both rear windows: sill at 6'
-        sh.text("HIGH WINDOW", hx, S_IN - 4, 2.0)
-    room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2 - 2, cy=570.0, h=3.2)
+    sh.text("HIGH WINDOW ABOVE, SILL 7'", (m0 + gx) / 2, S_IN - 16, 1.6)
+    sh.text("HIGH WINDOW", 999.0, S_IN - 4, 2.0)
+    room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2, cy=S_IN - 14, h=2.6)
 
 
 def utility_block(sh):
