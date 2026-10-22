@@ -6,7 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 21, 2026
 
-- **9:45 PM**: Primary shower bench: top sloped slightly toward the shower floor; the bench runs through the glass line with the fixed panel set on its top. Floor-plan doc.
+- **9:45 PM**: Primary shower bench: top sloped slightly toward the shower floor (in the bench itself, under the waterproofing); the bench runs through the glass line with the fixed panel set on its top. Floor-plan doc.
 - **9:41 PM**: Primary shower drain moved to the rear wall under the heads (one-way slope from the bench, a shallower slab recess); outlet at the entry end, its 2" trap arm running in the slab to the closet wall and venting there with the WC and vanity. Plumbing notes only; not drawn.
 - **9:33 PM**: Guest ensuite tub closed by sliding glass doors instead of a curtain. Floor-plan doc.
 - **9:28 PM**: Common bath shower: valve and head on its end wall at the entry instead (the 2x4 wall shared with the primary suite), the head spraying down the shower's length away from the opening; no access panel needed. Plan, 3D, sets, floor-plan doc.
