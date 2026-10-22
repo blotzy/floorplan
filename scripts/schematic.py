@@ -102,6 +102,10 @@ HALL_END = 1110.5                    # centreline of the hall's end wall
 HALL_S = 403.2 + INT + 48.0          # centreline of the hall's south wall: a 4'-0" clear hall
 KITCHEN_ROW = 461.45                 # front line of the kitchen peninsula and fridge (the lounge's south edge)
 WIC_D = 84.0                         # primary walk-in closet depth: 24" hanging + 36" aisle + 24" hanging
+SHOWER_W = 74.0                      # primary shower: 6'-2" from the common bath wall
+SHOWER_WIN = (912.0, 936.0)          # primary shower: high strip window, the two heads 18" either side of its centre
+SHOWER_BENCH_D = 16.0                # primary shower: solid bench along the closet wall
+SHOWER_ENTRY = 30.0                  # primary shower: walk-in entry by the rear wall
 NOOK_CEIL = 90.0                     # reading nook: lowered ceiling at 7'-6" (the room's is 9'), built-in cabinets
 NOOK_CAB_D = 24.0                    # above it with doors facing the bedroom; the nook window's head meets it
 HALL_ARCH = 897.5                    # centreline of the threshold wall: in line with the ensuite|guest wall,
@@ -127,10 +131,10 @@ WALLS = [
     ("kitchen|pantry",    "y", 674.0,  HALL_S - INT / 2, S_IN, INT),
     ("pantry|laundry",    "y", 750.0,  HALL_S - INT / 2, S_IN, INT),
     ("pantry|mech",       "x", 555.2,  674.0, 750.0, INT),
-    ("laundry|bath",      "y", 884.5 - WET - 52.0, HALL_S - INT / 2, S_IN, WET),   # 52" clear bath, full depth
-    ("bath|storage",      "x", 566.0 + INT / 2, 884.5 - WET - 52.0, 884.5, INT),  # storage behind the bath
-    ("utility|bath",      "y", 884.5,  HALL_S - INT / 2, S_IN, WET),
-    ("bath|wic",          "x", HALL_S + INT / 2 + WIC_D + WET / 2, 884.5, 1062.0, WET),   # closet 7' deep; plumbing
+    ("laundry|bath",      "y", 826.0,  HALL_S - INT / 2, S_IN, WET),   # 52" clear bath, full depth
+    ("bath|storage",      "x", 566.0 + INT / 2, 826.0, 883.5, INT),  # storage behind the bath
+    ("utility|bath",      "y", 883.5,  HALL_S - INT / 2, S_IN, INT),   # 2x4: nothing plumbed in it
+    ("bath|wic",          "x", HALL_S + INT / 2 + WIC_D + WET / 2, 883.5, 1062.0, WET),   # closet 7' deep; plumbing
                                                                                  # wall (WC, double vanity)
     ("suite|primary",     "y", 1062.0, HALL_S - INT / 2, S_IN, INT),
 ]
@@ -154,7 +158,7 @@ OPENINGS = [
     ("south",       384.0, 528.0, "window", 18.0, 96.0),  # dining: one 12' window (two 6' units), low sill,
                                                           # centred on the dining wall and table
     ("south",       588.0, 648.0, "window", 42.0, 96.0),  # kitchen sink, 5' (clear of the corner cabinets): sill just above the backsplash
-    ("south",       912.0, 936.0, "window", 84.0, 96.0),   # primary shower: 2'-0" x 1'-0" strip above and between the
+    ("south",       *SHOWER_WIN, "window", 84.0, 96.0),   # primary shower: 2'-0" x 1'-0" strip above and between the
                                                            # two heads (stud bays either side clear for their drops)
     ("south",       766.5, 808.5, "window", 72.0, 96.0),  # laundry: 3'-6" x 2'-0" high window, matching the tub's
     ("south",       978.0, 1020.0, "window", 72.0, 96.0),  # primary bath: 3'-6" x 2'-0" high window over the walkway
@@ -310,9 +314,6 @@ def room_label(sh, name, x0, y0, x1, y1, cx=None, cy=None, h=8.0):
 
 
 # Bath fit-outs are separate functions so experiments can swap them.
-SHOWER_W = 72.0                    # primary shower: 6' from the plumbing wall
-SHOWER_BENCH_D = 16.0              # primary shower: solid bench along the closet wall
-SHOWER_ENTRY = 30.0                # primary shower: walk-in entry by the rear wall
 
 
 def wet_zone(sh, x0, y0, x1, y1):
@@ -385,13 +386,14 @@ def primary_bath(sh):
     top = face("bath|wic", +1)
     gx = m0 + SHOWER_W
     wet_zone(sh, m0, top, gx, S_IN)
-    for hx in (m0 + 18, m0 + 54):                                      # two heads on the rear wall, 36" apart,
+    for hx in (sum(SHOWER_WIN) / 2 - 18, sum(SHOWER_WIN) / 2 + 18):    # two heads on the rear wall, 36" apart,
         shower_head(sh, hx, S_IN, -1)                                  # spraying toward the closet wall; supplies
     sh.text("VALVES", gx - 7, S_IN - 9, 1.8, rot=90)                   # drop from the attic beside the window
     sh.rect(m0, top, gx, top + SHOWER_BENCH_D, "A-EQPM")               # solid bench, full width, facing the heads
     sh.text("BENCH (SOLID)", (m0 + gx) / 2, top + SHOWER_BENCH_D / 2, 2.2)
-    sh.rect(m0 + 27, top - 3.5, m0 + 45, top, "A-EQPM")                # niche above the bench
-    sh.text("NICHE ABOVE", m0 + 36, top + SHOWER_BENCH_D + 3, 1.8)
+    nx = sum(SHOWER_WIN) / 2                                           # niche above the bench
+    sh.rect(nx - 9, top - 3.5, nx + 9, top, "A-EQPM")
+    sh.text("NICHE ABOVE", nx, top + SHOWER_BENCH_D + 3, 1.8)
     sh.text("CURBLESS SHOWER", (m0 + gx) / 2, top + SHOWER_BENCH_D + 9, 2.6)
     glass(sh, (gx, top), (gx, S_IN - SHOWER_ENTRY))                    # fixed panel from the closet wall;
     drain(sh, (gx - 3, top + SHOWER_BENCH_D + 3), (gx - 3, S_IN - 3))  # walk-in entry by the rear wall
