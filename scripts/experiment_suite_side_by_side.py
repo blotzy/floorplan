@@ -10,8 +10,8 @@
   - One cased opening from the bedroom into the closet (a dressing room); the bath is reached through the
     closet by a pocket door. The bedroom loses one door.
   - Bath, no tub: a curbless walk-in shower across the rear wall under the high window (two heads facing each
-    other, a niche in the closet wall), the WC on the plumbing wall with room on both sides, and a 60" double
-    vanity on the hall wall. The house's tub is the common bath's.
+    other, a niche in the closet wall), a 60" double vanity on the plumbing wall facing the door, and the WC
+    on the hall wall in the corner beside it. The house's tub is the common bath's.
   - The closet opening is in the hall corner, so the bedroom's TV wall (the rest of that wall) stays centred on
     the bed. Closet: shelves along the hall wall, hanging down both long walls, shelves under the rear high
     window.
@@ -59,11 +59,11 @@ def primary_bath(sh):
     sh.text("CURBLESS WALK-IN SHOWER", (m0 + b1) / 2, hy, 3.0)
     S.glass(sh, (m0, gy), (b1 - 30, gy))                                   # glass, open at the door end
     S.drain(sh, (m0 + 3, gy + 3), (b1 - 3, gy + 3))                         # linear drain along the glass line
-    wy = (y0 + 22 + gy) / 2                                                # WC centred between vanity and glass
-    S.wc(sh, m0, wy - 15, m0 + 28, wy + 15)                                # plumbing wall
-    S.vanity(sh, b1 - 60, y0, b1, y0 + 22, "DOUBLE VANITY 60")             # hall wall
+    vy = (y0 + 28 + gy) / 2                                                # vanity on the plumbing wall, facing the door,
+    S.vanity(sh, m0, vy - 30, m0 + 22, vy + 30, "DOUBLE VANITY 60", rot=90)   # between the WC and the glass
+    S.wc(sh, m0 + 24, y0, m0 + 54, y0 + 28)                                # hall wall, in the corner beside the vanity
     sh.text("HIGH WINDOW", 911.0, S.S_IN - 4, 2.0)
-    S.room_label(sh, "PRIMARY BATH", m0, y0, b1, S.S_IN, cx=(m0 + b1) / 2 + 14, cy=wy + 6, h=3.2)
+    S.room_label(sh, "PRIMARY BATH", m0, y0, b1, S.S_IN, cx=(m0 + 22 + b1) / 2 + 4, cy=vy + 4, h=3.2)
 
 
 def wic(sh):
