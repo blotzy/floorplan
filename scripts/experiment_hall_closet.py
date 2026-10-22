@@ -8,11 +8,11 @@
     end wall, just past the common bath door, so its wall stub lands at the closet's corner. The common bath
     door slides 2" east, leaving room for standard casing between it and the stub, and its sink 2" away from
     the door, clear of its swing.
-  - A hall closet about 2'-3" wide x 2' deep in that corner, opening onto the hall right past the stub through
+  - A hall closet about 2'-5" wide x 2' deep in that corner, opening onto the hall just past the stub through
     24" doors (bifold here) 7'-6" tall, their heads in line with the dropped header: linens and towels, or
     the vacuum and cleaning supplies. Its two walls against the walk-in closet are 2x3 partitions (about
     3 1/2" finished), not 2x4.
-  - The walk-in closet loses that corner's shelf unit and about 6" of the hall-side hanging (its drawer
+  - The walk-in closet loses that corner's shelf unit and about 8" of the hall-side hanging (its drawer
     stack gets a little narrower); its 3' aisle and the hall's 4' width are unchanged.
 
 Writes renders/experiments/hall-closet.png (with the current plan, hall-closet-current.png, to compare)
@@ -30,7 +30,8 @@ import schematic as S  # noqa: E402
 
 OUT = S.RENDERS / "experiments"
 ARCH = 883.5                                    # cased opening moved 14" east, in line with the closet's end wall
-DOOR = (ARCH + S.INT / 2 + 1.5, ARCH + S.INT / 2 + 25.5)   # 24" hall closet doors, right past its stub
+DOOR = (ARCH + S.INT / 2 + 3.5, ARCH + S.INT / 2 + 27.5)   # 24" hall closet doors, 3 1/2" past its stub
+                                                            # (room for casing, matching the common bath door)
 CL_W, CL_D = DOOR[1] + 1.5 - (ARCH + S.INT / 2), 24.0       # hall closet: as wide as its doors, 2' deep
 T23 = 3.5                                       # its two partitions: 2x3 studs + 1/2" drywall each side
 _build, _wic = S.build, S.wic
