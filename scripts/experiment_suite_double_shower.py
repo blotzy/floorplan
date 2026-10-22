@@ -8,10 +8,12 @@ bedroom.
   - As experiment_suite_wide_wic.py: the closet 7'-0" deep (hanging on both long walls, a 3' aisle, corner
     shelves and drawer stack), its door from the bedroom by the hall wall; the bath about 4'-10" deep, its door
     from the bedroom at the rear-wall end. Both doors 30".
-  - Shower: 6'-0" curbless at the plumbing-wall end, two heads on the closet wall 36" apart (a station each,
-    spraying toward the rear wall, each with its own valve), the niche between them, a solid bench (foam kit
-    or block, membrane-wrapped) along the rear wall, and the walk-in entry by the rear wall, past the bench's
-    end. The WC and the 60" double vanity on the closet wall, as now; the bath door opens flat against the rear
+  - Shower: 6'-0" curbless at the plumbing-wall end, the walk-in entry by the rear wall. Two heads on the rear
+    wall 36" apart (a station each, spraying toward the closet wall), each with its own valve, the valves by the
+    entry so the water can be started from outside the spray; a full-width solid bench (foam kit or block,
+    membrane-wrapped) along the closet wall facing them, the niche above it. The shower's high window is a
+    strip above the heads (sill 7', head 8'); plumbing in the rear (outside) wall stays on the warm side of the
+    insulation. The WC and the 60" double vanity on the closet wall, as now; the bath door opens flat against the rear
     wall.
 
 Writes renders/experiments/suite-double-shower.png and a 3D model with views into the closet and the bath. Not
@@ -32,6 +34,7 @@ WIC_D = 84.0                                    # closet depth: 24" hanging + 36
 SHOWER_W = 72.0                                 # shower width along the bath, from the plumbing wall
 BENCH_D = 16.0                                  # shower bench depth (rear wall)
 ENTRY_W = 30.0                                  # walk-in shower entry, by the rear wall
+WIN_SILL = 84.0                                 # shower window sill: 7', above the heads (head height stays 8')
 
 
 def plan():
@@ -40,6 +43,9 @@ def plan():
     for i, w in enumerate(ws):
         if w[0] == "bath|wic":
             ws[i] = (w[0], w[1], y, *w[3:])
+    for i, o in enumerate(S.OPENINGS):
+        if o[:4] == ("south", 890.0, 932.0, "window"):                     # shower window: a strip above the heads
+            S.OPENINGS[i] = (*o[:4], WIN_SILL, o[5])
     for i, o in enumerate(S.OPENINGS):                                    # both bedroom doors 30"
         if o[0] == "suite|primary" and o[3] == "door":
             S.OPENINGS[i] = (o[0], o[1], o[1] + 30, *o[3:]) if o[4] == "a" else (o[0], o[2] - 30, *o[2:])
@@ -50,19 +56,19 @@ def primary_bath(sh):
     top = S.face("bath|wic", +1)
     gx = m0 + SHOWER_W
     S.wet_zone(sh, m0, top, gx, S.S_IN)
-    for hx in (m0 + 14, m0 + 50):                                          # two heads on the closet wall, 36"
-        S.shower_head(sh, hx, top, +1)                                     # apart: a station each, spraying
-    sh.rect(m0 + 23, top - 3.5, m0 + 41, top, "A-EQPM")                    # toward the rear wall; niche between
-    sh.text("NICHE", m0 + 32, top + 4, 2.0)
-    bx = gx - ENTRY_W                                                      # solid bench along the rear wall,
-    sh.rect(m0, S.S_IN - BENCH_D, bx, S.S_IN, "A-EQPM")                    # stopping short of the entry
-    sh.text("BENCH (SOLID)", (m0 + bx) / 2, S.S_IN - BENCH_D + 5, 2.2)
-    sh.text("CURBLESS SHOWER", (m0 + gx) / 2, (top + S.S_IN - BENCH_D) / 2, 2.6)
+    for hx in (m0 + 18, m0 + 54):                                          # two heads on the rear wall, 36" apart,
+        S.shower_head(sh, hx, S.S_IN, -1)                                  # spraying toward the closet wall; the
+    sh.text("VALVES", gx - 7, S.S_IN - 9, 1.8, rot=90)                     # valves by the entry, reachable from it
+    sh.rect(m0, top, gx, top + BENCH_D, "A-EQPM")                          # solid bench along the closet wall,
+    sh.text("BENCH (SOLID)", (m0 + gx) / 2, top + BENCH_D / 2, 2.2)        # full width, facing the heads
+    sh.rect(m0 + 27, top - 3.5, m0 + 45, top, "A-EQPM")                    # niche above the bench
+    sh.text("NICHE ABOVE", m0 + 36, top + BENCH_D + 3, 1.8)
+    sh.text("CURBLESS SHOWER", (m0 + gx) / 2, top + BENCH_D + 9, 2.6)
     S.glass(sh, (gx, top), (gx, S.S_IN - ENTRY_W))                         # fixed panel from the closet wall;
-    S.drain(sh, (gx - 3, top + 3), (gx - 3, S.S_IN - 3))                   # walk-in by the rear wall
+    S.drain(sh, (gx - 3, top + BENCH_D + 3), (gx - 3, S.S_IN - 3))                   # walk-in by the rear wall
     S.wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                         # closet wall: 17.25" to the glass
     S.vanity(sh, m1 - 60, top, m1, top + 22, "DOUBLE VANITY 60")           # 22.5" from the WC centre
-    sh.text("HIGH WINDOW ABOVE", 911.0, S.S_IN - 3, 1.6)
+    sh.text("HIGH WINDOW ABOVE, SILL 7'", (m0 + gx) / 2, S.S_IN - 16, 1.6)
     sh.text("HIGH WINDOW", 999.0, S.S_IN - 4, 2.0)
     S.room_label(sh, "PRIMARY BATH", m0, top, m1, S.S_IN, cx=(gx + m1) / 2, cy=S.S_IN - 14, h=2.6)
 
