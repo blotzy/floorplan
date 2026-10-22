@@ -1,0 +1,135 @@
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
+# ///
+"""Experiment: the no-tub, wider walk-in closet suite, with the bath reached through the closet.
+
+  - As experiment_suite_wide_wic.py (the closet 7'-0" deep with a 3' aisle, the bath about 4'-10" deep with a
+    5' curbless shower at the plumbing-wall end), but the bedroom's bath door goes: the closet opening moves to
+    the middle of its bedroom-side end, straight into the aisle, and the bath is entered from the closet by a
+    pocket door at the bedroom end of the closet | bath wall, just inside the opening.
+  - Closet: the hall-side hanging runs the full length (no landing needed); the bath-side run stops at the
+    bath door. About 21'-8" of rod. Corner shelves and drawer stack at the far end, as now.
+  - Bath: the vanity on the rear wall under the high window (mirror below the 6' sill), facing the door; the
+    WC beside the shower glass on the closet wall.
+  - The bedroom has the hall door, the closet opening and the nook. The closet opening sits near the bed's
+    centre line, so the bedroom TV goes off-centre on the wall beside it.
+
+Writes renders/experiments/suite-wic-entry.png and a 3D model with views into the closet and the bath. Not
+part of the regular build.
+
+    uv run scripts/experiment_suite_wic_entry.py
+"""
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import schematic as S  # noqa: E402
+
+OUT = S.RENDERS / "experiments"
+WIC_D = 84.0                                    # closet depth: 24" hanging + 36" aisle + 24" hanging
+SHOWER_W = 60.0                                 # shower width along the bath, from the plumbing wall
+BATH_DOOR = (1024.0, 1056.0)                    # 32" pocket door, closet -> bath, sliding east into the wall
+
+
+def plan():
+    y = S.face("south hall wall", +1) + WIC_D + S.WET / 2
+    ws = S.WALLS
+    for i, w in enumerate(ws):
+        if w[0] == "bath|wic":
+            ws[i] = (w[0], w[1], y, *w[3:])
+    mid = S.face("south hall wall", +1) + WIC_D / 2                       # closet opening centred on the aisle
+    S.OPENINGS[:] = [o for o in S.OPENINGS if o[0] != "suite|primary"]
+    S.OPENINGS += [("suite|primary", mid - 16, mid + 16, "cased"), ("bath|wic", *BATH_DOOR, "pocket", "a")]
+
+
+def primary_bath(sh):
+    m0, m1 = S.face("utility|bath", +1), S.face("suite|primary", -1)
+    top = S.face("bath|wic", +1)
+    gx = m0 + SHOWER_W
+    S.wet_zone(sh, m0, top, gx, S.S_IN)
+    hy = (top + S.S_IN) / 2
+    sh.circle((m0 + 4, hy), 2.5, "A-EQPM"); sh.heads.append((m0, hy, 1.0, 0.0))   # head on the plumbing wall
+    S.shower_head(sh, m0 + 42, top, +1)                                    # and one on the closet wall
+    sh.rect(m0 + 8, top - 3.5, m0 + 26, top, "A-EQPM")                     # niche in the closet wall
+    sh.text("NICHE", m0 + 17, top + 4, 2.0)
+    sh.text("CURBLESS SHOWER", (m0 + gx) / 2, hy + 6, 2.6)
+    S.glass(sh, (gx, top), (gx, S.S_IN - 30))                              # fixed panel, walk-in by the rear wall
+    S.drain(sh, (gx - 3, top + 3), (gx - 3, S.S_IN - 3))
+    S.wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                         # closet wall: 17.25" to the glass
+    S.vanity(sh, BATH_DOOR[1] - 62, S.S_IN - 22, BATH_DOOR[1] - 2, S.S_IN, "DOUBLE VANITY 60")   # rear wall,
+    sh.text("HIGH WINDOW", 911.0, S.S_IN - 4, 2.0)                         # facing the door
+    sh.text("HIGH WINDOW ABOVE", 999.0, S.S_IN - 4, 1.6)
+    S.room_label(sh, "PRIMARY BATH", m0, top, m1, S.S_IN, cx=(gx + 32 + BATH_DOOR[0]) / 2 + 6, cy=top + 22,
+                 h=2.6)
+
+
+def wic(sh):
+    x0, x1 = S.face("utility|bath", +1), S.face("suite|primary", -1)
+    y0, y1 = S.face("south hall wall", +1), S.face("bath|wic", -1)
+    fu = "A-FURN"
+
+    def hang(a, b, y, d):
+        sh.rect(a, min(y, y + d * 24), b, max(y, y + d * 24), fu)
+        sh.line((a, y + d * 12), (b, y + d * 12), fu)
+        sh.text("HANG", (a + b) / 2, y + d * 18, 3.0)
+
+    hang(x0 + 24, x1, y0, +1)                                              # hall side: full length
+    hang(x0 + 24, BATH_DOOR[0] - 3, y1, -1)                                # bath side: to the bath door
+    for ya, yb in ((y0, y0 + 24), (y1 - 24, y1)):                          # corner shelves either side of
+        sh.rect(x0, ya, x0 + 24, yb, fu)                                   # a drawer stack, as now
+        sh.text("SHELVES", x0 + 12, (ya + yb) / 2, 2.2)
+    sh.rect(x0, y0 + 24, x0 + 20, y1 - 24, fu)
+    sh.text("DRAWERS", x0 + 10, (y0 + y1) / 2, 2.2, rot=90)
+    S.room_label(sh, "WIC", x0, y0, x1, y1, cx=990.0, h=5.0)
+    bx, w0 = S.face("suite|primary", +1), (y0 + y1) / 2 + 16 + 3           # bedroom TV: off-centre, on the
+    ty = (w0 + S.S_IN) / 2                                                 # wall beside the closet opening
+    sh.rect(bx, ty - 33.5, bx + 3, ty + 33.5, fu); sh.text('TV 77" (OFF-CENTRE)', bx + 6, ty, 2.2, rot=90)
+
+
+def render(png, sh):
+    S.render(sh.doc, png, S.face("pantry|laundry", -1) - 20, S.face("south hall wall", -1) - 40, S.W + 40,
+             S.S + 40, width_in=14, dpi=200)
+
+
+def model():
+    import exterior as X
+    import make_3d as M
+    sc = M.build_schematic()
+    X.chosen_exterior(sc)
+    M.add_vault_ceiling(sc, X.great_room_vault(to_outside=True))
+    out = OUT / "suite-wic-entry"
+    M.write_model(sc, out, {**sc.meta, "roof_hidden": True})
+    html = out / "house.html"
+    import subprocess
+    chrome = Path("/mnt/c/Program Files/Google/Chrome/Application/chrome.exe")
+    if chrome.exists():
+        hook = "if (location.hash === '#touchwalk') startTouchWalk();"
+        win = lambda p: subprocess.run(["wslpath", "-w", str(p)], capture_output=True, text=True).stdout.strip()  # noqa: E731
+        shots = {"from-bedroom": ((1190, 503, 63.5), (950, 503, 50)), "overhead": ((1000, 700, 330), (980, 520, 0))}
+        for name, ((cx, cy, cz), (tx, ty, tz)) in shots.items():
+            tmp = html.with_name(f"_{name}.html")
+            tmp.write_text(html.read_text().replace(hook, hook + (
+                "\norbit.enabled = false; groups.labels.visible = false;"
+                "document.getElementById('ui').style.display='none'; document.getElementById('help').style.display='none';"
+                "camera.fov = 70; camera.updateProjectionMatrix();"
+                f"camera.position.set({cx}*IN, {cz}*IN, {-cy}*IN); camera.lookAt({tx}*IN, {tz}*IN, {-ty}*IN);")))
+            subprocess.run([str(chrome), "--headless=new", "--use-angle=swiftshader", "--enable-unsafe-swiftshader",
+                            "--window-size=1400,900", "--virtual-time-budget=15000",
+                            f"--screenshot={win(out)}\\{name}.png", "file:///" + win(tmp).replace("\\", "/")],
+                           capture_output=True)
+            tmp.unlink()
+
+
+def main():
+    OUT.mkdir(parents=True, exist_ok=True)
+    plan()
+    S.primary_bath, S.wic = primary_bath, wic
+    render(OUT / "suite-wic-entry.png", S.build())
+    model()
+
+
+if __name__ == "__main__":
+    main()
