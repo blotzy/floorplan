@@ -9,7 +9,8 @@
   - An 84" x 36" table pulled up to it, overlapping the seat front; three chairs on the open side and one at
     each end (about 8 seated; an extendable table takes more at holidays).
   - The table and chairs sit about 3' further south than now, leaving an open strip of floor between the
-    dining area and the lounge (a reading chair, plants, a play or project area).
+    dining area and the lounge. A counter-height storage divider (cabinets on both sides) runs along the
+    lounge edge of that strip, with walkways past both ends: storage, and a line between the two spaces.
 
 Writes renders/experiments/dining-banquette.png (with the current plan, dining-banquette-current.png, to
 compare) and a 3D model with a view of the dining area. Not part of the regular build.
@@ -28,6 +29,8 @@ OUT = S.RENDERS / "experiments"
 BENCH = (380.0, 532.0)                          # banquette: under the window (384-528) plus 4" each side
 BENCH_D = 22.0                                  # seat plus back cushion
 TABLE = (84.0, 36.0)                            # table length x depth
+DIVIDER = (401.0, 503.0, 18.0)                  # storage divider: from, to (clear of the east wall and the
+                                                # peninsula stools), depth
 _build = S.build
 
 
@@ -70,6 +73,10 @@ def build():
                 if t.dxf.hasattr(k):
                     v = t.dxf.get(k)
                     t.dxf.set(k, (v[0], v[1] - (592.0 - ly) - 6))
+    d0, d1, dd = DIVIDER                                                  # storage divider on the lounge edge,
+    sh.rect(d0, S.KITCHEN_ROW + 2, d1, S.KITCHEN_ROW + 2 + dd, "A-EQPM")  # counter height, cabinets both sides
+    sh.text("STORAGE DIVIDER, COUNTER HEIGHT", (d0 + d1) / 2, S.KITCHEN_ROW + 2 + dd / 2 - 2.5, 2.2)
+    sh.text("CABINETS BOTH SIDES", (d0 + d1) / 2, S.KITCHEN_ROW + 2 + dd / 2 + 2.5, 1.8)
     sh.text("OPEN FLOOR (FLEX)", cx, ly + 12, 3.0)
     return sh
 
@@ -92,7 +99,7 @@ def model():
     if chrome.exists():
         hook = "if (location.hash === '#touchwalk') startTouchWalk();"
         win = lambda p: subprocess.run(["wslpath", "-w", str(p)], capture_output=True, text=True).stdout.strip()  # noqa: E731
-        shots = {"from-lounge": ((455, 445, 63.5), (455, 610, 30)), "overhead": ((450, 380, 330), (455, 540, 0))}
+        shots = {"from-lounge": ((600, 400, 63.5), (440, 570, 25)), "overhead": ((450, 380, 330), (455, 540, 0))}
         for name, ((cx, cy, cz), (tx, ty, tz)) in shots.items():
             tmp = html.with_name(f"_{name}.html")
             tmp.write_text(html.read_text().replace(hook, hook + (
