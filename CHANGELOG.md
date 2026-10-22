@@ -6,7 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 21, 2026
 
-- **9:14 PM**: Robot vacuum dock moved from the storage room to the laundry: an open floor-level bay in the folding counter beside the utility sink, sharing its cold supply and trapped drain. Plan, floor-plan, plumbing, electrical and open-questions docs.
+- **9:14 PM**: Robot vacuum dock moved from the storage room to the laundry: an open floor-level bay in the folding counter beside the utility sink, sharing its cold supply and trapped drain. Notes only (floor-plan, plumbing, electrical and open-questions docs); not drawn.
 - **9:13 PM**: 3D model: the primary shower's niche no longer shows as a solid block in the closet wall behind the bench.
 - **9:11 PM**: The wall between the common bath / storage room and the primary bath / walk-in closet is a plain 2x4 wall with sound insulation (nothing is plumbed in it any more; the robot vacuum dock's water and drain come up through the slab). Its 2" go to the primary side: the double shower is 6'-2" wide, its heads centred on the strip window. Plan, 3D, sets, floor-plan doc.
 - **9:05 PM**: Bedroom hall narrowed to 4'-0" clear (from about 4'-3½"): its south wall moves 3½" north, and the rooms along it gain the depth (pantry, laundry, common bath, primary bath and primary bedroom; the walk-in closet keeps its 7'). The primary bath is about 5'-2" deep, widening the walkway past the WC to the shower and the shower's standing room. The kitchen peninsula and fridge stay where they were. Plan, 3D, sets.
