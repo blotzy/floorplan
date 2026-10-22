@@ -16,7 +16,7 @@
   - Bath: the WC and the vanity side by side on the rear wall (the vanity under the high window, mirror below
     the 6' sill), a walkway along the closet wall from the door to the shower's walk-in entry at that wall. A 6'-0"
     shower with two heads on the closet wall, 36" apart (a station each, spraying toward the rear wall), each
-    with its own valve; the niche between them.
+    with its own valve; the niche between them; a 16"-deep floating bench along the rear wall.
   - The bedroom has the hall door, the closet door and the nook. The closet door sits near the bed's
     centre line, so the bedroom TV goes off-centre on the wall beside it.
 
@@ -36,6 +36,7 @@ import schematic as S  # noqa: E402
 OUT = S.RENDERS / "experiments"
 WIC_D = 84.0                                    # closet depth: 24" hanging + 36" aisle + 24" hanging
 SHOWER_W = 72.0                                 # shower width along the bath, from the plumbing wall
+BENCH_D = 16.0                                  # shower bench depth (rear wall)
 BATH_DOOR = (1024.0, 1056.0)                    # 32" door, closet -> bath: swings in, opens flat on the bath's end wall
 
 
@@ -60,9 +61,11 @@ def primary_bath(sh):
         S.shower_head(sh, hx, top, +1)                                     # apart: a station each, spraying
     sh.rect(m0 + 23, top - 3.5, m0 + 41, top, "A-EQPM")                    # toward the rear wall; niche between
     sh.text("NICHE", m0 + 32, top + 4, 2.0)
-    sh.text("CURBLESS SHOWER", (m0 + gx) / 2, (top + S.S_IN) / 2 + 2, 2.6)
+    sh.rect(m0, S.S_IN - BENCH_D, gx, S.S_IN, "A-EQPM")                     # floating bench along the rear wall,
+    sh.text("FLOATING BENCH", (m0 + gx) / 2, S.S_IN - BENCH_D / 2, 2.2)    # under the window, out of the way
+    sh.text("CURBLESS SHOWER", (m0 + gx) / 2, (top + S.S_IN - BENCH_D) / 2, 2.6)
     S.glass(sh, (gx, S.S_IN), (gx, top + 30))                              # fixed panel from the rear wall;
-    S.drain(sh, (gx - 3, top + 3), (gx - 3, S.S_IN - 3))                   # walk-in by the closet wall
+    S.drain(sh, (gx - 3, top + 3), (gx - 3, S.S_IN - BENCH_D - 3))                   # walk-in by the closet wall
     wx = gx + 2.25                                                         # rear wall: WC by the glass, then
     S.wc(sh, wx, S.S_IN - 28, wx + 30, S.S_IN)                             # the vanity (15"+ from the WC centre)
     S.vanity(sh, wx + 33, S.S_IN - 22, wx + 93, S.S_IN, "DOUBLE VANITY 60")
