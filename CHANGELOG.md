@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 23, 2026
 
+- **4:09 PM**: Lincoln Avenue Water's area fire flow form (Section 4) added under renders/county: static at least 50 psi, residual at least 42 psi, 1,100+ gpm at 20 psi. In a Very High Fire Hazard Severity Zone it goes to LA County Fire Prevention for approval before the building permit (new to-do). Open questions, plumbing doc, README.
 - **4:06 PM**: Lincoln Avenue Water's reply recorded: will-serve letter ready ($200, signed in person), existing 5/8" meter on a 1" service, the area fire flow form, a likely 1" meter upsize ($600, 6-12 weeks) and backflow preventer for the sprinklers, and the owner's service line to check for fire damage. Open questions, plumbing and engineer-brief docs.
 
 ## Oct 22, 2026

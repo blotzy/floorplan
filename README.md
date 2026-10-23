@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 23, 2026, 4:06 PM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 23, 2026, 4:09 PM PT · @Richard
 
 [CHANGELOG](CHANGELOG.md)
 
@@ -72,6 +72,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | [Fuel modification plan (PDF)](renders/fuelmod/fuel-modification-plan.pdf) | [FM-1](renders/fuelmod/FM-1-fuel-modification-plan.png): owner-prepared plan for LA County Fire: ember-resistant zone, Zone A, existing and proposed planting with botanical names |
 | [Zoning check set (PDF)](renders/zoning/zoning-check-set.pdf) | Site plan with setbacks and project data, floor plan, roof plan, elevations ([how to submit](docs/11-zoning-check.md)) |
 | [`accosting-owner-schematic-survey.dxf`](accosting-owner-schematic-survey.dxf) | The plan over the topographic survey as a DXF (inches) |
+| [Fire flow form, Lincoln Avenue Water Section 4 (Sep 2025)](renders/county/lawc-fire-flow-section-4-2025-09.pdf) | The water company's area fire flow data (static and residual pressure, flow at 20 psi) for the sprinkler designer and LA County Fire |
 | [Laurel Drive sewer as-built (1952)](renders/county/laurel-sewer-as-built-1952.png) | LA County Improvement 1324, sheet 10-C (from Public Works): the sewer main's profile and inverts, and the street's curb grade along the frontage |
 | Plan renders: [site plan](renders/schematic.png) · [house](renders/schematic-zoom.png) · [survey overlay](renders/survey-overlay.png) | The images at the top of this page, full size ([folder](https://github.com/blotzy/floorplan/tree/main/renders)) |
 | 3D model: [open in the browser](https://blotzy.github.io/floorplan/renders/3d/house.html) · [with the roof](https://blotzy.github.io/floorplan/renders/3d/house.html#roof) · [OBJ](renders/3d/house.obj) | Walkable 3D model; the OBJ opens in Windows 3D Viewer or Blender |
