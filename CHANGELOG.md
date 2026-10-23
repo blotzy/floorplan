@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Oct 23, 2026
+
+- **4:06 PM**: Lincoln Avenue Water's reply recorded: will-serve letter ready ($200, signed in person), existing 5/8" meter on a 1" service, the area fire flow form, a likely 1" meter upsize ($600, 6-12 weeks) and backflow preventer for the sprinklers, and the owner's service line to check for fire damage. Open questions, plumbing and engineer-brief docs.
+
 ## Oct 22, 2026
 
 - **1:28 PM**: Hall closet: the cased opening (and its dropped header) moves about 14" east, in line with the walk-in closet's end wall, and a 2'-5" x 2' hall closet takes the walk-in closet's hall-side corner (a blind corner before), with 24" doors 7'-6" tall just past the opening's stub and 2x3 walls to the closet. The walk-in closet keeps its 3' aisle (rod about 21'-3"); the common bath door slides 2" east for casing room and its sink 2" clear of the swing. Plan, 3D, sets, floor-plan doc.
