@@ -15,7 +15,7 @@ Richard Acosta's Eaton Fire rebuild at 220 Laurel Dr, Altadena (APN 5832-003-027
 - `scripts/zoning_set.py`: zoning check set Z-1 to Z-4 (`renders/zoning/`).
 - `scripts/permit_set.py`: architectural set A-0 to A-7 (`renders/permit/`).
 - `scripts/fuel_mod.py`: fuel modification plan FM-1 (`renders/fuelmod/`).
-- `scripts/experiment_*.py`: experiments (`renders/experiments/`); the office-* and suite-* ones are stale against the current plan.
+- `scripts/experiment_*.py`: experiments (`renders/experiments/`); the suite-* ones are stale against the current plan.
 - `docs/`: project docs (01 basics, 02 floor plan, 03 site and landscape, 04-08 trades, 09 open questions, 11 zoning check, 12 engineer briefs, 13 CALGreen, 14 Title 24). `docs/10` is retired; don't update it.
 - `inspiration/` + `docs/15-inspiration.md`: reference photos, saved in the repo (in case links die) and credited to their source.
 - `renders/county/`: documents shared with the County (e.g., the parkway trees packet).

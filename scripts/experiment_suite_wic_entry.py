@@ -4,7 +4,7 @@
 # ///
 """Experiment: the no-tub, wider walk-in closet suite, with the bath reached through the closet.
 
-  - As experiment_suite_wide_wic.py (the closet 7'-0" deep with a 3' aisle, the bath about 4'-10" deep with a
+  - Starting from the current suite without the tub (the closet 7'-0" deep with a 3' aisle, the bath about 4'-10" deep with a
     curbless shower at the plumbing-wall end), but the bedroom's bath door goes: the closet opening moves to
     the middle of its bedroom-side end, straight into the aisle, and the bath is entered from the closet by a
     door at the bedroom end of the closet | bath wall, just inside the closet door.
