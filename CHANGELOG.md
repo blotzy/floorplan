@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 23, 2026
 
+- **5:54 PM**: Architect review: the bedroom-doors question links the bath-through-the-closet experiment, with its trade-offs.
 - **5:46 PM**: A-3 roof plan: the first solar array's footprint (about 10 kW on the shed) shown as "future PV array, by others, separate permit", with its one flashed conduit penetration over the pantry and laundry attic; roof note 8 updated.
 - **5:17 PM**: Flooring decided: LVP throughout, tile in the bathrooms (FloorScore LVP; slab moisture and flatness checked first). Open questions.
 - **4:13 PM**: Water service: the fire sprinkler tee comes right after the meter and backflow preventer, ahead of the house shutoff, leak-detection valve and softener; no pressure regulator unless measured pressure is high (about 50 psi at the main); at least a 1" line to the house. The 1" meter upgrade is now a to-do to order now. Plumbing doc, open questions.

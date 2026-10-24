@@ -43,7 +43,7 @@ Planning has confirmed the setbacks (including the shallow-lot rear yard) and th
 
 ## Not settled: please weigh in
 
-1. **Primary bedroom doors.** The bedroom has a lot of doors and openings (hall door, walk-in closet, bath, the reading nook). A version that entered through the walk-in closet didn't feel right either. Is there a cleaner arrangement?
+1. **Primary bedroom doors.** The bedroom has a lot of doors and openings (hall door, walk-in closet, bath, the reading nook). A version that entered through the walk-in closet didn't feel right either. Another reaches the primary bath through the walk-in closet instead of from the bedroom ([bath through the closet](../renders/experiments/suite-wic-entry.png), [3D model](../renders/experiments/suite-wic-entry/house.html)): one fewer bedroom door, but about 3' less closet rod, the bedroom TV off-centre, and every bath trip through the closet. Is there a cleaner arrangement?
 2. **Storage.** Less storage than wanted overall: closets, linen, garage-type storage (there's no garage, only an open carport), and bulk storage. Where could more go without growing the footprint (lot coverage has about 160 sq ft to spare)?
 3. **Dining room size.** The dining area feels like a lot of floor dedicated to one use. Could it shrink, or double as something else, to give space to storage or the bedrooms?
 4. **Street facade articulation.** May need help getting enough strategies (likely 3 for the 72' front, possibly 4 if the carport counts). The plan relies on recessed windows, which aren't necessarily the best design choice; the other two (window area over 20% of the wall, and roof-height variation) are uncertain. What would you use on this facade, and do the recessed windows earn their cost?
