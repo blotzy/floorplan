@@ -243,10 +243,10 @@ def survey():
     import matplotlib.tri as mtri
     import numpy as np
     import survey_overlay as O
-    msp = ezdxf.readfile(O.SURVEY).modelspace()
+    msp = O.flatten(ezdxf.readfile(O.SURVEY).modelspace())
     to_lot, _, _ = O.lot_transform(msp)
     shots = []
-    for m in msp.query("MTEXT"):
+    for m in O.of(msp, "MTEXT"):
         if "pts label" not in m.dxf.layer:
             continue
         hit = re.search(r"\b(FG|CONC|FS|EP)\s+(14\d\d\.\d\d)", m.plain_text())
@@ -268,7 +268,7 @@ def survey():
         return float(lin(x, y)) if np.ma.is_masked(v) else float(v)
     names = {"WM": "WATER METER", "SSCO": "SEWER CLEANOUT", "PP": "POWER POLE"}
     utils = {names[t.dxf.text.strip()]: to_lot(t.dxf.insert.x, t.dxf.insert.y)
-             for t in msp.query("TEXT") if t.dxf.text.strip() in names}
+             for t in O.of(msp, "TEXT") if t.dxf.text.strip() in names}
     walls = []                                                           # existing walls and the chimney
     for e in msp:
         lay = e.dxf.layer

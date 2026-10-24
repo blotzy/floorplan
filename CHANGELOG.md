@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Oct 24, 2026
+
+- **11:59 AM**: Survey revision 102a adds the east parkway ficus: about 13'-6" east of the olive (not ~10'). Plan, survey overlay, A-1, Z-1 and FM-1 show it at its surveyed spot; the overlay and permit set read the newest survey revision.
+
 ## Oct 23, 2026
 
 - **5:54 PM**: Architect review: the bedroom-doors question links the bath-through-the-closet experiment, with its trade-offs.

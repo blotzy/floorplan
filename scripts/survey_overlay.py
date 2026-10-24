@@ -26,7 +26,8 @@ import ezdxf
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import schematic as S  # noqa: E402
 
-SURVEY = next((S.ROOT / "private" / "survey").glob("*.dxf"))   # the surveyor's file: kept private
+SURVEY = max((S.ROOT / "private" / "survey").glob("*.dxf"), key=lambda p: p.name)   # the surveyor's latest
+                                                                                   # revision: kept private
 OUT = S.ROOT / "accosting-owner-schematic-survey.dxf"
 PNG = S.RENDERS / "survey-overlay.png"
 
@@ -39,11 +40,27 @@ LAYERS = {   # survey layer keyword -> (our layer, ACI colour, line weight in 1/
 GROUND = ("FG", "CONC", "FS", "EP")          # shots on the ground (not wall tops)
 
 
-def lot_transform(msp):
+def flatten(msp):
+    """The survey's entities, with block references on layer 0 (later revisions put the lot lines, street
+    names and labels in one) expanded in place."""
+    out = []
+    for e in msp:
+        if e.dxftype() == "INSERT" and e.dxf.layer == "0":
+            out += list(e.virtual_entities())
+        else:
+            out.append(e)
+    return out
+
+
+def of(ents, kind):
+    return [e for e in ents if e.dxftype() == kind]
+
+
+def lot_transform(ents):
     """State plane ft -> plan inches, from the survey's 'our lot' lines."""
     lines = [((l.dxf.start.x, l.dxf.start.y), (l.dxf.end.x, l.dxf.end.y))
-             for l in msp.query("LINE") if l.dxf.layer.endswith("our lot")]
-    street = next(t for t in msp.query("TEXT") if t.dxf.text.strip() == "LAUREL DRIVE")
+             for l in of(ents, "LINE") if l.dxf.layer.endswith("our lot")]
+    street = next(t for t in of(ents, "TEXT") if t.dxf.text.strip() == "LAUREL DRIVE")
     sx, sy = street.dxf.insert.x, street.dxf.insert.y
     front = min(lines, key=lambda l: math.hypot((l[0][0] + l[1][0]) / 2 - sx, (l[0][1] + l[1][1]) / 2 - sy))
     e0, w0 = sorted(front, key=lambda p: -p[0])          # east corner has the larger easting
@@ -62,7 +79,7 @@ def lot_transform(msp):
 
 def main():
     sv = ezdxf.readfile(SURVEY)
-    smsp = sv.modelspace()
+    smsp = flatten(sv.modelspace())
     to_lot, frontage, plan_n = lot_transform(smsp)
     print(f"survey frontage {frontage:.2f} ft (plan {S.LOT_W / 12:.2f}); plan north azimuth {plan_n:.2f} deg")
 
@@ -95,13 +112,13 @@ def main():
         if key == "sw chainlink fence":
             attrs["linetype"] = "DASHED2"
         msp.add_lwpolyline(pts, dxfattribs=attrs)
-    for e in smsp.query("INSERT"):
+    for e in of(smsp, "INSERT"):
         if e.dxf.layer.endswith("tree trunk"):
             x, y = to_lot(e.dxf.insert.x, e.dxf.insert.y)
             msp.add_circle((x, y), 18, dxfattribs={"layer": "V-SURV-TREE"})
             sh.text("TREE", x, y + 30, 7, "V-SURV-TREE")
     names = {"WM": "WATER METER", "SSCO": "SEWER CLEANOUT", "PP": "POWER POLE", "CHIMNEY": "EXIST. CHIMNEY"}
-    for t in smsp.query("TEXT"):
+    for t in of(smsp, "TEXT"):
         if t.dxf.text.strip() in names:
             x, y = to_lot(t.dxf.insert.x, t.dxf.insert.y)
             msp.add_circle((x, y), 4, dxfattribs={"layer": "V-SURV-UTIL"})
@@ -111,7 +128,7 @@ def main():
 
     # ---- spot elevations and 1' contours ---------------------------------------------------
     shots = []
-    for m in smsp.query("MTEXT"):
+    for m in of(smsp, "MTEXT"):
         if "pts label" not in m.dxf.layer:
             continue
         hit = re.search(r"\b(FG|CONC|FS|EP|CL TW|TW FW)\s+(14\d\d\.\d\d)", m.plain_text())

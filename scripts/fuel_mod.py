@@ -67,7 +67,7 @@ EXISTING = [
     ("Olea europaea (3)", "Olive, mature", "Public parkway, outside the property", "Existing to remain"),
     ("Unidentified", "Lot tree (dead)", "On the lot, beside the carport", "Remove"),
     ("Olea europaea", "Olive", "Public parkway, in the driveway", "Remove (County permit)"),
-    ("Ficus sp.", "Ficus (not surveyed)", "Public parkway, ~10' east of the olive", "Remove (County permit)"),
+    ("Ficus sp.", "Ficus", "Public parkway, ~13'-6\" east of the olive", "Remove (County permit)"),
 ]
 
 

@@ -77,7 +77,7 @@ CARPORT_ROOF = (CARPORT[0] - 6, PORCH_OUT[1], E, CARPORT[3] + 6)   # 6" past the
 EXIST_TREES = [(1255.0, -112.0), (1087.0, -98.0), (1019.0, -110.0)]   # survey trunks: the mature olives
                                                                         # in the northwest parkway
 REMOVED_TREES = [(107.0, 158.0, "EXIST. DEAD TREE"), (322.0, -114.0, "EXIST. OLIVE"),   # in the driveway's way;
-                 (202.0, -114.0, "EXIST. FICUS\n(NOT SURVEYED,\nAPPROX.)")]           # ficus ~10' east of the olive
+                 (160.0, -86.0, "EXIST. FICUS")]                                     # ficus ~13'-6" east of the olive (survey rev. 102a)
 GATE_L = 168.0                       # courtyard gate behind the carport: 14' wide, hinged at the house corner,
                                      # it opens flat against the house wall, joining carport and courtyard
 FRONT_TREE = (880.0, 40.0)           # new: front yard, in front of the bedroom wing, ~17' from the house front
