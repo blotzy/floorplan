@@ -4,14 +4,16 @@
 # ///
 """Experiment: the primary suite as a north-south wing across the west end; the office moves to the rear.
 
-  - The bedroom hall ends at a suite door in line with the guest wall. Behind it, the suite's entry (where
-    the reading nook is now) leads to the bedroom (south, the same quiet rear corner and window) and to the
-    walk-in closet and bath (north, where the office is now). The bedroom has one door, from the entry.
+  - The bedroom hall ends in line with the guest wall. The primary bedroom takes a strip of the office (its
+    wall moves about 3'-6" east), so its one door is on the south side of the hall, just before the hall's
+    end: the strip is the bedroom's entry, with a dresser (and the TV above it) centred on the bed. The
+    bedroom also takes the old nook (the hall's last stretch), with the walk-in closet's door in its north
+    wall; the bath is beyond the closet (north, where the office is now).
   - Walk-in closet: about 7' deep, hanging on both long walls; entered from the suite entry, with the bath
     door straight across its aisle. Bath along the street wall: double vanity and WC on the street wall
     (a high window over the vanity), a shower at the west end with its head on the closet (plumbing) wall.
-  - The office takes the rear room where the primary bath and closet are now, its door off the hall, with a
-    standard rear window.
+  - The office takes the rear room where the primary bath and closet are now (about 11' wide), its door off
+    the hall, with a standard rear window; the hall closet stays in its corner.
   - Loses the reading nook and the office's street window (the bath gets a high one instead); the primary
     bath moves away from the plumbing core.
 
@@ -34,7 +36,9 @@ OUT = S.RENDERS / "experiments"
 SUITE_X = 1062.0                                # hall end / guest | suite line (centreline)
 BATH_D = 61.0                                   # bath depth from the street wall
 BATH_WALL = S.N_IN + BATH_D + S.WET / 2         # bath | closet wall centreline (plumbing wall)
-DOOR_X = (1104.0, 1134.0)                       # closet door from the entry, and the bath door across the aisle
+DOOR_X = (1104.0, 1134.0)                       # closet door from the bedroom, and the bath door across the aisle
+OFFICE_X = 1020.0                               # office | primary wall: the bedroom takes the office's west strip
+PRIMARY_DOOR = (1026.0, 1058.0)                 # primary door: south side of the hall, into that strip
 _build = S.build
 
 
@@ -43,22 +47,24 @@ def plan():
     for i, w in enumerate(ws):
         if w[0] == "hall end":
             ws[i] = ("hall end", "y", SUITE_X, 403.2, S.HALL_S, S.INT)
-        elif w[0] == "south hall wall":
-            ws[i] = (w[0], w[1], w[2], w[3], S.W_IN, w[5])
+        elif w[0] == "south hall wall":                                 # ends at the hall end: past it, the
+            ws[i] = (w[0], w[1], w[2], w[3], SUITE_X + S.INT / 2, w[5])  # old nook is part of the bedroom
+        elif w[0] == "suite|primary":
+            ws[i] = (w[0], w[1], OFFICE_X, *w[3:])
         elif w[0] == "bath|wic":
             ws[i] = ("bath|wic", "x", BATH_WALL, SUITE_X, S.W_IN, S.WET)
     drop = {("north", 1101.6), ("west", 289.6), ("west", 415.45), ("south", S.SHOWER_WIN[0]), ("south", 978.0),
-            ("bedroom hall wall", 1067.0)}
+            ("bedroom hall wall", 1067.0), ("south hall wall", 1070.0)}
     S.OPENINGS[:] = [o for o in S.OPENINGS if (o[0], o[1]) not in drop and o[0] != "suite|primary"]
     S.OPENINGS += [
         ("north", 1073.25, 1115.25, "window", 72.0, 96.0),       # bath: high window over the vanity
         ("south", 936.75, 1008.75, "window"),                    # office: 6' rear window
-        ("south hall wall", 1022.0, 1054.0, "door", "b", +1),    # office, off the hall
-        ("hall end", 413.0, 445.0, "door", "a", +1),             # suite door
-        ("bedroom hall wall", *DOOR_X, "door", "a", -1),         # closet, from the suite entry
+        ("south hall wall", 975.0, 1007.0, "door", "b", +1),     # office, off the hall
+        ("south hall wall", *PRIMARY_DOOR, "door", "a", +1),     # primary bedroom: opens flat on the office wall
+        ("bedroom hall wall", *DOOR_X, "door", "a", -1),         # closet, from the bedroom
         ("bath|wic", *DOOR_X, "door", "a", -1),                  # bath, straight across the closet aisle
     ]
-    S.HALL_TUBE = SUITE_X - S.INT / 2 - 32.0                    # hall skylight near the new hall end
+    S.HALL_TUBE = SUITE_X - S.INT / 2 - 24.0                    # hall skylight near the new hall end, clear of the hatch
     S.primary_bath = S.wic = lambda sh: None
 
 
@@ -89,13 +95,20 @@ def build():
     o0, o1 = S.face("utility|bath", +1), S.face("suite|primary", -1)
     oy0 = S.face("south hall wall", +1)
     sh.rect(o0, S.S_IN - 30, o0 + 60, S.S_IN, fu); sh.text("DESK", o0 + 30, S.S_IN - 15, 3.0)
-    sh.rect(o0, oy0, 1012.0, oy0 + 24, fu); sh.line((o0, oy0 + 12), (1012.0, oy0 + 12), fu)
-    sh.text("CL", (o0 + 1012.0) / 2, oy0 + 18, 4.0)
+    k0, k1 = S.face("hall closet|wic end", +1), 971.0                    # office closet: from the hall closet
+    sh.rect(k0, oy0, k1, oy0 + 24, fu); sh.line((k0, oy0 + 12), (k1, oy0 + 12), fu)   # to the office door
+    sh.text("CL", (k0 + k1) / 2, oy0 + 18, 4.0)
     S.room_label(sh, "OFFICE", o0, oy0, o1, S.S_IN, cy=(oy0 + S.S_IN) / 2 + 10)
-    # suite entry (where the nook was)
+    # hall closet (main plan), now in the office's corner
+    c0, c1, cb = o0, S.face("hall closet|wic end", -1), S.face("hall closet|wic", -1)
+    sh.rect(c0, cb - 14, c1, cb, fu); sh.text("SHELVES", (c0 + c1) / 2, cb - 7, 1.8)
+    sh.text("HALL CLOSET", (c0 + c1) / 2, cb - 18, 1.6)
+    # bedroom: the old nook (linen cabinet at its end), and the entry strip with a dresser and the TV
     ey0, ey1 = S.face("bedroom hall wall", +1), S.face("south hall wall", -1)
     sh.rect(xi1 - 24, ey0, xi1, ey1, fu); sh.text("LINEN", xi1 - 12, (ey0 + ey1) / 2, 2.6, rot=90)
-    S.room_label(sh, "SUITE ENTRY", xi0, ey0, xi1 - 24, ey1, cx=1160.0, h=2.6)
+    bx, bc = S.face("suite|primary", +1), (oy0 + S.S_IN) / 2               # centred on the bed
+    sh.rect(bx, bc - 30, bx + 18, bc + 30, fu); sh.text("DRESSER", bx + 9, bc, 2.4, rot=90)
+    sh.rect(bx + 18, bc - 30, bx + 20, bc + 30, fu); sh.text("TV ABOVE", bx + 24, bc, 1.8, rot=90)
     # walk-in closet
     wy0, wy1 = S.face("bath|wic", +1), S.face("bedroom hall wall", -1)
     d0, d1 = DOOR_X
