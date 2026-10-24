@@ -111,7 +111,7 @@ NOOK_CAB_D = 24.0                    # above it with doors facing the bedroom; t
 HALL_ARCH = 883.5                    # centreline of the threshold wall: in line with the walk-in closet's end
                                      # wall, just past the common bath door
 ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
-HALL_CL_DOOR = (HALL_ARCH + INT / 2 + 3.5, HALL_ARCH + INT / 2 + 27.5)   # hall closet: 24" doors (7'-6", in line
+HALL_CL_DOOR = (HALL_ARCH + INT / 2 + 3.5, HALL_ARCH + INT / 2 + 27.5)   # hall closet: a 24" door (7'-6", in line
                                      # with the header), 3 1/2" past the opening's stub for casing
 HALL_CL_W, HALL_CL_D = HALL_CL_DOOR[1] + 1.5 - (HALL_ARCH + INT / 2), 24.0   # in the walk-in closet's corner
 PART = 3.5                           # its two walls to the walk-in closet: 2x3 + 1/2" gyp each side
@@ -188,7 +188,8 @@ OPENINGS = [
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 847.75, 877.75, "door", "b", +1),   # common bath, 30", by its west wall (3 1/2" for casing
                                                             # beside the cased opening's stub)
-    ("south hall wall", *HALL_CL_DOOR, "bifold", "a", +1),  # hall closet
+    ("south hall wall", *HALL_CL_DOOR, "door", "b", -1),    # hall closet: opens into the hall, hinged away from
+                                                            # the cased opening so it folds back along the hall wall
     ("south hall wall", 1070.0, 1106.0, "door", "b", +1),   # primary bedroom, at the closet corner: hinged on its
                                                             # far side, so the open door never blocks the closet door
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header

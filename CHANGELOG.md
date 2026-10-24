@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 24, 2026
 
+- **12:50 PM**: Hall closet: a single 24" swing door opening into the hall (hinged away from the cased opening, folding back along the hall wall) instead of bifolds.
 - **12:47 PM**: Dining slider 2" toward the rear yard, keeping about 4" between the courtyard gate's post and the slider after the carport moved back (about 2'-7" of solid wall at the dining corner).
 - **12:44 PM**: Street wall 2" back for setback margin: house 72' x 31'-4" (about 2,226 sq ft), front setback 20'-3¼" (3¼" margin). The street-side rooms lose the 2" (gym, guest, office and guest ensuite 12'-5" deep, lounge 17'-1"); the porch keeps 8' x 5' and the foyer 9'; the carport moves back with the front door.
 - **12:40 PM**: Setbacks are to the finished stucco face: A-1 site note 9 (wall build-up, layout back from the drawn face, surveyor staking and form survey before the pour), Z-1 note 1, the floor-plan doc, and a surveyor to-do.
