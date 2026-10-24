@@ -177,8 +177,8 @@ OPENINGS = [
     ("west",        415.45, 451.45, "window", 42.0, NOOK_CEIL - 6.0),  # reading nook: 3'-0" x 3'-6", its head 6"
                                                                      # below the lowered ceiling: 3'-0" x 4'-0", centred on the nook,
                                                           # light over the reader's shoulder from the bench
-    ("east",        514.0, 586.0, "slider"),             # dining 6' slider: just past the courtyard fence, leaving
-                                                          # ~2'-9" of solid wall at the dining corner
+    ("east",        516.0, 588.0, "slider"),             # dining 6' slider: ~4" past the courtyard fence's post,
+                                                          # leaving ~2'-7" of solid wall at the dining corner
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
     ("ensuite|guest", 335.0, 365.0, "door", "a", +1),       # guest ensuite's only door: swings into the guest room (the bath is narrow)
