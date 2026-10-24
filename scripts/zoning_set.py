@@ -196,7 +196,7 @@ def site_plan(pdf):
         tx.text(1.0, y, v, fontsize=9, ha="right", va="top", transform=tx.transAxes)
         y -= 0.036 if "\n" not in v else 0.058
     notes = ("NOTES\n"
-             "1. Setbacks measured to the outside face of exterior walls (eaves excluded).\n"
+             "1. Setbacks measured to the finished outside face of exterior walls (stucco; eaves excluded).\n"
              "2. Side setback taken as 10% of lot width. Rear yard on a shallow lot (§22.110.080.D):\n"
              f"   the lot is {LOT_D_FT:.2f}' deep (under 75'), so the rear yard is 20% of the average\n"
              f"   depth, {ftin(REAR_REQ)} (confirmed with Planning).\n"

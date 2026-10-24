@@ -427,7 +427,11 @@ def site_plan(pdf):
              "6. Water, sewer and SCE service per the utilities;\n   no gas service (all-electric).\n"
              "7. Demolition: remove the remaining retaining wall and\n   chimney from the burned house (dashed red); asbestos\n"
              "   survey first if required (SCAQMD Rule 1403); fill\n   and grade per civil.\n"
-             "8. The retaining wall along the east line holds the\n   neighbor's higher grade: protect it in place.")
+             "8. The retaining wall along the east line holds the\n   neighbor's higher grade: protect it in place.\n"
+             "9. Setbacks are to the FINISHED outside face of the\n   exterior walls (stucco), not the slab edge or framing;\n"
+             "   front, rear and side margins are only 1-2 1/2\". Wall:\n   2x6, 1\" rigid insulation, 7/8\" stucco. Lay out the slab\n"
+             "   and framing back from the drawn finished face. A\n   licensed surveyor stakes the corners and checks the\n"
+             "   foundation forms against the setback lines before\n   the pour (form survey).")
     fig.text(25.9 / W_IN, (y - 0.3) / H_IN, notes, fontsize=8, va="top", linespacing=1.35)
     pdf.savefig(fig); Z.save_png(fig, OUT / "A-1-site-plan.png", dpi=80); plt.close(fig)
 

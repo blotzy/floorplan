@@ -18,6 +18,7 @@
 
 - [x] Planning confirmed (Oct 20, 2026): the setbacks as drawn (10% side yards; the shallow-lot rear yard, 20% of the lot depth) and the carport and porch parking layout (qualifying covered entry porch, the carport's front 4' a covered walkway, the two spaces behind the front door).
 - [ ] Planner: can uncovered parking in the driveway inside the front setback count as a required space?
+- [ ] Surveyor: construction staking of the building corners and a form survey (foundation forms checked against the setback lines before the pour); the front, rear and side margins are only 1¼" to 2½" to the finished stucco face (A-1 note 9). Roughly $1-2.5k; add it to the GC's schedule.
 - [ ] Building and Safety: the state's water-efficient landscape rules (MWELO) apply to new landscaping of about 500 sq ft or more; is the prescriptive checklist enough, or is a landscape and irrigation plan required with the permit?
 - [ ] Fuel modification plan (owner-prepared) for LA County Fire, Very High Fire Hazard Severity Zone: the ember-resistant zone (under the eaves and 5' beyond), the two front trees (spacing and canopy clearance from the roof), and the irrigated planting; confirm whether it must be approved before the building permit.
 - [ ] Driveway: remove the dead lot tree beside the carport; drain the drive away from the house at the carport.
