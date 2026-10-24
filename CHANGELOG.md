@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 24, 2026
 
+- **12:15 PM**: Urban Forestry parkway trees packet (`renders/county/220-Laurel-parkway-trees.pdf`) updated to the current A-1: the ficus at its surveyed spot, dimensioned ~13'-6" from the olive.
 - **11:59 AM**: Survey revision 102a adds the east parkway ficus: about 13'-6" east of the olive (not ~10'). Plan, survey overlay, A-1, Z-1 and FM-1 show it at its surveyed spot; the overlay and permit set read the newest survey revision.
 
 ## Oct 23, 2026
