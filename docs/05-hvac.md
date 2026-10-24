@@ -27,6 +27,7 @@ Three zones are preferred. If the Manual J or the equipment's minimum airflow ma
 - Primary, guest and office have ceiling fans: keep their registers out from under the blades and don't aim them at the fans.
 - No return in the kitchen (grease) or the laundry (lint).
 - Ducts stay in the sealed attic; no ducts, returns, or vent openings into the carport.
+- Attic duct layout around the storage (decked areas on sheet A-7: the gym zone across the hall under the shed, and the strip along the gable's ridge over the hall): nothing crosses or runs under the decking. Two supply trunks along the ridge strip's long edges, one for the street-side rooms and one for the rear-side rooms, with each branch running outward through the low attic toward the street and rear walls, where the attic is too low for storage anyway. The great room's supplies run along the low rear edge of the shed attic, not across the gym storage. The hall return sits by the air handler so its duct stays short and out of the strip. Bath fan and fresh-air exhaust ducts also run outward to their terminations. Keep the walkway from the hatch to the air handler, and a path down the middle of the decking, clear. The Manual D duct design follows this layout.
 
 **Ventilation**
 

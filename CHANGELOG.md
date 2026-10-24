@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 24, 2026
 
+- **12:26 PM**: HVAC: attic duct layout around the storage (two supply trunks along the ridge strip's edges, branches outward through the low attic, nothing across or under the decking; short hall return by the air handler).
 - **12:24 PM**: Attic storage (20 psf, decked) wherever the roof's underside is at least 4' above the ceiling: the gym zone continues across the hall, plus a 7'-6" strip along the gable's ridge for the wing's length (A-7, load notes, engineer brief); open-web or attic-frame trusses there.
 - **12:20 PM**: Air handler platform over the primary walk-in closet instead of the guest room (A-7): shorter line set to the rear condenser, condensate near the laundry's drains, quieter over a closet.
 - **12:18 PM**: Hall attic hatch 1' east, evening out the recessed-light bays either side of it (one light between the header and the hatch, one between the hatch and the skylight); smoke/CO alarm off the centreline beside the hatch; engineer brief: hatch set to the truss bays.
