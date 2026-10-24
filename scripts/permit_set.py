@@ -849,6 +849,7 @@ def cover_view():
 
 # ---- A-7 attic and loads plan ---------------------------------------------------------------
 RING_GAP = 20.0                                       # gym rings: 20" apart, side by side across the swing
+STORE_H = 48.0                                        # attic storage: at least 4' from the 9' ceiling to the roof's underside
 
 
 def loads():
@@ -861,8 +862,14 @@ def loads():
     ahu = (S.HATCH_X - 15, wy0, S.HATCH_X + 60, wy0 + 41.0)   # platform over the primary walk-in closet, beside the
                                                         # hatch, near the gable's ridge (the wing's tallest attic):
                                                         # short line set to the rear condenser, quiet over a closet
-    store = (gx0, S.N_IN + 24.0, gx1, gy1)              # over the gym, under the shed's tall attic
-    return dict(gym=(gx0, gy0, gx1, gy1), rings=rings, ahu=ahu, store=store, pv=pv_area())
+    # decked storage where the attic is at least STORE_H above the ceiling (about 3' clear after the framing and
+    # the deck's foam): under the shed, the gym's band from 2' off the street wall south across the hall; under
+    # the gable, a strip along the ridge for the wing's length
+    sy1 = X.Sth - (STORE_H + 108.0 - X.PLATE) / (2 / 12)
+    store = (gx0, S.N_IN + 24.0, gx1, sy1)
+    rh = (X.Sth - X.N) / 2 - (STORE_H + 108.0 - X.PLATE) / (2 / 12)
+    ridge = (X.WING_X, X.RIDGE_Y - rh, S.W_IN, X.RIDGE_Y + rh)
+    return dict(gym=(gx0, gy0, gx1, gy1), rings=rings, ahu=ahu, store=store, ridge=ridge, pv=pv_area())
 
 
 PV_PANEL = (44.6, 67.8 * 12 / (12 ** 2 + 2 ** 2) ** 0.5)   # a ~430 W panel, portrait: width; length in plan
@@ -891,9 +898,13 @@ def loads_plan(pdf):
     sx0, sy0, sx1, sy1 = L["store"]
     ax.add_patch(Rectangle((sx0, sy0), sx1 - sx0, sy1 - sy0, fc="#f3d9a6", ec="#b07a2a", lw=1.2, alpha=0.6, hatch="..",
                            zorder=4))
-    ax.text((sx0 + sx1) / 2, S.N - 30, "ATTIC STORAGE (hatched): 20 PSF LIVE LOAD, PLYWOOD DECKED\n"
-            f"(over the gym, under the shed: {ftin(sy0 - S.N_IN)} off the street wall to the hall wall)", fontsize=7,
-            ha="center", zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
+    rx0, ry0, rx1, ry1 = L["ridge"]
+    ax.add_patch(Rectangle((rx0, ry0), rx1 - rx0, ry1 - ry0, fc="#f3d9a6", ec="#b07a2a", lw=1.2, alpha=0.6, hatch="..",
+                           zorder=4))
+    ax.text((sx0 + sx1) / 2, S.N - 30, "ATTIC STORAGE (hatched): 20 PSF LIVE LOAD, PLYWOOD DECKED (note 2)\n"
+            f"under the shed: over the gym from {ftin(sy0 - S.N_IN)} off the street wall and across the hall;\n"
+            f"under the gable: a {ftin(ry1 - ry0)} strip along the ridge (clear of the air handler, hatch, walkway and skylight tube)",
+            fontsize=7, ha="center", zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
     a0, b0, a1, b1 = L["ahu"]
     ax.add_patch(Rectangle((a0, b0), a1 - a0, b1 - b0, fc="#cfe0f3", ec="#1f5e9e", lw=1.4, zorder=5))
     ax.text((a0 + a1) / 2, (b0 + b1) / 2, "AIR HANDLER\nON PLATFORM\n~250 LB", fontsize=6, ha="center", va="center",
@@ -929,10 +940,12 @@ def loads_plan(pdf):
              "   500 lb concentrated at each, dynamic: blocking across several\n"
              "   trusses or joists with framing connectors; through-bolted forged\n"
              "   eye bolts with plate washers.\n"
-             "2. Attic storage: 20 psf live load on the decked area shown\n"
-             "   (hatched), over the gym, where the shed roof gives\n"
-             "   the attic its height; light storage only. The rest of the\n"
-             "   wing's attic, under the gable, is tallest along the ridge.\n"
+             "2. Attic storage: 20 psf live load on the decked areas shown\n"
+             "   (hatched), wherever the roof's underside is at least 4' above\n"
+             "   the ceiling: under the shed (over the gym and across the\n"
+             "   hall) and a strip along the gable's ridge, over the hall.\n"
+             "   Light storage only. Open-web (or attic-frame) trusses there,\n"
+             "   so the storage runs continuously rather than in 2' bays.\n"
              "3. Air handler: on a platform beside the attic hatch, near the\n"
              "   ridge, over the primary walk-in closet (short line set to the\n"
              "   rear condenser; condensate to the laundry's drains), with a\n"

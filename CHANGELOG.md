@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 24, 2026
 
+- **12:24 PM**: Attic storage (20 psf, decked) wherever the roof's underside is at least 4' above the ceiling: the gym zone continues across the hall, plus a 7'-6" strip along the gable's ridge for the wing's length (A-7, load notes, engineer brief); open-web or attic-frame trusses there.
 - **12:20 PM**: Air handler platform over the primary walk-in closet instead of the guest room (A-7): shorter line set to the rear condenser, condensate near the laundry's drains, quieter over a closet.
 - **12:18 PM**: Hall attic hatch 1' east, evening out the recessed-light bays either side of it (one light between the header and the hatch, one between the hatch and the skylight); smoke/CO alarm off the centreline beside the hatch; engineer brief: hatch set to the truss bays.
 - **12:15 PM**: Urban Forestry parkway trees packet (`renders/county/220-Laurel-parkway-trees.pdf`) updated to the current A-1: the ficus at its surveyed spot, dimensioned ~13'-6" from the olive.
