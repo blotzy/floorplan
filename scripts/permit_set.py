@@ -492,6 +492,17 @@ def roof_plan(pdf):
     ax.text(X0 + 48, Y1 - 50, "POTENTIAL SOLAR PV AREA (dashed): the south-facing planes, clear of the shed's high-edge\n"
             "setback, the ridge setback and the 36\" pathways at both ends (CRC R324.6); final layout per the solar design",
             fontsize=6.5, color="#1f5e9e")
+    (ax0, ay0) = pv_area()[0]                                           # first array: its footprint only (the solar
+    bw, bd = PV_BLOCK[0] * PV_PANEL[0], PV_BLOCK[1] * PV_PANEL[1]       # provider lays out the panels)
+    ax.add_patch(Rectangle((ax0, ay0), bw, bd, fc="#1f5e9e", alpha=0.10, ec="#1f5e9e", lw=1.2, zorder=3))
+    ax.text(ax0 + bw / 2, ay0 + bd / 2, "FUTURE PV ARRAY, ABOUT 10 kW\nBY OTHERS, SEPARATE PERMIT\n"
+            "(footprint only; layout per the solar design)", fontsize=6.5, color="#1f5e9e", ha="center", va="center",
+            weight="bold", zorder=4)
+    px = S.face("kitchen|pantry", +1) + 24                              # its wiring: one flashed penetration just
+    py = min(max(ay0 + bd / 2, S.face("south hall wall", +1) + 18), S.S_IN - 18)   # west of it, over the attic
+    ax.add_patch(Rectangle((px - 5, py - 5), 10, 10, fc="white", ec="#1f5e9e", lw=1.2, zorder=5))
+    ax.text(px + 10, py, "PV CONDUIT PENETRATION (one, flashed),\nover the pantry/laundry attic", fontsize=5.5,
+            color="#1f5e9e", va="center", zorder=5)
     vtrs = [(850.0, 330.0, "VTR-1: guest ensuite (its own vent, on the\nwing's street slope, out of the PV area)", "bottom"),
             (868.0, 544.0, "VTR-2, just downslope of the skylight: common bath, laundry\nand primary bath (combined where short; a second vent\n"
                               "on this slope if simpler), outside the first PV array", "bottom"),
@@ -537,8 +548,8 @@ def roof_plan(pdf):
              "7. Carport: attached open carport, its own roof at 1/2\":12 in\n"
              "   double-lock standing seam (Class A assembly, uplift-rated),\n"
              "   gutter on its east edge.\n"
-             "8. Solar: first array (about 10 kW) on the shed, layout by the\n"
-             "   solar provider. Its mounting (rails over flashed attachments\n"
+             "8. Solar: first array (about 10 kW) on the shed, footprint shown;\n"
+             "   layout by the solar provider, separate permit. Its mounting (rails over flashed attachments\n"
              "   into the rafters) is installed with the roofing; panels later.\n"
              "   Its conduit enters through the roof into the attic and\n"
              "   runs inside to the panel: none on the roof surface or\n"
@@ -850,6 +861,10 @@ def loads():
                                                         # the gable's ridge (the wing's tallest attic)
     store = (gx0, S.N_IN + 24.0, gx1, gy1)              # over the gym, under the shed's tall attic
     return dict(gym=(gx0, gy0, gx1, gy1), rings=rings, ahu=ahu, store=store, pv=pv_area())
+
+
+PV_PANEL = (44.6, 67.8 * 12 / (12 ** 2 + 2 ** 2) ** 0.5)   # a ~430 W panel, portrait: width; length in plan
+PV_BLOCK = (6, 4)                                          # the first array: columns x rows (24 panels, ~10 kW)
 
 
 def pv_area():

@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 23, 2026
 
+- **5:46 PM**: A-3 roof plan: the first solar array's footprint (about 10 kW on the shed) shown as "future PV array, by others, separate permit", with its one flashed conduit penetration over the pantry and laundry attic; roof note 8 updated.
 - **5:17 PM**: Flooring decided: LVP throughout, tile in the bathrooms (FloorScore LVP; slab moisture and flatness checked first). Open questions.
 - **4:13 PM**: Water service: the fire sprinkler tee comes right after the meter and backflow preventer, ahead of the house shutoff, leak-detection valve and softener; no pressure regulator unless measured pressure is high (about 50 psi at the main); at least a 1" line to the house. The 1" meter upgrade is now a to-do to order now. Plumbing doc, open questions.
 - **4:09 PM**: Lincoln Avenue Water's area fire flow form (Section 4) added under renders/county: static at least 50 psi, residual at least 42 psi, 1,100+ gpm at 20 psi. In a Very High Fire Hazard Severity Zone it goes to LA County Fire Prevention for approval before the building permit (new to-do). Open questions, plumbing doc, README.
