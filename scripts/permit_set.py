@@ -857,8 +857,10 @@ def loads():
     gy0, gy1 = S.N_IN, S.face("bedroom hall wall", -1)
     cx, cy = (gx0 + gx1) / 2, (gy0 + gy1) / 2
     rings = [(cx - RING_GAP / 2, cy), (cx + RING_GAP / 2, cy)]
-    ahu = (S.HATCH_X - 15, 360.0, S.HATCH_X + 60, gy1)  # platform over the guest room, beside the hatch, near
-                                                        # the gable's ridge (the wing's tallest attic)
+    wy0 = S.face("south hall wall", +1)
+    ahu = (S.HATCH_X - 15, wy0, S.HATCH_X + 60, wy0 + 41.0)   # platform over the primary walk-in closet, beside the
+                                                        # hatch, near the gable's ridge (the wing's tallest attic):
+                                                        # short line set to the rear condenser, quiet over a closet
     store = (gx0, S.N_IN + 24.0, gx1, gy1)              # over the gym, under the shed's tall attic
     return dict(gym=(gx0, gy0, gx1, gy1), rings=rings, ahu=ahu, store=store, pv=pv_area())
 
@@ -932,7 +934,9 @@ def loads_plan(pdf):
              "   the attic its height; light storage only. The rest of the\n"
              "   wing's attic, under the gable, is tallest along the ridge.\n"
              "3. Air handler: on a platform beside the attic hatch, near the\n"
-             "   ridge, with a 30\" walkway, light and outlet (mechanical code).\n"
+             "   ridge, over the primary walk-in closet (short line set to the\n"
+             "   rear condenser; condensate to the laundry's drains), with a\n"
+             "   30\" walkway, light and outlet (mechanical code).\n"
              "4. Future solar: on the roof plane, clear of the fire setbacks\n"
              "   (A-3); include its dead load in the roof design.\n"
              "5. Heat pump water heater: on the slab in the mechanical closet.\n"
