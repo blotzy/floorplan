@@ -849,6 +849,7 @@ def cover_view():
 
 # ---- A-7 attic and loads plan ---------------------------------------------------------------
 RING_GAP = 20.0                                       # gym rings: 20" apart, side by side across the swing
+WHITE = dict(fc="white", ec="none", alpha=0.85, pad=1.5)   # label backing over the A-7 highlights
 STORE_H = 48.0                                        # attic storage: at least 4' from the 9' ceiling to the roof's underside
 
 
@@ -912,9 +913,9 @@ def loads_plan(pdf):
     hx0, hy = S.HATCH_X, (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2
     ax.plot([S.face("lounge|gym", +1), S.W_IN], [hy, hy], color="#8e44ad", lw=1.4, ls=(0, (8, 4)), zorder=5)
     ax.text(S.face("lounge|gym", +1) + 6, hy + 4, "HALL CENTRELINE: KEEP CLEAR FOR RECESSED LIGHTS (note 7)",
-            fontsize=6, color="#8e44ad", va="bottom", zorder=6)
+            fontsize=6, color="#8e44ad", va="bottom", zorder=6, bbox=WHITE)
     ax.add_patch(Rectangle((hx0, hy - 12.75), 54, 25.5, fill=False, ec=INK, lw=1.2, ls="--", zorder=5))
-    ax.text(hx0 + 27, hy - 16, "ATTIC HATCH", fontsize=6, ha="center", va="top", zorder=6)
+    ax.text(hx0 + 27, hy - 16, "ATTIC HATCH", fontsize=6, ha="center", va="top", zorder=6, bbox=WHITE)
     ax.add_patch(Circle((S.HALL_TUBE, S.HALL_TUBE_Y), 8, fill=False, ec=INK, lw=1.2, ls="--", zorder=5))
     ax.text(S.HALL_TUBE, S.HALL_TUBE_Y - 12, "14\" SKYLIGHT TUBE\n(insulated, through the attic)", fontsize=5.5, ha="center",
             va="top", zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
@@ -923,9 +924,12 @@ def loads_plan(pdf):
     (r0x, r0y), (r1x, r1y) = L["rings"]
     gx0, gy0, gx1, gy1 = L["gym"]
     ax.text((r0x + r1x) / 2, r0y - 12, "2 GYM RING POINTS\n500 LB EACH (CONCENTRATED)", fontsize=6.5, ha="center",
-            va="top", color=RED, zorder=7)
+            va="top", color=RED, zorder=7, bbox=WHITE)
+    n = len(ax.texts)
     dim_string(ax, [gx0, r0x, r1x, gx1], gy0 + 16, color=RED, fs=6)
     dim_string(ax, [gy0, r0y, gy1], gx0 + 16, horiz=False, color=RED, fs=6)
+    for t in ax.texts[n:]:                                              # legible over the storage hatch
+        t.set_bbox(WHITE); t.set_zorder(7)
     pv = L["pv"]
     ax.add_patch(MPoly(pv, closed=True, fill=False, ec="#2e7d32", lw=1.2, ls="-.", zorder=4))
     ax.text(pv[0][0] + 8, pv[-1][1] - 10, "FUTURE SOLAR PV AREA ON THE ROOF (dash-dot): allow ~3-4 PSF dead load", fontsize=6.5,
