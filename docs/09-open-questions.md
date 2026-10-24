@@ -32,6 +32,7 @@
 - [x] Primary bath: decided. No tub; a curbless double shower with a full-width solid bench. The guest ensuite keeps a standard 66" tub with a shower head (pick its model before framing).
 - [ ] Primary shower: pick the two valves (thermostatic, one per head) and heads (1.8 gpm max each, WaterSense), the bench kit (foam, e.g. Schluter or Wedi) and the linear drain, before rough-in.
 - [x] Kitchen tall storage: decided. Floor-to-ceiling cabinets on both sides of the range.
+- [x] Flooring: decided. LVP (luxury vinyl plank) throughout, tile in the bathrooms. Pick an LVP that's FloorScore certified (CALGreen 4.504.4). Before it goes down, test the slab's moisture (a new slab needs time to dry) and check its flatness; budget for a moisture barrier and leveling where needed.
 - [ ] Pick the linear electric fireplace (about 60") for the hearth bench: listed for a built-in install with a bench or shelf directly above it, heat venting to the front or bottom, its circuit, and its clearance to the TV above. The framer builds the bench to its installation sheet.
 - [ ] Pick the fridge model (sets the exact opening and door clearance). When shopping, check that its depth and open doors leave the walkway past it clear.
 
