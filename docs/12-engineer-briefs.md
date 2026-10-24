@@ -17,7 +17,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 
 ## Structural engineer
 
-**Project:** new one-story, wood-frame single-family residence, Eaton Fire rebuild (non-like-for-like: current codes in full), 220 Laurel Dr, Altadena (APN 5832-003-027). About 2,238 sq ft, 72' x 31'-6", Type V-B, sprinklered, Very High Fire Hazard Severity Zone. Attached open carport, 18' x 22' (its front 4' a covered walkway).
+**Project:** new one-story, wood-frame single-family residence, Eaton Fire rebuild (non-like-for-like: current codes in full), 220 Laurel Dr, Altadena (APN 5832-003-027). About 2,226 sq ft, 72' x 31'-4", Type V-B, sprinklered, Very High Fire Hazard Severity Zone. Attached open carport, 18' x 22' (its front 4' a covered walkway).
 
 **Scope requested:** foundation plan, roof and ceiling framing plans, shear wall and hold-down schedule, details, structural calculations (vertical and lateral), truss specifications for the deferred truss submittal, and structural observation. Plans to LA County Building and Safety as the engineer of record.
 
@@ -51,7 +51,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 
 **Site conditions and design inputs:**
 
-- **Slope:** about 8' of fall across the lot from east to west and about 4' across the house footprint. The house sits near the minimum setbacks on three sides (front 1¼", rear 2½", west about 2⅜" of margin), so the foundation location needs a survey check before the slab.
+- **Slope:** about 8' of fall across the lot from east to west and about 4' across the house footprint. The house sits near the minimum setbacks on three sides (front 3¼", rear 2½", west about 2⅜" of margin, to the finished stucco face), so the foundation location needs a survey check before the slab.
 - **Demolition:** remove the old retaining wall crossing the house's southeast corner and the standing chimney in the courtyard; regrade the lower rear terrace they leave.
 - **East property-line wall:** a retaining wall along the east line (front half), holding up the neighbour's higher ground. No excavation or lowering of grade at its base on our side; a swale or gravel drain along it carries its seepage to the site drainage.
 - **Drainage:** grade away from the house all round (CRC R401.3). Three downspouts along the rear gutter, plus the carport gutter on its east edge. The bedroom wing's street eave has no gutter: a gravel drip trench along the wall under it, with a drain to the site system. An ember-resistant zone (gravel, pavers or low irrigated ground cover) under the eaves and 5' beyond them.

@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 24, 2026
 
+- **12:44 PM**: Street wall 2" back for setback margin: house 72' x 31'-4" (about 2,226 sq ft), front setback 20'-3¼" (3¼" margin). The street-side rooms lose the 2" (gym, guest, office and guest ensuite 12'-5" deep, lounge 17'-1"); the porch keeps 8' x 5' and the foyer 9'; the carport moves back with the front door.
 - **12:40 PM**: Setbacks are to the finished stucco face: A-1 site note 9 (wall build-up, layout back from the drawn face, surveyor staking and form survey before the pour), Z-1 note 1, the floor-plan doc, and a surveyor to-do.
 - **12:27 PM**: A-7: white backing behind the labels and dimensions over the attic storage highlight.
 - **12:26 PM**: HVAC: attic duct layout around the storage (two supply trunks along the ridge strip's edges, branches outward through the low attic, nothing across or under the decking; short hall return by the air handler).

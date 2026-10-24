@@ -10,18 +10,18 @@ A brief for the architect consultation: the hard requirements the layout has to 
 - Eaton Fire rebuild, **non-like-for-like**: current zoning applies in full; 2022 California codes (Executive Order N-29-25, to confirm).
 - **Very High Fire Hazard Severity Zone** (CRC R337 / Chapter 7A construction, Class A roof, fuel modification plan) and an **Alquist-Priolo Earthquake Fault Zone** (no liquefaction or landslide zone; whether a fault investigation or soils report is required is with the County).
 - Owner-prepared drawings; a structural/civil engineer (engineer of record) does the structure, grading, drainage, erosion control, LID and a sump.
-- Single story, all-electric, about 2,240 sq ft, 4 bedrooms (primary, gym, guest, office), 3 baths, attached open 2-car carport.
+- Single story, all-electric, about 2,230 sq ft, 4 bedrooms (primary, gym, guest, office), 3 baths, attached open 2-car carport.
 
 ## Hard requirements
 
 | Item | Requirement | The plan |
 | --- | --- | --- |
-| Front setback | 20' | 20'-1¼" |
+| Front setback | 20' | 20'-3¼" |
 | Side setbacks | 10% of the 113' lot width: 11'-3⅝" each side | 11'-6" west; 11'-6" east to the carport |
 | Rear setback | Shallow lot (under 75' deep): 20% of the 64.77' depth, 12'-11½" (§22.110.080.D) | 13'-2" |
 | Eaves | May project up to 2'-6" into a required yard (§22.110.090.A) | 2'-6" all round |
-| Lot coverage | CSD: ¼ of net lot area + 1,000 sq ft, about 2,830 sq ft | about 2,672 sq ft (house, porch, carport): about 160 sq ft to spare |
-| Floor area | CSD limit, same formula; no rebuild size limit (non-like-for-like) | about 2,240 sq ft |
+| Lot coverage | CSD: ¼ of net lot area + 1,000 sq ft, about 2,830 sq ft | about 2,660 sq ft (house, porch, carport): about 170 sq ft to spare |
+| Floor area | CSD limit, same formula; no rebuild size limit (non-like-for-like) | about 2,230 sq ft |
 | Parking | 2 spaces, 8'-6" x 18', behind the front door (§22.140.520 b.i, Table 22.140.520-D) | 18' x 22' carport, its front 4' a covered walkway, plus a qualifying 8' x 5' covered entry porch |
 | Street facade articulation | Table 22.140.520-C: one strategy plus one per 30' of facade (likely 3 for the 72' front, 4 if the carport counts) | Recessed punched windows (about 74% of the window area); window area likely over 20% of the wall; roof-height variation (depends on how it's measured). Fallback: projected window surrounds |
 | Energy (Title 24) | Prescriptive glazing limit 20% of floor area; west-facing glass under 5% | about 439 sq ft (19.6%); west about 20 sq ft |

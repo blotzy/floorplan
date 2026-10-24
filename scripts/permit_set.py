@@ -429,7 +429,7 @@ def site_plan(pdf):
              "   survey first if required (SCAQMD Rule 1403); fill\n   and grade per civil.\n"
              "8. The retaining wall along the east line holds the\n   neighbor's higher grade: protect it in place.\n"
              "9. Setbacks are to the FINISHED outside face of the\n   exterior walls (stucco), not the slab edge or framing;\n"
-             "   front, rear and side margins are only 1-2 1/2\". Wall:\n   2x6, 1\" rigid insulation, 7/8\" stucco. Lay out the slab\n"
+             "   front, rear and side margins are only 2-3 1/4\". Wall:\n   2x6, 1\" rigid insulation, 7/8\" stucco. Lay out the slab\n"
              "   and framing back from the drawn finished face. A\n   licensed surveyor stakes the corners and checks the\n"
              "   foundation forms against the setback lines before\n   the pour (form survey).")
     fig.text(25.9 / W_IN, (y - 0.3) / H_IN, notes, fontsize=8, va="top", linespacing=1.35)

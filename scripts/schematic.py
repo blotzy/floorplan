@@ -43,11 +43,11 @@ WET = 6.5      # plumbing walls: 2x6 + 1/2" gyp each side
 
 LOT_W, LOT_D = 1356.0, 777.25        # 113.00' x 64.77' per the topographic survey (private/survey)
 LOT_X0 = 2.0                         # x of the east property line (side setbacks: 10% of LOT_W each)
-E, W, N, S = 356.1, 1220.0, 241.2, 619.2   # house outer faces (72' x 31'-6")
+E, W, N, S = 356.1, 1220.0, 243.2, 619.2   # house outer faces (72' x 31'-4")
 E_IN, W_IN, N_IN, S_IN = E + EXT, W - EXT, N + EXT, S - EXT
 
 # Corner porch notch (outer faces) at the north-east corner.
-PORCH_X, PORCH_Y = 444.1, 289.2      # notch is E..PORCH_X by N..PORCH_Y
+PORCH_X, PORCH_Y = 444.1, 291.2      # notch is E..PORCH_X by N..PORCH_Y
 FOYER_WALL_END = PORCH_Y + EXT + 108.0   # foyer/TV wall: 9' of foyer inside the front wall
 # Hearth bench: a built-in bench on the lounge's TV wall, centred on the TV: from just past the reeded porch-side
 # window to just short of the foyer-to-hall walkway. Framed and drywalled on a recessed base (it reads as
