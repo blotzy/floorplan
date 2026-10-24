@@ -99,7 +99,8 @@ NOTICE = ("\u00a9 2026 Richard Acosta. All rights reserved. For 220 Laurel Dr on
 # stretch is the primary bedroom's reading nook. Halfway down, just past the common bath, a cased opening
 # with a dropped header marks the bedroom end (no door).
 HALL_END = 1110.5                    # centreline of the hall's end wall
-HALL_S = 403.2 + INT + 48.0          # centreline of the hall's south wall: a 4'-0" clear hall
+HALL_N = 407.2                       # centreline of the hall's north (bedroom) wall
+HALL_S = HALL_N + INT + 44.0         # centreline of the hall's south wall: a 3'-8" clear hall
 KITCHEN_ROW = 461.45                 # front line of the kitchen peninsula and fridge (the lounge's south edge)
 WIC_D = 84.0                         # primary walk-in closet depth: 24" hanging + 36" aisle + 24" hanging
 SHOWER_W = 74.0                      # primary shower: 6'-2" from the common bath wall
@@ -125,14 +126,14 @@ HALL_TUBE = HALL_END - INT / 2 - 32.0   # 14" tubular skylight on the hall's cen
 # axis "x" = wall runs along x at y = centreline; "y" = runs along y at x = centreline.
 WALLS = [
     ("foyer wall",        "y", PORCH_X + EXT - INT / 2, PORCH_Y, FOYER_WALL_END, INT),
-    ("lounge|gym",       "y", 674.0,  N_IN, 405.45, INT),   # in line with the kitchen|pantry wall
-    ("gym|ensuite",       "y", 826.0,  N_IN, 405.45, WET),
-    ("ensuite|guest",    "y", 897.5,  N_IN, 405.45, INT),
-    ("guest|office",     "y", 1062.0, N_IN, 405.45, INT),
-    ("bedroom hall wall", "x", 403.2,  671.75, W_IN, INT),
+    ("lounge|gym",       "y", 674.0,  N_IN, HALL_N + INT / 2, INT),   # in line with the kitchen|pantry wall
+    ("gym|ensuite",       "y", 826.0,  N_IN, HALL_N + INT / 2, WET),
+    ("ensuite|guest",    "y", 897.5,  N_IN, HALL_N + INT / 2, INT),
+    ("guest|office",     "y", 1062.0, N_IN, HALL_N + INT / 2, INT),
+    ("bedroom hall wall", "x", HALL_N,  671.75, W_IN, INT),
     ("south hall wall",   "x", HALL_S, 671.75, HALL_END + INT / 2, INT),
-    ("hall end",          "y", HALL_END, 403.2, HALL_S, INT),      # the reading nook behind it
-    ("hall threshold",    "y", HALL_ARCH, 403.2, HALL_S, INT),     # cased opening, dropped header
+    ("hall end",          "y", HALL_END, HALL_N, HALL_S, INT),      # the reading nook behind it
+    ("hall threshold",    "y", HALL_ARCH, HALL_N, HALL_S, INT),     # cased opening, dropped header
     ("kitchen|pantry",    "y", 674.0,  HALL_S - INT / 2, S_IN, INT),
     ("pantry|laundry",    "y", 750.0,  HALL_S - INT / 2, S_IN, INT),
     ("pantry|mech",       "x", 555.2,  674.0, 750.0, INT),

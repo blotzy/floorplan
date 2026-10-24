@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 24, 2026
 
+- **1:18 PM**: Bedroom hall 3'-8" clear (from 4'-0"): the bedroom-side wall moves 4" toward the hall, so the gym, guest ensuite, guest and office are 12'-9" deep; the reading nook narrows with the hall. House depth and setbacks unchanged.
 - **12:50 PM**: Hall closet: a single 24" swing door opening into the hall (hinged away from the cased opening, folding back along the hall wall) instead of bifolds.
 - **12:47 PM**: Dining slider 2" toward the rear yard, keeping about 4" between the courtyard gate's post and the slider after the carport moved back (about 2'-7" of solid wall at the dining corner).
 - **12:44 PM**: Street wall 2" back for setback margin: house 72' x 31'-4" (about 2,226 sq ft), front setback 20'-3¼" (3¼" margin). The street-side rooms lose the 2" (gym, guest, office and guest ensuite 12'-5" deep, lounge 17'-1"); the porch keeps 8' x 5' and the foyer 9'; the carport moves back with the front door.
