@@ -11,7 +11,9 @@
   - Doors: the closet door (30") swings into the closet, hinged on the hall side, and opens into the
     door bay; the bath door (30") swings into the bath, hinged at the bedroom end, and opens
     flat against the bath's end wall, clear of the vanity.
-  - Closet: the hall-side hanging stops 3' short of the bedroom wall, where 12"-deep shelves make a bay the
+  - From the main plan: the hall closet in the closet's hall-side corner, the cased opening in line with the
+    closet's end wall, and the common bath door beside it.
+  - Closet: the hall-side hanging (from the hall closet) stops 3' short of the bedroom wall, where 12"-deep shelves make a bay the
     open closet door rests in (a door stop holds it at 90 degrees, clear of the shelves and the clothes; a
     mirror can go on the door's inside face); the bath-side run stops at the bath door. About 18'-9" of rod.
     Corner shelves and drawer stack at the far end, as now.
@@ -88,16 +90,18 @@ def wic(sh):
         sh.line((a, y + d * 12), (b, y + d * 12), fu)
         sh.text("HANG", (a + b) / 2, y + d * 18, 3.0)
 
-    hang(x0 + 24, x1 - DOOR_BAY, y0, +1)                                   # hall side, up to the door bay:
+    hx, cy = S.face("hall closet|wic end", +1), S.face("hall closet|wic", +1)
+    hang(hx, x1 - DOOR_BAY, y0, +1)                                        # hall side, from the hall closet to the door bay:
     sh.rect(x1 - DOOR_BAY, y0, x1, y0 + 12, fu)                            # 12" shelves the open closet door
     sh.text("SHELVES", x1 - DOOR_BAY / 2, y0 + 6, 2.0)                     # rests clear of (door stop at 90 deg)
     sh.text("DOOR STOP", x1 - DOOR_BAY / 2, y0 + 17, 1.6)
     hang(x0 + 24, BATH_DOOR[0] - 3, y1, -1)                                # bath side: to the bath door
-    for ya, yb in ((y0, y0 + 24), (y1 - 24, y1)):                          # corner shelves either side of
-        sh.rect(x0, ya, x0 + 24, yb, fu)                                   # a drawer stack, as now
-        sh.text("SHELVES", x0 + 12, (ya + yb) / 2, 2.2)
-    sh.rect(x0, y0 + 24, x0 + 20, y1 - 24, fu)
-    sh.text("DRAWERS", x0 + 10, (y0 + y1) / 2, 2.2, rot=90)
+    sh.rect(x0, y1 - 24, x0 + 24, y1, fu); sh.text("SHELVES", x0 + 12, y1 - 12, 2.2)   # end wall, as the main plan:
+    sh.rect(x0, cy, x0 + 20, y1 - 24, fu)                                  # corner shelves and a drawer stack
+    sh.text("DRAWERS", x0 + 10, (cy + y1 - 24) / 2, 2.2, rot=90)
+    c1, cb = S.face("hall closet|wic end", -1), S.face("hall closet|wic", -1)   # the hall closet (main plan)
+    sh.rect(x0, cb - 14, c1, cb, fu); sh.text("SHELVES", (x0 + c1) / 2, cb - 7, 1.8)
+    sh.text("HALL CLOSET", (x0 + c1) / 2, cb - 18, 1.6)
     S.room_label(sh, "WIC", x0, y0, x1, y1, cx=990.0, h=5.0)
     bx, w0 = S.face("suite|primary", +1), (y0 + y1) / 2 + 16 + 3           # bedroom TV: off-centre, on the
     ty = (w0 + S.S_IN) / 2                                                 # wall beside the closet opening
