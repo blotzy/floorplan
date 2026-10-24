@@ -115,8 +115,9 @@ HALL_CL_DOOR = (HALL_ARCH + INT / 2 + 3.5, HALL_ARCH + INT / 2 + 27.5)   # hall 
                                      # with the header), 3 1/2" past the opening's stub for casing
 HALL_CL_W, HALL_CL_D = HALL_CL_DOOR[1] + 1.5 - (HALL_ARCH + INT / 2), 24.0   # in the walk-in closet's corner
 PART = 3.5                           # its two walls to the walk-in closet: 2x3 + 1/2" gyp each side
-HATCH_X = 966.0                         # attic access panel (22" x 54", passes the air handler) along the hall,
-                                        # from here west: about 4' clear of the skylight, beside the air handler platform
+HATCH_X = 954.0                         # attic access panel (22" x 54", passes the air handler) along the hall,
+                                        # from here west: room for a recessed light either side of it (about 5'-8"
+                                        # to the header, 5'-1" to the skylight), beside the air handler platform
 HALL_TUBE = HALL_END - INT / 2 - 32.0   # 14" tubular skylight on the hall's centreline, 2'-8" short of the end
                                         # wall: lights the end wall
 

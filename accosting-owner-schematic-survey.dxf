@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461338.498287037
+2461338.512384259
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461338.498298611
+2461338.512395833
   9
 $TDUUPDATE
  40
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{DA29316E-7D72-46F5-8172-FE2D4C815F8E}
+{DAA3B0C9-292B-4D27-928A-B8AEC9679E7B}
   9
 $VERSIONGUID
   2
-{A74A9D52-6A6B-40E6-B9D9-AB85AF360131}
+{8970B079-834D-4B43-837F-C455DC7C2690}
   9
 $EXTNAMES
 290
@@ -2659,11 +2659,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-WALL
+V-SURV-PAVE
  70
 0
  62
-1
+8
   6
 Continuous
 370
@@ -2676,54 +2676,6 @@ Continuous
 LAYER
   5
 2CC
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-V-SURV-MISC
- 70
-0
- 62
-4
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
-2CD
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-V-SURV-LOT
- 70
-0
- 62
-5
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
-2CE
 330
 1
 100
@@ -2747,6 +2699,54 @@ Continuous
   0
 LAYER
   5
+2CD
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-WALL
+ 70
+0
+ 62
+1
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+2CE
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-MISC
+ 70
+0
+ 62
+4
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
 2CF
 330
 1
@@ -2755,11 +2755,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-PAVE
+V-SURV-LOT
  70
 0
  62
-8
+5
   6
 Continuous
 370
@@ -16071,19 +16071,19 @@ AcDbPolyline
  70
 1
  10
-966.0
+954.0
  20
 416.7
  10
-1020.0
+1008.0
  20
 416.7
  10
-1020.0
+1008.0
  20
 442.2
  10
-966.0
+954.0
  20
 442.2
   0
@@ -16099,7 +16099,7 @@ A-CLNG
 100
 AcDbText
  10
-993.0
+981.0
  20
 429.45
  30
@@ -16111,7 +16111,7 @@ ATTIC HATCH
  72
 1
  11
-993.0
+981.0
  21
 429.45
  31
@@ -16189,7 +16189,7 @@ A-AREA-IDEN
 100
 AcDbText
  10
-1043.625
+1037.625
  20
 429.45
  30
@@ -16201,7 +16201,7 @@ LOBBY
  72
 1
  11
-1043.625
+1037.625
  21
 429.45
  31
@@ -36807,7 +36807,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-24T18:57:32.978113+00:00
+1.4.4 @ 2026-10-24T19:17:50.851735+00:00
   0
 VISUALSTYLE
   5
@@ -43369,7 +43369,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-24T18:57:33.191291+00:00
+1.4.4 @ 2026-10-24T19:17:51.059023+00:00
   0
 ENDSEC
   0
