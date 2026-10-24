@@ -17,6 +17,8 @@
     open closet door rests in (a door stop holds it at 90 degrees, clear of the shelves and the clothes; a
     mirror can go on the door's inside face); the bath-side run stops at the bath door. About 18'-9" of rod.
     Corner shelves and drawer stack at the far end, as now.
+  - The closet | bath wall is a 2x4 (it carries only the shower heads, valves and niche; no drains or vents),
+    its 2" going to the bath.
   - Bath: the WC and the vanity side by side on the rear wall (the vanity under the high window, mirror below
     the 6' sill), a walkway along the closet wall from the door to the shower's walk-in entry at that wall. A 6'-0"
     shower with two heads on the closet wall, 36" apart (a station each, spraying toward the rear wall), each
@@ -47,11 +49,11 @@ BATH_DOOR = (1026.0, 1056.0)                    # 30" door, closet -> bath: swin
 
 
 def plan():
-    y = S.face("south hall wall", +1) + WIC_D + S.WET / 2
-    ws = S.WALLS
-    for i, w in enumerate(ws):
-        if w[0] == "bath|wic":
-            ws[i] = (w[0], w[1], y, *w[3:])
+    y = S.face("south hall wall", +1) + WIC_D + S.INT / 2                  # closet | bath wall: 2x4 (only the
+    ws = S.WALLS                                                           # shower heads, valves and niche in it;
+    for i, w in enumerate(ws):                                             # the WC and vanity are on the rear wall),
+        if w[0] == "bath|wic":                                             # its 2" going to the bath
+            ws[i] = (w[0], w[1], y, w[3], w[4], S.INT)
     mid = S.face("south hall wall", +1) + WIC_D / 2                       # closet opening centred on the aisle
     S.OPENINGS[:] = [o for o in S.OPENINGS if o[0] != "suite|primary"]
     S.OPENINGS += [("suite|primary", mid - 15, mid + 15, "door", "a", -1),   # closet: swings in, opens into the door bay
