@@ -262,8 +262,10 @@ def face(name, side):
 
 
 # The hall skylight is centred in the hall, in line with its lights; in the attic its tube jogs toward the
-# street (two adjustable elbows) to a dome on the gable's street slope just below the ridge, off the solar area.
+# street (two adjustable elbows) to a dome on the gable's street slope, off the solar area: HALL_DOME_DOWN below the
+# ridge (in plan), leaving full shingle courses between its flashing and the ridge cap.
 HALL_TUBE_Y = (face("bedroom hall wall", +1) + face("south hall wall", -1)) / 2
+HALL_DOME_DOWN = 36.0
 
 
 def fmt(inches: float) -> str:

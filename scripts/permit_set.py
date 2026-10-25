@@ -482,11 +482,11 @@ def roof_plan(pdf):
     sh = S.build()
     sk = text_at(sh, "SKYLIGHT")                                        # straight up from the common bath ceiling
     hs = text_at(sh, '14" SKYLIGHT')                                    # the hall's: dome on the street slope,
-    hs = hs and (hs[0], X.RIDGE_Y - 30)                                 # just below the ridge
+    hs = hs and (hs[0], X.RIDGE_Y - S.HALL_DOME_DOWN)                   # 3' down the street slope
     for lab, note, p in (("SKYLIGHT", "", sk),
                          ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it", text_at(sh, "RANGE")),
-                         ("HALL", "14\" TUBULAR SKYLIGHT (CLASS A), centred in the hall; its tube jogs\n2'-6\" in the attic to a "
-                          "dome on the street slope below the ridge: out of the PV area", hs)):
+                         ("HALL", "14\" TUBULAR SKYLIGHT (CLASS A), centred in the hall; its tube\njogs 3' in the attic to a "
+                          "dome on the street slope 3' below the\nridge (full shingle courses above its flashing); out of the PV area", hs)):
         if p:
             ax.add_patch(Circle(p, 7, fc="white", ec=INK, lw=0.9))
             if note:
@@ -952,7 +952,7 @@ def loads_plan(pdf):
     ax.add_patch(Rectangle((hx0, hy - 12.75), 54, 25.5, fill=False, ec=INK, lw=1.2, ls="--", zorder=5))
     ax.text(hx0 + 27, hy - 16, "ATTIC HATCH", fontsize=6, ha="center", va="top", zorder=6, bbox=WHITE)
     ax.add_patch(Circle((S.HALL_TUBE, S.HALL_TUBE_Y), 8, fill=False, ec=INK, lw=1.2, ls="--", zorder=5))
-    ax.text(S.HALL_TUBE, S.HALL_TUBE_Y - 12, "14\" SKYLIGHT TUBE\n(insulated, through the attic)", fontsize=5.5, ha="center",
+    ax.text(S.HALL_TUBE, S.HALL_TUBE_Y - 12, "14\" SKYLIGHT TUBE (insulated;\njogs 3' toward the street to its dome)", fontsize=5.5, ha="center",
             va="top", zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
     for rx, ry in L["rings"]:
         ax.add_patch(Circle((rx, ry), 5, fc=RED, ec=INK, lw=0.8, zorder=7))
