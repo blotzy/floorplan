@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 25, 2026
 
+- **1:37 PM**: Guest ensuite tub alcove: framed stud to stud to the chosen tub's rough-in length, not the drawn finished width (floor-plan doc, open questions).
 - **1:31 PM**: Guest ensuite tub: a 66" x 36" alcove soaking tub with a moderate rim (from a standard 66" x 32"); the toilet and vanity shift 4" toward the hall; grab-bar blocking beside it.
 - **1:22 PM**: Architect review: questions on the dining and kitchen windows (sizing, placement) and on tall storage at the kitchen's southeast corner (peninsula end, between the windows).
 - **1:19 PM**: Open questions: window to-do (frame material and brand, early quote with lead times and rough openings, order at permit issue, check against Title 24, framer gets the rough-opening sheet). Glazing totals updated for the dining window: about 433 sq ft, 19.5%.
