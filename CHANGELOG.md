@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Oct 25, 2026
+
+- **1:09 PM**: Dining window sill 24" (from 18"): two 6' x 6' units, a common size, the sill still below the table top; about 12 sq ft less glass for the Title 24 budget.
+
 ## Oct 24, 2026
 
 - **1:18 PM**: Bedroom hall 3'-8" clear (from 4'-0"): the bedroom-side wall moves 4" toward the hall, so the gym, guest ensuite, guest and office are 12'-9" deep; the reading nook narrows with the hall. House depth and setbacks unchanged.

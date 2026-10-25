@@ -165,8 +165,8 @@ OPENINGS = [
     ("north",       1101.6, 1173.6, "window"),           # office 6'
     ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
-    ("south",       384.0, 528.0, "window", 18.0, 96.0),  # dining: one 12' window (two 6' units), low sill,
-                                                          # centred on the dining wall and table
+    ("south",       384.0, 528.0, "window", 24.0, 96.0),  # dining: one 12' window (two 6' x 6' units, a common
+                                                          # size), sill below the table top; centred on the wall and table
     ("south",       588.0, 648.0, "window", 42.0, 96.0),  # kitchen sink, 5' (clear of the corner cabinets): sill just above the backsplash
     ("south",       *SHOWER_WIN, "window", 84.0, 96.0),   # primary shower: 2'-0" x 1'-0" strip above and between the
                                                            # two heads (stud bays either side clear for their drops)
@@ -210,7 +210,7 @@ CANOPY_D, CANOPY_RUN, CANOPY_Z = 36.0, 12.0, 98.0   # depth off the wall, run pa
 
 def canopies(wall=None):
     """[(wall, x0, x1)] of the window canopies: the kitchen and primary bedroom windows at the rear
-    (the standard-sill ones: not the dining window's low sill or the baths' and laundry's high ones)."""
+    (the standard-sill ones: not the dining window's lower sill or the baths' and laundry's high ones)."""
     out = []
     for o in OPENINGS:
         sill = o[4] if len(o) > 4 else 30.0
