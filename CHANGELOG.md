@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 25, 2026
 
+- **1:56 PM**: Continuous whole-house ventilation fan in the laundry ceiling (exhaust-only, 1.0 sone or less), ducted over the mech closet to a wall cap on the rear wall 3'+ from the windows (A-3, A-6, floor-plan and HVAC docs).
 - **1:55 PM**: Common bath: a plain tubular skylight and a separate exhaust fan with its own roof cap on the rear slope (A-3, A-6, floor-plan and HVAC docs), instead of a combined skylight/fan unit.
 - **1:52 PM**: Exhaust terminations: guest ensuite fan through the roof (cap on the wing's street slope, now on A-3); primary bath fan through the roof or the rear wall, whichever run is shorter (A-3, A-6 detail 4); no laundry fan or dryer vent (HVAC doc).
 - **1:37 PM**: Guest ensuite tub alcove: framed stud to stud to the chosen tub's rough-in length, not the drawn finished width (floor-plan doc, open questions).
