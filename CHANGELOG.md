@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 25, 2026
 
+- **2:25 PM**: Primary bath fan: roof cap straight up from the bath (short vertical duct, offset from the rear-slope row) instead of a wall cap; no wall caps on the house (A-3, A-6 detail 4 now gives the placement rules, HVAC doc).
 - **2:09 PM**: Roof penetrations rearranged (A-3): the common bath's skylight, fan cap and combined plumbing vent in one row across the rear slope at the gable's east end (none upslope of another; the slope west of it left for PV); the guest ensuite's vent and fan cap side by side on the street slope, west of the shed's rake overhang; the kitchen vent off the line below the range hood cap; the primary bath fan to a rear-wall cap at the bath / bedroom corner, 3'+ from windows (A-6, HVAC and floor-plan docs). Roof note on penetration placement.
 - **2:01 PM**: Continuous whole-house ventilation fan moved to the common bath (its exhaust fan, continuous-rated and very quiet, humidity boost, its own roof cap); the laundry goes back to no fan and no wall cap (A-3, A-6, floor-plan and HVAC docs).
 - **1:56 PM**: Continuous whole-house ventilation fan in the laundry ceiling (exhaust-only, 1.0 sone or less), ducted over the mech closet to a wall cap on the rear wall 3'+ from the windows (A-3, A-6, floor-plan and HVAC docs).

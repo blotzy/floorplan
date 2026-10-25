@@ -517,7 +517,8 @@ def roof_plan(pdf):
             (618.0, 612.0, "VTR-3", "VTR-3: kitchen sink (and the prep sink's riser), straight up from\n"
              "the sink at the rear wall line, off the line below the range hood cap", "below")]
     caps = [(935.0, 320.0, "EXH", "EXHAUST CAP: guest ensuite fan, up through the\nceiling (ember-resistant, damper)", "right"),
-            ((sk[0] + 38 if sk else 906.0), row, "EXH", "", None)]
+            ((sk[0] + 38 if sk else 906.0), row, "EXH", "", None),
+            (1000.0, 585.0, "EXH", "EXHAUST CAP: primary bath fan, straight up from the\nbath ceiling (short vertical duct); offset from the row", "right")]
     for ex, ey, tag, lab, side in caps:
         ax.add_patch(Rectangle((ex - 6, ey - 6), 12, 12, fc="white", ec=INK, lw=1.2, zorder=5))
         ax.plot([ex - 6, ex + 6], [ey - 6, ey + 6], color=INK, lw=0.8, zorder=6)
@@ -541,10 +542,6 @@ def roof_plan(pdf):
                 "EXH = common bath fan (the continuous whole-house fan); SK = 10\" tubular skylight (Class A),\n"
                 "straight up from the bath; VTR-2 = common bath, laundry and primary bath (combined in the attic).\n"
                 "Kept 3'+ west of the shed / gable transition", va="bottom", **lbl)
-    ax.add_patch(Rectangle((1056.0, S.S - 5), 12, 10, fc="white", ec=INK, lw=1.2, ls="--", zorder=5))   # in the wall
-    ax.plot([1062.0, 1070.0], [S.S - 5, S.S - 30], color=INK, lw=0.6, zorder=6)
-    ax.text(1070.0, S.S - 30, "WALL CAP below the eave (dashed): primary bath fan, at the bath | bedroom\n"
-            "corner, 3'+ from the bath and bedroom windows (no roof penetration)", va="top", **lbl)
     ax.text(X1 - 40, S.N + 4, "PLUMBING VENTS (APPROX., FINAL PER PLUMBER): each\n6\" min. above the roof and 10' from or 3' above\n"
             "openable windows and air intakes", fontsize=5.5,
             ha="right", va="bottom")
@@ -578,10 +575,10 @@ def roof_plan(pdf):
              "   kitchen's at the rear wall line; the baths and laundry on the\n"
              "   wing's rear slope. The hall skylight's dome is on the street\n"
              "   slope. Exhaust caps metal, ember-resistant, with dampers: the\n"
-             "   range hood and the guest ensuite and common bath fans through\n"
-             "   the roof (the common bath's is the continuous whole-house fan,\n"
-             "   apart from its skylight); the primary bath fan through the rear\n"
-             "   wall, 3'+ from windows. No dryer vent (ventless dryer).\n"
+             "   range hood and all three bath fans through the roof (the common\n"
+             "   bath's is the continuous whole-house fan, apart from its\n"
+             "   skylight; the primary bath's straight up from the bath). No\n"
+             "   wall caps. No dryer vent (ventless dryer).\n"
              "   Penetrations side by side across the slope, never one directly\n"
              "   upslope of another; about 2' between flashings; clear of the\n"
              "   eaves, ridge, the shed / gable transition and the shed's\n"
@@ -843,9 +840,9 @@ def details(pdf):
     for txt, (x, y) in {"Noncombustible gutter guard\n(CRC R337.5.4)": (2, 96), "Metal gutter + drip edge": (16, 62),
                         "Downspout to site drainage\n(per civil)": (2, 50)}.items():
         ax.text(x, y, txt, fontsize=7, va="top")
-    # 4. exhaust terminations: roof caps (range hood, bath fans) and the primary bath fan's wall cap
+    # 4. exhaust terminations: roof caps (range hood, bath fans); no wall caps
     ax = detail_box(fig, 25.2, 13.0, 7.3, 9.8, "4  EXHAUST TERMINATIONS   NTS")
-    ax.text(4, 112, "4a ROOF CAP: range hood, common bath\n(continuous) and guest ensuite fans", fontsize=7, va="top")
+    ax.text(4, 112, "4a ROOF CAP: range hood and all bath fans\n(common bath = continuous fan)", fontsize=7, va="top")
     ax.add_patch(MPoly([(4, 66), (84, 80), (84, 86), (4, 72)], closed=True, fc="#666", ec=INK))     # roof slab
     ax.add_patch(Rectangle((40, 40), 6, 44, fc="white", ec=INK, zorder=3))                          # duct through
     ax.add_patch(MPoly([(33, 84), (53, 84), (53, 91), (33, 91)], closed=True, fc="#999", ec=INK, zorder=4))  # cap
@@ -854,12 +851,9 @@ def details(pdf):
     ax.annotate("Flashing", (36, 78.5), (8, 96), fontsize=6.5, arrowprops=dict(arrowstyle="-", lw=0.6))
     ax.text(48, 46, "Duct up from the\nhood or fan", fontsize=6.5, va="center")
     ax.plot([2, 86], [36, 36], color=INK, lw=0.5, ls=":")
-    ax.text(4, 33, "4b WALL CAP: primary bath fan, rear wall at\nthe bath | bedroom corner, 3'+ from windows", fontsize=7, va="top")
-    ax.add_patch(Rectangle((50, 4), 9, 20, fc="#ccc", ec=INK))                                        # wall (section)
-    ax.add_patch(Rectangle((22, 12), 30, 5, fc="white", ec=INK))                                      # duct
-    ax.add_patch(Rectangle((59, 9), 6, 11, fc="#999", ec=INK))                                        # cap
-    ax.text(67, 14, "Ember-resistant wall cap\nwith damper", fontsize=6.5, va="center")
-    ax.text(22, 21, "Duct from the fan", fontsize=6.5, va="bottom")
+    ax.text(4, 33, "4b PLACEMENT (A-3): no wall caps. Caps side by\nside across the slope, about 2' between\n"
+            "flashings, never directly upslope or downslope\nof another penetration; 3'+ from windows\n"
+            "that open; clear of eaves, ridge and the\nshed / gable transition.", fontsize=7, va="top")
     table(fig, 0.9, 11.9, "WILDLAND-URBAN INTERFACE REQUIREMENTS (VERY HIGH FIRE HAZARD SEVERITY ZONE)",
           ("CRC", "ITEM", "THIS PROJECT"), (1.0, 1.6, 9.5), [(a, b, c) for a, b, c in R337], fs=7.5)
     pdf.savefig(fig); Z.save_png(fig, OUT / "A-6-fire-details.png", dpi=80); plt.close(fig)
