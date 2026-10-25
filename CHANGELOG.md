@@ -6,70 +6,85 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 25, 2026
 
-- **2:29 PM**: Hall skylight dome 3' down the street slope from the ridge (from 2'-6"), leaving full shingle courses between its flashing and the ridge cap (A-3, A-7, floor-plan doc).
-- **2:25 PM**: Primary bath fan: roof cap straight up from the bath (short vertical duct, offset from the rear-slope row) instead of a wall cap; no wall caps on the house (A-3, A-6 detail 4 now gives the placement rules, HVAC doc).
-- **2:09 PM**: Roof penetrations rearranged (A-3): the common bath's skylight, fan cap and combined plumbing vent in one row across the rear slope at the gable's east end (none upslope of another; the slope west of it left for PV); the guest ensuite's vent and fan cap side by side on the street slope, west of the shed's rake overhang; the kitchen vent off the line below the range hood cap; the primary bath fan to a rear-wall cap at the bath / bedroom corner, 3'+ from windows (A-6, HVAC and floor-plan docs). Roof note on penetration placement.
-- **2:01 PM**: Continuous whole-house ventilation fan moved to the common bath (its exhaust fan, continuous-rated and very quiet, humidity boost, its own roof cap); the laundry goes back to no fan and no wall cap (A-3, A-6, floor-plan and HVAC docs).
-- **1:56 PM**: Continuous whole-house ventilation fan in the laundry ceiling (exhaust-only, 1.0 sone or less), ducted over the mech closet to a wall cap on the rear wall 3'+ from the windows (A-3, A-6, floor-plan and HVAC docs).
-- **1:55 PM**: Common bath: a plain tubular skylight and a separate exhaust fan with its own roof cap on the rear slope (A-3, A-6, floor-plan and HVAC docs), instead of a combined skylight/fan unit.
-- **1:52 PM**: Exhaust terminations: guest ensuite fan through the roof (cap on the wing's street slope, now on A-3); primary bath fan through the roof or the rear wall, whichever run is shorter (A-3, A-6 detail 4); no laundry fan or dryer vent (HVAC doc).
-- **1:37 PM**: Guest ensuite tub alcove: framed stud to stud to the chosen tub's rough-in length, not the drawn finished width (floor-plan doc, open questions).
-- **1:31 PM**: Guest ensuite tub: a 66" x 36" alcove soaking tub with a moderate rim (from a standard 66" x 32"); the toilet and vanity shift 4" toward the hall; grab-bar blocking beside it.
-- **1:22 PM**: Architect review: questions on the dining and kitchen windows (sizing, placement) and on tall storage at the kitchen's southeast corner (peninsula end, between the windows).
-- **1:19 PM**: Open questions: window to-do (frame material and brand, early quote with lead times and rough openings, order at permit issue, check against Title 24, framer gets the rough-opening sheet). Glazing totals updated for the dining window: about 433 sq ft, 19.5%.
-- **1:09 PM**: Dining window sill 24" (from 18"): two 6' x 6' units, a common size, the sill still below the table top; about 12 sq ft less glass for the Title 24 budget.
+**Windows**
+- Dining window sill 24" (from 18"): two 6' x 6' units, a common size, the sill still below the table top. Glazing about 433 sq ft (19.5%).
+- Open questions: a windows to-do (frame material and brand; an early quote with lead times, rough openings and any non-standard units; order at permit issue, checked against the Title 24 report; the framer gets the maker's rough-opening sheet).
+- Architect review: questions on the dining and kitchen windows (sizing, placement) and on tall storage at the kitchen's southeast corner (the peninsula's end, between the two windows).
+
+**Guest ensuite**
+- Tub: a 66" x 36" alcove soaking tub with a moderate rim (from a standard 66" x 32"), grab-bar blocking beside it; the toilet and vanity shift 4" toward the hall. The alcove is framed stud to stud to the chosen tub's rough-in length.
+
+**Ventilation and exhaust**
+- The continuous whole-house ventilation fan is the common bath's exhaust fan: continuous-rated and very quiet, boosting on humidity, with its own roof cap. The common bath's tubular skylight is a plain skylight, separate from the fan.
+- The laundry has no fan and no dryer vent (ventless heat pump dryer).
+- Every bath fan exits through the roof: the guest ensuite's on the wing's street slope, the primary bath's straight up from the bath. No wall caps. A-3, A-6 detail 4, HVAC and floor-plan docs.
+
+**Roof penetrations (A-3)**
+- Side by side across each slope, never one directly upslope of another, about 2' between flashings, clear of the eaves, the ridge, the shed / gable transition and the shed's rake overhang above the gable (roof note 6, A-6 detail 4).
+- Rear slope: the common bath's skylight, fan cap and combined plumbing vent in one row at the gable's east end, leaving the slope west of it clear for PV; the kitchen sink's vent straight up from the sink, off the line below the range hood cap.
+- Street slope: the guest ensuite's plumbing vent and fan cap side by side, west of the shed's rake overhang. The hall skylight's dome 3' below the ridge (from 2'-6"), leaving full shingle courses above its flashing.
 
 ## Oct 24, 2026
 
-- **1:18 PM**: Bedroom hall 3'-8" clear (from 4'-0"): the bedroom-side wall moves 4" toward the hall, so the gym, guest ensuite, guest and office are 12'-9" deep; the reading nook narrows with the hall. House depth and setbacks unchanged.
-- **12:50 PM**: Hall closet: a single 24" swing door opening into the hall (hinged away from the cased opening, folding back along the hall wall) instead of bifolds.
-- **12:47 PM**: Dining slider 2" toward the rear yard, keeping about 4" between the courtyard gate's post and the slider after the carport moved back (about 2'-7" of solid wall at the dining corner).
-- **12:44 PM**: Street wall 2" back for setback margin: house 72' x 31'-4" (about 2,226 sq ft), front setback 20'-3¼" (3¼" margin). The street-side rooms lose the 2" (gym, guest, office and guest ensuite 12'-5" deep, lounge 17'-1"); the porch keeps 8' x 5' and the foyer 9'; the carport moves back with the front door.
-- **12:40 PM**: Setbacks are to the finished stucco face: A-1 site note 9 (wall build-up, layout back from the drawn face, surveyor staking and form survey before the pour), Z-1 note 1, the floor-plan doc, and a surveyor to-do.
-- **12:27 PM**: A-7: white backing behind the labels and dimensions over the attic storage highlight.
-- **12:26 PM**: HVAC: attic duct layout around the storage (two supply trunks along the ridge strip's edges, branches outward through the low attic, nothing across or under the decking; short hall return by the air handler).
-- **12:24 PM**: Attic storage (20 psf, decked) wherever the roof's underside is at least 4' above the ceiling: the gym zone continues across the hall, plus a 7'-6" strip along the gable's ridge for the wing's length (A-7, load notes, engineer brief); open-web or attic-frame trusses there.
-- **12:20 PM**: Air handler platform over the primary walk-in closet instead of the guest room (A-7): shorter line set to the rear condenser, condensate near the laundry's drains, quieter over a closet.
-- **12:18 PM**: Hall attic hatch 1' east, evening out the recessed-light bays either side of it (one light between the header and the hatch, one between the hatch and the skylight); smoke/CO alarm off the centreline beside the hatch; engineer brief: hatch set to the truss bays.
-- **12:15 PM**: Urban Forestry parkway trees packet (`renders/county/220-Laurel-parkway-trees.pdf`) updated to the current A-1: the ficus at its surveyed spot, dimensioned ~13'-6" from the olive.
-- **11:59 AM**: Survey revision 102a adds the east parkway ficus: about 13'-6" east of the olive (not ~10'). Plan, survey overlay, A-1, Z-1 and FM-1 show it at its surveyed spot; the overlay and permit set read the newest survey revision.
+**Survey and site**
+- Survey revision 102a adds the east parkway ficus, about 13'-6" east of the olive. The plan, survey overlay, A-1, Z-1 and FM-1 show it at its surveyed spot; the overlay and permit set read the newest survey revision. The Urban Forestry parkway trees packet is updated to match.
+- Setbacks are measured to the finished stucco face: A-1 site note 9 (the wall build-up, layout back from the drawn face, surveyor staking and a form survey before the pour), Z-1 note 1, the floor-plan doc, and a surveyor to-do.
+- Street wall 2" back for setback margin: the house is 72' x 31'-4" (about 2,226 sq ft) and the front setback 20'-3¼" (3¼" margin). The porch keeps 8' x 5' and the foyer 9'; the lounge is 17'-1"; the carport moves back with the front door, and the dining slider moves 2" toward the rear yard to stay about 4" clear of the courtyard gate's post.
+
+**Bedroom wing**
+- Bedroom hall 3'-8" clear (from 4'-0"): the gym, guest ensuite, guest and office are 12'-9" deep; the reading nook narrows with the hall.
+- Hall closet: a single 24" door swinging into the hall, hinged away from the cased opening, instead of bifolds.
+- Hall attic hatch 1' east, with a recessed-light bay on each side of it; the smoke/CO alarm off the centreline beside it; the engineer brief sets the hatch to the truss bays.
+
+**Attic and HVAC**
+- Air handler platform over the primary walk-in closet instead of the guest room: a shorter line set to the rear condenser, the condensate near the laundry's drains, quieter over a closet.
+- Attic storage (20 psf, decked) wherever the roof's underside is at least 4' above the ceiling: the gym zone continues across the hall, plus a 7'-6" strip along the gable's ridge; open-web or attic-frame trusses there. A-7 (labels backed in white over the highlight), load notes, engineer brief, open questions.
+- Duct layout around the storage: two supply trunks along the ridge strip's edges, branches running outward through the low attic, nothing across or under the decking, a short hall return by the air handler.
 
 ## Oct 23, 2026
 
-- **5:54 PM**: Architect review: the bedroom-doors question links the bath-through-the-closet experiment, with its trade-offs.
-- **5:46 PM**: A-3 roof plan: the first solar array's footprint (about 10 kW on the shed) shown as "future PV array, by others, separate permit", with its one flashed conduit penetration over the pantry and laundry attic; roof note 8 updated.
-- **5:17 PM**: Flooring decided: LVP throughout, tile in the bathrooms (FloorScore LVP; slab moisture and flatness checked first). Open questions.
-- **4:13 PM**: Water service: the fire sprinkler tee comes right after the meter and backflow preventer, ahead of the house shutoff, leak-detection valve and softener; no pressure regulator unless measured pressure is high (about 50 psi at the main); at least a 1" line to the house. The 1" meter upgrade is now a to-do to order now. Plumbing doc, open questions.
-- **4:09 PM**: Lincoln Avenue Water's area fire flow form (Section 4) added under renders/county: static at least 50 psi, residual at least 42 psi, 1,100+ gpm at 20 psi. In a Very High Fire Hazard Severity Zone it goes to LA County Fire Prevention for approval before the building permit (new to-do). Open questions, plumbing doc, README.
-- **4:06 PM**: Lincoln Avenue Water's reply recorded: will-serve letter ready ($200, signed in person), existing 5/8" meter on a 1" service, the area fire flow form, a likely 1" meter upsize ($600, 6-12 weeks) and backflow preventer for the sprinklers, and the owner's service line to check for fire damage. Open questions, plumbing and engineer-brief docs.
+**Water**
+- Lincoln Avenue Water's reply recorded: the will-serve letter is ready ($200, signed in person); an existing 5/8" meter on a 1" service; a likely 1" meter upsize ($600, 6-12 weeks, now a to-do to order now) and backflow preventer for the sprinklers; and the owner's service line to check for fire damage.
+- Their area fire flow form (Section 4) added under renders/county: static at least 50 psi, residual at least 42 psi, 1,100+ gpm at 20 psi. In a Very High Fire Hazard Severity Zone it goes to LA County Fire Prevention for approval before the building permit (new to-do).
+- Water service: the fire sprinkler tee right after the meter and backflow preventer, ahead of the house shutoff, leak-detection valve and softener; no pressure regulator unless measured pressure is high; at least a 1" line to the house. Plumbing, engineer-brief and open-questions docs.
+
+**Design**
+- Flooring decided: LVP throughout, tile in the bathrooms (FloorScore LVP; slab moisture and flatness checked first).
+- A-3 roof plan: the first solar array's footprint (about 10 kW on the shed) as "future PV array, by others, separate permit", with its one flashed conduit penetration over the pantry and laundry attic.
+- Architect review: the bedroom-doors question links the bath-through-the-closet experiment, with its trade-offs.
 
 ## Oct 22, 2026
 
-- **1:28 PM**: Hall closet: the cased opening (and its dropped header) moves about 14" east, in line with the walk-in closet's end wall, and a 2'-5" x 2' hall closet takes the walk-in closet's hall-side corner (a blind corner before), with 24" doors 7'-6" tall just past the opening's stub and 2x3 walls to the closet. The walk-in closet keeps its 3' aisle (rod about 21'-3"); the common bath door slides 2" east for casing room and its sink 2" clear of the swing. Plan, 3D, sets, floor-plan doc.
-- **1:03 PM**: Reverted the recessed hall cabinets and the walk-in closet rework: the closet is back to 7'-0" deep with hanging on both long sides and a 3' aisle, and the hall wall back in line (hall 4'-0" clear). The hall storage is an experiment again.
-- **12:57 PM**: Hall storage and walk-in closet reworked: the hall's wall along the closet moves 6" into it, and 12"-deep built-in linen and storage cabinets sit half in that recess along the lobby (hall 3'-6" clear there, the attic hatch clear). The closet (now 6'-6" deep, about a 2'-6" aisle) gets double hang down the bath side and, on the entry side, long hang then a 4' bank of drawers with a counter by the door; the end-wall shelves and drawers stay. The closet door moves 6" with the wall. Plan, 3D, sets, floor-plan doc, engineer brief (the wall jog).
-- **12:24 PM**: Architect review: the hallway concern also asks whether the 4'-0" hall width is right.
-- **12:14 PM**: Open questions: the old house drained under the old driveway toward Laurel Drive, so the existing lateral is most likely a later Laurel connection; the camera inspection confirms its route and condition before the new driveway is poured.
-- **12:10 PM**: Public Works' sewer reply recorded: an 8" clay main in Laurel Drive (1952 as-built added under renders/county), its inverts and the street's curb grade along the frontage; the 1952 plan shows the lot served from Las Flores Drive, with no Laurel lateral. New to-dos: locate the existing lateral from the front cleanout, check for later connection records and a sewer easement, and tie the 1952 elevations to the survey datum. Open questions, plumbing, site and engineer-brief docs.
-- **1:33 AM**: Architect review: great room acoustics added to the open concerns (built-in ways to cut echo in the vaulted, hard-surfaced great room).
+**Sewer**
+- Public Works' reply recorded: an 8" clay main in Laurel Drive (1952 as-built added under renders/county), its inverts and the street's curb grade; the 1952 plan shows the lot served from Las Flores Drive, with no Laurel lateral. The old house drained under the old driveway toward Laurel, so the existing lateral is most likely a later Laurel connection. New to-dos: camera-locate the lateral from the front cleanout before the driveway is poured, check for later connection records and a sewer easement, and tie the 1952 elevations to the survey datum.
+
+**Hall**
+- Hall closet: the cased opening (and its dropped header) moves about 14" east, in line with the walk-in closet's end wall, and a 2'-5" x 2' hall closet takes the walk-in closet's hall-side corner, with 24" doors just past the opening and 2x3 walls to the closet. The walk-in closet keeps its 3' aisle; the common bath door slides 2" east for casing room.
+
+**Architect review**
+- Great room acoustics added to the open concerns (built-in ways to cut echo in the vaulted, hard-surfaced great room), and the hallway concern asks whether the 4'-0" hall width is right.
 
 ## Oct 21, 2026
 
-- **9:45 PM**: Primary shower bench: top sloped slightly toward the shower floor (in the bench itself, under the waterproofing); the bench runs through the glass line with the fixed panel set on its top. Floor-plan doc.
-- **9:41 PM**: Primary shower drain moved to the rear wall under the heads (one-way slope from the bench, a shallower slab recess); outlet at the entry end, its 2" trap arm running in the slab to the closet wall and venting there with the WC and vanity. Plumbing notes only; not drawn.
-- **9:33 PM**: Guest ensuite tub closed by sliding glass doors instead of a curtain. Floor-plan doc.
-- **9:28 PM**: Common bath shower: valve and head on its end wall at the entry instead (the 2x4 wall shared with the primary suite), the head spraying down the shower's length away from the opening; no access panel needed. Plan, 3D, sets, floor-plan doc.
-- **9:27 PM**: Common bath shower: valve and head moved to its back (storage) wall at the entry end, so the water can be started before stepping into the spray; the head on an adjustable arm angled away from the opening, the valve's access panel in the storage room. The end wall shared with the primary suite stays unplumbed. Plan, 3D, sets, floor-plan doc.
-- **9:19 PM**: Primary shower niche moved to the rear wall, centred between the heads below the window and matching its width (within reach of both stations, out of the direct spray; rigid foam behind it in the exterior wall). Plan, sets, floor-plan doc.
-- **9:14 PM**: Robot vacuum dock moved from the storage room to the laundry: an open floor-level bay in the folding counter beside the utility sink, sharing its cold supply and trapped drain. Notes only (floor-plan, plumbing, electrical and open-questions docs); not drawn.
-- **9:13 PM**: 3D model: the primary shower's niche no longer shows as a solid block in the closet wall behind the bench.
-- **9:11 PM**: The wall between the common bath / storage room and the primary bath / walk-in closet is a plain 2x4 wall with sound insulation (nothing is plumbed in it any more; the robot vacuum dock's water and drain come up through the slab). Its 2" go to the primary side: the double shower is 6'-2" wide, its heads centred on the strip window. Plan, 3D, sets, floor-plan doc.
-- **9:05 PM**: Bedroom hall narrowed to 4'-0" clear (from about 4'-3½"): its south wall moves 3½" north, and the rooms along it gain the depth (pantry, laundry, common bath, primary bath and primary bedroom; the walk-in closet keeps its 7'). The primary bath is about 5'-2" deep, widening the walkway past the WC to the shower and the shower's standing room. The kitchen peninsula and fridge stay where they were. Plan, 3D, sets.
-- **8:54 PM**: Primary suite reworked: no tub. The walk-in closet is 7' deep (hanging on both sides with a 3' aisle) and the bath shallower, with a 6' curbless double shower: two heads on the rear wall, each on its own valve, both valves by the walk-in entry, and a full-width solid bench along the closet wall with a niche above it. The shower's high window is a 2'-0" x 1'-0" strip centred between the heads with a 7' sill, so the supplies can drop from the attic in the stud bays either side. The WC and double vanity stay on the closet wall; the closet and bath doors are 30". Glazing about 439 sq ft (19.6%). Plan, 3D, sets (A-2 schedules, A-4 elevations), floor-plan, plumbing, CALGreen, Title 24, open-questions and architect-review docs.
-- **6:12 PM**: New architect review doc for the consultation: the hard requirements (setbacks, coverage, parking, articulation, energy, fire), the reasoning behind the layout, and the open concerns (primary bath shower storage, primary bedroom doors, storage, dining room size).
-- **2:42 PM**: Open questions: the soils report and fault investigation question to County Building & Safety / Geotechnical added to the waiting-on-replies list.
-- **11:30 AM**: Vents simplified now that solar needs only part of the roof: the kitchen sink vents straight up at the rear wall line (VTR-3, the prep sink joining it); the baths and laundry through one or two vents on the wing's rear slope; all roof penetrations outside the first PV array. Fire-zone vent rules spelled out (metal flashings and caps, backdraft dampers, no attic or soffit vents, no dryer vent). A-3 roof plan, plumbing and floor-plan docs.
-- **11:01 AM**: Solar: the first array (about 10 kW, 24 panels) on the shed east of the range cap, with its mounting installed with the roofing and the panels added later; the engineer designs the south-facing plane for the PV load and shows the attachment points for wind uplift; the array's wiring runs under the panels to one roof penetration over the pantry attic. Engineer brief, open questions (including whether the Energy Code's solar requirement applies), floor-plan and electrical docs.
+**Primary suite**
+- No tub. The walk-in closet is 7' deep (hanging on both sides, a 3' aisle) and the bath has a 6'-2" curbless double shower: two heads on the rear wall, each on its own valve, both valves by the walk-in entry; a full-width solid bench along the closet wall, its top sloped toward the shower floor, running through the glass line with the fixed panel set on it; a niche in the rear wall centred between the heads. The shower's high window is a 2'-0" x 1'-0" strip centred between the heads (7' sill), so the supplies drop from the attic either side. The WC and double vanity stay on the closet wall; the closet and bath doors are 30". Glazing about 439 sq ft (19.6%).
+- Shower drain at the rear wall under the heads (one-way slope from the bench), its trap arm running in the slab to the closet wall and venting there. Plumbing notes only; not drawn.
+
+**Bedroom hall and plumbing walls**
+- Bedroom hall narrowed to 4'-0" clear (from about 4'-3½"); the pantry, laundry, common bath, primary bath and primary bedroom gain the depth.
+- The wall between the common bath / storage room and the primary bath / walk-in closet is a plain 2x4 with sound insulation (nothing plumbed in it).
+- Common bath shower: valve and head on its end wall at the entry, the head spraying down the shower's length away from the opening.
+- Guest ensuite tub closed by sliding glass doors instead of a curtain.
+- Robot vacuum dock in the laundry: an open floor-level bay in the folding counter beside the utility sink, sharing its cold supply and trapped drain. Notes only; not drawn.
+
+**Solar and roof**
+- Solar: the first array (about 10 kW, 24 panels) on the shed east of the range cap, its mounting installed with the roofing and the panels added later; the engineer designs the plane for the PV load and uplift; its wiring runs under the panels to one roof penetration over the pantry attic.
+- Vents: the kitchen sink vents straight up at the rear wall line; the baths and laundry through one or two vents on the wing's rear slope; all penetrations outside the first PV array. Fire-zone vent rules spelled out (metal flashings and caps, backdraft dampers, no attic or soffit vents, no dryer vent).
+
+**Docs**
+- A new architect review doc for the consultation: the hard requirements, the reasoning behind the layout, and the open concerns.
+- Open questions: the soils report and fault investigation question to County Building & Safety / Geotechnical added to the waiting-on-replies list.
+- 3D model: the primary shower's niche no longer shows as a solid block in the closet wall.
 
 ## Oct 20, 2026
 
