@@ -31,6 +31,6 @@ Three zones are preferred. If the Manual J or the equipment's minimum airflow ma
 
 **Ventilation**
 
-- Whole-house ventilation: a quiet, continuous-rated exhaust fan running all the time at the code's ventilation rate (one of the bath fans, upsized), with its own termination and ember-resistant damper. The other bath fans and the laundry fan run on demand (humidity or timer switches).
+- Whole-house ventilation: a quiet, continuous-rated exhaust fan running all the time at the code's ventilation rate (one of the bath fans, upsized), with its own termination and ember-resistant damper. The other bath fans run on demand (humidity or timer switches). No laundry fan or dryer vent (ventless heat pump dryer). Terminations: the range hood and the guest ensuite fan through the roof (the ensuite's on the wing's street slope), the common bath's through its skylight unit, and the primary bath's through the roof or the rear wall, whichever run is shorter.
 - Range hood ducted outside through the roof, 400 CFM or less to avoid a makeup-air requirement.
 - Network rack and water heater share the mechanical closet, which opens into the laundry through a louvered bifold so the water heater can draw on the laundry's air (and the rack's waste heat); no conditioned supply into the closet.

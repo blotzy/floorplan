@@ -511,6 +511,11 @@ def roof_plan(pdf):
             (868.0, 544.0, "VTR-2, just downslope of the skylight: common bath, laundry\nand primary bath (combined where short; a second vent\n"
                               "on this slope if simpler), outside the first PV array", "bottom"),
             (655.0, 612.0, "VTR-3: kitchen sink (and the prep sink's\nriser), straight up at the rear wall line", "top")]
+    for ex, ey, lab in ((872.0, 290.0, "EXHAUST CAP: guest ensuite fan, up through the\nceiling to the wing's street slope (ember-resistant, damper)"),
+                        (1000.0, 585.0, "EXHAUST: primary bath fan, roof cap on the rear slope\nor wall cap at the rear wall, whichever run is shorter")):
+        ax.add_patch(Rectangle((ex - 6, ey - 6), 12, 12, fc="white", ec=INK, lw=1.2, zorder=5))
+        ax.plot([ex - 6, ex + 6], [ey - 6, ey + 6], color=INK, lw=0.8, zorder=6)
+        ax.text(ex + 10, ey + 4, lab, fontsize=5.5, va="bottom")
     for vx, vy, lab, va in vtrs:
         ax.add_patch(Circle((vx, vy), 6, fc="white", ec=INK, lw=1.2, zorder=5))
         ax.plot([vx - 6, vx + 6], [vy] * 2, color=INK, lw=0.8, zorder=6)
@@ -547,8 +552,11 @@ def roof_plan(pdf):
              "   (VTR): the guest ensuite's on the wing's street slope; the\n"
              "   kitchen's at the rear wall line; the baths and laundry on the\n"
              "   wing's rear slope. The hall skylight's dome is on the street\n"
-             "   slope. Exhaust caps metal with backdraft dampers; bath fans\n"
-             "   exit through walls where possible. No dryer vent.\n"
+             "   slope. Exhaust caps metal, ember-resistant, with dampers: the\n"
+             "   range hood and the guest ensuite fan through the roof (the\n"
+             "   common bath's fan vents through its skylight unit); the\n"
+             "   primary bath fan through the roof or the rear wall, whichever\n"
+             "   run is shorter. No dryer vent (ventless dryer).\n"
              "7. Carport: attached open carport, its own roof at 1/2\":12 in\n"
              "   double-lock standing seam (Class A assembly, uplift-rated),\n"
              "   gutter on its east edge.\n"
@@ -806,9 +814,9 @@ def details(pdf):
     for txt, (x, y) in {"Noncombustible gutter guard\n(CRC R337.5.4)": (2, 96), "Metal gutter + drip edge": (16, 62),
                         "Downspout to site drainage\n(per civil)": (2, 50)}.items():
         ax.text(x, y, txt, fontsize=7, va="top")
-    # 4. exhaust terminations: roof cap (range hood, interior bath) and wall cap (rooms on an exterior wall)
+    # 4. exhaust terminations: roof cap (range hood, guest ensuite fan) and the primary bath fan's optional wall cap
     ax = detail_box(fig, 25.2, 13.0, 7.3, 9.8, "4  EXHAUST TERMINATIONS   NTS")
-    ax.text(4, 112, "4a ROOF CAP: range hood; fans in rooms\nwith no exterior wall (common bath)", fontsize=7, va="top")
+    ax.text(4, 112, "4a ROOF CAP: range hood, guest ensuite fan\n(primary bath fan if routed up)", fontsize=7, va="top")
     ax.add_patch(MPoly([(4, 66), (84, 80), (84, 86), (4, 72)], closed=True, fc="#666", ec=INK))     # roof slab
     ax.add_patch(Rectangle((40, 40), 6, 44, fc="white", ec=INK, zorder=3))                          # duct through
     ax.add_patch(MPoly([(33, 84), (53, 84), (53, 91), (33, 91)], closed=True, fc="#999", ec=INK, zorder=4))  # cap
@@ -817,7 +825,7 @@ def details(pdf):
     ax.annotate("Flashing", (36, 78.5), (8, 96), fontsize=6.5, arrowprops=dict(arrowstyle="-", lw=0.6))
     ax.text(48, 46, "Duct up from the\nhood or fan", fontsize=6.5, va="center")
     ax.plot([2, 86], [36, 36], color=INK, lw=0.5, ls=":")
-    ax.text(4, 33, "4b WALL CAP: bath fans on an exterior\nwall (no roof penetration)", fontsize=7, va="top")
+    ax.text(4, 33, "4b WALL CAP (option): primary bath fan\nat the rear wall, if that run is shorter", fontsize=7, va="top")
     ax.add_patch(Rectangle((50, 4), 9, 20, fc="#ccc", ec=INK))                                        # wall (section)
     ax.add_patch(Rectangle((22, 12), 30, 5, fc="white", ec=INK))                                      # duct
     ax.add_patch(Rectangle((59, 9), 6, 11, fc="#999", ec=INK))                                        # cap
