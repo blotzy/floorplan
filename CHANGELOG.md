@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 25, 2026
 
+- **1:19 PM**: Open questions: window to-do (frame material and brand, early quote with lead times and rough openings, order at permit issue, check against Title 24, framer gets the rough-opening sheet). Glazing totals updated for the dining window: about 433 sq ft, 19.5%.
 - **1:09 PM**: Dining window sill 24" (from 18"): two 6' x 6' units, a common size, the sill still below the table top; about 12 sq ft less glass for the Title 24 budget.
 
 ## Oct 24, 2026

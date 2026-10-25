@@ -35,14 +35,14 @@ What the energy consultant needs to model the house and produce the compliance f
 | Street (22°) | Guest ensuite (high) | 2'-6" x 1'-6" | 3.8 sq ft |
 | Porch side (112°) | Reeded window | 2'-0" x 5'-6" | 11.0 sq ft |
 | East (112°) | Dining slider | 6'-0" x 8'-0" | 48.0 sq ft |
-| Rear (202°) | Dining (two units) | 12'-0" x 6'-6" | 78.0 sq ft |
+| Rear (202°) | Dining (two units) | 12'-0" x 6'-0" | 72.0 sq ft |
 | Rear (202°) | Kitchen | 5'-0" x 4'-6" | 22.5 sq ft |
 | Rear (202°) | High windows (2: primary bath, laundry) | 3'-6" x 2'-0" each | 14.0 sq ft |
 | Rear (202°) | Primary shower (high strip) | 2'-0" x 1'-0" | 2.0 sq ft |
 | Rear (202°) | Primary bedroom | 6'-0" x 5'-6" | 33.0 sq ft |
 | West (292°) | Reading nook | 3'-0" x 3'-6" | 10.5 sq ft |
 | West (292°) | Office (high) | 4'-0" x 2'-0" | 8.0 sq ft |
-| | **Total** | | **about 439 sq ft (about 19.6% of the floor area, just under the prescriptive 20%)** |
+| | **Total** | | **about 433 sq ft (about 19.5% of the floor area, just under the prescriptive 20%)** |
 
 Shading: 2'-6" eaves all round; at the rear, 3'-deep metal canopies over the kitchen and primary bedroom windows. The front door's glass lite (if any) is still to be chosen.
 

@@ -36,6 +36,7 @@
 - [x] Flooring: decided. LVP (luxury vinyl plank) throughout, tile in the bathrooms. Pick an LVP that's FloorScore certified (CALGreen 4.504.4). Before it goes down, test the slab's moisture (a new slab needs time to dry) and check its flatness; budget for a moisture barrier and leveling where needed.
 - [ ] Pick the linear electric fireplace (about 60") for the hearth bench: listed for a built-in install with a bench or shelf directly above it, heat venting to the front or bottom, its circuit, and its clearance to the TV above. The framer builds the bench to its installation sheet.
 - [ ] Pick the fridge model (sets the exact opening and door clearance). When shopping, check that its depth and open doors leave the walkway past it clear.
+- [ ] Windows: pick the frame material and brand (vinyl, fiberglass or thin-frame aluminum); it sets the lead time (roughly 4-8, 6-10 or 10-16+ weeks, longer with the fire rebuild demand) and which sizes are standard. During plan check, get a quote from the schematic sizes: the lead time per unit, the rough-opening sizes, and anything non-standard or at a premium (the 10' three-panel lounge unit, or mulled units if not offered; the 8'-tall dining slider; the mulled clerestory and dining units; reeded glass). Order when the permit issues (after plan check, before framing), checking the U-factor and SHGC against the Title 24 report and the fire-zone glazing (dual-pane, one pane tempered). Give the framer the maker's rough-opening sheet, and check the openings after framing, before delivery.
 
 **Trades**
 
@@ -57,7 +58,7 @@
 - [ ] Plumber: check the owner's side of the water service line (meter to house) for fire or debris-removal damage (pressure test, inspect where exposed); replace it if needed, at least 1" for the sprinklers. Do it with the sewer camera inspection.
 - [ ] Sprinkler designer: place the heads clear of the ceiling fans in the primary bedroom, guest bedroom and office (or confirm the fans meet the code's open-fan exception), and cover the reading nook under its lowered ceiling.
 - [ ] Plumber: confirm the robot vacuum dock's drain connection into the laundry sink's trapped drain.
-- [ ] Energy consultant: glazing is about 439 sq ft (about 19.6% of the floor area), just under the prescriptive 20%, with little margin; confirm the path (prescriptive or performance) and the front door's glass lite (see [Title 24 inputs](14-title24-inputs.md)).
+- [ ] Energy consultant: glazing is about 433 sq ft (about 19.5% of the floor area), just under the prescriptive 20%, with little margin; confirm the path (prescriptive or performance) and the front door's glass lite (see [Title 24 inputs](14-title24-inputs.md)).
 - [ ] HVAC and energy consultant: an ERV instead of the continuous exhaust fan (about $4,000–7,000 more installed): fresh air through a MERV 13 filter on smoke days and some heat and humidity recovery. What does it earn in the Title 24 run?
 - [ ] HVAC: Manual J load calculation and Manual D duct design to size the ducted heat pump and confirm three zones (or two, if the primary suite is too small to run alone).
 - [ ] Electrician: load calculation with the full appliance list, confirming 200A.
