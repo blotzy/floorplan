@@ -374,12 +374,12 @@ def vanity(sh, x0, y0, x1, y1, label, rot=0):
 
 
 def common_bath(sh):
-    """66" x 32" alcove tub with a shower head across the window end. Tub drain, valve and
+    """66" x 36" alcove soaking tub (about a 20" rim) with a shower head across the window end. Tub drain, valve and
     head, the WC and the vanity all on the east (plumbing) wall shared with the gym."""
     c0, c1 = face("gym|ensuite", +1), face("ensuite|guest", -1)          # 66" clear: tub wall to wall
     hall = face("bedroom hall wall", -1)
-    ty = N_IN + 32.0
-    tub(sh, c0, N_IN, c0 + 66.0, ty, "TUB 66x32")
+    ty = N_IN + 36.0
+    tub(sh, c0, N_IN, c0 + 66.0, ty, "TUB 66x36")
     sh.circle((c0 + 4, N_IN + 16), 2.0, "A-EQPM")                     # shower head + valve, plumbing wall
     sh.heads.append((c0, N_IN + 16, 1.0, 0.0))
     sh.line((c0, ty + 1), (c0 + 66.0, ty + 1), "A-EQPM")              # curtain rod
