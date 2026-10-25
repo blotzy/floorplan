@@ -483,7 +483,7 @@ def roof_plan(pdf):
     sk = text_at(sh, "SKYLIGHT")                                        # straight up from the common bath ceiling
     hs = text_at(sh, '14" SKYLIGHT')                                    # the hall's: dome on the street slope,
     hs = hs and (hs[0], X.RIDGE_Y - 30)                                 # just below the ridge
-    for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT + FAN (CLASS A),\nstraight up from the bath; VTR-2 just downslope", sk),
+    for lab, note, p in (("SKYLIGHT", "10\" TUBULAR SKYLIGHT (CLASS A), straight up\nfrom the bath; VTR-2 just downslope", sk),
                          ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it", text_at(sh, "RANGE")),
                          ("HALL", "14\" TUBULAR SKYLIGHT (CLASS A), centred in the hall; its tube jogs\n2'-6\" in the attic to a "
                           "dome on the street slope below the ridge: out of the PV area", hs)):
@@ -511,7 +511,8 @@ def roof_plan(pdf):
             (868.0, 544.0, "VTR-2, just downslope of the skylight: common bath, laundry\nand primary bath (combined where short; a second vent\n"
                               "on this slope if simpler), outside the first PV array", "bottom"),
             (655.0, 612.0, "VTR-3: kitchen sink (and the prep sink's\nriser), straight up at the rear wall line", "top")]
-    for ex, ey, lab in ((872.0, 290.0, "EXHAUST CAP: guest ensuite fan, up through the\nceiling to the wing's street slope (ember-resistant, damper)"),
+    for ex, ey, lab in ((850.0, 590.0, "EXHAUST CAP: common bath fan (separate\nfrom the skylight), on the rear slope"),
+                        (872.0, 290.0, "EXHAUST CAP: guest ensuite fan, up through the\nceiling to the wing's street slope (ember-resistant, damper)"),
                         (1000.0, 585.0, "EXHAUST: primary bath fan, roof cap on the rear slope\nor wall cap at the rear wall, whichever run is shorter")):
         ax.add_patch(Rectangle((ex - 6, ey - 6), 12, 12, fc="white", ec=INK, lw=1.2, zorder=5))
         ax.plot([ex - 6, ex + 6], [ey - 6, ey + 6], color=INK, lw=0.8, zorder=6)
@@ -554,7 +555,7 @@ def roof_plan(pdf):
              "   wing's rear slope. The hall skylight's dome is on the street\n"
              "   slope. Exhaust caps metal, ember-resistant, with dampers: the\n"
              "   range hood and the guest ensuite fan through the roof (the\n"
-             "   common bath's fan vents through its skylight unit); the\n"
+             "   common bath fan has its own roof cap, apart from its skylight); the\n"
              "   primary bath fan through the roof or the rear wall, whichever\n"
              "   run is shorter. No dryer vent (ventless dryer).\n"
              "7. Carport: attached open carport, its own roof at 1/2\":12 in\n"
@@ -816,7 +817,7 @@ def details(pdf):
         ax.text(x, y, txt, fontsize=7, va="top")
     # 4. exhaust terminations: roof cap (range hood, guest ensuite fan) and the primary bath fan's optional wall cap
     ax = detail_box(fig, 25.2, 13.0, 7.3, 9.8, "4  EXHAUST TERMINATIONS   NTS")
-    ax.text(4, 112, "4a ROOF CAP: range hood, guest ensuite fan\n(primary bath fan if routed up)", fontsize=7, va="top")
+    ax.text(4, 112, "4a ROOF CAP: range hood, common bath and\nguest ensuite fans (primary bath if routed up)", fontsize=7, va="top")
     ax.add_patch(MPoly([(4, 66), (84, 80), (84, 86), (4, 72)], closed=True, fc="#666", ec=INK))     # roof slab
     ax.add_patch(Rectangle((40, 40), 6, 44, fc="white", ec=INK, zorder=3))                          # duct through
     ax.add_patch(MPoly([(33, 84), (53, 84), (53, 91), (33, 91)], closed=True, fc="#999", ec=INK, zorder=4))  # cap
