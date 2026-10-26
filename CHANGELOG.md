@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 26, 2026
 
+- **4:28 PM**: Will-serve letter from Lincoln Avenue Water picked up; open questions note where it goes (permit application, Fire Prevention with the fire flow form, sprinkler designer) and to watch its expiration.
 - **2:47 PM**: Public Works asked for a civil sheet in the permit set covering the parkway tree removal, prepared in consultation with them: added to the civil engineer's scope (engineer brief), a to-do, the Urban Forestry item and A-1 site note 4.
 
 ## Oct 25, 2026
