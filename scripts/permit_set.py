@@ -884,6 +884,7 @@ def cover_view():
 
 # ---- A-7 attic and loads plan ---------------------------------------------------------------
 RING_GAP = 20.0                                       # gym rings: 20" apart, side by side across the swing
+RING_OFF = 36.0                                       # their centre 3' off the west wall (outer ring ~2'-2" from it)
 WHITE = dict(fc="white", ec="none", alpha=0.85, pad=1.5)   # label backing over the A-7 highlights
 STORE_H = 48.0                                        # attic storage: at least 4' from the 9' ceiling to the roof's underside
 
@@ -892,7 +893,9 @@ def loads():
     """Where the special loads sit (plan inches): ring points, storage strip, air handler platform, PV."""
     gx0, gx1 = S.face("lounge|gym", +1), S.face("gym|ensuite", -1)
     gy0, gy1 = S.N_IN, S.face("bedroom hall wall", -1)
-    cx, cy = (gx0 + gx1) / 2, (gy0 + gy1) / 2
+    cx = gx1 - RING_OFF                                 # a ring lane along the west (ensuite) wall, leaving the
+    cy = gy0 + 68.0                                     # east side clear for a rack; a little toward the street so
+                                                        # the swing (about 3'-6" each way) stays clear of the door
     rings = [(cx - RING_GAP / 2, cy), (cx + RING_GAP / 2, cy)]
     wy0 = S.face("south hall wall", +1)
     ahu = (S.HATCH_X - 15, wy0, S.HATCH_X + 60, wy0 + 41.0)   # platform over the primary walk-in closet, beside the
@@ -974,8 +977,9 @@ def loads_plan(pdf):
             zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
     ax.text((S.E + S.W) / 2, y0 + 8, "ATTIC AND LOADS PLAN   1/4\" = 1'-0\"", fontsize=12, weight="bold", ha="center")
     notes = ("LOAD NOTES (for the structural engineer and truss designer)\n"
-             "1. Gym ring points: two eye bolts 20\" apart at the gym's centre,\n"
-             "   rings swinging along the room's long (street-to-hall) direction.\n"
+             "1. Gym ring points: two eye bolts 20\" apart, about 3' off the west\n"
+             "   (ensuite) wall, a little toward the street; rings swinging street-\n"
+             "   to-hall. The east side of the room stays clear for a rack.\n"
              "   500 lb concentrated at each, dynamic: blocking across several\n"
              "   trusses or joists with framing connectors; through-bolted forged\n"
              "   eye bolts with plate washers.\n"

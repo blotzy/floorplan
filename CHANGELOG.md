@@ -6,6 +6,9 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 25, 2026
 
+**Gym**
+- Ring points moved off-centre into a lane along the west (ensuite) wall, about 3' off it and a little toward the street, clear of the door swing; the east side of the room stays clear for a rack, with blocking and sound insulation in the east (lounge) wall (A-7, load note 1, floor-plan doc, engineer brief; a gym equipment to-do).
+
 **Pantry**
 - The pantry door swings out into the hall, hinged away from the kitchen so it folds flat against the hall wall toward the laundry door, and moves about 1' west in line with the pantry's aisle; the shelves run the full length of all three walls (about 3' more per shelf on the kitchen side).
 
