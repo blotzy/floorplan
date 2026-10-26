@@ -185,7 +185,8 @@ OPENINGS = [
     ("ensuite|guest", 335.0, 365.0, "door", "a", +1),       # guest ensuite's only door: swings into the guest room (the bath is narrow)
     ("bedroom hall wall", 906.5, 942.5, "door", "a", -1),  # guest
     ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, by the hall's end
-    ("south hall wall", 682.5, 712.5, "door", "a", +1),     # pantry (by the fridge)
+    ("south hall wall", 695.0, 725.0, "door", "b", -1),     # pantry: swings out, folding flat on the hall wall
+                                                            # toward the laundry door; in line with its aisle
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 847.75, 877.75, "door", "b", +1),   # common bath, 30", by its west wall (3 1/2" for casing
                                                             # beside the cased opening's stub)
@@ -714,7 +715,7 @@ def build() -> Sheet:
 
     p0, p1 = face("kitchen|pantry", +1), face("pantry|laundry", -1)          # pantry shelves
     pm = face("pantry|mech", -1)
-    sh.rect(p0, 495.0, p0 + 16, pm, eq); sh.rect(p1 - 16, srow, p1, pm, eq)
+    sh.rect(p0, srow, p0 + 16, pm, eq); sh.rect(p1 - 16, srow, p1, pm, eq)   # full length: the door swings out
     sh.rect(p0 + 16, pm - 16, p1 - 16, pm, eq)
 
     sh.circle((p0 + 13, S_IN - 13), 12.0, eq); sh.text("HPWH", p0 + 13, S_IN - 13, 3.0)   # mech

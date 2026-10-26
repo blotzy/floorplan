@@ -6,6 +6,9 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 25, 2026
 
+**Pantry**
+- The pantry door swings out into the hall, hinged away from the kitchen so it folds flat against the hall wall toward the laundry door, and moves about 1' west in line with the pantry's aisle; the shelves run the full length of all three walls (about 3' more per shelf on the kitchen side).
+
 **Purchasing**
 - Open questions: a purchasing and rebates section (Buildnotes group buying, HPP Cares bulk pricing, neighbour joint orders, the County's survivor vendor discounts, SCE SWITCH appliance rebates, and why out-of-state buying doesn't save tax).
 
