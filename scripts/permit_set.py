@@ -422,7 +422,7 @@ def site_plan(pdf):
              "   the owner's topographic survey.\n"
              "2. Finished floor elevation, grading and drainage\n   per civil (separate sheets).\n"
              "3. Eaves (dashed) 2'-6\" all round (LACC 22.110.090).\n"
-             "4. West parkway olives protected during construction\n   (root zones); the dead lot tree and the east\n   parkway olive and ficus removed (County permit).\n"
+             "4. West parkway olives protected during construction\n   (root zones); the dead lot tree and the east\n   parkway olive and ficus removed (County permit;\n   parkway sheet per civil, with Public Works).\n"
              "5. Ember-resistant zone under the eaves and 5' beyond\n   them; planting per the fuel modification plan (FM-1).\n"
              "6. Water, sewer and SCE service per the utilities;\n   no gas service (all-electric).\n"
              "7. Demolition: remove the remaining retaining wall and\n   chimney from the burned house (dashed red); asbestos\n"

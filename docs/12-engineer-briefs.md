@@ -47,7 +47,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 
 **Project:** as above. Lot 113.00' x 64.77' (7,319 sq ft), topographic survey on hand (DWG, DXF, PDF; sent separately).
 
-**Scope requested:** finished floor elevation, grading and drainage plan, erosion control for construction, and the County grading permit determination (Appendix J103). Coordinate the foundation-to-grade design with the structural engineer.
+**Scope requested:** finished floor elevation, grading and drainage plan, erosion control for construction, the County grading permit determination (Appendix J103), and a **parkway sheet** that Public Works asked to see in the permit set: the removal of the two east parkway trees (olive and ficus, both on survey rev. 102a), the new 18' driveway approach, protection of the west parkway olives, and the replacement street trees, prepared in consultation with Public Works (Road Maintenance District 2, Urban Forestry). Coordinate the foundation-to-grade design with the structural engineer.
 
 **Site conditions and design inputs:**
 

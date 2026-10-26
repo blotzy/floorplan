@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Oct 26, 2026
+
+- **2:47 PM**: Public Works asked for a civil sheet in the permit set covering the parkway tree removal, prepared in consultation with them: added to the civil engineer's scope (engineer brief), a to-do, the Urban Forestry item and A-1 site note 4.
+
 ## Oct 25, 2026
 
 **Gym**
