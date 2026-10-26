@@ -6,6 +6,9 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 25, 2026
 
+**Purchasing**
+- Open questions: a purchasing and rebates section (Buildnotes group buying, HPP Cares bulk pricing, neighbour joint orders, the County's survivor vendor discounts, SCE SWITCH appliance rebates, and why out-of-state buying doesn't save tax).
+
 **Windows**
 - Dining window sill 24" (from 18"): two 6' x 6' units, a common size, the sill still below the table top. Glazing about 433 sq ft (19.5%).
 - Open questions: a windows to-do (frame material and brand; an early quote with lead times, rough openings and any non-standard units; order at permit issue, checked against the Title 24 report; the framer gets the maker's rough-opening sheet).
