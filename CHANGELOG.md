@@ -7,6 +7,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 ## Oct 25, 2026
 
 **Gym**
+- Ring points may shift toward the street or the hall to suit the framing, keeping 20" apart, their centre at least 3' off the west wall, at least 4'-6" from the street wall, and the swing clear of the door (A-7 load note 1, engineer brief).
 - Ring points moved off-centre into a lane along the west (ensuite) wall, about 3' off it and a little toward the street, clear of the door swing; the east side of the room stays clear for a rack, with blocking and sound insulation in the east (lounge) wall (A-7, load note 1, floor-plan doc, engineer brief; a gym equipment to-do).
 
 **Pantry**
