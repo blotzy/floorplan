@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 26, 2026
 
+- **8:18 PM**: Architect review: open questions reordered by priority (facade articulation and exterior lighting first) and renumbered.
 - **8:08 PM**: Architect review: an open question on exterior lighting (placement, fixture types, the code and fire-zone requirements).
 - **7:46 PM**: 3D model: eye-level views of the street facade from across the street, the east, the west, up the driveway and from the entry court (renders/3d/street-views).
 - **5:18 PM**: Rear eave 2'-0" (from 2'-6"), so with its gutter it stays within the 2'-6" projection Planning allows; the street and side eaves stay 2'-6". Roof, 3D model, zoning and permit sets (A-1, A-3, A-4, A-5, notes), FM-1 and docs.
