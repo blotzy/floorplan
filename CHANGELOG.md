@@ -6,7 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 26, 2026
 
-- **8:51 PM**: Primary bath window taller: 4'-0" x 3'-0", sill lowered to 5'-0" (head still 8'), easier to reach and more light; the sill stays out of the shower's safety-glazing zone. Glazing about 436 sq ft (19.6%).
+- **8:51 PM**: Primary bath window taller: 4'-0" x 2'-6", sill lowered to 5'-6" (head still 8'), easier to reach and more light, the sill well clear of the shower's safety-glazing height. Glazing about 434 sq ft (19.5%).
 - **8:45 PM**: Primary bath: no window in the shower; its two heads 42" apart (from 36") and the niche centred between them; the walkway window widened to 4'-0" x 2'-0", the bath's only window, matching the laundry's sill and head. Glazing about 432 sq ft (19.4%). Plan, 3D, sets, floor-plan, plumbing and Title 24 docs.
 - **8:08 PM**: Architect review: an open question on exterior lighting (placement, fixture types, fixtures for the midcentury look); the dining room question notes the indoor/outdoor recess idea that didn't work out.
 - **7:46 PM**: 3D model: eye-level views of the street facade from across the street, the east, the west, up the driveway and from the entry court (renders/3d/street-views).
