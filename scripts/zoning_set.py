@@ -36,6 +36,7 @@ PITCH = 2 / 12
 UNDER = X.shed_vault_under(PITCH)              # underside of the shed's framing at plan y
 GABLE = X.gable_under(PITCH)                   # and of the bedroom wing's gable (west of X.WING_X)
 THK, OV = X.THK, X.EAVE                        # roof framing depth, eave overhang
+OVR = X.EAVE_REAR                              # the rear eave (its gutter counts in the projection)
 INK, SOFT = "#222", "#888"
 
 
@@ -86,7 +87,7 @@ SETBACKS = [   # (label, required, provided) in inches
     ("Side, east (carport)", SIDE_REQ, cx0 - S.LOT_X0),
 ]
 TOP = UNDER(S.N - OV) + THK                      # highest point: roof top at the street fascia
-REAR_TOP = UNDER(S.S + OV) + THK
+REAR_TOP = UNDER(S.S + OVR) + THK
 RIDGE_TOP = GABLE(X.RIDGE_Y) + THK               # the wing's ridge
 WING_EAVE_TOP = GABLE(S.N - OV) + THK            # the wing's street eave
 
@@ -204,8 +205,9 @@ def site_plan(pdf):
              "   height above grade depends on the foundation design (to be set with the civil).\n"
              "4. Lot lines, lot dimensions and existing trees are from the owner's topographic\n"
              "   survey (available on request).\n"
-             f"5. Eaves {ftin(OV)} all round: the most an eave may project into a required yard\n"
-             "   (§22.110.090.A); more than 2'-6\" from every lot line, no supports in the yards.\n"
+             f"5. Eaves {ftin(OV)}, the rear {ftin(OVR)}: the projection is measured to its farthest point,\n"
+             "   gutter included (Planning); within 2'-6\" into each required yard (§22.110.090.A),\n"
+             "   more than 2'-6\" from every lot line, no supports in the yards.\n"
              f"6. Rear window canopies {ftin(S.CANOPY_D)} deep (§22.110.090.B: up to 5' into the rear yard):\n"
              "   over the windows only, 1' past each side, no supports in the yard.\n"
              f"7. Covered entry porch 8'-0\" x 5'-0\" (Table 22.140.520-D), {ftin(S.PORCH_FWD)} into the front yard under a\n"
@@ -232,7 +234,7 @@ def floor_plan(pdf):
 def roof_plan(pdf):
     fig = sheet("Z-3", "Roof plan")
     ax = fig.add_axes([0.04, 0.12, 0.92, 0.82])
-    X0, X1, Y0, Y1 = S.E - OV, S.W + OV, S.N - OV, S.S + OV
+    X0, X1, Y0, Y1 = S.E - OV, S.W + OV, S.N - OV, S.S + OVR
     ax.add_patch(Rectangle((X0, Y0), X1 - X0, Y1 - Y0, fc="#e9e9e9", ec=INK, lw=1.4))
     ax.add_patch(MPoly(FOOT, closed=True, fill=False, ec=SOFT, ls="--", lw=0.8))
     rx0, ry0, rx1, ry1 = S.CARPORT_ROOF
@@ -251,7 +253,7 @@ def roof_plan(pdf):
     ax.text((wx + X1) / 2, ry - 60, f"GABLE 2:12, RIDGE ~{ftin(RIDGE_TOP)}", ha="center", va="center", fontsize=8.5,
             bbox=dict(fc="white", ec="none"))
     ax.text((X0 + X1) / 2, Y1 + 50, "Class A asphalt shingles · heights above finished floor · "
-            f"{ftin(OV)} eaves all round (max. 2'-6\" into a required yard, §22.110.090.A) · "
+            f"{ftin(OV)} eaves, {ftin(OVR)} at the rear (max. 2'-6\" into a required yard, gutter included) · "
             "gutter along the rear edge (none on the wing's street eave)", ha="center", fontsize=8.5)
     ax.annotate("", (cx0 + 10, (cy0 + cy1) / 2), (cx1 - 20, (cy0 + cy1) / 2), arrowprops=dict(arrowstyle="->", lw=1.2))
     ax.text((cx0 + cx1) / 2, (cy0 + cy1) / 2 + 22, "CARPORT ROOF\n½\":12, slopes away from house\nstanding-seam metal\n"
@@ -293,7 +295,7 @@ def elevation(ax, side):
     if side in ("north", "south"):
         a, b = S.E, S.W
         wall_top = UNDER(S.N) if side == "north" else UNDER(S.S)
-        za = UNDER(S.N - OV) if side == "north" else UNDER(S.S + OV)
+        za = UNDER(S.N - OV) if side == "north" else UNDER(S.S + OVR)
         if side == "north":                                        # shed block, then the wing's gable beside it
             wx = X.WING_X
             ax.add_patch(Rectangle((h(a), 0), wx - a, wall_top, fc="#efe9df", ec=INK, lw=1.2))
@@ -339,7 +341,7 @@ def elevation(ax, side):
         a, b = S.N, S.S
         hy = (lambda y: y) if side == "west" else (lambda y: -y)
         pts = [(hy(a), 0), (hy(a), UNDER(a)), (hy(b), UNDER(b)), (hy(b), 0)]
-        roof = [(hy(a - OV), UNDER(a - OV)), (hy(b + OV), UNDER(b + OV)), (hy(b + OV), UNDER(b + OV) + THK),
+        roof = [(hy(a - OV), UNDER(a - OV)), (hy(b + OVR), UNDER(b + OVR)), (hy(b + OVR), UNDER(b + OVR) + THK),
                 (hy(a - OV), UNDER(a - OV) + THK)]
         if side == "west":                                         # the shed beyond, then the gable end
             ax.add_patch(MPoly(pts, closed=True, fc="#e2dccf", ec=INK, lw=0.8))
@@ -347,7 +349,7 @@ def elevation(ax, side):
             ry = X.RIDGE_Y
             ax.add_patch(MPoly([(hy(a), 0), (hy(a), GABLE(a)), (hy(ry), GABLE(ry)), (hy(b), GABLE(b)), (hy(b), 0)],
                                closed=True, fc="#efe9df", ec=INK, lw=1.2))
-            for e in (a - OV, b + OV):
+            for e in (a - OV, b + OVR):
                 ax.add_patch(MPoly([(hy(e), GABLE(e)), (hy(ry), GABLE(ry)), (hy(ry), GABLE(ry) + THK),
                                     (hy(e), GABLE(e) + THK)], closed=True, fc="#3c3f44", ec=INK))
         else:
@@ -368,7 +370,7 @@ def elevation(ax, side):
                 ax.add_patch(Rectangle((min(hy(yy), hy(yy + 6)), 0), 6, 108, fc=INK))
             ry0, ry1 = S.CARPORT_ROOF[1], S.CARPORT_ROOF[3]
             ax.add_patch(Rectangle((min(hy(ry0), hy(ry1)), 108), ry1 - ry0, 4, fc=INK))
-        lo, hi = min(hy(a - OV), hy(b + OV)), max(hy(a - OV), hy(b + OV))
+        lo, hi = min(hy(a - OV), hy(b + OVR)), max(hy(a - OV), hy(b + OVR))
     if side in ("north", "south"):
         lo = min(lo, h(cx0) - 20, h(cx1) - 20) if side == "north" else lo
         hi = max(hi, h(cx0) + 20) if side == "south" else hi

@@ -321,7 +321,7 @@ def site_plan(pdf):
     ax.text((S.E + S.W) / 2, (S.N + S.S) / 2, "NEW 1-STORY RESIDENCE\n" + f"{Z.HOUSE:,.0f} SQ FT\n"
             f"FF {ff_elev():.1f}' (ASSUMED, PER CIVIL)", ha="center", va="center", fontsize=8, weight="bold",
             bbox=dict(fc="white", ec="none", pad=1.5))
-    ax.add_patch(Rectangle((S.E - X.EAVE, S.N - X.EAVE), S.W - S.E + 2 * X.EAVE, S.S - S.N + 2 * X.EAVE,
+    ax.add_patch(Rectangle((S.E - X.EAVE, S.N - X.EAVE), S.W - S.E + 2 * X.EAVE, S.S - S.N + X.EAVE + X.EAVE_REAR,
                            fill=False, ec=INK, lw=0.6, ls="--"))
     cx0, cy0, cx1, cy1 = S.CARPORT
     ax.add_patch(Rectangle((cx0, cy0), cx1 - cx0, cy1 - cy0, fc="#eeeeee", ec=INK, lw=1.0, ls="--"))
@@ -421,7 +421,7 @@ def site_plan(pdf):
              "1. Lot lines, existing trees, utilities, spot\n   elevations and 1' contours (dashed) from\n"
              "   the owner's topographic survey.\n"
              "2. Finished floor elevation, grading and drainage\n   per civil (separate sheets).\n"
-             "3. Eaves (dashed) 2'-6\" all round (LACC 22.110.090).\n"
+             "3. Eaves (dashed) 2'-6\"; the rear 2'-0\" so its gutter\n   stays within the 2'-6\" projection (LACC 22.110.090).\n"
              "4. West parkway olives protected during construction\n   (root zones); the dead lot tree and the east\n   parkway olive and ficus removed (County permit;\n   parkway sheet per civil, with Public Works).\n"
              "5. Ember-resistant zone under the eaves and 5' beyond\n   them; planting per the fuel modification plan (FM-1).\n"
              "6. Water, sewer and SCE service per the utilities;\n   no gas service (all-electric).\n"
@@ -449,7 +449,7 @@ def roof_plan(pdf):
     OV, cx0, cy0, cx1, cy1 = X.EAVE, *S.CARPORT
     x0, y0, x1, y1 = cx0 - 40, S.N - OV - 110, S.W + OV + 150, S.S + OV + 130
     ax = scaled_axes(fig, 1.2, 6.5, x0, y0, x1, y1)
-    X0, X1, Y0, Y1 = S.E - OV, S.W + OV, S.N - OV, S.S + OV
+    X0, X1, Y0, Y1 = S.E - OV, S.W + OV, S.N - OV, S.S + X.EAVE_REAR
     ax.add_patch(Rectangle((X0, Y0), X1 - X0, Y1 - Y0, fc="#e6e6e6", ec=INK, lw=1.6))
     ax.add_patch(MPoly(Z.FOOT, closed=True, fill=False, ec="#777", ls="--", lw=0.8))
     rx0, ry0, rx1, ry1 = S.CARPORT_ROOF
@@ -563,7 +563,7 @@ def roof_plan(pdf):
              "   underlayment at the eaves and along the shed / gable junction.\n"
              "2. Sealed (unvented) attic, CRC R806.5: insulation at the roof deck;\n"
              "   NO attic or eave vents.\n"
-             "3. Eaves 2'-6\" all round, enclosed; dark metal fascia and drip edge.\n"
+             "3. Eaves 2'-6\" (the rear 2'-0\"), enclosed; dark metal fascia, drip edge.\n"
              "   See A-6 for fire-zone details (CRC R337).\n"
              "4. Rear gutter with noncombustible gutter guards (CRC R337.5.4);\n"
              "   downspouts to the site drainage system per civil. No gutter\n"
@@ -684,6 +684,7 @@ def section_cut(ax, cut, at, ff):
     """Section through the house: cut 'x' (plan x = at, looking east-west across y) or 'y'."""
     roof = X.roof_under(2 / 12)
     THK, OV, P, C = X.THK, X.EAVE, X.PLATE, M_CEIL
+    OVB = X.EAVE_REAR if cut == "x" else OV                         # the far end: the rear eave on 'x' cuts
     if cut == "x":
         a, b = S.N, S.S
         und = lambda u: roof(at, u)                                     # noqa: E731
@@ -692,7 +693,7 @@ def section_cut(ax, cut, at, ff):
         a, b = S.E, S.W
         und = lambda u: roof(u, at)                                     # noqa: E731
         brk = X.WING_X
-    us = [a - OV, brk, b + OV]
+    us = [a - OV, brk, b + OVB]
     ax.fill_between(us, [und(u) for u in us], [und(u) + THK for u in us], color="#555")       # roof
     for w0, w1 in ((a, a + S.EXT), (b - S.EXT, b)):                                         # exterior walls
         top = und(w0 if w0 == a else w1)
@@ -742,14 +743,14 @@ def section_cut(ax, cut, at, ff):
     if cut == "x" and lx0 <= at <= lx1:
         ax.add_patch(Rectangle((a, X.CLERESTORY_SILL), S.EXT, 36, fc="#bfe3f2", ec=INK, lw=0.6))
         ax.text(a + S.EXT + 4, X.CLERESTORY_SILL + 18, "CLERESTORY", fontsize=5.5, va="center")
-    ax.plot([a - OV - 40, b + OV + 40], [0, 0], color=INK, lw=1.2)
-    ax.text(b + OV + 45, 0, "FIN. FLOOR 0'-0\"", fontsize=6, va="center")
-    ax.text(b + OV + 45, P, f"PLATE {ftin(P)}", fontsize=6, va="center")
+    ax.plot([a - OV - 40, b + OVB + 40], [0, 0], color=INK, lw=1.2)
+    ax.text(b + OVB + 45, 0, "FIN. FLOOR 0'-0\"", fontsize=6, va="center")
+    ax.text(b + OVB + 45, P, f"PLATE {ftin(P)}", fontsize=6, va="center")
     if cut == "x":
         ax.text(a - OV - 40, und(a) + THK + 8, "STREET", fontsize=7, weight="bold")
-        ax.text(b + OV - 60, und(b) + THK + 8, "REAR", fontsize=7, weight="bold")
+        ax.text(b + OVB - 60, und(b) + THK + 8, "REAR", fontsize=7, weight="bold")
     _, z, _ = survey()
-    gu = list(range(int(a - OV - 40), int(b + OV + 41), 12))
+    gu = list(range(int(a - OV - 40), int(b + OVB + 41), 12))
     gz = [(z(at, u) if cut == "x" else z(u, at)) - ff for u in gu]
     ax.plot(gu, [g * 12 for g in gz], color="#9a7b4f", lw=1.0, ls="--")
     ax.text(gu[0], gz[0] * 12 + 4, "EXIST. GRADE (APPROX.)", fontsize=5.5, color="#9a7b4f", va="bottom")
@@ -918,7 +919,7 @@ PV_BLOCK = (6, 4)                                          # the first array: co
 def pv_area():
     """Outline of the potential PV area (plan inches): the south-facing planes, clear of the shed's high-edge
     setback, the ridge setback and the pathways at both ends."""
-    X0, X1, Y1 = S.E - X.EAVE + 36, S.W + X.EAVE - 36, S.S + X.EAVE
+    X0, X1, Y1 = S.E - X.EAVE + 36, S.W + X.EAVE - 36, S.S + X.EAVE_REAR
     return [(X0, S.N + 24), (X.WING_X, S.N + 24), (X.WING_X, X.RIDGE_Y + 18), (X1, X.RIDGE_Y + 18), (X1, Y1), (X0, Y1)]
 
 

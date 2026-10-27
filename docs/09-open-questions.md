@@ -19,7 +19,7 @@
 **Planner / permits**
 
 - [x] Planning confirmed (Oct 20, 2026): the setbacks as drawn (10% side yards; the shallow-lot rear yard, 20% of the lot depth) and the carport and porch parking layout (qualifying covered entry porch, the carport's front 4' a covered walkway, the two spaces behind the front door).
-- [ ] Eaves: Planning counts an attached gutter (and the drip edge) in the 2'-6" eave projection, measured to its farthest point. With the gutter, the 2'-6" rear eave reaches about 2'-9" into the rear yard. Decide: 2'-0" eaves all round (about 27½" into the rear yard with the gutter), or a shorter rear eave only.
+- [x] Eaves: Planning counts an attached gutter (and the drip edge) in the 2'-6" eave projection, measured to its farthest point. Decided: the rear eave is 2'-0" (with its gutter, about 2'-3½" into the rear yard); the street and side eaves stay 2'-6" (no gutters there).
 - [ ] Planner: can uncovered parking in the driveway inside the front setback count as a required space?
 - [ ] Surveyor: construction staking of the building corners and a form survey (foundation forms checked against the setback lines before the pour); the front, rear and side margins are only 2⅜" to 3¼" to the finished stucco face (A-1 note 9). Roughly $1-2.5k; add it to the GC's schedule.
 - [ ] Building and Safety: the state's water-efficient landscape rules (MWELO) apply to new landscaping of about 500 sq ft or more; is the prescriptive checklist enough, or is a landscape and irrigation plan required with the permit?

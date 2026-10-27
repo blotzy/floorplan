@@ -15,7 +15,7 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena, replacing the hous
 | Item | Decision |
 | --- | --- |
 | Style | Midcentury modern (MCM) |
-| Roof | MCM split roof at 2:12, 2'-6" eaves all round (the most an eave may project into a required yard): a shed from the porch to the gym/ensuite wall, rising from the rear to the street, with the 18' x 3' clerestory band in its street wall over the lounge; and a low gable over the rest of the bedroom wing, ridge down the middle, its rear slope in the same plane as the shed's. Dark Class A asphalt shingles, wind-rated, over two layers of underlayment (required at 2:12); solar on rails over flashed attachments. Fallback if the budget needs it: an MCM gable at 2:12 with flat ceilings |
+| Roof | MCM split roof at 2:12, 2'-6" eaves (the most an eave may project into a required yard), 2'-0" at the rear so the gutter stays within that limit: a shed from the porch to the gym/ensuite wall, rising from the rear to the street, with the 18' x 3' clerestory band in its street wall over the lounge; and a low gable over the rest of the bedroom wing, ridge down the middle, its rear slope in the same plane as the shed's. Dark Class A asphalt shingles, wind-rated, over two layers of underlayment (required at 2:12); solar on rails over flashed attachments. Fallback if the budget needs it: an MCM gable at 2:12 with flat ceilings |
 | Carport roof | Low slope (about ½" per foot), sloping east, away from the house, to a gutter on its east edge; standing-seam metal (too flat for shingles), double-locked seams, Class A assembly, uplift-rated |
 | Exterior | Stucco walls (noncombustible); thin dark fascia |
 | Fuel | All-electric, no gas line to the lot |

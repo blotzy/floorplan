@@ -39,7 +39,7 @@ FY = S.CARPORT[3] + 3                           # courtyard fence line
 
 def roofs():
     """Roof edges (plan): the house with its eaves, the porch canopy, and the carport roof."""
-    house = box(S.E - X.EAVE, S.N - X.EAVE, S.W + X.EAVE, S.S + X.EAVE)
+    house = box(S.E - X.EAVE, S.N - X.EAVE, S.W + X.EAVE, S.S + X.EAVE_REAR)
     ox, oy = S.PORCH_OUT
     canopy = box(ox, oy, S.PORCH_X, S.N)
     cx0, cy0, cx1, cy1 = S.CARPORT
@@ -81,8 +81,8 @@ def plan(ax):
     # planting areas (drawn first, under the zones' outlines)
     gc = [box(S.E, 0, L[2], S.N - X.EAVE - EMBER),                       # front yard
           box(S.W + X.EAVE + EMBER, 0, L[2], L[3]),                      # west side yard strip
-          box(S.E, S.S + X.EAVE + EMBER, L[2], L[3]),                    # rear yard strip
-          box(S.LOT_X0 + 198, S.S + X.EAVE + EMBER, S.E, L[3] - 42),     # courtyard edge
+          box(S.E, S.S + X.EAVE_REAR + EMBER, L[2], L[3]),                    # rear yard strip
+          box(S.LOT_X0 + 198, S.S + X.EAVE_REAR + EMBER, S.E, L[3] - 42),     # courtyard edge
           box(L[0], 0, S.CARPORT[0] - 6 - EMBER, FY),                    # east strip beside the carport
           box(L[0], 0, S.CARPORT[0], S.N - EMBER),                       # front corner east of the drive
           box(S.LOT_X0 + 18 + 180, FY + 61, S.E - X.EAVE - EMBER, L[3] - 42)]   # courtyard, beside the lawn
@@ -106,7 +106,7 @@ def plan(ax):
     ax.add_patch(MPoly(Z.FOOT, closed=True, fc="#cfcfcf", ec=INK, lw=1.4, hatch="////"))
     ax.text((S.E + S.W) / 2, (S.N + S.S) / 2, "RESIDENCE (1 STORY)\nSPRINKLERED", ha="center", va="center",
             fontsize=8, weight="bold", bbox=dict(fc="white", ec="none", pad=1.5))
-    ax.add_patch(Rectangle((S.E - X.EAVE, S.N - X.EAVE), S.W - S.E + 2 * X.EAVE, S.S - S.N + 2 * X.EAVE,
+    ax.add_patch(Rectangle((S.E - X.EAVE, S.N - X.EAVE), S.W - S.E + 2 * X.EAVE, S.S - S.N + X.EAVE + X.EAVE_REAR,
                            fill=False, ec=INK, lw=0.7, ls="--"))
     cx0, cy0, cx1, cy1 = S.CARPORT
     ax.add_patch(Rectangle((cx0, cy0), cx1 - cx0, cy1 - cy0, fc="#eeeeee", ec=INK, lw=1.0))

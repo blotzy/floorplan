@@ -34,7 +34,7 @@ def band(sc, mat, z0, z1):
 
 def eaves(sc, ov_x, ov_y):
     """Soffits (flat, at the plate) and fascia around the eave rectangle; returns it."""
-    X0, X1, Y0, Y1 = E - ov_x, W + ov_x, N - ov_y, Sth + ov_y
+    X0, X1, Y0, Y1 = E - ov_x, W + ov_x, N - ov_y, Sth + rear(ov_y)
     z, zf = PLATE, PLATE + FASCIA
     for inner, outer in ((((E, N), (W, N)), ((X0, Y0), (X1, Y0))), (((W, N), (W, Sth)), ((X1, Y0), (X1, Y1))),
                          (((W, Sth), (E, Sth)), ((X1, Y1), (X0, Y1))), (((E, Sth), (E, N)), ((X0, Y1), (X0, Y0)))):
@@ -75,6 +75,13 @@ def gable(sc, pitch, ov, rake, glazed_ends=False):
 
 THK = 10.0                                # MCM roof slab: roofing on top, sloped soffit underneath
 EAVE = 30.0                               # main plan: eaves may project at most 2'-6" into a required yard
+EAVE_REAR = 24.0                          # the rear eave: 2'-0", so with its gutter (which Planning counts in
+                                          # the projection) it stays within the 2'-6" limit
+
+
+def rear(ov):
+    """The rear overhang for a roof drawn with side/street overhang ov."""
+    return EAVE_REAR if ov == EAVE else ov
                                           # (22.110.090.A); the front, rear and west walls sit on their setback lines
 
 
@@ -82,7 +89,7 @@ def slab_roof(sc, ov, under, splits=(), ends="exterior", north="exterior", south
     """Midcentury roof as a thin slab whose underside height is under(y) (linear between the
     split lines), with sloped soffits, fascia all round, and the walls rising to meet it
     (clerestory glass where the side is "glass")."""
-    X0, X1, Y0, Y1 = E - ov, W + ov, N - ov, Sth + ov
+    X0, X1, Y0, Y1 = E - ov, W + ov, N - ov, Sth + rear(ov)
     ys = [Y0, *splits, Y1]
     for ya, yb in zip(ys, ys[1:]):
         for dz, mat in ((THK, "roofing"), (0.0, "soffit")):
@@ -300,7 +307,7 @@ def shed_gable(sc, pitch, ov, xs=SPLIT_X, glass=CLERESTORY_X, seams=False, band=
     under = shed_vault_under(pitch)
     half, ym = (Sth - N) / 2, (N + Sth) / 2
     gable = lambda y: PLATE + (half - abs(y - ym)) * pitch          # noqa: E731
-    X0, X1, Y0, Y1 = E - ov, W + ov, N - ov, Sth + ov
+    X0, X1, Y0, Y1 = E - ov, W + ov, N - ov, Sth + rear(ov)
     xa, xb = xs
     east = xa > E                                                    # a gable at the east end too
     sa = xa if east else X0
@@ -453,7 +460,7 @@ def street_facade(sc):
 
 
 def chosen_exterior(sc, porch=True, facade=True):
-    """The main plan's exterior: the split roof at 2:12 with 2'-6" eaves, in dark asphalt shingles: a shed
+    """The main plan's exterior: the split roof at 2:12 with 2'-6" eaves (2'-0" at the rear), in dark asphalt shingles: a shed
     from the porch into the bedroom wing (high at the street, the 18' x 3' clerestory band in it over the lounge;
     the foyer, lounge, dining and kitchen under one sloped ceiling) and a gable over the rest of the wing;
     stucco walls, dark fascia, accent front door; porch with a wood-look feature wall; recessed street

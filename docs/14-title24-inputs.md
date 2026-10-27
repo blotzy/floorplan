@@ -44,7 +44,7 @@ What the energy consultant needs to model the house and produce the compliance f
 | West (292°) | Office (high) | 4'-0" x 2'-0" | 8.0 sq ft |
 | | **Total** | | **about 433 sq ft (about 19.5% of the floor area, just under the prescriptive 20%)** |
 
-Shading: 2'-6" eaves all round; at the rear, 3'-deep metal canopies over the kitchen and primary bedroom windows. The front door's glass lite (if any) is still to be chosen.
+Shading: 2'-6" eaves at the street and sides, 2'-0" at the rear; at the rear, 3'-deep metal canopies over the kitchen and primary bedroom windows. The front door's glass lite (if any) is still to be chosen.
 
 ## Equipment
 

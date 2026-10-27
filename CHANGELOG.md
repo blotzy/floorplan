@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 26, 2026
 
+- **5:18 PM**: Rear eave 2'-0" (from 2'-6"), so with its gutter it stays within the 2'-6" projection Planning allows; the street and side eaves stay 2'-6". Roof, 3D model, zoning and permit sets (A-1, A-3, A-4, A-5, notes), FM-1 and docs.
 - **5:16 PM**: Planning's answer on eaves recorded: an attached gutter counts, and the projection is measured to its farthest point regardless of material; the 2'-6" rear eave with its gutter would be over the limit (zoning check Q7; an eaves decision in the open questions).
 - **5:02 PM**: 1" water meter upgrade applied for with Lincoln Avenue Water (about 6-12 weeks): open questions, plumbing doc.
 - **4:28 PM**: Will-serve letter from Lincoln Avenue Water picked up; open questions note where it goes (permit application, Fire Prevention with the fire flow form, sprinkler designer) and to watch its expiration.

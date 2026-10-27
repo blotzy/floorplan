@@ -19,14 +19,14 @@ A brief for the architect consultation: the hard requirements the layout has to 
 | Front setback | 20' | 20'-3¼" |
 | Side setbacks | 10% of the 113' lot width: 11'-3⅝" each side | 11'-6" west; 11'-6" east to the carport |
 | Rear setback | Shallow lot (under 75' deep): 20% of the 64.77' depth, 12'-11½" (§22.110.080.D) | 13'-2" |
-| Eaves | May project up to 2'-6" into a required yard (§22.110.090.A) | 2'-6" all round |
+| Eaves | May project up to 2'-6" into a required yard (§22.110.090.A), measured to the farthest point, gutter included (Planning) | 2'-6" at the street and sides; 2'-0" at the rear (gutter) |
 | Lot coverage | CSD: ¼ of net lot area + 1,000 sq ft, about 2,830 sq ft | about 2,660 sq ft (house, porch, carport): about 170 sq ft to spare |
 | Floor area | CSD limit, same formula; no rebuild size limit (non-like-for-like) | about 2,230 sq ft |
 | Parking | 2 spaces, 8'-6" x 18', behind the front door (§22.140.520 b.i, Table 22.140.520-D) | 18' x 22' carport, its front 4' a covered walkway, plus a qualifying 8' x 5' covered entry porch |
 | Street facade articulation | Table 22.140.520-C: one strategy plus one per 30' of facade (likely 3 for the 72' front, 4 if the carport counts) | Recessed punched windows (about 74% of the window area); window area likely over 20% of the wall; roof-height variation (depends on how it's measured). Fallback: projected window surrounds |
 | Energy (Title 24) | Prescriptive glazing limit 20% of floor area; west-facing glass under 5% | about 433 sq ft (19.5%); west about 20 sq ft |
 | Fire | Class A roof, enclosed eaves, no attic vents, tempered dual-pane glazing, fire sprinklers (NFPA 13D) | Sealed attic; see [floor plan](02-floor-plan.md) and [fuel modification plan](../renders/fuelmod/FM-1-fuel-modification-plan.png) |
-| Ember-resistant zone | LA County Fire: the ground under the eaves and 5' beyond them (about 7'-6" from the walls, with 2'-6" eaves) must be free of anything receptive to embers: no plants or mulch, no wood decks, patios or pergolas, no combustible furniture or storage. The whole lot is in Zone A (within 30'), with limits on trees and woody plants within 10' of the house | Gravel, pavers and concrete all round; no deck or raised patio (also why there are no doors needing landings); the courtyard lawn and the trees sit outside the zone. Anything attached to the house (fences, gates, canopies) is noncombustible |
+| Ember-resistant zone | LA County Fire: the ground under the eaves and 5' beyond them (about 7'-6" from the walls with the 2'-6" eaves, 7' at the rear) must be free of anything receptive to embers: no plants or mulch, no wood decks, patios or pergolas, no combustible furniture or storage. The whole lot is in Zone A (within 30'), with limits on trees and woody plants within 10' of the house | Gravel, pavers and concrete all round; no deck or raised patio (also why there are no doors needing landings); the courtyard lawn and the trees sit outside the zone. Anything attached to the house (fences, gates, canopies) is noncombustible |
 
 Planning has confirmed the setbacks (including the shallow-lot rear yard) and the carport and porch parking layout.
 

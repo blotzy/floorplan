@@ -23,7 +23,7 @@ Richard Acosta's Eaton Fire rebuild at 220 Laurel Dr, Altadena (APN 5832-003-027
 
 ## Plan model
 
-Inches. +x is west, +y is south (the street, Laurel Drive, is plan north at the bottom of the drawings; true north is about 22° off). Key constants live in `schematic.py` (`N`, `S`, `E`, `W`, `CARPORT`, `PORCH_*`, `EXIST_TREES`, `REMOVED_TREES`, `PRIVACY_TREE`, `FRONT_TREE`, `EDGE_OF_PAVEMENT`, ...). Ceiling 108", plate 132", eaves 30".
+Inches. +x is west, +y is south (the street, Laurel Drive, is plan north at the bottom of the drawings; true north is about 22° off). Key constants live in `schematic.py` (`N`, `S`, `E`, `W`, `CARPORT`, `PORCH_*`, `EXIST_TREES`, `REMOVED_TREES`, `PRIVACY_TREE`, `FRONT_TREE`, `EDGE_OF_PAVEMENT`, ...). Ceiling 108", plate 132", eaves 30" (rear 24", `EAVE_REAR`: Planning counts the gutter in the projection).
 
 ## Build
 
