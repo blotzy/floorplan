@@ -5,16 +5,20 @@
 """Experiment: the primary bath and walk-in closet side by side instead of front to back.
 
   - The suite block between the bedroom and the laundry/common bath is split east-west: the bath on the east
-    part, against the existing plumbing wall, from the hall to the rear wall, about 5'-0" x 12'-5"; the closet
-    on the west part, next to the bedroom, about 9'-0" x 12'-5", instead of two 6'-wide strips.
+    part, against the existing plumbing wall, from the hall to the rear wall, about 6'-2" x 12'-8"; the closet
+    on the west part, next to the bedroom, about 8'-0" x 12'-8", instead of two strips front to back. No hall
+    closet: its corner is the bath's.
   - One cased opening from the bedroom into the closet (a dressing room); the bath is reached straight across
-    the closet, along the hall wall, by a pocket door in line with it. The bedroom loses one door.
-  - Bath, no tub: a curbless walk-in shower across the rear wall under the high window (two heads facing each
-    other, a niche in the closet wall), the 60" double vanity on the plumbing wall facing the door, and the
-    WC on the plumbing wall between the vanity and the glass. The house's tub is the guest ensuite's.
+    the closet, along the hall wall, by a 30" door in line with it, swinging into the bath and resting flat on
+    the hall wall clear of the vanity. The bedroom loses one door.
+  - Bath, no tub: a curbless walk-in shower across the rear wall (a fixed head on the plumbing wall and a slide-
+    bar handheld on the closet wall facing it, by the open end; a niche in the closet wall), the 60" double
+    vanity on the plumbing wall facing the door, and the WC on the plumbing wall between the vanity and the
+    glass. No window (exhaust fan). The house's tub is the guest ensuite's.
   - The closet opening is in the hall corner, so the bedroom's TV wall (the rest of that wall) stays centred on
-    the bed. Closet: the walkway along the hall wall, hanging down both long walls, drawers and shelves under
-    the rear high window, and room to dress in the middle.
+    the bed. Closet: the walkway along the hall wall, hanging down both long walls (about 18'-2" of rod),
+    drawers and shelves under the rear high window, and room to dress in the middle (about 4' between the
+    hanging).
 
 Writes renders/experiments/suite-side-by-side.png (with the current plan, suite-side-by-side-current.png, to
 compare) and a 3D model with a view from the bedroom. Not part of the regular build.
@@ -30,10 +34,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import schematic as S  # noqa: E402
 
 OUT = S.RENDERS / "experiments"
-SPLIT = 950.0                                  # bath | closet wall centreline: a 5'-0" bath, the rest to the closet
+SPLIT = 962.0                                  # bath | closet wall centreline: a 6'-2" bath, the rest (about 8') to
+                                               # the closet
 ENTRY = (463.0, 495.0)                         # 32" cased opening in the hall corner, bedroom -> closet
-BATH_DOOR = ENTRY                              # 32" pocket door, closet -> bath: in line with the entry, a
-                                               # straight path along the hall wall
+BATH_DOOR = (463.0, 493.0)                     # 30" door, closet -> bath: in line with the entry, a straight path
+                                               # along the hall wall; swings into the bath, flat on the hall wall
 SHOWER_D = 54.0                                # walk-in shower depth from the rear wall
 
 
@@ -42,8 +47,10 @@ def plan():
     for i, w in enumerate(ws):
         if w[0] == "bath|wic":
             ws[i] = ("bath|wic", "y", SPLIT, 457.0, S.S_IN, S.INT)
-    S.OPENINGS[:] = [o for o in S.OPENINGS if not (o[0] == "suite|primary" and o[3] == "door")]
-    S.OPENINGS += [("suite|primary", *ENTRY, "cased"), ("bath|wic", *BATH_DOOR, "pocket", "b")]
+    ws[:] = [w for w in ws if not w[0].startswith("hall closet")]           # no hall closet: its corner is the bath's
+    S.OPENINGS[:] = [o for o in S.OPENINGS if not (o[0] == "suite|primary" and o[3] == "door")
+                     and not (o[0] == "south hall wall" and o[1] == S.HALL_CL_DOOR[0])]
+    S.OPENINGS += [("suite|primary", *ENTRY, "cased"), ("bath|wic", *BATH_DOOR, "door", "a", -1)]
 
 
 def primary_bath(sh):
@@ -52,8 +59,9 @@ def primary_bath(sh):
     gy = S.S_IN - SHOWER_D
     S.wet_zone(sh, m0, gy, b1, S.S_IN)
     hy = (gy + S.S_IN) / 2
-    for x, d in ((m0, 1.0), (b1, -1.0)):                                   # two heads facing each other
-        sh.circle((x + d * 4, hy), 2.5, "A-EQPM"); sh.heads.append((x, hy, d, 0.0))
+    for x, d in ((m0, 1.0), (b1, -1.0)):                                   # fixed head on the plumbing wall, a slide-
+        sh.circle((x + d * 4, hy), 2.5, "A-EQPM"); sh.heads.append((x, hy, d, 0.0))   # bar handheld facing it
+    sh.text("HAND", b1 - 8, hy - 9, 1.4)
     sh.rect(b1, S.S_IN - 22, b1 + 3.5, S.S_IN - 6, "A-EQPM")                # niche in the closet wall
     sh.text("NICHE", b1 - 7, S.S_IN - 14, 2.0, rot=90)
     sh.text("CURBLESS SHOWER", (m0 + b1) / 2, hy, 2.6)
@@ -62,7 +70,6 @@ def primary_bath(sh):
     S.vanity(sh, m0, y0, m0 + 22, y0 + 60, "DOUBLE VANITY 60", rot=90)     # plumbing wall, facing the door
     wy = (y0 + 60 + gy) / 2
     S.wc(sh, m0, wy - 15, m0 + 28, wy + 15)                                # plumbing wall, between vanity and glass
-    sh.text("HIGH WINDOW", 911.0, S.S_IN - 4, 2.0)
     S.room_label(sh, "PRIMARY BATH", m0, y0, b1, S.S_IN, cx=(m0 + 22 + b1) / 2, cy=wy - 22, h=2.4)
 
 
