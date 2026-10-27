@@ -11,10 +11,11 @@
   - One cased opening from the bedroom into the closet (a dressing room); the bath is reached straight across
     the closet, along the hall wall, by a 30" door in line with it, swinging into the bath and resting flat on
     the hall wall clear of the vanity. The bedroom loses one door.
-  - Bath, no tub: a curbless walk-in shower across the rear wall (a fixed head on the plumbing wall and a slide-
-    bar handheld on the closet wall facing it, by the open end; a niche in the closet wall), the 60" double
-    vanity on the plumbing wall facing the door, and the WC on the plumbing wall between the vanity and the
-    glass. No window (exhaust fan). The house's tub is the guest ensuite's.
+  - Bath, no tub: a 5'-0"-deep curbless walk-in shower across the rear wall: a solid bench along the rear wall
+    under a 4'-0" x 2'-6" high window (5'-6" sill, both panes tempered), a fixed head on the plumbing wall and a
+    slide-bar handheld on the closet wall facing it by the open end, both well clear of the window, and a niche
+    in the closet wall over the bench. The 60" double vanity on the plumbing wall facing the door, and the WC
+    on the plumbing wall between the vanity and the glass. The house's tub is the guest ensuite's.
   - The closet opening is in the hall corner, so the bedroom's TV wall (the rest of that wall) stays centred on
     the bed. Closet: the walkway along the hall wall, hanging down both long walls (about 18'-2" of rod),
     drawers and shelves under the rear high window, and room to dress in the middle (about 4' between the
@@ -39,7 +40,9 @@ SPLIT = 962.0                                  # bath | closet wall centreline: 
 ENTRY = (463.0, 495.0)                         # 32" cased opening in the hall corner, bedroom -> closet
 BATH_DOOR = (463.0, 493.0)                     # 30" door, closet -> bath: in line with the entry, a straight path
                                                # along the hall wall; swings into the bath, flat on the hall wall
-SHOWER_D = 54.0                                # walk-in shower depth from the rear wall
+SHOWER_D = 60.0                                # walk-in shower depth from the rear wall
+BENCH_D = 16.0                                 # solid bench along the rear wall, under the window
+BATH_WIN = (898.75, 946.75)                    # 4'-0" x 2'-6" over the bench, centred on the shower (5'-6" sill)
 
 
 def plan():
@@ -50,7 +53,8 @@ def plan():
     ws[:] = [w for w in ws if not w[0].startswith("hall closet")]           # no hall closet: its corner is the bath's
     S.OPENINGS[:] = [o for o in S.OPENINGS if not (o[0] == "suite|primary" and o[3] == "door")
                      and not (o[0] == "south hall wall" and o[1] == S.HALL_CL_DOOR[0])]
-    S.OPENINGS += [("suite|primary", *ENTRY, "cased"), ("bath|wic", *BATH_DOOR, "door", "a", -1)]
+    S.OPENINGS += [("suite|primary", *ENTRY, "cased"), ("bath|wic", *BATH_DOOR, "door", "a", -1),
+                   ("south", *BATH_WIN, "window", 66.0, 96.0)]
 
 
 def primary_bath(sh):
@@ -58,13 +62,15 @@ def primary_bath(sh):
     y0 = S.face("south hall wall", +1)
     gy = S.S_IN - SHOWER_D
     S.wet_zone(sh, m0, gy, b1, S.S_IN)
-    hy = (gy + S.S_IN) / 2
+    hy = (gy + S.S_IN - BENCH_D) / 2                                       # heads centred on the standing area
     for x, d in ((m0, 1.0), (b1, -1.0)):                                   # fixed head on the plumbing wall, a slide-
         sh.circle((x + d * 4, hy), 2.5, "A-EQPM"); sh.heads.append((x, hy, d, 0.0))   # bar handheld facing it
     sh.text("HAND", b1 - 8, hy - 9, 1.4)
     sh.rect(b1, S.S_IN - 22, b1 + 3.5, S.S_IN - 6, "A-EQPM")                # niche in the closet wall
     sh.text("NICHE", b1 - 7, S.S_IN - 14, 2.0, rot=90)
     sh.text("CURBLESS SHOWER", (m0 + b1) / 2, hy, 2.6)
+    sh.rect(m0, S.S_IN - BENCH_D, b1, S.S_IN, "A-EQPM")                    # solid bench, sloped top, under the window
+    sh.text("BENCH (SOLID) · WINDOW ABOVE", (m0 + b1) / 2, S.S_IN - BENCH_D / 2, 1.8)
     S.glass(sh, (m0, gy), (b1 - 30, gy))                                   # glass, open at the door end
     S.drain(sh, (m0 + 3, gy + 3), (b1 - 3, gy + 3))                         # linear drain along the glass line
     S.vanity(sh, m0, y0, m0 + 22, y0 + 60, "DOUBLE VANITY 60", rot=90)     # plumbing wall, facing the door
