@@ -169,7 +169,8 @@ OPENINGS = [
                                                           # size), sill below the table top; centred on the wall and table
     ("south",       588.0, 648.0, "window", 42.0, 96.0),  # kitchen sink, 5' (clear of the corner cabinets): sill just above the backsplash
     ("south",       766.5, 808.5, "window", 72.0, 96.0),  # laundry: 3'-6" x 2'-0" high window, matching the tub's
-    ("south",       972.0, 1020.0, "window", 72.0, 96.0),  # primary bath: 4'-0" x 2'-0" high window over the walkway
+    ("south",       972.0, 1020.0, "window", 60.0, 96.0),  # primary bath: 4'-0" x 3'-0" window over the walkway, its 5'
+                                                          # sill keeps it out of the shower's safety-glazing zone
                                                           # (the bath's only window; clear of the door opened flat)
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("west",        289.6, 337.6, "window", 72.0, 96.0),    # office: 4'-0" x 2'-0" high window over the bed head
