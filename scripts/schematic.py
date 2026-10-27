@@ -104,7 +104,8 @@ HALL_S = HALL_N + INT + 44.0         # centreline of the hall's south wall: a 3'
 KITCHEN_ROW = 461.45                 # front line of the kitchen peninsula and fridge (the lounge's south edge)
 WIC_D = 84.0                         # primary walk-in closet depth: 24" hanging + 36" aisle + 24" hanging
 SHOWER_W = 74.0                      # primary shower: 6'-2" from the common bath wall
-SHOWER_HEADS = 42.0                  # primary shower: its two heads 42" apart, centred on it (no window in the shower)
+SHOWER_FIXED = 26.0                  # primary shower (no window): the fixed head this far from the common bath wall,
+SHOWER_HAND = 16.0                   # and a slide-bar handheld this far from the open entry, by the valves
 SHOWER_BENCH_D = 16.0                # primary shower: solid bench along the closet wall
 SHOWER_ENTRY = 30.0                  # primary shower: walk-in entry by the rear wall
 NOOK_CEIL = 90.0                     # reading nook: lowered ceiling at 7'-6" (the room's is 9'), built-in cabinets
@@ -402,13 +403,16 @@ def primary_bath(sh):
     top = face("bath|wic", +1)
     gx = m0 + SHOWER_W
     wet_zone(sh, m0, top, gx, S_IN)
-    mid = (m0 + gx) / 2
-    for hx in (mid - SHOWER_HEADS / 2, mid + SHOWER_HEADS / 2):        # two heads on the rear wall, 42" apart,
-        shower_head(sh, hx, S_IN, -1)                                  # spraying toward the closet wall; supplies
-    sh.text("VALVES", gx - 7, S_IN - 9, 1.8, rot=90)                   # drop from the attic in the rear wall
+    fx, hx = m0 + SHOWER_FIXED, gx - SHOWER_HAND
+    mid = (fx + hx) / 2
+    shower_head(sh, fx, S_IN, -1)                                      # fixed head, spraying toward the closet wall
+    shower_head(sh, hx, S_IN, -1)                                      # handheld on a slide bar, by the valves;
+    sh.rect(hx - 1.0, S_IN - 1.5, hx + 1.0, S_IN, "A-EQPM")            # supplies drop from the attic in the rear wall
+    sh.text("HAND", hx, S_IN - 14, 1.4)
+    sh.text("VALVES", gx - 5, S_IN - 9, 1.8, rot=90)
     sh.rect(m0, top, gx, top + SHOWER_BENCH_D, "A-EQPM")               # solid bench, full width, facing the heads
     sh.text("BENCH (SOLID)", (m0 + gx) / 2, top + SHOWER_BENCH_D / 2, 2.2)
-    n0, n1 = mid - 12, mid + 12                                        # niche in the rear wall, centred between
+    n0, n1 = mid - 10, mid + 10                                        # niche in the rear wall, centred between
     for p0, p1 in (((n0, S_IN), (n0, S_IN + 3.5)), ((n0, S_IN + 3.5), (n1, S_IN + 3.5)),
                    ((n1, S_IN + 3.5), (n1, S_IN))):                     # the heads (lines: a recess, not a 3D box)
         sh.line(p0, p1, "A-EQPM")
