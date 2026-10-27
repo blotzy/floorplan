@@ -12,7 +12,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 
 | Line | Water | Notes |
 | --- | --- | --- |
-| Fire sprinklers | Unsoftened, direct from main | Existing meter 5/8" (Lincoln Avenue Water; their service is 1"): likely a 1" meter upsize ($600, 6-12 weeks) and a backflow preventer, sprinkler designer to confirm; fire flow from the water company's area form (Section 4: static at least 50 psi, residual at least 42 psi, 1,100+ gpm at 20 psi from a 4"+ main; [PDF](../renders/county/lawc-fire-flow-section-4-2025-09.pdf)) or a hydrant test; plans due by foundation sign-off; heads placed clear of the ceiling fans (primary, guest, office) |
+| Fire sprinklers | Unsoftened, direct from main | Existing meter 5/8" (Lincoln Avenue Water; their service is 1"): a 1" meter upsize (applied for, about 6-12 weeks) and a backflow preventer, the sprinkler designer confirming the size; fire flow from the water company's area form (Section 4: static at least 50 psi, residual at least 42 psi, 1,100+ gpm at 20 psi from a 4"+ main; [PDF](../renders/county/lawc-fire-flow-section-4-2025-09.pdf)) or a hydrant test; plans due by foundation sign-off; heads placed clear of the ceiling fans (primary, guest, office) |
 | Hose bibs and irrigation | Unsoftened | Tee before the softener; includes the courtyard lawn and the bin-pad hose bib. The irrigation branch has its own backflow preventer (per the plumbing code and the water company) and feeds a valve manifold in a box (point of connection agreed between plumber and landscaper) |
 | Bathrooms | Softened |  |
 | Kitchen | Softened | Plus RO for drinking and the fridge |
