@@ -7,8 +7,9 @@ primary bedroom, the walk-in closet and the bath.
 
   - The foyer (about 3'-6" x 7'-0") takes the bedroom end of the walk-in closet, right off the hall. The
     suite's door moves from the bedroom's corner to the hall wall, opening into the foyer (hinged on the
-    bedroom side, so it rests clear of the closet door).
-  - From the foyer: the bedroom through a cased opening on its west side; the walk-in closet through a door on
+    closet side, so it rests clear of the bedroom opening).
+  - From the foyer: the bedroom through a cased opening at the hall end of its west side (so the bedroom's
+    east wall stays whole for the TV, centred on the bed); the walk-in closet through a door on
     its east side (swinging into the closet); the bath through a door on its south side (swinging into the bath,
     opening flat on its end wall). The bedroom has no doors of its own besides the opening.
   - The walk-in closet is shorter (about 10'-7"), both sides hanging to the foyer wall; the corner shelves and
@@ -35,10 +36,10 @@ WIC_D = 84.0                                    # closet depth: 24" hanging + 36
 SHOWER_W = 72.0                                 # shower width along the bath, from the plumbing wall
 BENCH_D = 16.0                                  # shower bench depth (rear wall)
 FOYER_X = 1015.5                                # closet | foyer wall (centreline): the foyer 3'-6" wide
-HALL_DOOR = (1024.0, 1056.0)                    # hall -> foyer, 32" (the suite's door)
-WIC_DOOR = (488.0, 518.0)                       # foyer -> closet, 30", on the aisle
+HALL_DOOR = (1027.0, 1057.0)                    # hall -> foyer, 30" (the suite's door), hinged on the closet side
+WIC_DOOR = (488.0, 518.0)                       # foyer -> closet, 30", on the aisle, past the open suite door
 BATH_DOOR = (1026.0, 1056.0)                    # foyer -> bath, 30"
-OPENING = (503.0, 535.0)                        # foyer -> bedroom, cased, 32"
+OPENING = (461.0, 493.0)                        # foyer -> bedroom, cased, 32", at the hall end (TV wall clear)
 
 
 def plan():
@@ -50,7 +51,7 @@ def plan():
     ws.append(("wic|foyer", "y", FOYER_X, S.HALL_S, y, S.INT))
     S.OPENINGS[:] = [o for o in S.OPENINGS if o[0] != "suite|primary"
                      and not (o[0] == "south hall wall" and o[1] == 1070.0)]
-    S.OPENINGS += [("south hall wall", *HALL_DOOR, "door", "b", +1),       # the suite's door, into the foyer
+    S.OPENINGS += [("south hall wall", *HALL_DOOR, "door", "a", +1),       # the suite's door, into the foyer
                    ("suite|primary", *OPENING, "cased"),                   # foyer -> bedroom
                    ("wic|foyer", *WIC_DOOR, "door", "a", -1),              # foyer -> closet: swings into the closet
                    ("bath|wic", *BATH_DOOR, "door", "b", +1)]              # foyer -> bath: swings in, flat on its end
@@ -102,9 +103,9 @@ def wic(sh):
     S.room_label(sh, "WIC", x0, y0, x1, y1, cx=965.0, h=5.0)
     f0, f1 = S.face("wic|foyer", +1), S.face("suite|primary", -1)
     S.room_label(sh, "FOYER", f0, y0, f1, y1, h=2.4)
-    bx = S.face("suite|primary", +1)                                       # bedroom TV: on the east wall, south of
-    sh.rect(bx, y1 + 2, bx + 3, y1 + 64, fu)                               # the foyer opening
-    sh.text('TV 77" (OFF-CENTRE)', bx + 6, y1 + 33, 2.2, rot=90)
+    bx, bc = S.face("suite|primary", +1), (y0 + S.S_IN) / 2               # bedroom TV: centred on the bed, on the
+    sh.rect(bx, bc - 33.5, bx + 3, bc + 33.5, fu)                          # east wall past the foyer opening
+    sh.text('TV 77"', bx + 6, bc, 2.2, rot=90)
 
 
 def render(png, sh):
