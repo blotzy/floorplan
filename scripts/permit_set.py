@@ -714,13 +714,8 @@ def site_elements(ax, side, ff):
             ax.text((w[0] + w[2]) / 2, -6.0 + S.ENTRY_WALL_H + 4, "24\" SEAT WALL (ENTRY COURT)",
                     fontsize=5, color=FENCE_C, ha="center", va="bottom")
     elif side == "east":
-        ys = [y for y in range(10, 518, 12)]                                 # existing retaining wall at the east
-        gs = [(z(S.LOT_X0 + 40, y) - ff) * 12 for y in ys]                  # line (foreground), along our grade
-        ok = [(h(0, y), g) for y, g in zip(ys, gs) if g == g]
-        ax.plot([q[0] for q in ok], [q[1] for q in ok], color="#555", lw=3, alpha=0.6, solid_capstyle="butt")
-        ax.text(max(q[0] for q in ok), max(q[1] for q in ok) + 8, "EXIST. RETAINING WALL AT THE EAST PROPERTY\n"
-                "LINE (FOREGROUND, ITS EXTENT AT GRADE): TO REMAIN;\nHEIGHT TO BE FIELD-VERIFIED", fontsize=5,
-                color="#555", ha="right", va="bottom")
+        ax.text(h(0, S.S) - 40, -40, "The existing retaining wall at the east property line (A-1) is in the "
+                "foreground of this view and not drawn: it remains.", fontsize=5.5, color="#555", va="top")
 
 
 def elevations(pdf):
