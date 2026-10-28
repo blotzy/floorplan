@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **10:52 PM**: Plumbing doc: the peninsula sink's trap arm routed through the peninsula's back (behind the dishwasher and corner cabinet) to the rear-wall vent; the dishwasher's countertop air gap (required in California).
 - **10:17 PM**: Hearth bench cubbies back (about 10" tall, for a game console or streamer), each with an outlet, a data drop and a conduit to the TV box; the in-wall speakers stay.
 - **10:16 PM**: Lounge audio: in-wall front speakers in the TV wall (left and right flanking the TV, center above it) and two in-wall rear speakers in the gym wall, all in back-boxes and wired to the AV closet; the hearth bench's cubbies dropped (solid face either side of the fireplace); receiver, streamers and consoles in the AV closet.
 - **10:05 PM**: Reading nook bookshelves floor to the lowered ceiling (the length of the office wall); the nook's outlet below the window or in a low shelf.
