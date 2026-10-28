@@ -456,6 +456,13 @@ def street_facade(sc):
     for wall, x0, x1 in S.canopies():
         y0, y1 = (N - S.CANOPY_D, N) if wall == "north" else (Sth, Sth + S.CANOPY_D)
         sc.boxes["canopy"].append([x0, y0, x1, y1, S.CANOPY_Z, S.CANOPY_Z + 3])
+    for wall, x0, x1 in S.sunshades():                         # louvered: side rails and horizontal blades
+        y0, y1 = Sth, Sth + S.CANOPY_D
+        for a in (x0, x1 - 1.5):
+            sc.boxes["canopy"].append([a, y0, a + 1.5, y1, S.CANOPY_Z, S.CANOPY_Z + 3])
+        for k in range(S.SHADE_BLADES):
+            yb = y0 + (k + 0.5) * S.CANOPY_D / S.SHADE_BLADES
+            sc.boxes["canopy"].append([x0, yb - 0.5, x1, yb + 0.5, S.CANOPY_Z - 1, S.CANOPY_Z + 3])
     sc.mat["canopy"] = {"color": 0x2B2D30}
 
 

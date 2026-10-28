@@ -208,7 +208,7 @@ def site_plan(pdf):
              f"5. Eaves {ftin(OV)}, the rear {ftin(OVR)}: the projection is measured to its farthest point,\n"
              "   gutter included (Planning); within 2'-6\" into each required yard (§22.110.090.A),\n"
              "   more than 2'-6\" from every lot line, no supports in the yards.\n"
-             f"6. Rear window canopies {ftin(S.CANOPY_D)} deep (§22.110.090.B: up to 5' into the rear yard):\n"
+             f"6. Rear canopies and the dining sunshade (louvered), {ftin(S.CANOPY_D)} deep (§22.110.090.B: up to 5' into the rear yard):\n"
              "   over the windows only, 1' past each side, no supports in the yard.\n"
              f"7. Covered entry porch 8'-0\" x 5'-0\" (Table 22.140.520-D), {ftin(S.PORCH_FWD)} into the front yard under a\n"
              "   9' canopy (§22.110.090.D.2 allows 5'); parking sits behind the front door.")
@@ -330,7 +330,7 @@ def elevation(ax, side):
             ax.add_patch(Rectangle((h(cx0) - 6, 0), 6, 108, fc=INK))
         for x0, x1, z0, z1, k in openings_on(side):
             ax.add_patch(Rectangle((min(h(x0), h(x1)), z0), x1 - x0, z1 - z0, fc="#bfe3f2", ec=INK, lw=0.8))
-        for _, x0, x1 in S.canopies(side):                         # window canopies
+        for _, x0, x1 in S.canopies(side) + S.sunshades(side):     # window canopies and the dining sunshade
             ax.add_patch(Rectangle((min(h(x0), h(x1)), S.CANOPY_Z), x1 - x0, 3, fc=INK))
         if side == "north":
             xm = (1101.6 + 1173.6) / 2                             # the office window

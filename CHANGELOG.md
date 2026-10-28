@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **6:49 PM**: A louvered metal sunshade over the dining window (horizontal aluminum blades, 3' deep like the rear canopies, just above the head, running 1' past each side): it cuts the afternoon sun and the downward views from the two-story house behind. Plan, 3D, zoning and permit elevations, Z-1 note 6, floor-plan and Title 24 docs. The architect review doc (docs/16) is no longer maintained.
 - **6:25 PM**: Gym, guest and office closets stop 12" from the door on its latch side (shorter by about 4-7"), leaving wall for the door trim and the light switch, which goes on the hall wall beside the door. Plan, 3D, floor-plan and electrical docs.
 - **6:24 PM**: Kitchen: a floor-to-ceiling unit fills the southwest corner (the tall cabinet south of the range now runs into the corner); the window moves east over the inside corner and the peninsula's corner counter, 5'-0" x 4'-0" with a 4' sill (a 12" backsplash under it for outlets and appliances; head still 8'), about 15" from the tall unit. Corner storage and appliance-garage notes updated. Glazing about 431 sq ft (19.4%). Plan, 3D, sets, kitchen, Title 24 and open-questions docs.
 - **6:10 PM**: Kitchen: the trash, sink and dishwasher shift 3" north, leaving a 3" filler between the dishwasher and the corner cabinet and centring the sink on the range across the aisle.

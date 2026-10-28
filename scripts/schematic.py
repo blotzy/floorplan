@@ -216,6 +216,18 @@ def canopies(wall=None):
     return [c for c in out if wall in (None, c[0])]
 
 
+SHADE_BLADES = 6                     # dining sunshade: horizontal metal blades across its depth
+
+
+def sunshades(wall=None):
+    """[(wall, x0, x1)] of the louvered metal sunshades: the dining window's (its lower sill keeps it out of
+    canopies()), the same depth and height as the canopies, running 1' past each side. Horizontal blades cut
+    the afternoon sun and the downward views from the two-story house behind."""
+    out = [(o[0], o[1] - CANOPY_RUN, o[2] + CANOPY_RUN) for o in OPENINGS
+           if o[3] == "window" and o[0] == "south" and len(o) > 4 and o[4] < 30]
+    return [c for c in out if wall in (None, c[0])]
+
+
 # =============================================================================
 # geometry helpers
 # =============================================================================
@@ -746,6 +758,14 @@ def build() -> Sheet:
         sh.msp.add_lwpolyline([(x0, y), (x0, y + d), (x1, y + d), (x1, y)],
                               dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
         sh.text("CANOPY ABOVE", (x0 + x1) / 2, y + d / 2, 3.0, "A-CANP")
+    for wall, x0, x1 in sunshades():                                          # louvered sunshade: outline + blades
+        y, d = S, CANOPY_D
+        sh.msp.add_lwpolyline([(x0, y), (x0, y + d), (x1, y + d), (x1, y)],
+                              dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
+        for k in range(1, SHADE_BLADES):
+            yy = y + d * k / SHADE_BLADES
+            sh.msp.add_line((x0, yy), (x1, yy), dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
+        sh.text("LOUVERED SUNSHADE ABOVE", (x0 + x1) / 2, y + d / 2, 3.0, "A-CANP")
     px0, py0 = PORCH_OUT                                                      # porch: 1' forward and 8" east,
     sh.rect(px0, py0, PORCH_X, N, "L-SITE"); sh.rect(px0, N, E, PORCH_Y, "L-SITE")   # its step in front
     sh.rect(px0 + 4, py0 - 24, PORCH_X - 4, py0, "L-SITE")
