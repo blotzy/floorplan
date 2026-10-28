@@ -1129,7 +1129,7 @@ def cover(pdf):
         a = fig.add_axes([0.9 / W_IN, 9.2 / H_IN, 20.6 / W_IN, 11.6 / H_IN]); a.axis("off")
         a.imshow(plt.imread(img)); a.set_title("3D massing, from the street (for reference)", fontsize=8, loc="left")
     # under the view: sheet index | scope of work and project team | deferred submittals
-    sheets = [("A-0", "Cover, location map, project data,\ncode analysis"), ("A-1", "Site plan"),
+    sheets = [("A-0", "Cover, vicinity map, project data,\ncode analysis"), ("A-1", "Site plan"),
               ("A-2", "Floor plan, door and window schedules"), ("A-3", "Roof plan"), ("A-4", "Exterior elevations"),
               ("A-5", "Building sections"), ("A-6", "Fire-zone details (CRC R337)"),
               ("A-7", "Attic and structural loads plan"),
@@ -1154,9 +1154,8 @@ def cover(pdf):
                 ("2", "Roof truss drawings and calculations\n(truss manufacturer), reviewed by the\nengineer of record"),
                 ("3", "Solar PV plans, if not in the energy\npackage")]
     table(fig, 15.3, 8.2, "DEFERRED SUBMITTALS", ("#", "ITEM"), (0.4, 5.8), deferred, fs=8)
-    vicinity_map(fig, 15.3, 4.9, 6.2, 3.7)
     # right column: the site and the code
-    location_map(fig, 22.1, 22.6, 10.3)
+    vicinity_map(fig, 22.1, 22.6, 10.3, 6.6)
     data = [("Address / APN", "220 Laurel Dr, Altadena CA 91001 · APN 5832-003-027 (lot 27)"),
             ("Zoning", "R-1-7500 · Altadena CSD · Disaster Recovery Permit (non-like-for-like)"),
             ("Fire zone", "Very High Fire Hazard Severity Zone"),
@@ -1186,11 +1185,6 @@ def cover(pdf):
     pdf.savefig(fig); Z.save_png(fig, OUT / "A-0-cover.png", dpi=80); plt.close(fig)
 
 
-ASSESSOR_MAP = S.ROOT / "renders" / "county" / "assessor-map-5832-003.png"   # LA County Assessor's Map Book
-LOT_27 = [(1660, 761), (1848, 832), (1809, 938), (1621, 869)]               # 5832, page 3 (public record);
-                                                                            # lot 27 corners in its pixels
-
-
 VICINITY = Path(__file__).resolve().parent / "vicinity_roads.json"   # OpenStreetMap streets around the site
 SITE_LL = (34.20121, -118.14921)                                      # 220 Laurel Dr (lat, lon)
 VIC_LABELS = {"Lincoln Avenue": "LINCOLN AVE", "Fair Oaks Avenue": "FAIR OAKS AVE",
@@ -1198,6 +1192,8 @@ VIC_LABELS = {"Lincoln Avenue": "LINCOLN AVE", "Fair Oaks Avenue": "FAIR OAKS AV
               "West Loma Alta Drive": "LOMA ALTA DR", "East Mariposa Street": "MARIPOSA ST",
               "West Laurel Drive": "LAUREL DR", "Glenrose Avenue": "GLENROSE AVE", "Olive Avenue": "OLIVE AVE",
               "West Las Flores Drive": "LAS FLORES DR", "North Marengo Avenue": "MARENGO AVE"}
+VIC_ANCHORS = {"LAUREL DR": (-150.0, 75.0), "LAS FLORES DR": (-170.0, -20.0),   # the site's own streets are
+               "GLENROSE AVE": (120.0, 40.0), "OLIVE AVE": (-215.0, -40.0)}     # labelled near it (metres)
 
 
 def vicinity_map(fig, left_in, top_in, width_in, height_in):
@@ -1209,33 +1205,39 @@ def vicinity_map(fig, left_in, top_in, width_in, height_in):
     kx, ky = 111320 * math.cos(math.radians(lat0)), 111320.0
     xy = lambda la, lo: ((lo - lon0) * kx, (la - lat0) * ky)  # noqa: E731
     a = fig.add_axes([left_in / W_IN, (top_in - height_in) / H_IN, width_in / W_IN, height_in / H_IN])
-    hw = 1000.0                                                          # half-width shown, metres
+    hw = 950.0                                                           # half-width shown, metres
     hh = hw * height_in / width_in
     a.set_xlim(-hw, hw); a.set_ylim(-hh, hh); a.set_aspect("equal"); a.set_xticks([]); a.set_yticks([])
     for s in a.spines.values():
         s.set_color(INK); s.set_linewidth(0.8)
-    best = {}
+    best, segs = {}, {}
     for name, cls, pts in data["ways"]:
         q = [xy(la, lo) for la, lo in pts]
         major = cls != "residential"
         a.plot([p[0] for p in q], [p[1] for p in q], color="#444" if major else "#aaa", lw=1.6 if major else 0.6,
                solid_capstyle="round", zorder=2 if major else 1)
         lab = VIC_LABELS.get(name)
-        if lab:                                                          # label each named street once, on its
-            inside = [p for p in q if abs(p[0]) < hw * 0.93 and abs(p[1]) < hh * 0.85]   # longest visible piece
+        if lab in VIC_ANCHORS:
+            segs.setdefault(lab, []).extend(zip(q, q[1:]))
+        elif lab:                                                        # label each named street once, on its
+            inside = [p for p in q if abs(p[0]) < hw * 0.97 and abs(p[1]) < hh * 0.85]   # longest visible piece
             if len(inside) >= 2:
                 ln = sum(math.dist(u, v) for u, v in zip(inside, inside[1:]))
                 if ln > best.get(lab, (0,))[0]:
                     best[lab] = (ln, inside)
-    for lab, (_, q) in best.items():
-        u, v = q[len(q) // 2 - 1], q[len(q) // 2]
+    places = [(lab, q[len(q) // 2 - 1], q[len(q) // 2]) for lab, (_, q) in best.items()]
+    for lab, ss in segs.items():                                         # local streets: the piece nearest
+        ax_, ay_ = VIC_ANCHORS[lab]                                      # their anchor
+        u, v = min(ss, key=lambda s: math.dist(((s[0][0] + s[1][0]) / 2, (s[0][1] + s[1][1]) / 2), (ax_, ay_)))
+        places.append((lab, u, v))
+    for lab, u, v in places:
         ang = math.degrees(math.atan2(v[1] - u[1], v[0] - u[0]))
         ang = ang - 180 if ang > 90 else ang + 180 if ang < -90 else ang
-        a.text((u[0] + v[0]) / 2, (u[1] + v[1]) / 2, lab, fontsize=6 if lab in ("LAUREL DR", "GLENROSE AVE") else 6.5,
+        a.text((u[0] + v[0]) / 2, (u[1] + v[1]) / 2, lab, fontsize=7,
                rotation=ang, rotation_mode="anchor", ha="center", va="center", color=INK, zorder=4,
                weight="bold" if lab == "LAUREL DR" else "normal", bbox=dict(fc="white", ec="none", pad=0.6, alpha=0.85))
     a.plot([0], [0], marker="*", ms=16, color=RED, mec="white", mew=0.8, zorder=5)
-    a.annotate("SITE\n220 LAUREL DR", (0, 0), (-330, -300), color=RED, fontsize=7.5, weight="bold", zorder=6,
+    a.annotate("SITE\n220 LAUREL DR", (0, 0), (-470, -270), color=RED, fontsize=7.5, weight="bold", zorder=6,
                arrowprops=dict(arrowstyle="-", color=RED, lw=0.8), bbox=dict(fc="white", ec="none", pad=1))
     nx, ny = hw - 110, hh - 260                                          # true-north arrow
     a.annotate("", (nx, ny + 170), (nx, ny), arrowprops=dict(arrowstyle="-|>", color=INK, lw=1.2), zorder=6)
@@ -1246,24 +1248,6 @@ def vicinity_map(fig, left_in, top_in, width_in, height_in):
     fig.text(left_in / W_IN, (top_in + 0.1) / H_IN, "VICINITY MAP", fontsize=10, weight="bold")
     fig.text(left_in / W_IN, (top_in - height_in - 0.08) / H_IN,
              "Altadena, unincorporated Los Angeles County. Streets " + data["source"].split(",")[0] + ".",
-             fontsize=6.5, va="top")
-
-
-def location_map(fig, left_in, top_in, width_in):
-    """The Assessor's map page with lot 27 outlined, top-left at (left_in, top_in)."""
-    from matplotlib.patches import Polygon as MPoly2
-    img = plt.imread(ASSESSOR_MAP)
-    h_in = width_in * img.shape[0] / img.shape[1]
-    a = fig.add_axes([left_in / W_IN, (top_in - h_in) / H_IN, width_in / W_IN, h_in / H_IN])
-    a.imshow(img, cmap="gray", vmin=0, vmax=1 if img.max() <= 1 else 255); a.axis("off")
-    a.add_patch(MPoly2(LOT_27, closed=True, fc="#ffd400", ec="none", alpha=0.55, zorder=2))   # highlighted
-    a.add_patch(MPoly2(LOT_27, closed=True, fill=False, ec=RED, lw=0.8, zorder=3))
-    cx = sum(x for x, _ in LOT_27) / 4; cy = sum(y for _, y in LOT_27) / 4
-    a.annotate("SITE: LOT 27", (cx, cy), (cx + 180, cy - 330), color=RED, fontsize=8, weight="bold",
-               arrowprops=dict(arrowstyle="-|>", color=RED, lw=1.2))
-    fig.text(left_in / W_IN, (top_in + 0.1) / H_IN, "LOCATION MAP", fontsize=10, weight="bold")
-    fig.text(left_in / W_IN, (top_in - h_in - 0.08) / H_IN,
-             "LA County Assessor's Map Book 5832, page 3 (public record); the site, lot 27, highlighted.",
              fontsize=6.5, va="top")
 
 

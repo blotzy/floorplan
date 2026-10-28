@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 28, 2026
 
+- **9:42 AM**: A-0: the Assessor's location map removed (the vicinity map covers it) and the vicinity map moved up into its place, larger; Laurel Dr, Las Flores Dr, Glenrose Ave and Olive Ave labelled beside the site so each is clear.
 - **9:39 AM**: 3D model: black window frames on every window, the slider and the clerestory (with mullions at the mulled units and the slider's meeting stile); the street, east and rear views re-shot.
 - **9:37 AM**: A-1: the fire hydrant's location confirmed (34.20099 N, 118.14827 W, the SW corner of Laurel and Glenrose), consistent with about 214' east of the east property line.
 - **9:34 AM**: A-4 for the Planning submittal: the finished grade at the walls and the 9' ceiling line on each elevation; the new fences, gates and the entry court's seat wall, and the existing east-line retaining wall; colors in the materials notes (proposed: warm off-white stucco, charcoal shingles, matte black metal, wood-tone porch, orange front door); notes on ceiling heights (the vault about 11'-1½" to 16'-1") and preliminary grading (the pad mostly fill, roughly 120 cu yd).

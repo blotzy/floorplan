@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 28, 2026, 9:39 AM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Oct 28, 2026, 9:42 AM PT · @Richard
 
 [CHANGELOG](CHANGELOG.md)
 
@@ -58,7 +58,7 @@ Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigi
 | File | What it is |
 | --- | --- |
 | [`accosting-owner-schematic.dxf`](accosting-owner-schematic.dxf) | The plan as a DXF (inches) |
-| [Architectural set, draft (PDF)](renders/permit/architectural-set.pdf) | 24" x 36" permit sheets: [A-0 cover, location and vicinity maps, project data and code analysis](renders/permit/A-0-cover.png) · [A-1 site plan](renders/permit/A-1-site-plan.png) · [A-2 floor plan and schedules](renders/permit/A-2-floor-plan.png) · [A-3 roof plan](renders/permit/A-3-roof-plan.png) · [A-4 elevations](renders/permit/A-4-elevations.png) · [A-5 sections](renders/permit/A-5-sections.png) · [A-6 fire-zone details](renders/permit/A-6-fire-details.png) · [A-7 attic and loads plan](renders/permit/A-7-attic-loads.png) |
+| [Architectural set, draft (PDF)](renders/permit/architectural-set.pdf) | 24" x 36" permit sheets: [A-0 cover, vicinity map, project data and code analysis](renders/permit/A-0-cover.png) · [A-1 site plan](renders/permit/A-1-site-plan.png) · [A-2 floor plan and schedules](renders/permit/A-2-floor-plan.png) · [A-3 roof plan](renders/permit/A-3-roof-plan.png) · [A-4 elevations](renders/permit/A-4-elevations.png) · [A-5 sections](renders/permit/A-5-sections.png) · [A-6 fire-zone details](renders/permit/A-6-fire-details.png) · [A-7 attic and loads plan](renders/permit/A-7-attic-loads.png) |
 | Experiment: hall arches, [from the lounge](renders/experiments/hall-arches/from-lounge.png) and [from the primary door](renders/experiments/hall-arches/from-primary-door.png) · [3D model](https://blotzy.github.io/floorplan/renders/experiments/hall-arches/house.html#roof) | Two matching round arches in plain drywall across the bedroom hall: one where the hall meets the great room, one in place of the square dropped header partway down. Each a half-circle across the hall, springing at about 7'-0" and peaking just under the 9' ceiling |
 | Experiment: [solar layout](renders/experiments/solar-layout.png) | Panels on the roof's south-facing plane (the shed and the wing's rear slope, 2:12 facing SSW), clear of the range cap, skylight and vent: up to about 66 panels fit; a suggested 24-panel (~10 kW) block on the shed |
 | Experiment: [no tub, wider walk-in closet, bath through the closet](renders/experiments/suite-wic-entry.png) · [3D model](renders/experiments/suite-wic-entry/house.html) | The no-tub, wider-closet suite with the closet door centred on its aisle (swinging in, hinged on the hall side) and the bath reached from the closet by a door just inside it (swinging into the bath, opening flat on its end wall): no bath door in the bedroom, a shelf bay for the open closet door at the end of the hall-side hanging, the WC and vanity side by side on the bath's rear wall and the shower entered from the closet-wall side; the bedroom TV off-centre beside the closet door |
