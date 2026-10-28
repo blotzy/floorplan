@@ -385,7 +385,7 @@ def site_plan(pdf):
                              length_includes_head=True, zorder=5))
     ax.text(422, hy, "NEAREST PUBLIC FIRE HYDRANT (EXIST.): ±214' EAST OF THE EAST\n"
             "PROPERTY LINE, IN THE PARKWAY AT THE SW CORNER OF LAUREL DR AND\n"
-            "GLENROSE AVE (THIS SIDE OF LAUREL). Distance from the Assessor's\nmap frontages (50' + 15.35' + 148.31'); verify.",
+            "GLENROSE AVE (THIS SIDE OF LAUREL; 34.20099 N, 118.14827 W). Distance from\nthe Assessor's map frontages (50' + 15.35' + 148.31' to Glenrose).",
             fontsize=5, color=RED, va="center", bbox=dict(fc="white", ec="none", pad=1, alpha=0.9))
     ax.text(L[0] + 20, S.EDGE_OF_PAVEMENT + 5, "EDGE OF PAVEMENT", fontsize=5)
     # trees and utilities
