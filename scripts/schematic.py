@@ -180,7 +180,9 @@ OPENINGS = [
                                                           # leaving ~2'-7" of solid wall at the dining corner
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
-    ("ensuite|guest", 335.0, 365.0, "door", "a", +1),       # guest ensuite's only door: swings into the guest room (the bath is narrow)
+    ("ensuite|guest", 335.0, 365.0, "door", "a", -1),       # guest ensuite's only door: swings into the bath, hinged on the
+                                                            # street side, flat on the wall opposite the WC (the guest
+                                                            # room's east wall stays clear for the TV)
     ("bedroom hall wall", 906.5, 942.5, "door", "a", -1),  # guest
     ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, by the hall's end
     ("south hall wall", 695.0, 725.0, "door", "b", -1),     # pantry: swings out, folding flat on the hall wall
@@ -684,7 +686,9 @@ def build() -> Sheet:
     open_mid = (N_IN + hall_n - 24) / 2     # gym, guest, office: head wall from the window side to the closets
     m0 = sh.mark()
     bed(face("lounge|gym", +1), open_mid, 60, +1)
-    bed(face("guest|office", -1), open_mid, 60, -1)   # guest: head on the office wall, clear of the bath door
+    bed(face("guest|office", -1), open_mid - 10, 60, -1)   # guest: head on the office wall, 10" toward the street
+    gx = face("ensuite|guest", +1)                          # so the TV, centred on it, clears the ensuite door's trim
+    sh.rect(gx, open_mid - 10 - 24, gx + 3, open_mid - 10 + 24, fu); sh.text('TV 55"', gx + 6, open_mid - 10, 2.2, rot=90)
     bed(W_IN, open_mid, 60, -1)
     bed(W_IN, (srow + S_IN) / 2, 76, -1)   # primary: the whole west wall is open
     sh.movable_since(m0)

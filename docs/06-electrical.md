@@ -49,6 +49,7 @@
 - Lounge surround speakers: an outlet at each of the two speaker positions on the lounge side of the gym wall (for powered or wireless surrounds), beside the speaker-wire plates.
 - **AV closet** (the foyer closet at the dining-room end, behind the TV): an outlet at the AV shelf, and a quiet thermostat-controlled exhaust fan (or a louvered door) to vent the gear.
 - Primary bedroom TV, on the east wall centred on the bed (the dressing room's opening is in the hall corner), facing the bed: a recessed TV box (power and low-voltage pass-through) set for a lower, tilting mount (tilting down 5–10° keeps window reflections off the screen), with blocking in the wall for the mount.
+- Guest room TV, on the east (ensuite) wall facing the bed, on the street side of the ensuite door (a 55" TV centred on the bed clears the door trim): a recessed TV box and blocking, as in the primary.
 - Office: outlets at desk height on the desk wall.
 - Exterior GFCI outlets outside the dining slider and near the bin pad.
 - Irrigation controller: an outlet where it mounts (an exterior wall near the valve manifold, or inside the carport), within Wi-Fi range for a weather-based controller.
