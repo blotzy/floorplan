@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 28, 2026
 
+- **1:48 PM**: Review of the arch set and engineer briefs. A-5: section B moved off the primary bath's wall into the dressing room (x 1010). A-2: section cut lines and tags (A, B, C to A-5) and a legend entry. Engineer briefs: the code basis matches A-0 (2022 codes under EO N-29-25, to confirm); the dining corner wall about 2'-7"; the footprint's fall about 5' (northeast high, rear west low, about 6'-2" below the floor) and the pad fill; the 1" meter applied for and the hydrant's location; a fence footings item; FM-1 linked for the civil.
 - **10:11 AM**: Fences and gates: aluminum posts and solid panels in matte black to match the carport (A-4 detail and materials note, A-1 linework, site doc); in the 3D model the fences and the carport and porch posts in the same matte black; exterior views re-shot.
 - **10:07 AM**: Fence wording: "aluminum privacy fence, solid panels" (A-4, site doc).
 - **10:06 AM**: Fences and gates: opaque aluminum privacy panels with little to no gaps (A-4 detail and materials note, site doc); posts and footings sized for wind on a solid fence.

@@ -910,15 +910,16 @@ def section_cut(ax, cut, at, ff):
 
 
 M_CEIL = 108.0
+SECTION_CUTS = [("A", "x", 600.0, "SECTION A: THROUGH THE LOUNGE AND KITCHEN (VAULTED)", (0.9, 16.4)),
+                ("B", "x", 1010.0, "SECTION B: THROUGH THE GUEST ROOM, LOBBY AND DRESSING ROOM (GABLE)", (13.6, 16.4)),
+                ("C", "y", 432.0, "SECTION C: ALONG THE LOBBY, LOOKING SOUTH", (0.9, 4.0))]   # also marked on A-2
 
 
 def sections(pdf):
     fig = sheet("A-5", "BUILDING\nSECTIONS")
     ff = ff_elev()
     top = X.shed_vault_under(2 / 12)(S.N - X.EAVE) + X.THK + 30
-    cuts = [("A", "x", 600.0, "SECTION A: THROUGH THE LOUNGE AND KITCHEN (VAULTED)", (0.9, 16.4)),
-            ("B", "x", 960.0, "SECTION B: THROUGH THE GUEST ROOM, LOBBY AND WALK-IN CLOSET (GABLE)", (13.6, 16.4)),
-            ("C", "y", 432.0, "SECTION C: ALONG THE LOBBY, LOOKING SOUTH", (0.9, 4.0))]
+    cuts = SECTION_CUTS
     for tag, cut, at, title, (lx, by) in cuts:
         a, b = (S.N, S.S) if cut == "x" else (S.E, S.W)
         ax = scaled_axes(fig, lx, by, a - X.EAVE - 50, -90, b + X.EAVE + 140, top)
@@ -1422,6 +1423,14 @@ def floor_plan(pdf):
             ha="center", va="bottom", color=INK)
     for x, y in ((560, 360), (430, 560), (610, 470)):
         pass
+    for tag, cut, at, _, _ in SECTION_CUTS:                             # section cuts (A-5)
+        ends = [((at, S.N - 45), (at, S.S + 45))] if cut == "x" else [((S.E - 45, at), (S.W + 45, at))]
+        (p0, p1), = ends
+        ax.plot([p0[0], p1[0]], [p0[1], p1[1]], color=INK, lw=0.7, ls=(0, (14, 4, 3, 4)), zorder=4)
+        for q in (p0, p1):
+            ax.add_patch(Circle(q, 11, fc="white", ec=INK, lw=0.9, zorder=6))
+            ax.text(q[0], q[1] + 3, tag, fontsize=6.5, weight="bold", ha="center", va="center", zorder=7)
+            ax.text(q[0], q[1] - 5, "A-5", fontsize=4.5, ha="center", va="center", zorder=7)
     ax.text(585, 445, "VAULTED CEILING\n(FOYER, LOUNGE, DINING, KITCHEN)", fontsize=6, ha="center", color="#555")
     ax.text((S.E + S.W) / 2, y0 + 6, "FLOOR PLAN   1/4\" = 1'-0\"", fontsize=12, weight="bold", ha="center")
     ax.annotate("", (S.W + 40, S.N - 110), (S.W + 40, S.N - 60), arrowprops=dict(arrowstyle="->", lw=1.5))
@@ -1442,8 +1451,8 @@ def floor_plan(pdf):
         "10. Attic access in the hall: 22\" x 54\" insulated, gasketed\n   access panel (passes the air handler), 30\" min headroom\n   above (CRC R807.1).\n"
         "11. Furniture not shown; closets, cabinets and fixtures\n   shown for reference.\n")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
-    lg = fig.add_axes([27.0 / W_IN, 6.9 / H_IN, 5.5 / W_IN, 2.4 / H_IN]); lg.axis("off")
-    lg.set_xlim(0, 55); lg.set_ylim(0, 24)
+    lg = fig.add_axes([27.0 / W_IN, 6.3 / H_IN, 5.5 / W_IN, 3.0 / H_IN]); lg.axis("off")
+    lg.set_xlim(0, 55); lg.set_ylim(-6, 24)
     lg.text(0, 23, "LEGEND", fontsize=9, weight="bold", va="top")
     lg.add_patch(Circle((3, 16), 1.6, fc="white", ec=INK)); lg.text(3, 16, "1", fontsize=6, ha="center", va="center")
     lg.text(7, 16, "Door tag (see door schedule)", fontsize=8, va="center")
@@ -1454,6 +1463,10 @@ def floor_plan(pdf):
     lg.text(7, 6, "Smoke alarm (SD), smoke / CO alarm (SD/CO)", fontsize=8, va="center")
     lg.plot([0.5, 5.5], [1.5, 1.5], ls="--", color=INK, lw=0.8)
     lg.text(7, 1.5, "Overhead: canopy, attic hatch, skylight", fontsize=8, va="center")
+    lg.plot([0.5, 5.5], [-3.5, -3.5], ls=(0, (6, 2, 1, 2)), color=INK, lw=0.8)
+    lg.add_patch(Circle((5.5, -3.5), 1.4, fc="white", ec=INK, clip_on=False))
+    lg.text(5.5, -3.5, "A", fontsize=5, ha="center", va="center", weight="bold")
+    lg.text(9, -3.5, "Section cut (sections on A-5)", fontsize=8, va="center")
 
     # schedules (below the plan)
     table(fig, 0.9, 9.0, "DOOR SCHEDULE", ("TAG", "LOCATION", "SIZE (W x H)", "TYPE", "NOTES"),
