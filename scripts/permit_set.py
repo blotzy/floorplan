@@ -359,32 +359,20 @@ def site_plan(pdf):
                 ax.add_patch(Rectangle((a0 + (a1 - a0) * k / n - 3, b0 + (b1 - b0) * k / n - 3), 6, 6,
                                        fc=FENCE_C, ec="none", zorder=5))
 
-    def tag(x, y, s):
-        ax.text(x, y, s, fontsize=8, weight="bold", color="white", ha="center", va="center", zorder=7,
-                bbox=dict(boxstyle="round,pad=0.25", fc=FENCE_C, ec="none"))
+    def tag(x, y, s, rot=0):
+        ax.text(x, y, s, fontsize=6.5, weight="bold", color=FENCE_C, ha="center", va="center", zorder=7,
+                rotation=rot, bbox=dict(fc="white", ec=FENCE_C, lw=0.6, pad=1.2))
     fence([(L[0], fy), (gx, fy)])                                      # courtyard fence behind the carport
     ax.add_patch(matplotlib.patches.Arc((S.E, fy), 2 * S.GATE_L, 2 * S.GATE_L, theta1=180, theta2=270,
                                         color=FENCE_C, lw=0.8, ls="--", zorder=4))
     ax.plot([gx, S.E], [fy, fy], color=FENCE_C, lw=1.2, zorder=4)     # the 14' gate leaf (closed)
-    tag((L[0] + gx) / 2, fy + 16, "F"); tag((gx + S.E) / 2, fy + 16, "G1")
+    tag((L[0] + gx) / 2, fy + 18, "6' FENCE"); tag((gx + S.E) / 2, fy + 18, "14' GATE, 6' HIGH")
     fence([(L[0], 386), (L[0] + 60, 386), (L[0] + 60, 258)])          # bin pad enclosure
-    tag(L[0] + 78, 322, "F")
+    tag(L[0] + 76, 322, "6' FENCE (BIN PAD)", rot=90)
     fence([(S.W, S.N), (S.W + 20, S.N)]); fence([(S.W + 68, S.N), (L[2], S.N)])   # west side yard
     ax.plot([S.W + 20, S.W + 68], [S.N, S.N], color=FENCE_C, lw=1.2, zorder=4)    # its 4' gate
-    tag(S.W + 44, S.N - 16, "G2"); tag((S.W + 68 + L[2]) / 2, S.N - 16, "F")
-    tag((S.ENTRY_WALLS[0][0] + S.ENTRY_WALLS[0][2]) / 2, S.ENTRY_WALLS[0][1] - 16, "W")
-    kx = fig.add_axes([25.9 / W_IN, 11.2 / H_IN, 4.5 / W_IN, 1.9 / H_IN]); kx.axis("off")   # key, under the notes
-    kx.set_xlim(0, 4.5); kx.set_ylim(0, 1.9)
-    kx.text(0, 1.85, "FENCES, GATES AND WALLS (TYPICAL DETAIL ON A-4)", fontsize=8, weight="bold", va="top")
-    kx.plot([0.05, 0.55], [1.45, 1.45], color=FENCE_C, lw=2.4)
-    for u in (0.05, 0.3, 0.55):
-        kx.add_patch(Rectangle((u - 0.025, 1.425), 0.05, 0.05, fc=FENCE_C, ec="none"))
-    kx.text(0.7, 1.45, "New 6' metal fence (posts at 6' o.c. max)", fontsize=7.5, va="center")
-    for k, (s, d) in enumerate((("F", "6' fence"), ("G1", "14' carport gate (opens flat against the house)"),
-                                ("G2", "4' side-yard gate"), ("W", "24\" seat wall (entry court)"))):
-        kx.text(0.3, 1.12 - k * 0.27, s, fontsize=8, weight="bold", color="white", ha="center", va="center",
-                bbox=dict(boxstyle="round,pad=0.25", fc=FENCE_C, ec="none"))
-        kx.text(0.7, 1.12 - k * 0.27, d, fontsize=7.5, va="center")
+    tag(S.W + 44, S.N - 18, "4' GATE, 6' HIGH"); tag((S.W + 68 + L[2]) / 2 + 20, S.N + 18, "6' FENCE")
+    tag((S.ENTRY_WALLS[0][0] + S.ENTRY_WALLS[0][2]) / 2, S.ENTRY_WALLS[0][1] - 18, "24\" SEAT WALL")
     # vehicle parking and backup space: the drive from the parking spaces to the street
     by0, by1 = S.EDGE_OF_PAVEMENT, S.N + S.CARPORT_WALK
     Z.dim(ax, (S.CARPORT[2] - 30, by0), (S.CARPORT[2] - 30, by1), f"BACKUP SPACE\n{ftin(by1 - by0)} TO PAVEMENT",
@@ -753,11 +741,11 @@ def fence_detail(fig, left_in, bottom_in):
     ax.add_patch(Rectangle((0, y), 144, 72, fc="none", ec=c, lw=lw)); slats(0, 144, y, 72)
     for x in (0, 72, 144):
         post(x, y, 72)
-    title(72, y, "F  6' FENCE (TYP.), POSTS 6' O.C. MAX")
+    title(72, y, "6' FENCE (TYP.), POSTS 6' O.C. MAX")
     ax.add_patch(Rectangle((176, y + 2), 48, 70, fc="none", ec=c, lw=lw)); slats(176, 224, y + 2, 70)
     post(172, y, 72); post(228, y, 72)
     ax.plot([180, 220], [y + 6, y + 68], color=c, lw=0.5, ls="--")      # brace
-    title(200, y, "G2  4' GATE (WEST SIDE YARD)")
+    title(200, y, "4' GATE (WEST SIDE YARD)")
     y = 30.0                                                             # 14' carport gate and the seat wall
     ground(0, 290, y)
     post(-4, y, 76)
@@ -765,13 +753,13 @@ def fence_detail(fig, left_in, bottom_in):
     ax.plot([4, 164], [y + 68, y + 9], color=c, lw=0.6, ls=(0, (4, 2)))  # cable brace, hinge top to latch bottom
     ax.add_patch(Circle((160, y + 2), 2.5, fc="white", ec=c, lw=0.8))   # wheel
     ax.text(-10, y + 40, "HINGE\nPOST", fontsize=4.5, ha="right", va="center", color=c)
-    title(84, y, "G1  14' CARPORT GATE: OWN HINGE POST, CABLE BRACE, WHEEL")
+    title(84, y, "14' CARPORT GATE: OWN HINGE POST, CABLE BRACE, WHEEL")
     ax.add_patch(Rectangle((196, y), 96, 22, fc="#ddd", ec=INK, lw=lw))
     ax.add_patch(Rectangle((194, y + 22), 100, 2, fc="#bbb", ec=INK, lw=lw))
-    title(244, y, "W  24\" SEAT WALL (ENTRY COURT)")
+    title(244, y, "24\" SEAT WALL (ENTRY COURT)")
     ax.text(-20, 268, "FENCES, GATES AND WALLS (TYPICAL)   1/4\" = 1'-0\"", fontsize=8.5, weight="bold", va="top")
     fig.text(left_in / W_IN, (bottom_in - 0.15) / H_IN,
-             "Locations on A-1 (keyed F, G1, G2, W). Fences and gates 6' above finished grade, metal (noncombustible: they meet the house "
+             "Locations and heights on A-1. Fences and gates 6' above finished grade, metal (noncombustible: they meet the house "
              "in the\nfire zone); horizontal slats. The carport gate opens flat against the house wall on its own "
              "post, not hung\nfrom the stucco. Seat wall: concrete or block with a smooth cap, stucco to match the "
              "house.", fontsize=6.5, va="top")
