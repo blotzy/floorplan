@@ -1211,11 +1211,10 @@ def floor_plan(pdf):
         ax.add_patch(Circle((x, y), 7, fc="white", ec=RED, lw=1.0, zorder=5))
         ax.text(x, y, lab, fontsize=4.5, ha="center", va="center", color=RED, zorder=6)
     hall_y = (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2
-    # bedroom alarms on the ceiling in the hall-side corner away from the door: off-centre, so over 3' from a
-    # ceiling fan's blade tips, and away from the supplies (by the windows) and the transfer grilles (by the door)
-    hn, hs = S.face("bedroom hall wall", -1) - 36, S.face("south hall wall", +1) + 18   # 12" in front of the closets
-    for x, y in ((S.face("lounge|gym", +1) + 18, hn), (S.face("guest|office", -1) - 18, hn),   # gym, guest
-                 (S.W_IN - 18, hn), (S.W_IN - 18, hs)):                                       # office, primary
+    # bedroom alarms on the ceiling just inside each door, 30" in, over the latch-side jamb: over 3' from a
+    # ceiling fan's blade tips and from the supplies (by the windows); the guest's over 3' from the ensuite door
+    hn, hs = S.face("bedroom hall wall", -1) - 30, S.face("south hall wall", +1) + 30
+    for x, y in ((781.5, hn), (942.5, hn), (1103.0, hn), (1074.0, hs + 14)): # gym, guest, office, primary
         alarm(x, y, "SD")
     alarm(S.HATCH_X - 10, hall_y - 15, "SD/\nCO")           # one, mid-lobby: within 21' of every bedroom door;
                                                              # off the centreline, clear of its lights

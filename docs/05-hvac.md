@@ -23,7 +23,7 @@ Three zones are preferred. If the Manual J or the equipment's minimum airflow ma
 - Returns: a central return in the bedroom hall and one in the great room; transfer grilles or jumper ducts from each closed-door room (bedrooms, office, primary).
 - Supplies: ceiling registers in the flat-ceiling rooms, near the windows and throwing across the room. The vaulted great room has no attic above it, so its supplies are high sidewall registers on the walls bordering the attic (the lounge/gym and kitchen/pantry walls), throwing across the room, with ducting in the insulated rafter bays only where unavoidable. The dining room's large south glass gets its own supply; the great room's return sits low on one of those walls. Destratification (a ceiling fan) helps under the high clerestory.
 - Gym: keep registers out of the ring swing zone.
-- Smoke alarms sit in each bedroom's hall-side corner away from the door (sheet A-2): keep supply registers at least 3' away and not blowing at them; transfer grilles stay by the door, not near the alarm.
+- Smoke alarms sit on the ceiling just inside each bedroom door (sheet A-2): keep supply registers at least 3' away and not blowing at them.
 - Primary bedroom register aimed along the room, not at the bed.
 - Primary, guest and office have ceiling fans: keep their registers out from under the blades and don't aim them at the fans.
 - No return in the kitchen (grease) or the laundry (lint).
