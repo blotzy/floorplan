@@ -389,14 +389,14 @@ const M = {
   wall:{color:0xf4f1ea, side:THREE.DoubleSide}, exterior:{color:0xf4f1ea, side:THREE.DoubleSide},
   soffit:{color:0xeeeae4}, fascia:{color:0x3b3f44}, door:{color:0x5a4634},
   glass:{color:0x9cc8e8, transparent:true, opacity:0.35, side:THREE.DoubleSide},
-  fence:{color:0x6b6f73, side:THREE.DoubleSide},
+  fence:{color:0x2b2d30, side:THREE.DoubleSide},
   ground:{color:0xc9c2a8}, slab:{color:0xb9a98f}, concrete:{color:0xbdbdbd},
   pavers:{color:0xa89f94}, lawn:{color:0x6fa04a}, planter:{color:0x7d6a55},
   ceiling:{color:0xffffff, side:THREE.DoubleSide, transparent:true, opacity:0.92},
   ceiling_cut:{color:0xffffff, side:THREE.DoubleSide, transparent:true, opacity:0.92},
   fixture:{color:0xd9d4cc}, furniture:{color:0x8fa3b8}, counter:{color:0x9a8f84},
   closet:{color:0xb59a7a}, bed:{color:0xe8e1d4},
-  chrome:{color:0xdfe3e8, roughness:0.4, metalness:0.15}, post:{color:0x5a5f66}, frame:{color:0x2B2D30}, flame:{color:0xFF8A2A, emissive:0xC0501A}, roof:{color:0x4a4f55, transparent:true, opacity:0.85},
+  chrome:{color:0xdfe3e8, roughness:0.4, metalness:0.15}, post:{color:0x2b2d30}, frame:{color:0x2B2D30}, flame:{color:0xFF8A2A, emissive:0xC0501A}, roof:{color:0x4a4f55, transparent:true, opacity:0.85},
 };
 const mat = k => new THREE.MeshStandardMaterial(Object.assign(
   {roughness:0.9, polygonOffset:true, polygonOffsetFactor:1, polygonOffsetUnits:1}, M[k]||{color:0xcccccc}));

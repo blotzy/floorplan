@@ -660,11 +660,11 @@ MATERIALS = ("EXTERIOR MATERIALS AND COLORS\n"
              "2. Roof: asphalt shingles, Class A (A-3), color:\n"
              "   charcoal; carport roof standing-seam metal, dark gray.\n"
              "3. Fascia, drip edge, canopies, carport posts and\n"
-             "   beam: metal, color: matte black.\n"
+             "   beam, fences and gates: metal, color: matte black.\n"
              "4. Porch walls and ceiling: wood-look fiber cement or\n"
              "   porcelain (noncombustible / ignition-resistant),\n"
              "   color: warm mid-brown wood tone. Front door: orange.\n"
-             "   Window frames: black. Fences: aluminum privacy\n   fence, detail this sheet.\n"
+             "   Window frames: black. Fences: aluminum privacy\n   fence (posts and panels), detail this sheet.\n"
              "5. Windows: dual-pane, one pane tempered (CRC R337.8);\n"
              "   punched street windows recessed 6\" (clerestory\n   band flush). See A-2 schedule.\n"
              "6. Eave soffits enclosed, no vents (A-6).\n"
@@ -707,7 +707,7 @@ def grade_line(ax, side, ff):
     return lo
 
 
-FENCE_C = "#6b4f2a"
+FENCE_C = "#2b2d30"                                   # fences: matte black aluminum, like the carport
 
 
 def site_elements(ax, side, ff):
@@ -733,9 +733,9 @@ def fence_detail(fig, left_in, bottom_in):
     c, lw = FENCE_C, 0.8
 
     def slats(x0, x1, y0, h):                                            # solid aluminum privacy panels
-        ax.add_patch(Rectangle((x0, y0), x1 - x0, h, fc="#c9cbcd", ec="none", zorder=0))
+        ax.add_patch(Rectangle((x0, y0), x1 - x0, h, fc="#55595e", ec="none", zorder=0))
     def post(x, y0, h):
-        ax.add_patch(Rectangle((x - 2, y0), 4, h + 2, fc=c, ec=c))
+        ax.add_patch(Rectangle((x - 2, y0), 4, h + 2, fc="#111", ec="#111"))
     def ground(x0, x1, y):
         ax.plot([x0 - 8, x1 + 8], [y, y], color=INK, lw=1.0)
     def title(x, y, s):
@@ -745,7 +745,7 @@ def fence_detail(fig, left_in, bottom_in):
     ax.add_patch(Rectangle((0, y), 144, 72, fc="none", ec=c, lw=lw)); slats(0, 144, y, 72)
     for x in (0, 72, 144):
         post(x, y, 72)
-    title(72, y, "6' FENCE (TYP.), POSTS 6' O.C. MAX")
+    title(72, y, "6' FENCE (TYP.), ALUMINUM POSTS 6' O.C. MAX")
     Z.dim(ax, (-12, y), (-12, y + 72), "6'-0\"", fs=5.5, rot=90)
     ax.add_patch(Rectangle((176, y + 2), 48, 70, fc="none", ec=c, lw=lw)); slats(176, 224, y + 2, 70)
     post(172, y, 72); post(228, y, 72)
@@ -754,7 +754,7 @@ def fence_detail(fig, left_in, bottom_in):
     ground(0, 290, y)
     post(-4, y, 76)
     ax.add_patch(Rectangle((0, y + 3), 168, 69, fc="none", ec=c, lw=lw)); slats(0, 168, y + 3, 69)
-    ax.plot([4, 164], [y + 68, y + 9], color=c, lw=0.6, ls=(0, (4, 2)))  # cable brace, hinge top to latch bottom
+    ax.plot([4, 164], [y + 68, y + 9], color="white", lw=0.7, ls=(0, (4, 2)))   # cable brace, hinge top to latch bottom
     ax.add_patch(Circle((160, y + 2), 2.5, fc="white", ec=c, lw=0.8))   # wheel
     ax.text(-10, y + 40, "HINGE\nPOST", fontsize=4.5, ha="right", va="center", color=c)
     title(84, y, "14' CARPORT GATE: OWN HINGE POST, CABLE BRACE, WHEEL")
@@ -763,10 +763,11 @@ def fence_detail(fig, left_in, bottom_in):
     title(244, y, "24\" SEAT WALL (ENTRY COURT)")
     ax.text(-20, 268, "FENCES, GATES AND WALLS (TYPICAL)   1/4\" = 1'-0\"", fontsize=8.5, weight="bold", va="top")
     fig.text(left_in / W_IN, (bottom_in - 0.15) / H_IN,
-             "Locations and heights on A-1. Fences and gates 6' above finished grade: aluminum privacy fence, solid "
-             "panels\n(noncombustible: they meet the house in the fire zone); posts and footings sized for "
-             "wind on a solid fence. The carport\ngate opens flat against the house wall on its own post, not hung from "
-             "the stucco. Seat wall: concrete or block with a\nsmooth cap, stucco to match the house.", fontsize=6.5, va="top")
+             "Locations and heights on A-1. Fences and gates 6' above finished grade: aluminum privacy fence, "
+             "aluminum posts and\nsolid panels, matte black to match the carport (noncombustible: they meet the house "
+             "in the fire zone); posts and\nfootings sized for wind on a solid fence. The carport gate opens flat "
+             "against the house wall on its own post, not hung\nfrom the stucco. Seat wall: concrete or block with a "
+             "smooth cap, stucco to match the house.", fontsize=6.5, va="top")
 
 
 def elevations(pdf):

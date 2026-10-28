@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 28, 2026
 
+- **10:11 AM**: Fences and gates: aluminum posts and solid panels in matte black to match the carport (A-4 detail and materials note, A-1 linework, site doc); in the 3D model the fences and the carport and porch posts in the same matte black; exterior views re-shot.
 - **10:07 AM**: Fence wording: "aluminum privacy fence, solid panels" (A-4, site doc).
 - **10:06 AM**: Fences and gates: opaque aluminum privacy panels with little to no gaps (A-4 detail and materials note, site doc); posts and footings sized for wind on a solid fence.
 - **10:04 AM**: A-4 fence detail: outlines only (posts, frames, the 14' gate's hinge post, brace and wheel) with a 6'-0" dimension; the horizontal slats dropped, infill style to be selected.
