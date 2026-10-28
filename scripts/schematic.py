@@ -424,8 +424,8 @@ def utility_block(sh):
     be = face("bath|storage", -1)
     # bath: sink, then the toilet on the west wall (the plumbing wall shared back to back with the primary bath),
     # then a curbless shower across the end; the door at the east end keeps the toilet out of view from the
-    # lounge. The shower is entered at the door (east) end; its valve (by the entry) and head are on the back
-    # wall (the storage room's), supply only, the head spraying toward the glass
+    # lounge. The shower is entered at the door (east) end; its valve (beside the entry) and head are on that end
+    # wall (the laundry's), the head spraying down the shower's length, away from the opening
     vanity(sh, b1 - 20, 472.0, b1, 496.0, "SINK", rot=90)            # clear of the door's swing
     wc(sh, b1 - 28, 499.0, b1, 529.0)                                        # 16" from its centre to the glass
     gy = 530.0                                                               # shower: full width x 36"
@@ -433,8 +433,12 @@ def utility_block(sh):
     sh.rect(b0, gy, b1, be, eq)
     glass(sh, (b1, gy), (b0 + 24, gy))                                       # 24" open entry, door side
     sh.text("SHOWER", (b0 + b1) / 2 + 6, gy + 9, 3.0)
-    shower_head(sh, b1 - 16, be, -1)                                         # head on the back wall
-    sh.text("VALVE", b0 + 8, be - 5, 1.6)                                    # valve beside the entry
+    hy = gy + 20.0                                                           # head on the laundry wall, spraying
+    sh.heads.append((b0, hy, 1.0, 0.0))                                      # down the shower's length
+    sh.circle((b0 + 2.5, hy), 2.5, eq)
+    for dy in (-5.0, 0.0, 5.0):
+        sh.line((b0 + 5.5, hy + dy * 0.4), (b0 + 11.0, hy + dy), eq)
+    sh.text("VALVE", b0 + 5, gy + 6, 1.6)                                    # valve beside the entry
     drain(sh, (b0 + 3, be - 3), (b1 - 3, be - 3))
     room_label(sh, "COMMON BATH", b0, hall, b1, be, cx=(b0 + b1 - 28) / 2, cy=488.0, h=2.4)
     sx, sy = (b0 + b1) / 2 - 6, (gy + be) / 2 + 4                            # skylight over the shower (a damp-rated
