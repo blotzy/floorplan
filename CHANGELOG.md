@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **9:47 PM**: Attic light switch in the attic at the hatch opening (a timer switch), not on the hall wall (electrical doc; schematic mark removed).
 - **9:42 PM**: Hall linen closet's 5' bifold 2" east of centre, so its casing clears the hall header's wall stub (about 1½" between).
 - **9:40 PM**: Hall linen closet 2'-3" deep (was 2'-0"); the guest ensuite's vanity 4" closer to the WC (19" from its centreline); ensuite 5'-6" x 10'-1".
 - **9:38 PM**: Hall linen closet shelves start at the closet's back wall (they overlapped it, in the plan and the 3D model); the guest ensuite's size label measures to that wall's face (5'-6" x 10'-4").

@@ -85,7 +85,7 @@
 | Primary bedroom: east wall just south of the dressing-room opening | 2-gang | Dressing room light; walkway path light |
 | Reading nook: side wall at the bench | 1-gang | Reading lights (dimmer) |
 | Primary bath: dressing-room wall inside, latch side, before the shower | 3-gang | Light and vanity light, shower light, fan |
-| Hall, under the attic hatch | 1-gang with pilot light | Attic light at the air handler platform (switch at the attic access) |
+| In the attic, on the framing at the hatch opening (reachable from the ladder) | 1-gang timer switch (off after 30-60 minutes) | Attic light at the air handler platform (the code's switch at the attic access) |
 
 - Dressing room: no motion sensor (it's the path to the bath at night). A dim LED path light at floor level along the walkway to the bath door, on its own switch, so the bedroom stays dark.
 - Landscape lights on the landscape controller's astronomical timer. The porch and entry court share the timer switch at the front door, so they can still be switched by hand.
