@@ -459,6 +459,36 @@ def street_facade(sc):
     sc.mat["canopy"] = {"color": 0x2B2D30}
 
 
+FRAME_W, FRAME_D = 2.0, 2.5                       # window frames: 2" face, 2-1/2" deep, black
+
+
+def window_frames(sc):
+    """Black frames around every window and the slider (at the glass plane), with a mullion at the middle
+    of the long mulled windows and the slider's meeting stile."""
+    w, d = FRAME_W, FRAME_D / 2
+    for x0, y0, x1, y1, z0, z1 in list(sc.quads["glass"]):
+        along_x = abs(y0 - y1) < 0.01
+        a, b = sorted((x0, x1) if along_x else (y0, y1))
+        c = y0 if along_x else x0
+        if b - a < 6 or z1 - z0 < 6:
+            continue
+        bx = (lambda u0, u1, v0, v1: [u0, c - d, u1, c + d, v0, v1]) if along_x else \
+             (lambda u0, u1, v0, v1: [c - d, u0, c + d, u1, v0, v1])
+        mid = (a + b) / 2
+        parts = [(a, b, z1 - w, z1), (a, b, z0, z0 + w), (a, a + w, z0, z1), (b - w, b, z0, z1)]
+        if b - a >= 72:                                          # mulled units / the slider's meeting stile
+            parts.append((mid - w / 2, mid + w / 2, z0, z1))
+        for u0, u1, v0, v1 in parts:
+            sc.boxes["winframe"].append(bx(u0, u1, v0, v1))
+    lx0, lx1 = CLERESTORY_X                                      # the clerestory band (flush, in the street wall)
+    z0, z1 = CLERESTORY_SILL, CLERESTORY_SILL + 36.0
+    for u0, u1, v0, v1 in [(lx0, lx1, z1 - w, z1), (lx0, lx1, z0, z0 + w)] + \
+            [(lx0 + k * CLERESTORY_UNIT - w / 2, lx0 + k * CLERESTORY_UNIT + w / 2, z0, z1)
+             for k in range(CLERESTORY_UNITS + 1)]:
+        sc.boxes["winframe"].append([max(u0, lx0), N - d, min(u1, lx1), N + d, v0, v1])
+    sc.mat["winframe"] = {"color": 0x1C1C1C}
+
+
 def chosen_exterior(sc, porch=True, facade=True):
     """The main plan's exterior: the split roof at 2:12 with 2'-6" eaves (2'-0" at the rear), in dark asphalt shingles: a shed
     from the porch into the bedroom wing (high at the street, the 18' x 3' clerestory band in it over the lounge;
@@ -474,6 +504,7 @@ def chosen_exterior(sc, porch=True, facade=True):
         porch_feature(sc)
     if facade:
         street_facade(sc)
+    window_frames(sc)
 
 
 def box_tris(sc, mat, x0, y0, x1, y1, z0, z1):
