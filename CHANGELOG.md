@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **7:24 PM**: A-2: switch marks removed; bedroom smoke alarms moved from the room centres to the hall-side corner away from each door, clear of the ceiling fans, supply registers and transfer grilles (note 7 adds the NFPA 72 spacing; electrical and HVAC docs).
 - **7:16 PM**: A-1: the new trees labelled by species (toyon, western redbud), above their circles inside the lot, clear of the lot line; tree labels on a white backing.
 - **7:14 PM**: A-0 location map: lot 27 highlighted in yellow on its actual lot lines, instead of the offset red outline.
 - **7:13 PM**: A-1: setback lines in bold purple dashes, each labelled with its distance (front, rear, both sides), and the required yards tinted.

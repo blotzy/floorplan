@@ -217,7 +217,7 @@ def build_doc():
         geo = box(bb.extmin.x, bb.extmin.y, bb.extmax.x, bb.extmax.y) if bb.has_data else None
         gone = (id(e) in drop or lay in ("A-ANNO-DIMS", "L-PLNT", "A-FENC", "C-PROP")
                 or (lay == "A-FURN" and not (geo and any(geo.buffer(1).contains(Point(p)) for p in closets)))
-                or (txt in CASEWORK_WORDS) or (txt and "FENCE" in txt))
+                or (txt in CASEWORK_WORDS) or txt == "S" or (txt and "FENCE" in txt))     # S: switch marks
         if (not gone and lay == "A-WALL" and geo is not None and geo.area > 0
                 and geo.intersection(house).area < 0.5 * geo.area and not geo.within(carport)):
             gone = True                                                # the entry court's seat wall
@@ -1211,7 +1211,11 @@ def floor_plan(pdf):
         ax.add_patch(Circle((x, y), 7, fc="white", ec=RED, lw=1.0, zorder=5))
         ax.text(x, y, lab, fontsize=4.5, ha="center", va="center", color=RED, zorder=6)
     hall_y = (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2
-    for nm, (x, y) in {"GYM": (760, 330), "GUEST": (980, 330), "OFFICE": (1140, 330), "PRIMARY": (1140, 540)}.items():
+    # bedroom alarms on the ceiling in the hall-side corner away from the door: off-centre, so over 3' from a
+    # ceiling fan's blade tips, and away from the supplies (by the windows) and the transfer grilles (by the door)
+    hn, hs = S.face("bedroom hall wall", -1) - 36, S.face("south hall wall", +1) + 18   # 12" in front of the closets
+    for x, y in ((S.face("lounge|gym", +1) + 18, hn), (S.face("guest|office", -1) - 18, hn),   # gym, guest
+                 (S.W_IN - 18, hn), (S.W_IN - 18, hs)):                                       # office, primary
         alarm(x, y, "SD")
     alarm(S.HATCH_X - 10, hall_y - 15, "SD/\nCO")           # one, mid-lobby: within 21' of every bedroom door;
                                                              # off the centreline, clear of its lights
@@ -1233,7 +1237,7 @@ def floor_plan(pdf):
         "4. Doors 8'-0\" high unless noted; interior doors solid\n   core. Exterior doors and glazing per CRC R337 (VHFHSZ).\n"
         "5. All exterior glazing dual-pane with at least one tempered\n   pane (CRC R337.8.2.1). Fully tempered where noted\n   (CRC R308.4).\n"
         "6. Bedroom windows meet emergency escape: 5.7 sq ft net\n   clear, 20\" min width, 24\" min height, sill 44\" max\n   (CRC R310).\n"
-        "7. Smoke alarms: hard-wired, interconnected, battery\n   backup, at least 3' from bathroom doors (CRC R314).\n   Combination smoke / CO alarms outside the sleeping areas.\n"
+        "7. Smoke alarms: hard-wired, interconnected, battery\n   backup, at least 3' from bathroom doors (CRC R314),\n   supply registers and ceiling fan blade tips (NFPA 72).\n   Combination smoke / CO alarms outside the sleeping areas.\n"
         "8. All-electric: heat pump HVAC (air handler in the sealed\n   attic; outdoor unit at the rear wall), heat pump water\n   heater (HPWH) in the mechanical closet. Whole-house\n   ventilation by a continuous exhaust fan.\n"
         "9. Fire sprinklers throughout (NFPA 13D); plans by the\n   sprinkler designer (deferred submittal).\n"
         "10. Attic access in the hall: 22\" x 54\" insulated, gasketed\n   access panel (passes the air handler), 30\" min headroom\n   above (CRC R807.1).\n"
