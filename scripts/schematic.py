@@ -383,7 +383,7 @@ def common_bath(sh):
     """66" x 36" alcove soaking tub (about a 20" rim) with a shower head across the window end. Tub drain, valve and
     head, the WC and the vanity all on the east (plumbing) wall shared with the gym."""
     c0, c1 = face("gym|ensuite", +1), face("ensuite|guest", -1)          # 66" clear: tub wall to wall
-    hall = face("ensuite|linen", +1)                                     # the linen closet's wall
+    hall = face("ensuite|linen", -1)                                     # the linen closet's wall
     ty = N_IN + 36.0
     tub(sh, c0, N_IN, c0 + 66.0, ty, "TUB 66x36")
     sh.circle((c0 + 4, N_IN + 16), 2.0, "A-EQPM")                     # shower head + valve, plumbing wall
@@ -391,7 +391,7 @@ def common_bath(sh):
     sh.line((c0, ty + 1), (c0 + 66.0, ty + 1), "A-EQPM")              # curtain rod
     wc(sh, c0, ty + 2, c0 + 28, ty + 32)                               # 17" to the tub
     vanity(sh, c0, ty + 40, c0 + 21, ty + 88, "VANITY 48", rot=90)     # 23" from the WC centreline
-    lw = face("ensuite|linen", -1)                                           # hall linen closet, the full width of
+    lw = face("ensuite|linen", +1)                                           # hall linen closet, the full width of
     sh.rect(c0, lw, c1, lw + 16, "A-FURN")                                   # the bath and 2' deep, opening into the
     sh.text("LINEN CLOSET", (c0 + c1) / 2, lw + 8, 3.0)                      # hall (4' bifold); shelves along its back
     room_label(sh, "GUEST ENSUITE", c0, N_IN, c1, hall, cx=(c0 + 21 + c1) / 2 + 1, cy=ty + 55, h=3.4)
