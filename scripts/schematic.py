@@ -389,19 +389,22 @@ def common_bath(sh):
 
 
 def primary_bath(sh):
-    """No tub, beside the dressing room: a curbless shower across the rear wall (a solid bench under the window, a
-    fixed head on the plumbing wall and a slide-bar handheld on the dressing-room wall facing it by the open
-    end, a niche over the bench), the double vanity facing the door and the WC between it and the glass, both on
-    the plumbing wall; the door from the dressing room at the hall end."""
+    """No tub, beside the dressing room: a curbless shower across the rear wall (a solid bench under the window;
+    two stations facing each other, each a fixed head and a slide-bar handheld on its own thermostatic valve with
+    a diverter: the main one on the dressing-room wall at the open end, spraying away from the opening, the
+    second on the plumbing wall with its valve toward the front; a niche over the bench), the double vanity
+    facing the door and the WC between it and the glass, both on the plumbing wall; the door from the dressing
+    room at the hall end."""
     m0, b1 = face("utility|bath", +1), face("bath|wic", -1)
     y0 = face("south hall wall", +1)
     gy = S_IN - SHOWER_D
     wet_zone(sh, m0, gy, b1, S_IN)
     hy = (gy + S_IN - SHOWER_BENCH_D) / 2                              # heads centred on the standing area
-    for x, d in ((m0, 1.0), (b1, -1.0)):                               # fixed head on the plumbing wall, a slide-bar
-        sh.circle((x + d * 4, hy), 2.5, "A-EQPM"); sh.heads.append((x, hy, d, 0.0))   # handheld facing it
-    sh.text("HAND", b1 - 8, hy + 9, 1.4)
-    sh.text("VALVES", b1 - 5, gy + 7, 1.6, rot=90)                     # by the open end
+    for x, d, lab in ((b1, -1.0, "MAIN"), (m0, 1.0, "2ND")):           # two stations facing each other: a fixed
+        sh.circle((x + d * 4, hy), 2.5, "A-EQPM"); sh.heads.append((x, hy, d, 0.0))   # head and, beside it, a
+        sh.rect(x, hy - 14, x + d * 1.5, hy - 6, "A-EQPM")             # slide-bar handheld; each on its own valve
+        sh.text("VALVE", x + d * 5, gy + 6, 1.4, rot=90)               # (thermostatic, with a diverter) toward
+        sh.text(lab, x + d * 8, hy + 8, 1.4)                           # the front, out of its spray
     sh.rect(b1, S_IN - 22, b1 + 3.5, S_IN - 6, "A-EQPM")               # niche in the dressing-room wall, over the bench
     sh.text("NICHE", b1 - 7, S_IN - 14, 2.0, rot=90)
     sh.text("CURBLESS SHOWER", (m0 + b1) / 2, hy, 2.6)
