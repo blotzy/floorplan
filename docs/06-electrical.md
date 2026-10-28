@@ -61,10 +61,34 @@
 - **Bedroom smoke alarms** (gym, guest, office, primary): on the ceiling just inside each bedroom door (about 2'-6" into the room, over the latch side), not in the middle of the room. That keeps them more than 3' from the ceiling fans' blade tips and from the supply registers (by the windows), as NFPA 72 asks, and the guest room's more than 3' from the ensuite door. Hard-wired, interconnected, battery backup.
 - Reading nook: one or two small recessed reading lights in the nook's lowered ceiling, on a dimmer, plus an outlet at the bench.
 - Neutral wires in all switch boxes, for smart switches.
-- Bedroom light switches (gym, guest, office) on the hall wall inside each room, on the door's latch side, between the door trim and the closet; the closets stop about a foot short of the door to leave that wall. Primary bedroom: on the hall wall inside the room, between the door's latch side and the dressing-room corner (a 2-gang box: the light and the ceiling fan control).
 - Door contact sensor and smart lock at the front door.
-- Front door switches: a 3-gang box on the front wall inside the foyer, on the door's latch side between the door trim and the foyer closet (porch light, foyer light, entry court / landscape lights).
 - **Carport lights:** four surface-mount LED ceiling fixtures (damp/wet-location rated, low profile) under the carport roof, in a 2 x 2 grid (two over each parking space, the front pair also lighting the walkway), kept out of the zone where an opened liftgate swings up. Switched from inside by the front door, plus a motion sensor and photocell (Title 24 outdoor lighting controls).
+
+**Switches** (on the door's latch side, inside the room, unless noted)
+
+| Where | Box | Controls |
+| --- | --- | --- |
+| Front door: foyer side of the front wall, between the door trim and the foyer closet | 4-gang | Foyer; porch and entry court (one in-wall astronomical timer switch: on at dusk, off at a set time, with manual on/off); carport; lounge (3-way) |
+| Hall opening: lounge face of the gym wall at its south end, where the hall meets the great room | 3-gang | Lounge (3-way), lounge ceiling fan, kitchen cans (3-way) |
+| Hall, just inside the opening (hall face of the gym corner) and on the hall's end wall | 1-gang each | Hall lights (3-way) |
+| Kitchen backsplash under the window, at the east end of the window counter by the peninsula corner (wired up the outside wall into the rafter bays, not through the slab) | 3-gang | Kitchen cans (3-way), peninsula pendants, under-cabinet lights |
+| Dining: east wall beside the slider | 2-gang | Dining pendant, rear patio light |
+| Pantry: hall wall, latch side | 1-gang | Vacancy-sensor switch |
+| Laundry: hall wall, latch side, above the folding counter | 1-gang | Laundry |
+| Laundry, beside the mechanical closet's bifold | 1-gang | Closet light |
+| Storage room: on the laundry wall beside its opening | 1-gang | Storage light |
+| Common bath: hall wall, latch side, above the end of the sink | 2-gang | Light, fan boost |
+| Gym, guest, office: hall wall, latch side, between the door trim and the closet (the closets stop about a foot short of the door) | 2-gang (gym 1-gang) | Light, ceiling fan (gym: light only) |
+| Guest ensuite: its west wall south of the door, before the linen closet | 2-gang | Light, fan |
+| Primary bedroom: hall wall, between the latch side and the dressing-room corner | 2-gang | Light, ceiling fan |
+| Primary bedroom: east wall just south of the dressing-room opening | 2-gang | Dressing room light; walkway path light |
+| Reading nook: side wall at the bench | 1-gang | Reading lights (dimmer) |
+| Primary bath: dressing-room wall inside, latch side, before the shower | 3-gang | Light and vanity light, shower light, fan |
+| Hall, under the attic hatch | 1-gang with pilot light | Attic light at the air handler platform (switch at the attic access) |
+
+- Dressing room: no motion sensor (it's the path to the bath at night). A dim LED path light at floor level along the walkway to the bath door, on its own switch, so the bedroom stays dark.
+- Landscape lights on the landscape controller's astronomical timer. The porch and entry court share the timer switch at the front door, so they can still be switched by hand.
+- Optional: a wireless remote (e.g. a battery Lutron Pico in a wall plate) wherever another control is wanted later, such as the peninsula end panel, with smart dimmers in the wired boxes.
 
 **Solar and battery prep (installed later)**
 

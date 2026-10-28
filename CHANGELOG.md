@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **7:59 PM**: Switch plan for the whole house (electrical doc table; S marks on the schematic, none on A-2): a 4-gang at the front door (foyer; porch and entry court on an astronomical timer switch; carport; lounge 3-way), a 3-gang at the hall opening (lounge 3-way, lounge fan, kitchen cans 3-way), kitchen controls in the backsplash under the window, dining pendant and patio light by the slider, the dressing room switched from the bedroom with a floor-level path light to the bath (no motion sensor), and the attic light under the hatch.
 - **7:42 PM**: Front door 4" east, centred in the porch notch, leaving about 11½" of wall inside on its latch side for a 3-gang switch box (porch, foyer, entry court / landscape lights).
 - **7:27 PM**: Primary bedroom door 2'-8" (was 3'-0"), still hinged on the far side, leaving about 10" of wall at the dressing-room corner for the light switch (2-gang: light and ceiling fan).
 - **7:26 PM**: A-2: bedroom smoke alarms just inside each bedroom door instead (about 2'-6" in, over the latch side); the guest room's over 3' from the ensuite door (electrical and HVAC docs).

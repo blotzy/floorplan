@@ -709,6 +709,21 @@ def build() -> Sheet:
     closet(942.5 + gap, face("guest|office", -1))   # guest: one long closet past the door
     closet(1103.0 + gap, W_IN)               # office: one long closet past the door
     sh.text("S", 425.0, PORCH_Y + EXT + 4, 2.4)                         # front door, latch side
+    hs_ = face("south hall wall", -1)                                  # other switches (see docs/06):
+    for x, y in ((face("lounge|gym", -1) - 4, HALL_N - 12),            # hall opening (lounge, kitchen cans)
+                 (680.0, face("bedroom hall wall", +1) + 4),           # hall 3-way, at the opening
+                 (face("hall end", -1) - 4, HALL_N + 24),              # hall 3-way, at the end wall
+                 (604.0, S_IN - 4),                                    # kitchen backsplash, under the window
+                 (E_IN + 4, 508.0),                                    # dining slider
+                 (685.0, hs_ - 4),                                     # pantry, hall side
+                 (800.0, face("south hall wall", +1) + 4),             # laundry
+                 (face("pantry|laundry", +1) + 4, 568.0),              # mech closet
+                 (872.0, face("south hall wall", +1) + 4),             # common bath
+                 (face("ensuite|guest", -1) - 4, 372.0),               # guest ensuite
+                 (face("bath|wic", -1) - 4, 500.0),                    # primary bath
+                 (face("suite|primary", +1) + 4, 502.0),               # dressing room, bedroom side
+                 (985.0, hs_ - 4)):                                    # attic, under the hatch
+        sh.text("S", x, y, 2.4)
     for x in (781.5 - 6, 942.5 + 6, 1103.0 + 6):                      # light switches, latch side
         sh.text("S", x, hall_n - 4, 2.4)
     sh.text("S", (face("suite|primary", +1) + 1074.0) / 2, face("south hall wall", +1) + 4, 2.4)   # primary
