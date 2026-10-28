@@ -35,10 +35,9 @@ From the topographic survey (available on request; overlay: [survey-overlay.png]
 
 ## Southeast courtyard (behind the carport, east of the house)
 
-- **No patio.** A gravel strip runs along the house wall from the pavers to the planters (ember-resistant zone), with an at-grade landing outside the dining slider. Nothing raised that would count as a deck or platform.
+- **No patio.** A gravel strip runs along the house wall from the pavers to the rear fence (ember-resistant zone), with an at-grade landing outside the dining slider. Nothing raised that would count as a deck or platform.
 - **Pavers** 5'-deep band along the back of the carport (keeps the lawn out of the carport's 5' fire zone).
-- **Lawn** about 15' x 14' (~210 sq ft), tall fescue + microclover blend, edged by the pavers and the planter wall. Irrigate from the unsoftened line.
-- **Raised planters** 3' deep along the rear fence (noncombustible: concrete, block, or steel). Shade-tolerant, dog-safe plants (e.g., coral bells, ferns); no oleander, sago palm, foxglove, or azalea.
+- **Lawn** about 15' x 16'-8" (~250 sq ft), tall fescue + microclover blend, from the pavers to the rear fence. Irrigate from the unsoftened line. Dog-safe plants throughout the yards (no oleander, sago palm, foxglove, or azalea).
 - **6' fence** across the back of the carport and bin strip with a **14' gate** behind the carport, hinged at the house corner: it swings into the carport and opens flat against the house wall, so with the cars out the carport and the courtyard become one space for parties. Metal (noncombustible, as it meets the house), on its own hinge post rather than hung off the stucco, with a wheel or cable brace so the long leaf doesn't sag; keep the carport slab flat enough under its swing. The bin strip stays outside the dog yard.
 - No trees in the courtyard or rear yard: nothing tall south of the house (future solar), and the yards are too shallow to keep a canopy clear of the roof.
 

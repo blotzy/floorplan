@@ -85,6 +85,8 @@ FRONT_TREE = (880.0, 40.0)           # new: front yard, in front of the bedroom 
                                      # (fuel modification: canopy well clear of the roof), clear of the olives
 PRIVACY_TREE = (624.0, 28.0)         # new: inside the front line, west of the lounge window's centre, 15'+ from the eaves,
                                      # 10'+ from the sewer run to the cleanout (survey ~(492, 22))
+LAWN = (LOT_X0 + 18.0, CARPORT[3] + 64.0, E - 156.0, LOT_D - 6.0)   # courtyard lawn (x0, y0, x1, y1): from the
+                                     # pavers to the rear fence, beside the gravel strip along the house
 EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
 # Entry court in front of the porch, edged on the street side by a 24" seat wall (8" block) that
 # returns to the house just short of the lounge window; you walk in from the driveway side.
@@ -798,13 +800,12 @@ def build() -> Sheet:
     # courtyard
     fy = cy1 + 3
     sh.rect(LOT_X0 + 6, fy + 1, E, fy + 61, "L-SITE"); sh.text("PAVERS", LOT_X0 + 106, fy + 31, 6.0)
-    sh.rect(E - 60, fy + 61, E, LOT_D - 42, "L-SITE")                                  # 5' noncombustible strip
+    sh.rect(E - 60, fy + 61, E, LOT_D - 6, "L-SITE")                                   # 5' noncombustible strip
     sh.text("GRAVEL", E - 30, 660.0, 4.0, rot=90)                                     # along the house (no patio)
     sx0, sx1 = next(o[1:3] for o in OPENINGS if o[0] == "east" and o[3] == "slider")
     sh.rect(E - 36, sx0, E, sx1, "L-SITE"); sh.text("LANDING", E - 18, (sx0 + sx1) / 2, 3.5, rot=90)  # at grade
-    sh.rect(LOT_X0 + 18, fy + 61, E - 156, LOT_D - 42, "L-PLNT")                       # edged by the pavers and planter wall
-    sh.text("LAWN", (LOT_X0 + 18 + E - 156) / 2, 650.0, 7.0)
-    sh.rect(LOT_X0 + 6, LOT_D - 42, E, LOT_D - 6, "L-PLNT"); sh.text("RAISED PLANTERS", (LOT_X0 + E) / 2, LOT_D - 24, 5.0)
+    sh.rect(*LAWN, "L-PLNT")                                                            # pavers to the rear fence
+    sh.text("LAWN", (LAWN[0] + LAWN[2]) / 2, (LAWN[1] + LAWN[3]) / 2, 7.0)
     gx = E - GATE_L                                                                     # carport gate: hinged at the
     sh.line((LOT_X0, fy), (gx, fy), "A-FENC"); sh.line((gx, fy), (E, fy), "A-FENC")   # house corner, swings into
     sh.msp.add_arc((E, fy), GATE_L, 180.0, 270.0,                                      # the carport and opens flat

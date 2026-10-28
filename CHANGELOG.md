@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Oct 28, 2026
+
+- **9:29 AM**: Planning submittal items. The courtyard's raised planters dropped: the lawn runs from the pavers to the rear fence (about 15' x 16'-8") and the gravel strip along the house to the fence (site doc, FM-1). A-0: a street-level vicinity map (OpenStreetMap streets, the site starred, true north, 1/4-mile bar) and a revision date in the title block. A-1: the street centerline (25' from the property line), the nearest public fire hydrant (about 214' east, at Laurel and Glenrose, from the Assessor's frontages), the lawn, the new fences and gates, the backup space to the pavement, and notes for legal access, parking and the items that don't apply.
+
 ## Oct 27, 2026
 
 - **10:52 PM**: Plumbing doc: the peninsula sink's trap arm routed through the peninsula's back (behind the dishwasher and corner cabinet) to the rear-wall vent; the dishwasher's countertop air gap (required in California).

@@ -35,6 +35,7 @@ from shapely.ops import unary_union  # noqa: E402
 OUT = S.RENDERS / "permit"
 W_IN, H_IN = 36.0, 24.0                         # ARCH D sheet, landscape
 INK, RED = "#111", "#b03a2e"
+REV_DATE = "October 28, 2026"                         # the set's revision date (title block); bump with each issue
 SETBACK = "#7b2fbe"                                    # A-1 setback lines and required yards (purple)
 ftin = Z.ftin
 DOOR_H = 96.0                                   # interior and front doors: 8' (headers at 8')
@@ -56,7 +57,7 @@ def sheet(num, title):
     t(19.15, "Prepared by: ______________", fontsize=9)
     t(18.7, "Structural: by engineer\n(separate sheets)", fontsize=9)
     t(17.6, "DRAFT FOR REVIEW\nnot for construction", fontsize=10, color=RED, weight="bold")
-    t(16.6, f"Date: {Z.DATE}\nRevisions:", fontsize=9)
+    t(16.6, f"Date: {Z.DATE}\nRevision date: {REV_DATE}", fontsize=9)
     t(6.2, "\u00a9 2026 Richard Acosta.\nAll rights reserved.\nThese drawings are for\n220 Laurel Dr only. Not to\nbe copied, adapted, sold\nor built from on any\nother site.", fontsize=8.5)
     t(3.4, title, fontsize=13, weight="bold", wrap=True)
     t(1.9, num, fontsize=40, weight="bold")
@@ -307,8 +308,8 @@ def contours(ax, x0, y0, x1, y1, color="#9a7b4f"):
 def site_plan(pdf):
     from matplotlib.patches import FancyArrow
     fig = sheet("A-1", "SITE PLAN")
-    x0, y0, x1, y1 = S.LOT_X0 - 60, -230, S.LOT_X0 + S.LOT_W + 70, S.LOT_D + 60
-    ax = scaled_axes(fig, 0.9, 3.4, x0, y0, x1, y1, scale=3 / 16)
+    x0, y0, x1, y1 = S.LOT_X0 - 60, -350, S.LOT_X0 + S.LOT_W + 70, S.LOT_D + 60
+    ax = scaled_axes(fig, 0.9, 3.0, x0, y0, x1, y1, scale=3 / 16)
     contours(ax, x0, y0, x1, y1)
     L = S.LOT_X0, 0, S.LOT_X0 + S.LOT_W, S.LOT_D
     ax.add_patch(Rectangle((L[0], L[1]), L[2] - L[0], L[3] - L[1], fill=False, ec=INK, lw=1.6, ls="-."))
@@ -340,6 +341,31 @@ def site_plan(pdf):
     ax.text((cx0 + cx1) / 2, (py + cy1) / 2, f"OPEN CARPORT\n{Z.CARPORT:,.0f} SQ FT\n2 SPACES 8'-6\" x 18'-0\",\n"
             "BEHIND THE FRONT DOOR", ha="center", va="center", fontsize=6.5)
     ax.text((S.E + S.PORCH_X) / 2, (S.N + S.PORCH_Y) / 2, "PORCH", ha="center", va="center", fontsize=5.5)
+    # landscaping: the courtyard lawn (the rest per FM-1)
+    lx0, ly0, lx1, ly1 = S.LAWN
+    ax.add_patch(Rectangle((lx0, ly0), lx1 - lx0, ly1 - ly0, fc="#dcebd0", ec="#2e7d32", lw=0.6, zorder=1))
+    ax.text((lx0 + lx1) / 2, (ly0 + ly1) / 2, "LAWN\n(IRRIGATED)", ha="center", va="center", fontsize=5.5,
+            color="#2e7d32")
+    # new fences and gates (6' high)
+    fy = S.CARPORT[3] + 3
+    fen = dict(color="#6b4f2a", lw=1.6)
+    gx = S.E - S.GATE_L
+    ax.plot([L[0], gx], [fy, fy], **fen)
+    ax.add_patch(matplotlib.patches.Arc((S.E, fy), 2 * S.GATE_L, 2 * S.GATE_L, theta1=180, theta2=270,
+                                        color="#6b4f2a", lw=0.6, ls="--"))
+    ax.plot([gx, S.E], [fy, fy], color="#6b4f2a", lw=0.8)
+    ax.text((L[0] + gx) / 2, fy + 8, "NEW 6' FENCE", fontsize=5, color="#6b4f2a", ha="center", va="bottom")
+    ax.text((gx + S.E) / 2, fy + 8, f"14' GATE (METAL), OPENS FLAT\nAGAINST THE HOUSE", fontsize=5, color="#6b4f2a",
+            ha="center", va="bottom")
+    ax.plot([L[0], L[0] + 60, L[0] + 60], [386, 386, 258], **fen)        # bin pad enclosure
+    ax.text(L[0] + 66, 300, "6' FENCE\n(BIN PAD)", fontsize=4.5, color="#6b4f2a", va="center")
+    ax.plot([S.W, S.W + 20], [S.N, S.N], **fen); ax.plot([S.W + 68, L[2]], [S.N, S.N], **fen)   # west side yard
+    ax.text((S.W + L[2]) / 2 + 20, S.N - 8, "NEW 6' FENCE + 4' GATE", fontsize=5, color="#6b4f2a", ha="center",
+            va="top")
+    # vehicle parking and backup space: the drive from the parking spaces to the street
+    by0, by1 = S.EDGE_OF_PAVEMENT, S.N + S.CARPORT_WALK
+    Z.dim(ax, (S.CARPORT[2] - 30, by0), (S.CARPORT[2] - 30, by1), f"BACKUP SPACE\n{ftin(by1 - by0)} TO PAVEMENT",
+          fs=5.5, rot=90)
     # hardscape
     ax.add_patch(MPoly(S.driveway_outline(), closed=True, fc="#f3f3f3", ec=INK, lw=0.8))
     ax.text((S.CARPORT[0] + S.CARPORT[2]) / 2, 120, "NEW DRIVEWAY", ha="center", fontsize=6.5)
@@ -349,7 +375,18 @@ def site_plan(pdf):
         ax.add_patch(Rectangle((b[0], b[1]), b[2] - b[0], b[3] - b[1], fc="#999", ec=INK, lw=0.5))
     ax.text((e0 + e2) / 2, (e1 + e3) / 2, "ENTRY COURT\n24\" SEAT WALL", ha="center", va="center", fontsize=5)
     ax.plot([L[0], L[2]], [S.EDGE_OF_PAVEMENT] * 2, color=INK, lw=0.8)
-    ax.text((L[0] + L[2]) / 2, -200, "LAUREL DRIVE (50' R/W)", ha="center", fontsize=10, weight="bold")
+    ax.text((L[0] + L[2]) / 2, -235, "LAUREL DRIVE (50' R/W, PUBLIC STREET)", ha="center", fontsize=10, weight="bold")
+    cl = -300.0                                                         # street centreline, 25' from the line
+    ax.plot([x0, x1], [cl, cl], color=INK, lw=0.8, ls=(0, (12, 4, 2, 4)))
+    ax.text(L[0] + 40, cl + 5, "CENTERLINE OF LAUREL DRIVE", fontsize=5.5, va="bottom")
+    Z.dim(ax, (1395, cl), (1395, 0), "25'-0\"\n(PL TO CL)", fs=6, rot=90)
+    hy = -55.0                                                          # nearest public fire hydrant, off-sheet east
+    ax.add_artist(FancyArrow(415, hy, x0 + 8 - 415, 0, width=1.0, head_width=10, head_length=14, color=RED,
+                             length_includes_head=True, zorder=5))
+    ax.text(422, hy, "NEAREST PUBLIC FIRE HYDRANT (EXIST.): ±214' EAST OF THE EAST\n"
+            "PROPERTY LINE, IN THE PARKWAY AT THE SW CORNER OF LAUREL DR AND\n"
+            "GLENROSE AVE (THIS SIDE OF LAUREL). Distance from the Assessor's\nmap frontages (50' + 15.35' + 148.31'); verify.",
+            fontsize=5, color=RED, va="center", bbox=dict(fc="white", ec="none", pad=1, alpha=0.9))
     ax.text(L[0] + 20, S.EDGE_OF_PAVEMENT + 5, "EDGE OF PAVEMENT", fontsize=5)
     # trees and utilities
     trees = [(x, y, "EXIST. OLIVE (REMAIN)") for x, y in S.EXIST_TREES] + [
@@ -424,7 +461,12 @@ def site_plan(pdf):
              "9. Setbacks are to the FINISHED outside face of the\n   exterior walls (stucco), not the slab edge or framing;\n"
              "   front, rear and side margins are only 2-3 1/4\". Wall:\n   2x6, 1\" rigid insulation, 7/8\" stucco. Lay out the slab\n"
              "   and framing back from the drawn finished face. A\n   licensed surveyor stakes the corners and checks the\n"
-             "   foundation forms against the setback lines before\n   the pour (form survey).")
+             "   foundation forms against the setback lines before\n   the pour (form survey).\n"
+             "10. Legal access: direct frontage on Laurel Drive, a\n   public street; no access easements needed.\n"
+             "11. Parking: 2 covered spaces (carport), 8'-6\" x 18'-0\",\n   backing out over the driveway to the street.\n"
+             "12. Not applicable: bike parking (single-family);\n   on-site access roads; septic and wells (public\n"
+             "   sewer and water); no oak trees on the site.\n"
+             "13. Fences: new 6' fences and gates as shown;\n   existing property-line fences and walls to remain.")
     fig.text(25.9 / W_IN, (y - 0.3) / H_IN, notes, fontsize=8, va="top", linespacing=1.35)
     pdf.savefig(fig); Z.save_png(fig, OUT / "A-1-site-plan.png", dpi=80); plt.close(fig)
 
@@ -1050,6 +1092,7 @@ def cover(pdf):
                 ("2", "Roof truss drawings and calculations\n(truss manufacturer), reviewed by the\nengineer of record"),
                 ("3", "Solar PV plans, if not in the energy\npackage")]
     table(fig, 15.3, 8.2, "DEFERRED SUBMITTALS", ("#", "ITEM"), (0.4, 5.8), deferred, fs=8)
+    vicinity_map(fig, 15.3, 4.9, 6.2, 3.7)
     # right column: the site and the code
     location_map(fig, 22.1, 22.6, 10.3)
     data = [("Address / APN", "220 Laurel Dr, Altadena CA 91001 · APN 5832-003-027 (lot 27)"),
@@ -1084,6 +1127,64 @@ def cover(pdf):
 ASSESSOR_MAP = S.ROOT / "renders" / "county" / "assessor-map-5832-003.png"   # LA County Assessor's Map Book
 LOT_27 = [(1660, 761), (1848, 832), (1809, 938), (1621, 869)]               # 5832, page 3 (public record);
                                                                             # lot 27 corners in its pixels
+
+
+VICINITY = Path(__file__).resolve().parent / "vicinity_roads.json"   # OpenStreetMap streets around the site
+SITE_LL = (34.20121, -118.14921)                                      # 220 Laurel Dr (lat, lon)
+VIC_LABELS = {"Lincoln Avenue": "LINCOLN AVE", "Fair Oaks Avenue": "FAIR OAKS AVE",
+              "North Lake Avenue": "LAKE AVE", "West Altadena Drive": "ALTADENA DR",
+              "West Loma Alta Drive": "LOMA ALTA DR", "East Mariposa Street": "MARIPOSA ST",
+              "West Laurel Drive": "LAUREL DR", "Glenrose Avenue": "GLENROSE AVE", "Olive Avenue": "OLIVE AVE",
+              "West Las Flores Drive": "LAS FLORES DR", "North Marengo Avenue": "MARENGO AVE"}
+
+
+def vicinity_map(fig, left_in, top_in, width_in, height_in):
+    """Street-level vicinity map (true north up), the site starred; streets from OpenStreetMap."""
+    import json
+    import math
+    data = json.loads(VICINITY.read_text())
+    lat0, lon0 = SITE_LL
+    kx, ky = 111320 * math.cos(math.radians(lat0)), 111320.0
+    xy = lambda la, lo: ((lo - lon0) * kx, (la - lat0) * ky)  # noqa: E731
+    a = fig.add_axes([left_in / W_IN, (top_in - height_in) / H_IN, width_in / W_IN, height_in / H_IN])
+    hw = 1000.0                                                          # half-width shown, metres
+    hh = hw * height_in / width_in
+    a.set_xlim(-hw, hw); a.set_ylim(-hh, hh); a.set_aspect("equal"); a.set_xticks([]); a.set_yticks([])
+    for s in a.spines.values():
+        s.set_color(INK); s.set_linewidth(0.8)
+    best = {}
+    for name, cls, pts in data["ways"]:
+        q = [xy(la, lo) for la, lo in pts]
+        major = cls != "residential"
+        a.plot([p[0] for p in q], [p[1] for p in q], color="#444" if major else "#aaa", lw=1.6 if major else 0.6,
+               solid_capstyle="round", zorder=2 if major else 1)
+        lab = VIC_LABELS.get(name)
+        if lab:                                                          # label each named street once, on its
+            inside = [p for p in q if abs(p[0]) < hw * 0.93 and abs(p[1]) < hh * 0.85]   # longest visible piece
+            if len(inside) >= 2:
+                ln = sum(math.dist(u, v) for u, v in zip(inside, inside[1:]))
+                if ln > best.get(lab, (0,))[0]:
+                    best[lab] = (ln, inside)
+    for lab, (_, q) in best.items():
+        u, v = q[len(q) // 2 - 1], q[len(q) // 2]
+        ang = math.degrees(math.atan2(v[1] - u[1], v[0] - u[0]))
+        ang = ang - 180 if ang > 90 else ang + 180 if ang < -90 else ang
+        a.text((u[0] + v[0]) / 2, (u[1] + v[1]) / 2, lab, fontsize=6 if lab in ("LAUREL DR", "GLENROSE AVE") else 6.5,
+               rotation=ang, rotation_mode="anchor", ha="center", va="center", color=INK, zorder=4,
+               weight="bold" if lab == "LAUREL DR" else "normal", bbox=dict(fc="white", ec="none", pad=0.6, alpha=0.85))
+    a.plot([0], [0], marker="*", ms=16, color=RED, mec="white", mew=0.8, zorder=5)
+    a.annotate("SITE\n220 LAUREL DR", (0, 0), (-330, -300), color=RED, fontsize=7.5, weight="bold", zorder=6,
+               arrowprops=dict(arrowstyle="-", color=RED, lw=0.8), bbox=dict(fc="white", ec="none", pad=1))
+    nx, ny = hw - 110, hh - 260                                          # true-north arrow
+    a.annotate("", (nx, ny + 170), (nx, ny), arrowprops=dict(arrowstyle="-|>", color=INK, lw=1.2), zorder=6)
+    a.text(nx, ny + 185, "N", ha="center", va="bottom", fontsize=8, weight="bold", zorder=6)
+    a.plot([hw - 80 - 402.3, hw - 80], [-hh + 90] * 2, color=INK, lw=2, zorder=6)   # 1/4 mile scale bar
+    a.text(hw - 80 - 201, -hh + 120, "1/4 MILE", ha="center", va="bottom", fontsize=6, zorder=6,
+           bbox=dict(fc="white", ec="none", pad=0.6))
+    fig.text(left_in / W_IN, (top_in + 0.1) / H_IN, "VICINITY MAP", fontsize=10, weight="bold")
+    fig.text(left_in / W_IN, (top_in - height_in - 0.08) / H_IN,
+             "Altadena, unincorporated Los Angeles County. Streets " + data["source"].split(",")[0] + ".",
+             fontsize=6.5, va="top")
 
 
 def location_map(fig, left_in, top_in, width_in):

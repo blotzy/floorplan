@@ -60,8 +60,6 @@ PLANTS = [
      "per area", "flats @ 12\" o.c.", "Front, side and rear ground cover"),
     ("G2", "Festuca arundinacea (dwarf) with Trifolium repens", "Tall fescue lawn with microclover", "A",
      "mowed, 3\"-4\"", "per area", "sod / seed", "Courtyard lawn, irrigated and mowed"),
-    ("P1", "Heuchera spp. / Cyrtomium falcatum", "Coral bells / holly fern", "A", "1'-2' h", "per area", "1 gal",
-     "Raised planters along the rear fence"),
 ]
 EXISTING = [
     ("Olea europaea (3)", "Olive, mature", "Public parkway, outside the property", "Existing to remain"),
@@ -82,19 +80,16 @@ def plan(ax):
     gc = [box(S.E, 0, L[2], S.N - X.EAVE - EMBER),                       # front yard
           box(S.W + X.EAVE + EMBER, 0, L[2], L[3]),                      # west side yard strip
           box(S.E, S.S + X.EAVE_REAR + EMBER, L[2], L[3]),                    # rear yard strip
-          box(S.LOT_X0 + 198, S.S + X.EAVE_REAR + EMBER, S.E, L[3] - 42),     # courtyard edge
+          box(S.LOT_X0 + 198, S.S + X.EAVE_REAR + EMBER, S.E, L[3]),          # courtyard edge
           box(L[0], 0, S.CARPORT[0] - 6 - EMBER, FY),                    # east strip beside the carport
           box(L[0], 0, S.CARPORT[0], S.N - EMBER),                       # front corner east of the drive
-          box(S.LOT_X0 + 18 + 180, FY + 61, S.E - X.EAVE - EMBER, L[3] - 42)]   # courtyard, beside the lawn
+          box(S.LAWN[2], FY + 61, S.E - X.EAVE - EMBER, L[3])]               # courtyard, beside the lawn
     gcu = unary_union(gc).difference(ember).difference(box(*S.ENTRY_COURT)).intersection(LOT)
     for g in getattr(gcu, "geoms", [gcu]):
         ax.add_patch(MPoly(list(g.exterior.coords), closed=True, fc=GC, ec=GREEN, lw=0.5))
-    lawn = (S.LOT_X0 + 18, FY + 61, S.LOT_X0 + 18 + 180, L[3] - 42)
+    lawn = S.LAWN
     ax.add_patch(Rectangle(lawn[:2], lawn[2] - lawn[0], lawn[3] - lawn[1], fc=LAWN, ec=GREEN, lw=0.6))
     ax.text((lawn[0] + lawn[2]) / 2, (lawn[1] + lawn[3]) / 2, "G2\nLAWN", ha="center", va="center", fontsize=6)
-    pl = (S.LOT_X0 + 6, L[3] - 42, S.E, L[3] - 6)
-    ax.add_patch(Rectangle(pl[:2], pl[2] - pl[0], pl[3] - pl[1], fc=GC, ec=GREEN, lw=0.6, hatch=".."))
-    ax.text((pl[0] + pl[2]) / 2, (pl[1] + pl[3]) / 2, "P1  RAISED PLANTERS", ha="center", va="center", fontsize=5.5)
     # zones
     for g in getattr(ember, "geoms", [ember]):
         ax.add_patch(MPoly(list(g.exterior.coords), closed=True, fc="#f1e3d3", ec="#b07a2a", lw=0.8, hatch="xx",
