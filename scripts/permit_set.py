@@ -693,7 +693,7 @@ def site_elements(ax, side, ff):
     ax.text(u0 + 6, M_CEIL - 3, "INTERIOR CLG 9'-0\" (FLAT AREAS; SEE NOTES)", fontsize=4.5, color="#777", va="top")
 
     def panel(x0, y0, x1, y1, lab, height=72.0, gate=False):
-        g = (z((x0 + x1) / 2, (y0 + y1) / 2) - ff) * 12
+        g = -6.0                                                         # on the finished grade by the house
         p0, p1 = sorted((h(x0, y0), h(x1, y1)))
         if p1 - p0 < 1:
             return
@@ -711,7 +711,7 @@ def site_elements(ax, side, ff):
             for x0, y0, x1, y1 in S.ENTRY_WALLS:
                 panel(x0, y0, x1, y1, None, height=S.ENTRY_WALL_H)
             w = S.ENTRY_WALLS[0]
-            ax.text((w[0] + w[2]) / 2, (z(w[0], w[1]) - ff) * 12 + S.ENTRY_WALL_H + 4, "24\" SEAT WALL (ENTRY COURT)",
+            ax.text((w[0] + w[2]) / 2, -6.0 + S.ENTRY_WALL_H + 4, "24\" SEAT WALL (ENTRY COURT)",
                     fontsize=5, color=FENCE_C, ha="center", va="bottom")
     elif side == "east":
         ys = [y for y in range(10, 518, 12)]                                 # existing retaining wall at the east
@@ -752,9 +752,11 @@ def elevations(pdf):
              f"Great room (foyer, lounge, dining, kitchen) vaulted\nunder the roof, from about {ftin(under(S.S_IN))} at the rear\n"
              f"wall to about {ftin(under(S.N_IN))} at the street wall (A-5).\n\n"
              "GRADING (preliminary; per civil)\n"
-             "Finished grade about 6\" below the finished floor at\nthe walls, sloping away (CRC R401.3). The lot falls\n"
-             "about 4' across the footprint, so the house pad is\nmostly fill: roughly 120 cu yd of fill and little cut\n"
-             "at the assumed floor level. No new retaining walls;\nthe burned house's retaining wall and chimney are\n"
+             "Finished floor set just above the high (street /\ncarport) side; finished grade about 6\" below the floor\n"
+             "at the walls all around, sloping away (CRC R401.3);\nfences and walls are drawn on that finished grade.\n"
+             "The lot falls about 5' from there to the rear west\ncorner (existing grade about 6' below the floor), so\n"
+             "the pad is mostly fill: roughly 120 cu yd, little cut,\nat the assumed floor level; the low corner may need\n"
+             "a stepped foundation or a low wall (per civil). No new retaining walls;\nthe burned house's retaining wall and chimney are\n"
              "removed; the east-line retaining wall remains.", fontsize=8.5, va="top")
     pdf.savefig(fig); Z.save_png(fig, OUT / "A-4-elevations.png", dpi=80); plt.close(fig)
 
