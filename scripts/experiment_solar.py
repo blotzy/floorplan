@@ -37,8 +37,10 @@ BLOCK = (6, 4)                                                      # suggested 
 
 
 def penetrations():
-    sh = S.build()
-    return {"RANGE CAP": P.text_at(sh, "RANGE"), "SKYLIGHT": P.text_at(sh, "SKYLIGHT"), "VTR-2": (868.0, 544.0)}
+    sh = S.build()                                                   # as on A-3: the rear-slope row (skylight, fan
+    y = P.text_at(sh, "SKYLIGHT")[1]                                 # cap, vent, primary bath fan cap) and the
+    return {"RANGE CAP": P.text_at(sh, "RANGE"), "SK": (868.0, y), "EXH": (906.0, y), "VTR-2": (944.0, y),   # kitchen
+            "EXH-P": (982.0, y), "VTR-3": (590.0, 612.0)}           # sink's vent at the rear wall line
 
 
 def grid(x0, y0, cols, rows):
