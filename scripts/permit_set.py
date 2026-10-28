@@ -480,7 +480,8 @@ def roof_plan(pdf):
     ax.plot([cx0 - 8, cx0 - 8], [S.CARPORT_ROOF[1], S.CARPORT_ROOF[3]], color=INK, lw=2.0)
     ax.text(cx0 - 14, (cy0 + cy1) / 2, "GUTTER", fontsize=5.5, rotation=90, ha="right", va="center")
     sh = S.build()
-    sk = text_at(sh, "SKYLIGHT")                                        # straight up from the common bath ceiling
+    sk = text_at(sh, "SKYLIGHT")                                        # the common bath's skylight: its dome in the
+    sk = sk and (868.0, sk[1])                                          # rear-slope row, the tube angling a little
     hs = text_at(sh, '14" SKYLIGHT')                                    # the hall's: dome on the street slope,
     hs = hs and (hs[0], X.RIDGE_Y - S.HALL_DOME_DOWN)                   # 3' down the street slope
     for lab, note, p in (("SKYLIGHT", "", sk),

@@ -134,11 +134,12 @@ WALLS = [
     ("kitchen|pantry",    "y", 674.0,  HALL_S - INT / 2, S_IN, INT),
     ("pantry|laundry",    "y", 750.0,  HALL_S - INT / 2, S_IN, INT),
     ("pantry|mech",       "x", 555.2,  674.0, 750.0, INT),
-    ("laundry|bath",      "y", 826.0,  HALL_S - INT / 2, S_IN, WET),   # 52" clear bath, full depth
+    ("laundry|bath",      "y", 826.0,  HALL_S - INT / 2, S_IN, INT),   # 2x4: the laundry's washer box and sink
+                                                                       # only (vertical runs to the slab and attic)
     ("bath|storage",      "x", 566.0 + INT / 2, 826.0, 883.5, INT),  # storage behind the bath
     ("utility|bath",      "y", 884.5,  HALL_S - INT / 2, S_IN, WET),   # plumbing wall, back to back: the primary
                                                                        # bath's vanity, WC and shower head on one side,
-                                                                       # the common bath shower's valve on the other
+                                                                       # the common bath's sink and WC on the other
     ("bath|wic",          "y", SUITE_SPLIT, HALL_S, S_IN, INT),        # primary bath | dressing room
     ("suite|primary",     "y", 1062.0, HALL_S - INT / 2, S_IN, INT),
 ]
@@ -182,8 +183,8 @@ OPENINGS = [
     ("south hall wall", 695.0, 725.0, "door", "b", -1),     # pantry: swings out, folding flat on the hall wall
                                                             # toward the laundry door; in line with its aisle
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
-    ("south hall wall", 847.75, 877.75, "door", "b", +1),   # common bath, 30", by its west wall (3 1/2" for casing
-                                                            # beside the cased opening's stub)
+    ("south hall wall", 832.0, 862.0, "door", "a", +1),     # common bath, 30", at its east end (the WC out of view
+                                                            # from the lounge), resting flat on the east wall
     ("south hall wall", 1070.0, 1106.0, "door", "b", +1),   # primary bedroom, beside the dressing-room opening:
                                                             # hinged on its far side, clear of the opening
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
@@ -421,26 +422,24 @@ def utility_block(sh):
     l0, lw = face("pantry|laundry", +1), face("laundry|bath", -1)            # laundry galley
     b0, b1 = face("laundry|bath", +1), face("utility|bath", -1)              # bath
     be = face("bath|storage", -1)
-    # bath: sink, toilet, then a curbless shower across the end; sink, toilet and shower drain on the laundry
-    # wall (one plumbing wall for both rooms); the door is at the west end, so the toilet is out of view from
-    # the lounge. The shower's valve and head are on its end wall at the entry, spraying away from it
-    vanity(sh, b0, 468.0, b0 + 20, 492.0, "SINK", rot=90)    # clear of the door's swing
-    wc(sh, b0, 497.0, b0 + 28, 527.0)
+    # bath: sink, then the toilet on the west wall (the plumbing wall shared back to back with the primary bath),
+    # then a curbless shower across the end; the door at the east end keeps the toilet out of view from the
+    # lounge. The shower is entered at the door (east) end; its valve (by the entry) and head are on the back
+    # wall (the storage room's), supply only, the head spraying toward the glass
+    vanity(sh, b1 - 20, 472.0, b1, 496.0, "SINK", rot=90)            # clear of the door's swing
+    wc(sh, b1 - 28, 499.0, b1, 529.0)                                        # 16" from its centre to the glass
     gy = 530.0                                                               # shower: full width x 36"
     wet_zone(sh, b0, gy, b1, be)
     sh.rect(b0, gy, b1, be, eq)
-    glass(sh, (b0, gy), (b1 - 24, gy))                                       # 24" open entry, door side
-    sh.text("SHOWER", (b0 + b1) / 2, gy + 14, 3.2)
-    hy = gy + 20.0                                                           # head on the end wall (the primary
-    sh.heads.append((b1, hy, -1.0, 0.0))                                     # suite's), spraying down the shower's
-    sh.circle((b1 - 2.5, hy), 2.5, eq)                                       # length, away from the entry
-    for dy in (-5.0, 0.0, 5.0):
-        sh.line((b1 - 5.5, hy + dy * 0.4), (b1 - 11.0, hy + dy), eq)
-    sh.text("VALVE", b1 - 5, gy + 6, 1.6)                                    # valve beside the entry
+    glass(sh, (b1, gy), (b0 + 24, gy))                                       # 24" open entry, door side
+    sh.text("SHOWER", (b0 + b1) / 2 + 6, gy + 9, 3.0)
+    shower_head(sh, b1 - 16, be, -1)                                         # head on the back wall
+    sh.text("VALVE", b0 + 8, be - 5, 1.6)                                    # valve beside the entry
     drain(sh, (b0 + 3, be - 3), (b1 - 3, be - 3))
-    room_label(sh, "COMMON BATH", b0, hall, b1, be, cx=b1 - 12, cy=505.0, h=2.4)
-    sh.msp.add_circle((b1 - 13, 520.0), 6.0, dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})   # 10" tube
-    sh.text("SKYLIGHT", b1 - 13, 520.0, 1.6, "A-CLNG")                     # skylight (the exhaust fan is separate)
+    room_label(sh, "COMMON BATH", b0, hall, b1, be, cx=(b0 + b1 - 28) / 2, cy=488.0, h=2.4)
+    sx, sy = (b0 + b1) / 2 - 6, (gy + be) / 2 + 4                            # skylight over the shower (a damp-rated
+    sh.msp.add_circle((sx, sy), 6.0, dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})   # diffuser; its dome
+    sh.text("SKYLIGHT", sx, sy, 1.6, "A-CLNG")                             # in the A-3 row; the fan is separate)
     # storage room behind the bath, open to the laundry
     s0 = face("bath|storage", +1)
     sh.rect(b1 - 12, s0, b1, S_IN, fu); sh.text("SHELVES", b1 - 6, (s0 + S_IN) / 2, 2.2, rot=90)
