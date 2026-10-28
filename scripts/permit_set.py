@@ -648,7 +648,7 @@ MATERIALS = ("EXTERIOR MATERIALS AND COLORS\n"
              "4. Porch walls and ceiling: wood-look fiber cement or\n"
              "   porcelain (noncombustible / ignition-resistant),\n"
              "   color: warm mid-brown wood tone. Front door: orange.\n"
-             "   Window frames: black. Fences: 6' (see A-1).\n"
+             "   Window frames: black. Fences: detail this sheet.\n"
              "5. Windows: dual-pane, one pane tempered (CRC R337.8);\n"
              "   punched street windows recessed 6\" (clerestory\n   band flush). See A-2 schedule.\n"
              "6. Eave soffits enclosed, no vents (A-6).\n"
@@ -695,8 +695,8 @@ FENCE_C = "#6b4f2a"
 
 
 def site_elements(ax, side, ff):
-    """On an elevation: the finished grade at the walls, the 9' ceiling line, and the fences, gates and walls
-    seen from that side (new fences 6' above grade; the existing east-line retaining wall on the east)."""
+    """On an elevation: the finished grade at the walls and the 9' ceiling line (the fences, gates and walls
+    are in the typical detail, fence_detail; the existing east-line retaining wall noted on the east)."""
     _, z, _ = survey()
     h = {"north": lambda x, y: x, "south": lambda x, y: -x, "east": lambda x, y: -y, "west": lambda x, y: y}[side]
     a, b = ((S.E, S.N), (S.W, S.N)) if side in ("north", "south") else ((S.E, S.N), (S.E, S.S))
@@ -706,30 +706,52 @@ def site_elements(ax, side, ff):
     ax.plot([u0, u1], [M_CEIL, M_CEIL], color="#777", lw=0.6, ls=(0, (6, 4)))       # interior ceiling
     ax.text(u0 + 6, M_CEIL - 3, "INTERIOR CLG 9'-0\" (FLAT AREAS; SEE NOTES)", fontsize=4.5, color="#777", va="top")
 
-    def panel(x0, y0, x1, y1, lab, height=72.0, gate=False):
-        g = -6.0                                                         # on the finished grade by the house
-        p0, p1 = sorted((h(x0, y0), h(x1, y1)))
-        if p1 - p0 < 1:
-            return
-        ax.add_patch(Rectangle((p0, g), p1 - p0, height, fc="none", ec=FENCE_C, lw=0.9, ls="--" if gate else "-",
-                               hatch=None if gate else "||||", alpha=0.8))
-        if lab:
-            ax.text((p0 + p1) / 2, g + height + 4, lab, fontsize=5, color=FENCE_C, ha="center", va="bottom")
-    fy, gx, L2 = S.CARPORT[3] + 3, S.E - S.GATE_L, S.LOT_X0 + S.LOT_W
-    if side in ("north", "south"):
-        panel(S.LOT_X0, fy, gx, fy, "6' FENCE (BEHIND THE CARPORT)" if side == "north" else "6' FENCE")
-        panel(gx, fy, S.E, fy, "14' GATE", gate=True)
-        panel(S.W, S.N, S.W + 20, S.N, None); panel(S.W + 68, S.N, L2, S.N, "6' FENCE + 4' GATE")
-        panel(S.W + 20, S.N, S.W + 68, S.N, None, gate=True)
-        if side == "north":
-            for x0, y0, x1, y1 in S.ENTRY_WALLS:
-                panel(x0, y0, x1, y1, None, height=S.ENTRY_WALL_H)
-            w = S.ENTRY_WALLS[0]
-            ax.text((w[0] + w[2]) / 2, -6.0 + S.ENTRY_WALL_H + 4, "24\" SEAT WALL (ENTRY COURT)",
-                    fontsize=5, color=FENCE_C, ha="center", va="bottom")
-    elif side == "east":
+    if side == "east":
         ax.text(h(0, S.S) - 40, -75, "The existing retaining wall at the east property line (A-1) is in the "
                 "foreground of this view and not drawn: it remains.", fontsize=5.5, color="#555", va="top")
+
+
+def fence_detail(fig, left_in, bottom_in):
+    """Typical fence, gates and seat wall, in elevation at 1/4" = 1'-0" (locations on A-1)."""
+    ax = scaled_axes(fig, left_in, bottom_in, -20, -40, 300, 270, scale=0.25)
+    c, lw = FENCE_C, 0.8
+
+    def slats(x0, x1, y0, h):
+        for k in range(1, int(h // 6)):
+            ax.plot([x0, x1], [y0 + 6 * k, y0 + 6 * k], color=c, lw=0.4)
+    def post(x, y0, h):
+        ax.add_patch(Rectangle((x - 2, y0), 4, h + 2, fc=c, ec=c))
+    def ground(x0, x1, y):
+        ax.plot([x0 - 8, x1 + 8], [y, y], color=INK, lw=1.0)
+    def title(x, y, s):
+        ax.text(x, y - 8, s, fontsize=6, weight="bold", ha="center", va="top")
+    y = 170.0                                                            # 6' fence run and the 4' side gate
+    ground(0, 230, y)
+    ax.add_patch(Rectangle((0, y), 144, 72, fc="none", ec=c, lw=lw)); slats(0, 144, y, 72)
+    for x in (0, 72, 144):
+        post(x, y, 72)
+    title(72, y, "6' FENCE (TYP.), POSTS 6' O.C. MAX")
+    ax.add_patch(Rectangle((176, y + 2), 48, 70, fc="none", ec=c, lw=lw)); slats(176, 224, y + 2, 70)
+    post(172, y, 72); post(228, y, 72)
+    ax.plot([180, 220], [y + 6, y + 68], color=c, lw=0.5, ls="--")      # brace
+    title(200, y, "4' GATE (WEST SIDE YARD)")
+    y = 30.0                                                             # 14' carport gate and the seat wall
+    ground(0, 290, y)
+    post(-4, y, 76)
+    ax.add_patch(Rectangle((0, y + 3), 168, 69, fc="none", ec=c, lw=lw)); slats(0, 168, y + 3, 69)
+    ax.plot([4, 164], [y + 68, y + 9], color=c, lw=0.6, ls=(0, (4, 2)))  # cable brace, hinge top to latch bottom
+    ax.add_patch(Circle((160, y + 2), 2.5, fc="white", ec=c, lw=0.8))   # wheel
+    ax.text(-10, y + 40, "HINGE\nPOST", fontsize=4.5, ha="right", va="center", color=c)
+    title(84, y, "14' CARPORT GATE: OWN HINGE POST, CABLE BRACE, WHEEL")
+    ax.add_patch(Rectangle((196, y), 96, 22, fc="#ddd", ec=INK, lw=lw))
+    ax.add_patch(Rectangle((194, y + 22), 100, 2, fc="#bbb", ec=INK, lw=lw))
+    title(244, y, "24\" SEAT WALL (ENTRY COURT)")
+    ax.text(-20, 268, "FENCES, GATES AND WALLS (TYPICAL)   1/4\" = 1'-0\"", fontsize=8.5, weight="bold", va="top")
+    fig.text(left_in / W_IN, (bottom_in - 0.15) / H_IN,
+             "Locations on A-1. Fences and gates 6' above finished grade, metal (noncombustible: they meet the house "
+             "in the\nfire zone); horizontal slats. The carport gate opens flat against the house wall on its own "
+             "post, not hung\nfrom the stucco. Seat wall: concrete or block with a smooth cap, stucco to match the "
+             "house.", fontsize=6.5, va="top")
 
 
 def elevations(pdf):
@@ -753,6 +775,7 @@ def elevations(pdf):
         ax.set_ylim(b0, b1)
         grade_line(ax, side, ff)
         site_elements(ax, side, ff)
+    fence_detail(fig, 25.6, 2.2)
     fig.text(26.0 / W_IN, 22.9 / H_IN, MATERIALS, fontsize=8.5, va="top", linespacing=1.35)
     under = X.shed_vault_under(2 / 12)
     fig.text(26.0 / W_IN, 17.4 / H_IN, f"Heights are above finished floor (0'-0\").\nAssumed finished floor: {ff:.1f}' "
@@ -763,7 +786,7 @@ def elevations(pdf):
              f"wall to about {ftin(under(S.N_IN))} at the street wall (A-5).\n\n"
              "GRADING (preliminary; per civil)\n"
              "Finished floor set just above the high (street /\ncarport) side; finished grade about 6\" below the floor\n"
-             "at the walls all around, sloping away (CRC R401.3);\nfences and walls are drawn on that finished grade.\n"
+             "at the walls all around, sloping away (CRC R401.3).\n"
              "The lot falls about 5' from there to the rear west\ncorner (existing grade about 6' below the floor), so\n"
              "the pad is mostly fill: roughly 120 cu yd, little cut,\nat the assumed floor level; the low corner may need\n"
              "a stepped foundation or a low wall (per civil). No new retaining walls;\nthe burned house's retaining wall and chimney are\n"

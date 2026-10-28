@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 28, 2026
 
+- **9:55 AM**: A-4: fences, gates and the seat wall off the building elevations and into a typical detail (1/4" = 1'-0"): the 6' metal fence with posts 6' o.c. max, the 4' side gate, the 14' carport gate on its own hinge post with a cable brace and wheel, and the 24" seat wall; locations on A-1.
 - **9:52 AM**: A-4: each elevation's frame extends to its lowest existing grade (the rear's was cut off); existing-grade spot elevations at the wall ends (e.g. EG 1428.9', 6'-2" below the floor at the rear west corner).
 - **9:50 AM**: A-4: the east-line retaining wall's line taken off the east elevation (it floated across the carport); a note says it's in the foreground, shown on A-1, and remains.
 - **9:47 AM**: A-4: fences and the seat wall drawn on the finished grade by the house (about 6" below the floor) rather than the existing grade; the grading note explains the high street/carport side, the low rear west corner (existing grade about 6' below the floor) and the fill.
