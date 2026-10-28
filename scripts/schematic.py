@@ -51,14 +51,12 @@ PORCH_X, PORCH_Y = 444.1, 291.2      # notch is E..PORCH_X by N..PORCH_Y
 FOYER_WALL_END = PORCH_Y + EXT + 108.0   # foyer/TV wall: 9' of foyer inside the front wall
 # Hearth bench: a built-in bench on the lounge's TV wall, centred on the TV: from just past the reeded porch-side
 # window to just short of the foyer-to-hall walkway. Framed and drywalled on a recessed base (it reads as
-# floating); a linear electric fireplace in its face under the TV, a matching cubby each side. The street-wall
+# floating); a linear electric fireplace in its face under the TV, solid either side. The street-wall
 # corner by the reeded window stays open floor.
-HEARTH_D = 21.0                          # deep enough for a receiver in a cubby
+HEARTH_D = 21.0                          # bench depth
 TV_CY = (305.0 + 396.0) / 2 - 9.0        # 90" TV centre line: about centred on the wall
 HEARTH_Y = (2 * TV_CY - 398.0, 398.0)    # symmetrical about the TV, its walkway end just short of the walkway
 HEARTH_FIRE = (TV_CY - 30.0, TV_CY + 30.0)   # 60" linear electric fireplace, centred under the TV
-HEARTH_CUBBIES = [(HEARTH_FIRE[0] - 24.0, HEARTH_FIRE[0] - 4.0),    # two matching 20" cubbies, one each side
-                  (HEARTH_FIRE[1] + 4.0, HEARTH_FIRE[1] + 24.0)]    # of the fireplace (4" between)
 # Porch: a qualifying covered entry porch under Table 22.140.520-D (8' x 5', ceiling no more than 12' above
 # its floor). It runs 1' past the house front toward the street (a covered porch may project up to 5' into
 # the front yard, §22.110.090.D.2) under a slim canopy at the porch ceiling's height, and 8" east into the
@@ -663,10 +661,10 @@ def build() -> Sheet:
     hx, (hy0, hy1) = tv + HEARTH_D, HEARTH_Y              # hearth bench (drawn before the TV, whose label sits
     sh.rect(tv, hy0, hx, hy1, fu)                          # over it: the 3D model reads the first label inside)
     sh.text("HEARTH BENCH", tv + 16, TV_CY - 12, 3.0, rot=90)       # clear of the TV label's search box
-    for (a, b), lab in ((HEARTH_FIRE, "ELEC. FIREPLACE"), *((c, "CUBBY") for c in HEARTH_CUBBIES)):
-        for p, q in (((hx - 3, a), (hx, a)), ((hx - 3, b), (hx, b)), ((hx - 3, a), (hx - 3, b))):
-            sh.line(p, q, "A-EQPM")                        # openings in the bench face
-        sh.text(lab, hx + 6, (a + b) / 2, 2.5 if lab == "CUBBY" else 3.0, rot=90)
+    a, b = HEARTH_FIRE
+    for p, q in (((hx - 3, a), (hx, a)), ((hx - 3, b), (hx, b)), ((hx - 3, a), (hx - 3, b))):
+        sh.line(p, q, "A-EQPM")                            # the fireplace's opening in the bench face
+    sh.text("ELEC. FIREPLACE", hx + 6, (a + b) / 2, 3.0, rot=90)
     sh.rect(tv, TV_CY - 39.25, tv + 3, TV_CY + 39.25, fu); sh.text('TV 90"', tv + 8, TV_CY, 4.0, rot=90)   # 90" TV
     sh.msp.add_lwpolyline([(505.0, 267.0), (635.0, 267.0), (635.0, 396.0), (597.0, 396.0), (597.0, 305.0),
                            (505.0, 305.0)], close=True, dxfattribs={"layer": fu})   # L sectional, 38" deep

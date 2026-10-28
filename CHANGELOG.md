@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **10:16 PM**: Lounge audio: in-wall front speakers in the TV wall (left and right flanking the TV, center above it) and two in-wall rear speakers in the gym wall, all in back-boxes and wired to the AV closet; the hearth bench's cubbies dropped (solid face either side of the fireplace); receiver, streamers and consoles in the AV closet.
 - **10:05 PM**: Reading nook bookshelves floor to the lowered ceiling (the length of the office wall); the nook's outlet below the window or in a low shelf.
 - **10:03 PM**: Reading nook: no built-in bench (a reading chair instead); the bookshelves on the office wall stay; the nook's outlet by the chair (electrical).
 - **10:01 PM**: Reading nook: built-in bookshelves on the office wall above the bench (12" deep, from 4'-6" up to the lowered ceiling); the nook window 6" toward the bedroom, centred on the open part of the nook and clear of the shelves.
