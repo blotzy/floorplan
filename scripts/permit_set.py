@@ -353,7 +353,7 @@ def site_plan(pdf):
     ax.text(L[0] + 20, S.EDGE_OF_PAVEMENT + 5, "EDGE OF PAVEMENT", fontsize=5)
     # trees and utilities
     trees = [(x, y, "EXIST. OLIVE (REMAIN)") for x, y in S.EXIST_TREES] + [
-        (*S.PRIVACY_TREE, "NEW TREE"), (*S.FRONT_TREE, "NEW TREE")]
+        (*S.PRIVACY_TREE, "NEW TREE (TOYON)"), (*S.FRONT_TREE, "NEW TREE (WESTERN REDBUD)")]
     for x, y, lab in S.REMOVED_TREES:                                   # removed for the driveway
         ax.plot([x - 14, x + 14], [y - 14, y + 14], color="#b03a2e", lw=1.0)
         ax.plot([x - 14, x + 14], [y + 14, y - 14], color="#b03a2e", lw=1.0)
@@ -361,7 +361,10 @@ def site_plan(pdf):
     for x, y, lab in trees:
         ax.add_patch(Circle((x, y), 30, fill=False, ec="#2e7d32", lw=0.8))
         ax.add_patch(Circle((x, y), 3, fc="#2e7d32", ec="none"))
-        ax.text(x, y - 38, lab, fontsize=4.5, ha="center", va="top", color="#2e7d32")
+        new = lab.startswith("NEW")                                     # new trees: label inside the lot, off the line
+        ax.text(x, y + 36 if new else y - 38, lab, fontsize=6 if new else 5.5, ha="center",
+                va="bottom" if new else "top", color="#2e7d32", zorder=5,
+                bbox=dict(fc="white", ec="none", pad=0.8, alpha=0.9))
     _, z, utils = survey()
     for kind, pts in _SURF["walls"]:                                     # existing walls and chimney
         c, ls = ("#b03a2e", "--") if kind != "line" else ("#555", "-")
