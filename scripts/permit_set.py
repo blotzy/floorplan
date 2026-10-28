@@ -732,9 +732,8 @@ def fence_detail(fig, left_in, bottom_in):
     ax = scaled_axes(fig, left_in, bottom_in, -20, -40, 300, 270, scale=0.25)
     c, lw = FENCE_C, 0.8
 
-    def slats(x0, x1, y0, h):
-        for k in range(1, int(h // 6)):
-            ax.plot([x0, x1], [y0 + 6 * k, y0 + 6 * k], color=c, lw=0.4)
+    def slats(*_):                                                       # infill style not yet chosen: outline only
+        pass
     def post(x, y0, h):
         ax.add_patch(Rectangle((x - 2, y0), 4, h + 2, fc=c, ec=c))
     def ground(x0, x1, y):
@@ -747,9 +746,9 @@ def fence_detail(fig, left_in, bottom_in):
     for x in (0, 72, 144):
         post(x, y, 72)
     title(72, y, "6' FENCE (TYP.), POSTS 6' O.C. MAX")
+    Z.dim(ax, (-12, y), (-12, y + 72), "6'-0\"", fs=5.5, rot=90)
     ax.add_patch(Rectangle((176, y + 2), 48, 70, fc="none", ec=c, lw=lw)); slats(176, 224, y + 2, 70)
     post(172, y, 72); post(228, y, 72)
-    ax.plot([180, 220], [y + 6, y + 68], color=c, lw=0.5, ls="--")      # brace
     title(200, y, "4' GATE (WEST SIDE YARD)")
     y = 30.0                                                             # 14' carport gate and the seat wall
     ground(0, 290, y)
@@ -765,7 +764,7 @@ def fence_detail(fig, left_in, bottom_in):
     ax.text(-20, 268, "FENCES, GATES AND WALLS (TYPICAL)   1/4\" = 1'-0\"", fontsize=8.5, weight="bold", va="top")
     fig.text(left_in / W_IN, (bottom_in - 0.15) / H_IN,
              "Locations and heights on A-1. Fences and gates 6' above finished grade, metal (noncombustible: they meet the house "
-             "in the\nfire zone); horizontal slats. The carport gate opens flat against the house wall on its own "
+             "in the\nfire zone); infill style to be selected. The carport gate opens flat against the house wall on its own "
              "post, not hung\nfrom the stucco. Seat wall: concrete or block with a smooth cap, stucco to match the "
              "house.", fontsize=6.5, va="top")
 
