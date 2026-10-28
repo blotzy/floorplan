@@ -616,9 +616,10 @@ def build() -> Sheet:
     sh.rect(pen_out, KITCHEN_ROW, pen_in, S_IN, eq)                           # peninsula
     # peninsula, kitchen side (facing it from the aisle, left to right): trash pull-out, the sink, the dishwasher
     # at the corner end; the sink across from the range, in a triangle with the range and fridge
-    sh.rect(pen_in - 24, S_IN - 48, pen_in, S_IN - 24, eq)                     # dishwasher, right of the sink
-    sh.text("DW", pen_in - 12, S_IN - 36, 3.5)
-    sy0 = S_IN - 84                                                           # 36" sink base
+    dw1 = S_IN - 24 - 3                                                       # a 3" filler at the corner (the DW
+    sh.rect(pen_in - 24, dw1 - 24, pen_in, dw1, eq)                            # clears the corner cabinet's front)
+    sh.text("DW", pen_in - 12, dw1 - 12, 3.5)                                 # dishwasher, right of the sink
+    sy0 = dw1 - 60                                                            # 36" sink base, centred on the range
     sh.rect(pen_in - 20, sy0 + 3, pen_in - 4, sy0 + 33, eq); sh.text("SINK", pen_in - 12, sy0 + 18, 3.0, rot=90)
     sh.rect(pen_in - 24, sy0 - 24, pen_in, sy0, eq)                           # 24" triple pull-out, left of the
     sh.text("TRASH", pen_in - 12, sy0 - 12, 3.0)                              # sink: trash, recycling, food scraps
