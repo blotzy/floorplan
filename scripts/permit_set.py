@@ -1079,7 +1079,7 @@ def cover(pdf):
 
 
 ASSESSOR_MAP = S.ROOT / "renders" / "county" / "assessor-map-5832-003.png"   # LA County Assessor's Map Book
-LOT_27 = [(1660, 764), (1848, 841), (1804, 949), (1616, 872)]               # 5832, page 3 (public record);
+LOT_27 = [(1660, 761), (1848, 832), (1809, 938), (1621, 869)]               # 5832, page 3 (public record);
                                                                             # lot 27 corners in its pixels
 
 
@@ -1090,13 +1090,14 @@ def location_map(fig, left_in, top_in, width_in):
     h_in = width_in * img.shape[0] / img.shape[1]
     a = fig.add_axes([left_in / W_IN, (top_in - h_in) / H_IN, width_in / W_IN, h_in / H_IN])
     a.imshow(img, cmap="gray", vmin=0, vmax=1 if img.max() <= 1 else 255); a.axis("off")
-    a.add_patch(MPoly2(LOT_27, closed=True, fill=False, ec=RED, lw=1.8))
+    a.add_patch(MPoly2(LOT_27, closed=True, fc="#ffd400", ec="none", alpha=0.55, zorder=2))   # highlighted
+    a.add_patch(MPoly2(LOT_27, closed=True, fill=False, ec=RED, lw=0.8, zorder=3))
     cx = sum(x for x, _ in LOT_27) / 4; cy = sum(y for _, y in LOT_27) / 4
     a.annotate("SITE: LOT 27", (cx, cy), (cx + 180, cy - 330), color=RED, fontsize=8, weight="bold",
                arrowprops=dict(arrowstyle="-|>", color=RED, lw=1.2))
     fig.text(left_in / W_IN, (top_in + 0.1) / H_IN, "LOCATION MAP", fontsize=10, weight="bold")
     fig.text(left_in / W_IN, (top_in - h_in - 0.08) / H_IN,
-             "LA County Assessor's Map Book 5832, page 3 (public record); the site, lot 27, outlined in red.",
+             "LA County Assessor's Map Book 5832, page 3 (public record); the site, lot 27, highlighted.",
              fontsize=6.5, va="top")
 
 

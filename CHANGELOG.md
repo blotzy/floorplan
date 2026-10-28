@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **7:14 PM**: A-0 location map: lot 27 highlighted in yellow on its actual lot lines, instead of the offset red outline.
 - **7:13 PM**: A-1: setback lines in bold purple dashes, each labelled with its distance (front, rear, both sides), and the required yards tinted.
 - **7:05 PM**: Carport lights: four fixtures in a 2 x 2 grid (electrical).
 - **7:04 PM**: A-0 reorganized: a larger street view top left, with the sheet index, scope and project team, and deferred submittals under it; the location map, project data, code analysis and general notes in the right column; the cover render re-shot without the grid, edge lines or north arrow. Carport: at least 8'-0" clear under the framing for SUV liftgates (site and engineer docs); overhead LED carport lights on a switch, motion sensor and photocell (electrical).
