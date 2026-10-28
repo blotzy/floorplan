@@ -35,6 +35,7 @@ from shapely.ops import unary_union  # noqa: E402
 OUT = S.RENDERS / "permit"
 W_IN, H_IN = 36.0, 24.0                         # ARCH D sheet, landscape
 INK, RED = "#111", "#b03a2e"
+SETBACK = "#7b2fbe"                                    # A-1 setback lines and required yards (purple)
 ftin = Z.ftin
 DOOR_H = 96.0                                   # interior and front doors: 8' (headers at 8')
 
@@ -311,11 +312,18 @@ def site_plan(pdf):
     contours(ax, x0, y0, x1, y1)
     L = S.LOT_X0, 0, S.LOT_X0 + S.LOT_W, S.LOT_D
     ax.add_patch(Rectangle((L[0], L[1]), L[2] - L[0], L[3] - L[1], fill=False, ec=INK, lw=1.6, ls="-."))
-    # setback lines
-    sb = dict(fill=False, ec=RED, lw=0.7, ls=":")
-    ax.add_patch(Rectangle((L[0] + Z.SIDE_REQ, Z.REAR_REQ * 0 + 240.0), L[2] - L[0] - 2 * Z.SIDE_REQ,
-                           L[3] - Z.REAR_REQ - 240.0, **sb))
-    ax.text(L[0] + Z.SIDE_REQ + 6, 246, "SETBACK LINES", fontsize=5.5, color=RED, va="bottom")
+    # setback lines: the required yards tinted, the lines bold, each side labelled
+    bx0, by0, bx1, by1 = L[0] + Z.SIDE_REQ, 240.0, L[2] - Z.SIDE_REQ, L[3] - Z.REAR_REQ
+    for r in ((L[0], L[1], bx0, L[3]), (bx1, L[1], L[2], L[3]), (bx0, L[1], bx1, by0), (bx0, by1, bx1, L[3])):
+        ax.add_patch(Rectangle((r[0], r[1]), r[2] - r[0], r[3] - r[1], fc=SETBACK, ec="none", alpha=0.10, zorder=0))
+    ax.add_patch(Rectangle((bx0, by0), bx1 - bx0, by1 - by0, fill=False, ec=SETBACK, lw=1.8, ls=(0, (8, 3)), zorder=3))
+    lab = dict(color=SETBACK, fontsize=7, weight="bold", ha="center", zorder=4,
+               bbox=dict(fc="white", ec="none", pad=0.8, alpha=0.9))
+    ax.text(700, by0 - 4, f"FRONT SETBACK LINE ({ftin(240.0)})", va="top", **lab)
+    ax.text((bx0 + bx1) / 2, by1 + 4, f"REAR SETBACK LINE ({ftin(Z.REAR_REQ)})", va="bottom", **lab)
+    ax.text(bx0 + 4, 330, f"SIDE SETBACK LINE ({ftin(Z.SIDE_REQ)})", va="center", rotation=90, **{**lab, "ha": "left"})
+    ax.text(bx1 - 4, 330, f"SIDE SETBACK LINE ({ftin(Z.SIDE_REQ)})", va="center", rotation=90,
+            **{**lab, "ha": "right"})
     # house, porch, carport, eaves
     ax.add_patch(MPoly(Z.FOOT, closed=True, fc="#cfcfcf", ec=INK, lw=1.4, hatch="////"))
     ax.text((S.E + S.W) / 2, (S.N + S.S) / 2, "NEW 1-STORY RESIDENCE\n" + f"{Z.HOUSE:,.0f} SQ FT\n"
