@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **6:24 PM**: Kitchen: a floor-to-ceiling unit fills the southwest corner (the tall cabinet south of the range now runs into the corner); the window narrows to 3'-6" (4'-6" tall, same sill and head), centred on the window counter between the peninsula and the tall unit, with room for trim. Corner storage and appliance-garage notes updated. Glazing about 427 sq ft (19.2%). Plan, 3D, sets, kitchen, Title 24 and open-questions docs.
 - **6:10 PM**: Kitchen: the trash, sink and dishwasher shift 3" north, leaving a 3" filler between the dishwasher and the corner cabinet and centring the sink on the range across the aisle.
 - **6:04 PM**: Kitchen: a full-height cabinet end panel on the fridge's lounge side, with a cabinet above the fridge, so the fridge's side isn't seen from the lounge (plan, 3D, kitchen doc; check the fridge's hinge-side clearance).
 - **5:49 PM**: Kitchen: the sink moves into the peninsula, across the aisle from the range (a work triangle with the range and fridge), with the trash pull-out to its left and the dishwasher to its right at the corner end, so the open dishwasher no longer blocks the sink. No prep sink; the window counter is plain counter. The sink's vent rises in the rear wall where the peninsula meets it (VTR-3, A-3). Plan, 3D, sets, kitchen, plumbing and floor-plan docs.

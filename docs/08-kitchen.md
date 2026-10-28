@@ -4,7 +4,7 @@
 
 An upside-down U: a counter on the south wall under the window (its sill just above the backsplash, its head in line with the other windows), the range and fridge on the **west** wall (backing onto the laundry), and a peninsula on the east side holding the **sink**, with **three stools** facing the dining area. The sink sits across the aisle from the range, so the fridge, range and sink make a compact work triangle. The aisle inside the U is about **4'** (48" is the two-cook minimum).
 
-**West wall, from the sink corner:** corner counter → about 17" floor-to-ceiling cabinet → 15" counter → 30" induction range → 12" counter → 15" floor-to-ceiling cabinet → 36" fridge (counter-depth or all-refrigerator column) at the north end, next to the pantry door. The two tall cabinets frame the range and its hood; the landing counters on either side meet the usual 12"/15" minimums. The window counter runs into the corner.
+**West wall, from the southwest corner:** a floor-to-ceiling corner unit (about 3'-5" along the wall, filling the corner; shelving or cabinets) → 15" counter → 30" induction range → 12" counter → 15" floor-to-ceiling cabinet → 36" fridge (counter-depth or all-refrigerator column) at the north end, next to the pantry door. The two tall cabinets frame the range and its hood; the landing counters on either side meet the usual 12"/15" minimums. The window counter runs from the peninsula to the tall corner unit, the window (3'-6" wide) centred on it with a few inches of wall to the tall unit for trim.
 
 | Item | Spec |
 | --- | --- |
@@ -14,14 +14,14 @@ An upside-down U: a counter on the south wall under the window (its sill just ab
 | Dishwasher | In the peninsula on the kitchen side, to the right of the sink (facing it), at the peninsula's south end, a 3" filler from the corner cabinet so its door and handle clear that cabinet's front; clear of the range across the aisle, and its open door doesn't block the sink. The sink centres on the range across the aisle. |
 | Sink | Single deep bowl, about 32"–33" wide and 9"–10" deep, undermount (16-gauge stainless or fireclay), in a 36" sink base in the peninsula's kitchen side, across the aisle from the range; pull-down faucet. RO filter tap (the tankless RO unit is in the mechanical closet); integrated drain board on the dishwasher side. Venting: see the plumbing doc. No prep sink. |
 | Peninsula | Three stools; a small under-counter drink fridge at the stool-side corner by the south wall, opening toward the dining room, with the coffee station on the counter above |
-| Corner storage | Corner drawers at the range-side corner |
+| Corner storage | The southwest corner is the tall unit. The blind corner where the peninsula meets the window counter: a blind-corner pull-out (swing-out shelves) from the window-counter side. |
 | Pantry | Off the lobby at the corner by the fridge; outlets inside |
 
 **Also add**
 
 - Doors on the dining-room side of the peninsula's corner end, turning the blind corner into a buffet cabinet.
 - 24" triple pull-out (trash, recycling, and a small lidded food-scraps bin for LA County's green organics cart) in the peninsula on the kitchen side, to the left of the sink (facing it): scrape into the bin, rinse, load the dishwasher on the right. Make recycling the larger bin.
-- Appliance garage with an outlet in the countertop corner.
+- Appliance garage with an outlet, on the counter beside the range or at the base of a tall unit (not in the window corner, where it would block the window).
 - Under-cabinet lighting.
 - 42" or stacked upper cabinets to suit the tall vaulted ceiling.
 - 3" fillers at each corner so drawers and doors clear each other.

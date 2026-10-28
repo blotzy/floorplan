@@ -162,7 +162,8 @@ OPENINGS = [
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
     ("south",       384.0, 528.0, "window", 24.0, 96.0),  # dining: one 12' window (two 6' x 6' units, a common
                                                           # size), sill below the table top; centred on the wall and table
-    ("south",       588.0, 648.0, "window", 42.0, 96.0),  # kitchen, 5' over the rear counter (clear of the corner cabinets): sill just above the backsplash
+    ("south",       601.9, 643.9, "window", 42.0, 96.0),  # kitchen: 3'-6", centred on the window counter between the
+                                                          # peninsula and the tall corner unit; sill just above the backsplash
     ("south",       766.5, 808.5, "window", 72.0, 96.0),  # laundry: 3'-6" x 2'-0" high window, matching the tub's
     ("south",       900.75, 948.75, "window", 66.0, 96.0), # primary bath: 4'-0" x 2'-6" over the shower bench, centred on
                                                           # the shower (5'-6" sill; both panes tempered)
@@ -626,11 +627,11 @@ def build() -> Sheet:
     sh.rect(pen_out, S_IN - 15, pen_out + 24, S_IN, eq)                        # 15" drink fridge under the counter,
     sh.text("BEV", pen_out + 12, S_IN - 7.5, 3.0)                              # stool side, corner by the south wall
     sh.line((pen_out + 15, KITCHEN_ROW), (pen_out + 15, S_IN), eq)            # 15" overhang
-    sh.rect(pen_in, S_IN - 24, kw, S_IN, eq)                                  # rear counter under the window
+    sh.rect(pen_in, S_IN - 24, kw - 24, S_IN, eq)                             # window counter, to the tall corner unit
     ta, r0 = KITCHEN_ROW + 36 + 15, KITCHEN_ROW + 36 + 15 + 12                # range wall: tall cabinet,
     tb = r0 + 30 + 15                                                         # 12" landing, range, 15"
     sh.rect(kw - 24, ta, kw, tb, eq)                                          # landing, tall cabinet
-    for y0, y1 in ((KITCHEN_ROW + 36, ta), (tb, S_IN - 24)):
+    for y0, y1 in ((KITCHEN_ROW + 36, ta), (tb, S_IN)):                     # the south one fills the corner
         sh.rect(kw - 24, y0, kw, y1, eq); sh.text("TALL STORAGE", kw - 12, (y0 + y1) / 2, 1.6, rot=90)
     sh.rect(kw - 24, r0, kw, r0 + 30, eq); sh.text("RANGE", kw - 12, r0 + 15, 3.5, rot=90)
     sh.rect(kw - 30, KITCHEN_ROW, kw, KITCHEN_ROW + 36, eq); sh.text("FRIDGE", kw - 15, KITCHEN_ROW + 18, 3.5, rot=90)
