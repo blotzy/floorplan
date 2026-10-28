@@ -664,7 +664,7 @@ MATERIALS = ("EXTERIOR MATERIALS AND COLORS\n"
              "4. Porch walls and ceiling: wood-look fiber cement or\n"
              "   porcelain (noncombustible / ignition-resistant),\n"
              "   color: warm mid-brown wood tone. Front door: orange.\n"
-             "   Window frames: black. Fences: detail this sheet.\n"
+             "   Window frames: black. Fences: opaque aluminum,\n   detail this sheet.\n"
              "5. Windows: dual-pane, one pane tempered (CRC R337.8);\n"
              "   punched street windows recessed 6\" (clerestory\n   band flush). See A-2 schedule.\n"
              "6. Eave soffits enclosed, no vents (A-6).\n"
@@ -732,8 +732,8 @@ def fence_detail(fig, left_in, bottom_in):
     ax = scaled_axes(fig, left_in, bottom_in, -20, -40, 300, 270, scale=0.25)
     c, lw = FENCE_C, 0.8
 
-    def slats(*_):                                                       # infill style not yet chosen: outline only
-        pass
+    def slats(x0, x1, y0, h):                                            # opaque aluminum panels, no gaps
+        ax.add_patch(Rectangle((x0, y0), x1 - x0, h, fc="#c9cbcd", ec="none", zorder=0))
     def post(x, y0, h):
         ax.add_patch(Rectangle((x - 2, y0), 4, h + 2, fc=c, ec=c))
     def ground(x0, x1, y):
@@ -763,10 +763,10 @@ def fence_detail(fig, left_in, bottom_in):
     title(244, y, "24\" SEAT WALL (ENTRY COURT)")
     ax.text(-20, 268, "FENCES, GATES AND WALLS (TYPICAL)   1/4\" = 1'-0\"", fontsize=8.5, weight="bold", va="top")
     fig.text(left_in / W_IN, (bottom_in - 0.15) / H_IN,
-             "Locations and heights on A-1. Fences and gates 6' above finished grade, metal (noncombustible: they meet the house "
-             "in the\nfire zone); infill style to be selected. The carport gate opens flat against the house wall on its own "
-             "post, not hung\nfrom the stucco. Seat wall: concrete or block with a smooth cap, stucco to match the "
-             "house.", fontsize=6.5, va="top")
+             "Locations and heights on A-1. Fences and gates 6' above finished grade: opaque aluminum privacy panels, "
+             "little to no gaps\n(noncombustible: they meet the house in the fire zone); posts and footings sized for "
+             "wind on a solid fence. The carport\ngate opens flat against the house wall on its own post, not hung from "
+             "the stucco. Seat wall: concrete or block with a\nsmooth cap, stucco to match the house.", fontsize=6.5, va="top")
 
 
 def elevations(pdf):
