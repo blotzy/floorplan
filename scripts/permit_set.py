@@ -417,8 +417,13 @@ def site_plan(pdf):
     for kind, pts in _SURF["walls"]:                                     # existing walls and chimney
         c, ls = ("#b03a2e", "--") if kind != "line" else ("#555", "-")
         ax.plot([q[0] for q in pts], [q[1] for q in pts], color=c, lw=1.4 if kind == "line" else 1.1, ls=ls)
-    ax.text(150, 690, "EXIST. RETAINING WALL\nAND CHIMNEY (DASHED)\nTO BE REMOVED", fontsize=5.5, color="#b03a2e",
-            va="center")
+    lead = dict(arrowstyle="-|>", color="#b03a2e", lw=0.6, mutation_scale=6)     # the burned house's leftovers
+    box = dict(fc="white", ec="none", pad=0.8, alpha=0.9)
+    ax.annotate("EXIST. CHIMNEY (DASHED BOX)\nTO BE REMOVED", (346, 700), (395, 700), fontsize=5.5, color="#b03a2e",
+                va="center", arrowprops=lead, bbox=box, zorder=6)
+    ax.annotate("EXIST. RETAINING WALL (DASHED)\nTO BE REMOVED", (330, 752), (395, 752), fontsize=5.5, color="#b03a2e",
+                va="center", arrowprops=lead, bbox=box, zorder=6)
+    ax.annotate("", (470, 575), (450, 740), arrowprops=lead, zorder=6)                  # its run under the house
     ax.text(S.LOT_X0 + 10, 300, "EXIST. RETAINING WALL AT THE\nEAST LINE (NEIGHBOR'S GRADE):\nTO REMAIN, NO EXCAVATION\n"
             "AT ITS BASE", fontsize=5, color="#555", va="center", rotation=90)
     for lab, (x, y) in utils.items():

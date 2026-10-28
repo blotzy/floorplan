@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 28, 2026
 
+- **10:01 AM**: A-1: the burned house's chimney and retaining wall labelled separately beside them, with leaders to each (and to the wall's run under the new house).
 - **9:59 AM**: The dead lot tree beside the carport identified as a maple (plan, A-1, FM-1 and docs).
 - **9:58 AM**: A-1: each fence, gate and wall labelled in place with its height (6' fence, 14' gate 6' high, 4' gate 6' high, 24" seat wall) instead of letter keys; the key dropped.
 - **9:57 AM**: A-1: fences drawn heavier with their posts and keyed F (6' fence), G1 (14' carport gate), G2 (4' side-yard gate) and W (24" seat wall), with a key under the site notes; the A-4 detail uses the same keys.
