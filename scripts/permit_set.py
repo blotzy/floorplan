@@ -671,9 +671,23 @@ def grade_line(ax, side, ff):
         h = (lambda u: u) if side == "west" else (lambda u: -u)
         pts = [(h(u), (z(x, u) - ff) * 12) for u in us]
     pts.sort()
-    ax.plot([p[0] for p in pts], [p[1] for p in pts], color="#9a7b4f", lw=1.0, ls="--")
     lo = min(p[1] for p in pts)
+    if ax is None:
+        return lo
+    ax.plot([p[0] for p in pts], [p[1] for p in pts], color="#9a7b4f", lw=1.0, ls="--")
     ax.text(pts[0][0], pts[0][1] + 4, "EXIST. GRADE (APPROX.)", fontsize=5.5, color="#9a7b4f", va="bottom")
+    if side in ("north", "south"):                                       # spot elevations at the wall ends
+        spots = [(S.E, y), (S.W, y)]
+    else:
+        spots = [(x, S.N), (x, S.S)]
+    for sx, sy in spots:
+        u = h(sx) if side in ("north", "south") else h(sy)
+        e = z(sx, sy)
+        d = (e - ff) * 12
+        ft, inch = divmod(round(abs(d)), 12)
+        ax.plot([u], [d], marker="v", ms=4, color="#9a7b4f")
+        ax.text(u, d - 5, f"EG {e:.1f}'\n({'-' if d < 0 else '+'}{ft}'-{inch}\")", fontsize=5, color="#9a7b4f",
+                ha="center", va="top")
     return lo
 
 
@@ -714,7 +728,7 @@ def site_elements(ax, side, ff):
             ax.text((w[0] + w[2]) / 2, -6.0 + S.ENTRY_WALL_H + 4, "24\" SEAT WALL (ENTRY COURT)",
                     fontsize=5, color=FENCE_C, ha="center", va="bottom")
     elif side == "east":
-        ax.text(h(0, S.S) - 40, -40, "The existing retaining wall at the east property line (A-1) is in the "
+        ax.text(h(0, S.S) - 40, -75, "The existing retaining wall at the east property line (A-1) is in the "
                 "foreground of this view and not drawn: it remains.", fontsize=5.5, color="#555", va="top")
 
 
@@ -732,7 +746,8 @@ def elevations(pdf):
     slots = {"north": (0.9, 17.6), "south": (0.9, 11.4), "east": (0.9, 4.2), "west": (13.4, 4.2)}
     for side, (lx, by) in slots.items():
         (a0, a1), (b0, b1) = lims[side]
-        b0 = -70.0
+        row = ("east", "west") if side in ("east", "west") else (side,)    # side-by-side views share a bottom
+        b0 = min([-70.0] + [grade_line(None, s, ff) - 30 for s in row])
         ax = scaled_axes(fig, lx, by, a0, b0, a1, b1, scale=3 / 16)
         Z.elevation(ax, side)
         ax.set_ylim(b0, b1)
