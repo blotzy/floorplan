@@ -110,8 +110,8 @@ SHOWER_ENTRY = 30.0                  # primary shower: walk-in entry at the dres
 SUITE_ENTRY = (463.0, 495.0)         # bedroom -> dressing room: 32" cased opening in the hall corner
 NOOK_CEIL = 90.0                     # reading nook: lowered ceiling at 7'-6" (the room's is 9'), built-in cabinets
 NOOK_CAB_D = 24.0                    # above it with doors facing the bedroom; the nook window's head meets it
-HALL_ARCH = 883.5                    # centreline of the threshold wall: in line with the primary bath's plumbing
-                                     # wall, just past the common bath door
+HALL_ARCH = 897.5                    # centreline of the threshold wall: in line with the ensuite | guest wall, just
+                                     # past the hall linen closet, so the closet gets its full-width doors
 ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
 HATCH_X = 954.0                         # attic access panel (22" x 54", passes the air handler) along the hall,
                                         # from here west: room for a recessed light either side of it (about 5'-8"
@@ -194,7 +194,7 @@ OPENINGS = [
     ("south hall wall", 1074.0, 1106.0, "door", "b", +1),   # primary bedroom, 32", beside the dressing-room opening:
                                                             # hinged on its far side, clear of the opening; the
                                                             # wall left at the corner takes the light switch
-    ("bedroom hall wall", 833.0, 879.0, "bifold", "a", +1),  # hall linen closet: 4' bifold, east of the threshold's stub
+    ("bedroom hall wall", 832.25, 892.25, "bifold", "a", +1),  # hall linen closet: 5' bifold, nearly its full width
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry

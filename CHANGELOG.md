@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **9:37 PM**: Hall's dropped header (cased opening) moved 14" west, in line with the guest ensuite | guest wall, so the hall linen closet gets a 5'-0" bifold across nearly its full width.
 - **9:33 PM**: Hall linen closet: the guest ensuite's linen closet opens into the hall instead (a 4' bifold across from the common bath, just east of the threshold's header), 2' deep and the full width of the bath, behind a new wall; the ensuite is 5'-6" x 10'-9" (vanity 1" closer to the WC).
 - **8:05 PM**: Guest ensuite door swings into the bath (hinged on the street side, flat against the wall opposite the WC), clearing the guest room's east wall for a TV; guest bed shifted 10" toward the street so a 55" TV centred on it clears the door trim; guest TV box and blocking (electrical).
 - **7:59 PM**: Switch plan for the whole house (electrical doc table; S marks on the schematic, none on A-2): a 4-gang at the front door (foyer; porch and entry court on an astronomical timer switch; carport; lounge 3-way), a 3-gang at the hall opening (lounge 3-way, lounge fan, kitchen cans 3-way), kitchen controls in the backsplash under the window, dining pendant and patio light by the slider, the dressing room switched from the bedroom with a floor-level path light to the bath (no motion sensor), and the attic light under the hatch.
