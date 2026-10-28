@@ -71,7 +71,7 @@
 | --- | --- | --- |
 | Front door: foyer side of the front wall, between the door trim and the foyer closet | 4-gang | Foyer; porch and entry court (one in-wall astronomical timer switch: on at dusk, off at a set time, with manual on/off); carport; lounge (3-way) |
 | Hall opening: lounge face of the gym wall at its south end, where the hall meets the great room | 3-gang | Lounge (3-way), lounge ceiling fan, kitchen cans (3-way) |
-| Hall, just inside the opening (hall face of the gym corner) and on the hall's end wall | 1-gang each | Hall lights (3-way) |
+| Hall, just inside the opening (hall face of the gym corner) and beside the office door (its east side, on the hall wall) | 1-gang each | Hall lights (3-way); the hall's end wall stays clear for art |
 | Kitchen backsplash under the window, at the east end of the window counter by the peninsula corner (wired up the outside wall into the rafter bays, not through the slab) | 3-gang | Kitchen cans (3-way), peninsula pendants, under-cabinet lights |
 | Dining: east wall beside the slider | 2-gang | Dining pendant, rear patio light |
 | Pantry: hall wall, latch side | 1-gang | Vacancy-sensor switch |
