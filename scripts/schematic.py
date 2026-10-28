@@ -633,6 +633,8 @@ def build() -> Sheet:
         sh.rect(kw - 24, y0, kw, y1, eq); sh.text("TALL STORAGE", kw - 12, (y0 + y1) / 2, 1.6, rot=90)
     sh.rect(kw - 24, r0, kw, r0 + 30, eq); sh.text("RANGE", kw - 12, r0 + 15, 3.5, rot=90)
     sh.rect(kw - 30, KITCHEN_ROW, kw, KITCHEN_ROW + 36, eq); sh.text("FRIDGE", kw - 15, KITCHEN_ROW + 18, 3.5, rot=90)
+    sh.rect(kw - 28, KITCHEN_ROW - 3, kw, KITCHEN_ROW, eq)                    # full-height end panel: the fridge's side
+    sh.text("END PANEL", kw - 14, KITCHEN_ROW - 6, 1.6)                       # hidden from the lounge
     m0 = sh.mark()
     for y in (476.7, 512.9, 544.5):                                           # 3 stools
         sh.circle((pen_out - 8, y), 7.5, fu)

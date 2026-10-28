@@ -47,6 +47,7 @@ class Scene:
 # Schematic source (public): owner-drawn, no designer content
 # =============================================================================
 LABEL_H = [            # label inside a shape -> (z0, z1); first match wins
+    ("END PANEL", (0, 108)),   # fridge end panel, full height (to the cabinet above the fridge)
     ("FRIDGE", (0, 70)), ("RANGE", (0, 36)), ("DOUBLE VANITY", (0, 34)), ("VANITY", (0, 34)),
     ("VAN", (0, 34)), ("WC", (0, 16)), ("TUB ACCESS", None), ("TUB", (0, 20)), ("DRYER", (0, 53)),
     ("WASHER", (0, 53)), ("FOLDING", (0, 36)), ("PANEL", (36, 66)), ("RACK", (0, 72)),
