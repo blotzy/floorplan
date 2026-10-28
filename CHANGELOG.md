@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Oct 27, 2026
+
+- **5:18 PM**: Primary suite reworked from the side-by-side experiment: the bath (6'-2" x 12'-8") and a dressing room (7'-10" x 12'-8") side by side from the hall to the rear wall, instead of a closet and a bath front to back. One cased opening from the bedroom (hall corner) into the dressing room; the bath door at its hall end. Bath: double vanity and WC on the plumbing wall (now 2x6, back to back with the common bath); a 5'-deep curbless shower across the rear wall with a solid bench under a 4'-0" x 2'-6" high window, a fixed head and a slide-bar handheld facing each other. Dressing room: hanging both long walls (about 18'-2" of rod), drawers on the rear wall. No hall closet. The bedroom TV centres on the bed. Air handler platform over the dressing room; the primary bath fan's roof cap joins the rear-slope row. Plan, 3D, sets, docs.
+
 ## Oct 26, 2026
 
 - **8:51 PM**: Primary bath window taller: 4'-0" x 2'-6", sill lowered to 5'-6" (head still 8'), easier to reach and more light, the sill well clear of the shower's safety-glazing height. Glazing about 434 sq ft (19.5%).

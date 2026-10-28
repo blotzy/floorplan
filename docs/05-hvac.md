@@ -8,14 +8,14 @@ One fully ducted, variable-speed heat pump split into zones with motorized (elec
 | --- | --- | --- |
 | 1 | Great room: kitchen, dining, lounge, foyer | Great room, on an interior wall away from the dining glass and the range |
 | 2 | Gym, guest, office, guest ensuite, bedroom hall | Bedroom hall |
-| 3 | Primary suite: bedroom, bath, walk-in closet | Primary bedroom |
+| 3 | Primary suite: bedroom, bath, dressing room | Primary bedroom |
 
 Three zones are preferred. If the Manual J or the equipment's minimum airflow makes the primary suite too small to run as its own zone, merge zones 2 and 3 into one sleeping zone (two zones total), with balancing dampers on each bedroom branch.
 
 **Heat pump and zoning**
 
 - Outdoor unit (about 3 tons, variable-speed/inverter) on a noncombustible pad in the rear yard against the south wall behind the storage room (no windows on that stretch; short line set into the attic), with a dog guard. See [site](03-site-and-landscape.md).
-- Matching variable-speed air handler in the sealed attic, near the attic hatch, over the primary walk-in closet (short line set to the rear condenser, condensate drain near the laundry's drains), on a service platform with a light and outlet. Secondary drain pan with a float switch under it; condensate drain route planned before drywall.
+- Matching variable-speed air handler in the sealed attic, near the attic hatch, over the primary dressing room (short line set to the rear condenser, condensate drain near the laundry's drains), on a service platform with a light and outlet. Secondary drain pan with a float switch under it; condensate drain route planned before drywall.
 - Zoning from the equipment maker's own communicating zone panel (or one it approves), so the heat pump slows down to suit however many zones are calling. No bypass duct.
 - Size each zone's ducts so the smallest zone alone can take the unit's minimum airflow without noise or short-cycling; the contractor confirms this with a Manual D duct design.
 - Motorized dampers at the trunk takeoffs, reachable from the attic walkway. Manual balancing dampers on each branch.

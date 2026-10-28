@@ -518,7 +518,7 @@ def roof_plan(pdf):
              "the sink at the rear wall line, off the line below the range hood cap", "below")]
     caps = [(935.0, 320.0, "EXH", "EXHAUST CAP: guest ensuite fan, up through the\nceiling (ember-resistant, damper)", "right"),
             ((sk[0] + 38 if sk else 906.0), row, "EXH", "", None),
-            (1000.0, 585.0, "EXH", "EXHAUST CAP: primary bath fan, straight up from the\nbath ceiling (short vertical duct); offset from the row", "right")]
+            ((sk[0] + 114 if sk else 982.0), row, "EXH-P", "", None)]
     for ex, ey, tag, lab, side in caps:
         ax.add_patch(Rectangle((ex - 6, ey - 6), 12, 12, fc="white", ec=INK, lw=1.2, zorder=5))
         ax.plot([ex - 6, ex + 6], [ey - 6, ey + 6], color=INK, lw=0.8, zorder=6)
@@ -537,10 +537,11 @@ def roof_plan(pdf):
             ax.text(x, y - 10, tag, fontsize=4.5, ha="center", va="top")
     if sk:
         ax.text(sk[0], sk[1] - 10, "SK", fontsize=4.5, ha="center", va="top")
-        ax.text(sk[0] + 88, row + 4, "REAR-SLOPE ROW, one height, about 2' between flashings, nothing upslope or downslope\n"
+        ax.text(sk[0] + 128, row + 4, "REAR-SLOPE ROW, one height, about 2' between flashings, nothing upslope or downslope\n"
                 "of another; at the gable's east end, so the rear slope west of it stays clear for PV:\n"
                 "EXH = common bath fan (the continuous whole-house fan); SK = 10\" tubular skylight (Class A),\n"
-                "straight up from the bath; VTR-2 = common bath, laundry and primary bath (combined in the attic).\n"
+                "straight up from the bath; VTR-2 = common bath, laundry and primary bath (combined in the attic);\n"
+                "EXH-P = primary bath fan (a short duct from the bath).\n"
                 "Kept 3'+ west of the shed / gable transition", va="bottom", **lbl)
     ax.text(X1 - 40, S.N + 4, "PLUMBING VENTS (APPROX., FINAL PER PLUMBER): each\n6\" min. above the roof and 10' from or 3' above\n"
             "openable windows and air intakes", fontsize=5.5,
@@ -899,7 +900,8 @@ def loads():
                                                         # the swing (about 3'-6" each way) stays clear of the door
     rings = [(cx - RING_GAP / 2, cy), (cx + RING_GAP / 2, cy)]
     wy0 = S.face("south hall wall", +1)
-    ahu = (S.HATCH_X - 15, wy0, S.HATCH_X + 60, wy0 + 41.0)   # platform over the primary walk-in closet, beside the
+    dx = S.face("bath|wic", +1)
+    ahu = (dx, wy0, dx + 75.0, wy0 + 41.0)                  # platform over the primary dressing room, beside the
                                                         # hatch, near the gable's ridge (the wing's tallest attic):
                                                         # short line set to the rear condenser, quiet over a closet
     # decked storage where the attic is at least STORE_H above the ceiling (about 3' clear after the framing and
@@ -995,7 +997,7 @@ def loads_plan(pdf):
              "   Light storage only. Open-web (or attic-frame) trusses there,\n"
              "   so the storage runs continuously rather than in 2' bays.\n"
              "3. Air handler: on a platform beside the attic hatch, near the\n"
-             "   ridge, over the primary walk-in closet (short line set to the\n"
+             "   ridge, over the primary dressing room (short line set to the\n"
              "   rear condenser; condensate to the laundry's drains), with a\n"
              "   30\" walkway, light and outlet (mechanical code).\n"
              "4. Future solar: on the roof plane, clear of the fire setbacks\n"

@@ -102,21 +102,17 @@ HALL_END = 1110.5                    # centreline of the hall's end wall
 HALL_N = 407.2                       # centreline of the hall's north (bedroom) wall
 HALL_S = HALL_N + INT + 44.0         # centreline of the hall's south wall: a 3'-8" clear hall
 KITCHEN_ROW = 461.45                 # front line of the kitchen peninsula and fridge (the lounge's south edge)
-WIC_D = 84.0                         # primary walk-in closet depth: 24" hanging + 36" aisle + 24" hanging
-SHOWER_W = 74.0                      # primary shower: 6'-2" from the common bath wall
-SHOWER_FIXED = 26.0                  # primary shower (no window): the fixed head this far from the common bath wall,
-SHOWER_HAND = 16.0                   # and a slide-bar handheld this far from the open entry, by the valves
-SHOWER_BENCH_D = 16.0                # primary shower: solid bench along the closet wall
-SHOWER_ENTRY = 30.0                  # primary shower: walk-in entry by the rear wall
+SUITE_SPLIT = 964.0                  # primary suite: bath | dressing room wall (centreline), side by side from the
+                                     # hall to the rear wall: a 6'-2" bath on the plumbing wall, an 8' dressing room
+SHOWER_D = 60.0                      # primary shower: across the rear wall, 5'-0" deep
+SHOWER_BENCH_D = 16.0                # primary shower: solid bench along the rear wall, under the window
+SHOWER_ENTRY = 30.0                  # primary shower: walk-in entry at the dressing-room end of the glass
+SUITE_ENTRY = (463.0, 495.0)         # bedroom -> dressing room: 32" cased opening in the hall corner
 NOOK_CEIL = 90.0                     # reading nook: lowered ceiling at 7'-6" (the room's is 9'), built-in cabinets
 NOOK_CAB_D = 24.0                    # above it with doors facing the bedroom; the nook window's head meets it
-HALL_ARCH = 883.5                    # centreline of the threshold wall: in line with the walk-in closet's end
+HALL_ARCH = 883.5                    # centreline of the threshold wall: in line with the primary bath's plumbing
                                      # wall, just past the common bath door
 ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
-HALL_CL_DOOR = (HALL_ARCH + INT / 2 + 3.5, HALL_ARCH + INT / 2 + 27.5)   # hall closet: a 24" door (7'-6", in line
-                                     # with the header), 3 1/2" past the opening's stub for casing
-HALL_CL_W, HALL_CL_D = HALL_CL_DOOR[1] + 1.5 - (HALL_ARCH + INT / 2), 24.0   # in the walk-in closet's corner
-PART = 3.5                           # its two walls to the walk-in closet: 2x3 + 1/2" gyp each side
 HATCH_X = 954.0                         # attic access panel (22" x 54", passes the air handler) along the hall,
                                         # from here west: room for a recessed light either side of it (about 5'-8"
                                         # to the header, 5'-1" to the skylight), beside the air handler platform
@@ -140,14 +136,11 @@ WALLS = [
     ("pantry|mech",       "x", 555.2,  674.0, 750.0, INT),
     ("laundry|bath",      "y", 826.0,  HALL_S - INT / 2, S_IN, WET),   # 52" clear bath, full depth
     ("bath|storage",      "x", 566.0 + INT / 2, 826.0, 883.5, INT),  # storage behind the bath
-    ("utility|bath",      "y", 883.5,  HALL_S - INT / 2, S_IN, INT),   # 2x4: nothing plumbed in it
-    ("bath|wic",          "x", HALL_S + INT / 2 + WIC_D + WET / 2, 883.5, 1062.0, WET),   # closet 7' deep; plumbing
-                                                                                 # wall (WC, double vanity)
+    ("utility|bath",      "y", 884.5,  HALL_S - INT / 2, S_IN, WET),   # plumbing wall, back to back: the primary
+                                                                       # bath's vanity, WC and shower head on one side,
+                                                                       # the common bath shower's valve on the other
+    ("bath|wic",          "y", SUITE_SPLIT, HALL_S, S_IN, INT),        # primary bath | dressing room
     ("suite|primary",     "y", 1062.0, HALL_S - INT / 2, S_IN, INT),
-    ("hall closet|wic",   "x", HALL_S + INT / 2 + HALL_CL_D + PART / 2, 883.5,
-     HALL_ARCH + INT / 2 + HALL_CL_W + PART, PART),                          # hall closet's back wall
-    ("hall closet|wic end", "y", HALL_ARCH + INT / 2 + HALL_CL_W + PART / 2, HALL_S,
-     HALL_S + INT / 2 + HALL_CL_D + PART, PART),                             # and its side wall
 ]
 
 # Openings: (wall name, from, to, kind, hinge, swing)
@@ -170,8 +163,8 @@ OPENINGS = [
                                                           # size), sill below the table top; centred on the wall and table
     ("south",       588.0, 648.0, "window", 42.0, 96.0),  # kitchen sink, 5' (clear of the corner cabinets): sill just above the backsplash
     ("south",       766.5, 808.5, "window", 72.0, 96.0),  # laundry: 3'-6" x 2'-0" high window, matching the tub's
-    ("south",       972.0, 1020.0, "window", 66.0, 96.0),  # primary bath: 4'-0" x 2'-6" window over the walkway; its 5'-6"
-                                                          # sill keeps it clear of the shower's safety-glazing zone
+    ("south",       900.75, 948.75, "window", 66.0, 96.0), # primary bath: 4'-0" x 2'-6" over the shower bench, centred on
+                                                          # the shower (5'-6" sill; both panes tempered)
                                                           # (the bath's only window; clear of the door opened flat)
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("west",        289.6, 337.6, "window", 72.0, 96.0),    # office: 4'-0" x 2'-0" high window over the bed head
@@ -191,15 +184,14 @@ OPENINGS = [
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 847.75, 877.75, "door", "b", +1),   # common bath, 30", by its west wall (3 1/2" for casing
                                                             # beside the cased opening's stub)
-    ("south hall wall", *HALL_CL_DOOR, "door", "b", -1),    # hall closet: opens into the hall, hinged away from
-                                                            # the cased opening so it folds back along the hall wall
-    ("south hall wall", 1070.0, 1106.0, "door", "b", +1),   # primary bedroom, at the closet corner: hinged on its
-                                                            # far side, so the open door never blocks the closet door
+    ("south hall wall", 1070.0, 1106.0, "door", "b", +1),   # primary bedroom, beside the dressing-room opening:
+                                                            # hinged on its far side, clear of the opening
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
-    ("suite|primary", 576.0, 606.0, "door", "b", -1),       # primary bath, 30", from the bedroom; opens flat by the rear wall
-    ("suite|primary", HALL_S + 4.0, HALL_S + 34.0, "door", "a", -1),       # walk-in closet, 30": swings in, opens flat by the hall wall
+    ("suite|primary", *SUITE_ENTRY, "cased"),               # bedroom -> dressing room (no door)
+    ("bath|wic", 463.0, 493.0, "door", "a", -1),            # dressing room -> primary bath, 30", in line with the
+                                                            # opening along the hall wall; swings in, flat on the hall wall
 ]
 
 # Street-facade articulation (County building articulation, Table 22.140.520-C): the punched street windows
@@ -396,34 +388,30 @@ def common_bath(sh):
 
 
 def primary_bath(sh):
-    """No tub: a 6' curbless double shower at the plumbing-wall end, with two heads on the rear wall and their
-    valves by the walk-in entry, a solid bench along the closet wall facing them; WC and double vanity on the
-    closet (north) wall; door from the bedroom at the rear-wall end."""
-    m0, m1 = face("utility|bath", +1), face("suite|primary", -1)
-    top = face("bath|wic", +1)
-    gx = m0 + SHOWER_W
-    wet_zone(sh, m0, top, gx, S_IN)
-    fx, hx = m0 + SHOWER_FIXED, gx - SHOWER_HAND
-    mid = (fx + hx) / 2
-    shower_head(sh, fx, S_IN, -1)                                      # fixed head, spraying toward the closet wall
-    shower_head(sh, hx, S_IN, -1)                                      # handheld on a slide bar, by the valves;
-    sh.rect(hx - 1.0, S_IN - 1.5, hx + 1.0, S_IN, "A-EQPM")            # supplies drop from the attic in the rear wall
-    sh.text("HAND", hx, S_IN - 14, 1.4)
-    sh.text("VALVES", gx - 5, S_IN - 9, 1.8, rot=90)
-    sh.rect(m0, top, gx, top + SHOWER_BENCH_D, "A-EQPM")               # solid bench, full width, facing the heads
-    sh.text("BENCH (SOLID)", (m0 + gx) / 2, top + SHOWER_BENCH_D / 2, 2.2)
-    n0, n1 = mid - 10, mid + 10                                        # niche in the rear wall, centred between
-    for p0, p1 in (((n0, S_IN), (n0, S_IN + 3.5)), ((n0, S_IN + 3.5), (n1, S_IN + 3.5)),
-                   ((n1, S_IN + 3.5), (n1, S_IN))):                     # the heads (lines: a recess, not a 3D box)
-        sh.line(p0, p1, "A-EQPM")
-    sh.text("NICHE", mid, S_IN - 4, 1.6)
-    sh.text("CURBLESS SHOWER", (m0 + gx) / 2, top + SHOWER_BENCH_D + 9, 2.6)
-    glass(sh, (gx, top), (gx, S_IN - SHOWER_ENTRY))                    # fixed panel from the closet wall; walk-in
-                                                                       # entry by the rear wall (drain: plumbing notes)
-    wc(sh, gx + 2.25, top, gx + 32.25, top + 28)                       # north wall: 17.25" to glass, 22.5" to vanity
-    vanity(sh, m1 - 60, top, m1, top + 22, "DOUBLE VANITY 60")
-    sh.text("HIGH WINDOW", 999.0, S_IN - 4, 2.0)
-    room_label(sh, "PRIMARY BATH", m0, top, m1, S_IN, cx=(gx + m1) / 2, cy=S_IN - 14, h=2.6)
+    """No tub, beside the dressing room: a curbless shower across the rear wall (a solid bench under the window, a
+    fixed head on the plumbing wall and a slide-bar handheld on the dressing-room wall facing it by the open
+    end, a niche over the bench), the double vanity facing the door and the WC between it and the glass, both on
+    the plumbing wall; the door from the dressing room at the hall end."""
+    m0, b1 = face("utility|bath", +1), face("bath|wic", -1)
+    y0 = face("south hall wall", +1)
+    gy = S_IN - SHOWER_D
+    wet_zone(sh, m0, gy, b1, S_IN)
+    hy = (gy + S_IN - SHOWER_BENCH_D) / 2                              # heads centred on the standing area
+    for x, d in ((m0, 1.0), (b1, -1.0)):                               # fixed head on the plumbing wall, a slide-bar
+        sh.circle((x + d * 4, hy), 2.5, "A-EQPM"); sh.heads.append((x, hy, d, 0.0))   # handheld facing it
+    sh.text("HAND", b1 - 8, hy + 9, 1.4)
+    sh.text("VALVES", b1 - 5, gy + 7, 1.6, rot=90)                     # by the open end
+    sh.rect(b1, S_IN - 22, b1 + 3.5, S_IN - 6, "A-EQPM")               # niche in the dressing-room wall, over the bench
+    sh.text("NICHE", b1 - 7, S_IN - 14, 2.0, rot=90)
+    sh.text("CURBLESS SHOWER", (m0 + b1) / 2, hy, 2.6)
+    sh.rect(m0, S_IN - SHOWER_BENCH_D, b1, S_IN, "A-EQPM")             # solid bench, sloped top, under the window
+    sh.text("BENCH (SOLID) · WINDOW ABOVE", (m0 + b1) / 2, S_IN - SHOWER_BENCH_D / 2, 1.8)
+    glass(sh, (m0, gy), (b1 - SHOWER_ENTRY, gy))                       # glass, open at the dressing-room end
+    drain(sh, (m0 + 3, gy + 3), (b1 - 3, gy + 3))                      # linear drain along the glass line
+    vanity(sh, m0, y0, m0 + 22, y0 + 60, "DOUBLE VANITY 60", rot=90)   # plumbing wall, facing the door
+    wy = (y0 + 60 + gy) / 2
+    wc(sh, m0, wy - 15, m0 + 28, wy + 15)                              # between the vanity and the glass (15"+ each)
+    room_label(sh, "PRIMARY BATH", m0, y0, b1, S_IN, cx=(m0 + 22 + b1) / 2, cy=wy - 22, h=2.4)
 
 
 def utility_block(sh):
@@ -475,29 +463,21 @@ def utility_block(sh):
 
 
 def wic(sh):
-    """Walk-in closet: hanging on both long walls (the hall side starting past the hall closet and stopping
-    short of the bedroom wall for the door's landing), corner shelves and a drawer stack on the end wall.
-    The hall closet takes the hall-side corner, opening onto the hall."""
-    x0, x1 = face("utility|bath", +1), face("suite|primary", -1)
-    y0, y1 = face("south hall wall", +1), face("bath|wic", -1)
+    """Dressing room (walk-in closet) beside the bath, entered from the bedroom by a cased opening in the hall
+    corner: a walkway along the hall wall to the bath door, hanging down both long walls, drawers and shelves on
+    the rear wall, room to dress in the middle. The bedroom TV on the wall beside it, centred on the bed."""
+    x0, x1 = face("bath|wic", +1), face("suite|primary", -1)
+    y0, y1 = face("south hall wall", +1), S_IN
     fu = "A-FURN"
-
-    def hang(a, b, y, d):                   # 24"-deep hanging section with its rod
-        sh.rect(a, min(y, y + d * 24), b, max(y, y + d * 24), fu)
-        sh.line((a, y + d * 12), (b, y + d * 12), fu)
-        sh.text("HANG", (a + b) / 2, y + d * 18, 3.0)
-
-    hx, cy = face("hall closet|wic end", +1), face("hall closet|wic", +1)
-    hang(hx, 1023.0, y0, +1)                # entry side: from the hall closet to 3' short of the bedroom wall
-    hang(x0 + 24, x1, y1, -1)               # far side runs to the bedroom wall
-    sh.rect(x0, y1 - 24, x0 + 24, y1, fu)   # end wall: corner shelves (shoes, folded, bags) and a drawer stack
-    sh.text("SHELVES", x0 + 12, y1 - 12, 2.2)
-    sh.rect(x0, cy, x0 + 20, y1 - 24, fu)
-    sh.text("DRAWERS", x0 + 10, (cy + y1 - 24) / 2, 2.2, rot=90)
-    room_label(sh, "WIC", x0, y0, x1, y1, cx=1000.0, h=5.0)
-    c1, cb = face("hall closet|wic end", -1), face("hall closet|wic", -1)   # hall closet: shelves at the back
-    sh.rect(x0, cb - 14, c1, cb, fu); sh.text("SHELVES", (x0 + c1) / 2, cb - 7, 1.8)
-    sh.text("HALL CLOSET", (x0 + c1) / 2, cb - 18, 1.6)
+    for a, b in ((x0, x0 + 24), (x1 - 24, x1)):                        # hanging, past the walkway
+        h0 = SUITE_ENTRY[1] + 6
+        sh.rect(a, h0, b, y1, fu)
+        sh.line(((a + b) / 2, h0), ((a + b) / 2, y1), fu)
+        sh.text("HANG", (a + b) / 2, (h0 + y1) / 2, 3.0, rot=90)
+    sh.rect(x0 + 24, y1 - 24, x1 - 24, y1, fu); sh.text("DRAWERS + SHELVES", (x0 + x1) / 2, y1 - 12, 2.0)
+    bx, by = face("suite|primary", +1), (y0 + y1) / 2                  # bedroom TV, centred on the bed
+    sh.rect(bx, by - 33.5, bx + 3, by + 33.5, fu); sh.text('TV 77"', bx + 6, by + 24, 2.6, rot=90)
+    room_label(sh, "WIC / DRESSING", x0, y0, x1, y1, cx=(x0 + x1) / 2, cy=(SUITE_ENTRY[1] + y1) / 2 - 10, h=3.6)
 
 
 def carport_size():
