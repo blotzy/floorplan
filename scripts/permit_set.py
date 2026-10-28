@@ -638,13 +638,17 @@ def roof_plan(pdf):
 
 
 # ---- A-4 elevations ------------------------------------------------------------------------
-MATERIALS = ("EXTERIOR MATERIALS\n"
-             "1. Walls: 3-coat stucco, light color (noncombustible).\n"
-             "2. Roof: asphalt shingles, dark, Class A (A-3); carport\n"
-             "   roof standing-seam metal.\n"
-             "3. Fascia, drip edge and canopies: dark metal.\n"
+MATERIALS = ("EXTERIOR MATERIALS AND COLORS\n"
+             "1. Walls: 3-coat stucco (noncombustible), smooth\n"
+             "   finish, color: warm off-white.\n"
+             "2. Roof: asphalt shingles, Class A (A-3), color:\n"
+             "   charcoal; carport roof standing-seam metal, dark gray.\n"
+             "3. Fascia, drip edge, canopies, carport posts and\n"
+             "   beam: metal, color: matte black.\n"
              "4. Porch walls and ceiling: wood-look fiber cement or\n"
-             "   porcelain (noncombustible / ignition-resistant).\n"
+             "   porcelain (noncombustible / ignition-resistant),\n"
+             "   color: warm mid-brown wood tone. Front door: orange.\n"
+             "   Window frames: black. Fences: 6' (see A-1).\n"
              "5. Windows: dual-pane, one pane tempered (CRC R337.8);\n"
              "   punched street windows recessed 6\" (clerestory\n   band flush). See A-2 schedule.\n"
              "6. Eave soffits enclosed, no vents (A-6).\n"
@@ -673,6 +677,53 @@ def grade_line(ax, side, ff):
     return lo
 
 
+FENCE_C = "#6b4f2a"
+
+
+def site_elements(ax, side, ff):
+    """On an elevation: the finished grade at the walls, the 9' ceiling line, and the fences, gates and walls
+    seen from that side (new fences 6' above grade; the existing east-line retaining wall on the east)."""
+    _, z, _ = survey()
+    h = {"north": lambda x, y: x, "south": lambda x, y: -x, "east": lambda x, y: -y, "west": lambda x, y: y}[side]
+    a, b = ((S.E, S.N), (S.W, S.N)) if side in ("north", "south") else ((S.E, S.N), (S.E, S.S))
+    u0, u1 = sorted((h(*a), h(*b)))
+    ax.plot([u0, u1], [-6, -6], color="#9a7b4f", lw=1.2)                          # finished grade at the walls
+    ax.text(u1 + 6, -6, "FIN. GRADE AT WALLS ≈ -6\"\n(PER CIVIL)", fontsize=5, color="#9a7b4f", va="center")
+    ax.plot([u0, u1], [M_CEIL, M_CEIL], color="#777", lw=0.6, ls=(0, (6, 4)))       # interior ceiling
+    ax.text(u0 + 6, M_CEIL - 3, "INTERIOR CLG 9'-0\" (FLAT AREAS; SEE NOTES)", fontsize=4.5, color="#777", va="top")
+
+    def panel(x0, y0, x1, y1, lab, height=72.0, gate=False):
+        g = (z((x0 + x1) / 2, (y0 + y1) / 2) - ff) * 12
+        p0, p1 = sorted((h(x0, y0), h(x1, y1)))
+        if p1 - p0 < 1:
+            return
+        ax.add_patch(Rectangle((p0, g), p1 - p0, height, fc="none", ec=FENCE_C, lw=0.9, ls="--" if gate else "-",
+                               hatch=None if gate else "||||", alpha=0.8))
+        if lab:
+            ax.text((p0 + p1) / 2, g + height + 4, lab, fontsize=5, color=FENCE_C, ha="center", va="bottom")
+    fy, gx, L2 = S.CARPORT[3] + 3, S.E - S.GATE_L, S.LOT_X0 + S.LOT_W
+    if side in ("north", "south"):
+        panel(S.LOT_X0, fy, gx, fy, "6' FENCE (BEHIND THE CARPORT)" if side == "north" else "6' FENCE")
+        panel(gx, fy, S.E, fy, "14' GATE", gate=True)
+        panel(S.W, S.N, S.W + 20, S.N, None); panel(S.W + 68, S.N, L2, S.N, "6' FENCE + 4' GATE")
+        panel(S.W + 20, S.N, S.W + 68, S.N, None, gate=True)
+        if side == "north":
+            for x0, y0, x1, y1 in S.ENTRY_WALLS:
+                panel(x0, y0, x1, y1, None, height=S.ENTRY_WALL_H)
+            w = S.ENTRY_WALLS[0]
+            ax.text((w[0] + w[2]) / 2, (z(w[0], w[1]) - ff) * 12 + S.ENTRY_WALL_H + 4, "24\" SEAT WALL (ENTRY COURT)",
+                    fontsize=5, color=FENCE_C, ha="center", va="bottom")
+    elif side == "east":
+        panel(S.LOT_X0 + 60, 258, S.LOT_X0 + 60, 386, "6' FENCE (BIN PAD)")
+        ys = [y for y in range(10, 518, 12)]                                 # existing retaining wall at the east
+        gs = [(z(S.LOT_X0 + 40, y) - ff) * 12 for y in ys]                  # line (foreground), along our grade
+        ok = [(h(0, y), g) for y, g in zip(ys, gs) if g == g]
+        ax.plot([q[0] for q in ok], [q[1] for q in ok], color="#555", lw=3, alpha=0.6, solid_capstyle="butt")
+        ax.text(max(q[0] for q in ok), max(q[1] for q in ok) + 8, "EXIST. RETAINING WALL AT THE EAST PROPERTY\n"
+                "LINE (FOREGROUND, ITS EXTENT AT GRADE): TO REMAIN;\nHEIGHT TO BE FIELD-VERIFIED", fontsize=5,
+                color="#555", ha="right", va="bottom")
+
+
 def elevations(pdf):
     fig = sheet("A-4", "EXTERIOR\nELEVATIONS")
     ff = ff_elev()
@@ -692,9 +743,20 @@ def elevations(pdf):
         Z.elevation(ax, side)
         ax.set_ylim(b0, b1)
         grade_line(ax, side, ff)
+        site_elements(ax, side, ff)
     fig.text(26.0 / W_IN, 22.9 / H_IN, MATERIALS, fontsize=8.5, va="top", linespacing=1.35)
-    fig.text(26.0 / W_IN, 18.6 / H_IN, f"Heights are above finished floor (0'-0\").\nAssumed finished floor: {ff:.1f}' "
-             "(6\" above the\nhighest existing grade at the walls).\nScale: 3/16\" = 1'-0\"", fontsize=8.5, va="top")
+    under = X.shed_vault_under(2 / 12)
+    fig.text(26.0 / W_IN, 17.4 / H_IN, f"Heights are above finished floor (0'-0\").\nAssumed finished floor: {ff:.1f}' "
+             "(6\" above the\nhighest existing grade at the walls).\nScale: 3/16\" = 1'-0\"\n\n"
+             "CEILING HEIGHTS\n"
+             "Flat ceilings 9'-0\" (bedroom wing, baths, hall,\nlaundry, pantry); reading nook 7'-6\"; porch 9'-0\".\n"
+             f"Great room (foyer, lounge, dining, kitchen) vaulted\nunder the roof, from about {ftin(under(S.S_IN))} at the rear\n"
+             f"wall to about {ftin(under(S.N_IN))} at the street wall (A-5).\n\n"
+             "GRADING (preliminary; per civil)\n"
+             "Finished grade about 6\" below the finished floor at\nthe walls, sloping away (CRC R401.3). The lot falls\n"
+             "about 4' across the footprint, so the house pad is\nmostly fill: roughly 120 cu yd of fill and little cut\n"
+             "at the assumed floor level. No new retaining walls;\nthe burned house's retaining wall and chimney are\n"
+             "removed; the east-line retaining wall remains.", fontsize=8.5, va="top")
     pdf.savefig(fig); Z.save_png(fig, OUT / "A-4-elevations.png", dpi=80); plt.close(fig)
 
 
