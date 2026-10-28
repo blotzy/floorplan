@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **7:05 PM**: Carport lights: four fixtures in a 2 x 2 grid (electrical).
 - **7:04 PM**: A-0 reorganized: a larger street view top left, with the sheet index, scope and project team, and deferred submittals under it; the location map, project data, code analysis and general notes in the right column; the cover render re-shot without the grid, edge lines or north arrow. Carport: at least 8'-0" clear under the framing for SUV liftgates (site and engineer docs); overhead LED carport lights on a switch, motion sensor and photocell (electrical).
 - **7:00 PM**: A-0: a location map (the LA County Assessor's map page, book 5832 page 3, with lot 27 outlined; saved in renders/county) and the project data table, moved from A-1 (the code analysis keeps the code items). A-1 is the site plan and its notes.
 - **6:49 PM**: The architect review doc (docs/16) is no longer maintained.

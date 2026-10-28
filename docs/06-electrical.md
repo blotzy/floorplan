@@ -62,7 +62,7 @@
 - Neutral wires in all switch boxes, for smart switches.
 - Bedroom light switches (gym, guest, office) on the hall wall inside each room, on the door's latch side, between the door trim and the closet; the closets stop about a foot short of the door to leave that wall.
 - Door contact sensor and smart lock at the front door.
-- **Carport lights:** two or three surface-mount LED ceiling fixtures (damp/wet-location rated, low profile) under the carport roof, one over each parking space and one over the front walkway, kept out of the zone where an opened liftgate swings up. Switched from inside by the front door, plus a motion sensor and photocell (Title 24 outdoor lighting controls).
+- **Carport lights:** four surface-mount LED ceiling fixtures (damp/wet-location rated, low profile) under the carport roof, in a 2 x 2 grid (two over each parking space, the front pair also lighting the walkway), kept out of the zone where an opened liftgate swings up. Switched from inside by the front door, plus a motion sensor and photocell (Title 24 outdoor lighting controls).
 
 **Solar and battery prep (installed later)**
 
