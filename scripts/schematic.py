@@ -158,7 +158,8 @@ OPENINGS = [
     ("north",       847.25, 877.25, "window", 78.0, 96.0),  # guest ensuite: high window above the shower spray
     ("north",       943.75, 1015.75, "window"),          # guest 6'
     ("north",       1101.6, 1173.6, "window"),           # office 6'
-    ("porch front", 385.0, 423.0, "door", "a", +1),      # front door 36", opens flat against the east wall
+    ("porch front", 381.0, 419.0, "door", "a", +1),      # front door 36", centred in the notch, opens flat against
+                                                          # the east wall; the latch side takes a 3-gang switch box
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
     ("south",       384.0, 528.0, "window", 24.0, 96.0),  # dining: one 12' window (two 6' x 6' units, a common
                                                           # size), sill below the table top; centred on the wall and table
@@ -707,6 +708,7 @@ def build() -> Sheet:
     closet(face("lounge|gym", +1), 781.5 - gap)   # and the light switch on the hall wall beside the door
     closet(942.5 + gap, face("guest|office", -1))   # guest: one long closet past the door
     closet(1103.0 + gap, W_IN)               # office: one long closet past the door
+    sh.text("S", 425.0, PORCH_Y + EXT + 4, 2.4)                         # front door, latch side
     for x in (781.5 - 6, 942.5 + 6, 1103.0 + 6):                      # light switches, latch side
         sh.text("S", x, hall_n - 4, 2.4)
     sh.text("S", (face("suite|primary", +1) + 1074.0) / 2, face("south hall wall", +1) + 4, 2.4)   # primary
