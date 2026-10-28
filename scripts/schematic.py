@@ -700,9 +700,12 @@ def build() -> Sheet:
         sh.line((x0, y1 - 12), (x1, y1 - 12), fu)
         sh.text(label, (x0 + x1) / 2, y1 - 18, 4.0)
 
-    closet(face("lounge|gym", +1), 776.0)
-    closet(950.5, face("guest|office", -1))   # guest: one long closet past the door
-    closet(1109.0, W_IN)                     # office: one long closet past the door
+    gap = 12.0                               # each closet stops 12" from its door's latch-side jamb: the trim,
+    closet(face("lounge|gym", +1), 781.5 - gap)   # and the light switch on the hall wall beside the door
+    closet(942.5 + gap, face("guest|office", -1))   # guest: one long closet past the door
+    closet(1103.0 + gap, W_IN)               # office: one long closet past the door
+    for x in (781.5 - 6, 942.5 + 6, 1103.0 + 6):                      # light switches, latch side
+        sh.text("S", x, hall_n - 4, 2.4)
 
     common_bath(sh)
 

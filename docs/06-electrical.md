@@ -60,6 +60,7 @@
 - Recessed lights down the centre of the bedroom hall (lobby), between the ceiling trusses, IC-rated and airtight; spaced clear of the attic hatch, smoke alarm and return grille; the hall skylight takes the last spot, near the hall's end. West of the hall's dropped header: one light centred between the header and the attic hatch, and one centred between the hatch and the skylight (it lights the office and primary doors at night). The smoke/CO alarm sits off the centreline beside the hatch, on the guest-room side. The framing and HVAC keep that centreline free (see sheet A-7).
 - Reading nook: one or two small recessed reading lights in the nook's lowered ceiling, on a dimmer, plus an outlet at the bench.
 - Neutral wires in all switch boxes, for smart switches.
+- Bedroom light switches (gym, guest, office) on the hall wall inside each room, on the door's latch side, between the door trim and the closet; the closets stop about a foot short of the door to leave that wall.
 - Door contact sensor and smart lock at the front door.
 
 **Solar and battery prep (installed later)**
