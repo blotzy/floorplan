@@ -1154,12 +1154,14 @@ def floor_plan(pdf):
         if o[3] == "slider":
             h, typ = 96.0, "Sliding glass door"
         elif o[3] == "bifold":
-            h, typ = DOOR_H, "Bifold, louvered"
+            h, typ = DOOR_H, "Bifold"
         elif o[3] == "pocket":
             h, typ = DOOR_H, "Pocket"
         else:
             h, typ = DOOR_H, "Hinged"
         names = " / ".join(dict.fromkeys(n for n in (a, b) if n != "EXTERIOR")) or "-"
+        if names == "LOBBY" and o[3] == "bifold":
+            names = "LOBBY / LINEN CLOSET"
         if ext:
             names += " (exterior)"
         notes = []
@@ -1170,6 +1172,7 @@ def floor_plan(pdf):
             if o[0] == "porch front":
                 notes.append("glass lite, if any, dual-pane tempered")
         if "MECH" in names:
+            typ = "Bifold, louvered"
             notes.append("louvered (water heater air)")
         dsched.append((str(i), names, f"{ftin(w)} x {ftin(h)}", typ, textwrap.fill("; ".join(notes), 95)))
 

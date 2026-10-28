@@ -126,6 +126,7 @@ WALLS = [
     ("lounge|gym",       "y", 674.0,  N_IN, HALL_N + INT / 2, INT),   # in line with the kitchen|pantry wall
     ("gym|ensuite",       "y", 826.0,  N_IN, HALL_N + INT / 2, WET),
     ("ensuite|guest",    "y", 897.5,  N_IN, HALL_N + INT / 2, INT),
+    ("ensuite|linen",    "x", HALL_N - INT / 2 - 24.0 - INT / 2, 826.0, 897.5, INT),   # hall linen closet, 2' deep
     ("guest|office",     "y", 1062.0, N_IN, HALL_N + INT / 2, INT),
     ("bedroom hall wall", "x", HALL_N,  671.75, W_IN, INT),
     ("south hall wall",   "x", HALL_S, 671.75, HALL_END + INT / 2, INT),
@@ -193,6 +194,7 @@ OPENINGS = [
     ("south hall wall", 1074.0, 1106.0, "door", "b", +1),   # primary bedroom, 32", beside the dressing-room opening:
                                                             # hinged on its far side, clear of the opening; the
                                                             # wall left at the corner takes the light switch
+    ("bedroom hall wall", 833.0, 879.0, "bifold", "a", +1),  # hall linen closet: 4' bifold, east of the threshold's stub
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
@@ -381,17 +383,17 @@ def common_bath(sh):
     """66" x 36" alcove soaking tub (about a 20" rim) with a shower head across the window end. Tub drain, valve and
     head, the WC and the vanity all on the east (plumbing) wall shared with the gym."""
     c0, c1 = face("gym|ensuite", +1), face("ensuite|guest", -1)          # 66" clear: tub wall to wall
-    hall = face("bedroom hall wall", -1)
+    hall = face("ensuite|linen", +1)                                     # the linen closet's wall
     ty = N_IN + 36.0
     tub(sh, c0, N_IN, c0 + 66.0, ty, "TUB 66x36")
     sh.circle((c0 + 4, N_IN + 16), 2.0, "A-EQPM")                     # shower head + valve, plumbing wall
     sh.heads.append((c0, N_IN + 16, 1.0, 0.0))
     sh.line((c0, ty + 1), (c0 + 66.0, ty + 1), "A-EQPM")              # curtain rod
     wc(sh, c0, ty + 2, c0 + 28, ty + 32)                               # 17" to the tub
-    vanity(sh, c0, ty + 41, c0 + 21, ty + 89, "VANITY 48", rot=90)     # 24" from the WC centreline
-    sh.rect(c0, hall - 18, c1, hall, "A-FURN")                               # wall-to-wall linen closet in the
-    sh.line((c0, hall - 18), (c1, hall - 18), "A-DOOR")                       # old hall-door space, opening
-    sh.text("LINEN CLOSET", (c0 + c1) / 2, hall - 9, 3.0)                    # into the bath (bifold doors)
+    vanity(sh, c0, ty + 40, c0 + 21, ty + 88, "VANITY 48", rot=90)     # 23" from the WC centreline
+    lw = face("ensuite|linen", -1)                                           # hall linen closet, the full width of
+    sh.rect(c0, lw, c1, lw + 16, "A-FURN")                                   # the bath and 2' deep, opening into the
+    sh.text("LINEN CLOSET", (c0 + c1) / 2, lw + 8, 3.0)                      # hall (4' bifold); shelves along its back
     room_label(sh, "GUEST ENSUITE", c0, N_IN, c1, hall, cx=(c0 + 21 + c1) / 2 + 1, cy=ty + 55, h=3.4)
 
 

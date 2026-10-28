@@ -80,7 +80,7 @@
 | Storage room: on the laundry wall beside its opening | 1-gang | Storage light |
 | Common bath: hall wall, latch side, above the end of the sink | 2-gang | Light, fan boost |
 | Gym, guest, office: hall wall, latch side, between the door trim and the closet (the closets stop about a foot short of the door) | 2-gang (gym 1-gang) | Light, ceiling fan (gym: light only) |
-| Guest ensuite: its west wall south of the door, before the linen closet | 2-gang | Light, fan |
+| Guest ensuite: its west wall south of the door, before the linen closet's wall | 2-gang | Light, fan |
 | Primary bedroom: hall wall, between the latch side and the dressing-room corner | 2-gang | Light, ceiling fan |
 | Primary bedroom: east wall just south of the dressing-room opening | 2-gang | Dressing room light; walkway path light |
 | Reading nook: side wall at the bench | 1-gang | Reading lights (dimmer) |
