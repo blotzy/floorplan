@@ -109,6 +109,7 @@ def build_schematic() -> Scene:
     ny1 = S.face("south hall wall", -1) + S.INT                         # cabinets above it facing the bedroom
     sc.boxes["wall"].append([nx0, ny0, S.W_IN, ny1 - S.NOOK_CAB_D, S.NOOK_CEIL, CEIL])
     sc.boxes["closet"].append([nx0, ny1 - S.NOOK_CAB_D, S.W_IN, ny1, S.NOOK_CEIL, CEIL])
+    sc.boxes["closet"].append([nx0, ny0, S.W_IN, ny0 + S.NOOK_SHELF_D, S.NOOK_SHELF_Z, S.NOOK_CEIL])   # bookshelves
 
     # ---- walls: a face along every edge of the wall outline ----------------------
     # Faces on the house's outer perimeter are "exterior" (siding colour), the rest "wall".
