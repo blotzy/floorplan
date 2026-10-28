@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 28, 2026
 
+- **10:07 AM**: Fence wording: "aluminum privacy fence, solid panels" (A-4, site doc).
 - **10:06 AM**: Fences and gates: opaque aluminum privacy panels with little to no gaps (A-4 detail and materials note, site doc); posts and footings sized for wind on a solid fence.
 - **10:04 AM**: A-4 fence detail: outlines only (posts, frames, the 14' gate's hinge post, brace and wheel) with a 6'-0" dimension; the horizontal slats dropped, infill style to be selected.
 - **10:01 AM**: A-1: the burned house's chimney and retaining wall labelled separately beside them, with leaders to each (and to the wall's run under the new house).
