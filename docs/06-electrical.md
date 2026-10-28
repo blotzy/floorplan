@@ -44,7 +44,7 @@
 - On the peninsula, under the countertop or on the end panel (code-required).
 - Countertop corner, for the appliance garage.
 - Behind the TV on the **lounge side of the foyer wall** (the TV wall), in a recessed box set low, just above the hearth bench, with blocking for the mount.
-- **Hearth bench:** a dedicated circuit (120V, 15–20A per the chosen model's listing) to the linear electric fireplace inside the bench; optional low-voltage LED strip under the bench lip (driver inside the bench, on a wall switch).
+- **Hearth bench:** a dedicated circuit (120V, 15–20A per the chosen model's listing) to the linear electric fireplace inside the bench; an outlet in the back of each cubby; optional low-voltage LED strip under the bench lip (driver inside the bench, on a wall switch).
 - Lounge subwoofers: an outlet near the floor in each of the lounge's two street-wall corners (by the TV wall and by the gym wall), beside the subwoofer-cable plates; also handy for a lamp.
 - **AV closet** (the foyer closet at the dining-room end, behind the TV): an outlet at the AV shelf, and a quiet thermostat-controlled exhaust fan (or a louvered door) to vent the gear.
 - Primary bedroom TV, on the east wall centred on the bed (the dressing room's opening is in the hall corner), facing the bed: a recessed TV box (power and low-voltage pass-through) set for a lower, tilting mount (tilting down 5–10° keeps window reflections off the screen), with blocking in the wall for the mount.

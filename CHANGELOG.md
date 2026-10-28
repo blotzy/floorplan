@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **10:17 PM**: Hearth bench cubbies back (about 10" tall, for a game console or streamer), each with an outlet, a data drop and a conduit to the TV box; the in-wall speakers stay.
 - **10:16 PM**: Lounge audio: in-wall front speakers in the TV wall (left and right flanking the TV, center above it) and two in-wall rear speakers in the gym wall, all in back-boxes and wired to the AV closet; the hearth bench's cubbies dropped (solid face either side of the fireplace); receiver, streamers and consoles in the AV closet.
 - **10:05 PM**: Reading nook bookshelves floor to the lowered ceiling (the length of the office wall); the nook's outlet below the window or in a low shelf.
 - **10:03 PM**: Reading nook: no built-in bench (a reading chair instead); the bookshelves on the office wall stay; the nook's outlet by the chair (electrical).
