@@ -305,7 +305,7 @@ def contours(ax, x0, y0, x1, y1, color="#9a7b4f"):
 # ---- A-1 site plan ---------------------------------------------------------------------------
 def site_plan(pdf):
     from matplotlib.patches import FancyArrow
-    fig = sheet("A-1", "SITE PLAN\n& PROJECT DATA")
+    fig = sheet("A-1", "SITE PLAN")
     x0, y0, x1, y1 = S.LOT_X0 - 60, -230, S.LOT_X0 + S.LOT_W + 70, S.LOT_D + 60
     ax = scaled_axes(fig, 0.9, 3.4, x0, y0, x1, y1, scale=3 / 16)
     contours(ax, x0, y0, x1, y1)
@@ -398,25 +398,7 @@ def site_plan(pdf):
                 arrowprops=dict(arrowstyle="-|>", lw=1.2, color=INK))
     ax.text(tx + 6, ty + 8, "TRUE N", fontsize=6)
 
-    # project data and general notes (right column)
-    rows = [("PROJECT DATA", ""), ("Scope", "New 1-story single-family residence\nwith attached open carport; Eaton Fire\n"
-            "rebuild (non-like-for-like). Demolish\nremaining retaining wall and chimney."),
-            ("Address / APN", "220 Laurel Dr, Altadena CA 91001\nAPN 5832-003-027"),
-            ("Zoning", "R-1-7500 · Altadena CSD"), ("Fire zone", "Very High Fire Hazard Severity Zone"),
-            ("Occupancy", "R-3 (dwelling), U (carport)"), ("Construction type", "V-B, fully sprinklered (NFPA 13D)"),
-            ("Codes", "2022 California Residential, Building,\nElectrical, Mechanical, Plumbing, Energy\n"
-             "and Green Building Codes (fire rebuild,\nEO N-29-25), as amended by LA County\nTitle 26"),
-            ("Lot", f"{Z.LOT_W_FT:.2f}' x {Z.LOT_D_FT:.2f}' = {Z.LOT_AREA:,.0f} sq ft"),
-            ("Floor area", f"{Z.HOUSE:,.0f} sq ft (to outside of walls)"),
-            ("Porch / carport", f"{Z.PORCH:,.0f} / {Z.CARPORT:,.0f} sq ft"),
-            ("Lot coverage", f"{Z.COVER:,.0f} sq ft ({Z.COVER / Z.LOT_AREA:.1%}); limit {Z.LIMIT:,.0f}"),
-            ("Height", f"1 story, ~{ftin(Z.TOP)} above finished floor"),
-            ("Bedrooms / baths", "4 / 3"), ("Parking", "2 covered (carport)")]
-    y = 22.9
-    for k, v in rows:
-        fig.text(25.9 / W_IN, y / H_IN, k, fontsize=8, weight="bold" if not v else "normal", va="top")
-        fig.text(28.3 / W_IN, y / H_IN, v, fontsize=8, va="top")
-        y -= 0.22 * max(1, v.count("\n") + 1) + 0.08
+    y = 22.9                                                            # site notes (right column)
     notes = ("SITE NOTES\n"
              "1. Lot lines, existing trees, utilities, spot\n   elevations and 1' contours (dashed) from\n"
              "   the owner's topographic survey.\n"
@@ -1017,7 +999,7 @@ def loads_plan(pdf):
 
 # ---- A-0 cover -------------------------------------------------------------------------------
 def cover(pdf):
-    fig = sheet("A-0", "COVER SHEET,\nCODE ANALYSIS")
+    fig = sheet("A-0", "COVER SHEET,\nPROJECT DATA,\nCODE ANALYSIS")
     fig.text(0.9 / W_IN, 22.6 / H_IN, "ACOSTA RESIDENCE", fontsize=34, weight="bold", va="top")
     fig.text(0.9 / W_IN, 21.5 / H_IN, "New single-family residence, Eaton Fire rebuild  ·  220 Laurel Dr, Altadena CA 91001",
              fontsize=14, va="top")
@@ -1025,7 +1007,7 @@ def cover(pdf):
     if img:
         a = fig.add_axes([0.9 / W_IN, 9.6 / H_IN, 15.5 / W_IN, 10.8 / H_IN]); a.axis("off")
         a.imshow(plt.imread(img)); a.set_title("3D massing, from the street (for reference)", fontsize=8, loc="left")
-    sheets = [("A-0", "Cover sheet, code analysis"), ("A-1", "Site plan, project data"),
+    sheets = [("A-0", "Cover sheet, location map, project data, code analysis"), ("A-1", "Site plan"),
               ("A-2", "Floor plan, door and window schedules"), ("A-3", "Roof plan"), ("A-4", "Exterior elevations"),
               ("A-5", "Building sections"), ("A-6", "Fire-zone details (CRC R337)"),
               ("A-7", "Attic and structural loads plan"),
@@ -1042,14 +1024,21 @@ def cover(pdf):
                       "LA County Title 26 amendments"),
             ("Occupancy", "R-3 single-family dwelling; U open carport (attached)"),
             ("Construction", "Type V-B; automatic fire sprinklers throughout (NFPA 13D)"),
-            ("Stories / height", f"1 story; ~{ftin(Z.TOP)} above finished floor (30' limit, Altadena CSD)"),
-            ("Areas", f"Dwelling {Z.HOUSE:,.0f} sq ft · porch {Z.PORCH:,.0f} · carport {Z.CARPORT:,.0f} sq ft"),
-            ("Lot / coverage", f"{Z.LOT_AREA:,.0f} sq ft · {Z.COVER:,.0f} sq ft ({Z.COVER / Z.LOT_AREA:.1%})"),
-            ("Zoning", "R-1-7500 · Altadena CSD · Disaster Recovery Permit (non-like-for-like)"),
             ("Fire zone", "VHFHSZ: wildland-urban interface construction, CRC R337 (A-6)"),
             ("Energy", "All-electric; Title 24 Part 6 compliance by the energy consultant"),
             ("Green building", "CALGreen mandatory measures (checklist)")]
     y = table(fig, 17.3, y - 0.5, "CODE ANALYSIS", ("ITEM", "PROJECT"), (1.6, 6.4), code, fs=8)
+    location_map(fig, 25.6, 16.6, 6.9)
+    data = [("Address / APN", "220 Laurel Dr, Altadena CA 91001\nAPN 5832-003-027 (lot 27)"),
+            ("Zoning", "R-1-7500 · Altadena CSD · Disaster\nRecovery Permit (non-like-for-like)"),
+            ("Fire zone", "Very High Fire Hazard Severity Zone"),
+            ("Lot", f"{Z.LOT_W_FT:.2f}' x {Z.LOT_D_FT:.2f}' = {Z.LOT_AREA:,.0f} sq ft"),
+            ("Floor area", f"{Z.HOUSE:,.0f} sq ft (to outside of walls)"),
+            ("Porch / carport", f"{Z.PORCH:,.0f} / {Z.CARPORT:,.0f} sq ft"),
+            ("Lot coverage", f"{Z.COVER:,.0f} sq ft ({Z.COVER / Z.LOT_AREA:.1%});\nlimit {Z.LIMIT:,.0f} (Altadena CSD)"),
+            ("Height", f"1 story, ~{ftin(Z.TOP)} above finished floor\n(30' limit)"),
+            ("Bedrooms / baths", "4 / 3"), ("Parking", "2 covered (carport)")]
+    table(fig, 25.6, 11.4, "PROJECT DATA", ("ITEM", "PROJECT"), (1.6, 5.3), data, fs=8)
     scope = ("SCOPE OF WORK\n"
              "New one-story, all-electric single-family residence (4 bedrooms, 3 baths) with an attached open\n"
              "carport, replacing the house destroyed in the Eaton Fire. Demolition of the remaining retaining\n"
@@ -1072,6 +1061,28 @@ def cover(pdf):
            "5. Smoke and CO alarms per A-2; fire sprinklers per the deferred submittal.")
     fig.text(9.0 / W_IN, 6.2 / H_IN, gen, fontsize=9, va="top", linespacing=1.5)
     pdf.savefig(fig); Z.save_png(fig, OUT / "A-0-cover.png", dpi=80); plt.close(fig)
+
+
+ASSESSOR_MAP = S.ROOT / "renders" / "county" / "assessor-map-5832-003.png"   # LA County Assessor's Map Book
+LOT_27 = [(1660, 764), (1848, 841), (1804, 949), (1616, 872)]               # 5832, page 3 (public record);
+                                                                            # lot 27 corners in its pixels
+
+
+def location_map(fig, left_in, top_in, width_in):
+    """The Assessor's map page with lot 27 outlined, top-left at (left_in, top_in)."""
+    from matplotlib.patches import Polygon as MPoly2
+    img = plt.imread(ASSESSOR_MAP)
+    h_in = width_in * img.shape[0] / img.shape[1]
+    a = fig.add_axes([left_in / W_IN, (top_in - h_in) / H_IN, width_in / W_IN, h_in / H_IN])
+    a.imshow(img, cmap="gray", vmin=0, vmax=1 if img.max() <= 1 else 255); a.axis("off")
+    a.add_patch(MPoly2(LOT_27, closed=True, fill=False, ec=RED, lw=1.8))
+    cx = sum(x for x, _ in LOT_27) / 4; cy = sum(y for _, y in LOT_27) / 4
+    a.annotate("SITE: LOT 27", (cx, cy), (cx + 180, cy - 330), color=RED, fontsize=8, weight="bold",
+               arrowprops=dict(arrowstyle="-|>", color=RED, lw=1.2))
+    fig.text(left_in / W_IN, (top_in + 0.1) / H_IN, "LOCATION MAP", fontsize=10, weight="bold")
+    fig.text(left_in / W_IN, (top_in - h_in - 0.08) / H_IN,
+             "LA County Assessor's Map Book 5832, page 3 (public record); the site, lot 27, outlined in red.",
+             fontsize=6.5, va="top")
 
 
 # ---- A-2 floor plan --------------------------------------------------------------------------

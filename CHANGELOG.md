@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **7:00 PM**: A-0: a location map (the LA County Assessor's map page, book 5832 page 3, with lot 27 outlined; saved in renders/county) and the project data table, moved from A-1 (the code analysis keeps the code items). A-1 is the site plan and its notes.
 - **6:49 PM**: The architect review doc (docs/16) is no longer maintained.
 - **6:25 PM**: Gym, guest and office closets stop 12" from the door on its latch side (shorter by about 4-7"), leaving wall for the door trim and the light switch, which goes on the hall wall beside the door. Plan, 3D, floor-plan and electrical docs.
 - **6:24 PM**: Kitchen: a floor-to-ceiling unit fills the southwest corner (the tall cabinet south of the range now runs into the corner); the window moves east over the inside corner and the peninsula's corner counter, 5'-0" x 4'-0" with a 4' sill (a 12" backsplash under it for outlets and appliances; head still 8'), about 15" from the tall unit. Corner storage and appliance-garage notes updated. Glazing about 431 sq ft (19.4%). Plan, 3D, sets, kitchen, Title 24 and open-questions docs.
