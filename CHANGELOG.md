@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **7:27 PM**: Primary bedroom door 2'-8" (was 3'-0"), still hinged on the far side, leaving about 10" of wall at the dressing-room corner for the light switch (2-gang: light and ceiling fan).
 - **7:26 PM**: A-2: bedroom smoke alarms just inside each bedroom door instead (about 2'-6" in, over the latch side); the guest room's over 3' from the ensuite door (electrical and HVAC docs).
 - **7:24 PM**: A-2: switch marks removed; bedroom smoke alarms moved from the room centres to the hall-side corner away from each door, clear of the ceiling fans, supply registers and transfer grilles (note 7 adds the NFPA 72 spacing; electrical and HVAC docs).
 - **7:16 PM**: A-1: the new trees labelled by species (toyon, western redbud), above their circles inside the lot, clear of the lot line; tree labels on a white backing.

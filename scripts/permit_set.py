@@ -1214,7 +1214,7 @@ def floor_plan(pdf):
     # bedroom alarms on the ceiling just inside each door, 30" in, over the latch-side jamb: over 3' from a
     # ceiling fan's blade tips and from the supplies (by the windows); the guest's over 3' from the ensuite door
     hn, hs = S.face("bedroom hall wall", -1) - 30, S.face("south hall wall", +1) + 30
-    for x, y in ((781.5, hn), (942.5, hn), (1103.0, hn), (1074.0, hs + 14)): # gym, guest, office, primary
+    for x, y in ((781.5, hn), (942.5, hn), (1103.0, hn), (1078.0, hs + 14)): # gym, guest, office, primary
         alarm(x, y, "SD")
     alarm(S.HATCH_X - 10, hall_y - 15, "SD/\nCO")           # one, mid-lobby: within 21' of every bedroom door;
                                                              # off the centreline, clear of its lights

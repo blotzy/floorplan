@@ -187,8 +187,9 @@ OPENINGS = [
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 832.0, 862.0, "door", "a", +1),     # common bath, 30", at its east end (the WC out of view
                                                             # from the lounge), resting flat on the east wall
-    ("south hall wall", 1070.0, 1106.0, "door", "b", +1),   # primary bedroom, beside the dressing-room opening:
-                                                            # hinged on its far side, clear of the opening
+    ("south hall wall", 1074.0, 1106.0, "door", "b", +1),   # primary bedroom, 32", beside the dressing-room opening:
+                                                            # hinged on its far side, clear of the opening; the
+                                                            # wall left at the corner takes the light switch
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
@@ -708,6 +709,7 @@ def build() -> Sheet:
     closet(1103.0 + gap, W_IN)               # office: one long closet past the door
     for x in (781.5 - 6, 942.5 + 6, 1103.0 + 6):                      # light switches, latch side
         sh.text("S", x, hall_n - 4, 2.4)
+    sh.text("S", (face("suite|primary", +1) + 1074.0) / 2, face("south hall wall", +1) + 4, 2.4)   # primary
 
     common_bath(sh)
 

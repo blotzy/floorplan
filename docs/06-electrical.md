@@ -61,7 +61,7 @@
 - **Bedroom smoke alarms** (gym, guest, office, primary): on the ceiling just inside each bedroom door (about 2'-6" into the room, over the latch side), not in the middle of the room. That keeps them more than 3' from the ceiling fans' blade tips and from the supply registers (by the windows), as NFPA 72 asks, and the guest room's more than 3' from the ensuite door. Hard-wired, interconnected, battery backup.
 - Reading nook: one or two small recessed reading lights in the nook's lowered ceiling, on a dimmer, plus an outlet at the bench.
 - Neutral wires in all switch boxes, for smart switches.
-- Bedroom light switches (gym, guest, office) on the hall wall inside each room, on the door's latch side, between the door trim and the closet; the closets stop about a foot short of the door to leave that wall.
+- Bedroom light switches (gym, guest, office) on the hall wall inside each room, on the door's latch side, between the door trim and the closet; the closets stop about a foot short of the door to leave that wall. Primary bedroom: on the hall wall inside the room, between the door's latch side and the dressing-room corner (a 2-gang box: the light and the ceiling fan control).
 - Door contact sensor and smart lock at the front door.
 - **Carport lights:** four surface-mount LED ceiling fixtures (damp/wet-location rated, low profile) under the carport roof, in a 2 x 2 grid (two over each parking space, the front pair also lighting the walkway), kept out of the zone where an opened liftgate swings up. Switched from inside by the front door, plus a motion sensor and photocell (Title 24 outdoor lighting controls).
 
