@@ -222,7 +222,7 @@ SHADE_BLADES = 6                     # dining sunshade: horizontal metal blades 
 def sunshades(wall=None):
     """[(wall, x0, x1)] of the louvered metal sunshades: the dining window's (its lower sill keeps it out of
     canopies()), the same depth and height as the canopies, running 1' past each side. Horizontal blades cut
-    the afternoon sun and the downward views from the two-story house behind."""
+    the afternoon sun."""
     out = [(o[0], o[1] - CANOPY_RUN, o[2] + CANOPY_RUN) for o in OPENINGS
            if o[3] == "window" and o[0] == "south" and len(o) > 4 and o[4] < 30]
     return [c for c in out if wall in (None, c[0])]
