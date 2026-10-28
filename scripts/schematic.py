@@ -162,8 +162,9 @@ OPENINGS = [
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
     ("south",       384.0, 528.0, "window", 24.0, 96.0),  # dining: one 12' window (two 6' x 6' units, a common
                                                           # size), sill below the table top; centred on the wall and table
-    ("south",       601.9, 643.9, "window", 42.0, 96.0),  # kitchen: 3'-6", centred on the window counter between the
-                                                          # peninsula and the tall corner unit; sill just above the backsplash
+    ("south",       585.3, 633.3, "window", 42.0, 96.0),  # kitchen: 4'-0", centred on the kitchen's rear wall (peninsula's
+                                                          # outer edge to the range wall), over the inside corner, about 15"
+                                                          # from the tall corner unit; sill just above the backsplash
     ("south",       766.5, 808.5, "window", 72.0, 96.0),  # laundry: 3'-6" x 2'-0" high window, matching the tub's
     ("south",       900.75, 948.75, "window", 66.0, 96.0), # primary bath: 4'-0" x 2'-6" over the shower bench, centred on
                                                           # the shower (5'-6" sill; both panes tempered)
