@@ -714,7 +714,6 @@ def site_elements(ax, side, ff):
             ax.text((w[0] + w[2]) / 2, (z(w[0], w[1]) - ff) * 12 + S.ENTRY_WALL_H + 4, "24\" SEAT WALL (ENTRY COURT)",
                     fontsize=5, color=FENCE_C, ha="center", va="bottom")
     elif side == "east":
-        panel(S.LOT_X0 + 60, 258, S.LOT_X0 + 60, 386, "6' FENCE (BIN PAD)")
         ys = [y for y in range(10, 518, 12)]                                 # existing retaining wall at the east
         gs = [(z(S.LOT_X0 + 40, y) - ff) * 12 for y in ys]                  # line (foreground), along our grade
         ok = [(h(0, y), g) for y, g in zip(ys, gs) if g == g]

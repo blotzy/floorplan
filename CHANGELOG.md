@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 28, 2026
 
+- **9:45 AM**: A-4: the bin pad fence left off the east elevation (it stood in the foreground over the carport and porch); it stays on A-1.
 - **9:42 AM**: A-0: the Assessor's location map removed (the vicinity map covers it) and the vicinity map moved up into its place, larger; Laurel Dr, Las Flores Dr, Glenrose Ave and Olive Ave labelled beside the site so each is clear.
 - **9:39 AM**: 3D model: black window frames on every window, the slider and the clerestory (with mullions at the mulled units and the slider's meeting stile); the street, east and rear views re-shot.
 - **9:37 AM**: A-1: the fire hydrant's location confirmed (34.20099 N, 118.14827 W, the SW corner of Laurel and Glenrose), consistent with about 214' east of the east property line.
