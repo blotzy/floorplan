@@ -720,7 +720,7 @@ def build() -> Sheet:
     hs_ = face("south hall wall", -1)                                  # other switches (see docs/06):
     for x, y in ((face("lounge|gym", -1) - 4, HALL_N - 12),            # hall opening (lounge, kitchen cans)
                  (680.0, face("bedroom hall wall", +1) + 4),           # hall 3-way, at the opening
-                 (1057.0, face("bedroom hall wall", +1) + 4),          # hall 3-way, beside the office door
+                 (1062.0, hs_ - 4),                                    # hall 3-way, beside the primary door
                  (604.0, S_IN - 4),                                    # kitchen backsplash, under the window
                  (E_IN + 4, 508.0),                                    # dining slider
                  (685.0, hs_ - 4),                                     # pantry, hall side

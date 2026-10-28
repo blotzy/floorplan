@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **9:49 PM**: Hall's far 3-way switch beside the primary bedroom door (hall wall, its east side) instead of the office door.
 - **9:48 PM**: Hall's far 3-way switch beside the office door (hall wall, its east side) instead of on the end wall, which stays clear for art.
 - **9:47 PM**: Attic light switch in the attic at the hatch opening (a timer switch), not on the hall wall (electrical doc; schematic mark removed).
 - **9:42 PM**: Hall linen closet's 5' bifold 2" east of centre, so its casing clears the hall header's wall stub (about 1½" between).
