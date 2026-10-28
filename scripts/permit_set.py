@@ -515,8 +515,8 @@ def roof_plan(pdf):
     row = sk[1] if sk else 520.0
     vtrs = [(895.0, 320.0, "VTR-1", "VTR-1: guest ensuite (its own vent, on the street slope,\nout of the PV area; west of the shed's rake overhang)", "left"),
             (sk[0] + 76 if sk else 944.0, row, "VTR-2", "", None),
-            (618.0, 612.0, "VTR-3", "VTR-3: kitchen sink (and the prep sink's riser), straight up from\n"
-             "the sink at the rear wall line, off the line below the range hood cap", "below")]
+            (590.0, 612.0, "VTR-3", "VTR-3: kitchen sink (in the peninsula), its vent up the rear wall where\n"
+             "the peninsula meets it, off the line below the range hood cap", "below")]
     caps = [(935.0, 320.0, "EXH", "EXHAUST CAP: guest ensuite fan, up through the\nceiling (ember-resistant, damper)", "right"),
             ((sk[0] + 38 if sk else 906.0), row, "EXH", "", None),
             ((sk[0] + 114 if sk else 982.0), row, "EXH-P", "", None)]

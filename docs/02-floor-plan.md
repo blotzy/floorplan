@@ -17,11 +17,11 @@ These are the rooms, spaces, and openings the plan must provide so the trades ca
 
 - **Dining:** table centred on the south window.
 - **Sliding door** on the east wall, just past the courtyard fence, leaving solid wall at the dining room's southeast corner (where the dining window turns it), opening onto an at-grade landing in the gravel strip along the house (no patio or deck).
-- **South window:** one wide window across most of the dining wall (two mulled units), with solid wall left at each end, centred on the wall, with its sill a little below the table top (the same garden view seated or standing, and two square units of a common size) and its head in line with the other windows, including the kitchen sink window beside it, which sits higher to clear the counter. It faces SSW (azimuth ~201°), so it takes strong low afternoon sun that the eaves won't block: plan an exterior shade or awning and low-SHGC glass, and check it against the Title 24 glazing budget. If the window's size leaves too little wall at the southeast corner (with the slider around that corner) and the engineer needs steel framing or a steel hold-down there, reconsider: a narrower window that leaves more wall at each end is the fallback.
+- **South window:** one wide window across most of the dining wall (two mulled units), with solid wall left at each end, centred on the wall, with its sill a little below the table top (the same garden view seated or standing, and two square units of a common size) and its head in line with the other windows, including the kitchen window beside it, which sits higher to clear the counter. It faces SSW (azimuth ~201°), so it takes strong low afternoon sun that the eaves won't block: plan an exterior shade or awning and low-SHGC glass, and check it against the Title 24 glazing budget. If the window's size leaves too little wall at the southeast corner (with the slider around that corner) and the engineer needs steel framing or a steel hold-down there, reconsider: a narrower window that leaves more wall at each end is the fallback.
 
 ## Kitchen
 
-See [kitchen](08-kitchen.md). A comfortable work aisle, a 30" range, a 36" fridge, a single deep sink under the window, and a peninsula with three stools (with knee overhang) facing the dining area.
+See [kitchen](08-kitchen.md). A comfortable work aisle, a 30" range, a 36" fridge, a single deep sink in the peninsula across from the range, and a peninsula with three stools (with knee overhang) facing the dining area.
 
 ## Pantry, laundry, mechanical, common bath (the block behind the kitchen)
 

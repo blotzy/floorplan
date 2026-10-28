@@ -162,7 +162,7 @@ OPENINGS = [
     ("porch side",  255.0, 279.0, "window"),             # reeded glass
     ("south",       384.0, 528.0, "window", 24.0, 96.0),  # dining: one 12' window (two 6' x 6' units, a common
                                                           # size), sill below the table top; centred on the wall and table
-    ("south",       588.0, 648.0, "window", 42.0, 96.0),  # kitchen sink, 5' (clear of the corner cabinets): sill just above the backsplash
+    ("south",       588.0, 648.0, "window", 42.0, 96.0),  # kitchen, 5' over the rear counter (clear of the corner cabinets): sill just above the backsplash
     ("south",       766.5, 808.5, "window", 72.0, 96.0),  # laundry: 3'-6" x 2'-0" high window, matching the tub's
     ("south",       900.75, 948.75, "window", 66.0, 96.0), # primary bath: 4'-0" x 2'-6" over the shower bench, centred on
                                                           # the shower (5'-6" sill; both panes tempered)
@@ -614,17 +614,18 @@ def build() -> Sheet:
     eq, fu = "A-EQPM", "A-FURN"
     kw = face("kitchen|pantry", -1)
     sh.rect(pen_out, KITCHEN_ROW, pen_in, S_IN, eq)                           # peninsula
-    sh.rect(pen_in - 24, S_IN - 48, pen_in, S_IN - 24, eq)                     # dishwasher: peninsula, kitchen
-    sh.text("DW", pen_in - 12, S_IN - 36, 3.5)                                 # side, around the corner from the sink
-    sh.rect(pen_in - 24, S_IN - 72, pen_in, S_IN - 48, eq)                     # 24" triple pull-out beside the DW:
-    sh.text("TRASH", pen_in - 12, S_IN - 60, 3.0)                              # trash, recycling, food scraps
-    py0 = 497.0                                                               # prep sink: peninsula, kitchen side,
-    sh.rect(pen_in - 20, py0, pen_in - 4, py0 + 16, eq)                       # across from the fridge/range gap
-    sh.text("PREP SINK", pen_in - 12, py0 + 8, 2.2, rot=90)
+    # peninsula, kitchen side (facing it from the aisle, left to right): trash pull-out, the sink, the dishwasher
+    # at the corner end; the sink across from the range, in a triangle with the range and fridge
+    sh.rect(pen_in - 24, S_IN - 48, pen_in, S_IN - 24, eq)                     # dishwasher, right of the sink
+    sh.text("DW", pen_in - 12, S_IN - 36, 3.5)
+    sy0 = S_IN - 84                                                           # 36" sink base
+    sh.rect(pen_in - 20, sy0 + 3, pen_in - 4, sy0 + 33, eq); sh.text("SINK", pen_in - 12, sy0 + 18, 3.0, rot=90)
+    sh.rect(pen_in - 24, sy0 - 24, pen_in, sy0, eq)                           # 24" triple pull-out, left of the
+    sh.text("TRASH", pen_in - 12, sy0 - 12, 3.0)                              # sink: trash, recycling, food scraps
     sh.rect(pen_out, S_IN - 15, pen_out + 24, S_IN, eq)                        # 15" drink fridge under the counter,
     sh.text("BEV", pen_out + 12, S_IN - 7.5, 3.0)                              # stool side, corner by the south wall
     sh.line((pen_out + 15, KITCHEN_ROW), (pen_out + 15, S_IN), eq)            # 15" overhang
-    sh.rect(pen_in, S_IN - 24, kw, S_IN, eq)                                  # sink run, into the corner
+    sh.rect(pen_in, S_IN - 24, kw, S_IN, eq)                                  # rear counter under the window
     ta, r0 = KITCHEN_ROW + 36 + 15, KITCHEN_ROW + 36 + 15 + 12                # range wall: tall cabinet,
     tb = r0 + 30 + 15                                                         # 12" landing, range, 15"
     sh.rect(kw - 24, ta, kw, tb, eq)                                          # landing, tall cabinet
@@ -632,7 +633,6 @@ def build() -> Sheet:
         sh.rect(kw - 24, y0, kw, y1, eq); sh.text("TALL STORAGE", kw - 12, (y0 + y1) / 2, 1.6, rot=90)
     sh.rect(kw - 24, r0, kw, r0 + 30, eq); sh.text("RANGE", kw - 12, r0 + 15, 3.5, rot=90)
     sh.rect(kw - 30, KITCHEN_ROW, kw, KITCHEN_ROW + 36, eq); sh.text("FRIDGE", kw - 15, KITCHEN_ROW + 18, 3.5, rot=90)
-    sh.rect(603.0, S_IN - 20, 633.0, S_IN - 4, eq); sh.text("SINK", 618.0, S_IN - 12, 3.0)   # centred under its window
     m0 = sh.mark()
     for y in (476.7, 512.9, 544.5):                                           # 3 stools
         sh.circle((pen_out - 8, y), 7.5, fu)
