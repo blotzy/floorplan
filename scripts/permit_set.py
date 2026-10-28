@@ -854,9 +854,12 @@ def cover_view():
     hook = "if (location.hash === '#touchwalk') startTouchWalk();"
     (cx, cy, cz), (tx, ty, tz) = (230, -330, 64), (760, 330, 80)
     src = html.read_text().replace(hook, hook + (
-        "\norbit.enabled = false; groups.labels.visible = false;"
-        "document.getElementById('ui').style.display='none'; document.getElementById('help').style.display='none';"
-        f"camera.position.set({cx}*IN, {cz}*IN, {-cy}*IN); camera.lookAt({tx}*IN, {tz}*IN, {-ty}*IN);"))
+        "setTimeout(()=>{orbit.enabled=false;groups.labels.visible=false;gridGroup.visible=false;EDGE.visible=false;"
+        "scene.traverse(o=>{if(o.isSprite||o.type==='ArrowHelper')o.visible=false;});"
+        "document.getElementById('ui').style.display='none';document.getElementById('help').style.display='none';"
+        "document.getElementById('day').value='80';document.getElementById('hour').value='16.5';placeSun();"
+        f"camera.position.set({cx}*IN,{cz}*IN,{-cy}*IN);orbit.target.set({tx}*IN,{tz}*IN,{-ty}*IN);"
+        f"camera.lookAt({tx}*IN,{tz}*IN,{-ty}*IN);}},50);"))
     tmp = html.with_name("_cover.html")
     tmp.write_text(src)
     win = lambda p: subprocess.run(["wslpath", "-w", str(p)], capture_output=True, text=True).stdout.strip()  # noqa: E731
@@ -999,67 +1002,71 @@ def loads_plan(pdf):
 
 # ---- A-0 cover -------------------------------------------------------------------------------
 def cover(pdf):
+    """Cover: the 3D street view top left with three columns under it (sheet index; scope and project team;
+    deferred submittals), and a right column for the site and the code (location map, project data, code
+    analysis, general notes)."""
     fig = sheet("A-0", "COVER SHEET,\nPROJECT DATA,\nCODE ANALYSIS")
-    fig.text(0.9 / W_IN, 22.6 / H_IN, "ACOSTA RESIDENCE", fontsize=34, weight="bold", va="top")
-    fig.text(0.9 / W_IN, 21.5 / H_IN, "New single-family residence, Eaton Fire rebuild  ·  220 Laurel Dr, Altadena CA 91001",
-             fontsize=14, va="top")
+    fig.text(0.9 / W_IN, 23.0 / H_IN, "ACOSTA RESIDENCE", fontsize=30, weight="bold", va="top")
+    fig.text(0.9 / W_IN, 22.0 / H_IN, "New single-family residence, Eaton Fire rebuild  ·  220 Laurel Dr, Altadena CA 91001",
+             fontsize=13, va="top")
     img = cover_view()
     if img:
-        a = fig.add_axes([0.9 / W_IN, 9.6 / H_IN, 15.5 / W_IN, 10.8 / H_IN]); a.axis("off")
+        a = fig.add_axes([0.9 / W_IN, 9.2 / H_IN, 20.6 / W_IN, 11.6 / H_IN]); a.axis("off")
         a.imshow(plt.imread(img)); a.set_title("3D massing, from the street (for reference)", fontsize=8, loc="left")
-    sheets = [("A-0", "Cover sheet, location map, project data, code analysis"), ("A-1", "Site plan"),
+    # under the view: sheet index | scope of work and project team | deferred submittals
+    sheets = [("A-0", "Cover, location map, project data,\ncode analysis"), ("A-1", "Site plan"),
               ("A-2", "Floor plan, door and window schedules"), ("A-3", "Roof plan"), ("A-4", "Exterior elevations"),
               ("A-5", "Building sections"), ("A-6", "Fire-zone details (CRC R337)"),
               ("A-7", "Attic and structural loads plan"),
-              ("S-", "Structural (by the structural engineer)"), ("C-", "Grading and drainage (by the civil engineer)"),
-              ("T-24", "Energy compliance (CF1R) and solar PV (by the energy consultant)"),
-              ("CALGreen", "Green building checklist")]
-    y = table(fig, 17.3, 20.3, "SHEET INDEX", ("SHEET", "TITLE"), (1.2, 6.8), sheets, fs=8)
-    deferred = [("1", "Fire sprinkler plans and calculations (NFPA 13D), before the final foundation inspection"),
-                ("2", "Roof truss drawings and calculations (truss manufacturer), reviewed by the engineer of record"),
-                ("3", "Solar PV plans, if not in the energy package")]
-    y = table(fig, 17.3, y - 0.5, "DEFERRED SUBMITTALS", ("#", "ITEM"), (0.5, 7.5), deferred, fs=8)
-    code = [("Codes", "2022 California Residential, Building, Electrical, Mechanical, Plumbing,\nEnergy, Fire and "
-                      "Green Building Standards Codes, as allowed for fire rebuilds by Executive\nOrder N-29-25; "
-                      "LA County Title 26 amendments"),
+              ("S-", "Structural (by the structural engineer)"), ("C-", "Grading, drainage, parkway (by the civil)"),
+              ("T-24", "Energy compliance (CF1R), solar PV"), ("CALGreen", "Green building checklist")]
+    table(fig, 0.9, 8.2, "SHEET INDEX", ("SHEET", "TITLE"), (1.1, 5.6), sheets, fs=8)
+    scope = ("SCOPE OF WORK\n"
+             "New one-story, all-electric single-family residence\n(4 bedrooms, 3 baths) with an attached open carport,\n"
+             "replacing the house destroyed in the Eaton Fire.\nDemolition of the remaining retaining wall and\n"
+             "chimney, grading and drainage per civil, new\ndriveway, utilities (water, sewer, electric; no gas).\n"
+             "Fire sprinklers throughout.")
+    fig.text(8.1 / W_IN, 8.3 / H_IN, scope, fontsize=9, va="top", linespacing=1.4)
+    team = ("PROJECT TEAM\n"
+            "Owner: Richard Acosta\n"
+            "Plans prepared by: ____________________\n"
+            "Structural engineer: ____________________\n"
+            "Civil engineer: ____________________\n"
+            "Energy consultant: ____________________\n"
+            "Fire sprinkler designer: ____________________")
+    fig.text(8.1 / W_IN, 4.4 / H_IN, team, fontsize=9, va="top", linespacing=1.5)
+    deferred = [("1", "Fire sprinkler plans and calculations\n(NFPA 13D), before the final foundation\ninspection"),
+                ("2", "Roof truss drawings and calculations\n(truss manufacturer), reviewed by the\nengineer of record"),
+                ("3", "Solar PV plans, if not in the energy\npackage")]
+    table(fig, 15.3, 8.2, "DEFERRED SUBMITTALS", ("#", "ITEM"), (0.4, 5.8), deferred, fs=8)
+    # right column: the site and the code
+    location_map(fig, 22.1, 22.6, 10.3)
+    data = [("Address / APN", "220 Laurel Dr, Altadena CA 91001 · APN 5832-003-027 (lot 27)"),
+            ("Zoning", "R-1-7500 · Altadena CSD · Disaster Recovery Permit (non-like-for-like)"),
+            ("Fire zone", "Very High Fire Hazard Severity Zone"),
+            ("Lot", f"{Z.LOT_W_FT:.2f}' x {Z.LOT_D_FT:.2f}' = {Z.LOT_AREA:,.0f} sq ft"),
+            ("Floor area", f"{Z.HOUSE:,.0f} sq ft (to outside of walls)"),
+            ("Porch / carport", f"{Z.PORCH:,.0f} / {Z.CARPORT:,.0f} sq ft"),
+            ("Lot coverage", f"{Z.COVER:,.0f} sq ft ({Z.COVER / Z.LOT_AREA:.1%}); limit {Z.LIMIT:,.0f} (Altadena CSD)"),
+            ("Height", f"1 story, ~{ftin(Z.TOP)} above finished floor (30' limit)"),
+            ("Bedrooms / baths", "4 / 3"), ("Parking", "2 covered (carport)")]
+    y = table(fig, 22.1, 15.3, "PROJECT DATA", ("ITEM", "PROJECT"), (1.9, 8.4), data, fs=8)
+    code = [("Codes", "2022 California Residential, Building, Electrical, Mechanical,\nPlumbing, Energy, Fire and "
+                      "Green Building Standards Codes, as allowed\nfor fire rebuilds by Executive Order N-29-25; "
+                      "LA County Title 26"),
             ("Occupancy", "R-3 single-family dwelling; U open carport (attached)"),
             ("Construction", "Type V-B; automatic fire sprinklers throughout (NFPA 13D)"),
             ("Fire zone", "VHFHSZ: wildland-urban interface construction, CRC R337 (A-6)"),
             ("Energy", "All-electric; Title 24 Part 6 compliance by the energy consultant"),
             ("Green building", "CALGreen mandatory measures (checklist)")]
-    y = table(fig, 17.3, y - 0.5, "CODE ANALYSIS", ("ITEM", "PROJECT"), (1.6, 6.4), code, fs=8)
-    location_map(fig, 25.6, 16.6, 6.9)
-    data = [("Address / APN", "220 Laurel Dr, Altadena CA 91001\nAPN 5832-003-027 (lot 27)"),
-            ("Zoning", "R-1-7500 · Altadena CSD · Disaster\nRecovery Permit (non-like-for-like)"),
-            ("Fire zone", "Very High Fire Hazard Severity Zone"),
-            ("Lot", f"{Z.LOT_W_FT:.2f}' x {Z.LOT_D_FT:.2f}' = {Z.LOT_AREA:,.0f} sq ft"),
-            ("Floor area", f"{Z.HOUSE:,.0f} sq ft (to outside of walls)"),
-            ("Porch / carport", f"{Z.PORCH:,.0f} / {Z.CARPORT:,.0f} sq ft"),
-            ("Lot coverage", f"{Z.COVER:,.0f} sq ft ({Z.COVER / Z.LOT_AREA:.1%});\nlimit {Z.LIMIT:,.0f} (Altadena CSD)"),
-            ("Height", f"1 story, ~{ftin(Z.TOP)} above finished floor\n(30' limit)"),
-            ("Bedrooms / baths", "4 / 3"), ("Parking", "2 covered (carport)")]
-    table(fig, 25.6, 11.4, "PROJECT DATA", ("ITEM", "PROJECT"), (1.6, 5.3), data, fs=8)
-    scope = ("SCOPE OF WORK\n"
-             "New one-story, all-electric single-family residence (4 bedrooms, 3 baths) with an attached open\n"
-             "carport, replacing the house destroyed in the Eaton Fire. Demolition of the remaining retaining\n"
-             "wall and chimney, grading and drainage per civil, new driveway, utilities (water, sewer, electric;\n"
-             "no gas). Fire sprinklers throughout.")
-    fig.text(0.9 / W_IN, 8.9 / H_IN, scope, fontsize=9, va="top", linespacing=1.4)
-    team = ("PROJECT TEAM\n"
-            "Owner: Richard Acosta\n"
-            "Plans prepared by: ______________________\n"
-            "Structural engineer: ______________________\n"
-            "Civil engineer: ______________________\n"
-            "Energy consultant: ______________________\n"
-            "Fire sprinkler designer: ______________________")
-    fig.text(0.9 / W_IN, 6.2 / H_IN, team, fontsize=9, va="top", linespacing=1.5)
+    y = table(fig, 22.1, y - 0.6, "CODE ANALYSIS", ("ITEM", "PROJECT"), (1.9, 8.4), code, fs=8)
     gen = ("GENERAL NOTES\n"
            "1. Work shall comply with the codes listed and the conditions of approval.\n"
            "2. Do not scale drawings; dimensions govern. Verify on site.\n"
            "3. Structural, civil and energy documents govern their own scope.\n"
            "4. Special inspections and structural observation per the structural engineer.\n"
            "5. Smoke and CO alarms per A-2; fire sprinklers per the deferred submittal.")
-    fig.text(9.0 / W_IN, 6.2 / H_IN, gen, fontsize=9, va="top", linespacing=1.5)
+    fig.text(22.1 / W_IN, (y - 0.5) / H_IN, gen, fontsize=9, va="top", linespacing=1.5)
     pdf.savefig(fig); Z.save_png(fig, OUT / "A-0-cover.png", dpi=80); plt.close(fig)
 
 
