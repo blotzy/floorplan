@@ -195,7 +195,8 @@ OPENINGS = [
     ("south hall wall", 1074.0, 1106.0, "door", "b", +1),   # primary bedroom, 32", beside the dressing-room opening:
                                                             # hinged on its far side, clear of the opening; the
                                                             # wall left at the corner takes the light switch
-    ("bedroom hall wall", 832.25, 892.25, "bifold", "a", +1),  # hall linen closet: 5' bifold, nearly its full width
+    ("bedroom hall wall", 830.25, 890.25, "bifold", "a", +1),  # hall linen closet: 5' bifold, nearly its full width;
+                                                            # 2" east of centre so its casing clears the header's stub
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
