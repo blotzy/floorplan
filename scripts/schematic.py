@@ -110,7 +110,7 @@ SHOWER_ENTRY = 30.0                  # primary shower: walk-in entry at the dres
 SUITE_ENTRY = (463.0, 495.0)         # bedroom -> dressing room: 32" cased opening in the hall corner
 NOOK_CEIL = 90.0                     # reading nook: lowered ceiling at 7'-6" (the room's is 9'), built-in cabinets
 NOOK_CAB_D = 24.0                    # above it with doors facing the bedroom; the nook window's head meets it
-NOOK_SHELF_D, NOOK_SHELF_Z = 12.0, 54.0   # bookshelves on the office wall above the bench: 12" deep, from 4'-6"
+NOOK_SHELF_D, NOOK_SHELF_Z = 12.0, 54.0   # bookshelves on the nook's office wall: 12" deep, from 4'-6"
 HALL_ARCH = 897.5                    # centreline of the threshold wall: in line with the ensuite | guest wall, just
                                      # past the hall linen closet, so the closet gets its full-width doors
 ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
@@ -178,8 +178,8 @@ OPENINGS = [
                                                           # (cross-breeze, privacy from the neighbour's 2nd floor)
     ("west",        421.45, 457.45, "window", 42.0, NOOK_CEIL - 6.0),  # reading nook: 3'-0" x 3'-6", its head 6"
                                                                      # below the lowered ceiling; centred on the nook's open part,
-                                                          # clear of the bookshelves above the bench (light over the
-                                                          # reader's shoulder, and on the books)
+                                                          # clear of the bookshelves (light over the reader's
+                                                          # shoulder, and on the books)
     ("east",        516.0, 588.0, "slider"),             # dining 6' slider: ~4" past the courtyard fence's post,
                                                           # leaving ~2'-7" of solid wall at the dining corner
     # interior
@@ -698,10 +698,8 @@ def build() -> Sheet:
     bed(W_IN, open_mid, 60, -1)
     bed(W_IN, (srow + S_IN) / 2, 76, -1)   # primary: the whole west wall is open
     sh.movable_since(m0)
-    n0, ny = HALL_END + INT / 2, hall_n + INT                                 # reading nook: built-in bench the
-    sh.rect(n0, ny, W_IN, ny + 24, fu)                                        # length of the office wall
-    sh.text("BENCH", (n0 + W_IN) / 2, ny + 16, 3.5)
-    sh.msp.add_line((n0, ny + NOOK_SHELF_D), (W_IN, ny + NOOK_SHELF_D),       # bookshelves above the bench, on the
+    n0, ny = HALL_END + INT / 2, hall_n + INT                                 # reading nook (a reading chair, no
+    sh.msp.add_line((n0, ny + NOOK_SHELF_D), (W_IN, ny + NOOK_SHELF_D),       # bench): bookshelves on the
                     dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})     # office wall, up to the lowered ceiling
     sh.text("BOOKSHELVES ABOVE", (n0 + W_IN) / 2, ny + 6, 2.2, "A-CLNG")
     sh.text("READING NOOK", (n0 + W_IN) / 2, ny + 38, 3.5, "A-AREA-IDEN")

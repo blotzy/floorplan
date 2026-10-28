@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **10:03 PM**: Reading nook: no built-in bench (a reading chair instead); the bookshelves on the office wall stay; the nook's outlet by the chair (electrical).
 - **10:01 PM**: Reading nook: built-in bookshelves on the office wall above the bench (12" deep, from 4'-6" up to the lowered ceiling); the nook window 6" toward the bedroom, centred on the open part of the nook and clear of the shelves.
 - **9:49 PM**: Hall's far 3-way switch beside the primary bedroom door (hall wall, its east side) instead of the office door.
 - **9:48 PM**: Hall's far 3-way switch beside the office door (hall wall, its east side) instead of on the end wall, which stays clear for art.

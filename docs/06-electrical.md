@@ -60,7 +60,7 @@
 - Vaulted great room (no attic above it): wall outlets and switches are fed from the walls that border the attic and run sideways through the studs, or through slab conduit (the peninsula needs that anyway). Vault lights, fans, smoke alarms and any clerestory shade motors are wired in the rafter bays before the spray foam, with a few spare conduits and pull strings to likely future spots.
 - Recessed lights down the centre of the bedroom hall (lobby), between the ceiling trusses, IC-rated and airtight; spaced clear of the attic hatch, smoke alarm and return grille; the hall skylight takes the last spot, near the hall's end. West of the hall's dropped header: one light centred between the header and the attic hatch, and one centred between the hatch and the skylight (it lights the office and primary doors at night). The smoke/CO alarm sits off the centreline beside the hatch, on the guest-room side. The framing and HVAC keep that centreline free (see sheet A-7).
 - **Bedroom smoke alarms** (gym, guest, office, primary): on the ceiling just inside each bedroom door (about 2'-6" into the room, over the latch side), not in the middle of the room. That keeps them more than 3' from the ceiling fans' blade tips and from the supply registers (by the windows), as NFPA 72 asks, and the guest room's more than 3' from the ensuite door. Hard-wired, interconnected, battery backup.
-- Reading nook: one or two small recessed reading lights in the nook's lowered ceiling, on a dimmer, plus an outlet at the bench.
+- Reading nook: one or two small recessed reading lights in the nook's lowered ceiling, on a dimmer, plus an outlet by the reading chair (on the office wall below the shelves).
 - Neutral wires in all switch boxes, for smart switches.
 - Door contact sensor and smart lock at the front door.
 - **Carport lights:** four surface-mount LED ceiling fixtures (damp/wet-location rated, low profile) under the carport roof, in a 2 x 2 grid (two over each parking space, the front pair also lighting the walkway), kept out of the zone where an opened liftgate swings up. Switched from inside by the front door, plus a motion sensor and photocell (Title 24 outdoor lighting controls).
@@ -83,7 +83,7 @@
 | Guest ensuite: its west wall south of the door, before the linen closet's wall | 2-gang | Light, fan |
 | Primary bedroom: hall wall, between the latch side and the dressing-room corner | 2-gang | Light, ceiling fan |
 | Primary bedroom: east wall just south of the dressing-room opening | 2-gang | Dressing room light; walkway path light |
-| Reading nook: side wall at the bench | 1-gang | Reading lights (dimmer) |
+| Reading nook: the hall end wall's nook side, at the nook's open edge | 1-gang | Reading lights (dimmer) |
 | Primary bath: dressing-room wall inside, latch side, before the shower | 3-gang | Light and vanity light, shower light, fan |
 | In the attic, on the framing at the hatch opening (reachable from the ladder) | 1-gang timer switch (off after 30-60 minutes) | Attic light at the air handler platform (the code's switch at the attic access) |
 

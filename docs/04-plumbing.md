@@ -51,5 +51,4 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 
 **Optional**
 
-- Reading nook with built-in bench in the primary bedroom.
 - No hot water recirculation. Optional: while the walls are open, run a return line from the primary bath (the farthest fixtures) back to the water heater, capped, so an on-demand recirculation pump can be added later without opening walls.
