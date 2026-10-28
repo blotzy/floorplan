@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 27, 2026
 
+- **9:40 PM**: Hall linen closet 2'-3" deep (was 2'-0"); the guest ensuite's vanity 4" closer to the WC (19" from its centreline); ensuite 5'-6" x 10'-1".
 - **9:38 PM**: Hall linen closet shelves start at the closet's back wall (they overlapped it, in the plan and the 3D model); the guest ensuite's size label measures to that wall's face (5'-6" x 10'-4").
 - **9:37 PM**: Hall's dropped header (cased opening) moved 14" west, in line with the guest ensuite | guest wall, so the hall linen closet gets a 5'-0" bifold across nearly its full width.
 - **9:33 PM**: Hall linen closet: the guest ensuite's linen closet opens into the hall instead (a 4' bifold across from the common bath, just east of the threshold's header), 2' deep and the full width of the bath, behind a new wall; the ensuite is 5'-6" x 10'-9" (vanity 1" closer to the WC).

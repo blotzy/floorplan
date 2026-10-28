@@ -126,7 +126,8 @@ WALLS = [
     ("lounge|gym",       "y", 674.0,  N_IN, HALL_N + INT / 2, INT),   # in line with the kitchen|pantry wall
     ("gym|ensuite",       "y", 826.0,  N_IN, HALL_N + INT / 2, WET),
     ("ensuite|guest",    "y", 897.5,  N_IN, HALL_N + INT / 2, INT),
-    ("ensuite|linen",    "x", HALL_N - INT / 2 - 24.0 - INT / 2, 826.0, 897.5, INT),   # hall linen closet, 2' deep
+    ("ensuite|linen",    "x", HALL_N - INT / 2 - 27.0 - INT / 2, 826.0, 897.5, INT),   # hall linen closet, 2'-3" deep
+                                                     # (the ensuite's 2-gang switch fits between its door trim and this wall)
     ("guest|office",     "y", 1062.0, N_IN, HALL_N + INT / 2, INT),
     ("bedroom hall wall", "x", HALL_N,  671.75, W_IN, INT),
     ("south hall wall",   "x", HALL_S, 671.75, HALL_END + INT / 2, INT),
@@ -390,7 +391,7 @@ def common_bath(sh):
     sh.heads.append((c0, N_IN + 16, 1.0, 0.0))
     sh.line((c0, ty + 1), (c0 + 66.0, ty + 1), "A-EQPM")              # curtain rod
     wc(sh, c0, ty + 2, c0 + 28, ty + 32)                               # 17" to the tub
-    vanity(sh, c0, ty + 40, c0 + 21, ty + 88, "VANITY 48", rot=90)     # 23" from the WC centreline
+    vanity(sh, c0, ty + 36, c0 + 21, ty + 84, "VANITY 48", rot=90)     # 19" from the WC centreline
     lw = face("ensuite|linen", +1)                                           # hall linen closet, the full width of
     sh.rect(c0, lw, c1, lw + 16, "A-FURN")                                   # the bath and 2' deep, opening into the
     sh.text("LINEN CLOSET", (c0 + c1) / 2, lw + 8, 3.0)                      # hall (4' bifold); shelves along its back
