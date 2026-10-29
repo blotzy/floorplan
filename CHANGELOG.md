@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Oct 28, 2026
 
+- **6:37 PM**: Solar: PV and battery aren't required for fire rebuilds (LA County under EO N-29-25, Sep 2025); the house is solar-ready (Energy Code 110.10), with the mounting attachments installed with the roof and the panels later under a separate permit. A-0 code analysis, deferred submittal 3 and sheet index; Title 24 inputs doc.
 - **1:48 PM**: Review of the arch set and engineer briefs. A-5: section B moved off the primary bath's wall into the dressing room (x 1010). A-2: section cut lines and tags (A, B, C to A-5) and a legend entry. Engineer briefs: the code basis matches A-0 (2022 codes under EO N-29-25, to confirm); the dining corner wall about 2'-7"; the footprint's fall about 5' (northeast high, rear west low, about 6'-2" below the floor) and the pad fill; the 1" meter applied for and the hydrant's location; a fence footings item; FM-1 linked for the civil.
 - **10:11 AM**: Fences and gates: aluminum posts and solid panels in matte black to match the carport (A-4 detail and materials note, A-1 linework, site doc); in the 3D model the fences and the carport and porch posts in the same matte black; exterior views re-shot.
 - **10:07 AM**: Fence wording: "aluminum privacy fence, solid panels" (A-4, site doc).

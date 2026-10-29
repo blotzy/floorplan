@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-What the energy consultant needs to model the house and produce the compliance forms (CF1R) and solar PV plans. Values marked "target" are starting points for the model; the consultant confirms what the Energy Code requires (2022 edition, under the fire-rebuild executive order: confirm).
+What the energy consultant needs to model the house and produce the compliance forms (CF1R). Rooftop solar PV and battery storage aren't required for Eaton and Palisades fire rebuilds (LA County, under Executive Order N-29-25, Sep 2025), but the house must be solar-ready (Energy Code §110.10: a solar zone on the roof, a conduit path to the panel and breaker space); the plan goes further, with the array's mounting attachments installed with the roof and the panels added later under a separate permit. Values marked "target" are starting points for the model; the consultant confirms what the Energy Code requires (2022 edition, under the fire-rebuild executive order: confirm).
 
 ## Building
 

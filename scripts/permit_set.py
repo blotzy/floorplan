@@ -1185,7 +1185,7 @@ def cover(pdf):
               ("A-5", "Building sections"), ("A-6", "Fire-zone details (CRC R337)"),
               ("A-7", "Attic and structural loads plan"),
               ("S-", "Structural (by the structural engineer)"), ("C-", "Grading, drainage, parkway (by the civil)"),
-              ("T-24", "Energy compliance (CF1R), solar PV"), ("CALGreen", "Green building checklist")]
+              ("T-24", "Energy compliance (CF1R), solar-ready"), ("CALGreen", "Green building checklist")]
     table(fig, 0.9, 8.2, "SHEET INDEX", ("SHEET", "TITLE"), (1.1, 5.6), sheets, fs=8)
     scope = ("SCOPE OF WORK\n"
              "New one-story, all-electric single-family residence\n(4 bedrooms, 3 baths) with an attached open carport,\n"
@@ -1203,7 +1203,7 @@ def cover(pdf):
     fig.text(8.1 / W_IN, 4.4 / H_IN, team, fontsize=9, va="top", linespacing=1.5)
     deferred = [("1", "Fire sprinkler plans and calculations\n(NFPA 13D), before the final foundation\ninspection"),
                 ("2", "Roof truss drawings and calculations\n(truss manufacturer), reviewed by the\nengineer of record"),
-                ("3", "Solar PV plans, if not in the energy\npackage")]
+                ("3", "Solar PV (future, separate permit): not\nrequired for fire rebuilds (EO N-29-25);\nthe house is solar-ready (Energy Code 110.10)")]
     table(fig, 15.3, 8.2, "DEFERRED SUBMITTALS", ("#", "ITEM"), (0.4, 5.8), deferred, fs=8)
     # right column: the site and the code
     vicinity_map(fig, 22.1, 22.6, 10.3, 6.6)
@@ -1223,7 +1223,7 @@ def cover(pdf):
             ("Occupancy", "R-3 single-family dwelling; U open carport (attached)"),
             ("Construction", "Type V-B; automatic fire sprinklers throughout (NFPA 13D)"),
             ("Fire zone", "VHFHSZ: wildland-urban interface construction, CRC R337 (A-6)"),
-            ("Energy", "All-electric; Title 24 Part 6 compliance by the energy consultant"),
+            ("Energy", "All-electric; Title 24 Part 6 by the energy consultant; solar PV and battery\nnot required for fire rebuilds (EO N-29-25): solar-ready (110.10), mounting\nattachments installed with the roof, panels later (separate permit)"),
             ("Green building", "CALGreen mandatory measures (checklist)")]
     y = table(fig, 22.1, y - 0.6, "CODE ANALYSIS", ("ITEM", "PROJECT"), (1.9, 8.4), code, fs=8)
     gen = ("GENERAL NOTES\n"
