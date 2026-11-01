@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 1, 2026
 
+- **10:37 AM**: Common bath 3" wider (4'-8"): the pantry | laundry and laundry | common bath walls each move 3" east, so the pantry and mech closet give 3" (pantry 5'-8" x 7'-11", mech 5'-8" x 4'-5") and the laundry keeps its width and the subpanel's clearance; the common bath door moves 3" with its east wall. A standard toilet up to about 32" deep now keeps 24" clear in front (open questions).
 - **10:15 AM**: Open questions: the common bath toilet 28" deep or less (or wall-hung, decided before rough-in) to keep 24" clear in front.
 
 ## Oct 28, 2026

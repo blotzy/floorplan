@@ -138,11 +138,11 @@ WALLS = [
     ("hall end",          "y", HALL_END, HALL_N, HALL_S, INT),      # the reading nook behind it
     ("hall threshold",    "y", HALL_ARCH, HALL_N, HALL_S, INT),     # cased opening, dropped header
     ("kitchen|pantry",    "y", 674.0,  HALL_S - INT / 2, S_IN, INT),
-    ("pantry|laundry",    "y", 750.0,  HALL_S - INT / 2, S_IN, INT),
-    ("pantry|mech",       "x", 555.2,  674.0, 750.0, INT),
-    ("laundry|bath",      "y", 826.0,  HALL_S - INT / 2, S_IN, INT),   # 2x4: the laundry's washer box and sink
+    ("pantry|laundry",    "y", 747.0,  HALL_S - INT / 2, S_IN, INT),   # 3" east of the old line: the pantry and mech
+    ("pantry|mech",       "x", 555.2,  674.0, 747.0, INT),              # closet give 3" so the common bath gains 3"
+    ("laundry|bath",      "y", 823.0,  HALL_S - INT / 2, S_IN, INT),   # 2x4: the laundry's washer box and sink
                                                                        # only (vertical runs to the slab and attic)
-    ("bath|storage",      "x", 566.0 + INT / 2, 826.0, 883.5, INT),  # storage behind the bath
+    ("bath|storage",      "x", 566.0 + INT / 2, 823.0, 883.5, INT),  # storage behind the bath
     ("utility|bath",      "y", 884.5,  HALL_S - INT / 2, S_IN, WET),   # plumbing wall, back to back: the primary
                                                                        # bath's vanity, WC and shower head on one side,
                                                                        # the common bath's sink and WC on the other
@@ -195,7 +195,7 @@ OPENINGS = [
     ("south hall wall", 695.0, 725.0, "door", "b", -1),     # pantry: swings out, folding flat on the hall wall
                                                             # toward the laundry door; in line with its aisle
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
-    ("south hall wall", 832.0, 862.0, "door", "a", +1),     # common bath, 30", at its east end (the WC out of view
+    ("south hall wall", 829.0, 859.0, "door", "a", +1),     # common bath, 30", at its east end (the WC out of view
                                                             # from the lounge), resting flat on the east wall
     ("south hall wall", 1074.0, 1106.0, "door", "b", +1),   # primary bedroom, 32", beside the dressing-room opening:
                                                             # hinged on its far side, clear of the opening; the

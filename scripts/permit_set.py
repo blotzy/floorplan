@@ -1313,7 +1313,8 @@ def floor_plan(pdf):
 
     # dimension strings: openings, walls, overall (north and south); walls and overall (west, east)
     n_walls = [S.E, S.PORCH_X, 674.0, 826.0, 897.5, 1062.0, S.W]
-    s_walls = [S.E, 674.0, 750.0, S.face("laundry|bath", -1) + S.WET / 2, 884.5, 1062.0, S.W]
+    s_walls = [S.E, 674.0] + [next(w[2] for w in S.WALLS if w[0] == n) for n in ("pantry|laundry", "laundry|bath")] + \
+              [884.5, 1062.0, S.W]
     n_open = [v for o in S.OPENINGS if o[0] == "north" for v in o[1:3]]
     s_open = [v for o in S.OPENINGS if o[0] == "south" for v in o[1:3]]
     dim_string(ax, [S.PORCH_X, S.W] + n_open, S.N - 50)
