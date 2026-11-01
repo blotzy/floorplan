@@ -7,6 +7,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 ## Nov 1, 2026
 
 - **10:15 AM**: Open questions: the common bath toilet 28" deep or less (or wall-hung, decided before rough-in) to keep 24" clear in front.
+
 ## Oct 28, 2026
 
 - **6:37 PM**: Solar: PV and battery aren't required for fire rebuilds (LA County under EO N-29-25, Sep 2025); the house is solar-ready (Energy Code 110.10), with the mounting attachments installed with the roof and the panels later under a separate permit. A-0 code analysis, deferred submittal 3 and sheet index; Title 24 inputs doc.
