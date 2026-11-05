@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 5, 2026
 
+- **12:16 PM**: Electrical: the switch beside the mech closet's bifold is a 2-gang (mech closet light, storage room light); the storage room has no switch of its own.
 - **12:03 PM**: Engineer brief: the pantry pocket door (the hall wall's header and shear role there, and the pantry | laundry wall stopping at the pocket frame).
 - **12:03 PM**: Pantry: a 28" pocket door centred on its aisle, sliding toward the laundry, instead of the out-swinging door; its pocket runs past the pantry | laundry wall, which stops at the pocket frame (no tee); the shelves stay full length; the pantry switch on the kitchen side of the door (plan, A-2 door schedule note, floor-plan and electrical docs).
 - **11:42 AM**: Guest ensuite door hinged on the hall side (still swinging into the bath; it opens to about 105° against the linen closet's wall); its light/fan switch on the street side of the door, across from the WC (plan, floor-plan and electrical docs).
