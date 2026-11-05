@@ -192,8 +192,9 @@ OPENINGS = [
                                                             # closet's wall); the guest room's east wall stays clear for the TV
     ("bedroom hall wall", 906.5, 942.5, "door", "a", -1),  # guest
     ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, by the hall's end
-    ("south hall wall", 695.0, 725.0, "door", "b", -1),     # pantry: swings out, folding flat on the hall wall
-                                                            # toward the laundry door; in line with its aisle
+    ("south hall wall", 696.5, 724.5, "pocket", "b", -1),   # pantry: 28" pocket door centred on its aisle, sliding
+                                                            # toward the laundry: its pocket runs past the pantry |
+                                                            # laundry wall, which stops at the pocket frame (no tee)
     ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
     ("south hall wall", 829.0, 859.0, "door", "a", +1),     # common bath, 30", at its east end (the WC out of view
                                                             # from the lounge), resting flat on the east wall
@@ -729,7 +730,7 @@ def build() -> Sheet:
                  (1062.0, hs_ - 4),                                    # hall 3-way, beside the primary door
                  (604.0, S_IN - 4),                                    # kitchen backsplash, under the window
                  (E_IN + 4, 508.0),                                    # dining slider
-                 (685.0, hs_ - 4),                                     # pantry, hall side
+                 (686.0, hs_ - 4),                                     # pantry, hall side (kitchen side of the door)
                  (800.0, face("south hall wall", +1) + 4),             # laundry
                  (face("pantry|laundry", +1) + 4, 568.0),              # mech closet
                  (872.0, face("south hall wall", +1) + 4),             # common bath

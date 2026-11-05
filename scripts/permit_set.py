@@ -1370,6 +1370,8 @@ def floor_plan(pdf):
             notes.append("Solid core 1-3/8\"+ or noncombustible (CRC R337.8.3); weatherstripped")
             if o[0] == "porch front":
                 notes.append("glass lite, if any, dual-pane tempered")
+        if o[3] == "pocket" and "PANTRY" in names:
+            notes.append("Pocket frame; its pocket runs past the pantry | laundry wall, which stops at the frame (no tee)")
         if "MECH" in names:
             typ = "Bifold, louvered"
             notes.append("louvered (water heater air)")

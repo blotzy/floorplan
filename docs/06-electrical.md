@@ -73,7 +73,7 @@
 | Hall, just inside the opening (hall face of the gym corner) and beside the primary bedroom door (its east side, on the hall wall, at hand coming out of the bedroom at night) | 1-gang each | Hall lights (3-way); the hall's end wall stays clear for art |
 | Kitchen backsplash under the window, at the east end of the window counter by the peninsula corner (wired up the outside wall into the rafter bays, not through the slab) | 3-gang | Kitchen cans (3-way), peninsula pendants, under-cabinet lights |
 | Dining: east wall beside the slider | 2-gang | Dining pendant, rear patio light |
-| Pantry: hall wall, latch side | 1-gang | Vacancy-sensor switch |
+| Pantry: hall wall on the kitchen side of the pocket door (the pocket stretch toward the laundry stays clear) | 1-gang | Vacancy-sensor switch |
 | Laundry: hall wall, latch side, above the folding counter | 1-gang | Laundry |
 | Laundry, beside the mechanical closet's bifold | 1-gang | Closet light |
 | Storage room: on the laundry wall beside its opening | 1-gang | Storage light |
