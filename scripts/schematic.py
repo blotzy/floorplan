@@ -187,9 +187,9 @@ OPENINGS = [
                                                           # leaving ~2'-7" of solid wall at the dining corner
     # interior
     ("bedroom hall wall", 781.5, 817.5, "door", "b", -1),   # gym
-    ("ensuite|guest", 335.0, 365.0, "door", "a", -1),       # guest ensuite's only door: swings into the bath, hinged on the
-                                                            # street side, flat on the wall opposite the WC (the guest
-                                                            # room's east wall stays clear for the TV)
+    ("ensuite|guest", 335.0, 365.0, "door", "b", -1),       # guest ensuite's only door: swings into the bath, hinged on the
+                                                            # hall side (it stops at about 105 deg against the linen
+                                                            # closet's wall); the guest room's east wall stays clear for the TV
     ("bedroom hall wall", 906.5, 942.5, "door", "a", -1),  # guest
     ("bedroom hall wall", 1067.0, 1103.0, "door", "a", -1), # office: at the guest-wall end, by the hall's end
     ("south hall wall", 695.0, 725.0, "door", "b", -1),     # pantry: swings out, folding flat on the hall wall
@@ -733,7 +733,7 @@ def build() -> Sheet:
                  (800.0, face("south hall wall", +1) + 4),             # laundry
                  (face("pantry|laundry", +1) + 4, 568.0),              # mech closet
                  (872.0, face("south hall wall", +1) + 4),             # common bath
-                 (face("ensuite|guest", -1) - 4, 372.0),               # guest ensuite
+                 (face("ensuite|guest", -1) - 4, 327.0),               # guest ensuite, street side of its door
                  (face("bath|wic", -1) - 4, 500.0),                    # primary bath
                  (face("suite|primary", +1) + 4, 502.0)):              # dressing room, bedroom side
         sh.text("S", x, y, 2.4)

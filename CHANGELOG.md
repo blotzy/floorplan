@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Nov 5, 2026
+
+- **11:42 AM**: Guest ensuite door hinged on the hall side (still swinging into the bath; it opens to about 105° against the linen closet's wall); its light/fan switch on the street side of the door, across from the WC (plan, floor-plan and electrical docs).
+
 ## Nov 1, 2026
 
 - **10:53 AM**: A before / after image of the common bath widening (renders/comparisons/common-bath-wider.png).
