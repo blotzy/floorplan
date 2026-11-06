@@ -205,8 +205,8 @@ OPENINGS = [
     ("bedroom hall wall", 830.25, 890.25, "bifold", "a", +1),  # hall linen closet: 5' bifold, nearly its full width;
                                                             # 2" east of centre so its casing clears the header's stub
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
-    ("pantry|laundry", 565.8, 601.8, "pair", None, +1, 80.0),   # mech closet: a pair of 18" louvered doors, centred,
-                                                            # 6'-8" (stock), drywall above; wide enough for the HPWH
+    ("pantry|laundry", 565.8, 601.8, "bifold", "a", +1, 80.0),  # mech closet: a 36" louvered bifold, centred, 6'-8"
+                                                            # (stock), drywall above; ~30" clear passes the HPWH
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
     ("suite|primary", *SUITE_ENTRY, "door", "a", -1),       # bedroom -> dressing room: 2'-8", swinging into the
                                                             # dressing room, hinged on the hall side, back against the hall wall
@@ -483,8 +483,8 @@ def utility_block(sh):
         sh.rect(lw - 30, y, lw, y + 27, eq); sh.text(lbl, lw - 17, y + 13.5, 2.6, rot=90)
         sh.text("ON PEDESTAL", lw - 9, y + 13.5, 1.6, rot=90); y += 28
     sh.rect(l0, 496.0, l0 + 4, 516.0, eq); sh.text("PANEL", l0 + 10, 506.0, 2.5, rot=90)   # past the open door
-    sh.rect(l0 + 21, S_IN - 12, lw - 12, S_IN, fu)                           # rear wall: full-height shelves, clear of
-                                                                              # the mech closet's door swing
+    sh.rect(l0 + 12, S_IN - 12, lw - 12, S_IN, fu)                           # rear wall: full-height shelves (clear of
+                                                                              # the mech closet's folded bifold)
     sh.text("SHELVES TO 6'", (l0 + lw) / 2, S_IN - 6, 2.2)                  # up to the high window's sill
     room_label(sh, "LAUNDRY", l0, hall, lw, S_IN, cx=(l0 + lw) / 2 - 8, cy=582.0, h=4.0)
 

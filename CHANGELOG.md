@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 6, 2026
 
+- **12:21 PM**: Mech closet: a 36" louvered bifold (stock 6'-8", about 30" clear for the water heater) instead of the hinged pair, so the laundry's rear-wall shelves get their 9" back (A-2 schedule, floor-plan, HVAC and electrical docs).
 - **12:16 PM**: Mech closet doors centred on the closet's laundry-side wall (about 4" further from the rear wall, giving the trim room at that corner); its 2-gang switch moved a few inches toward the hall.
 - **12:14 PM**: Mech closet: a 36" pair of louvered doors (two 18" leaves, stock 6'-8" height, drywall above) instead of the 30" bifold, wide enough to bring the water heater in and out; the laundry's rear-wall shelves start 9" further from the closet, clear of the leaves' swing; its 2-gang switch moved a little toward the hall. Plan (a new "pair" door type), 3D, A-2 door schedule, floor-plan, HVAC and electrical docs.
 - **12:09 PM**: Primary bedroom door back to 3'-0" (from 2'-8"): the hall's end wall moves 5" west, so the reading nook is 5" shorter (about 7'-9"); the switch stub at the dressing-room corner is unchanged and the hall skylight stays put (now 3'-1" from the end wall). Laundry door 2'-8" (from 2'-6"), so a washer or dryer passes. Plan, 3D, A-2, floor-plan doc.

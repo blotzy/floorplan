@@ -75,7 +75,7 @@
 | Dining: east wall beside the slider | 2-gang | Dining pendant, rear patio light |
 | Pantry: hall wall on the kitchen side of the pocket door (the pocket stretch toward the laundry stays clear) | 1-gang | Vacancy-sensor switch |
 | Laundry: hall wall, latch side, above the folding counter | 1-gang | Laundry |
-| Laundry, beside the mechanical closet's doors | 2-gang | Mechanical closet light; storage room light |
+| Laundry, beside the mechanical closet's bifold | 2-gang | Mechanical closet light; storage room light |
 | Common bath: hall wall, latch side, above the end of the sink | 2-gang | Light, fan boost |
 | Gym, guest, office: hall wall, latch side, between the door trim and the closet (the closets stop about a foot short of the door) | 2-gang (gym 1-gang) | Light, ceiling fan (gym: light only) |
 | Guest ensuite: its west wall on the street side of the door, across from the WC | 2-gang | Light, fan |

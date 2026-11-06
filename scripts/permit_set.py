@@ -1353,7 +1353,7 @@ def floor_plan(pdf):
         if o[3] == "slider":
             h, typ = 96.0, "Sliding glass door"
         elif o[3] == "bifold":
-            h, typ = DOOR_H, "Bifold"
+            h, typ = (o[6] if len(o) > 6 else DOOR_H), "Bifold"
         elif o[3] == "pocket":
             h, typ = DOOR_H, "Pocket"
         elif o[3] == "pair":
