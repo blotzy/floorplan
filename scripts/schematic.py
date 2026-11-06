@@ -200,6 +200,8 @@ OPENINGS = [
     ("hall end", 413.45, 449.45, "door", "a", +1),          # the primary suite's door, 36", centred in the hall's end
                                                             # wall: swings into the reading nook, hinged on the office
                                                             # side, folding back against the nook's north wall
+    ("bedroom hall wall", 830.25, 890.25, "bifold", "a", +1),  # hall linen closet: 5' bifold, nearly its full width;
+                                                            # 2" east of centre so its casing clears the header's stub
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),
     ("hall mouth", 413.2, 449.2, "cased", 0.0, 96.0),       # 3'-0" opening, its header at 8'-0", in line with the door heads
     ("pantry|laundry", 565.8, 601.8, "bifold", "a", +1, 80.0),  # mech closet: a 36" louvered bifold, centred, 6'-8"
