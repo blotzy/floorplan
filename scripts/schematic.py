@@ -101,7 +101,7 @@ NOTICE = ("\u00a9 2026 Richard Acosta. All rights reserved. For 220 Laurel Dr on
 # The bedroom hall ends in a wall just past the office and primary doors; beyond it, the hall's last
 # stretch is the primary bedroom's reading nook. Halfway down, just past the common bath, a cased opening
 # with a dropped header marks the bedroom end (no door).
-HALL_END = 1110.5                    # centreline of the hall's end wall
+HALL_END = 1115.5                    # centreline of the hall's end wall (5" past the 3'-0" primary door's trim)
 HALL_N = 407.2                       # centreline of the hall's north (bedroom) wall
 HALL_S = HALL_N + INT + 44.0         # centreline of the hall's south wall: a 3'-8" clear hall
 KITCHEN_ROW = 461.45                 # front line of the kitchen peninsula and fridge (the lounge's south edge)
@@ -120,7 +120,7 @@ ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ce
 HATCH_X = 954.0                         # attic access panel (22" x 54", passes the air handler) along the hall,
                                         # from here west: room for a recessed light either side of it (about 5'-8"
                                         # to the header, 5'-1" to the skylight), beside the air handler platform
-HALL_TUBE = HALL_END - INT / 2 - 32.0   # 14" tubular skylight on the hall's centreline, 2'-8" short of the end
+HALL_TUBE = HALL_END - INT / 2 - 37.0   # 14" tubular skylight on the hall's centreline, 3'-1" short of the end
                                         # wall: lights the end wall
 
 # Interior walls: (name, axis, centreline, from, to, thickness).
@@ -195,10 +195,10 @@ OPENINGS = [
     ("south hall wall", 696.5, 724.5, "pocket", "b", -1),   # pantry: 28" pocket door centred on its aisle, sliding
                                                             # toward the laundry: its pocket runs past the pantry |
                                                             # laundry wall, which stops at the pocket frame (no tee)
-    ("south hall wall", 760.0, 790.0, "door", "a", +1),     # laundry
+    ("south hall wall", 760.0, 792.0, "door", "a", +1),     # laundry, 32" (a washer or dryer passes)
     ("south hall wall", 829.0, 859.0, "door", "a", +1),     # common bath, 30", at its east end (the WC out of view
                                                             # from the lounge), resting flat on the east wall
-    ("south hall wall", 1074.0, 1106.0, "door", "b", +1),   # primary bedroom, 32", beside the dressing-room opening:
+    ("south hall wall", 1074.0, 1110.0, "door", "b", +1),   # primary bedroom, 36", beside the dressing-room opening:
                                                             # hinged on its far side, clear of the opening; the
                                                             # wall left at the corner takes the light switch
     ("bedroom hall wall", 830.25, 890.25, "bifold", "a", +1),  # hall linen closet: 5' bifold, nearly its full width;

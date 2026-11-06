@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 6, 2026
 
+- **12:09 PM**: Primary bedroom door back to 3'-0" (from 2'-8"): the hall's end wall moves 5" west, so the reading nook is 5" shorter (about 7'-9"); the switch stub at the dressing-room corner is unchanged and the hall skylight stays put (now 3'-1" from the end wall). Laundry door 2'-8" (from 2'-6"), so a washer or dryer passes. Plan, 3D, A-2, floor-plan doc.
 - **11:58 AM**: Dressing room door: a 2'-8" door in its opening from the bedroom (was a cased opening), swinging into the dressing room and hinged on the hall side, folding back against the hall wall beside the walkway; plan, 3D, A-2 door schedule, floor-plan doc.
 
 ## Nov 5, 2026
