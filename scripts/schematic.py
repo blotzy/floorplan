@@ -136,6 +136,7 @@ WALLS = [
     ("south hall wall",   "x", HALL_S, 671.75, HALL_END + INT / 2, INT),
     ("hall end",          "y", HALL_END, HALL_N, HALL_S, INT),      # the reading nook behind it
     ("hall threshold",    "y", HALL_ARCH, HALL_N, HALL_S, INT),     # cased opening, dropped header
+    ("hall mouth",        "y", 674.0, HALL_N, HALL_S, INT),         # the same where the hall meets the great room
     ("kitchen|pantry",    "y", 674.0,  HALL_S - INT / 2, S_IN, INT),
     ("pantry|laundry",    "y", 747.0,  HALL_S - INT / 2, S_IN, INT),   # 3" east of the old line: the pantry and mech
     ("pantry|mech",       "x", 555.2,  674.0, 747.0, INT),              # closet give 3" so the common bath gains 3"
@@ -199,7 +200,8 @@ OPENINGS = [
     ("hall end", 413.45, 449.45, "door", "a", +1),          # the primary suite's door, 36", centred in the hall's end
                                                             # wall: swings into the reading nook, hinged on the office
                                                             # side, folding back against the nook's north wall
-    ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
+    ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),
+    ("hall mouth", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 565.8, 601.8, "bifold", "a", +1, 80.0),  # mech closet: a 36" louvered bifold, centred, 6'-8"
                                                             # (stock), drywall above; ~30" clear passes the HPWH
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry

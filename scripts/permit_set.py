@@ -829,6 +829,11 @@ ASSEMBLIES = ("ASSEMBLIES (insulation values per the Title 24 report)\n"
               "   and footings per structural; floor level per civil.")
 
 
+def o_head(o):
+    """Head height of an opening (a door, or a cased opening with its dropped header)."""
+    return o[5] if o[3] == "cased" and len(o) > 5 else (o[6] if len(o) > 6 else DOOR_H)
+
+
 def section_cut(ax, cut, at, ff):
     """Section through the house: cut 'x' (plan x = at, looking east-west across y) or 'y'."""
     roof = X.roof_under(2 / 12)
@@ -878,7 +883,9 @@ def section_cut(ax, cut, at, ff):
     for name, axis, c, w0, w1, t in S.WALLS:
         if (axis == "x") == (cut == "x") and min(w0, w1) <= at <= max(w0, w1):
             v = vaulted(c + t)
-            ax.add_patch(Rectangle((c - t / 2, 0), t, (und(c) - 1) if v else C, fc="#bbb", ec=INK, lw=0.6))
+            op = next((o for o in S.OPENINGS if o[0] == name and o[1] <= at <= o[2]), None)   # cut through an opening:
+            z0 = 0 if op is None else (o_head(op))                                             # only its header
+            ax.add_patch(Rectangle((c - t / 2, z0), t, ((und(c) - 1) if v else C) - z0, fc="#bbb", ec=INK, lw=0.6))
     walls = ("north", "south") if cut == "x" else ("east", "west")
     for o in S.OPENINGS:
         if o[0] in walls and o[1] <= at <= o[2] and o[3] in ("window", "slider", "door", "transom"):
