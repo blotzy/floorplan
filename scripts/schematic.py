@@ -201,7 +201,7 @@ OPENINGS = [
                                                             # wall: swings into the reading nook, hinged on the office
                                                             # side, folding back against the nook's north wall
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),
-    ("hall mouth", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
+    ("hall mouth", 413.2, 449.2, "cased", 0.0, 96.0),       # its header at 8'-0", in line with the door heads  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 565.8, 601.8, "bifold", "a", +1, 80.0),  # mech closet: a 36" louvered bifold, centred, 6'-8"
                                                             # (stock), drywall above; ~30" clear passes the HPWH
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry

@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 6, 2026
 
+- **1:16 PM**: The hall header at the great room raised to 8'-0", in line with the door heads; the mid-hall header stays at 7'-6".
 - **1:14 PM**: A second dropped header where the hall meets the great room: a 3'-0" cased opening under a 7'-6" header, matching the one past the linen closet. A-5 sections now show cased openings and doors cut by a section as just their headers.
 - **1:03 PM**: Reading nook window centred on the hall and the suite's door, and taller: 3'-0" x 4'-6" (head at 8'-0", in line with the others; sill still 3'-6"). Glazing about 434 sq ft (19.5%). The nook's bookshelves are low, 3'-6" high up to the sill line, so they stay out of the view down the hall. Plan, 3D, A-2, A-4, floor-plan, Title 24 and open-question docs.
 - **12:55 PM**: Primary suite entered through the reading nook: a 3'-0" x 8'-0" door in the hall's end wall (back at its earlier spot, the nook about 8'-2"), swinging into the nook, hinged on the office side. The nook's lowered ceiling and cabinets are gone; its bookshelves start past the door and run floor to ceiling. The bedroom's hall wall is solid, with a 4-gang on it (light, fan, dressing room, path light); the nook's dimmer on the end wall's nook side; the hall's far 3-way near the suite door; the hall skylight unmoved. Plan, 3D, A-2, A-4 note, floor-plan, electrical and open-question docs.
