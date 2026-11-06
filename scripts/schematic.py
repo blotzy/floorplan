@@ -101,7 +101,7 @@ NOTICE = ("\u00a9 2026 Richard Acosta. All rights reserved. For 220 Laurel Dr on
 # The bedroom hall ends in a wall just past the office and primary doors; beyond it, the hall's last
 # stretch is the primary bedroom's reading nook. Halfway down, just past the common bath, a cased opening
 # with a dropped header marks the bedroom end (no door).
-HALL_END = 1115.5                    # centreline of the hall's end wall (5" past the 3'-0" primary door's trim)
+HALL_END = 1110.5                    # centreline of the hall's end wall: the primary suite's door is in it
 HALL_N = 407.2                       # centreline of the hall's north (bedroom) wall
 HALL_S = HALL_N + INT + 44.0         # centreline of the hall's south wall: a 3'-8" clear hall
 KITCHEN_ROW = 461.45                 # front line of the kitchen peninsula and fridge (the lounge's south edge)
@@ -111,16 +111,15 @@ SHOWER_D = 60.0                      # primary shower: across the rear wall, 5'-
 SHOWER_BENCH_D = 16.0                # primary shower: solid bench along the rear wall, under the window
 SHOWER_ENTRY = 30.0                  # primary shower: walk-in entry at the dressing-room end of the glass
 SUITE_ENTRY = (463.0, 495.0)         # bedroom -> dressing room: 32" cased opening in the hall corner
-NOOK_CEIL = 90.0                     # reading nook: lowered ceiling at 7'-6" (the room's is 9'), built-in cabinets
-NOOK_CAB_D = 24.0                    # above it with doors facing the bedroom; the nook window's head meets it
-NOOK_SHELF_D, NOOK_SHELF_Z = 12.0, 0.0    # bookshelves on the nook's office wall: 12" deep, floor to the lowered ceiling
+NOOK_SHELF_D, NOOK_SHELF_START = 12.0, 40.0   # reading nook: bookshelves on its office wall, 12" deep, floor to
+                                     # ceiling, starting past the open suite door
 HALL_ARCH = 897.5                    # centreline of the threshold wall: in line with the ensuite | guest wall, just
                                      # past the hall linen closet, so the closet gets its full-width doors
 ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
 HATCH_X = 954.0                         # attic access panel (22" x 54", passes the air handler) along the hall,
                                         # from here west: room for a recessed light either side of it (about 5'-8"
                                         # to the header, 5'-1" to the skylight), beside the air handler platform
-HALL_TUBE = HALL_END - INT / 2 - 37.0   # 14" tubular skylight on the hall's centreline, 3'-1" short of the end
+HALL_TUBE = HALL_END - INT / 2 - 32.0   # 14" tubular skylight on the hall's centreline, 2'-8" short of the end
                                         # wall: lights the end wall
 
 # Interior walls: (name, axis, centreline, from, to, thickness).
@@ -180,7 +179,7 @@ OPENINGS = [
     ("south",       1101.6, 1173.6, "window"),           # primary bedroom 6' (centred; faces SSW, so kept modest)
     ("west",        289.6, 337.6, "window", 72.0, 96.0),    # office: 4'-0" x 2'-0" high window over the bed head
                                                           # (cross-breeze, privacy from the neighbour's 2nd floor)
-    ("west",        421.45, 457.45, "window", 42.0, NOOK_CEIL - 6.0),  # reading nook: 3'-0" x 3'-6", its head 6"
+    ("west",        421.45, 457.45, "window", 42.0, 84.0),  # reading nook: 3'-0" x 3'-6", its head at 7'-0"
                                                                      # below the lowered ceiling; centred on the nook's open part,
                                                           # clear of the bookshelves (light over the reader's
                                                           # shoulder, and on the books)
@@ -199,11 +198,9 @@ OPENINGS = [
     ("south hall wall", 760.0, 792.0, "door", "a", +1),     # laundry, 32" (a washer or dryer passes)
     ("south hall wall", 829.0, 859.0, "door", "a", +1),     # common bath, 30", at its east end (the WC out of view
                                                             # from the lounge), resting flat on the east wall
-    ("south hall wall", 1074.0, 1110.0, "door", "b", +1),   # primary bedroom, 36", beside the dressing-room opening:
-                                                            # hinged on its far side, clear of the opening; the
-                                                            # wall left at the corner takes the light switch
-    ("bedroom hall wall", 830.25, 890.25, "bifold", "a", +1),  # hall linen closet: 5' bifold, nearly its full width;
-                                                            # 2" east of centre so its casing clears the header's stub
+    ("hall end", 413.45, 449.45, "door", "a", +1),          # the primary suite's door, 36", centred in the hall's end
+                                                            # wall: swings into the reading nook, hinged on the office
+                                                            # side, folding back against the nook's north wall
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 565.8, 601.8, "bifold", "a", +1, 80.0),  # mech closet: a 36" louvered bifold, centred, 6'-8"
                                                             # (stock), drywall above; ~30" clear passes the HPWH
@@ -720,16 +717,10 @@ def build() -> Sheet:
     bed(W_IN, open_mid, 60, -1)
     bed(W_IN, (srow + S_IN) / 2, 76, -1)   # primary: the whole west wall is open
     sh.movable_since(m0)
-    n0, ny = HALL_END + INT / 2, hall_n + INT                                 # reading nook (a reading chair, no
-    sh.msp.add_line((n0, ny + NOOK_SHELF_D), (W_IN, ny + NOOK_SHELF_D),       # bench): bookshelves on the
-                    dxfattribs={"layer": "A-CLNG", "linetype": "DASHED"})     # office wall, up to the lowered ceiling
-    sh.text("BOOKSHELVES", (n0 + W_IN) / 2, ny + 6, 2.2, "A-CLNG")
-    sh.text("READING NOOK", (n0 + W_IN) / 2, ny + 38, 3.5, "A-AREA-IDEN")
-    ys = face("south hall wall", -1) + INT                                    # the nook's open (bedroom) edge
-    dash = {"layer": "A-CLNG", "linetype": "DASHED"}
-    for p, q in (((n0, ny - INT), (W_IN, ny - INT)), ((n0, ys), (W_IN, ys)), ((n0, ys - NOOK_CAB_D), (W_IN, ys - NOOK_CAB_D))):
-        sh.msp.add_line(p, q, dxfattribs=dash)                                # lowered ceiling; cabinet backs
-    sh.text("CABINETS ABOVE, LOWERED CEILING 7'-6\"", (n0 + W_IN) / 2, ys - 6, 2.5, "A-CLNG")
+    n0, ny = HALL_END + INT / 2, hall_n + INT                                 # reading nook: a reading chair and
+    sh.rect(n0 + NOOK_SHELF_START, ny, W_IN, ny + NOOK_SHELF_D, fu)
+    sh.text("BOOKSHELVES", (n0 + NOOK_SHELF_START + W_IN) / 2, ny + NOOK_SHELF_D / 2, 2.4)
+    sh.text("READING NOOK", (n0 + W_IN) / 2 + 12, ny + 30, 3.5, "A-AREA-IDEN")
 
     def closet(x0, x1, label="CL"):          # 24" reach-in closets on the hall wall
         y1 = hall_n
@@ -745,7 +736,7 @@ def build() -> Sheet:
     hs_ = face("south hall wall", -1)                                  # other switches (see docs/06):
     for x, y in ((face("lounge|gym", -1) - 4, HALL_N - 12),            # hall opening (lounge, kitchen cans)
                  (680.0, face("bedroom hall wall", +1) + 4),           # hall 3-way, at the opening
-                 (1062.0, hs_ - 4),                                    # hall 3-way, beside the primary door
+                 (1092.0, hs_ - 4),                                    # hall 3-way, near the suite's door
                  (604.0, S_IN - 4),                                    # kitchen backsplash, under the window
                  (E_IN + 4, 508.0),                                    # dining slider
                  (686.0, hs_ - 4),                                     # pantry, hall side (kitchen side of the door)
@@ -754,11 +745,11 @@ def build() -> Sheet:
                  (872.0, face("south hall wall", +1) + 4),             # common bath
                  (face("ensuite|guest", -1) - 4, 327.0),               # guest ensuite, street side of its door
                  (face("bath|wic", -1) - 4, 500.0),                    # primary bath
-                 (face("suite|primary", +1) + 4, 502.0)):              # dressing room, bedroom side
+                 (1102.0, face("south hall wall", +1) + 4),            # primary bedroom: its hall wall, by the nook
+                 (HALL_END + INT / 2 + 4, 455.0)):                     # reading nook lights: end wall, nook side
         sh.text("S", x, y, 2.4)
     for x in (781.5 - 6, 942.5 + 6, 1103.0 + 6):                      # light switches, latch side
         sh.text("S", x, hall_n - 4, 2.4)
-    sh.text("S", (face("suite|primary", +1) + 1074.0) / 2, face("south hall wall", +1) + 4, 2.4)   # primary
 
     common_bath(sh)
 

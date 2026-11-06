@@ -797,7 +797,7 @@ def elevations(pdf):
     fig.text(26.0 / W_IN, 17.4 / H_IN, f"Heights are above finished floor (0'-0\").\nAssumed finished floor: {ff:.1f}' "
              "(6\" above the\nhighest existing grade at the walls).\nScale: 3/16\" = 1'-0\"\n\n"
              "CEILING HEIGHTS\n"
-             "Flat ceilings 9'-0\" (bedroom wing, baths, hall,\nlaundry, pantry); reading nook 7'-6\"; porch 9'-0\".\n"
+             "Flat ceilings 9'-0\" (bedroom wing, baths, hall,\nlaundry, pantry, reading nook); porch 9'-0\".\n"
              f"Great room (foyer, lounge, dining, kitchen) vaulted\nunder the roof, from about {ftin(under(S.S_IN))} at the rear\n"
              f"wall to about {ftin(under(S.N_IN))} at the street wall (A-5).\n\n"
              "GRADING (preliminary; per civil)\n"
@@ -1421,7 +1421,7 @@ def floor_plan(pdf):
     # bedroom alarms on the ceiling just inside each door, 30" in, over the latch-side jamb: over 3' from a
     # ceiling fan's blade tips and from the supplies (by the windows); the guest's over 3' from the ensuite door
     hn, hs = S.face("bedroom hall wall", -1) - 30, S.face("south hall wall", +1) + 30
-    for x, y in ((781.5, hn), (942.5, hn), (1103.0, hn), (1078.0, hs + 14)): # gym, guest, office, primary
+    for x, y in ((781.5, hn), (942.5, hn), (1103.0, hn), (1128.0, hs + 12)): # gym, guest, office, primary (by the nook)
         alarm(x, y, "SD")
     alarm(S.HATCH_X - 10, hall_y - 15, "SD/\nCO")           # one, mid-lobby: within 21' of every bedroom door;
                                                              # off the centreline, clear of its lights

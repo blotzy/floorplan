@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 6, 2026
 
+- **12:55 PM**: Primary suite entered through the reading nook: a 3'-0" x 8'-0" door in the hall's end wall (back at its earlier spot, the nook about 8'-2"), swinging into the nook, hinged on the office side. The nook's lowered ceiling and cabinets are gone; its bookshelves start past the door and run floor to ceiling. The bedroom's hall wall is solid, with a 4-gang on it (light, fan, dressing room, path light); the nook's dimmer on the end wall's nook side; the hall's far 3-way near the suite door; the hall skylight unmoved. Plan, 3D, A-2, A-4 note, floor-plan, electrical and open-question docs.
 - **12:21 PM**: Mech closet: a 36" louvered bifold (stock 6'-8", about 30" clear for the water heater) instead of the hinged pair, so the laundry's rear-wall shelves get their 9" back (A-2 schedule, floor-plan, HVAC and electrical docs).
 - **12:16 PM**: Mech closet doors centred on the closet's laundry-side wall (about 4" further from the rear wall, giving the trim room at that corner); its 2-gang switch moved a few inches toward the hall.
 - **12:14 PM**: Mech closet: a 36" pair of louvered doors (two 18" leaves, stock 6'-8" height, drywall above) instead of the 30" bifold, wide enough to bring the water heater in and out; the laundry's rear-wall shelves start 9" further from the closet, clear of the leaves' swing; its 2-gang switch moved a little toward the hall. Plan (a new "pair" door type), 3D, A-2 door schedule, floor-plan, HVAC and electrical docs.
