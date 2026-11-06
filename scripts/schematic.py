@@ -205,7 +205,7 @@ OPENINGS = [
     ("bedroom hall wall", 830.25, 890.25, "bifold", "a", +1),  # hall linen closet: 5' bifold, nearly its full width;
                                                             # 2" east of centre so its casing clears the header's stub
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
-    ("pantry|laundry", 570.0, 606.0, "pair", None, +1, 80.0),   # mech closet: a pair of 18" louvered doors,
+    ("pantry|laundry", 565.8, 601.8, "pair", None, +1, 80.0),   # mech closet: a pair of 18" louvered doors, centred,
                                                             # 6'-8" (stock), drywall above; wide enough for the HPWH
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
     ("suite|primary", *SUITE_ENTRY, "door", "a", -1),       # bedroom -> dressing room: 2'-8", swinging into the
@@ -750,7 +750,7 @@ def build() -> Sheet:
                  (E_IN + 4, 508.0),                                    # dining slider
                  (686.0, hs_ - 4),                                     # pantry, hall side (kitchen side of the door)
                  (800.0, face("south hall wall", +1) + 4),             # laundry
-                 (face("pantry|laundry", +1) + 4, 561.0),              # mech closet + storage (2-gang)
+                 (face("pantry|laundry", +1) + 4, 555.0),              # mech closet + storage (2-gang)
                  (872.0, face("south hall wall", +1) + 4),             # common bath
                  (face("ensuite|guest", -1) - 4, 327.0),               # guest ensuite, street side of its door
                  (face("bath|wic", -1) - 4, 500.0),                    # primary bath
