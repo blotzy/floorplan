@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 6, 2026
 
+- **1:24 PM**: The mid-hall header back at 7'-6"; the header at the great room stays at 8'-0", in line with the door heads.
 - **1:19 PM**: Both hall headers at 8'-0", in line with the door heads (the mid-hall one was 7'-6").
 - **1:16 PM**: The hall header at the great room raised to 8'-0", in line with the door heads; the mid-hall header stays at 7'-6".
 - **1:14 PM**: A second dropped header where the hall meets the great room: a 3'-0" cased opening under a 7'-6" header, matching the one past the linen closet. A-5 sections now show cased openings and doors cut by a section as just their headers.

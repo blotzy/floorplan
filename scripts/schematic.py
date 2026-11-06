@@ -115,7 +115,7 @@ NOOK_SHELF_D, NOOK_SHELF_START, NOOK_SHELF_H = 12.0, 40.0, 42.0   # reading nook
                                      # 12" deep, past the open suite door, up to the window's sill (clear of the hall's view)
 HALL_ARCH = 897.5                    # centreline of the threshold wall: in line with the ensuite | guest wall, just
                                      # past the hall linen closet, so the closet gets its full-width doors
-ARCH_HEAD = 96.0                     # its dropped header: 8'-0" under the 9' ceiling, in line with the door heads
+ARCH_HEAD = 90.0                     # its dropped header: 7'-6" under the 9' ceiling
 HATCH_X = 954.0                         # attic access panel (22" x 54", passes the air handler) along the hall,
                                         # from here west: room for a recessed light either side of it (about 5'-8"
                                         # to the header, 5'-1" to the skylight), beside the air handler platform
@@ -201,7 +201,7 @@ OPENINGS = [
                                                             # wall: swings into the reading nook, hinged on the office
                                                             # side, folding back against the nook's north wall
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),
-    ("hall mouth", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under an 8'-0" header
+    ("hall mouth", 413.2, 449.2, "cased", 0.0, 96.0),       # 3'-0" opening, its header at 8'-0", in line with the door heads
     ("pantry|laundry", 565.8, 601.8, "bifold", "a", +1, 80.0),  # mech closet: a 36" louvered bifold, centred, 6'-8"
                                                             # (stock), drywall above; ~30" clear passes the HPWH
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
