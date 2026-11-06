@@ -206,7 +206,8 @@ OPENINGS = [
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
     ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
-    ("suite|primary", *SUITE_ENTRY, "cased"),               # bedroom -> dressing room (no door)
+    ("suite|primary", *SUITE_ENTRY, "door", "a", -1),       # bedroom -> dressing room: 2'-8", swinging into the
+                                                            # dressing room, hinged on the hall side, back against the hall wall
     ("bath|wic", 463.0, 493.0, "door", "a", -1),            # dressing room -> primary bath, 30", in line with the
                                                             # opening along the hall wall; swings in, flat on the hall wall
 ]

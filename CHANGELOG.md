@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Nov 6, 2026
+
+- **11:58 AM**: Dressing room door: a 2'-8" door in its opening from the bedroom (was a cased opening), swinging into the dressing room and hinged on the hall side, folding back against the hall wall beside the walkway; plan, 3D, A-2 door schedule, floor-plan doc.
+
 ## Nov 5, 2026
 
 - **12:16 PM**: Electrical: the switch beside the mech closet's bifold is a 2-gang (mech closet light, storage room light); the storage room has no switch of its own.
