@@ -161,7 +161,7 @@ def outward(name):
 
 
 def doors():
-    return [o for o in S.OPENINGS if o[3] in ("door", "slider", "bifold", "pocket")]
+    return [o for o in S.OPENINGS if o[3] in ("door", "pair", "slider", "bifold", "pocket")]
 
 
 def windows():
@@ -1356,6 +1356,8 @@ def floor_plan(pdf):
             h, typ = DOOR_H, "Bifold"
         elif o[3] == "pocket":
             h, typ = DOOR_H, "Pocket"
+        elif o[3] == "pair":
+            h, typ = (o[6] if len(o) > 6 else DOOR_H), "Pair, hinged"
         else:
             h, typ = DOOR_H, "Hinged"
         names = " / ".join(dict.fromkeys(n for n in (a, b) if n != "EXTERIOR")) or "-"
@@ -1373,8 +1375,9 @@ def floor_plan(pdf):
         if o[3] == "pocket" and "PANTRY" in names:
             notes.append("Pocket frame; its pocket runs past the pantry | laundry wall, which stops at the frame (no tee)")
         if "MECH" in names:
-            typ = "Bifold, louvered"
-            notes.append("louvered (water heater air)")
+            typ += ", louvered"
+            notes.append("louvered (water heater air: check the model's free-area requirement); stock 6'-8\" height, "
+                         "drywall above")
         dsched.append((str(i), names, f"{ftin(w)} x {ftin(h)}", typ, textwrap.fill("; ".join(notes), 95)))
 
     groups = {}

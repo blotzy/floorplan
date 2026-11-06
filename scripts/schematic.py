@@ -151,7 +151,8 @@ WALLS = [
 ]
 
 # Openings: (wall name, from, to, kind, hinge, swing)
-#   kind: door | slider | bifold | window | cased | pocket (hinge = pocket side)
+#   kind: door | pair (two leaves; an optional 7th item, the door height) | slider | bifold | window | cased |
+#   pocket (hinge = pocket side)
 #   windows may add (sill, head) heights in inches; the default is a 30" sill and 8' head.
 #   Window widths and heights are standard 6" steps; anything wider than 8' is two mulled units.
 #   transom: (sill, head) glass above a door on the same span.
@@ -204,7 +205,8 @@ OPENINGS = [
     ("bedroom hall wall", 830.25, 890.25, "bifold", "a", +1),  # hall linen closet: 5' bifold, nearly its full width;
                                                             # 2" east of centre so its casing clears the header's stub
     ("hall threshold", 413.2, 449.2, "cased", 0.0, ARCH_HEAD),  # 3'-0" opening under a 7'-6" header
-    ("pantry|laundry", 577.2, 607.2, "bifold", "a", +1),    # mech closet (louvered)
+    ("pantry|laundry", 570.0, 606.0, "pair", None, +1, 80.0),   # mech closet: a pair of 18" louvered doors,
+                                                            # 6'-8" (stock), drywall above; wide enough for the HPWH
     ("laundry|bath", 574.0, 606.0, "cased"),                # storage room, open to the laundry
     ("suite|primary", *SUITE_ENTRY, "door", "a", -1),       # bedroom -> dressing room: 2'-8", swinging into the
                                                             # dressing room, hinged on the hall side, back against the hall wall
@@ -481,7 +483,8 @@ def utility_block(sh):
         sh.rect(lw - 30, y, lw, y + 27, eq); sh.text(lbl, lw - 17, y + 13.5, 2.6, rot=90)
         sh.text("ON PEDESTAL", lw - 9, y + 13.5, 1.6, rot=90); y += 28
     sh.rect(l0, 496.0, l0 + 4, 516.0, eq); sh.text("PANEL", l0 + 10, 506.0, 2.5, rot=90)   # past the open door
-    sh.rect(l0 + 12, S_IN - 12, lw - 12, S_IN, fu)                           # rear wall: full-height shelves
+    sh.rect(l0 + 21, S_IN - 12, lw - 12, S_IN, fu)                           # rear wall: full-height shelves, clear of
+                                                                              # the mech closet's door swing
     sh.text("SHELVES TO 6'", (l0 + lw) / 2, S_IN - 6, 2.2)                  # up to the high window's sill
     room_label(sh, "LAUNDRY", l0, hall, lw, S_IN, cx=(l0 + lw) / 2 - 8, cy=582.0, h=4.0)
 
@@ -575,6 +578,20 @@ def build() -> Sheet:
             if hi - lo > 180:
                 lo, hi = hi, lo + 360
             sh.msp.add_arc((cx, cy), w, lo, hi, dxfattribs={"layer": "A-DOOR"})
+        elif kind == "pair":               # two leaves hinged at the jambs, meeting in the middle
+            swing, v0, m = o[5], o[5] * t / 2, (a + b) / 2
+            for hu, fu in ((a, m), (b, m)):
+                w = abs(fu - hu)
+                tip = P(hu, v0 + swing * w)
+                sh.line(P(hu, v0), tip, "A-DOOR")
+                cx, cy = P(hu, v0)
+                ang1 = math.degrees(math.atan2(tip[1] - cy, tip[0] - cx))
+                fx, fy = P(fu, v0)
+                ang2 = math.degrees(math.atan2(fy - cy, fx - cx))
+                lo, hi = sorted((ang1, ang2))
+                if hi - lo > 180:
+                    lo, hi = hi, lo + 360
+                sh.msp.add_arc((cx, cy), w, lo, hi, dxfattribs={"layer": "A-DOOR"})
         elif kind == "bifold":
             swing = o[5]
             v0 = swing * t / 2
@@ -733,7 +750,7 @@ def build() -> Sheet:
                  (E_IN + 4, 508.0),                                    # dining slider
                  (686.0, hs_ - 4),                                     # pantry, hall side (kitchen side of the door)
                  (800.0, face("south hall wall", +1) + 4),             # laundry
-                 (face("pantry|laundry", +1) + 4, 568.0),              # mech closet
+                 (face("pantry|laundry", +1) + 4, 561.0),              # mech closet + storage (2-gang)
                  (872.0, face("south hall wall", +1) + 4),             # common bath
                  (face("ensuite|guest", -1) - 4, 327.0),               # guest ensuite, street side of its door
                  (face("bath|wic", -1) - 4, 500.0),                    # primary bath

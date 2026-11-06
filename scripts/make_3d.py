@@ -136,6 +136,8 @@ def build_schematic() -> Scene:
         def seg(v):
             return ((a, c + v), (b, c + v)) if axis == "x" else ((c + v, a), (c + v, b))
         sill, head = (o[4], o[5]) if kind in ("window", "transom") and len(o) > 4 else (SILL, HEAD)
+        if kind == "pair" and len(o) > 6:                         # a shorter (stock-height) pair of doors
+            head = o[6]
         if kind == "transom":                                     # glass above the door on this span
             for v in (-t / 2, t / 2):
                 sc.quad(face_mat(*seg(v)), *seg(v), sill - 2, sill)          # frame between door and glass
