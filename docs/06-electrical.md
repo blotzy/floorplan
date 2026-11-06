@@ -79,8 +79,8 @@
 | Common bath: hall wall, latch side, above the end of the sink | 2-gang | Light, fan boost |
 | Gym, guest, office: hall wall, latch side, between the door trim and the closet (the closets stop about a foot short of the door) | 2-gang (gym 1-gang) | Light, ceiling fan (gym: light only) |
 | Guest ensuite: its west wall on the street side of the door, across from the WC | 2-gang | Light, fan |
-| Primary bedroom: its hall wall, just around the corner from the nook (the wall is solid, on the bed side of the suite's door) | 4-gang | Light, ceiling fan, dressing room light, walkway path light |
-| Reading nook: the hall end wall's nook side, past the door's latch (about 5" of wall past the casing) | 1-gang | Reading lights (dimmer) |
+| Just inside the suite's door: the hall end wall's nook side, past the door's latch (about 5" of wall past the casing), the first switch reached coming in | 1-gang | Primary bedroom light |
+| Primary bedroom: its hall wall, just around the corner from the nook (the wall is solid, on the bed side of the suite's door) | 4-gang | Ceiling fan, dressing room light, walkway path light, nook reading lights (dimmer) |
 | Primary bath: dressing-room wall inside, latch side, before the shower | 3-gang | Light and vanity light, shower light, fan |
 | In the attic, on the framing at the hatch opening (reachable from the ladder) | 1-gang timer switch (off after 30-60 minutes) | Attic light at the air handler platform (the code's switch at the attic access) |
 

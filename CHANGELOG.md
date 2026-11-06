@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 6, 2026
 
+- **1:34 PM**: Primary suite switches: the bedroom light on the 1-gang just inside the door (end wall, nook side), reached first coming in; the reading-light dimmer joins the 4-gang around the corner (fan, dressing room, path light, nook). No marks move on the plan (electrical doc).
 - **1:29 PM**: Hall linen closet's 5' bifold restored (dropped by mistake from the plan, 3D and A-2 in the 12:55 PM change).
 - **1:24 PM**: The mid-hall header back at 7'-6"; the header at the great room stays at 8'-0", in line with the door heads.
 - **1:19 PM**: Both hall headers at 8'-0", in line with the door heads (the mid-hall one was 7'-6").

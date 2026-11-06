@@ -747,8 +747,8 @@ def build() -> Sheet:
                  (872.0, face("south hall wall", +1) + 4),             # common bath
                  (face("ensuite|guest", -1) - 4, 327.0),               # guest ensuite, street side of its door
                  (face("bath|wic", -1) - 4, 500.0),                    # primary bath
-                 (1102.0, face("south hall wall", +1) + 4),            # primary bedroom: its hall wall, by the nook
-                 (HALL_END + INT / 2 + 4, 455.0)):                     # reading nook lights: end wall, nook side
+                 (1102.0, face("south hall wall", +1) + 4),            # primary 4-gang: its hall wall, by the nook
+                 (HALL_END + INT / 2 + 4, 455.0)):                     # primary bedroom light: end wall, nook side
         sh.text("S", x, y, 2.4)
     for x in (781.5 - 6, 942.5 + 6, 1103.0 + 6):                      # light switches, latch side
         sh.text("S", x, hall_n - 4, 2.4)
