@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461351.5385532407
+2461351.543449074
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461351.5385532407
+2461351.543449074
   9
 $TDUUPDATE
  40
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{9C7D3878-2B9F-438D-A070-770ED97B79AC}
+{C36D1744-E622-4406-9ED7-B2491C42A780}
   9
 $VERSIONGUID
   2
-{12A60CE6-D672-4C60-879E-6826515D4BAE}
+{F5C5061A-BEE0-4D2E-AC07-C50B61CF9E0E}
   9
 $EXTNAMES
 290
@@ -1327,9 +1327,9 @@ ISM
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -1343,9 +1343,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -2659,11 +2659,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-PAVE
+V-SURV-WALL
  70
 0
  62
-8
+1
   6
 Continuous
 370
@@ -2683,11 +2683,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-MISC
+V-SURV-PAVE
  70
 0
  62
-4
+8
   6
 Continuous
 370
@@ -2700,6 +2700,30 @@ Continuous
 LAYER
   5
 2CA
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+V-SURV-FENC
+ 70
+0
+ 62
+3
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+2CB
 330
 1
 100
@@ -2723,30 +2747,6 @@ Continuous
   0
 LAYER
   5
-2CB
-330
-1
-100
-AcDbSymbolTableRecord
-100
-AcDbLayerTableRecord
-  2
-V-SURV-WALL
- 70
-0
- 62
-1
-  6
-Continuous
-370
--3
-390
-13
-347
-21
-  0
-LAYER
-  5
 2CC
 330
 1
@@ -2755,11 +2755,11 @@ AcDbSymbolTableRecord
 100
 AcDbLayerTableRecord
   2
-V-SURV-FENC
+V-SURV-MISC
  70
 0
  62
-3
+4
   6
 Continuous
 370
@@ -10005,11 +10005,11 @@ SOLID
  10
 1220.0
  20
-457.45
+449.45
  10
 1211.0
  20
-457.45
+449.45
  10
 1211.0
  20
@@ -10065,11 +10065,11 @@ AcDbPolyline
  10
 1220.0
  20
-457.45
+449.45
  10
 1211.0
  20
-457.45
+449.45
  10
 1211.0
  20
@@ -10171,11 +10171,11 @@ SOLID
  10
 1211.0
  20
-421.45
+413.45
  10
 1220.0
  20
-421.45
+413.45
  10
 1220.0
  20
@@ -10247,11 +10247,11 @@ AcDbPolyline
  10
 1211.0
  20
-421.45
+413.45
  10
 1220.0
  20
-421.45
+413.45
  10
 1220.0
  20
@@ -12421,13 +12421,13 @@ AcDbLine
  10
 1214.0
  20
-421.45
+413.45
  30
 0.0
  11
 1214.0
  21
-457.45
+449.45
  31
 0.0
   0
@@ -12445,13 +12445,13 @@ AcDbLine
  10
 1217.0
  20
-421.45
+413.45
  30
 0.0
  11
 1217.0
  21
-457.45
+449.45
  31
 0.0
   0
@@ -12469,13 +12469,13 @@ AcDbLine
  10
 1211.0
  20
-421.45
+413.45
  30
 0.0
  11
 1211.0
  21
-457.45
+449.45
  31
 0.0
   0
@@ -12493,13 +12493,13 @@ AcDbLine
  10
 1220.0
  20
-421.45
+413.45
  30
 0.0
  11
 1220.0
  21
-457.45
+449.45
  31
 0.0
   0
@@ -18455,7 +18455,7 @@ AcDbText
  40
 2.4
   1
-BOOKSHELVES
+LOW BOOKSHELVES
  72
 1
  11
@@ -36791,7 +36791,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-11-06T20:55:31.380615+00:00
+1.4.4 @ 2026-11-06T21:02:34.548468+00:00
   0
 VISUALSTYLE
   5
@@ -43353,7 +43353,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-11-06T20:55:31.593337+00:00
+1.4.4 @ 2026-11-06T21:02:34.762623+00:00
   0
 ENDSEC
   0

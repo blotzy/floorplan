@@ -72,7 +72,7 @@
 - [ ] Sprinkler designer: place the heads clear of the ceiling fans in the primary bedroom, guest bedroom and office (or confirm the fans meet the code's open-fan exception), and cover the reading nook.
 - [ ] Common bath toilet: up to about 32" deep keeps the code's 24" clear in front (the room is 4'-8" wide; a typical 28"-30" elongated toilet leaves 26"-28"). A wall-hung toilet (in-wall carrier in the 2x6 plumbing wall, laid out with the primary bath's toilet on the other side; decide before rough-in) would leave about 34"-35".
 - [ ] Plumber: confirm the robot vacuum dock's drain connection into the laundry sink's trapped drain.
-- [ ] Energy consultant: glazing is about 431 sq ft (about 19.4% of the floor area), just under the prescriptive 20%, with little margin; confirm the path (prescriptive or performance) and the front door's glass lite (see [Title 24 inputs](14-title24-inputs.md)).
+- [ ] Energy consultant: glazing is about 434 sq ft (about 19.5% of the floor area), just under the prescriptive 20%, with little margin; confirm the path (prescriptive or performance) and the front door's glass lite (see [Title 24 inputs](14-title24-inputs.md)).
 - [ ] HVAC and energy consultant: an ERV instead of the continuous exhaust fan (about $4,000–7,000 more installed): fresh air through a MERV 13 filter on smoke days and some heat and humidity recovery. What does it earn in the Title 24 run?
 - [ ] HVAC: Manual J load calculation and Manual D duct design to size the ducted heat pump and confirm three zones (or two, if the primary suite is too small to run alone).
 - [ ] Electrician: load calculation with the full appliance list, confirming 200A.
