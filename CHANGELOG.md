@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Nov 9, 2026
+
+- **5:37 PM**: Open questions: Title 24 energy consultant found (the report goes in with the initial plan check submittal); a to-do for a pre-construction meeting with the County inspector and the builder once the permit is approved.
+
 ## Nov 6, 2026
 
 - **1:34 PM**: Primary suite switches: the bedroom light on the 1-gang just inside the door (end wall, nook side), reached first coming in; the reading-light dimmer joins the 4-gang around the corner (fan, dressing room, path light, nook). No marks move on the plan (electrical doc).
