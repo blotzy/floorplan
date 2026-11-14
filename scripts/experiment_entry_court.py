@@ -5,15 +5,12 @@
 """Experiment: the entry court's seat wall, seen from the lounge window.
 
   - current: the street run plus a return to the house just short of the lounge window.
+  - mid-return: the return centred between the porch notch and the lounge window.
   - porch-return: the return moved east to land just past the porch notch (the court narrows to the porch's line),
     clear of the lounge window.
   - no-return: the street run only, a freestanding seat wall open at its west end.
-  - no-return-breeze: the freestanding street run with one course of 12" breeze blocks on its 24" solid base
-    (36" in all, under the front yard's 42" wall limit).
   - no-court: no court or wall; a 3' paver landing in front of the porch step, the house numbers on the house
     front between the porch and the lounge window.
-  - porch-screen: no court; a 4' breeze-block screen (12" blocks) across the west half of the porch's street
-    edge, hiding packages at the door; the step and the carport side stay open.
 
 Writes a 3D model per option and views (standing at the lounge window, and from the street) to
 renders/experiments/entry-court/, plus a side-by-side comparison. Not part of the regular build.
@@ -32,36 +29,24 @@ import schematic as S  # noqa: E402
 OUT = S.RENDERS / "experiments" / "entry-court"
 Y0, T = 156.0, 8.0                                         # the street run's face and the 8" block
 RET = S.PORCH_X + T                                        # porch-return: the return's west face
+MID = (S.PORCH_X + 502.4) / 2 + T / 2                       # mid-return: the return's west face (window at 502.4)
 
 OPTIONS = {
     "current": ("Current: return beside the lounge window", S.ENTRY_COURT, S.ENTRY_WALLS),
+    "mid-return": ("Return halfway between the porch and the window", (S.E, Y0, MID, S.N),
+                   [(S.E + 36.0, Y0, MID, Y0 + T), (MID - T, Y0 + T, MID, S.N)]),
     "porch-return": ("Return moved to the porch line", (S.E, Y0, RET, S.N),
                      [(S.E + 36.0, Y0, RET, Y0 + T), (S.PORCH_X, Y0 + T, RET, S.N)]),
     "no-return": ("No return: freestanding seat wall", S.ENTRY_COURT, [S.ENTRY_WALLS[0]]),
-    "no-return-breeze": ("No return, breeze blocks on the seat wall (36\")", S.ENTRY_COURT, [S.ENTRY_WALLS[0]]),
     "no-court": ("No court: landing at the porch step", None, []),
-    "porch-screen": ("No court: breeze-block screen at the porch", None, []),
 }
 OX, OY = S.PORCH_OUT
 LANDING = (OX, OY - 24 - 36, S.PORCH_X, OY - 24)           # pavers in front of the porch step
-SCREEN = (S.PORCH_X - 48, OY, S.PORCH_X, OY + 4, 48.0)     # x0, y0, x1, y1, height
 NUMBERS = (S.PORCH_X + 14, S.N - 0.5, S.PORCH_X + 32, S.N, 60, 66)
 
 
-def breeze(sc, x0, x1, y0, y1, z0, rows):
-    """12" breeze blocks (open centres) from x0 to x1, rows high, starting at z0."""
-    t = 2.0
-    for i in range(int((x1 - x0) // 12)):
-        for j in range(rows):
-            a, c = x1 - (i + 1) * 12, z0 + j * 12
-            for bx0, bx1, bz0, bz1 in ((a, a + 12, c, c + t), (a, a + 12, c + 12 - t, c + 12),
-                                       (a, a + t, c, c + 12), (a + 12 - t, a + 12, c, c + 12)):
-                sc.boxes["breeze"].append([bx0, y0, bx1, y1, bz0, bz1])
-    sc.mat["breeze"] = {"color": 0xECE7DD}
-
-
-def no_court(sc, screen=False):
-    """Take the court, its walls and the wall's house numbers out; add the landing (and the screen)."""
+def no_court(sc):
+    """Take the court, its walls and the wall's house numbers out; add the landing."""
     court, walls = OPTIONS["current"][1], OPTIONS["current"][2]
     rect = lambda x0, y0, x1, y1: [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]  # noqa: E731
     sc.polys["pavers"] = [q for q in sc.polys["pavers"] if q[0] != rect(*court)]
@@ -70,16 +55,6 @@ def no_court(sc, screen=False):
     sc.boxes["post"] = [b for b in sc.boxes["post"] if b[:2] != [w0[2] - 30, w0[1] - 0.5]]
     sc.polys["pavers"].append([rect(*LANDING), 0.0, 2.0])
     sc.boxes["post"].append(list(NUMBERS))
-    if screen:
-        x0, y0, x1, y1, h = SCREEN
-        t = 2.0
-        for i in range(int((x1 - x0) // 12)):
-            for j in range(int(h // 12)):
-                a, c = x0 + i * 12, 0.5 + j * 12
-                for bx0, bx1, bz0, bz1 in ((a, a + 12, c, c + t), (a, a + 12, c + 12 - t, c + 12),
-                                           (a, a + t, c, c + 12), (a + 12 - t, a + 12, c, c + 12)):
-                    sc.boxes["breeze"].append([bx0, y0, bx1, y1, bz0, bz1])
-        sc.mat["breeze"] = {"color": 0xECE7DD}
 SHOTS = {"lounge": ((570, 290, 62), (440, 140, 26)), "street": ((580, 20, 62), (400, 260, 30))}
 
 
@@ -91,10 +66,7 @@ def model(key):
     sc = M.build_schematic()
     X.chosen_exterior(sc)
     if not court:
-        no_court(sc, screen=key == "porch-screen")
-    if key == "no-return-breeze":
-        x0, y0, x1, y1 = walls[0]
-        breeze(sc, x0, x1, y0, y1, S.ENTRY_WALL_H, 1)
+        no_court(sc)
     M.add_vault_ceiling(sc, X.great_room_vault(to_outside=True))
     out = OUT / key
     out.mkdir(parents=True, exist_ok=True)
@@ -130,9 +102,6 @@ def plan(ax, key):
         x0, y0, x1, y1 = LANDING
         ax.add_patch(Rectangle((x0, y0), x1 - x0, y1 - y0, fc="#e9e4da", ec="none"))
         ax.text((x0 + x1) / 2, (y0 + y1) / 2, "landing", ha="center", va="center", fontsize=7)
-    if key == "porch-screen":
-        x0, y0, x1, y1, _ = SCREEN
-        ax.add_patch(Rectangle((x0, y0), x1 - x0, y1 - y0, fc="none", ec="#555", hatch="xx", lw=0.8))
     ax.fill([S.E, S.PORCH_X, S.PORCH_X, 700, 700, S.E], [S.PORCH_Y, S.PORCH_Y, S.N, S.N, 320, 320], c="#cfc9bf")
     ax.plot([S.E, S.E, S.PORCH_X, S.PORCH_X, 700], [320, S.PORCH_Y, S.PORCH_Y, S.N, S.N], c="k", lw=1.5)
     ax.plot([502.4, 622.4], [S.N, S.N], c="#3a7bd5", lw=4)
@@ -141,8 +110,7 @@ def plan(ax, key):
     ax.text(562.4, S.N + 14, "lounge\nwindow", ha="center", va="top", fontsize=7)
     ax.text((S.E + S.PORCH_X) / 2, (S.N + S.PORCH_Y) / 2, "porch", ha="center", va="center", fontsize=7)
     for x0, y0, x1, y1 in walls:
-        ax.add_patch(Rectangle((x0, y0), x1 - x0, y1 - y0, fc="#555", ec="none",
-                               hatch="xx" if key == "no-return-breeze" else None))
+        ax.add_patch(Rectangle((x0, y0), x1 - x0, y1 - y0, fc="#555", ec="none"))
     ax.annotate("", xy=(440, 140), xytext=(570, 290), arrowprops=dict(arrowstyle="->", color="#c33", lw=1))
     ax.set_xlim(330, 700); ax.set_ylim(100, 330); ax.set_aspect("equal"); ax.axis("off")
 
