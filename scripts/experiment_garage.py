@@ -13,7 +13,9 @@
     gable, over the garage and the covered walkway; eaves at 9' to the street and the courtyard, a stucco gable
     end on the east, the west end against the house. Its ridge is about 11'-6", some 2' below the wing's.
   - The garage door in the porch's wood-look finish (the feature wall's color).
-  - The west side yard's 6' fence and 4' gate move back from the house front to the garage front's line.
+  - The west side yard's 6' fence and 4' gate move back to the garage's rear wall line (matching the courtyard
+    fence on the east side).
+  - No screen fence around the bin pad.
   - A 3'-0" door from the garage into the courtyard in the rear wall (clear of the dining slider's landing), in place of the 14'
     courtyard gate; the courtyard fence meets the garage's east wall. The bins stay in the strip east of it.
 
@@ -99,9 +101,13 @@ def garage(sh):
     for e in list(msp.query("TEXT")):
         if e.dxf.text == "6' FENCE + GATE":
             msp.delete_entity(e)
-    sh.line((S.W, FRONT), (S.W + 20, FRONT), "A-FENC")
-    sh.line((S.W + 68, FRONT), (S.LOT_X0 + S.LOT_W, FRONT), "A-FENC")
-    sh.text("6' FENCE + GATE", (S.W + S.LOT_X0 + S.LOT_W) / 2, FRONT - 10, 4.0)
+    sh.line((S.W, FY), (S.W + 20, FY), "A-FENC")
+    sh.line((S.W + 68, FY), (S.LOT_X0 + S.LOT_W, FY), "A-FENC")
+    sh.text("6' FENCE + GATE", (S.W + S.LOT_X0 + S.LOT_W) / 2, FY - 10, 4.0)
+    for e in list(msp.query("LINE[layer=='A-FENC']")):              # the bin pad's screen
+        xs = (e.dxf.start.x, e.dxf.end.x); ys = (e.dxf.start.y, e.dxf.end.y)
+        if max(xs) <= S.LOT_X0 + 61 and 257 <= min(ys) and max(ys) <= 387:
+            msp.delete_entity(e)
     sh.line((S.LOT_X0, FY), (CX0, FY), "A-FENC")
     sh.text("6' FENCE", (S.LOT_X0 + CX0) / 2, FY + 10, 4.0)
     return sh
