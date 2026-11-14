@@ -256,6 +256,27 @@ def great_room_inside(sc, under, ceil=None, xs=(), ys=(), foyer=None):
             quad(sc, "wall", [xa, y, C], [xb, y, C], [xb, y, ceil(m, y)], [xa, y, ceil(m, y)])
     if fx is not None:                                                   # header from the flat foyer up to
         quad(sc, "wall", [E_in, yf, fz], [tv0, yf, fz], [tv0, yf, ceil(E_in, yf)], [E_in, yf, ceil(E_in, yf)])
+    # The exterior walls' inside faces, from the 9' line up to the vault (the plan's walls stop at 9'): the street
+    # wall across the lounge (with the clerestory's opening and its jambs through the wall), the east wall along
+    # the dining room, and the rear wall across the dining room and kitchen.
+    n_in, s_in, n_out = S.N_IN, S.S_IN, S.N
+    g0, g1 = CLERESTORY_X
+    gz0, gz1 = CLERESTORY_SILL, CLERESTORY_SILL + 36.0
+    for xa, xb in cuts(lx0, lx1, (*xs, g0, g1)):
+        za, zb = ceil(xa, n_in), ceil(xb, n_in)
+        if g0 <= (xa + xb) / 2 <= g1:                                    # below and above the clerestory
+            quad(sc, "wall", [xa, n_in, C], [xb, n_in, C], [xb, n_in, gz0], [xa, n_in, gz0])
+            quad(sc, "wall", [xa, n_in, gz1], [xb, n_in, gz1], [xb, n_in, zb], [xa, n_in, za])
+        else:
+            quad(sc, "wall", [xa, n_in, C], [xb, n_in, C], [xb, n_in, zb], [xa, n_in, za])
+    for z in (gz0, gz1):                                                 # clerestory sill and head, through the wall
+        quad(sc, "wall", [g0, n_out, z], [g1, n_out, z], [g1, n_in, z], [g0, n_in, z])
+    for x in (g0, g1):                                                   # and its sides
+        quad(sc, "wall", [x, n_out, gz0], [x, n_in, gz0], [x, n_in, gz1], [x, n_out, gz1])
+    for ya, yb in cuts(yf, s_in, ys):                                    # east wall, along the dining room
+        quad(sc, "wall", [E_in, ya, C], [E_in, yb, C], [E_in, yb, ceil(E_in, yb)], [E_in, ya, ceil(E_in, ya)])
+    for xa, xb in cuts(E_in, kx, xs):                                    # rear wall, dining room and kitchen
+        quad(sc, "wall", [xa, s_in, C], [xb, s_in, C], [xb, s_in, ceil(xb, s_in)], [xa, s_in, ceil(xa, s_in)])
 
 
 SPLIT_X = (S.wall_info("foyer wall")[1], LOUNGE_X[1] + S.INT / 2)   # the lounge's shed band: foyer/TV wall
