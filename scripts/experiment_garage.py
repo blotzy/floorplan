@@ -8,7 +8,8 @@
     line (parking no closer to the street than the front door, as now), with a 16' x 7' sectional door.
   - 6" stud walls (stucco outside, Type X gypsum inside) on the east and rear; the east wall stays on the
     carport's line (the east side yard). The rear wall goes about 1' further south so the garage is 18' deep
-    inside (about 17'-6" wide).
+    inside (about 17'-6" wide). The dining slider moves 8" toward the rear to stay about 4" clear of it (about 1'-3"
+    of solid wall left at the dining corner).
   - Roof: a 2:12 gable in the house's dark shingles (the wing's pitch), its ridge east-west like the wing's
     gable, over the garage and the covered walkway; eaves at 9' to the street and the courtyard, a stucco gable
     end on the east, the west end against the house. Its ridge is about 11'-6", some 2' below the wing's.
@@ -17,8 +18,9 @@
     bin pad just behind it, out of sight. No fence behind the garage, so the strip opens into the courtyard (the
     bins are inside the dog yard). No separate screen around the bins. The west side yard's fence stays on the house
     front's line.
-  - A 3'-0" door from the garage into the courtyard in the rear wall (clear of the dining slider's landing), in place of the 14'
-    courtyard gate.
+  - A 2'-8" door from the garage into the foyer, in the foyer's east wall past the front door's swing (solid-core
+    or 20-minute rated, self-closing and self-latching), swinging into the garage. No door to the courtyard: it is
+    reached from the dining slider, and the 14' courtyard gate goes.
 
 Writes renders/experiments/garage.png (plan) and a 3D model with views to renders/experiments/garage/.
 Not part of the regular build.
@@ -40,13 +42,13 @@ CX0, CY0, CX1, CY1 = S.CARPORT
 FRONT = S.PORCH_Y                                 # the garage's front wall: the front door's line
 BACK = FRONT + T + 216.0                          # inside face of the rear wall: 18' deep inside
 DOOR = (CX0 + T + 9.0, CX0 + T + 9.0 + 192.0)     # 16' door, piers each side
-MAN = (CX1 - 96.0, CX1 - 60.0)                    # 3' door to the courtyard, clear of the slider's landing
+HOUSE_DOOR = ("east", 366.0, 398.0, "door", "b", -1)   # garage -> foyer, hinged at its south jamb, into the garage
 PITCH, EAVE_Z, THK = 2 / 12, 108.0, 6.0
 RX0, RY0, RX1, _ = S.CARPORT_ROOF
 RY1 = BACK + T + 6.0                              # the roof: 6" past the rear wall
 RYM = (RY0 + RY1) / 2                             # its ridge
 WALLS = [(CX0, FRONT, CX0 + T, BACK + T),                      # east
-         (CX0 + T, BACK, MAN[0], BACK + T), (MAN[1], BACK, CX1, BACK + T),   # rear, either side of the door
+         (CX0 + T, BACK, CX1, BACK + T),                              # rear
          (CX0 + T, FRONT, DOOR[0], FRONT + T), (DOOR[1], FRONT, CX1, FRONT + T)]   # front piers
 
 
@@ -77,9 +79,6 @@ def garage(sh):
         sh.rect(x0, y0, x1, y1, "A-WALL")
     sh.line((DOOR[0], FRONT + T / 2), (DOOR[1], FRONT + T / 2), "A-DOOR")
     sh.text("16'-0\" x 7'-0\" GARAGE DOOR", (DOOR[0] + DOOR[1]) / 2, FRONT + 14, 4.0)
-    a, b = MAN                                                        # courtyard door, swinging out, hinged at
-    sh.line((b, BACK + T), (b, BACK + T + 36), "A-DOOR")              # the house end
-    sh.msp.add_arc((b, BACK + T), 36.0, 90.0, 180.0, dxfattribs={"layer": "A-DOOR"})
     sh.text("GARAGE", (CX0 + CX1) / 2, (FRONT + BACK) / 2 + 14, 10.0, "A-AREA-IDEN")
     sh.text(f"{S.fmt(CX1 - CX0 - T)} x {S.fmt(BACK - FRONT - T)} CLEAR", (CX0 + CX1) / 2,
             (FRONT + BACK) / 2, 6.5, "A-AREA-IDEN")
@@ -131,10 +130,7 @@ def model():
     for x0, y0, x1, y1 in WALLS:
         sc.boxes["exterior"].append([x0, y0, x1, y1, 0, 108])
     sc.boxes["exterior"].append([DOOR[0], FRONT, DOOR[1], FRONT + T, 84, 108])   # header over the door
-    sc.boxes["exterior"].append([MAN[0], BACK, MAN[1], BACK + T, 80, 108])
     sc.boxes["feature"].append([DOOR[0], FRONT + 2, DOOR[1], FRONT + 4, 0, 84])   # the porch's wood-look finish
-    sc.boxes["gdoor"].append([MAN[0], BACK + 2, MAN[1], BACK + 4, 0, 80])
-    sc.mat["gdoor"] = {"color": 0x2B2D30}
     sc.boxes["roof"] = [b for b in sc.boxes["roof"] if b[4] != 108]   # the flat carport roof comes off
     top = lambda x, y: EAVE_Z + THK + ((RY1 - RY0) / 2 - abs(y - RYM)) * PITCH   # noqa: E731
     for a, b in ((RY0, RYM), (RYM, RY1)):
@@ -171,5 +167,9 @@ def model():
 
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
+    S.OPENINGS.append(HOUSE_DOOR)
+    for i, o in enumerate(S.OPENINGS):                               # the dining slider, clear of the rear wall
+        if o[0] == "east" and o[3] == "slider":
+            S.OPENINGS[i] = (o[0], o[1] + 8.0, o[2] + 8.0, *o[3:])
     plan()
     model()
