@@ -13,8 +13,10 @@
     gable, over the garage and the covered walkway; eaves at 9' to the street and the courtyard, a stucco gable
     end on the east, the west end against the house. Its ridge is about 11'-6", some 2' below the wing's.
   - The garage door in the porch's wood-look finish (the feature wall's color).
-  - The west side yard's 6' fence and 4' gate move back from the house front to the garage door's line.
-  - No screen fence around the bin pad.
+  - A 6' fence and 4' gate across the east side strip (beside the garage) on the garage door's line, with the
+    bin pad just behind it: the bins are out of sight and still outside the dog yard (the courtyard fence closes
+    the strip at the back). No separate screen around the bins. The west side yard's fence stays on the house
+    front's line.
   - A 3'-0" door from the garage into the courtyard in the rear wall (clear of the dining slider's landing), in place of the 14'
     courtyard gate; the courtyard fence meets the garage's east wall. The bins stay in the strip east of it.
 
@@ -93,20 +95,23 @@ def garage(sh):
     msp.add_lwpolyline([(RX0, RY0), (RX1, RY0), (RX1, RY1), (RX0, RY1)], close=True,
                        dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
     msp.add_line((RX0, RYM), (RX1, RYM), dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
-    sh.text("2:12 GABLE ROOF ABOVE, RIDGE", (RX0 + RX1) / 2, RYM + 5, 3.0, "A-CANP")
-    for e in list(msp.query("LINE[layer=='A-FENC']")):              # the west side yard's fence and gate
-        if abs(e.dxf.start.y - S.N) < 0.5 and abs(e.dxf.end.y - S.N) < 0.5 and e.dxf.start.x >= S.W - 1:
-            msp.delete_entity(e)
-    for e in list(msp.query("TEXT")):
-        if e.dxf.text == "6' FENCE + GATE":
-            msp.delete_entity(e)
-    sh.line((S.W, FRONT), (S.W + 20, FRONT), "A-FENC")
-    sh.line((S.W + 68, FRONT), (S.LOT_X0 + S.LOT_W, FRONT), "A-FENC")
-    sh.text("6' FENCE + GATE", (S.W + S.LOT_X0 + S.LOT_W) / 2, FRONT - 10, 4.0)
+    sh.text("2:12 GABLE ROOF ABOVE, RIDGE", (RX0 + RX1) / 2, RYM - 8, 3.0, "A-CANP")
     for e in list(msp.query("LINE[layer=='A-FENC']")):              # the bin pad's screen
         xs = (e.dxf.start.x, e.dxf.end.x); ys = (e.dxf.start.y, e.dxf.end.y)
         if max(xs) <= S.LOT_X0 + 61 and 257 <= min(ys) and max(ys) <= 387:
             msp.delete_entity(e)
+    for e in list(msp.query("LWPOLYLINE[layer=='L-SITE']")):       # the bin pad moves behind the east fence
+        xs = [q[0] for q in e.get_points()]; ys = [q[1] for q in e.get_points()]
+        if abs(min(xs) - (S.LOT_X0 + 6)) < 1 and abs(min(ys) - 262) < 1:
+            msp.delete_entity(e)
+    for e in list(msp.query("TEXT")):
+        if e.dxf.text == "BINS":
+            msp.delete_entity(e)
+    sh.rect(S.LOT_X0 + 6, FRONT + 6, S.LOT_X0 + 54, FRONT + 126, "L-SITE")
+    sh.text("BINS", S.LOT_X0 + 30, FRONT + 66, 5.0, rot=90)
+    sh.line((S.LOT_X0, FRONT), (CX0 - 68, FRONT), "A-FENC")         # east fence, its 4' gate by the garage
+    sh.line((CX0 - 20, FRONT), (CX0, FRONT), "A-FENC")
+    sh.text("6' FENCE + GATE", (S.LOT_X0 + CX0) / 2, FRONT - 10, 4.0)
     sh.line((S.LOT_X0, FY), (CX0, FY), "A-FENC")
     sh.text("6' FENCE", (S.LOT_X0 + CX0) / 2, FY + 10, 4.0)
     return sh
