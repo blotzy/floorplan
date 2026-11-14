@@ -89,9 +89,11 @@ LAWN = (LOT_X0 + 18.0, CARPORT[3] + 64.0, E - 156.0, LOT_D - 6.0)   # courtyard 
                                      # pavers to the rear fence, beside the gravel strip along the house
 EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
 # Entry court in front of the porch, edged on the street side by a 24" seat wall (8" block) that
-# returns to the house just short of the lounge window; you walk in from the driveway side.
-ENTRY_COURT = (E, 156.0, 504.0, N)   # x0, y0, x1, y1
-ENTRY_WALLS = [(E + 36.0, 156.0, 504.0, 164.0), (496.0, 164.0, 504.0, N)]
+# returns to the house centred on the wall between the porch notch and the lounge window (502.4);
+# you walk in from the driveway side.
+ENTRY_X1 = (PORCH_X + 502.4) / 2 + 4.0                  # the return's west face
+ENTRY_COURT = (E, 156.0, ENTRY_X1, N)   # x0, y0, x1, y1
+ENTRY_WALLS = [(E + 36.0, 156.0, ENTRY_X1, 164.0), (ENTRY_X1 - 8.0, 164.0, ENTRY_X1, N)]
 ENTRY_WALL_H = 24.0
 PLAN_NORTH_AZ = 22.4                 # azimuth of plan north: survey side lines N22°23'00"E
 
@@ -804,7 +806,7 @@ def build() -> Sheet:
     sh.text("8'-0\" x 5'-0\"", (px0 + PORCH_X) / 2, N + 12, 3.0)
     sh.rect(E, N, E + 6, N + 6, "A-WALL")                                     # porch corner post
     sh.rect(*ENTRY_COURT, "L-SITE")                                           # entry court + seat wall
-    sh.text("ENTRY COURT", (ENTRY_COURT[0] + ENTRY_COURT[2]) / 2, 205.0, 6.0, "A-AREA-IDEN")
+    sh.text("ENTRY COURT", (ENTRY_COURT[0] + ENTRY_COURT[2]) / 2, 184.0, 6.0, "A-AREA-IDEN")
     for b in ENTRY_WALLS:
         sh.rect(*b, "A-WALL")
     sh.text('24" SEAT WALL', (ENTRY_WALLS[0][0] + ENTRY_WALLS[0][2]) / 2, 146.0, 5.0)

@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Nov 14, 2026
+
+- **12:22 PM**: Entry court: the seat wall's return meets the house midway between the porch notch and the lounge window (centred on that stretch of wall, about 2' clear of the window) instead of at the window's edge, so the lounge looks out past it; the court is about 10' wide. Schematic, A-1, Z-1, FM-1, the 3D model and its street and entry-court views.
+
 ## Nov 9, 2026
 
 - **5:37 PM**: Open questions: Title 24 energy consultant found (the report goes in with the initial plan check submittal); a to-do for a pre-construction meeting with the County inspector and the builder once the permit is approved.

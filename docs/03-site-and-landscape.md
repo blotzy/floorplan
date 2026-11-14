@@ -62,7 +62,7 @@ From the topographic survey (available on request; overlay: [survey-overlay.png]
 ## Front yard (no lawn)
 
 - Native/Mediterranean low-water planting: dry creek bed / rain garden taking the downspouts, boulders, low ground covers and perennials; no woody shrubs over 12" within 10' of the house.
-- **Entry court** in front of the porch, paved, edged on the street side by a seat-height masonry wall (noncombustible) that returns to the house just short of the lounge window. You walk in from the driveway side. Lit house numbers on the wall; low-voltage path lights.
+- **Entry court** in front of the porch, paved, edged on the street side by a seat-height masonry wall (noncombustible) that returns to the house midway between the porch and the lounge window, keeping the window's view clear. You walk in from the driveway side. Lit house numbers on the wall; low-voltage path lights.
 - **Ember-resistant zone** under the eaves and 5' beyond them all round (pavers, gravel, or low irrigated ground cover; nothing receptive to embers); no bark mulch within 30' of the house. The whole lot is within Zone A (30'). See the fuel modification plan (FM-1).
 - Driveway: permeable pavers or concrete with gravel strips.
 - **Privacy tree by the street, across from the lounge window:** **Toyon** (*Heteromeles arbutifolia*): an evergreen California native, dense enough to screen the big north window from the street, under 25' at maturity, with non-invasive roots, and on the County's fuel modification plant list for Zone A. (Catalina cherry is listed for Zone B only, so it can't be used here.) Avoid oaks and sycamores (big root zones), and resinous or oily plants such as pines, eucalyptus and juniper (fire risk).
