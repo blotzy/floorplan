@@ -12,6 +12,8 @@
   - Roof: a 2:12 gable in the house's dark shingles (the wing's pitch), its ridge east-west like the wing's
     gable, over the garage and the covered walkway; eaves at 9' to the street and the courtyard, a stucco gable
     end on the east, the west end against the house. Its ridge is about 11'-6", some 2' below the wing's.
+  - The garage door in the porch's wood-look finish (the feature wall's color).
+  - The west side yard's 6' fence and 4' gate move back from the house front to the garage front's line.
   - A 3'-0" door from the garage into the courtyard in the rear wall (clear of the dining slider's landing), in place of the 14'
     courtyard gate; the courtyard fence meets the garage's east wall. The bins stay in the strip east of it.
 
@@ -91,6 +93,15 @@ def garage(sh):
                        dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
     msp.add_line((RX0, RYM), (RX1, RYM), dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
     sh.text("2:12 GABLE ROOF ABOVE, RIDGE", (RX0 + RX1) / 2, RYM + 5, 3.0, "A-CANP")
+    for e in list(msp.query("LINE[layer=='A-FENC']")):              # the west side yard's fence and gate
+        if abs(e.dxf.start.y - S.N) < 0.5 and abs(e.dxf.end.y - S.N) < 0.5 and e.dxf.start.x >= S.W - 1:
+            msp.delete_entity(e)
+    for e in list(msp.query("TEXT")):
+        if e.dxf.text == "6' FENCE + GATE":
+            msp.delete_entity(e)
+    sh.line((S.W, FRONT), (S.W + 20, FRONT), "A-FENC")
+    sh.line((S.W + 68, FRONT), (S.LOT_X0 + S.LOT_W, FRONT), "A-FENC")
+    sh.text("6' FENCE + GATE", (S.W + S.LOT_X0 + S.LOT_W) / 2, FRONT - 10, 4.0)
     sh.line((S.LOT_X0, FY), (CX0, FY), "A-FENC")
     sh.text("6' FENCE", (S.LOT_X0 + CX0) / 2, FY + 10, 4.0)
     return sh
@@ -114,7 +125,7 @@ def model():
         sc.boxes["exterior"].append([x0, y0, x1, y1, 0, 108])
     sc.boxes["exterior"].append([DOOR[0], FRONT, DOOR[1], FRONT + T, 84, 108])   # header over the door
     sc.boxes["exterior"].append([MAN[0], BACK, MAN[1], BACK + T, 80, 108])
-    sc.boxes["gdoor"].append([DOOR[0], FRONT + 2, DOOR[1], FRONT + 4, 0, 84])
+    sc.boxes["feature"].append([DOOR[0], FRONT + 2, DOOR[1], FRONT + 4, 0, 84])   # the porch's wood-look finish
     sc.boxes["gdoor"].append([MAN[0], BACK + 2, MAN[1], BACK + 4, 0, 80])
     sc.mat["gdoor"] = {"color": 0x2B2D30}
     sc.boxes["roof"] = [b for b in sc.boxes["roof"] if b[4] != 108]   # the flat carport roof comes off
@@ -135,7 +146,7 @@ def model():
     win = lambda p: subprocess.run(["wslpath", "-w", str(p)], capture_output=True, text=True).stdout.strip()  # noqa: E731
     html = out / "house.html"
     shots = {"driveway": ((250, -200, 62), (260, 400, 60)),
-             "east": ((-200, -150, 80), (500, 350, 110)), "courtyard": ((120, 700, 62), (300, 450, 60))}
+             "east": ((-200, -150, 80), (500, 350, 110)), "west": ((1500, -150, 70), (1100, 350, 80)), "courtyard": ((120, 700, 62), (300, 450, 60))}
     for name, ((cx, cy, cz), (tx, ty, tz)) in shots.items():
         tmp = html.with_name(f"_{name}.html")
         tmp.write_text(html.read_text().replace(hook, hook + (
