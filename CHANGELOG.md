@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 14, 2026
 
+- **2:48 PM**: Foyer: a flat 9' ceiling (the porch soffit's height) instead of the vault, so the entry is a low space opening into the tall great room past the end of the foyer wall, where a drywall face steps up to the vault. Decked storage above it (20 psf, A-7 note 6), reached by a flush trimless access panel in that face on the dining-room side; the foyer closets stop at the ceiling; a centred ceiling light. A-2 and A-4 ceiling notes, A-7, the 3D model, and the docs; open questions for the engineer (the ceiling joists and storage load) and the sprinkler designer.
 - **2:00 PM**: Kitchen: the peninsula's kitchen side moves 4" toward the dining room for a 4'-6" aisle (was about 4'-2"; room to work at the oven behind someone at the sink) and the stool overhang goes from 15" to 18"; the stool face and the dining room don't move. The band behind the kitchen-side cabinets drops to about 5", still carrying the sink's trap arm to the rear-wall vent.
 - **12:22 PM**: Entry court: the seat wall's return meets the house midway between the porch notch and the lounge window (centred on that stretch of wall, about 2' clear of the window) instead of at the window's edge, so the lounge looks out past it; the court is about 10' wide. Schematic, A-1, Z-1, FM-1, the 3D model and its street and entry-court views.
 

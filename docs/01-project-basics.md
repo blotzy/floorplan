@@ -19,7 +19,7 @@ All-electric single-story rebuild at 220 Laurel Dr, Altadena, replacing the hous
 | Carport roof | Low slope (about ½" per foot), sloping east, away from the house, to a gutter on its east edge; standing-seam metal (too flat for shingles), double-locked seams, Class A assembly, uplift-rated |
 | Exterior | Stucco walls (noncombustible); thin dark fascia |
 | Fuel | All-electric, no gas line to the lot |
-| Ceiling height | The great room (foyer, lounge, dining, kitchen) is vaulted under the roof slope, about 16' at the clerestory down to about 11' at the rear wall. Everywhere else: flat 9' ceilings under a sealed (unvented) attic, which leaves about 3'-9" of attic headroom over the middle of the hall |
+| Ceiling height | The great room (lounge, dining, kitchen) is vaulted under the roof slope, about 16' at the clerestory down to about 11' at the rear wall. The foyer has a flat 9' ceiling (the porch soffit's height) with storage above it. Everywhere else: flat 9' ceilings under a sealed (unvented) attic, which leaves about 3'-9" of attic headroom over the middle of the hall |
 | Windows | Standard manufacturer sizes (6" steps in width and height); openings wider than 8' are two mulled units. Heads in line at 8' |
 | Doors | 8' tall doors throughout; front door at least 36" wide (3'-0" slab) |
 | Flooring | LVP throughout, flush transitions with no raised thresholds |

@@ -12,7 +12,7 @@ What the energy consultant needs to model the house and produce the compliance f
 | Type | New single-family, 1 story, all-electric, 4 bedrooms, 3 baths; Eaton Fire rebuild, non-like-for-like; 2022 Energy Code under the fire-rebuild executive order (confirm) |
 | Conditioned floor area | About 2,226 sq ft (porch and open carport excluded) |
 | Orientation | The street (front) wall faces about 22° (NNE); rear faces about 202° (SSW); the dining slider faces about 112° (ESE); the west end faces about 292° (WNW) |
-| Ceilings | 9' flat under a sealed attic; the great room (foyer, lounge, dining, kitchen, about 900 sq ft) vaulted under the roof, about 16' at the street down to 11' |
+| Ceilings | 9' flat under a sealed attic; the great room (lounge, dining, kitchen, about 840 sq ft) vaulted under the roof, about 16' at the street down to 11'; the foyer (about 60 sq ft) flat at 9' with conditioned storage above, inside the roof-deck insulation |
 | Roof | 2:12 split roof: a shed over the great room and the east end of the bedroom wing, a gable over the rest of the wing; dark asphalt shingles (check the cool-roof requirements and pick a rated color if needed), 2'-6" eaves |
 
 ## Envelope (targets)

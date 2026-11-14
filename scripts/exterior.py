@@ -199,7 +199,7 @@ def great_room_vault(to_outside=False):
 def shed_vault_great(sc, pitch, ov, seams=False, band=None, pieces=None):
     """shed_vault, but the whole great room (lounge, dining, kitchen) is vaulted under one continuous
     sloped ceiling, from the clerestory down to the rear wall: no step where the lounge meets the
-    dining, and the foyer opens up to it too (the foyer/TV wall runs full height). Everything west of
+    dining; the foyer keeps its flat 9' ceiling (great_room_inside). Everything west of
     the kitchen keeps flat 10' ceilings under the attic."""
     under = shed_vault_under(pitch)
     lx0, lx1 = LOUNGE_X
@@ -215,9 +215,10 @@ def shed_vault_great(sc, pitch, ov, seams=False, band=None, pieces=None):
 def great_room_inside(sc, under, ceil=None, xs=(), ys=(), foyer=None):
     """The vaulted great room's sloped ceiling and the interior walls that rise to it. ceil(x, y) gives
     the ceiling's height where it isn't just under(y) (a split roof), planar between the breaks xs, ys.
-    foyer: (x, z): the foyer east of x gets a flat ceiling at z instead."""
+    foyer: (x, z): the foyer east of x gets a flat ceiling at z instead. By default the plan's: the whole foyer
+    (to the foyer wall's centreline) under a flat 9' ceiling, the porch soffit's height, with storage above it."""
     ceil = ceil or (lambda x, y: under(y))
-    fx, fz = foyer or (None, None)
+    fx, fz = foyer or (S.wall_info("foyer wall")[1], M.CEIL)
     flat = lambda x: fx is not None and x < fx              # noqa: E731  in the flat-ceilinged foyer
     lx0, lx1 = LOUNGE_X
     yf = S.FOYER_WALL_END                                   # foyer's open (south) edge
@@ -239,7 +240,7 @@ def great_room_inside(sc, under, ceil=None, xs=(), ys=(), foyer=None):
                 quad(sc, "wall", [xa, ya, z(ya)], [xb, ya, z(ya)], [xb, yb, z(yb)], [xa, yb, z(yb)])
     C = M.CEIL
     # Walls that rise to the vault: the porch's side wall (lounge corner), the gym and kitchen walls,
-    # and the foyer/TV wall (both faces), so the foyer is a tall space of its own beside the lounge.
+    # and the foyer/TV wall (its lounge face; its foyer face stops at the foyer's flat ceiling).
     tv0, tv1 = S.face("foyer wall", -1), S.face("foyer wall", +1)
     for x, y0, y1 in ((lx0, S.N_IN, S.PORCH_Y), (lx1, S.N_IN, yf), (kx, yf, S.S_IN),
                       (tv0, fy, yf), (tv1, S.PORCH_Y, yf)):

@@ -797,8 +797,8 @@ def elevations(pdf):
     fig.text(26.0 / W_IN, 17.4 / H_IN, f"Heights are above finished floor (0'-0\").\nAssumed finished floor: {ff:.1f}' "
              "(6\" above the\nhighest existing grade at the walls).\nScale: 3/16\" = 1'-0\"\n\n"
              "CEILING HEIGHTS\n"
-             "Flat ceilings 9'-0\" (bedroom wing, baths, hall,\nlaundry, pantry, reading nook); porch 9'-0\".\n"
-             f"Great room (foyer, lounge, dining, kitchen) vaulted\nunder the roof, from about {ftin(under(S.S_IN))} at the rear\n"
+             "Flat ceilings 9'-0\" (bedroom wing, baths, hall,\nlaundry, pantry, reading nook, foyer); porch 9'-0\".\n"
+             f"Great room (lounge, dining, kitchen) vaulted\nunder the roof, from about {ftin(under(S.S_IN))} at the rear\n"
              f"wall to about {ftin(under(S.N_IN))} at the street wall (A-5).\n\n"
              "GRADING (preliminary; per civil)\n"
              "Finished floor set just above the high (street /\ncarport) side; finished grade about 6\" below the floor\n"
@@ -1070,7 +1070,8 @@ def loads():
     store = (gx0, S.N_IN + 24.0, gx1, sy1)
     rh = (X.Sth - X.N) / 2 - (STORE_H + 108.0 - X.PLATE) / (2 / 12)
     ridge = (X.WING_X, X.RIDGE_Y - rh, S.W_IN, X.RIDGE_Y + rh)
-    return dict(gym=(gx0, gy0, gx1, gy1), rings=rings, ahu=ahu, store=store, ridge=ridge, pv=pv_area())
+    foyer = (S.E_IN, S.PORCH_Y + S.EXT, S.face("foyer wall", -1), S.FOYER_WALL_END)
+    return dict(gym=(gx0, gy0, gx1, gy1), rings=rings, ahu=ahu, store=store, ridge=ridge, pv=pv_area(), foyer=foyer)
 
 
 PV_PANEL = (44.6, 67.8 * 12 / (12 ** 2 + 2 ** 2) ** 0.5)   # a ~430 W panel, portrait: width; length in plan
@@ -1106,6 +1107,11 @@ def loads_plan(pdf):
             f"under the shed: over the gym from {ftin(sy0 - S.N_IN)} off the street wall and across the hall;\n"
             f"under the gable: a {ftin(ry1 - ry0)} strip along the ridge (clear of the air handler, hatch, walkway and skylight tube)",
             fontsize=7, ha="center", zorder=6, bbox=dict(fc="white", ec="none", alpha=0.8))
+    fx0, fy0, fx1, fy1 = L["foyer"]                                     # storage over the foyer's flat ceiling
+    ax.add_patch(Rectangle((fx0, fy0), fx1 - fx0, fy1 - fy0, fc="#f3d9a6", ec="#b07a2a", lw=1.2, alpha=0.6, hatch="..",
+                           zorder=4))
+    ax.text((fx0 + fx1) / 2, fy1 + 4, "FOYER STORAGE\nABOVE 9' CLG\n(note 6)", fontsize=5.5, ha="center", va="bottom",
+            zorder=6, bbox=WHITE)
     a0, b0, a1, b1 = L["ahu"]
     ax.add_patch(Rectangle((a0, b0), a1 - a0, b1 - b0, fc="#cfe0f3", ec="#1f5e9e", lw=1.4, zorder=5))
     ax.text((a0 + a1) / 2, (b0 + b1) / 2, "AIR HANDLER\nON PLATFORM\n~250 LB", fontsize=6, ha="center", va="center",
@@ -1162,7 +1168,12 @@ def loads_plan(pdf):
              "4. Future solar: on the roof plane, clear of the fire setbacks\n"
              "   (A-3); include its dead load in the roof design.\n"
              "5. Heat pump water heater: on the slab in the mechanical closet.\n"
-             "6. Vaulted great room: no attic and no loads above the ceiling.\n"
+             "6. Vaulted great room: no attic and no loads above the ceiling,\n"
+             "   except the foyer: a flat 9' ceiling (joists spanning east wall\n"
+             "   to foyer wall) with a decked storage space above it, 20 psf\n"
+             "   live load, about 4'-0\" to 5'-6\" clear to the roof's underside;\n"
+             "   reached by a flush access panel in the drywall face above the\n"
+             "   foyer's open (dining-room) end.\n"
              "7. Bedroom hall ceiling: keep the hall's centreline free of\n"
              "   blocking, strongbacks, ducts and pipes, so recessed lights\n"
              "   fit between the trusses along it (clear of the hatch, smoke\n"
@@ -1444,7 +1455,9 @@ def floor_plan(pdf):
             ax.add_patch(Circle(q, 11, fc="white", ec=INK, lw=0.9, zorder=6))
             ax.text(q[0], q[1] + 3, tag, fontsize=6.5, weight="bold", ha="center", va="center", zorder=7)
             ax.text(q[0], q[1] - 5, "A-5", fontsize=4.5, ha="center", va="center", zorder=7)
-    ax.text(585, 445, "VAULTED CEILING\n(FOYER, LOUNGE, DINING, KITCHEN)", fontsize=6, ha="center", color="#555")
+    ax.text(585, 445, "VAULTED CEILING\n(LOUNGE, DINING, KITCHEN)", fontsize=6, ha="center", color="#555")
+    ax.text((S.E_IN + S.face("foyer wall", -1)) / 2, S.FOYER_WALL_END - 8, "9'-0\" FLAT CLG,\nSTORAGE ABOVE",
+            fontsize=4.5, ha="center", va="top", color="#555")
     ax.text((S.E + S.W) / 2, y0 + 6, "FLOOR PLAN   1/4\" = 1'-0\"", fontsize=12, weight="bold", ha="center")
     ax.annotate("", (S.W + 40, S.N - 110), (S.W + 40, S.N - 60), arrowprops=dict(arrowstyle="->", lw=1.5))
     ax.text(S.W + 48, S.N - 85, "PLAN\nNORTH\n(STREET)", fontsize=7, va="center")
@@ -1454,7 +1467,7 @@ def floor_plan(pdf):
         "GENERAL NOTES\n"
         "1. Dimensions are to wall centrelines; exterior walls to\n   the outside face of framing + finish (9\" walls).\n"
         "2. Walls: exterior 2x6 with 1\" rigid insulation and stucco;\n   interior 2x4; plumbing walls 2x6.\n"
-        "3. Ceilings 9'-0\" unless noted. The foyer, lounge, dining\n   and kitchen are vaulted under the roof (see sections).\n"
+        "3. Ceilings 9'-0\" unless noted. The lounge, dining and\n   kitchen are vaulted under the roof (see sections); the foyer\n   has a flat 9'-0\" ceiling with storage above (A-7).\n"
         "4. Doors 8'-0\" high unless noted; interior doors solid\n   core. Exterior doors and glazing per CRC R337 (VHFHSZ).\n"
         "5. All exterior glazing dual-pane with at least one tempered\n   pane (CRC R337.8.2.1). Fully tempered where noted\n   (CRC R308.4).\n"
         "6. Bedroom windows meet emergency escape: 5.7 sq ft net\n   clear, 20\" min width, 24\" min height, sill 44\" max\n   (CRC R310).\n"
