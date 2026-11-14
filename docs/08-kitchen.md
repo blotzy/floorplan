@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-An upside-down U: a counter on the south wall under the window (its sill about 12" above the counter, leaving a tiled backsplash with outlets and room for small appliances under it; its head in line with the other windows), the range and fridge on the **west** wall (backing onto the laundry), and a peninsula on the east side holding the **sink**, with **three stools** facing the dining area. The sink sits across the aisle from the range, so the fridge, range and sink make a compact work triangle. The aisle inside the U is about **4'** (48" is the two-cook minimum).
+An upside-down U: a counter on the south wall under the window (its sill about 12" above the counter, leaving a tiled backsplash with outlets and room for small appliances under it; its head in line with the other windows), the range and fridge on the **west** wall (backing onto the laundry), and a peninsula on the east side holding the **sink**, with **three stools** facing the dining area. The sink sits across the aisle from the range, so the fridge, range and sink make a compact work triangle. The aisle inside the U is about **4'-6"** between counter fronts (48" is the two-cook minimum): room to work at the oven behind someone at the sink.
 
 **West wall, from the southwest corner:** a floor-to-ceiling corner unit (about 3'-5" along the wall, filling the corner; shelving or cabinets) → 15" counter → 30" induction range → 12" counter → 15" floor-to-ceiling cabinet → 36" fridge (counter-depth or all-refrigerator column) at the north end, next to the pantry door. The two tall cabinets frame the range and its hood; the landing counters on either side meet the usual 12"/15" minimums. The window counter runs from the peninsula to the tall corner unit. The window (5'-0" wide) sits over the inside corner, running from the window counter across the peninsula's corner counter, with about 15" of wall to the tall unit.
 
@@ -25,6 +25,6 @@ An upside-down U: a counter on the south wall under the window (its sill about 1
 - Under-cabinet lighting.
 - 42" or stacked upper cabinets to suit the tall vaulted ceiling.
 - 3" fillers at each corner so drawers and doors clear each other.
-- Peninsula seating overhang of 15".
+- Peninsula seating overhang of 18" (more knee room than the 15" minimum). Behind the kitchen-side cabinets, a band of about 5" carries the sink's trap arm to the rear-wall vent; keep it clear.
 
 **Tall storage:** the two floor-to-ceiling cabinets flanking the range, plus the walk-in pantry. A built-in on the dining room's south wall could add more.

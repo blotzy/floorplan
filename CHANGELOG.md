@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 14, 2026
 
+- **2:00 PM**: Kitchen: the peninsula's kitchen side moves 4" toward the dining room for a 4'-6" aisle (was about 4'-2"; room to work at the oven behind someone at the sink) and the stool overhang goes from 15" to 18"; the stool face and the dining room don't move. The band behind the kitchen-side cabinets drops to about 5", still carrying the sink's trap arm to the rear-wall vent.
 - **12:22 PM**: Entry court: the seat wall's return meets the house midway between the porch notch and the lounge window (centred on that stretch of wall, about 2' clear of the window) instead of at the window's edge, so the lounge looks out past it; the court is about 10' wide. Schematic, A-1, Z-1, FM-1, the 3D model and its street and entry-court views.
 
 ## Nov 9, 2026

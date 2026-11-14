@@ -622,7 +622,11 @@ def build() -> Sheet:
 
     hall_n, hall_s = face("bedroom hall wall", -1), face("south hall wall", -1)   # bedroom / lobby faces
     srow = face("south hall wall", +1)
-    pen_out, pen_in = 546.9, 598.0
+    # peninsula: its stool face fixed (the dining room keeps its size); the kitchen side set for a 4'-6" aisle to
+    # the range wall's counter fronts; an 18" seating overhang and a ~5" band behind the kitchen-side cabinets
+    # for the sink's trap arm to the rear-wall vent
+    pen_out = 546.9
+    pen_in = face("kitchen|pantry", -1) - 24.0 - 54.0
     room("FOYER", E_IN, PORCH_Y + EXT, face("foyer wall", -1), FOYER_WALL_END, cx=410.0, cy=385.0, h=6.0)
     room("LOUNGE", face("foyer wall", +1), N_IN, face("lounge|gym", -1), KITCHEN_ROW - INT, cx=600.0, cy=428.0)
     room("DINING", E_IN, KITCHEN_ROW, pen_out, S_IN, cy=592.0)
@@ -661,7 +665,7 @@ def build() -> Sheet:
     sh.text("TRASH", pen_in - 12, sy0 - 12, 3.0)                              # sink: trash, recycling, food scraps
     sh.rect(pen_out, S_IN - 15, pen_out + 24, S_IN, eq)                        # 15" drink fridge under the counter,
     sh.text("BEV", pen_out + 12, S_IN - 7.5, 3.0)                              # stool side, corner by the south wall
-    sh.line((pen_out + 15, KITCHEN_ROW), (pen_out + 15, S_IN), eq)            # 15" overhang
+    sh.line((pen_out + 18, KITCHEN_ROW), (pen_out + 18, S_IN), eq)            # 18" overhang
     sh.rect(pen_in, S_IN - 24, kw - 24, S_IN, eq)                             # window counter, to the tall corner unit
     ta, r0 = KITCHEN_ROW + 36 + 15, KITCHEN_ROW + 36 + 15 + 12                # range wall: tall cabinet,
     tb = r0 + 30 + 15                                                         # 12" landing, range, 15"
