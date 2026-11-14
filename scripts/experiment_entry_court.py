@@ -6,6 +6,8 @@
 
   - current: the street run plus a return to the house just short of the lounge window.
   - mid-return: the return centred between the porch notch and the lounge window.
+  - mid-return-long: the same, with the street run extended east to 6" short of the driveway edge (no gap at the
+    front corner; the court opens only on its driveway side).
   - porch-return: the return moved east to land just past the porch notch (the court narrows to the porch's line),
     clear of the lounge window.
   - no-return: the street run only, a freestanding seat wall open at its west end.
@@ -35,6 +37,8 @@ OPTIONS = {
     "current": ("Current: return beside the lounge window", S.ENTRY_COURT, S.ENTRY_WALLS),
     "mid-return": ("Return halfway between the porch and the window", (S.E, Y0, MID, S.N),
                    [(S.E + 36.0, Y0, MID, Y0 + T), (MID - T, Y0 + T, MID, S.N)]),
+    "mid-return-long": ("Return halfway, front run to 6\" short of the driveway", (S.E, Y0, MID, S.N),
+                        [(S.E + 6.0, Y0, MID, Y0 + T), (MID - T, Y0 + T, MID, S.N)]),
     "porch-return": ("Return moved to the porch line", (S.E, Y0, RET, S.N),
                      [(S.E + 36.0, Y0, RET, Y0 + T), (S.PORCH_X, Y0 + T, RET, S.N)]),
     "no-return": ("No return: freestanding seat wall", S.ENTRY_COURT, [S.ENTRY_WALLS[0]]),
