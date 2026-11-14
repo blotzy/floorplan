@@ -138,7 +138,8 @@ def butterfly(sc, pitch, ov, seams=False):
 
 
 LOUNGE_X = (S.face("foyer wall", +1), S.face("lounge|gym", -1))
-CLERESTORY_UNITS, CLERESTORY_UNIT = 3, 72.0       # three 6'-0" x 3'-0" units, mulled, centred over the lounge
+CLERESTORY_UNITS, CLERESTORY_UNIT = 3, 66.0       # three stock 5'-6" x 3'-0" units, mulled, centred over the lounge,
+                                                  # leaving about 10" of wall at each end for the framing and returns
 CLERESTORY_X = tuple(sum(LOUNGE_X) / 2 + d * CLERESTORY_UNITS * CLERESTORY_UNIT / 2 for d in (-1, 1))
 LOUNGE_Y = (S.N_IN, S.face("south hall wall", -1))          # street wall to the lobby edge
 JOISTS = 10.0                                               # ceiling framing above the 10' ceiling

@@ -30,7 +30,7 @@ What the energy consultant needs to model the house and produce the compliance f
 | Wall (faces) | Window | Size (W x H) | Area |
 | --- | --- | --- | --- |
 | Street (22°) | Lounge | 10'-0" x 5'-6" | 55.0 sq ft |
-| Street (22°) | Clerestory over the lounge (three 6' units) | 18'-0" x 3'-0" | 54.0 sq ft |
+| Street (22°) | Clerestory over the lounge (three 5'-6" units) | 16'-6" x 3'-0" | 49.5 sq ft |
 | Street (22°) | Gym, guest, office (3) | 6'-0" x 5'-6" each | 99.0 sq ft |
 | Street (22°) | Guest ensuite (high) | 2'-6" x 1'-6" | 3.8 sq ft |
 | Porch side (112°) | Reeded window | 2'-0" x 5'-6" | 11.0 sq ft |
@@ -41,7 +41,7 @@ What the energy consultant needs to model the house and produce the compliance f
 | Rear (202°) | Primary bedroom | 6'-0" x 5'-6" | 33.0 sq ft |
 | West (292°) | Reading nook | 3'-0" x 4'-6" | 13.5 sq ft |
 | West (292°) | Office (high) | 4'-0" x 2'-0" | 8.0 sq ft |
-| | **Total** | | **about 434 sq ft (about 19.5% of the floor area, just under the prescriptive 20%)** |
+| | **Total** | | **about 430 sq ft (about 19.3% of the floor area, just under the prescriptive 20%)** |
 
 Shading: 2'-6" eaves at the street and sides, 2'-0" at the rear; at the rear, 3'-deep metal canopies over the kitchen and primary bedroom windows. The front door's glass lite (if any) is still to be chosen.
 
