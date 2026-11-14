@@ -8,7 +8,10 @@
     line (parking no closer to the street than the front door, as now), with a 16' x 7' sectional door.
   - 6" stud walls (stucco outside, Type X gypsum inside) on the east and rear; the east wall stays on the
     carport's line (the east side yard). The rear wall goes about 1' further south so the garage is 18' deep
-    inside (about 17'-6" wide); the carport roof follows it.
+    inside (about 17'-6" wide).
+  - Roof: a 2:12 gable in the house's dark shingles (the wing's pitch), its ridge east-west like the wing's
+    gable, over the garage and the covered walkway; eaves at 9' to the street and the courtyard, a stucco gable
+    end on the east, the west end against the house. Its ridge is about 11'-6", some 2' below the wing's.
   - A 3'-0" door from the garage into the courtyard in the rear wall (clear of the dining slider's landing), in place of the 14'
     courtyard gate; the courtyard fence meets the garage's east wall. The bins stay in the strip east of it.
 
@@ -33,6 +36,10 @@ FRONT = S.PORCH_Y                                 # the garage's front wall: the
 BACK = FRONT + T + 216.0                          # inside face of the rear wall: 18' deep inside
 DOOR = (CX0 + T + 9.0, CX0 + T + 9.0 + 192.0)     # 16' door, piers each side
 MAN = (CX1 - 96.0, CX1 - 60.0)                    # 3' door to the courtyard, clear of the slider's landing
+PITCH, EAVE_Z, THK = 2 / 12, 108.0, 6.0
+RX0, RY0, RX1, _ = S.CARPORT_ROOF
+RY1 = BACK + T + 6.0                              # the roof: 6" past the rear wall
+RYM = (RY0 + RY1) / 2                             # its ridge
 FY = BACK + T / 2                                 # the courtyard fence meets the garage's rear wall line
 WALLS = [(CX0, FRONT, CX0 + T, BACK + T),                      # east
          (CX0 + T, BACK, MAN[0], BACK + T), (MAN[1], BACK, CX1, BACK + T),   # rear, either side of the door
@@ -73,6 +80,17 @@ def garage(sh):
     sh.text(f"{S.fmt(CX1 - CX0 - T)} x {S.fmt(BACK - FRONT - T)} CLEAR", (CX0 + CX1) / 2,
             (FRONT + BACK) / 2, 6.5, "A-AREA-IDEN")
     sh.text("2 CARS; EV CHARGER", (CX0 + CX1) / 2, (FRONT + BACK) / 2 - 14, 5.0, "A-AREA-IDEN")
+    for e in list(msp.query("TEXT")):
+        if e.dxf.text == "CARPORT ROOF ABOVE (9')":
+            msp.delete_entity(e)
+    for e in list(msp.query("LWPOLYLINE[layer=='A-CANP']")):        # the carport roof's outline
+        xs = [q[0] for q in e.get_points()]
+        if abs(min(xs) - RX0) < 1:
+            msp.delete_entity(e)
+    msp.add_lwpolyline([(RX0, RY0), (RX1, RY0), (RX1, RY1), (RX0, RY1)], close=True,
+                       dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
+    msp.add_line((RX0, RYM), (RX1, RYM), dxfattribs={"layer": "A-CANP", "linetype": "DASHED"})
+    sh.text("2:12 GABLE ROOF ABOVE, RIDGE", (RX0 + RX1) / 2, RYM + 5, 3.0, "A-CANP")
     sh.line((S.LOT_X0, FY), (CX0, FY), "A-FENC")
     sh.text("6' FENCE", (S.LOT_X0 + CX0) / 2, FY + 10, 4.0)
     return sh
@@ -99,9 +117,15 @@ def model():
     sc.boxes["gdoor"].append([DOOR[0], FRONT + 2, DOOR[1], FRONT + 4, 0, 84])
     sc.boxes["gdoor"].append([MAN[0], BACK + 2, MAN[1], BACK + 4, 0, 80])
     sc.mat["gdoor"] = {"color": 0x2B2D30}
-    for b in sc.boxes["roof"]:                                       # the carport roof covers the rear wall
-        if b[4] == 108:
-            b[3] = BACK + T + 6
+    sc.boxes["roof"] = [b for b in sc.boxes["roof"] if b[4] != 108]   # the flat carport roof comes off
+    top = lambda x, y: EAVE_Z + THK + ((RY1 - RY0) / 2 - abs(y - RYM)) * PITCH   # noqa: E731
+    for a, b in ((RY0, RYM), (RYM, RY1)):
+        X.sloped_slab(sc, "roofing", RX0, a, RX1, b, top, THK)
+    gx = CX0                                                         # the east gable end, on the east wall
+    sc.tris["exterior"].append([[gx, RY0 + 12, EAVE_Z], [gx, RY1 - 6, EAVE_Z], [gx, RYM, top(gx, RYM) - THK]])
+    for p in sc.boxes["post"]:                                       # the walkway's post up to the eave
+        if abs(p[0] - CX0) < 1 and p[5] == 108:
+            p[5] = EAVE_Z
     out = OUT / "garage"
     M.write_model(sc, out, sc.meta)
     chrome = Path("/mnt/c/Program Files/Google/Chrome/Application/chrome.exe")
