@@ -14,11 +14,11 @@
     end on the east, the west end against the house. Its ridge is about 11'-6", some 2' below the wing's.
   - The garage door in the porch's wood-look finish (the feature wall's color).
   - A 6' fence and 4' gate across the east side strip (beside the garage) on the garage door's line, with the
-    bin pad just behind it: the bins are out of sight and still outside the dog yard (the courtyard fence closes
-    the strip at the back). No separate screen around the bins. The west side yard's fence stays on the house
+    bin pad just behind it, out of sight. No fence behind the garage, so the strip opens into the courtyard (the
+    bins are inside the dog yard). No separate screen around the bins. The west side yard's fence stays on the house
     front's line.
   - A 3'-0" door from the garage into the courtyard in the rear wall (clear of the dining slider's landing), in place of the 14'
-    courtyard gate; the courtyard fence meets the garage's east wall. The bins stay in the strip east of it.
+    courtyard gate.
 
 Writes renders/experiments/garage.png (plan) and a 3D model with views to renders/experiments/garage/.
 Not part of the regular build.
@@ -45,7 +45,6 @@ PITCH, EAVE_Z, THK = 2 / 12, 108.0, 6.0
 RX0, RY0, RX1, _ = S.CARPORT_ROOF
 RY1 = BACK + T + 6.0                              # the roof: 6" past the rear wall
 RYM = (RY0 + RY1) / 2                             # its ridge
-FY = BACK + T / 2                                 # the courtyard fence meets the garage's rear wall line
 WALLS = [(CX0, FRONT, CX0 + T, BACK + T),                      # east
          (CX0 + T, BACK, MAN[0], BACK + T), (MAN[1], BACK, CX1, BACK + T),   # rear, either side of the door
          (CX0 + T, FRONT, DOOR[0], FRONT + T), (DOOR[1], FRONT, CX1, FRONT + T)]   # front piers
@@ -112,8 +111,6 @@ def garage(sh):
     sh.line((S.LOT_X0, FRONT), (CX0 - 68, FRONT), "A-FENC")         # east fence, its 4' gate by the garage
     sh.line((CX0 - 20, FRONT), (CX0, FRONT), "A-FENC")
     sh.text("6' FENCE + GATE", (S.LOT_X0 + CX0) / 2, FRONT - 10, 4.0)
-    sh.line((S.LOT_X0, FY), (CX0, FY), "A-FENC")
-    sh.text("6' FENCE", (S.LOT_X0 + CX0) / 2, FY + 10, 4.0)
     return sh
 
 
