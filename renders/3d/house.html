@@ -326,8 +326,13 @@ document.getElementById('walk').onclick = () => {
 };
 if (location.hash === '#touchwalk') startTouchWalk();         // test hook
 const bind = (id, g) => document.getElementById(id).onchange = e => g.visible = e.target.checked;
-bind('ceil', groups.ceil); bind('furn', groups.furn); bind('labels', groups.labels); bind('roofsh', roofCaster);
-bind('roofvis', groups.roof); bind('grid', gridGroup);
+bind('furn', groups.furn); bind('labels', groups.labels); bind('roofsh', roofCaster); bind('grid', gridGroup);
+// With the roof on, the flat ceilings show too (whatever the Ceiling box says): otherwise the wing's walls,
+// which stop at the 9' ceiling under the attic, look as if they fall short of the roof.
+const ceilChk = document.getElementById('ceil'), roofChk = document.getElementById('roofvis');
+const syncCeil = () => { groups.ceil.visible = ceilChk.checked || (roofChk.checked && Object.keys(D.tris || {}).length > 0); };
+ceilChk.onchange = syncCeil;
+roofChk.onchange = e => { groups.roof.visible = e.target.checked; syncCeil(); };
 // Outlines on every face: handy for reading the model, but they also draw the seams between wall
 // pieces, which a real stucco wall doesn't have. One shared material, so one switch hides them all.
 document.getElementById('edges').onchange = e => { EDGE.visible = e.target.checked; };
@@ -337,6 +342,7 @@ if (D.roof_hidden && !location.hash.includes('roof')) {     // main model opens 
 } else if (location.hash.includes('roof')) {                // exterior view: room labels would float over the roof
   groups.labels.visible = false; document.getElementById('labels').checked = false;
 }
+syncCeil();
 { const h = location.hash;
   const pick = h.includes('split-wide') ? 0 : h.includes('split') ? 2 : h.includes('gable') ? 1 : h.includes('shed') ? 3 : 0;
   if (pick && pick < roofChoices.length) { roofSel.value = String(pick); roofSel.onchange(); } }   // #roof-gable; #roof-split; #roof-shed (#roof-split-wide: the plan)
