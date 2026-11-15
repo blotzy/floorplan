@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Nov 15, 2026
+
+- **1:34 PM**: 3D model: window glass no longer hides what's behind it (it was drawn writing depth, so the carport roof and other see-through surfaces vanished when seen through a window).
+
 ## Nov 14, 2026
 
 - **3:10 PM**: Lounge clerestory: three stock 5'-6" x 3'-0" units (16'-6" of glass, was three 6'-0" units, 18'-0"), still centred over the lounge, leaving about 10" of wall at each end (was about 1¼") for the framing, drywall returns and trim where the TV and gym walls meet it. Glazing about 430 sq ft (19.3%); recessed street windows about 76% of the facade's window area. 3D model, A-4 and the window schedule, Z-4, the docs.

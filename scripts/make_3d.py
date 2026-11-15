@@ -384,7 +384,8 @@ scene.add(sun); scene.add(sun.target);
 const M = {
   wall:{color:0xf4f1ea, side:THREE.DoubleSide}, exterior:{color:0xf4f1ea, side:THREE.DoubleSide},
   soffit:{color:0xeeeae4}, fascia:{color:0x3b3f44}, door:{color:0x5a4634},
-  glass:{color:0x9cc8e8, transparent:true, opacity:0.35, side:THREE.DoubleSide},
+  glass:{color:0x9cc8e8, transparent:true, opacity:0.35, side:THREE.DoubleSide, depthWrite:false},   // drawn last, writing no
+                                              // depth, so what's behind a window (the carport roof) never vanishes
   fence:{color:0x2b2d30, side:THREE.DoubleSide},
   ground:{color:0xc9c2a8}, slab:{color:0xb9a98f}, concrete:{color:0xbdbdbd},
   pavers:{color:0xa89f94}, lawn:{color:0x6fa04a}, planter:{color:0x7d6a55},
@@ -426,7 +427,7 @@ for (const [k, items] of Object.entries(D.quads)) {
   }
   const g = new THREE.BufferGeometry();
   g.setAttribute('position', new THREE.Float32BufferAttribute(pos,3)); g.computeVertexNormals();
-  const m = new THREE.Mesh(g, mat(k)); m.castShadow = m.receiveShadow = k!=='glass'; scene.add(m);
+  const m = new THREE.Mesh(g, mat(k)); m.castShadow = m.receiveShadow = k!=='glass'; if (k==='glass') m.renderOrder = 10; scene.add(m);
   if (EDGED.has(k)) {                         // all four edges of every wall/fence face
     const lp = [];
     for (const [x0,y0,x1,y1,z0,z1] of items) {
@@ -471,7 +472,7 @@ function addTris(all, group) {
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals();
     const material = mat(k); material.side = THREE.DoubleSide;
-    const m = new THREE.Mesh(g, material); m.castShadow = m.receiveShadow = k !== 'glass';
+    const m = new THREE.Mesh(g, material); m.castShadow = m.receiveShadow = k !== 'glass'; if (k === 'glass') m.renderOrder = 10;
     group.add(m);
     if (k !== 'glass') group.add(new THREE.LineSegments(new THREE.EdgesGeometry(g, 20), EDGE));
   }
