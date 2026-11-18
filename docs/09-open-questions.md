@@ -31,6 +31,7 @@
 - [ ] Architect: final square footage, checked against the CSD floor-area limit (about 2,830 sq ft).
 - [x] Energy consultant (Title 24) found. The CF1R goes in with the initial plan check submittal (the County lists a missing Title 24 report as a common error), modelled as new construction, solar-ready (the fire-rebuild solar waiver noted on it); send them the [Title 24 inputs](14-title24-inputs.md) and the A-sheets.
 - [ ] After the permit is approved: set up a pre-construction meeting with the County building inspector and the builder, before work starts (inspection sequence, the HERS and special inspections, the surveyor's form check before the slab, and anything the inspector wants to see on site).
+- [ ] Before any digging (demolition of the old foundation, grading, trenching, even fence posts): call 811 (DigAlert, digalert.org) at least 2 working days ahead so the utilities mark their lines; the ticket is good for 28 days. Done by whoever digs (GC or demo contractor); confirm it's on their schedule.
 
 **Design decisions (owner)**
 

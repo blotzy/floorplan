@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Nov 18, 2026
+
+- **1:56 PM**: Open questions: call 811 (DigAlert) before any digging on site.
+
 ## Nov 15, 2026
 
 - **1:34 PM**: 3D model: window glass no longer hides what's behind it (it was drawn writing depth, so the carport roof and other see-through surfaces vanished when seen through a window).
