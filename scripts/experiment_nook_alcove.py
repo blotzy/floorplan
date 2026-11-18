@@ -15,8 +15,12 @@ past the suite door's swing to the west wall, about 4'-10"), under a header at 7
   - guest-wall: the alcove, with the office closet moved to the guest wall instead (about 9', 2' deep, from the
     street wall to just short of the office door, which opens flat against that wall): a sound buffer between the
     guest bed's headboard and the office, and the office's hall wall free.
+  - full: the alcove runs the nook's whole office wall, from the hall's end wall to the west wall (about 8'-2"),
+    the seat the full length; the suite door rehinged on the bedroom side so it swings clear of the alcove (open,
+    it stands toward the bedroom, on a stop); the office closet on the guest wall, 8'-0", well clear of the
+    office door.
 
-Writes renders/experiments/nook-alcove.png (plan: current, shelves, alcove, guest-wall), and a 3D model and views for each
+Writes renders/experiments/nook-alcove.png (plan: current, shelves, alcove, guest-wall, full), and a 3D model and views for each
 option to renders/experiments/nook-alcove/<option>/. Not part of the regular build.
 
     uv run scripts/experiment_nook_alcove.py
@@ -32,27 +36,37 @@ import schematic as S  # noqa: E402
 
 OUT = S.RENDERS / "experiments"
 WALLS0 = list(S.WALLS)
+OPEN0 = list(S.OPENINGS)
 BUILD0 = S.build
 HALL_N_FACE = S.HALL_N - S.INT / 2                    # the office side of the hall wall (the closet's back)
 NOOK_FACE = S.HALL_N + S.INT / 2                      # the nook side
 A = S.HALL_END + S.INT / 2 + S.NOOK_SHELF_START       # where the bookshelves start, clear of the door's swing
 XR = A - S.INT / 2                                    # centreline of the recess's east return
 CL0 = 1103.0 + 12.0                                   # the office closet's east end (as built in schematic.py)
-DEPTH = {"shelves": 12.0, "alcove": 24.0, "guest-wall": 24.0}
+DEPTH = {"shelves": 12.0, "alcove": 24.0, "guest-wall": 24.0, "full": 24.0}
 HEADER = 84.0
 SHOTS = {"from-bedroom": ((1135, 540, 63.5), (1195, 395, 38)),
          "office": ((1200, 285, 63.5), (1064, 345, 45))}
 
 
+def start(opt):
+    """(the alcove's east end on the nook side, its return's centreline)"""
+    return (S.HALL_END + S.INT / 2, S.HALL_END) if opt == "full" else (A, XR)
+
+
 def set_walls(opt):
     S.WALLS[:] = WALLS0
+    S.OPENINGS[:] = OPEN0
     if opt == "current":
         return
     c = NOOK_FACE - DEPTH[opt] - S.INT / 2            # recessed wall's centreline
+    xr = start(opt)[1]
     S.WALLS[:] = [w for w in WALLS0 if w[0] != "bedroom hall wall"] + [
-        ("bedroom hall wall", "x", S.HALL_N, 671.75, XR, S.INT),
-        ("nook recess", "x", c, XR, S.W_IN, S.INT),
-        ("nook return", "y", XR, c - S.INT / 2, NOOK_FACE, S.INT)]
+        ("bedroom hall wall", "x", S.HALL_N, 671.75, xr, S.INT),
+        ("nook recess", "x", c, xr, S.W_IN, S.INT),
+        ("nook return", "y", xr, c - S.INT / 2, NOOK_FACE, S.INT)]
+    if opt == "full":                                 # suite door hinged on the bedroom side
+        S.OPENINGS[:] = [(*o[:4], "b", *o[5:]) if o[0] == "hall end" and o[3] == "door" else o for o in OPEN0]
 
 
 def edit(sh, opt):
@@ -71,8 +85,10 @@ def edit(sh, opt):
             msp.delete_entity(e)
     fu, d = "A-FURN", DEPTH[opt]
     back = NOOK_FACE - d                                                      # the recess's back (nook side)
-    if opt == "guest-wall":                                                   # office: closet on the guest wall,
-        gx, gy1 = S.face("guest|office", +1), HALL_N_FACE - 40.0              # clear of the open door
+    a0 = start(opt)[0]
+    if opt in ("guest-wall", "full"):                                         # office: closet on the guest wall,
+        gx = S.face("guest|office", +1)                                       # clear of the open door
+        gy1 = S.N_IN + 96.0 if opt == "full" else HALL_N_FACE - 40.0
         sh.rect(gx, S.N_IN, gx + 24, gy1, fu)
         sh.line((gx + 12, S.N_IN), (gx + 12, gy1), fu)
         sh.text("CL", gx + 18, (S.N_IN + gy1) / 2, 3.0, rot=90)
@@ -86,9 +102,9 @@ def edit(sh, opt):
         sh.rect(A, back, S.W_IN, NOOK_FACE, fu)
         sh.text("SHELVES", (A + S.W_IN) / 2, back + 6, 2.2)
     else:
-        sh.rect(A, back, S.W_IN, back + 20.0, fu)
-        sh.text("BENCH SEAT", (A + S.W_IN) / 2, back + 10, 2.4)
-        sh.text("SHELVES ABOVE", (A + S.W_IN) / 2, NOOK_FACE + 4, 1.8)        # outside the seat (3D height)
+        sh.rect(a0, back, S.W_IN, back + 20.0, fu)
+        sh.text("BENCH SEAT", (a0 + S.W_IN) / 2, back + 10, 2.4)
+        sh.text("SHELVES ABOVE", (a0 + S.W_IN) / 2, NOOK_FACE + 4, 1.8)        # outside the seat (3D height)
     return sh
 
 
@@ -109,8 +125,9 @@ def plan():
     titles = {"current": "Current: low bookshelves; office closet 8'-0\"",
               "shelves": "Recessed shelves (12\"); office: 3'-2\" hanging + 12\" shelves",
               "alcove": "Window-seat alcove (2'), shelves above; office: 3'-2\" closet",
-              "guest-wall": "Alcove + office closet on the guest wall (about 9')"}
-    fig, axs = plt.subplots(1, 4, figsize=(21, 8.4))
+              "guest-wall": "Alcove + office closet on the guest wall (about 9')",
+              "full": "Full-length alcove (8'-2\"), suite door rehinged; office closet 8'"}
+    fig, axs = plt.subplots(1, 5, figsize=(26, 8.4))
     for ax, (opt, t) in zip(axs, titles.items()):
         p = tmp / f"_plan-{opt}.png"
         S.render(build(opt).doc, p, *win, width_in=5, dpi=200)
@@ -132,10 +149,11 @@ def model(opt):
         S.build = BUILD0
         set_walls("current")
     if opt != "current":
-        sc.boxes["wall"].append([A, HALL_N_FACE, S.W_IN, NOOK_FACE, HEADER, M.CEIL])   # header over the recess
-        if opt in ("alcove", "guest-wall"):
+        a0 = start(opt)[0]
+        sc.boxes["wall"].append([a0, HALL_N_FACE, S.W_IN, NOOK_FACE, HEADER, M.CEIL])  # header over the recess
+        if opt in ("alcove", "guest-wall", "full"):
             back = NOOK_FACE - DEPTH[opt]
-            sc.boxes["closet"].append([A, back, S.W_IN, back + 11.0, 48.0, HEADER])     # shelves above the seat
+            sc.boxes["closet"].append([a0, back, S.W_IN, back + 11.0, 48.0, HEADER])    # shelves above the seat
     X.chosen_exterior(sc)
     M.add_vault_ceiling(sc, X.great_room_vault(to_outside=True))
     out = OUT / "nook-alcove" / opt
@@ -165,5 +183,5 @@ def model(opt):
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     plan()
-    for o in ("current", "shelves", "alcove", "guest-wall"):
+    for o in ("current", "shelves", "alcove", "guest-wall", "full"):
         model(o)
