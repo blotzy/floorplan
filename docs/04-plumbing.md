@@ -41,7 +41,7 @@ Interior supply piping is copper. No PEX except for the fire sprinklers (a stand
 **Equipment and fixtures**
 
 - Whole-house water softener with sediment pre-filter, in the mechanical closet. The softener needs a drain with an air gap.
-- Heat pump water heater, 80 gal, in the mechanical closet, with a condensate drain and a drain pan with a leak sensor; 6-12" of service clearance above it.
+- Heat pump water heater: Rheem ProTerra 80 gal, PROPH80 T2 RH375SO (NEEA Tier 4, JA13 demand-response ready, built-in LeakGuard shutoff; about 24-1/4" diameter x 75" tall), or equal, in the mechanical closet, with a condensate drain and a drain pan with a leak sensor; 6-12" of service clearance above it. Unducted, its exhaust facing the louvered bifold (the closet and laundry together give it the room air it needs).
 - Thermostatic mixing valve at the water heater outlet: the tank stores at about 140°F (more usable hot water for the double shower and back-to-back showers, more solar energy stored, and Legionella control) and the valve sends tempered water (about 120°F) to the house. Shower and tub valves keep their own anti-scald protection.
 - Tankless reverse-osmosis filter in the mechanical closet, fed from the softened line (softening first extends the membrane's life). Food-grade lines run to the RO tap at the kitchen sink and to the fridge, with accessible shutoffs at both ends. Its waste line drains through an air gap or standpipe; it needs an outlet, and shares the closet's leak pan/sensor. A bypass plug replaces the fridge's internal filter. The sink cabinet stays free for the trash pull-out.
 - Leak pans under the washer and fridge.

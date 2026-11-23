@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Nov 23, 2026
+
+- **11:15 AM**: Water heater: Rheem ProTerra 80 gal (PROPH80 T2 RH375SO, NEEA Tier 4, JA13) or equal, in the plumbing, electrical (240V/30A), engineer-brief and Title 24 docs and the A-7 note; to-do to confirm the model on the NEEA list and for the rebate before buying.
+
 ## Nov 18, 2026
 
 - **1:56 PM**: Open questions: call 811 (DigAlert) before any digging on site.
