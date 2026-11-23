@@ -23,7 +23,7 @@
 | Drink fridge | 15–20A | Peninsula, south end, stool side |
 | Heat pump outdoor unit | Per manufacturer | Rear yard, south wall behind the storage room (disconnect within sight) |
 | Heat pump air handler + zone panel | Per manufacturer | Sealed attic, near the hatch (disconnect at the unit) |
-| Heat pump water heater | 240V, 30A (Rheem ProTerra 80 gal; confirm on the model's spec sheet) | Mechanical closet |
+| Heat pump water heater | 240V, 30A (Rheem ProTerra 80 gal, XE80T10HS45U1, about 21A max; confirm on the model's spec sheet) | Mechanical closet |
 | Heat pump dryer | Per model | Laundry, bath wall |
 | Washer | 20A | Laundry, bath wall |
 | Network rack | One 20A | Mechanical / network closet |

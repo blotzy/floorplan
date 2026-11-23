@@ -1167,7 +1167,7 @@ def loads_plan(pdf):
              "   30\" walkway, light and outlet (mechanical code).\n"
              "4. Future solar: on the roof plane, clear of the fire setbacks\n"
              "   (A-3); include its dead load in the roof design.\n"
-             "5. Heat pump water heater: Rheem ProTerra 80 gal (PROPH80 T2\n   RH375SO) or equal, per the Title 24 report; on the slab in\n   the mechanical closet.\n"
+             "5. Heat pump water heater: Rheem ProTerra 80 gal (XE80T10HS45U1)\n   or equal, per the Title 24 report; on the slab in\n   the mechanical closet.\n"
              "6. Vaulted great room: no attic and no loads above the ceiling,\n"
              "   except the foyer: a flat 9' ceiling (joists spanning east wall\n"
              "   to foyer wall) with a decked storage space above it, 20 psf\n"
