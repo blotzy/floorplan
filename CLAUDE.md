@@ -62,7 +62,7 @@ If Windows has a PNG open, `save_png` writes a timestamped copy (`*-HHMMSS.png`)
 
 ## Current state (Oct 20, 2026)
 
-- **Roof:** split roof at 2:12 in dark asphalt shingles. A shed from the porch to the gym/ensuite wall (clerestory over the lounge) and a gable over the rest of the bedroom wing. The 3D Roof menu also carries alternatives (gables at 2, 4 and 6:12, splits, full shed, hip, butterfly, flat).
+- **Roof:** split roof at 2:12 in dark standing-seam metal (matching the carport). A shed from the porch to the gym/ensuite wall (clerestory over the lounge) and a gable over the rest of the bedroom wing. The 3D Roof menu also carries alternatives (gables at 2, 4 and 6:12, splits, full shed, hip, butterfly, flat).
 - **Carport:** 18' x 22', flat standing-seam metal at 9'; front 4' is a covered walkway, parking behind the front door (qualifying 8' x 5' covered porch). The 3D Carport roof menu has alternatives (MCM slab, gables, shed, solar canopy).
 - **Driveway:** straight at the full 18' width from the street. Both east parkway trees (an olive, and a ficus about 13'-6" east of it; both on survey rev. 102a, in `private/survey/`) are to be removed under a County Road Encroachment Permit. Public Works asked for a civil sheet in the permit set covering the parkway tree removal, prepared in consultation with them (Road Maintenance District 2, Urban Forestry); their decision comes through that review. Fallbacks if refused: keep the olive (12' approach east of it), or keep both (angle the drive from the old opening west of the olive). The dead maple beside the carport is removed.
 - **Trees:** Toyon (privacy tree) and western redbud in the front yard, both Zone A on the County's fuel modification plant list. FM-1 is owner-prepared.

@@ -252,7 +252,7 @@ def roof_plan(pdf):
             ha="center", va="center", fontsize=8.5, bbox=dict(fc="white", ec="none"))
     ax.text((wx + X1) / 2, ry - 60, f"GABLE 2:12, RIDGE ~{ftin(RIDGE_TOP)}", ha="center", va="center", fontsize=8.5,
             bbox=dict(fc="white", ec="none"))
-    ax.text((X0 + X1) / 2, Y1 + 50, "Class A asphalt shingles · heights above finished floor · "
+    ax.text((X0 + X1) / 2, Y1 + 50, "Class A standing-seam metal · heights above finished floor · "
             f"{ftin(OV)} eaves, {ftin(OVR)} at the rear (max. 2'-6\" into a required yard, gutter included) · "
             "gutter along the rear edge (none on the wing's street eave)", ha="center", fontsize=8.5)
     ax.annotate("", (cx0 + 10, (cy0 + cy1) / 2), (cx1 - 20, (cy0 + cy1) / 2), arrowprops=dict(arrowstyle="->", lw=1.2))

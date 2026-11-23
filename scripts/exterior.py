@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["ezdxf>=1.4", "matplotlib", "shapely>=2"]
 # ///
-"""The house's exterior for the 3D model and the drawing sets: the split roof in asphalt shingles (a shed
+"""The house's exterior for the 3D model and the drawing sets: the split roof in standing-seam metal (a shed
 from the porch into the bedroom wing with the clerestory and the vaulted great room, a gable over the rest
 of the wing: chosen_exterior), the street facade (recessed windows, rear
 canopies), the porch, and the alternative roofs offered in the 3D viewer's Roof menu (roof_options).
@@ -513,16 +513,17 @@ def window_frames(sc):
 
 
 def chosen_exterior(sc, porch=True, facade=True):
-    """The main plan's exterior: the split roof at 2:12 with 2'-6" eaves (2'-0" at the rear), in dark asphalt shingles: a shed
+    """The main plan's exterior: the split roof at 2:12 with 2'-6" eaves (2'-0" at the rear), in dark standing-seam metal: a shed
     from the porch into the bedroom wing (high at the street, the 18' x 3' clerestory band in it over the lounge;
     the foyer, lounge, dining and kitchen under one sloped ceiling) and a gable over the rest of the wing;
     stucco walls, dark fascia, accent front door; porch with a wood-look feature wall; recessed street
     windows; canopies over two rear windows. make_3d.py adds this to the main model."""
     band(sc, "exterior", WALL_TOP, PLATE)
-    shed_gable(sc, 2 / 12, EAVE, xs=SPLIT_WIDE_X)
+    shed_gable(sc, 2 / 12, EAVE, xs=SPLIT_WIDE_X, seams=True)
     front_door(sc)
     sc.mat = {k: {"color": v} for k, v in STYLES["mcm-gable"][1].items()}
-    sc.mat["roofing"] = {"color": 0x484B50}
+    sc.mat["roofing"] = {"color": 0x45484C, "roughness": 0.55, "metalness": 0.2}
+    sc.mat["seam"] = {"color": 0x5A5E63, "roughness": 0.5, "metalness": 0.2}
     if porch:
         porch_feature(sc)
     if facade:
@@ -611,7 +612,7 @@ FLAT_CEILINGS = {"Gable 2:12", "Gable 4:12", "Gable 6:12", "Hip 4:12", "Butterfl
 
 
 def roof_options():
-    """Alternative roofs for the main model's Roof selector, all asphalt shingles: {label: tris} (the main
+    """Alternative roofs for the main model's Roof selector: {label: tris} (the main
     plan's split roof is the model's own roof). Order matters: make_3d's hash links. Labels stay short (the
     selector sits in the model's overlay); FLAT_CEILINGS marks those with flat 9' ceilings."""
     out = {}

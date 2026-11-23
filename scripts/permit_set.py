@@ -538,7 +538,7 @@ def roof_plan(pdf):
     for lab, note, p in (("SKYLIGHT", "", sk),
                          ("RANGE", "RANGE HOOD CAP, EMBER-RESISTANT DAMPER:\nshortest run; set the PV layout around it", text_at(sh, "RANGE")),
                          ("HALL", "14\" TUBULAR SKYLIGHT (CLASS A), centred in the hall; its tube\njogs 3' in the attic to a "
-                          "dome on the street slope 3' below the\nridge (full shingle courses above its flashing); out of the PV area", hs)):
+                          "dome on the street slope 3' below the\nridge (flashed into the panels, diverter upslope); out of the PV area", hs)):
         if p:
             ax.add_patch(Circle(p, 7, fc="white", ec=INK, lw=0.9))
             if note:
@@ -610,10 +610,10 @@ def roof_plan(pdf):
     notes = ("ROOF NOTES\n"
              "1. Main roof at 2:12: a shed from the porch into the bedroom wing,\n"
              "   high at the street, and a gable over the rest of the wing.\n"
-             "   Class A asphalt shingles (fiberglass), dark, wind-rated\n"
-             "   (ASTM D7158 Class H / D3161 Class F), over two layers of\n"
-             "   underlayment as required at 2:12 (CRC R905.2); self-adhered\n"
-             "   underlayment at the eaves and along the shed / gable junction.\n"
+             "   Standing-seam metal roof panels, 24-gauge steel, double-lock\n"
+             "   (mechanically seamed), concealed clips, dark gray (CRRC-rated\n"
+             "   color), Class A listed assembly (CRC R905.10), over\n"
+             "   high-temperature self-adhered underlayment, full deck.\n"
              "2. Sealed (unvented) attic, CRC R806.5: insulation at the roof deck;\n"
              "   NO attic or eave vents.\n"
              "3. Eaves 2'-6\" (the rear 2'-0\"), enclosed; dark metal fascia, drip edge.\n"
@@ -622,8 +622,8 @@ def roof_plan(pdf):
              "   downspouts to the site drainage system per civil. No gutter\n"
              "   on the wing's street eave: drip edge over a gravel drip trench.\n"
              "5. Roof framing, sheathing and connections per structural.\n"
-             "6. Roof penetrations flashed per the shingle maker, metal\n"
-             "   flashings, all outside the first PV array. Plumbing vents\n"
+             "6. Roof penetrations flashed per the panel maker (curbs or boots\n"
+             "   between seams, diverters upslope), all outside the first PV array. Plumbing vents\n"
              "   (VTR): the guest ensuite's on the wing's street slope; the\n"
              "   kitchen's at the rear wall line; the baths and laundry on the\n"
              "   wing's rear slope. The hall skylight's dome is on the street\n"
@@ -640,15 +640,16 @@ def roof_plan(pdf):
              "   double-lock standing seam (Class A assembly, uplift-rated),\n"
              "   gutter on its east edge.\n"
              "8. Solar: first array (about 10 kW) on the shed, footprint shown;\n"
-             "   layout by the solar provider, separate permit. Its mounting (rails over flashed attachments\n"
-             "   into the rafters) is installed with the roofing; panels later.\n"
+             "   layout by the solar provider, separate permit. Mounted with\n"
+             "   clamps on the standing seams (no roof penetrations).\n"
              "   Its conduit enters through the roof into the attic and\n"
              "   runs inside to the panel: none on the roof surface or\n"
              "   the exterior walls.\n"
              "9. Wind: severe downslope winds from the north / northeast\n"
-             "   strike the shed's high street edge. Wind-rated shingles with\n"
-             "   the maker's high-wind nailing, sealed starter strips at eaves\n"
-             "   and rakes; eave and carport tie-downs per structural.")
+             "   strike the shed's high street edge. Panel assembly uplift-\n"
+             "   rated for the design wind speed, clip spacing per the maker\n"
+             "   (closer at the eaves, rakes and corners); eave and carport\n"
+             "   tie-downs per structural.")
     fig.text(27.0 / W_IN, 22.9 / H_IN, notes, fontsize=8.5, va="top", linespacing=1.35)
     pdf.savefig(fig); Z.save_png(fig, OUT / "A-3-roof-plan.png", dpi=80); plt.close(fig)
 
@@ -657,8 +658,8 @@ def roof_plan(pdf):
 MATERIALS = ("EXTERIOR MATERIALS AND COLORS\n"
              "1. Walls: 3-coat stucco (noncombustible), smooth\n"
              "   finish, color: warm off-white.\n"
-             "2. Roof: asphalt shingles, Class A (A-3), color:\n"
-             "   charcoal; carport roof standing-seam metal, dark gray.\n"
+             "2. Roof: standing-seam metal, Class A (A-3), color:\n"
+             "   dark gray, the house and carport roofs matching.\n"
              "3. Fascia, drip edge, canopies, carport posts and\n"
              "   beam, fences and gates: metal, color: matte black.\n"
              "4. Porch walls and ceiling: wood-look fiber cement or\n"
@@ -812,8 +813,8 @@ def elevations(pdf):
 
 # ---- A-5 sections --------------------------------------------------------------------------
 ASSEMBLIES = ("ASSEMBLIES (insulation values per the Title 24 report)\n"
-              "R1 ROOF: Class A asphalt shingles on two layers of\n"
-              "   underlayment (2:12),\n"
+              "R1 ROOF: standing-seam metal (Class A listed assembly) on\n"
+              "   high-temperature self-adhered underlayment (2:12),\n"
               "   roof sheathing, framing per structural; spray foam at the\n"
               "   underside of the deck (unvented, CRC R806.5); ignition\n"
               "   barrier / thermal barrier where the attic is used.\n"
@@ -941,8 +942,8 @@ def sections(pdf):
 
 # ---- A-6 fire-zone details -------------------------------------------------------------------
 R337 = [
-    ("R337.5", "Roof", "Class A asphalt shingles; eave and rake edges, ridge cap and the shed / gable junction\n"
-                       "closed and sealed so embers can't get under them. Carport: standing seam, Class A."),
+    ("R337.5", "Roof", "Standing-seam metal, Class A listed assembly; eave and rake closures, ridge cap and the\n"
+                       "shed / gable junction closed and sealed so embers can't get under the panels. Carport: the same."),
     ("R337.5.4", "Gutters", "Noncombustible gutter guards on all gutters."),
     ("R337.6", "Vents", "No attic or eave vents (sealed attic). Exhaust and hood terminations: listed\n"
                         "ember-resistant vents (ASTM E2886) or noncombustible 1/16\"-1/8\" mesh with dampers."),
@@ -976,7 +977,7 @@ def details(pdf):
     ax.add_patch(MPoly([(10, 82), (69, 92), (69, 100), (10, 90)], closed=True, fc="#666", ec=INK))   # roof slab
     ax.add_patch(MPoly([(10, 82), (60, 90.5), (60, 88), (14, 80.5)], closed=True, fc="#e8d5b5", ec=INK))  # soffit
     ax.add_patch(Rectangle((8, 78), 4, 13, fc="#222", ec=INK))                        # fascia
-    for txt, (x, y) in {"Class A asphalt shingles on\ntwo layers of underlayment": (30, 104),
+    for txt, (x, y) in {"Standing-seam metal on\nself-adhered underlayment": (30, 104),
                         "Dark metal fascia\n+ drip edge": (2, 64), "Enclosed soffit, fiber cement\nor metal: NO VENTS": (14, 70),
                         "Stucco to the soffit,\nsealed at the joint": (72, 70), "Spray foam at the deck\n(sealed attic)": (72, 92)}.items():
         ax.text(x, y, txt, fontsize=7, va="top")

@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 23, 2026
 
+- **2:47 PM**: Roof: standing-seam metal instead of asphalt shingles (24-gauge steel, double-lock, concealed clips, Class A listed assembly, high-temperature self-adhered underlayment), dark gray to match the carport; solar clamped to the seams. Roof plan, elevations, sections, fire details, zoning set, 3D model and docs updated.
 - **11:24 AM**: Exterior walls: no continuous rigid insulation (2x6, sheathing, stucco, as in the Title 24 report); drawn 8" instead of 9", outer faces and setbacks unchanged, so the rooms along the exterior walls gain about 1".
 - **11:18 AM**: Water heater model: Rheem ProTerra 80 gal XE80T10HS45U1 (the retail version), in the docs and the A-7 note; to-do adds confirming JA13 and its size against the closet.
 - **11:15 AM**: Water heater: Rheem ProTerra 80 gal (PROPH80 T2 RH375SO, NEEA Tier 4, JA13) or equal, in the plumbing, electrical (240V/30A), engineer-brief and Title 24 docs and the A-7 note; to-do to confirm the model on the NEEA list and for the rebate before buying.
