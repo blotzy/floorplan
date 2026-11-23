@@ -20,7 +20,7 @@ What the energy consultant needs to model the house and produce the compliance f
 | Assembly | Target |
 | --- | --- |
 | Roof | Unvented: spray foam at the underside of the deck over the attic and in the vault rafter bays (or rigid insulation above the deck), at the value the model needs |
-| Walls | 2x6 at 16" with cavity insulation plus 1" continuous rigid insulation, stucco |
+| Walls | 2x6 at 16" with R-21 cavity insulation, stucco; no continuous insulation |
 | Slab | Slab on grade, unheated, no edge insulation unless the model needs it |
 | Windows and doors | U-factor 0.30 or lower, SHGC 0.23 or lower (targets); dual-pane with at least one tempered pane (fire zone) |
 | Air sealing | Quality insulation installation (QII) and a tight envelope; sealed attic means ducts are in conditioned space |

@@ -1,6 +1,6 @@
 # Accosting rebuild: floor plan and design wishlist
 
-220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Nov 23, 2026, 11:18 AM PT · @Richard
+220 Laurel Dr, Altadena. All-electric, single-story Eaton Fire rebuild (non-like-for-like). Updated Nov 23, 2026, 11:24 AM PT · @Richard
 
 [CHANGELOG](CHANGELOG.md)
 
@@ -16,7 +16,7 @@
 
 **Download the plan as a DXF: [accosting-owner-schematic.dxf](accosting-owner-schematic.dxf)** (units are inches; opens in QCAD, AutoCAD or any DXF viewer). With the survey underneath: [accosting-owner-schematic-survey.dxf](accosting-owner-schematic-survey.dxf).
 
-Walls are drawn at realistic thicknesses: exterior 9" (2x6 + sheathing + 1" rigid insulation + stucco), interior 4½", plumbing walls 6½". Room sizes on the drawing are clear dimensions, finish face to finish face. Sizes and fine details are the architect's call; the drawing shows one way the [wishlist](#design-wishlist-by-trade) fits.
+Walls are drawn at realistic thicknesses: exterior 8" (2x6 + sheathing + stucco), interior 4½", plumbing walls 6½". Room sizes on the drawing are clear dimensions, finish face to finish face. Sizes and fine details are the architect's call; the drawing shows one way the [wishlist](#design-wishlist-by-trade) fits.
 
 ## Survey overlay
 

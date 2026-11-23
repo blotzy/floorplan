@@ -37,7 +37,7 @@ RENDERS = ROOT / "renders"
 # =============================================================================
 # DATA
 # =============================================================================
-EXT = 9.0      # exterior: 1/2" gyp + 2x6 + 1/2" sheathing + 1" rigid insul. + 7/8" stucco
+EXT = 8.0      # exterior: 1/2" gyp + 2x6 + 1/2" sheathing + 7/8" stucco (about 7 3/8", rounded up)
 INT = 4.5      # interior: 2x4 + 1/2" gyp each side
 WET = 6.5      # plumbing walls: 2x6 + 1/2" gyp each side
 
