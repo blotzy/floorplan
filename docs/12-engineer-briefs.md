@@ -18,7 +18,7 @@ Briefs for the structural and civil engineers on the rebuild of 220 Laurel Dr, A
 
 ## Structural engineer
 
-**Project:** new one-story, wood-frame single-family residence, Eaton Fire rebuild (non-like-for-like), designed to the 2022 California codes as allowed for fire rebuilds by Executive Order N-29-25 (to be confirmed with Building and Safety for a non-like-for-like rebuild; see A-0), 220 Laurel Dr, Altadena (APN 5832-003-027). About 2,226 sq ft, 72' x 31'-4", Type V-B, sprinklered, Very High Fire Hazard Severity Zone. Attached open carport, 18' x 22' (its front 4' a covered walkway).
+**Project:** new one-story, wood-frame single-family residence, Eaton Fire rebuild (non-like-for-like), designed to the 2025 California codes (see A-0), 220 Laurel Dr, Altadena (APN 5832-003-027). About 2,226 sq ft, 72' x 31'-4", Type V-B, sprinklered, Very High Fire Hazard Severity Zone. Attached open carport, 18' x 22' (its front 4' a covered walkway).
 
 **Scope requested:** foundation plan, roof and ceiling framing plans, shear wall and hold-down schedule, details, structural calculations (vertical and lateral), truss specifications for the deferred truss submittal, and structural observation. Plans to LA County Building and Safety as the engineer of record.
 

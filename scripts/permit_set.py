@@ -1238,9 +1238,9 @@ def cover(pdf):
             ("Height", f"1 story, ~{ftin(Z.TOP)} above finished floor (30' limit)"),
             ("Bedrooms / baths", "4 / 3"), ("Parking", "2 covered (carport)")]
     y = table(fig, 22.1, 15.3, "PROJECT DATA", ("ITEM", "PROJECT"), (1.9, 8.4), data, fs=8)
-    code = [("Codes", "2022 California Residential, Building, Electrical, Mechanical,\nPlumbing, Energy, Fire and "
-                      "Green Building Standards Codes, as allowed\nfor fire rebuilds by Executive Order N-29-25; "
-                      "LA County Title 26"),
+    code = [("Codes", "2025 California Residential, Building, Electrical, Mechanical,\nPlumbing, Energy, Fire and "
+                      "Green Building Standards Codes, with the solar/battery\nexemption for fire rebuilds "
+                      "(Executive Order N-29-25); LA County Title 26"),
             ("Occupancy", "R-3 single-family dwelling; U open carport (attached)"),
             ("Construction", "Type V-B; automatic fire sprinklers throughout (NFPA 13D)"),
             ("Fire zone", "VHFHSZ: wildland-urban interface construction, CRC R337 (A-6)"),

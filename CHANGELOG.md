@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 24, 2026
 
+- **3:06 PM**: Code basis: the 2025 California codes throughout (matching the structural set and the Title 24 run), keeping Executive Order N-29-25's solar and battery exemption, instead of the 2022 codes the order allows. A-0 code analysis, project basics, engineer brief, CALGreen checklist, Title 24 inputs and open questions updated.
 - **6:07 AM**: Site: the courtyard held at floor level by a low retaining wall on the line of the house's east wall (house corner to the rear fence), with three steps down to the rear yard, which stays near natural grade; fill only under the house, no property-line retaining walls. Schematic and site doc updated.
 
 ## Nov 23, 2026
