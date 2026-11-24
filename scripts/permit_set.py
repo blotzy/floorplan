@@ -1115,7 +1115,7 @@ def loads_plan(pdf):
             zorder=6, bbox=WHITE)
     a0, b0, a1, b1 = L["ahu"]
     ax.add_patch(Rectangle((a0, b0), a1 - a0, b1 - b0, fc="#cfe0f3", ec="#1f5e9e", lw=1.4, zorder=5))
-    ax.text((a0 + a1) / 2, (b0 + b1) / 2, "AIR HANDLER\nON PLATFORM\n~250 LB", fontsize=6, ha="center", va="center",
+    ax.text((a0 + a1) / 2, (b0 + b1) / 2, "AIR HANDLERS\nON PLATFORM\n~330 LB", fontsize=6, ha="center", va="center",
             zorder=6)
     hx0, hy = S.HATCH_X, (S.face("bedroom hall wall", +1) + S.face("south hall wall", -1)) / 2
     ax.plot([S.face("lounge|gym", +1), S.W_IN], [hy, hy], color="#8e44ad", lw=1.4, ls=(0, (8, 4)), zorder=5)
@@ -1162,10 +1162,11 @@ def loads_plan(pdf):
              "   hall) and a strip along the gable's ridge, over the hall.\n"
              "   Light storage only. Open-web (or attic-frame) trusses there,\n"
              "   so the storage runs continuously rather than in 2' bays.\n"
-             "3. Air handler: on a platform beside the attic hatch, near the\n"
-             "   ridge, over the primary dressing room (short line set to the\n"
-             "   rear condenser; condensate to the laundry's drains), with a\n"
-             "   30\" walkway, light and outlet (mechanical code).\n"
+             "3. Air handlers (main + primary suite): on a platform beside\n"
+             "   the attic hatch, near the ridge, over the primary dressing\n"
+             "   room (short line sets to the rear outdoor unit; condensate\n"
+             "   to the laundry's drains), with a 30\" walkway, light and\n"
+             "   outlet (mechanical code).\n"
              "4. Future solar: on the roof plane, clear of the fire setbacks\n"
              "   (A-3); include its dead load in the roof design.\n"
              "5. Heat pump water heater: Rheem ProTerra 80 gal (XE80T10HS45U1)\n   or equal, per the Title 24 report; on the slab in\n   the mechanical closet.\n"
@@ -1444,7 +1445,7 @@ def floor_plan(pdf):
         alarm(x, y, "SD")
     alarm(S.HATCH_X - 10, hall_y - 15, "SD/\nCO")           # one, mid-lobby: within 21' of every bedroom door;
                                                              # off the centreline, clear of its lights
-    ax.text(S.HATCH_X + 27, hall_y + 15, "AIR HANDLER ABOVE (SEALED ATTIC)", fontsize=5,
+    ax.text(S.HATCH_X + 27, hall_y + 15, "AIR HANDLERS ABOVE (SEALED ATTIC)", fontsize=5,
             ha="center", va="bottom", color=INK)
     for x, y in ((560, 360), (430, 560), (610, 470)):
         pass
@@ -1473,7 +1474,7 @@ def floor_plan(pdf):
         "5. All exterior glazing dual-pane with at least one tempered\n   pane (CRC R337.8.2.1). Fully tempered where noted\n   (CRC R308.4).\n"
         "6. Bedroom windows meet emergency escape: 5.7 sq ft net\n   clear, 20\" min width, 24\" min height, sill 44\" max\n   (CRC R310).\n"
         "7. Smoke alarms: hard-wired, interconnected, battery\n   backup, at least 3' from bathroom doors (CRC R314),\n   supply registers and ceiling fan blade tips (NFPA 72).\n   Combination smoke / CO alarms outside the sleeping areas.\n"
-        "8. All-electric: heat pump HVAC (air handler in the sealed\n   attic; outdoor unit at the rear wall), heat pump water\n   heater (HPWH) in the mechanical closet. Whole-house\n   ventilation by a continuous exhaust fan.\n"
+        "8. All-electric: heat pump HVAC (air handlers in the sealed\n   attic; outdoor unit at the rear wall), heat pump water\n   heater (HPWH) in the mechanical closet. Whole-house\n   ventilation by a continuous exhaust fan.\n"
         "9. Fire sprinklers throughout (NFPA 13D); plans by the\n   sprinkler designer (deferred submittal).\n"
         "10. Attic access in the hall: 22\" x 54\" insulated, gasketed\n   access panel (passes the air handler), 30\" min headroom\n   above (CRC R807.1).\n"
         "11. Furniture not shown; closets, cabinets and fixtures\n   shown for reference.\n")

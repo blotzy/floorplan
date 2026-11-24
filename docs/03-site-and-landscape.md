@@ -55,8 +55,8 @@ From the topographic survey (available on request; overlay: [survey-overlay.png]
 
 ## Heat pump outdoor unit
 
-- Rear yard, against the house's south wall **behind the storage room** (behind the common bath), on a raised concrete pad, between the laundry's and the primary bath's high windows (sills above the unit). The kitchen sink window, the one opened most, is ~14' east; no bedrooms nearby. If the unit discharges sideways, point it out toward the yard. The line set runs straight up into the attic, toward the air handler near the hall.
-- Low metal guard around it (dog yard). Line set up the wall in a painted metal cover into the attic.
+- One multi-zone outdoor unit serving both indoor units (the main air handler and the primary suite's), with room beside it for a second, small unit if the equipment needs one. Rear yard, against the house's south wall **behind the storage room** (behind the common bath), on a raised concrete pad, between the laundry's and the primary bath's high windows (sills above the unit). The kitchen sink window, the one opened most, is ~14' east; no bedrooms nearby. If the unit discharges sideways, point it out toward the yard. The line sets run straight up into the attic, toward the air handlers near the hall.
+- Low metal guard around it (dog yard). Line sets up the wall in one painted metal cover into the attic.
 - Pick a quiet model; the unit is only ~9–10' from the rear lot line. Unit plus wall clearance takes ~3' of the 13' rear yard, leaving ~10' to pass.
 
 ## Front yard (no lawn)

@@ -21,8 +21,8 @@
 | Dishwasher | 15–20A, GFCI | Next to the sink |
 | Countertop outlets | 3–4 × 20A (code minimum is 2) | Spread across the U, peninsula, and appliance garage |
 | Drink fridge | 15–20A | Peninsula, south end, stool side |
-| Heat pump outdoor unit | Per manufacturer | Rear yard, south wall behind the storage room (disconnect within sight) |
-| Heat pump air handler + zone panel | Per manufacturer | Sealed attic, near the hatch (disconnect at the unit) |
+| Heat pump outdoor unit | Per manufacturer | Rear yard, south wall behind the storage room (disconnect within sight). Leave panel space for a second small outdoor unit (the fallback) |
+| Heat pump air handlers (main + primary suite) | Per manufacturer | Sealed attic, on the platform near the hatch (disconnect at each unit) |
 | Heat pump water heater | 240V, 30A (Rheem ProTerra 80 gal, XE80T10HS45U1, about 21A max; confirm on the model's spec sheet) | Mechanical closet |
 | Heat pump dryer | Per model | Laundry, bath wall |
 | Washer | 20A | Laundry, bath wall |

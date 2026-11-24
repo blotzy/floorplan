@@ -49,7 +49,7 @@ Shading: 2'-6" eaves at the street and sides, 2'-0" at the rear; at the rear, 3'
 
 | System | Planned |
 | --- | --- |
-| Heating and cooling | Ducted, variable-speed heat pump (about 3 tons, sized by the Manual J), three zones with motorized dampers; air handler and all ducts in the sealed attic |
+| Heating and cooling | Two ducted heat pump systems, ideally on one multi-zone outdoor unit (about 3 tons in all, sized by the Manual J): a full-size air handler for the great room and bedroom wing, and a slim ducted unit for the primary suite; no zone dampers; air handler and all ducts in the sealed attic |
 | Water heating | Heat pump water heater: Rheem ProTerra 80 gal, XE80T10HS45U1 (Performance Platinum; NEEA Tier 4, 4.07 UEF, built-in LeakGuard shutoff, top water connections; JA13 demand-response readiness to confirm; about 2' diameter x 6'-3" tall), or equal, indoors in the mechanical closet (unducted, louvered into the laundry); thermostatic mixing valve at the outlet, tank at about 140°F; no recirculation |
 | Ventilation | Continuous exhaust fan sized to the code rate (about 105 cfm: 0.03 x floor area + 7.5 x (bedrooms + 1)); an ERV is an open question |
 | Kitchen | Induction range; range hood ducted outside, 400 cfm or less |

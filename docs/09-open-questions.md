@@ -79,7 +79,7 @@
 - [ ] Plumber: confirm the robot vacuum dock's drain connection into the laundry sink's trapped drain.
 - [ ] Energy consultant: glazing is about 430 sq ft (about 19.3% of the floor area), just under the prescriptive 20%, with little margin; confirm the path (prescriptive or performance) and the front door's glass lite (see [Title 24 inputs](14-title24-inputs.md)).
 - [ ] HVAC and energy consultant: an ERV instead of the continuous exhaust fan (about $4,000–7,000 more installed): fresh air through a MERV 13 filter on smoke days and some heat and humidity recovery. What does it earn in the Title 24 run?
-- [ ] HVAC: Manual J load calculation and Manual D duct design to size the ducted heat pump and confirm three zones (or two, if the primary suite is too small to run alone).
+- [ ] HVAC: Manual J load calculation and Manual D duct design to size the main system and the primary suite's ducted unit, and confirm one multi-zone outdoor unit can drive both (a full-size ducted air handler plus a slim ducted unit); otherwise a second small outdoor unit. Quote the fallback too (one variable-speed system, two zones: day / primary suite).
 - [ ] Electrician: load calculation with the full appliance list, confirming 200A.
 - [ ] Electrician: SCE service point and meter location (west end?) and the EV charger run to the carport.
 - [ ] Engineer: split roof framing: the shed over the vaulted great room and the east end of the wing, the gable over the rest of the wing, and the shed's side wall where it rises above the gable; the bearing/beam line where the vault meets the flat ceilings (the lounge/gym and kitchen/pantry walls are on one line, so the vault ends on one straight line), the tall street wall with the clerestory band, and lateral bracing along it.
