@@ -2,7 +2,7 @@
 
 [← Back to README](../README.md)
 
-What the energy consultant needs to model the house and produce the compliance forms (CF1R). Rooftop solar PV and battery storage aren't required for Eaton and Palisades fire rebuilds (LA County, under Executive Order N-29-25, Sep 2025), but the house must be solar-ready (Energy Code §110.10: a solar zone on the roof, a conduit path to the panel and breaker space); the plan goes further, with the array's mounting attachments installed with the roof and the panels added later under a separate permit. Values marked "target" are starting points for the model; the consultant confirms what the Energy Code requires (2022 edition, under the fire-rebuild executive order: confirm).
+What the energy consultant needs to model the house and produce the compliance forms (CF1R). Rooftop solar PV and battery storage aren't required for Eaton and Palisades fire rebuilds (LA County, under Executive Order N-29-25, Sep 2025), but the house must be solar-ready (Energy Code §110.10: a solar zone on the roof, a conduit path to the panel and breaker space); the panels are added later under a separate permit, clamped to the standing seams. In CBECC, turn on the LA fire PV/battery exception (Project tab): the CF1R then states the solar requirement is suspended, and no PV is required or modeled. Values marked "target" are starting points for the model (2025 Energy Code, CBECC 2025).
 
 ## Building
 
@@ -55,7 +55,7 @@ Shading: 2'-6" eaves at the street and sides, 2'-0" at the rear; at the rear, 3'
 | Kitchen | Induction range; range hood ducted outside, 400 cfm or less |
 | Laundry | Heat pump (ventless) dryer |
 | Lighting | All LED, high-efficacy, with the required controls |
-| Solar and battery | Solar PV per the Energy Code (the County notes solar may be optional for rebuilds: confirm); panel and conduit ready for a future battery |
+| Solar and battery | None in the Title 24 run (LA fire PV/battery exception, EO N-29-25); solar-ready roof zone, conduit and breaker space; ready for a future battery |
 
 ## HERS verifications to expect
 

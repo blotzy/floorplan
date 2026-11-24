@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 23, 2026
 
+- **4:47 PM**: Solar: not in the Title 24 run (CBECC's LA fire PV/battery exception, EO N-29-25); panels later under a separate permit, budget permitting. Title 24 inputs and open questions updated.
 - **4:41 PM**: HVAC: two ducted heat pump systems, ideally on one multi-zone outdoor unit: a main air handler for the great room and bedroom wing, and a slim ducted unit for the primary suite (own thermostat), both on the attic platform; no zone dampers. Fallbacks: a second small outdoor unit, or one variable-speed system with day and suite zones. HVAC, site, electrical, engineer-brief, Title 24 and open-questions docs and A-2/A-7 notes updated.
 - **2:47 PM**: Roof: standing-seam metal instead of asphalt shingles (24-gauge steel, double-lock, concealed clips, Class A listed assembly, high-temperature self-adhered underlayment), dark gray to match the carport; solar clamped to the seams. Roof plan, elevations, sections, fire details, zoning set, 3D model and docs updated.
 - **11:24 AM**: Exterior walls: no continuous rigid insulation (2x6, sheathing, stucco, as in the Title 24 report); drawn 8" instead of 9", outer faces and setbacks unchanged, so the rooms along the exterior walls gain about 1".
