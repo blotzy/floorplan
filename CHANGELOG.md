@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Nov 24, 2026
+
+- **6:07 AM**: Site: the courtyard held at floor level by a low retaining wall on the line of the house's east wall (house corner to the rear fence), with three steps down to the rear yard, which stays near natural grade; fill only under the house, no property-line retaining walls. Schematic and site doc updated.
+
 ## Nov 23, 2026
 
 - **4:58 PM**: Roof insulation: R-19 spray foam at the underside of the roof deck over the sealed attic, R-30 in the vault's rafter bays (walls R-21); Title 24 inputs, open questions and the A-5 assemblies note updated.

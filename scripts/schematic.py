@@ -87,7 +87,8 @@ PRIVACY_TREE = (624.0, 28.0)         # new: inside the front line, west of the l
                                      # 10'+ from the sewer run to the cleanout (survey ~(492, 22))
 LAWN = (LOT_X0 + 18.0, CARPORT[3] + 64.0, E - 156.0, LOT_D - 6.0)   # courtyard lawn (x0, y0, x1, y1): from the
                                      # pavers to the rear fence, beside the gravel strip along the house
-EDGE_OF_PAVEMENT = -160.0            # y of the street's edge of pavement (survey)
+STEPS_Y = (680.0, 716.0)             # courtyard -> rear yard steps (y0, y1): 3' wide, past the rear eave
+EDGE_OF_PAVEMENT = -160.0           # y of the street's edge of pavement (survey)
 # Entry court in front of the porch, edged on the street side by a 24" seat wall (8" block) that
 # returns to the house centred on the wall between the porch notch and the lounge window (502.4);
 # you walk in from the driveway side.
@@ -824,6 +825,19 @@ def build() -> Sheet:
     sh.rect(E - 36, sx0, E, sx1, "L-SITE"); sh.text("LANDING", E - 18, (sx0 + sx1) / 2, 3.5, rot=90)  # at grade
     sh.rect(*LAWN, "L-PLNT")                                                            # pavers to the rear fence
     sh.text("LAWN", (LAWN[0] + LAWN[2]) / 2, (LAWN[1] + LAWN[3]) / 2, 7.0)
+    # courtyard at floor level, rear yard lower (near natural grade): a low retaining wall on the line of the
+    # house's east wall, house corner to the rear fence, with steps down into the rear yard
+    sh.rect(E, S, E + EXT, LOT_D, "A-WALL")
+    h = sh.msp.add_hatch(color=8, dxfattribs={"layer": "A-WALL-PATT"})
+    h.paths.add_polyline_path([(E, S), (E + EXT, S), (E + EXT, LOT_D), (E, LOT_D)], is_closed=True)
+    y0, y1 = STEPS_Y
+    sh.rect(E + EXT, y0, E + EXT + 24, y1, "L-SITE")                                   # 3 risers, 12" treads
+    sh.line((E + EXT + 12, y0), (E + EXT + 12, y1), "L-SITE")
+    sh.line((E + EXT + 4, (y0 + y1) / 2), (E + EXT + 40, (y0 + y1) / 2), "A-ANNO-TEXT")
+    sh.text("DN", E + EXT + 48, (y0 + y1) / 2, 4.0)
+    sh.text("3 STEPS", E + EXT + 12, y0 - 6, 3.0)
+    sh.text("LOW RETAINING WALL", E + EXT + 6, (y1 + LOT_D) / 2, 2.6, rot=90)
+    sh.text("REAR YARD (LOWER, NEAR NATURAL GRADE)", (E + W) / 2 - 120, (S + LOT_D) / 2 + 40, 5.0)
     gx = E - GATE_L                                                                     # carport gate: hinged at the
     sh.line((LOT_X0, fy), (gx, fy), "A-FENC"); sh.line((gx, fy), (E, fy), "A-FENC")   # house corner, swings into
     sh.msp.add_arc((E, fy), GATE_L, 180.0, 270.0,                                      # the carport and opens flat
