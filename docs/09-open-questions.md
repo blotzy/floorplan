@@ -56,6 +56,42 @@
 - [ ] Water heater (Rheem ProTerra 80 gal, XE80T10HS45U1, Home Depot): before buying, confirm it is on the current NEEA qualified products list and matches the model in the Title 24 report (a substitute must be an equivalent NEEA-rated unit that is also JA13 demand-response compliant, since the report lists it; check with the HERS rater first), its height and diameter against the closet, and that it qualifies for the SWITCH rebate.
 - Out-of-state purchases don't save sales tax (California use tax applies), and CALGreen and water-use rules still apply: FloorScore flooring, compliant adhesives, CA-compliant toilets and showerheads.
 
+**Shopping list, by when it's needed** (owner-bought items, mostly small enough to store ahead; confirm with the GC which owner-supplied items the trades will install, and keep receipts against return windows)
+
+*Pick the model now (it sets framing or rough-in; buy any time before rough-in)*
+- [ ] Linear electric fireplace for the hearth bench (sets the bench framing and its dedicated circuit).
+- [ ] Range hood insert, 400 cfm or less (sets the enclosure and the roof duct).
+- [ ] PoE doorbell (its chime wiring, or none for a digital chime).
+- [ ] Heat pump system first, then its thermostats (below).
+
+*Before rough plumbing*
+- [ ] Primary shower: two thermostatic valves with diverters (the rough-in valve bodies), choosing the trim line with them.
+- [ ] Common bath shower valve; guest ensuite tub/shower valve.
+- [ ] Guest ensuite alcove soaking tub (bulky; set at rough-in, before drywall).
+- [ ] Thermostatic mixing valve for the water heater outlet.
+
+*Before rough electrical and low voltage*
+- [ ] Recessed TV boxes (3: lounge, primary, guest).
+- [ ] In-wall speakers with back-boxes (3 in the TV wall, 2 rear).
+- [ ] Bath exhaust fans (3). The common bath's is the continuous whole-house ventilation fan: continuous-rated, 1.0 sone or less, humidity boost (its airflow is HERS-tested).
+- [ ] Recessed lights for the hall, kitchen and reading nook: IC-rated, airtight and JA8-certified (Title 24).
+- [ ] Smoke/CO alarms, hard-wired and interconnected, with battery backup (if the electrician doesn't supply them).
+
+*Before cabinets and countertops*
+- [ ] Kitchen sink (single deep undermount bowl) and any undermount bath sinks: the countertop fabricator templates around them.
+
+*Trim-out (after paint)*
+- [ ] Smart switches and dimmers, one system (e.g. Lutron Caséta; neutrals are in every box): 23 light controls (foyer, carport, lounge, kitchen cans, hall, peninsula pendants, under-cabinet, dining pendant, rear patio, laundry, mechanical closet, storage room, common bath, gym, guest, office, guest ensuite, primary bedroom, dressing room, path light, nook reading lights, primary bath and vanity, shower light), with a companion remote for each 3-way (lounge, kitchen cans, hall); 4 ceiling fan controls (lounge, primary, guest, office); 3 bath fan switches (common bath boost, ensuite, primary bath); the in-wall astronomical timer for the porch and entry court; the attic timer switch; the pantry vacancy sensor. Wall plates to match (36 positions in 17 boxes, per the electrical doc).
+- [ ] Smart lock and front door contact sensor.
+- [ ] Light fixtures: carport (4, damp/wet-rated, low profile, with motion sensor and photocell), porch and entry court, rear patio, peninsula pendants, dining pendant, bath and vanity lights, shower light (wet-rated), under-cabinet strips, dressing room path light.
+- [ ] Ceiling fans with lights (4: lounge, primary, guest, office; bulky).
+- [ ] Shower trims, fixed heads and slide-bar handhelds; bath faucets; kitchen pull-down faucet; RO filter and its tap (California flow limits: showers 1.8 gpm, lavatories 1.2 gpm, kitchen 1.8 gpm).
+- [ ] Toilets (3; bulky).
+- [x] Bidet seats (3).
+- [ ] Thermostats (2): only after the heat pump system is chosen (multi-zone and variable-speed systems often need the maker's own thermostat); check the SWITCH rebate rules first.
+- [ ] Network and security, bought last (models and prices change fastest): PoE switch, Wi-Fi access points (2), PoE cameras (4: carport, porch, bin pad, rear eave), the doorbell.
+- [ ] Irrigation controller (weather-based) and landscape lights.
+
 **Trades**
 
 - [ ] Architect and civil engineer: foundation and grading for the slope (about 4 ft of fall across the house footprint, more across the lot): stepped vs. raised slab, how the dining slider meets grade, and drainage around the house.
