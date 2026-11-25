@@ -4,6 +4,8 @@
 
 All structured cabling home-runs to the network rack (in the mechanical / network closet), in smurf tube (flexible conduit) so cables can be replaced or added later.
 
+**Smart home:** Ethernet (PoE where offered) wherever a device can take it: access points, cameras, the doorbell, TVs and media gear. Everything else (switches and dimmers, sensors, the smart lock) on Zigbee, with the coordinator at the network rack.
+
 - **Rooms:** two smurf-tube runs with two Cat6A cables each in every room, except the dining area and kitchen.
 - **Office:** four Cat6A drops at the desk wall plus two on a second wall.
 - **Wi-Fi access points:** two ceiling-mounted PoE access points, one in the bedroom hall (between the primary and the office) and one where the hall opens into the great room. Run two Cat6A cables to each.

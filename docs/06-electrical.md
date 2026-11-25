@@ -60,8 +60,8 @@
 - Recessed lights down the centre of the bedroom hall (lobby), between the ceiling trusses, IC-rated and airtight; spaced clear of the attic hatch, smoke alarm and return grille; the hall skylight takes the last spot, near the hall's end. West of the hall's dropped header: one light centred between the header and the attic hatch, and one centred between the hatch and the skylight (it lights the office and primary doors at night). The smoke/CO alarm sits off the centreline beside the hatch, on the guest-room side. The framing and HVAC keep that centreline free (see sheet A-7).
 - **Bedroom smoke alarms** (gym, guest, office, primary): on the ceiling just inside each bedroom door (about 2'-6" into the room, over the latch side), not in the middle of the room. That keeps them more than 3' from the ceiling fans' blade tips and from the supply registers (by the windows), as NFPA 72 asks, and the guest room's more than 3' from the ensuite door. Hard-wired, interconnected, battery backup.
 - Reading nook: one or two small recessed reading lights in the nook's ceiling, on a dimmer, plus an outlet by the reading chair (on the west wall below the window, or in a low shelf of the built-in).
-- Neutral wires in all switch boxes, for smart switches.
-- Door contact sensor and smart lock at the front door.
+- Neutral wires in all switch boxes, for Zigbee smart switches and dimmers (see the low-voltage doc).
+- Door contact sensor and smart lock (Zigbee) at the front door.
 - **Carport lights:** four surface-mount LED ceiling fixtures (damp/wet-location rated, low profile) under the carport roof, in a 2 x 2 grid (two over each parking space, the front pair also lighting the walkway), kept out of the zone where an opened liftgate swings up. Switched from inside by the front door, plus a motion sensor and photocell (Title 24 outdoor lighting controls).
 
 **Switches** (on the door's latch side, inside the room, unless noted)
@@ -86,7 +86,7 @@
 
 - Dressing room: no motion sensor (it's the path to the bath at night). A dim LED path light at floor level along the walkway to the bath door, on its own switch, so the bedroom stays dark.
 - Landscape lights on the landscape controller's astronomical timer. The porch and entry court share the timer switch at the front door, so they can still be switched by hand.
-- Optional: a wireless remote (e.g. a battery Lutron Pico in a wall plate) wherever another control is wanted later, such as the peninsula end panel, with smart dimmers in the wired boxes.
+- Optional: a wireless remote (a battery Zigbee remote in a wall plate) wherever another control is wanted later, such as the peninsula end panel, with smart dimmers in the wired boxes.
 
 **Solar and battery prep (installed later)**
 

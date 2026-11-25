@@ -81,14 +81,15 @@
 - [ ] Kitchen sink (single deep undermount bowl) and any undermount bath sinks: the countertop fabricator templates around them.
 
 *Trim-out (after paint)*
-- [ ] Smart switches and dimmers, one system (e.g. Lutron Caséta; neutrals are in every box): 23 light controls (foyer, carport, lounge, kitchen cans, hall, peninsula pendants, under-cabinet, dining pendant, rear patio, laundry, mechanical closet, storage room, common bath, gym, guest, office, guest ensuite, primary bedroom, dressing room, path light, nook reading lights, primary bath and vanity, shower light), with a companion remote for each 3-way (lounge, kitchen cans, hall); 4 ceiling fan controls (lounge, primary, guest, office); 3 bath fan switches (common bath boost, ensuite, primary bath); the in-wall astronomical timer for the porch and entry court; the attic timer switch; the pantry vacancy sensor. Wall plates to match (36 positions in 17 boxes, per the electrical doc).
-- [ ] Smart lock and front door contact sensor.
+- [ ] Zigbee smart switches and dimmers (e.g. Inovelli Blue Series; neutrals are in every box; check each dimmer against its LED fixtures): 23 light controls (foyer, carport, lounge, kitchen cans, hall, peninsula pendants, under-cabinet, dining pendant, rear patio, laundry, mechanical closet, storage room, common bath, gym, guest, office, guest ensuite, primary bedroom, dressing room, path light, nook reading lights, primary bath and vanity, shower light), with an add-on (aux) switch for each 3-way (lounge, kitchen cans, hall); 4 ceiling fan controls (lounge, primary, guest, office); 3 bath fan switches (common bath boost, ensuite, primary bath); the in-wall astronomical timer for the porch and entry court; the attic timer switch; the pantry vacancy sensor. Wall plates to match (36 positions in 17 boxes, per the electrical doc).
+- [ ] Zigbee coordinator (USB, at the network rack).
+- [ ] Smart lock with a Zigbee module, and a Zigbee front door contact sensor.
 - [ ] Light fixtures: carport (4, damp/wet-rated, low profile, with motion sensor and photocell), porch and entry court, rear patio, peninsula pendants, dining pendant, bath and vanity lights, shower light (wet-rated), under-cabinet strips, dressing room path light.
 - [ ] Ceiling fans with lights (4: lounge, primary, guest, office; bulky).
 - [ ] Shower trims, fixed heads and slide-bar handhelds; bath faucets; kitchen pull-down faucet; RO filter and its tap (California flow limits: showers 1.8 gpm, lavatories 1.2 gpm, kitchen 1.8 gpm).
 - [ ] Toilets (3; bulky).
 - [x] Bidet seats (3).
-- [ ] Thermostats (2): only after the heat pump system is chosen (multi-zone and variable-speed systems often need the maker's own thermostat); check the SWITCH rebate rules first.
+- [ ] Thermostats (2): only after the heat pump system is chosen (multi-zone and variable-speed systems often need the maker's own thermostat; Zigbee only if the system allows it); check the SWITCH rebate rules first.
 - [ ] Network and security, bought last (models and prices change fastest): PoE switch, Wi-Fi access points (2), PoE cameras (4: carport, porch, bin pad, rear eave), the doorbell.
 - [ ] Irrigation controller (weather-based) and landscape lights.
 
