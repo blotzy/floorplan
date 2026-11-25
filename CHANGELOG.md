@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Nov 25, 2026
+
+- **2:00 PM**: Walls: R-19 fiberglass batts minimum in the 2x6 exterior walls (the Title 24 report models R-19, still passing; R-21 high-density allowed as an upgrade). A-5 wall assembly, Title 24 inputs and open questions updated.
+
 ## Nov 24, 2026
 
 - **4:09 PM**: Insulation: open-cell foam R-19 at the attic roof deck; the vault's R-30 quoted as all open-cell or flash-and-batt (air-impermeable foam at the deck required); R-21 fiberglass batts in the exterior walls, mineral wool optional in interior sound walls; no spray foam in the walls. Open-questions to-do updated.
