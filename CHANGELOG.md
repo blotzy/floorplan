@@ -6,6 +6,7 @@ What changed in the plans, newest first. Times are Pacific. Experiments aren't l
 
 ## Nov 25, 2026
 
+- **2:28 PM**: Title 24 modeled conservatively so later choices are upgrades: a generic single-stage central heat pump at federal minimum efficiency (SEER2 14.3, EER2 10.5, HSPF2 7.5; 22,000 Btu/h at 17°F), windows at U-0.32, JA13 demand response not claimed; QII and the specific Rheem ProTerra 80 water heater kept (the model needs both). Title 24 inputs, plumbing and open questions updated.
 - **2:00 PM**: Walls: R-19 fiberglass batts minimum in the 2x6 exterior walls (the Title 24 report models R-19, still passing; R-21 high-density allowed as an upgrade). A-5 wall assembly, Title 24 inputs and open questions updated.
 
 ## Nov 24, 2026

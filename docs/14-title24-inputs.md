@@ -22,8 +22,8 @@ What the energy consultant needs to model the house and produce the compliance f
 | Roof | Unvented attic: R-19 spray foam at the underside of the roof deck (over the attic); vault: R-30 in the 2x10 rafter bays (rafter size per the structural set); uninsulated ceiling between the house and the sealed attic |
 | Walls | 2x6 at 16" with R-19 cavity insulation (R-21 may be installed), stucco; no continuous insulation |
 | Slab | Slab on grade, unheated, no edge insulation unless the model needs it |
-| Windows and doors | U-factor 0.30 or lower, SHGC 0.23 or lower (targets); dual-pane with at least one tempered pane (fire zone) |
-| Air sealing | Quality insulation installation (QII) and a tight envelope; sealed attic means ducts are in conditioned space |
+| Windows and doors | Modeled at U-factor 0.32 and SHGC 0.23: install U-0.32 or lower and SHGC 0.23 or lower; dual-pane with at least one tempered pane (fire zone) |
+| Air sealing | Quality insulation installation (QII), HERS-verified (the model fails without it); a tight envelope; sealed attic means ducts are in conditioned space |
 
 ## Windows and glazed doors
 
@@ -49,8 +49,8 @@ Shading: 2'-6" eaves at the street and sides, 2'-0" at the rear; at the rear, 3'
 
 | System | Planned |
 | --- | --- |
-| Heating and cooling | Two ducted heat pump systems, ideally on one multi-zone outdoor unit (about 3 tons in all, sized by the Manual J): a full-size air handler for the great room and bedroom wing, and a slim ducted unit for the primary suite; no zone dampers; air handler and all ducts in the sealed attic |
-| Water heating | Heat pump water heater: Rheem ProTerra 80 gal, XE80T10HS45U1 (Performance Platinum; NEEA Tier 4, 4.07 UEF, built-in LeakGuard shutoff, top water connections; JA13 demand-response readiness to confirm; about 2' diameter x 6'-3" tall), or equal, indoors in the mechanical closet (unducted, louvered into the laundry); thermostatic mixing valve at the outlet, tank at about 140°F; no recirculation |
+| Heating and cooling | Two ducted heat pump systems, ideally on one multi-zone outdoor unit (about 3 tons in all, sized by the Manual J): a full-size air handler for the great room and bedroom wing, and a slim ducted unit for the primary suite; no zone dampers; air handler and all ducts in the sealed attic. **Modeled conservatively** so the final system choice stays open: one generic ducted central split heat pump, single-stage, at federal minimum efficiency (SEER2 14.3, EER2 10.5, HSPF2 7.5), 36,000 Btu/h at 47°F and 22,000 at 17°F. Any system with equal or better ratings and capacity complies (multi-zone, variable speed, two systems); ducts must stay in the sealed attic, and a system far from 3 tons needs a re-run |
+| Water heating | Heat pump water heater: Rheem ProTerra 80 gal, XE80T10HS45U1 (Performance Platinum; NEEA Tier 4, 4.07 UEF, built-in LeakGuard shutoff, top water connections; about 2' diameter x 6'-3" tall), or equivalent, modeled as that specific NEEA-rated model (a generic tier fails the model); JA13 demand response not claimed; indoors in the mechanical closet (unducted, louvered into the laundry); thermostatic mixing valve at the outlet, tank at about 140°F; no recirculation |
 | Ventilation | Continuous exhaust fan sized to the code rate (about 105 cfm: 0.03 x floor area + 7.5 x (bedrooms + 1)); an ERV is an open question |
 | Kitchen | Induction range; range hood ducted outside, 400 cfm or less |
 | Laundry | Heat pump (ventless) dryer |
