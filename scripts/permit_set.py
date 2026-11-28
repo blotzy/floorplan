@@ -825,7 +825,7 @@ ASSEMBLIES = ("ASSEMBLIES (insulation values per the Title 24 report)\n"
               "   sheathing, 2x6 studs with R-19 min. cavity\n"
               "   insulation, 1/2\" gypsum board.\n"
               "W2 INTERIOR WALL: 2x4 (plumbing walls 2x6), gypsum both\n"
-              "   sides; sound insulation at bedrooms, baths, laundry.\n"
+              "   sides; mineral wool sound insulation throughout.\n"
               "F1 FLOOR: concrete slab on grade over vapor retarder and\n"
               "   capillary break (CALGreen 4.505.2); foundation, slab\n"
               "   and footings per structural; floor level per civil.")

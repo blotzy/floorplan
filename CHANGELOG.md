@@ -4,6 +4,10 @@
 
 What changed in the plans, newest first. Times are Pacific. Experiments aren't listed unless they became part of the plan.
 
+## Nov 27, 2026
+
+- **5:33 PM**: Interior walls: mineral wool sound batts (e.g. Rockwool Safe'n'Sound) in every interior wall, replacing the gym-only and optional notes; A-5's W2 note updated. The insulation to-do says to quote fiberglass too and use it if mineral wool runs more than about $1,500 over.
+
 ## Nov 25, 2026
 
 - **3:50 PM**: Smart home basis: Ethernet (PoE where offered) wherever a device takes it, Zigbee for switches, dimmers, sensors and the lock, with the coordinator at the network rack. Low-voltage and electrical docs and the shopping list updated.
